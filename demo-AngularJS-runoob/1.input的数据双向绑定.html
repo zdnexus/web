@@ -10,11 +10,12 @@
 <!--ng-app 指令告诉 AngularJS，<div> 元素是 AngularJS 应用程序 的"所有者"。-->
 <div ng-app="">
     <!--ng-model 指令把输入域的值绑定到应用程序变量 name。-->
-    <p>名字 : <input type="text" ng-model="name" value="3"></p>
+    <!--AngularJs中的ng-model优先级比value高-->
+    <p>名字 : <input type="text" value="hlc" ng-model="name"></p>
     <!--{{}} 指令把应用程序变量 name 绑定到某个段落的 innerHTML。-->
     <h1>Hello {{name}}</h1>
     <!--ng-bind 指令把应用程序变量 name 绑定到某个段落的 innerHTML。-->
-    <h1>Hello <span ng-bind="name"></span></h1>
+    <h1>Hello <span style="color: red;" ng-bind="name"></span></h1>
 </div>
 
 </body>
