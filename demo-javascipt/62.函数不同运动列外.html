@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--除了变透明外都可以使用运动函数，所以必须另起条件运算-->
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            border: 10px solid black;
+            margin: 10px;
+            font-size: 15px;
+            float: left;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            var oDiv3 = document.getElementById('div3');
+            var oDiv4 = document.getElementById('div4');
+            var oDiv5 = document.getElementById('div5');
+
+
+            oDiv1.onmouseover = function () {
+                Start_Move(this, 'height', 400);
+            };
+            oDiv1.onmouseout = function () {
+                Start_Move(this, 'height', 200);
+            };
+
+
+            oDiv2.onmouseover = function () {
+                Start_Move(this, 'width', 400);
+            };
+            oDiv2.onmouseout = function () {
+                Start_Move(this, 'width', 200);
+            };
+
+
+            oDiv3.onmouseover = function () {
+                Start_Move(this, 'fontSize', 50);
+            };
+            oDiv3.onmouseout = function () {
+                Start_Move(this, 'fontSize', 15);
+            };
+
+
+            oDiv4.onmouseover = function () {
+                Start_Move(this, 'borderWidth', 100);
+            };
+            oDiv4.onmouseout = function () {
+                Start_Move(this, 'borderWidth', 10);
+            };
+
+
+
+            oDiv5.onmouseover = function () {
+                Start_Move(this, 'opacity', 100);
+            };
+            oDiv5.onmouseout = function () {
+                Start_Move(this, 'opacity', 30);
+            };
+        };
+
+        function Get_Style(obj, name) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[name];
+            }
+            else {
+                return getComputedStyle(obj, 0)[name];
+            }
+        }
+
+        function Start_Move(obj, name, Target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var temp = 0;
+                if (name == 'opacity') {
+                    temp = parseFloat(Get_Style(obj, name)) * 100;
+                }
+                else {
+                    temp = parseInt(Get_Style(obj, name));
+                }
+                var speed = (Target - temp) / 5;
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+                if (temp == Target) {
+                    clearInterval(obj.timer);
+                }
+                else {
+                    if (name == 'opacity') {
+                        obj.style.filter = 'alpha(opacity:' + temp + speed + ')';//IE
+                        obj.style.opacity = (temp + speed) / 100;//FF
+                    }
+                    else {
+                        obj.style[name] = temp + speed + 'px';
+                    }
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3">dasdsadaa</div>
+<div id="div4"></div>
+<div id="div5" style="filter:alpha(opacity=30);opacity: 0.3"></div>
+</body>
+</html>

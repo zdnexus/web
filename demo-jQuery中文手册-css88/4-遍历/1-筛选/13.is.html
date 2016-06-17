@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li {
+            cursor: pointer;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .is( jQuery object )
+//            jQuery object
+//            类型: Object
+//            现有的jQuery对象，以匹配当前的元素。
+
+//            针对检查列表元素交替现有的集合。
+            var $alt = $("#browsers li:nth-child(2n)").css("background-color", "#00FFFF");
+
+            $('li').click(function () {
+                var $li = $(this);
+
+                if ($li.is($alt)) {
+                    $li.slideUp();
+                }
+                else {
+                    $li.css("background", "red");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<ul id="browsers">
+    <li>Chrome</li>
+    <li>Safari</li>
+    <li>Firefox</li>
+    <li>Opera</li>
+</ul>
+</body>
+</html>

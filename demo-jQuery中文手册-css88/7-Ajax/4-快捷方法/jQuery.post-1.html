@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.post( [settings ] )
+//            描述: 使用一个HTTP POST 请求从服务器加载数据。
+
+
+//            jQuery.post( url [, data ] [, success(data, textStatus, jqXHR) ] [, dataType ] )
+//url
+//            类型: String
+//            一个包含发送请求的URL字符串
+//data
+//            类型: PlainObject, String
+//            发送给服务器的字符串或Key/value键值对。
+//success(data, textStatus, jqXHR)
+//            类型: Function()
+//            当请求成功后执行的回调函数。
+//dataType
+//            类型: String
+//            从服务器返回的预期的数据类型。默认：智能判断（xml, json, script, or html）。
+
+//            $.ajax({
+//                url: url,
+//                data: data,
+//                success: success,
+//                dataType: dataType
+//            });
+
+//            Example: 请求 test.php 页面, 但是忽略返回结果
+            $.post("test.php");
+
+//            Example: 请求 test.php 页面 并且发送url参数(虽然仍然忽视返回的结果)。
+            $.post("test.php", {name: "John", time: "2pm"});
+
+//            Example: 传递数组形式data参数给服务器 (虽然仍然忽视返回的结果)。
+            $.post("test.php", {'choices[]': ["Jon", "Susan"]});
+
+//            Example: 使用Ajax请求发送表单数据。
+            $.post("test.php", $("#testform").serialize());
+
+//            Example: Alert 从 test.php请求的数据结果 (HTML 或者 XML,取决于返回的结果)。
+            $.post("test.php", function (data) {
+                alert("Data Loaded: " + data);
+            });
+
+//            Example: Alert 从 test.cgi请求并且发送url参数的数据结果 (HTML 或者 XML,取决于返回的结果)。
+            $.post("test.php", {name: "John", time: "2pm"},
+                    function (data) {
+                        alert("Data Loaded: " + data);
+                    });
+
+//            Example: 得到test.php的内容，存储在一个 XMLHttpResponse 对象中并且运用 process() JavaScript函数。
+            $.post("test.php", {name: "John", time: "2pm"},
+                    function (data) {
+                        process(data);
+                    },
+                    "xml"
+            );
+
+//            Example: Posts to the test.php page and gets contents which has been returned in json format (<?php echo json_encode(array("name"=>"John","time"=>"2pm")); ?>).
+            $.post("test.php", {"func": "getNameAndTime"},
+                    function (data) {
+                        console.log(data.name); // John
+                        console.log(data.time); //  2pm
+                    }, "json");
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.extend( [deep ], target, object1 [, objectN ] )
+//deep
+//            类型: Boolean
+//            如果是true，合并成为递归（又叫做深拷贝）。
+//target
+//            类型: Object
+//            对象扩展。这将接收新的属性。
+//object1
+//            类型: Object
+//            一个对象，它包含额外的属性合并到第一个参数.
+//objectN
+//            类型: Object
+//            包含额外的属性合并到第一个参数
+
+            var object1 = {
+                apple: 0,
+                banana: {weight: 52, price: 100},
+                cherry: 97
+            };
+            var object2 = {
+                banana: {price: 200},
+                durian: 100
+            };
+
+// Merge object2 into object1, recursively
+            $.extend(true, object1, object2);
+
+// Assuming JSON.stringify - not available in IE<8
+            $("#log").append(JSON.stringify(object1));
+        });
+    </script>
+</head>
+<body>
+
+<div id="log"></div>
+
+</body>
+</html>

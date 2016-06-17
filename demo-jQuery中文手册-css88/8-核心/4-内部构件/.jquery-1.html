@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+//            jquery
+//            描述: 一个包含了jQuery版本号的字符串。
+
+//            jquery
+//            .jquery原型指向jQuery的原型， 通常被称为它的别名$.fn。它是一个字符串，
+
+//            Example: Determine if an object is a jQuery object
+            var a = {
+                        what: "A regular JS object"
+                    },
+                    b = $("body");
+
+            if (a.jquery) { // falsy, since it"s undefined
+                alert(" a is a jQuery object! ");
+            }
+
+            if (b.jquery) { // truthy, since it"s a string
+                alert(" b is a jQuery object! ");
+            }
+
+            alert( 'You are running jQuery version: ' + $.fn.jquery );//通常被称为它的别名$.fn。它是一个字符串，其中包含的jQuery的版本号，
+
+        })
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

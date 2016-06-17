@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById("btn1");
+//            IE
+//            oBtn.attachEvent("onclick", function () {
+//                alert(1);
+//            });
+//            oBtn.attachEvent("onclick", function () {
+//                alert(2);
+//            });
+
+//            ff,chrome
+//            oBtn.addEventListener("click", function () {
+//                alert(1);
+//            });
+//            oBtn.addEventListener("click", function () {
+//                alert(2);
+//            });
+            myAddEvent(oBtn, "click", function () {
+                alert(1);
+            });
+            myAddEvent(oBtn, "click", function () {
+                alert(2);
+            });
+        };
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="点我">
+</body>
+</html>

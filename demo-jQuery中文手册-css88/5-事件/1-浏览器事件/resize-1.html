@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .resize( handler(eventObject) )
+//            为 JavaScript 的 "resize" 事件绑定一个处理函数，或者触发元素上的该事件。
+
+//            .resize( handler(eventObject) )
+//            handler(eventObject)
+//            类型: Function()
+//            每次事件触发时会执行的函数。
+
+//            当窗口大小改变时（或改变后），查看窗口的宽度：
+            $(window).resize(function() {
+                $('body').prepend('<div>' + $(window).width() + '</div>');
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

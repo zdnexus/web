@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.when( deferreds )
+//            描述: 提供一种方法来执行一个或多个对象的回调函数， Deferred(延迟)对象通常表示异步事件。
+
+//            jQuery.when( deferreds )
+//deferreds
+//            类型: Deferred
+//            一个或多个延迟对象，或者普通的JavaScript对象。
+
+            $.when($.ajax("/zd/1.php")).then(function (data, textStatus, jqXHR) {
+                alert(jqXHR.status); // alerts 200
+            });
+
+//            为什么先弹出123然后I fired immediately最后200？
+//            如果一个参数被传递给jQuery.when() ， 并且它不是一个Deferred或Promise对象， 那么它会被当作是一个被解决（resolved）的延迟对象，
+//            并且绑定到上面的任何 doneCallbacks 都会被立刻执行。向 doneCallbacks 中传入的是原始的参数。
+//            在这种情况下，设定的任何 failCallbacks 永远都不会被执行，因为延迟对象永远不会被拒绝（rejected）。
+            $.when({
+                testing: 123
+            }).done(
+                    function (x) {
+                        alert(x.testing);
+                    } /* alerts "123" */
+            );
+
+            $.when().then(function (x) {
+                alert("I fired immediately");
+            });
+
+            var d1 = $.Deferred();
+            var d2 = $.Deferred();
+
+            $.when(d1, d2).done(function (v1, v2) {
+                console.log(v1); // "Fish"
+                console.log(v2); // "Pizza"
+            });
+
+            d1.resolve("Fish");
+            d2.resolve("Pizza");
+
+//            Example: 执行Ajax请求后两个函数是成功的。（见jQuery.ajax()对于一个成功的和错误的案件为AJAX请求的完整描述文档）。
+            $.when($.ajax("/zd/1.php"), $.ajax("/zd/2.php")).done(function (a1, a2) {
+                /* a1 and a2 are arguments resolved for the
+                 page1 and page2 ajax requests, respectively */
+                var jqXHR = a1[2];
+                /* arguments are [ "success", statusText, jqXHR ] */
+                if (/Whip It/.test(jqXHR.responseText)) {
+                    alert("First page has 'Whip It' somewhere.");
+                }
+            });
+
+//            Example: 执行函数myFunc当两个Ajax请求是成功的，如果任一或myFailure有一个错误。
+            $.when($.ajax("/zd/1.php"), $.ajax("/zd/2.php"))
+                    .then(myFunc, myFailure);
+
+//            a和b两种方式发送请求都是同时请求，不会等待第一个请求返回之后再返回第二个
+//            使用$.when()的方式会等到两个请求都返回之后才触发回调函数
+//            只有当两个请求都成功返回时才会触发done回调
+        });
+    </script>
+</head>
+<body>
+
+
+
+</body>
+</html>

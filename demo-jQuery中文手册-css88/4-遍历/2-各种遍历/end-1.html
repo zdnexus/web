@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .end()
+//            这个方法不接受任何参数。
+//            终止在当前链的最新过滤操作，并返回匹配的元素的以前状态。
+            
+            $("ul.first")
+                    .find(".foo")
+                    .css("background-color", "red")
+                    .end()
+                    .find(".bar")
+                    .css("background-color", "green");
+        });
+    </script>
+</head>
+<body>
+<ul class="first">
+    <li class="foo">list item 1</li>
+    <li>list item 2</li>
+    <li class="bar">list item 3</li>
+</ul>
+<ul class="second">
+    <li class="foo">list item 1</li>
+    <li>list item 2</li>
+    <li class="bar">list item 3</li>
+</ul>
+</body>
+</html>

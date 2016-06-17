@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+
+    var oValue;
+    console.log(oValue === undefined); //true 这段代码显示为true,代表oVlaue的值即为undefined，因为我们没有初始化它。
+    console.log(oValue === null); //false
+
+    var x = document.getElementById('notExistElement');
+    console.log(x === undefined);//false
+    console.log(x === null);//true 当页面上不存在id为"notExistElement"的DOM节点时，这段代码显示为"true"，因为我们尝试获取一个不存在的对象。函数返回的是null
+
+    console.log(typeof undefined);//undefined
+    console.log(typeof null);//object null即是一个不存在的对象的占位符
+    console.log(null == undefined)//true ECMAScript认为undefined是从null派生出来的，所以把它们定义为相等的。但是，如果在一些情况下，我们一定要区分这两个值，
+    console.log(null === undefined)//false
+    console.log(typeof null == typeof undefined)//false
+
+</script>
+</html>

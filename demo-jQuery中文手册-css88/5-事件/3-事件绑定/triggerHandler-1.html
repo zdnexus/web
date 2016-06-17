@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .triggerHandler( eventType [, extraParameters ] )
+//            为一个事件执行附加到元素的所有处理程序。
+
+//        1   .triggerHandler( "event" )方法被触发时不会调用元素上的 .event()。
+//            这意味着在表单上触发 .triggerHandler( "submit" )将不会调用表单上的.submit()。（愚人码头注：可以理解为.triggerHandler() 方法并不会触发事件的默认行为。(例如，表单提交)。）
+
+//        2   .trigger() 会影响所有与 jQuery 对象相匹配的元素，而 .triggerHandler() 仅影响第一个匹配到的元素。
+
+//        3   使用 .triggerHandler() 触发的事件，并不会在 DOM 树中向上冒泡。 如果它们不是由目标元素直接触发的，那么它就不会进行任何处理。
+
+//        4   与普通的方法返回 jQuery 对象(这样就能够使用链式用法)相反，.triggerHandler() 返回最后一个处理的事件的返回值。如果没有触发任何事件，会返回 undefined。
+
+//            如果您使用 .triggerHandler() 触发 focus 事件，那么它只会触发绑定了该事件的处理函数，而浏览器的默认 focus 动作是不会被触发的。
+            $("#old").click(function () {
+                $("input").trigger("focus");
+            });
+
+            $("#new").click(function () {
+                $("input").triggerHandler("focus");
+            });
+
+            $("input").focus(function () {
+                $("<span>Focused!</span>")
+                        .appendTo("body")
+                        .fadeOut(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="old">.trigger("focus")</button>
+
+<button id="new">.triggerHandler("focus")</button>
+<br/><br/>
+
+<input type="text" value="To Be Focused"/>
+</body>
+</html>

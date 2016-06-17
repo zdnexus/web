@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        button {
+            display: block;
+            font-size: 12px;
+            width: 100px;
+        }
+
+        div {
+            float: left;
+            margin: 10px;
+            font-size: 10px;
+            border: 1px solid black;
+        }
+
+        span {
+            color: blue;
+            font-size: 18px;
+        }
+
+        #inner {
+            color: red;
+        }
+
+        td {
+            width: 50px;
+            text-align: center;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":nth-child(index/even/odd/equation)" )
+//            选择的他们所有父元素的第n个子元素。
+
+//            :nth-child(n)从1开始 ,:eq(n)从0开始
+//            注意这里的 :even 和 :odd 会无视它们的父元素，而仅仅把元素列表中的元素每隔一个过滤出来。
+//            而 :nth-child 则会计算子元素在各自父元素中的索引值。
+
+            $("button").click(function () {
+                var str = $(this).text();
+                $("tr").css("background-color", "white");
+                $("tr" + str).css("background-color", "#ff0000");
+                $("#inner").text(str);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button>:nth-child(even)</button>
+    <button>:nth-child(odd)</button>
+    <button>:nth-child(3n)</button>
+    <!--3n = 3 * 0 = 0 -> nth-child(0)没有-->
+    <button>:nth-child(2)</button>
+</div>
+<div>
+    <button>:nth-child(3n+1)</button>
+    <button>:nth-child(3n+2)</button>
+    <button>:even</button>
+    <button>:odd</button>
+</div>
+<div>
+    <table>
+        <tr>
+            <td>John</td>
+        </tr>
+        <tr>
+            <td>Karl</td>
+        </tr>
+        <tr>
+            <td>Brandon</td>
+        </tr>
+        <tr>
+            <td>Benjamin</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <table>
+        <tr>
+            <td>Sam</td>
+        </tr>
+    </table>
+</div>
+<div>
+    <table>
+        <tr>
+            <td>Glen</td>
+        </tr>
+        <tr>
+            <td>Tane</td>
+        </tr>
+        <tr>
+            <td>Ralph</td>
+        </tr>
+        <tr>
+            <td>David</td>
+        </tr>
+        <tr>
+            <td>Mike</td>
+        </tr>
+        <tr>
+            <td>Dan</td>
+        </tr>
+    </table>
+</div>
+
+<span>tr<span id="inner"></span></span>
+</body>
+</html>

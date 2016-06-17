@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div p").css("background", "blue");//div里面所有的p标签
+//            $("div > p").css("background", "blue");//父级是div的p标签
+//            $("#div1 p").css("background", "blue");//#div1里面所有的p标签
+//            $("#div1 > p").css("background", "blue");//父级是#div1的p标签
+
+            // ~ :找到所有与(表单->p)同辈的(元素->span)
+//            $("p ~ span").css("background", "blue");//p标签后面的所有同辈的span标签
+
+            // + :一个有效选择器并且紧接着第一个选择器
+//            $("p + span").css("background", "blue");//p标签后面紧邻的同辈第一个span标签
+
+            //next() :找到每个段落的后面紧邻的同辈元素。
+//            $("p").next().css("background", "blue");//p标签后面紧邻的同辈第一个元素
+//            $("p").next("span").css("background", "blue");//p标签后面紧邻的同辈第一个span标签
+//            $("p").nextAll("").css("background", "blue");//p标签后面所有元素
+//            $("p").nextAll("div").css("background", "blue");//p标签后面所有div元素
+        })
+    </script>
+</head>
+<body>
+<p>这是body的第一个p标签</p>
+
+<h3>这是body的第一个h3标签</h3>
+<span>这是body的第一个span标签</span>
+<span>这是body的第二哥span标签</span>
+
+<p>这是body的第二个p标签</p>
+
+<div id="div1">
+    <p>这是div1的第一个p标签</p>
+    <span>这是div1的第一个span标签</span>
+    <span>这是div1的第二个span2标签</span>
+
+    <form>
+        <span>这是div1->form的第一个span标签</span>
+
+        <p>这是div1->form的第一个p标签</p>
+
+        <span>这是div1->form的第二个span标签</span>
+
+        <p>这是div1->form的第二个p标签</p>
+    </form>
+    <div id="div2">
+        <p>这是div1->div2的第一个p标签</p>
+    </div>
+    <span>这是div1的第三个span标签</span>
+
+    <p>这是div1的第二个p标签</p>
+</div>
+<div id="div3">
+    <p>这是div3的第一个p标签</p>
+    <span>这是div3的第一个span标签</span>
+</div>
+<span>这是body的第三个span标签</span>
+<span>这是body的第四个span标签</span>
+
+<p>这是body的第三个p标签</p>
+<span>这是body的第五个span标签</span>
+<span>这是body的第六个span标签</span>
+</body>
+</html>

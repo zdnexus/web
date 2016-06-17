@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+//            jQuery( "[attribute$='value']" )
+//            选择指定属性是以给定值结尾的元素。这个比较是区分大小写的。
+
+            $("input[name$='letter']").val("a letter");
+        });
+    </script>
+</head>
+<body>
+<input name="newsletter" />
+<input name="milkman" />
+<input name="jobletter" />
+<input name="job-letter" />
+<input name="job*letter" />
+</body>
+</html>

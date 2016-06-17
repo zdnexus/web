@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#btn").on("keydown", function (e) {
+                if (e.which == 65){
+                    return false;
+                }
+            });
+
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" id="btn">
+
+</body>
+</html>

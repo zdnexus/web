@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        form {
+            font-size: 14px;
+            border: 2px solid green;
+            padding: 2px;
+            background-color: #efe;
+        }
+
+        div {
+            color: red;
+        }
+
+        fieldset {
+            margin: 1px;
+            padding: 3px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "ancestor descendant" )
+//            选择给定的祖先元素ancestor的所有后代元素descendant。
+
+//            一个元素的后代可能是该元素的一个孩子，孙子，曾孙等。
+
+            $("form input").css("border", "2px dotted blue");//form里面的所有input子元素
+        });
+    </script>
+</head>
+<body>
+<form>
+    <div>Form is surrounded by the green outline</div>
+    <label>Child:
+        <input type="text" name="name"/>
+    </label>
+    <!--fieldset -> legend-->
+    <fieldset>
+        <legend>YYF卧槽</legend>
+        <label>Grandchild:
+            <input type="text" name="newsletter"/>
+        </label>
+    </fieldset>
+</form>
+Sibling to form:<input type="text" name="none"/>
+</body>
+</html>

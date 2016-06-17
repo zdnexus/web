@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .inputs {
+            float: left;
+            margin-right: 1em;
+        }
+
+        .inputs p {
+            margin-top: 0;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .focusout( handler(eventObject) )
+//            描述: 将一个事件函数绑定到"focusout" 事件。
+
+//            focusout 事件会在元素（或者其内部的任何元素）失去焦点时触发。
+//            这跟 blur 事件的显著区别在于，它可以在父元素上检测子元素失去焦点的情况(换而言之，它支持事件冒泡)。
+
+//            .focusout()方法只是作为.on( "focusout", handler )的一个速记写法，移除该事件可以使用.off( "focusout" )。
+
+//            监视段落内部失去焦点的情况。请注意 focusout 计数和 blur 计数的差异。
+            var fo = 0, b = 0;
+
+            $("p").focusout(function () {
+                fo++;
+                $("#fo").text("focusout fired: " + fo + "x");
+            }).blur(function () {
+                b++;
+                $("#b").text("blur fired: " + b + "x");
+            });
+//            p标签失去焦点后冒泡到input标签,
+//            添加input失去焦点只能使用$("p").blur( handler(eventObject) )
+        });
+    </script>
+</head>
+<body>
+
+<div class="inputs">
+    <p>
+        <input type="text"/><br/>
+        <input type="text"/>
+    </p>
+
+    <p>
+        <input type="password"/>
+    </p>
+</div>
+
+<div id="fo">focusout fire</div>
+
+<div id="b">blur fire</div>
+
+</body>
+</html>

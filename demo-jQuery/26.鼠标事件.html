@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            //单击
+//          $("#p1").click(function(){
+//              alert($(this).text());
+//          });
+
+            //双击
+//            $("#p1").dblclick(function(){
+//                alert($(this).text());
+//            });
+
+            //获取焦点
+//            $("#div1").focusin(function(){
+//                $(this).children("span").show();
+//            });
+            //获取焦点可作用于父元素
+//            $("input").focusin(function(){
+//                $("span").show();//选取全部span元素
+//            });
+
+            //鼠标按下
+//            $("#p1").mousedown(function(){
+//                alert($(this).text());
+//            });
+
+            //鼠标抬高
+//            $("#p1").mouseup(function(){
+//                alert($(this).text());
+//            });
+
+            //鼠标移动
+//            $("#div1").mousemove(function(e){
+//                var x= e.pageX;//相当于文档的坐标
+//                var y= e.pageY;
+//                $("#ipt").val(x+" "+y);
+//            });
+
+            //鼠标mouseover()移入mouseout()移出
+//            $("#p1").mouseover(function(){
+//                $(this).css("background","red");
+//            });
+//            $("#p1").mouseout(function(){
+//                $(this).css("background","none");
+//            });
+
+            //鼠标移入移出-》合并写法
+//            $("#p1").mouseover(function(){
+//                $(this).css("background","red");
+//            }).mouseout(function(){
+//                $(this).css("background","none");
+//            });
+
+            //mouseenter():阻止事件冒泡
+//            $("#p1").mouseenter(function(){
+//                $(this).css("background","red");
+//            });
+//            $("#p1").mouseleave(function(){
+//                $("#p1").css("background","none");
+//            })
+        })
+    </script>
+</head>
+<body>
+<p id="p1">11111</p>
+<div id="div1" style="border: 1px solid black;">
+    <input type="text" id="ipt" name="" value="111"/>
+    <span style="display: none">已获取焦点</span>
+    <p><input type="text" value="222"><p>
+    <p><em><input type="text" value="333"></em></p>
+</div>
+<span style="display: none">1111</span>
+</body>
+</html>

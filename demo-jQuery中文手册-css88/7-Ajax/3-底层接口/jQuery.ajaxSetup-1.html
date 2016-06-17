@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.ajaxSetup( options )
+//            描述: 为以后要用到的Ajax请求设置默认的值
+
+//            jQuery.ajaxSetup( options )
+//            options
+//            类型: PlainObject
+//            一个用来配置Ajax请求的"{键:值}"对，所有的选项都是可选的。
+
+//            设置 AJAX 请求默认地址为 "/xmlhttp/"，禁止触发全局 AJAX 事件，用 POST 代替默认 GET 方法。其后的 AJAX 请求不再设置任何选项参数。
+            $.ajaxSetup({
+                url: "/xmlhttp/",
+                global: false,
+                type: "POST"
+
+            });
+            $.ajax({
+                data: myData
+            });
+            $.ajax({
+                data: hisData
+            });
+            $.ajax({
+                data: herData
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

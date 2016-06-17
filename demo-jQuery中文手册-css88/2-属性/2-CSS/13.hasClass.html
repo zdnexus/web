@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 8px;
+            font-size: 16px;
+        }
+
+        .selected {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .hasClass( className )
+//            确定任何一个匹配元素是否有被分配给定的（样式）类。
+//            返回true或者false
+
+            $("#result1").append("<span class=selected>" + $("p:first") .hasClass("selected").toString() + "</span>");
+            $("#result2").append("<span class=selected>" + $("p:last").hasClass("selected").toString() + "</span>");
+            $("#result3").append("<span class=selected>" + $("p").hasClass("selected").toString() + "</span>");
+        });
+    </script>
+</head>
+<body>
+<p>This paragraph is black and is the first paragraph.</p>
+
+<p class="selected">This paragraph is red and is the second paragraph.</p>
+
+<div id="result1">First paragraph has selected class:</div>
+<div id="result2">Second paragraph has selected class:</div>
+<div id="result3">At least one paragraph has selected class:</div>
+</body>
+</html>

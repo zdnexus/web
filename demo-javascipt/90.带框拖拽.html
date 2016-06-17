@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+
+        .box {
+            position: absolute;
+            border: 1px dashed black;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            oDiv.onmousedown = function (ev) {
+                var disX = getMousePosition(ev).x - oDiv.offsetLeft;
+                var disY = getMousePosition(ev).y - oDiv.offsetTop;
+
+                //添加虚线框
+                var oBox = document.createElement("div");
+                oBox.className = "box";
+                oBox.style.width = oDiv.offsetWidth - 2 + "px";//border
+                oBox.style.height = oDiv.offsetHeight - 2 + "px";//border
+                oBox.style.left = oDiv.offsetLeft + "px";
+                oBox.style.top = oDiv.offsetTop + "px";
+                document.body.appendChild(oBox);//添加div
+
+                document.onmousemove = function (ev) {
+                    var l = getMousePosition(ev).x - disX;
+                    var t = getMousePosition(ev).y - disY;
+                    if (l < 0) {
+                        l = 0;
+                    }
+                    else if (l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+                        l = document.documentElement.clientWidth - oDiv.offsetWidth;
+                    }
+                    if (t < 0) {
+                        t = 0;
+                    }
+                    else if (t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+                        t = document.documentElement.clientHeight - oDiv.offsetHeight;
+                    }
+                    oBox.style.left = l + "px";
+                    oBox.style.top = t + "px";
+                };
+                document.onmouseup = function () {
+                    oDiv.style.left = oBox.offsetLeft + "px";
+                    oDiv.style.top = oBox.offsetTop + "px";
+                    document.body.removeChild(oBox);//删除div
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false;//阻止默认行为
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

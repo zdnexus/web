@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            word-break: break-all;
+            overflow-y: auto;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        function loadXMLDoc(url, fnSuccess, fnFailed) {
+            var xmlhttp = null;
+            var txt, x, i;
+
+            //创建ajax对象
+            if (window.XMLHttpRequest) {
+                xmlhttp = new XMLHttpRequest();// code for IE7+, Firefox, Chrome, Opera, Safari
+            }
+            else {
+                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");// code for IE6, IE5
+            }
+            //连接服务器
+            xmlhttp.open("GET", url, true);
+            //发送
+            xmlhttp.send();
+            //接受
+
+            /*
+             xmlhttp.onreadystatechange = function () {
+             if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+             xmlDoc = xmlhttp.responseXML;
+             txt = "";
+             x = xmlDoc.getElementsByTagName("title");
+             for (i = 0; i < x.length; i++) {
+             txt = txt + x[i].childNodes[0].nodeValue + "<br/>";
+             }
+             document.getElementById("myDiv").innerHTML = txt;//将获取的数据显示到指定的位置
+             }
+             else {
+             }
+             }
+             */
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    if (xmlhttp.status == 200) {
+                        fnSuccess(xmlhttp.responseText);//responseText为返回数据
+                    }
+                    else {
+                        if (fnFailed) {
+                            fnFailed(xmlhttp.status);
+                        }
+                    }
+                }
+            }
+        }
+
+
+        window.onload = function () {
+            var oBtn = document.getElementById("btn1");
+            oBtn.onclick = function () {
+                loadXMLDoc("aaa.txt?t=" + new Date().getTime(), function (str) {
+                    document.getElementById("div1").innerHTML=str;
+                }, function (str) {
+                    alert(str);
+                });
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<input id="btn1" type="button" value="???">
+</body>
+</html>

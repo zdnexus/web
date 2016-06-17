@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        button {
+            margin: 5px;
+        }
+
+        button#theone {
+            color: red;
+            background: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function aClick() {
+            $("div")
+                    .show()
+                    .fadeOut("slow");
+        }
+
+        $(function () {
+            $("#bind").click(function () {
+                $("#theone")
+                        .bind("click", aClick)//增加绑定函数,指向该函数的引用，而不是内容相同的不同函数。
+                        .text("Can Click!");
+            });
+
+            $("#unbind").click(function () {
+                $("#theone")
+                        .unbind("click", aClick)//解除绑定函数,指向该函数的引用，而不是内容相同的不同函数。
+                        .text("Does nothing...");
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="theone">Does nothing...</button>
+
+<button id="bind">Bind Click</button>
+
+<button id="unbind">Unbind Click</button>
+
+<div style="display:none;">Click!</div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li {
+            margin: 3px;
+            padding: 3px;
+            background: #EEEEEE;
+        }
+
+        li.hilight {
+            background: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var $listElements = $("li").css("color", "blue");
+
+            $(document).bind("click", function (e) {
+                $(e.target).closest($listElements).toggleClass("hilight");
+            });
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li><b>Click me!</b></li>
+    <li>You can also <b>Click me!</b></li>
+</ul>
+</body>
+</html>

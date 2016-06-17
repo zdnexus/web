@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+//            deferred.fail( failCallbacks [, failCallbacks ] )
+//            描述: 当Deferred（延迟）对象拒绝时，调用添加的处理程序。
+
+//            deferred.fail( failCallbacks [, failCallbacks ] )
+//         failCallbacks
+//            类型: Function()
+//            一个函数，或者函数数组，当Deferred（延迟）对象拒绝时被调用。
+//         failCallbacks
+//            类型: Function()
+//            可选的 一个函数，或者函数数组，当Deferred（延迟）对象拒绝时被调用。
+
+            $.get("/zd/test.php")
+                    .done(function(){ alert("$.get succeeded"); })
+                    .fail(function(){ alert("$.get failed!"); });
+
+        })
+    </script>
+</head>
+<body>
+
+
+
+</body>
+</html>

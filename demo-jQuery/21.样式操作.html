@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .bgRed {
+            background: red;
+        }
+
+        .colorWhite {
+            color: #fff;
+        }
+
+        #div1 {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+        }
+
+        #p4 {
+            position: absolute;
+            left: 50px;
+            top: 10px;
+            height: 30px;
+            padding: 10px;
+            border: 1px solid black;
+            margin: 10px;
+        }
+
+        button{
+            position: fixed;
+            top: 500px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //addClass() 增加一个样式
+//            $("#p1").addClass("bgRed").addClass("colorWhite");
+//            $("#p1").addClass("bgRed colorWhite");//空格分开一起写
+
+            //removeClass() 删除一个样式
+//            $("#p1").removeClass("bgRed").removeClass("colorWhite");
+//            $("#p1").removeClass("bgRed colorWhite");//空格分开写
+
+            //toggleClass() 切换样式 ////第一次点击切换,第二次点击还原.
+//            $("p").click(function(){
+//                $(this).toggleClass("bgRed");
+//                $(this).toggleClass("bgRed colorWhite");
+//            });
+
+            //hasClass() 检测是否有具体class -> toggleClass()更方便
+//            $("p").click(function(){
+//                if($(this).hasClass("bgRed")){
+//                    $(this).removeClass("bgRed");
+//                }
+//                else{
+//                    $(this).addClass("bgRed");
+//                }
+//            });
+
+            //css设置,json格式写法
+//            $("#p1").click(function () {
+//                $(this).css({
+//                    "background": "red",
+//                    "color": "white",
+//                    "border":"1px solid black"
+//                });
+//            });
+
+            //height() 获取高度获取了p标签的高度，不含border，padding
+//            alert($("#p4").height());//  ？？？29.77777？？？
+            //outerHeight(bool)获取了整个p标签的高度，包含全部,border，padding
+//            alert($("#p4").outerHeight());// 52=30+10+10+1+1
+            //outerHeight(bool)参数默认为false，如果参数为true，会计算margin,参数false表示全部计算
+//            alert($("#p4").outerHeight(true));//72=30+10+10+10+10+1+1
+            //innerHeight()获取了p标签的内容高度  不包括border
+//            alert($("#p4").innerHeight());//50
+
+
+//            //offset() 返回元素位置,相对于body
+//            var coordinate = $("#p4").offset();
+//            alert(coordinate.left);
+//            //position() 返回元素absolute位置,相对距离
+//            var coordinate = $("#p4").position();
+//            alert(coordinate.left);
+
+            //offsetPatent() 寻找离元素最近的position元素 ->15.html 绝对定位,相对于父级的定位
+
+            //scrollTOP()
+//            $("button").click(function(){
+//                alert($(window).scrollTop());
+//            });
+        })
+    </script>
+</head>
+<body style="height: 4000px">
+<p id="p1">我是第一个p标签</p>
+
+<p id="p2" class="p pp">我是第二个p标签</p>
+
+<p id="p3">我是第三个p标签</p>
+
+<div id="div1">
+    <p id="p4">我是div1里的第一个p标签</p>
+</div>
+
+<button>弹出滚动条离顶部的距离</button>
+</body>
+</html>

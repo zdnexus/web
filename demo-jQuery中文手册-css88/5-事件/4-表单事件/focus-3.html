@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 阻止用户在文本框中写任何内容：
+            $("input[type=text]").focus(function () {
+                $(this).blur();//聚集焦点后又被进行blur失去焦点函数,无法写入.
+            });
+
+//            Example: 在页面显示时，将焦点移到 id 为 'login' 的 input 元素上：
+            $(document).ready(function () {
+                $("#login").focus();//文件加载完毕后，#login自动获取焦点
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="text">
+<input id="login">
+</body>
+</html>

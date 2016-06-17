@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #box {
+            background: black;
+            color: snow;
+            width: 100px;
+            padding: 10px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#box").bind("click", function () {
+                $(this).css("width", "+=200");
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="box">Click me to grow</div>
+</body>
+</html>

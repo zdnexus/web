@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        textarea {
+            height: 35px;
+        }
+
+        div {
+            color: red;
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0;
+            border-width: 0;
+        }
+
+        .marked {
+            background-color: yellow;
+            border: 3px red solid;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":checkbox" )
+//            选择所有类型为复选框的元素。
+
+//            $(':checkbox') 等同于 $('[type=checkbox]')。
+//            如同其他伪类选择器（那些以“:”开始）建议前面加上一个标记名称或其他选择器;否则，默认使用通用选择("*")。
+//            换句话说$(':checkbox') 等同于 $('*:checkbox')，所以应该使用$('input:checkbox')来提升效率。
+
+//            因为:checkbox 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:checkbox 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了现代浏览器上获得更佳的性能，建议使用[type="checkbox"]代替.
+
+            var input = $("form input:checkbox").wrap("<span></span>").parent().css({
+                background: "yellow",
+                border: "3px red solid"
+            });
+//            var input = $("form input[type='checkbox']").wrap("<span></span>").parent().css({
+//                background: "yellow",
+//                border: "3px red solid"
+//            });
+
+            $("div").text("For this type jQuery found " + input.length + ".")
+                    .css("color", "red");
+        });
+    </script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <input type="button" value="Input Button"/>
+        <input type="checkbox"/>
+        <input type="file"/>
+        <input type="hidden"/>
+        <input type="image"/>
+        <input type="password"/>
+        <input type="radio"/>
+        <input type="reset"/>
+        <input type="submit"/>
+        <input type="text"/>
+        <select>
+            <option>Option</option>
+            <option></option>
+        </select>
+        <textarea></textarea>
+        <button>Button</button>
+    </fieldset>
+</form>
+<div></div>
+</body>
+</html>

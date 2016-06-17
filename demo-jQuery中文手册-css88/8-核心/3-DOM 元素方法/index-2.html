@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: yellow;
+            margin: 5px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            点击后，返回那个div在页面上的索引值(从0开始计数)。
+
+            $("div").click(function () {
+                // this is the dom element clicked
+                var index = $("div").index(this);
+                $("span").text("That was div index #" + index);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<span>Click a div!</span>
+
+<div>First div</div>
+<div>Second div</div>
+<div>Third div</div>
+
+</body>
+</html>

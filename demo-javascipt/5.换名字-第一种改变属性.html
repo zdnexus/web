@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<!--鼠标单击显示文本-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //html怎么写，js怎么写，样式一样
+        //input的value
+        function setText() {
+            var oTxt = document.getElementById("txt1");
+            oTxt.value = "钟东";
+        }
+    </script>
+</head>
+<body>
+<!--type=text为输入行-->
+<input id="txt1" type="text" value="我问问"/>
+<input type="button" value="改名字" onclick="setText();"/>
+</body>
+</html>

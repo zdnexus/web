@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( selector [, context ] )
+//            描述: 接受一个包含一个CSS选择器的字符串，用于匹配的一组元素。
+
+//            jQuery( selector [, context ] )
+//         selector
+//            类型: selector
+//            一个包含CSS选择器的字符串
+//         context
+//            类型: Element, jQuery
+//            一个DOM 元素、文档或 作为上下文（context）的jQuery 对象。
+
+//            Selector Context(上下文选择器)
+//            默认情况下,选择器是从文档根节点开始执行搜索。
+//            然而,可以给$()函数传递一个用于上下文检索的第二个可选参数(愚人码头注：第二个上下文参数用于来指定选择器查找的范围)。
+//            举个例子，如果在一个回调函数中我们希望为一个元素做一个检索， 我们可以限制搜索的范围:
+//            由于我们限制这个span选择器的上下文为 this, 只有在点击元素里的span将会被附加样式。
+            $("div.foo").click(function () {
+                $("span", this).addClass("bar");
+            });
+//            在jQuery内部，选择器上下文是使用.find()方法的，所以 $('span', this) 等价于$(this).find('span')。
+
+//            Using DOM elements(使用DOM节点)
+//            一个常见的用途就是单一DOM元素构建的集合可以通过一个回调函数传递this关键字调用这个元素的jQuery方法 ：
+            $("div.foo").click(function () {
+                $(this).slideUp();
+            });
+
+//            Cloning jQuery Objects(克隆jQuery对象)
+//            当一个jQuery对象作为一个参数传递给$()方法时，这个对象的一个克隆对象将被创建。这个新的jQuery对象引用同一DOM元素。
+
+//            Returning an Empty Set(返回一个空集合)
+//            如果你传递给jQuery()方法一个空参数，一个空的jQuery设置将被返回（.length属性为0）。
+
+//            Working With Plain Objects（使用普通的对象）
+            // define a plain object
+            var foo = {foo: "bar", hello: "world"};
+
+// Pass it to the jQuery function
+            var $foo = $( foo );
+
+// test accessing property values
+            var test1 = $foo.prop( "foo" ); // bar
+
+// test setting property values
+            $foo.prop( "foo", "foobar" );
+            var test2 = $foo.prop( "foo" ); // foobar
+
+// test using .data() as summarized above
+            $foo.data( "keyName", "someValue");
+            console.log( $foo ); // will now contain a jQuery{randomNumber} property
+
+// test binding an event name and triggering
+            $foo.bind( "eventName", function () {
+                console.log("eventName was called");
+            });
+
+            $foo.trigger( "eventName" ); // logs "eventName was called"
+//            如果.trigger( "eventName" )被使用，它会在这个对象上搜寻一个“eventName的”属性，并且尝试任何附加在jQuery上的处理器执行完成后执行。
+//            它不检查该属性是否是一个函数。为了避免这种情况，.triggerHandler( "eventName" )应代替使用。
+
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 把第一个段落的透明度渐变成 0.33 (33%，大约三分之一透明度), 用时 600 毫秒。
+            $("p:first").click(function () {
+                $(this).fadeTo("slow", 0.33);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    Click this paragraph to see it fade.
+</p>
+
+<p>
+    Compare to this one that won't fade.
+</p>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":disabled" )
+//            选择所有被禁用的元素。
+
+//            如同其他伪类选择器（那些以“:”开始）建议前面加上一个标记名称或其他选择器;
+//            否则，通用选择("*")被默认使用。换句话说$(':disabled') 等同于 $('*:disabled')，所以应该使用$('input:disabled')。
+
+//            虽然他们的选择的结果通常是一样的，:disabled选择器和[disabled] 属性（attribute） 选择器还是有些细微的差别；
+//            :disabled 检查元素的disabled属性的布尔值（true/false）
+//            [disabled] 检查是否存在的disabled属性。
+
+            $("input:disabled").val("this is it");
+//            $("input[disabled]").val("this is it");
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input name="email" disabled="disabled"/>
+    <input name="id"/>
+</form>
+</body>
+</html>

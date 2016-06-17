@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .each( function(index, Element) )
+//            遍历一个jQuery对象，为每个匹配元素执行一个函数。
+//            function(index, Element)
+//            类型: Function()
+//            为每个匹配元素执行的一个函数。
+
+            $("li").each(function (index) {
+                console.log(index + ": " + $(this).text());
+            });
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>foo</li>
+    <li>bar</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.parseHTML( data [, context ] [, keepScripts ] )
+//            描述: 将字符串解析到一个DOM节点的数组中。
+
+//            jQuery.parseHTML( data [, context ] [, keepScripts ] )
+//data
+//            类型: String
+//            用来解析的HTML字符串。
+//context (默认: document)
+//            类型: Element
+//            DOM元素的上下文，在这个上下文中将创建的HTML片段。
+//keepScripts (默认: false)
+//            类型: Boolean
+//            一个布尔值，表明是否在传递的HTML字符串中包含脚本。
+
+
+            var $log = $("#log"),
+                    str = "hello, <b>my name is</b> jQuery.",
+                    html = $.parseHTML(str),//jQuery.parseHTML使用原生方法将字符串转换为一个DOM节点的集合，然后可以插入到文档。
+                    nodeNames = [];
+
+// Append the parsed HTML
+            $log.append(html);
+
+// Gather the parsed HTML's node names
+            $.each(html, function (i, el) {
+                nodeNames[i] = "<li>" + el.nodeName + "</li>";
+            });
+
+// Insert the node names
+            $log.append("<h3>Node Names:</h3>");
+            $("<ol></ol>")
+                    .append(nodeNames.join(""))
+                    .appendTo($log);
+        });
+    </script>
+</head>
+<body>
+
+<div id="log">
+    <h3>Content:</h3>
+</div>
+
+</body>
+</html>

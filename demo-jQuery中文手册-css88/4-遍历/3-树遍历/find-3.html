@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            color: blue;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .find( jQuery object )
+//            类型: jQuery
+//            一个用于匹配元素的jQuery对象。
+
+            var $spans = $("span");
+
+            $("p").find($spans).css("color", "red");
+        });
+    </script>
+</head>
+<body>
+<p><span>Hello</span>, how are you?</p>
+
+<p>Me? I"m <span>good</span>.</p>
+
+<div>Did you <span>eat</span> yet?</div>
+</body>
+</html>

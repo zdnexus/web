@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .is( function(index) )
+//            function(index)
+//            类型: Function()
+//            一个函数，用来测试集合中的元素。它接受一个参数，index ，这是元素在jQuery集合的索引位置。在函数中， this指的是当前的DOM元素。
+
+            $("li").click(function () {
+                var $li = $(this);
+                var isWithTwo = $li.is(function () {
+                    return $li.find("strong").length == 2 || $li.index() == 3;
+                });
+
+                if (isWithTwo) {
+                    $li.css("background-color", "green");
+                } else {
+                    $li.css("background-color", "red");
+                }
+            })
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li><strong>list</strong> item 1 - one strong tag</li>
+    <li><strong>list</strong> item <strong>2</strong> -two <span>strong tags</span></li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

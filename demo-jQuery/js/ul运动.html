@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background: #ddd;
+            position: relative;
+            top: 300px;
+            left: 30%;
+            overflow: hidden;
+        }
+
+        #ul1 {
+            position: absolute;
+        }
+
+        blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+    <script src="jquery-1.11.3.min.js"></script>
+    <script>
+        (function ($) {
+            $.fn.ulMove = function (opations) {
+
+                //默认配置
+                var defaults = {
+                    liMargin: "10",
+                    speed: "10"
+                };
+
+                //合并配置
+                var settings = $.extend(defaults, opations);
+
+                $(this).children("li").css("margin", settings.liMargin + "px 0");
+
+                var _this = this;
+                setInterval(function () {
+                    $(_this).animate({
+                        "top": "-=" + 1 + "px"
+                    })
+                }, 500);
+            }
+        })(jQuery);
+
+        $(function () {
+            $("#ul1").ulMove();
+        });
+    </script>
+</head>
+<body>
+<div id="div1">
+    <ul id="ul1">
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+        <li>123</li>
+    </ul>
+</div>
+</body>
+</html>

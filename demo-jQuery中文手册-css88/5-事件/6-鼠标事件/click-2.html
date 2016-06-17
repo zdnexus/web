@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            color: red;
+            margin: 5px;
+            cursor: pointer;
+        }
+
+        p:hover {
+            background-color: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").click(function () {
+                $(this).slideUp();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>First Paragraph</p>
+
+<p>Second Paragraph</p>
+
+<p>Yet one more Paragraph</p>
+
+</body>
+</html>

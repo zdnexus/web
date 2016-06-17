@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #info {
+            width: 160px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                $.ajax({
+                    url: "demo54.php?date=" + Math.random(),
+                    type: "get",
+                    dataType: "xml",
+                    success: function (xml) {
+                        $(xml).find("span").each(function () {
+                            $("#ul1").append("<li>" + $(this).children("title").text() + "<em>" + $(this).children("em").text() + "</em></li>");
+                        });
+                        $("#info").css("border", "1px solid black").hide().show(600);
+                    }
+                })
+            });
+            $(document).ajaxStart(function () {
+                $("#loading").show();
+            });
+            $(document).ajaxStop(function () {
+                $("#loading").hide();
+            });
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="获取新闻列表">
+<img src="images/loading.gif" id="loading" style="display: none;">
+
+<div id="info">
+    <ul id="ul1"></ul>
+</div>
+</body>
+</html>

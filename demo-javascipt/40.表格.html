@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload= function () {
+            var oTab=document.getElementById('tb1');
+            //alert(oTab.getElementsByTagName('tbody')[0].getElementsByTagName('tr')[1].getElementsByTagName('td')[1].innerHTML);
+            alert(oTab.tBodies[0].rows[1].cells[2].innerHTML);
+        }
+    </script>
+</head>
+<body>
+<table id="tb1" border="1" width="500">
+    <thead>
+    <tr>
+        <td>姓名</td>
+        <td>ID</td>
+        <td>年薪</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>z</td>
+        <td>1</td>
+        <td>12</td>
+    </tr>
+    <tr>
+        <td>d</td>
+        <td>2</td>
+        <td>13</td>
+    </tr>
+    <tr>
+        <td>s</td>
+        <td>3</td>
+        <td>321</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

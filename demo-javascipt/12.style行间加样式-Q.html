@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<!--行间改变style,alert显示取样式也是从行间取-->
+<!--设置在style里的不弹出来-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 10px;
+            float: left;
+        }
+
+        #div1 {
+            background-color: red;
+            /*style属性不会被alert出来*/
+        }
+
+        #div2 {
+            background-color: blue;
+        }
+
+        #div3 {
+            background-color: aqua;
+        }
+
+        div.box {
+            background-color: saddlebrown;
+        }
+
+        #div3.box2{
+            background-color: saddlebrown;
+        }
+    </style>
+    <script>
+        function lert() {
+            var oDiv = document.getElementById("div1");
+            alert(oDiv.style.backgroundColor);
+        }
+    </script>
+</head>
+<body>
+<!--行间style级别最高-->
+<!--只有行间style可以被alert提取-->
+<!--????????????????有id的div为什么class没用，通用div时class有用-->
+<div id="div1" class="box" style="background-color: white;"></div>
+<!--box对div2无效-->
+<div id="div2" class="box"></div>
+<div id="div3" class="box2"></div>
+</body>
+</html>

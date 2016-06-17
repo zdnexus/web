@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.param( obj )返回: String
+//            描述: 创建一个数组，一个普通的对象，或一个jQuery对象的序列化表示形式，用于URL查询字符串或Ajax请求。
+//            如果传递一个jQuery对象传递，它应该包含输入元素（愚人码头注：input，textarea等）的名称/值属性。
+
+//            jQuery.param( obj )
+//obj
+//            类型: Array 或 PlainObject 或 jQuery
+//            一个用来序列化的一个数组，一个普通的对象，或一个jQuery对象。
+
+//            jQuery.param( obj, traditional )
+//            obj
+//            类型: Array 或 PlainObject 或 jQuery
+//            一个用来序列化的一个数组，一个普通的对象，或一个jQuery对象。
+//traditional
+//            类型: Boolean
+//            一个布尔值，指示是否执行了传统的“shallow”的序列化。
+
+//            因为一些框架解析序列化的数字的能力有限， 在传递 obj 参数时我们应该谨慎，尽量不要传递含有对象的数组，或者数组中嵌套其它数组。
+
+            var myObject = {
+                a: {
+                    one: 1,
+                    two: 2,
+                    three: 3
+                },
+                b: [1, 2, 3]
+            };
+            var newObject = {
+                a: 1,
+                b: 2,
+                c: 3
+            };
+            var recursiveEncoded = jQuery.param(myObject);
+            var recursiveDecoded = decodeURIComponent(jQuery.param(myObject));
+//            在jQuery1.4之前，要模仿$.param()的行为，我们可以设置 traditional 参数为 true：
+            var shallowEncoded = jQuery.param(myObject, true);
+            var recursiveEncoded2 = jQuery.param(newObject);
+
+
+            $("p")
+                    .append(recursiveEncoded + "<br/>")
+                    .append(recursiveDecoded + "<br/>")
+                    .append(shallowEncoded + "<br/>")
+                    .append(recursiveEncoded2 + "<br/>");
+
+        });
+    </script>
+</head>
+<body>
+
+<p></p>
+
+</body>
+</html>

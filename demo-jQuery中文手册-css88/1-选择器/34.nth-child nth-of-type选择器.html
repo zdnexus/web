@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":nth-child(index/even/odd/equation)" )
+//            选择的他们所有父元素的第n个子元素。
+
+//            jQuery( ":nth-of-type(index/even/odd/equation)" )
+//            选择同属于一个父元素之下，并且标签名相同的子元素中的第n个。
+
+//            index: 每个相匹配子元素的索引值，从1开始，也可以是字符串 even 或 odd，或一个方程式( 例如 :nth-of-type(even), :nth-of-type(4n))。
+
+//            因为jQuery的实现:nth-child(n)是严格来自CSS规范，所以n值是“1索引”，也就是说，从1开始计数。
+//            对于所有其他选择器表达式，jQuery遵循JavaScript的“0索引”的计数。
+//            因此，给定一个单一<ul>包含两个<li>， $('li:nth-child(1)')选择第一个<li>，而$('li:eq(1)')选择第二个。
+
+//            :nth-child(n)伪类很容易混淆:eq(n)，即使两个可能导致完全不同的匹配的元素。
+//            用:nth-child(n)时 ，所有子元素都计算在内，不管它们是什么，并且指定的元素被选中仅匹配连接到伪类选择器。
+//            而用:eq(n)时，只有与这个伪类前面的选择相匹配的元素才会被计数（即，成为候选元素），不限于任何其他元素的孩子，而且第（n +1）个一（n是基于0）被选中。
+
+//            1、是div元素；
+//            2. 是父元素的第1个子元素
+            $(".test div:nth-child(1)").css("background-color", "yellow");//第1个子元素不是div，不可设置
+
+//            1.是p元素
+//            2.是父元素的第4个子元素
+            $(".test p:nth-child(4)").css("background-color", "blue");//第4个子元素是p，可设置
+
+//            :nth-of-type()选择器是jQuery 1.9新增的选择器，它是遵循CSS 3中结构性伪类选择符 E:nth-of-type(n)实现的。
+//            和CSS 3中结构性伪类选择符 E:nth-of-type(n)一样，它选择的是匹配所有父元素下同类型中的第n个同级兄弟元素E。
+            $(".test p:nth-of-type(4)").css("background-color", "red");//第4个p子元素 -> 匹配所有父元素下同类型中
+
+//            推论：:nth-child()适合同父级相同子元素，:nth-of-type()适合同父级混合子元素
+        });
+    </script>
+</head>
+<body>
+<div class="test">
+    <p>P a元素</p>
+    <p>P b元素</p>
+    <div>DIV c元素</div>
+    <p>P d元素</p>
+    <div><p>DIV->P e元素</p></div>
+    <p>P f元素</p>
+</div>
+</body>
+</html>

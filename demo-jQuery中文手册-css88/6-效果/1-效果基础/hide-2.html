@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .hide()
+//            这个方法不接受任何参数。
+
+//            点击链接隐藏所有段落。
+            $("p").hide();
+            $("a").click(function (event) {
+                event.preventDefault();
+                $(this).hide();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>Hello</p>
+
+<a href="#">Click to hide me too</a>
+
+<p>Here is another paragraph</p>
+
+</body>
+</html>

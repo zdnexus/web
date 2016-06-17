@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    div {
+        height: 100px;
+        width: 300px;
+        margin: 10px;
+        background-color: #ffd;
+        overflow: auto;
+    }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.timeStamp
+//            描述: 这个属性返回事件触发时距离1970年1月1日的毫秒数。
+
+//            如果只是要确定当前的时间内的事件处理程序，使用(new Date).getTime()来代替。
+
+//            显示两次点击之间的时间。
+            var last, diff;
+            
+            $("div").click(function (event) {
+                if (last) {
+                    diff = event.timeStamp - last;
+                    $("div").append("time since last event: " + diff + "<br/>");
+                }
+                else {
+                    $("div").append("Click again.<br/>");
+                }
+                last = event.timeStamp;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>
+    Click.
+</div>
+
+</body>
+</html>

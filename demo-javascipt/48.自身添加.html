@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload=function(){
+            var oUl_1=document.getElementById('ul1');
+            var oBtn=document.getElementById('btn1');
+
+            oBtn.onclick=function(){
+                var new_li=oUl_1.children[0];
+                oUl_1.appendChild(new_li);//先把元素从原有父级删掉，然后oUL已经把children[0]删掉
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="移动"/>
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+</ul>
+</body>
+</html>

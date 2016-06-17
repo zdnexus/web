@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div,p").click(function () {
+                alert(1);//1
+            });
+
+            $("p").click(function (event) {
+                alert(event.isImmediatePropagationStopped());//false
+                alert(2);//2
+            });
+
+            $("p").click(function (event) {
+                event.stopImmediatePropagation();//消除p标签剩下的函数事件,还有冒泡到div的点击事件
+                alert(3);//3
+                alert(event.isImmediatePropagationStopped());//true
+            });
+
+            //event.stopImmediatePropagation()阻止这个函数的发生
+            $("p").click(function (event) {
+                alert(event.isImmediatePropagationStopped());
+                alert(4);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>
+    111
+    <p>222</p>
+</div>
+
+</body>
+</html>

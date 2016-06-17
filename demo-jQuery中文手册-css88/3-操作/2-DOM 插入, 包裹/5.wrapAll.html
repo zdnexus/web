@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px solid blue;
+        }
+
+        p {
+            background: yellow;
+            margin: 4px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .wrapAll()函数可以接受任何字符串或对象，可以传递给$()工厂函数来指定一个DOM结构。
+//            这种结构可以嵌套多层，但是最内层只能有一个元素。
+//            所有匹配元素将会被当作是一个整体，在这个整体的外部用指定的 HTML 结构进行包裹。
+
+
+//            在所有段落外包上新的div:
+            $("p").wrapAll("<div></div>");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+</body>
+</html>

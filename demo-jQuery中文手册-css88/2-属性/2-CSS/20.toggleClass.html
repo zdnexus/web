@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .wrap > div {
+            float: left;
+            width: 100px;
+            margin: 1em 1em 0 0;
+            padding-left: 3px;
+            border: 1px solid #abc;
+        }
+
+        div.a {
+            background-color: aqua;
+        }
+
+        div.b {
+            background-color: burlywood;
+        }
+
+        div.c {
+            background-color: cornsilk;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var cls = ["", "b", "a b", "a c"];//默认设置
+            var divs = $("div.wrap").children("div");
+            var appendClass = function () {
+                divs.append(function () {
+                    return "<div>" + (this.className || "none") + "</div>";
+                });
+            };
+7d5 dc6d5d6  uu
+            appendClass();
+
+            $("button").bind("click", function () {
+                var tc = this.className || undefined;
+                divs.toggleClass(tc);
+                appendClass();
+            });
+
+            $("a").bind("click", function (event) {
+                event.preventDefault();
+                divs.empty().each(function (i) {
+                    this.className = cls[i];
+                });
+                appendClass();
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="buttons">
+    <button>toggle</button>
+    <button class="a">toggle a</button>
+    <button class="a b">toggle a b</button>
+    <button class="a b c">toggle a b c</button>
+    <a href="#">reset</a>
+</div>
+<div class="wrap">
+    <div></div>
+    <div class="b"></div>
+    <div class="a b"></div>
+    <div class="a c"></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        button {
+            margin: 10px;
+        }
+
+        div {
+            color: blue;
+            font-weight: bold;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function update(j) {
+            var n = parseInt(j.text(), 10);
+            j.text(n + 1);
+        }
+
+        $(function () {
+//            点击 button #2 时，同时触发 button #1 的点击事件。
+            $("button:first").click(function () {
+                update($("span:first"));
+            });
+
+            $("button:last").click(function () {
+                $("button:first").trigger("click");//手动触发button的点击
+
+                update($("span:last"));
+            });
+        });
+    </script>
+</head>
+<body>
+<button>Button #1</button>
+
+<button>Button #2</button>
+
+<div><span>0</span> button #1 clicks.</div>
+
+<div><span>0</span> button #2 clicks.</div>
+</body>
+</html>

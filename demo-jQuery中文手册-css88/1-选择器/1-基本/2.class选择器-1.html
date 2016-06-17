@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div, span {
+            width: 100px;
+            height: 40px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #EEEEEE;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            选择给定样式类名的所有元素。
+
+//            jQuery( ".class" )
+//            class: 一个用来查找的类名。一个元素可以有多个类；其中只有一个必须匹配。
+
+//            对于类选择器，如果浏览器支持，jQuery使用JavaScript的原生getElementsByClassName()函数来实现。
+
+            $(".myClass").css("border", "3px solid red");
+            $(".notMe").css("border", "3px solid blue");
+        });
+    </script>
+</head>
+<body>
+
+<div class="notMe">DIV1 class="notMe"</div>
+
+<div class="myClass">DIV2 class="myClass"</div>
+
+<span class="myClass">SPAN class="myClass"</span>
+<!--不同元素可以匹配同一class-->
+
+</body>
+</html>

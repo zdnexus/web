@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            float: left;
+            border: 2px solid blue;
+        }
+
+        .blue {
+            background-color: blue;
+        }
+
+        .red {
+            background-color: red;
+        }
+
+        .clearfix{
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .eq( index )   .eq( -index )
+//            减少匹配元素的集合为指定的索引的哪一个元素。
+
+//            一个整数，指示元素的位置，以0为基数。-index从集合中的最后一个元素开始倒数。
+
+//            为索引值是为 2 的 div 添加适当的 class，将其变成蓝色。
+            $("body").find("div").eq(2).addClass("blue");
+//            为索引值是为 -7 的 div 添加适当的 class，将其变成红色。
+            $("body").find("div").eq(-7).addClass("red");
+//
+//            $(".a div,.b div").eq(2).addClass("blue").end().eq(-7).addClass("red");
+//            为什么分别的form里的第2个和倒数第7个没有发生改变，只有两个div发生了改变？
+//            console.log($(".a div,.b div").length);//12
+//            console.log($(".a div").length);//6
+//            console.log($(".a div").length);//6
+//            从a和b里的所有div中再排序
+
+//            $(".a div").eq(2).addClass("blue").end().eq(-2).addClass("red");
+//            $(".b div").eq(2).addClass("blue").end().eq(-2).addClass("red");
+        });
+    </script>
+</head>
+<body>
+<form class="a">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</form>
+
+<a class="clearfix"></a>
+
+<form class="b">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</form>
+</body>
+</html>

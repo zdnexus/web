@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").insertBefore($("#foo"));
+        });
+    </script>
+</head>
+<body>
+<div id="foo">FOO!</div>
+<p>I would like to say: </p>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .prop( propertyName )
+//            获取匹配的元素集中第一个元素的属性（property）值
+//            若要取得每个匹配元素的属性值（property），请使用循环结构，如jQuery .each()或.map()方法。
+
+//            还要注意的是.removeProp()方法不应该被用来设置这些属性为false。一旦原生的属性被移除，就无法再被添加。
+
+            $("input").change(function () {
+                var $input = $(this);
+                $("p").html(".attr('checked'): <b>" + $input.attr('checked') + "</b><br/>"
+                        + ".prop('checked'): <b>" + $input.prop('checked') + "</b><br/>"
+                        + ".is(':checked'): <b>" + $input.is(':checked')) + "</b>";
+            }).change();//先定义函数后再执行一次函数
+        });
+    </script>
+</head>
+<body>
+<input id="check1" type="checkbox" checked="checked">
+
+<label for="check1">Check me</label>
+
+<p></p>
+</body>
+</html>

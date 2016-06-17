@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//specialEasing
+//            Type: PlainObject
+//            由此方法的第一个参数properties定义的一个或多个CSS属性，及其相应的缓动函数组成的键值对map。( 1.4 新增)
+
+            $("#clickme").click(function() {
+                $("#book").animate({
+                    width: "toggle",
+                    height: "toggle"
+                }, {
+                    duration: 5000,
+                    specialEasing: {
+                        width: "linear",
+                        height: "easeOutBounce"
+                    },
+                    complete: function() {
+                        $(this).after("<div>Animation complete.</div>");
+                    }
+                });
+            });
+
+//            $("#clickme").click(function() {
+//                $("#book").animate({
+//                    width: ["toggle","linear"],
+//                    height: ["toggle","easeOutBounce"]
+//                }, {
+//                    duration: 5000,
+//                    complete: function() {
+//                        $(this).after("<div>Animation complete.</div>");
+//                    }
+//                });
+//            });
+
+//            $("#clickme").click(function () {
+//                $("#book").animate({
+//                    width: ["toggle", "linear"],
+//                    height: ["toggle", "easeOutBounce"]
+//                }, 5000, function () {
+//                    $(this).after("<div>Animation complete.</div>");
+//                })
+//            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="/zd/images/0.jpg" alt="" width="100" height="123" style="position: relative; left: 10px;"/>
+
+</body>
+</html>

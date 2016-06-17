@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        #tab {
+            width: 307px;
+            height: 460px;
+            background-color: aqua;
+            margin: 30px auto;
+        }
+
+        #tab ul {
+            float: left;
+        }
+
+        #tab ul li {
+            list-style-type: none;
+            font-family: cursive;
+            width: 80px;
+            height: 80px;
+            border: 1px solid black;
+            color: ghostwhite;
+            background-color: gray;
+            margin: 10px;
+            float: left;
+        }
+
+        #tab ul li.active {
+            color: palevioletred;
+            background-color: ghostwhite;
+        }
+
+        #tab ul li p, h2 {
+            text-align: center;
+        }
+
+        #tab div {
+            width: 307px;
+            height: 50px;
+            color: black;
+            text-align: center;
+            float: left;
+        }
+
+        #tab div p, h4 {
+            font-family: cursive;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById("tab");
+            var aLi = oDiv.getElementsByTagName("li");
+            var oDiv2 = oDiv.getElementsByTagName("div")[0];
+
+            var arr = ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"];
+            for (var i = 0; i < aLi.length; ++i) {
+                aLi[i].index = i;
+                aLi[i].onmousemove = function () {
+                    for (var i = 0; i < aLi.length; ++i) {
+                        aLi[i].className = "";
+                    }
+                    this.className = "active";
+                    oDiv2.innerHTML = "<h4>" + (this.index + 1) + "月活动</h4><p>" + arr[this.index] + "</p>";//innerHTML接受html符号
+                };
+            }
+        };
+    </script>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="active"><h2>1</h2><p>JAN</p></li>
+        <li><h2>2</h2><p>FER</p></li>
+        <li><h2>3</h2><p>MAR</p></li>
+        <li><h2>4</h2><p>>APR</p></li>
+        <li><h2>5</h2><p>MAY</p></li>
+        <li><h2>6</h2><p>JUN</p></li>
+        <li><h2>7</h2><p>JUL</p></li>
+        <li><h2>8</h2><p>AUG</p></li>
+        <li><h2>9</h2><p>SPE</p></li>
+        <li><h2>10</h2><p>OCT</p></li>
+        <li><h2>11</h2><p>NOV</p></li>
+        <li><h2>12</h2><p>DEC</p></li>
+    </ul>
+    <div class="text">
+        <h4>1月活动</h4>
+
+        <p>快过年了</p>
+    </div>
+</div>
+</body>
+</html>

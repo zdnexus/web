@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var p1 = document.getElementById("p1    ");
+            alert(p1.innerHTML);
+
+            var p2 = $("#p1");//获取ID为p1的p标签
+            alert(p2.html());//innerHTML === html()
+            //DOM的写法不能用在JQ的写法上
+        })
+    </script>
+</head>
+<body>
+<p id="p1">1111</p>
+</body>
+</html>

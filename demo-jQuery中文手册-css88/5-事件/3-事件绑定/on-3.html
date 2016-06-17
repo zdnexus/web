@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .test {
+            color: #000;
+            padding: .5em;
+            border: 1px solid #444;
+        }
+
+        .active {
+            color: #900;
+            font-weight: bold;
+        }
+
+        .inside {
+            background-color: aqua;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            使用 对象 同时添加多个事件处理函数。
+            $("div.test").on({
+                click: function () {
+                    $(this).toggleClass("active");
+                },
+                mouseenter: function () {
+                    $(this).addClass("inside");
+                },
+                mouseleave: function () {
+                    $(this).removeClass("inside");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div class="test">test div</div>
+</body>
+</html>

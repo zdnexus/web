@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .highlight {
+            background-color: yellow
+        }
+
+        .lowlight{
+            background-color: grey;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .first()  .last()
+//            这个方法不接受任何参数。
+//            .first()获取匹配元素集合中第一个元素。
+//            .last()获取匹配元素集合中最后一个元素。
+
+            $("p span").first().addClass("highlight");
+            $("p span").last().addClass("lowlight");
+        });
+    </script>
+</head>
+<body>
+<p>
+    <span>Look:</span> <span>This is some text in a paragraph.</span> <span>This is a note about it.</span>
+</p>
+<p>
+    <span>Look:</span> <span>This is some text in a paragraph.</span> <span>This is a note about it.</span>
+</p>
+</body>
+</html>

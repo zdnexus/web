@@ -1,0 +1,20 @@
+<!--document的本质：document.childNodes[0].tagName-->
+<!DOCTYPE html>
+<html lang="en" onclick="alert(2);">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            padding: 100px;
+        }
+    </style>
+</head>
+<body onclick="alert(1);">
+<div style="background-color: red" onclick="alert(this.style.backgroundColor);">
+    <div style="background-color: blue" onclick="alert(this.style.backgroundColor);">
+        <div style="background-color: aqua" onclick="alert(this.style.backgroundColor);"></div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var arr_1 = [1, 2, 3, 4, 5];
+
+        arr_1.length = 3;//缩减数组个数
+        alert(arr_1);//1,2,3
+
+        arr_1.push(10);//从后面添加
+        alert(arr_1);//1,2,3,10
+
+        arr_1.pop();//从后面删除
+        alert(arr_1);//1,2,3
+
+        arr_1.shift();//从头部删除
+        alert(arr_1);//2,3
+
+        arr_1.unshift(7);//从头部添加
+        alert(arr_1);//7,2,3
+
+
+        var arr_2 = new Array(1, 2, 3, 4, 5);
+        arr_2.splice(3, 1);//删除splice(起点，长度)
+        alert(arr_2);//1,2,3,5
+
+        arr_2.splice(2, 0, "a", "b", "c");//插入splice(起点，个数，元素) 从第二个删除0个添加后面的"a","b"
+        alert(arr_2);//1,2,a,b,c,3,5
+
+        arr_2.splice(2, 2, "q", "w", "e");//替换splice(起点，个数，元素)  删除并替换
+        alert(arr_2);//删除了"ab",用"qwe"替换 变成"qwec"  1,2,q,w,e,c,5
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

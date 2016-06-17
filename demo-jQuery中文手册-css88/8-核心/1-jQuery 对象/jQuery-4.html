@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( html [, ownerDocument ] )
+//            描述: 根据提供的原始 HTML 标记字符串，动态创建由 jQuery 对象包装的 DOM 元素。
+
+//            jQuery( html [, ownerDocument ] )
+//html
+//            类型: String
+//            用于动态创建DOM元素的HTML标记字符串，不是XML。
+//ownerDocument
+//            类型: document
+//            一个文档的新元素将被创建。
+
+            $("<div></div>", {
+                "class": "my-div",
+                on: {
+                    touchstart: function (event) {
+                        // do something
+                    }
+                }
+            }).appendTo("body");
+//            虽然第二个参数是方便，它的灵活性可能会导致意想不到的后果（例如$("<input>", {size: "4"})调用.size()方法，代替设置size属性）。
+//            上面的代码块可以被写入，代替为：
+
+//            jQuery( html, attributes )
+//html
+//            类型: String
+//            一个单标记的HTML 元素字符串(例如 <div/> or <div></div>).
+//attributes
+//            类型: PlainObject
+//            访问新创建元素的属性，事件和方法。
+            $("<div></div>")
+                    .addClass("my-div")
+                    .on({
+                        touchstart: function (event) {
+                            // do something
+                        }
+                    }).appendTo("body");
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

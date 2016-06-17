@@ -1,0 +1,311 @@
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline: 0;
+    color: inherit;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+body {
+    background-color: #fff;
+}
+
+/* For body color */
+
+/* All navigation menus have the same base css coding. Different color variations have been grouped into different .css files */
+
+/* This is the parent div tag, which is the base of the nav menu */
+.nav {
+    width: 90%;
+    margin: 0 auto;
+}
+
+/* For nav back, which has been only framed. Color style is present in other css files */
+.nav > ul {
+    display: inline-block;
+    position: relative;
+    width: 100%;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.1); /* Standard Syntax*/
+    margin-bottom: -3px;/* 消除inline-block的间隔 */
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* For main nav menu links frame */
+.nav > ul > li {
+    width: 120px;
+    float: left;
+}
+
+/* For framing Home link */
+.nav > ul > li:first-child {
+    width: 55px;
+}
+
+/* For main nav links */
+.nav > ul > li > a {
+    display: block;
+    padding: 20px 0;
+    font-family: tahoma;
+    font-size: 13px;
+    letter-spacing: 0.7px;
+    /* text-align: center -> iconmove运动函数  left从-50px到0关键点 */
+    text-transform: uppercase;
+    -webkit-transition: background 0.5s; /* For Chrome 4.0+ and Safari 3.1 to 6.0 */
+    -moz-transition: background 0.5s; /* For firefox 4.0+ */
+    -o-transition: background 0.5s; /* For Opera 10.5+ */
+    transition: background 0.5s;
+}
+
+/* For hidden nav menu link icons */
+.nav > ul > li > a > i {
+    visibility: hidden;
+    position: relative;
+    font-size: 16px;
+}
+
+/* For Home link */
+.nav > ul > li:first-child > a > i {
+    visibility: visible;
+}
+
+/* For down arrows, associated with the main nav links which have a sublevel */
+.nav > ul > li > a > span > i {
+    position: relative;
+    font-size: 8px;
+    top: -2px;
+}
+
+/* For appearance of icons in place of links on hovering them */
+.nav > ul > li:hover > a > i {
+    visibility: visible;
+    -webkit-animation: iconmove 0.7s; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -webkit-animation-fill-mode: forwards; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -moz-animation: iconmove 0.7s; /* For Firefox 5.0+ */
+    -moz-animation-fill-mode: forwards; /* For Firefox 5.0+ */
+    -o-animation: iconmove 0.7s; /* For Opera 12.0+ */
+    -o-animation-fill-mode: forwards; /* For Opera 12.0+ */
+    animation: iconmove 0.7s; /* Standard Syntax */
+    animation-fill-mode: forwards; /* Standard Syntax */
+}
+
+/* For excluding Home link from animation */
+.nav > ul > li:first-child:hover > a > i {
+    -webkit-animation: none; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -moz-animation: none; /* For Firefox 5.0+ */
+    -o-animation: none;; /* For Opera 12.0+ */
+    animation: none; /* Standard Syntax */
+}
+
+/* For hiding the links to get icons, on hovering the main nav links */
+.nav > ul > li:hover > a > span {
+    visibility: hidden;
+    position: absolute; /* 有问题？？？ */
+}
+
+/* For framing each sublevel menu (general) */
+.nav > ul > li > .sublevel {
+    display: none;
+    position: absolute;
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.2); /* For Firefox 4+, Opera and IE9 */
+    z-index: 100;
+}
+
+/* For appearance of sublevel (first and so on) menus appear */
+.nav > ul > li:hover >.sublevel, .sublevel:hover, .sublevel > li:hover > .sublevel {
+    display: block;
+}
+
+/* For the effect with which first sublevel menu appear */
+.nav > ul > li:hover > .sublevel {
+    -webkit-animation: dropdown 0.6s; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -webkit-animation-fill-mode: forwards; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -moz-animation: dropdown 0.6s; /* For Firefox 5.0+ */
+    -moz-animation-fill-mode: forwards; /* For Firefox 5.0+ */
+    -o-animation: dropdown 0.6s; /* For Opera 12.0+ */
+    -o-animation-fill-mode: forwards; /* For Opera 12.0+ */
+    animation: dropdown 0.6s; /* Standard Syntax */
+    animation-fill-mode: forwards; /* Standard Syntax */
+}
+
+.sublevel li{
+    position: relative;
+    width: 200px;
+}
+
+/* For the effect with which these sublevel menus appear */
+.sublevel > li:hover > .sublevel {
+    -webkit-animation: subdropdown 0.6s; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -webkit-animation-fill-mode: forwards; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -moz-animation: subdropdown 0.6s; /* For Firefox 5.0+ */
+    -moz-animation-fill-mode: forwards; /* For Firefox 5.0+ */
+    -o-animation: subdropdown 0.6s; /* For Opera 12.0+ */
+    -o-animation-fill-mode: forwards; /* For Opera 12.0+ */
+    animation: subdropdown 0.6s; /* Standard Syntax */
+    animation-fill-mode: forwards; /* Standard Syntax */
+}
+
+
+/* For sublevel menu links */
+.menu > li > a {
+    display: block;
+    font-size: 13px;
+    font-family: tahoma;
+    padding: 17px 0px;
+    letter-spacing: 0.3px;
+    -webkit-transition: background 0.6s, color 0.6s; /* For Chrome 4.0+ and Safari 3.1 to 6.0 */
+    -moz-transition: background 0.6s; /* For firefox 4.0+ */
+    -o-transition: background 0.6s; /* For Opera 10.5+ */
+    transition: background 0.6s, color 0.6s;
+}
+
+/* For right arrows, associated with the links of the sublevel menu which itself has a sublevel of menu  */
+.menu > li > a > i {
+    position: absolute;
+    right: 20px;
+    font-size: 8px;
+    margin-top: 5px;
+}
+
+/* For sublevel menus after the first level submenu */
+.menu > li > .menu {
+    display: none;
+    position: absolute;
+    left: 100%;
+    top: 0;
+}
+
+/* For moving arrows, on hovering the links of the sublevel which have another sublevel of menu */
+.menu > li:hover > a > i {
+    -webkit-animation: moveright 0.6s; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -webkit-animation-fill-mode: forwards; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+    -moz-animation: moveright 0.6s; /* For Firefox 5.0+ */
+    -moz-animation-fill-mode: forwards; /* For Firefox 5.0+ */
+    -o-animation: moveright 0.6s; /* For Opera 12.0+ */
+    -o-animation-fill-mode: forwards; /* For Opera 12.0+ */
+    animation: moveright 0.6s; /* Standard Syntax */
+    animation-fill-mode: forwards; /* Standard Syntax */
+}
+
+/* For framing a megamenu */
+.megamenu {
+    width: 100%;
+    background-color: #ffffff;
+    position: absolute;
+    left: 0;
+}
+
+.megamenu h3{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+/* For different groups of item lists */
+.megamenu > div > ul {
+    width: 20%;
+    position: relative;
+    float: left;
+    padding: 5px 0;
+}
+
+/* For item links included in megamenu */
+.megamenu > div > ul > li > a {
+    display: inline-block;
+    padding: 10px 20px;
+    color: #888;
+    font-size: 13px;
+    font-family: tahoma, regular;
+    letter-spacing: 0.5px;
+    -webkit-transition: background 0.6s, color 0.6s; /* For Chrome 4.0+ and Safari 3.1 to 6.0 */
+    -moz-transition: background 0.6s, color 0.6s; /* For firefox 4.0+ */
+    -o-transition: background 0.6s, color 0.6s; /* For Opera 10.5+ */
+    transition: background 0.6s, color 0.6s;
+}
+
+/* For group heading in megamenu */
+.megamenu h3 {
+    font-size: 12px;
+    font-family: helvetica, regular;
+    letter-spacing: 0.5px;
+}
+
+/* For the base of different groups in megamenu */
+.holder-1 {
+    background-color: transparent;
+    overflow: hidden;
+}
+
+/* For the base of the long paragraph in megamenu */
+.holder-2 {
+    white-space: normal;
+}
+
+/* For the paragraph in megamenu */
+.holder-2 > p {
+    padding: 20px;
+    font-size: 13px;
+    font-family: tahoma, regular;
+    color: #888888;
+    line-height: 20px;
+    letter-spacing: 0.7px;
+    text-align: justify;/* 文字左右对齐 */
+}
+
+/* Below is the css coding for the Responsive State */
+@media only screen and (max-width: 768px) {
+
+    /* For framing main nav links */
+    .nav > ul > li {
+        width: 100%;
+        clear: both;
+    }
+
+    /* For framing sublevel menu links */
+    .menu > li {
+        width: 100%;
+    }
+
+    /* For each sublevel of menu */
+    .sublevel {
+        width: 100%;
+        left: 0;
+    }
+
+    /* For the effect with which all sublevel (after 1st sublevel) menus appear */
+    .nav > ul > li > .sublevel > li:hover .sublevel {
+        -webkit-animation: dropdown 0.6s; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+        -webkit-animation-fill-mode: forwards; /* For Chrome 4.0+, Safari 4.0+ and Opera 15.0 */
+        -moz-animation: dropdown 0.6s; /* For Firefox 5.0+ */
+        -moz-animation-fill-mode: forwards; /* For Firefox 5.0+ */
+        -o-animation: dropdown 0.6s; /* For Opera 12.0+ */
+        -o-animation-fill-mode: forwards; /* For Opera 12.0+ */
+        animation: dropdown 0.6s; /* Standard Syntax */
+        animation-fill-mode: forwards; /* Standard Syntax */
+    }
+
+    /* For making every sublevel, after first sublevel of menu, appear in a single column   */
+    .sublevel > li > .sublevel {
+        left: 0px;
+        margin: 0px;
+    }
+
+    /* For getting different groups of item lists in a single column */
+    .megamenu > div > ul {
+        clear: both;
+        width: 100%;
+    }
+
+    /* For making Home link extend upto 100% width of the nav manu  */
+    .nav > ul > li:first-child {
+        width: 100%;
+    }
+
+}

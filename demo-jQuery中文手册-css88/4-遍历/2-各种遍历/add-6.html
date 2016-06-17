@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .add( elements )
+//            elements
+//            类型: Element
+//            一个或多个元素添加到匹配的元素集合。
+
+//            以下示例展示了如何向一个已经存在的集合中添加元素。
+            var collection = $("p");
+// capture the new collection
+            collection = collection.add(document.getElementById("a"));
+            collection.css("background", "yellow");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+<span id="a">Hello Again</span>
+</body>
+</html>

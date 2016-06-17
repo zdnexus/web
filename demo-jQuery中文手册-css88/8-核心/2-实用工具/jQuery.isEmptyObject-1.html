@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.isEmptyObject( object )
+//            描述: 检查对象是否为空（不包含任何属性）。
+//
+//jQuery.isEmptyObject( object )
+//            object
+//            类型: Object
+//            将要检查是否为空的对象。
+
+//            检查一个对象是否为空对象。
+            jQuery.isEmptyObject({}); // true
+            jQuery.isEmptyObject({foo: "bar"});// false
+            jQuery.isEmptyObject($("#div1"));// false
+        });
+    </script>
+</head>
+<body>
+
+<div id="div1"></div>
+
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: green;
+            display: none;
+        }
+
+        div.newcolor {
+            background: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            jQuery.queue( element, queueName, newQueue )
+//element
+//            类型: Element
+//            一个已附加列队函数数组的DOM元素 。
+//queueName
+//            类型: String
+//            一个含有队列名的字符串。默认是 fx，标准的动画队列。
+//newQueue
+//            类型: Array
+//            一个替换当前函数列队内容的数组。
+
+//            Example: 将一个自定义函数加入到队列中。
+            $(document.body).click(function () {
+                $("div").show("slow");
+                $("div").animate({left: '+=200'}, 2000);
+                jQuery.queue($("div")[0], "fx", function () {
+                    $(this).addClass("newcolor");
+                    jQuery.dequeue(this);
+                });
+                $("div").animate({left: '-=200'}, 500);
+                jQuery.queue($("div")[0], "fx", function () {
+                    $(this).removeClass("newcolor");
+                    jQuery.dequeue(this);
+                });
+                $("div").slideUp();
+            });
+        });
+    </script>
+</head>
+<body>
+
+Click here...
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        fieldset {
+            margin-bottom: 1em;
+        }
+
+        input {
+            display: block;
+            margin-bottom: .25em;
+        }
+
+        #print-output {
+            width: 100%;
+        }
+
+        .print-output-line {
+            white-space: pre;
+            padding: 5px;
+            font-family: monaco, monospace;
+            font-size: .7em;
+        }
+
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var xTriggered = 0;
+
+            $("#target").keyup(function (event) {
+                xTriggered++;
+                var msg = "Handler for .keyup() called " + xTriggered + " time(s).";
+
+                $("#print").html(msg);
+            }).keydown(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                }
+            });
+
+            $("#other").click(function () {
+                $("#target").keyup();
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <label for="target">Type Something:</label>
+        <input id="target" type="text"/>
+    </fieldset>
+</form>
+
+<button id="other">
+    Trigger the handler
+</button>
+
+<div id="print"></div>
+</body>
+</html>

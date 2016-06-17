@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var newStrong = $("<strong>~我是被插入的新标签~</strong>");//$创造一个strong标签
+
+//            append() 内部后面插入
+//            $("body").append(newStrong);//从body尾部添加
+//            newStrong.appendTo($("body"));//注意$符号
+
+//            $("body").append("<strong>~我是被插入的新标签~</strong>");//从body尾部添加
+//            $("<strong>~我是被插入的新标签~</strong>").appendTo($("body"));//注意$符号
+
+//            $("#p1").append(newStrong);//从p标签内部后面添加
+//            newStrong.appendTo($("#p1"));
+
+//            prepend() 内部前面插入
+//            $("#p1").prepend(newStrong);//从p标签内部前面添加
+//            newStrong.prependTo($("#p1"));
+
+
+
+//            after() 外部后面插入
+//            $("#p1").after(newStrong);//从p标签外部后面添加
+//            newStrong.insertAfter($("#p1"));
+
+//            before() 外部前面插入
+//            $("#p1").before(newStrong);//从p标签外部前面添加
+//            newStrong.insertBefore($("#p1"));
+        })
+    </script>
+</head>
+<body>
+<p id="p1">p标签</p>
+</body>
+</html>

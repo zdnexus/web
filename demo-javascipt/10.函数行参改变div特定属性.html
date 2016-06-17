@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: gray;
+        }
+    </style>
+    <script>
+        function setStyle(name, value) {
+            var oDiv = document.getElementById("div1");
+            oDiv.style[name] = value;//oDiv.style.name = oDiv.style[name]（写在js操作子元素）
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="变宽" onclick="setStyle('width','400px')"/>
+<input type="button" value="变高" onclick="setStyle('height','400px')"/>
+<input type="button" value="变红" onclick="setStyle('background-color','red')"/>
+
+<div id="div1">
+
+</div>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #t1 {
+            width: 600px;
+            text-align: center;
+            border-collapse: collapse;
+            z-index: 1;
+        }
+
+        #t1, tr, th, td {
+            border: 1px solid black;
+        }
+
+        #t1 th, td {
+            width: 100px;
+            height: 50px;
+        }
+
+        #t1 tr td:nth-last-child(1) {
+            position: relative;
+        }
+
+        td a {
+            color: red;
+        }
+
+        .mask {
+            width: 100%;
+            height: 100%;
+            background: black;
+            opacity: 0.4;
+            filter: alpha(opacity=40);
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: 2;
+        }
+
+        .popDiv {
+            display: none;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid red;
+            position: absolute;
+            left: 30%;
+            top: 0;
+            background: #fff;
+            z-index: 3;
+        }
+
+        .popDiv p {
+            border: 1px solid red;
+        }
+
+        .altDiv {
+            display: none;
+            width: 200px;
+            padding: 10px;
+            border: 1px solid red;
+            position: absolute;
+            left: 100%;
+            top: 0;
+            background: #fff;
+            z-index: 3;
+        }
+
+        .altDiv input {
+            display: inline;
+        }
+
+        .altDiv p {
+            border: 1px solid red;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //查看
+            $(".view").click(function () {
+                $("body").append("<div class='mask'></div>");
+                $(this).parent().append($(".popDiv").clone(true).attr("id","pop"));
+                var arr = [];
+                $(this).parent().siblings().each(function () {
+                    arr.push($(this).text());
+                });
+
+                $("#pop").show().children().each(function (i) {
+//                    $(this).children("span").text(arr[$(this).index()]);
+                    $(this).children("span").text(arr[i]);
+                });
+            });
+
+            //查看 -> 关闭
+            $(".close").click(function () {
+                $(this).parent().remove();
+                $(".mask").remove();
+            });
+
+            //删除
+            $(".del").click(function () {
+                $(this).parents("tr").remove();
+            });
+
+            //修改 -> 修改成功 or 关闭
+            $(".revise").click(function () {
+                $("body").append("<div class='mask'></div>");
+                $(this).parent().append($(".altDiv").clone(true).attr("id","alt"));
+                var arr = [];
+                $(this).parent().siblings().each(function () {
+                    arr.push($(this).text());
+                });
+
+                $("#alt").show().children("p").each(function (i) {
+//                    $(this).children("input").val(arr[$(this).index()]);
+                    $(this).children("input").val(arr[i]);
+                });
+            });
+
+            //修改成功
+            $(".alter").click(function () {
+                var arr = [];
+                $(this).siblings("p").children("input").each(function () {
+                    arr.push($(this).val());
+                });
+                $(this).parents("td").siblings().each(function (i) {
+                    $(this).text(arr[i]);
+                });
+                $(this).parent().remove();
+                $(".mask").remove();
+            });
+        })
+    </script>
+</head>
+<body>
+<table id="t1">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>职位</th>
+        <th>工资</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>钟东</td>
+        <td>21</td>
+        <td>web前端工程师</td>
+        <td>5000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>胡典文</td>
+        <td>22</td>
+        <td>java工程师</td>
+        <td>2000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>杨凯</td>
+        <td>23</td>
+        <td>php前端工程师</td>
+        <td>15000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>周阳</td>
+        <td>24</td>
+        <td>web设计师</td>
+        <td>13000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>李腾</td>
+        <td>25</td>
+        <td>搬砖大工头</td>
+        <td>11000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+</table>
+    <div class="popDiv">
+        <p><strong>姓名：</strong><span></span></p>
+
+        <p><strong>年龄：</strong><span></span></p>
+
+        <p><strong>职位：</strong><span></span></p>
+
+        <p><strong>工资：</strong><span></span></p>
+
+        <a href="#" class="close">关闭</a>
+    </div>
+
+    <div class="altDiv">
+        <p><strong>姓名：</strong><input type="text"></p>
+
+        <p><strong>年龄：</strong><input type="text"></p>
+
+        <p><strong>职位：</strong><input type="text"></p>
+
+        <p><strong>工资：</strong><input type="text"></p>
+
+        <a href="#" class="alter">修改</a> <a href="#" class="close">关闭</a>
+    </div>
+</body>
+</html>

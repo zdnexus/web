@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .pushStack( elements )
+//            描述: 将一个DOM元素集合加入到jQuery栈。
+
+//            .pushStack( elements )
+//         elements
+//            类型: Array
+//            将要压入jQuery栈的元素，用于生成一个新的jQuery对象。
+
+            jQuery([])
+                    .pushStack( document.getElementsByTagName("div") )
+                    .remove()
+                    .end();
+
+        })
+    </script>
+</head>
+<body>
+
+
+
+</body>
+</html>

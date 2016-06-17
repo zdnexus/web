@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").insertAfter($("#foo"));
+        });
+    </script>
+</head>
+<body>
+<p> is what I said... </p>
+
+<div id="foo">FOO!</div>
+</body>
+</html>

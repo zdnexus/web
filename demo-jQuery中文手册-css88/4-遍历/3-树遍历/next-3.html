@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .next( jQuery object )
+//            类型: jQuery
+//            一个用于匹配元素的jQuery对象。
+            $("p").next(".selected").css("background-color", "yellow");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p class="selected">Hello Again</p>
+
+<div><span>And Again</span></div>
+</body>
+</html>

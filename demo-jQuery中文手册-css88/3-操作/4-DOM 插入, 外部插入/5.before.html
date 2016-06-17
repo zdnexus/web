@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            在所有段落前插入一个DOM元素。
+            $("p").before(document.createTextNode("Hello"));
+        });
+    </script>
+</head>
+<body>
+<p> is what I said...</p>
+</body>
+</html>

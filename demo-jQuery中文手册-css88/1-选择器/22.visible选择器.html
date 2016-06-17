@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 50px;
+            height: 40px;
+            margin: 5px;
+            border: 3px outset green;
+            float: left;
+        }
+
+        .starthidden {
+            display: none;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":visible" )
+//            选择所有可见的元素。
+
+//            1.如果元素中占据文档中一定的空间,元素被认为是可见的。可见元素的宽度或高度，是大于零。
+//            2.元素的visibility: hidden 或 opacity: 0被认为是可见的，因为他们仍然占用空间布局。
+//            3.不在文档中的元素是被认为隐藏的;jQuery没有办法知道他们是否是可见的，因为元素可见性依赖于适用的样式。
+//            4.option 元素是被认为是隐藏的， 不管他们是否selected（选中）状态.
+//            5.隐藏元素上做动画，元素被认为是可见的，直到动画结束。显示元素上做动画，在动画的开始处该元素被认为是可见的。
+
+//            因为:visible 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:visible 查询不能充分利用原生DOM提供的querySelectorAll()方法来提高性能。
+//            为了获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":visible")代替.
+            $("div:visible").click(function () {
+                $(this).css("background-color", "yellow");
+            });
+            $("button").click(function () {
+                $("div:hidden").show("slow");
+            });
+
+            alert($("div").filter(":visible").length);//3
+        })
+    </script>
+</head>
+<body>
+<button>Show hidden to see they don't change</button>
+<div></div>
+<div class="starthidden"></div>
+<div></div>
+
+<div></div>
+<div style="display:none;"></div>
+</body>
+</html>

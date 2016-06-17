@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            color: blue;
+            width: 200px;
+            font-size: 14px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").mouseover(function () {
+                $(this).css("color", "red");
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Just roll the mouse over me.</p>
+
+<p>Or me to see a color change.</p>
+</body>
+</html>

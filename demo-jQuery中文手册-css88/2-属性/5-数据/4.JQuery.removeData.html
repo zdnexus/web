@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 2px;
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.removeData( element [, name ] )
+//            删除一个先前存储的数据片段。
+
+//            注意这是一个底层的方法，你应该用.removeData()代替。
+
+            var div = $("div")[0];
+
+            $("span:eq(0)").text("" + $("div").data("test1"));
+            jQuery.data(div, "test1", "VALUE-1");
+            jQuery.data(div, "test2", "VALUE-2");
+            $("span:eq(1)").text("" + jQuery.data(div, "test1"));
+            jQuery.removeData(div, "test1");
+            $("span:eq(2)").text("" + jQuery.data(div, "test1"));
+            $("span:eq(3)").text("" + jQuery.data(div, "test2"));
+        });
+    </script>
+</head>
+<body>
+<div>value1 before creation: <span></span></div>
+<div>value1 after creation: <span></span></div>
+<div>value1 after removal: <span></span></div>
+<div>value2 after removal: <span></span></div>
+</body>
+</html>

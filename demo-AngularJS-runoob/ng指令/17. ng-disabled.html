@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-disabled 指令设置表单输入字段的 disabled 属性(input, select, 或 textarea)。-->
+<p>点击这里禁用所有表单输入域:<input type="checkbox" ng-model="all"></p>
+
+<input type="text" ng-disabled="all">
+
+<input type="radio" ng-disabled="all">
+
+<select ng-disabled="all">
+    <option>Female</option>
+    <option>Male</option>
+</select>
+
+</body>
+</html>

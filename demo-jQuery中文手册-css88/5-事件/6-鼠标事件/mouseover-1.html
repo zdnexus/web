@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .mouseover( handler(eventObject) )
+//            描述: 为 JavaScript 的 "mouseover" 事件绑定一个处理函数，或者触发元素上的该事件。（愚人码头注：支持事件冒泡）
+
+            $('#outer').mouseover(function() {
+                $('#log').append('<div>Handler for .mouseover() called.</div>');
+            });
+
+            $('#other').click(function() {
+                $('#outer').mouseover();
+//                $('#outer').trigger('mouseover');
+            });
+
+            $('#other').on('mouseover',function(){
+                $('#log').append('<div>Handler for .mouseover() called.</div>');
+            });
+//            $('#other').off('mouseover');
+
+
+        });
+    </script>
+</head>
+<body>
+
+<div id="outer">
+    Outer
+    <div id="inner">
+        Inner
+    </div>
+</div>
+
+<div id="other">
+    Trigger the handler
+</div>
+
+<div id="log"></div>
+
+</body>
+</html>

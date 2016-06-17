@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("span").prependTo("#foo");
+        });
+    </script>
+</head>
+<body>
+<div id="foo">FOO!</div>
+<span>I have something to say... </span>
+</body>
+</html>

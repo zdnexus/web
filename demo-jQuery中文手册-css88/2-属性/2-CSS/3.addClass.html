@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: white;
+        }
+
+        /*避免被优先级覆盖*/
+        /*不信？删除.red有惊喜！*/
+        .red.green {
+            background: green;
+        }
+
+        .red {
+            background: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //            function(index, currentClass)
+            //            这个函数返回一个或更多用空格隔开的要增加的样式名。
+            //            接收index 参数表示元素在匹配集合中的索引位置和
+            //            html 参数表示元素上原来的 HTML 内容。在函数中this指向匹配元素集合中的当前元素。
+
+            $("div").addClass(function (index, currentClass) {
+                var addedClass = "";
+
+                if (currentClass === "red") {
+                    addedClass = "green";
+                    $("p").text("There is one green div");
+                }
+
+                return addedClass;
+            });
+        });
+    </script>
+</head>
+<body>
+<div>This div should be white</div>
+<div class="red">This div will be green because it now has the "green" and "red" classes.
+    It would be red if the addClass function failed.
+</div>
+<div>This div should be white</div>
+<p>There are zero green divs</p>
+
+</body>
+</html>

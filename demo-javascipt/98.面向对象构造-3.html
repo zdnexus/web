@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function addPerson(name, qq) {//构造函数
+            this.name = name;
+            this.qq = qq;
+        }
+        addPerson.prototype.showName = function () {//增加原型
+            alert("我的名字:" + this.name);
+        };
+        addPerson.prototype.showQQ = function () {//增加原型
+            alert("我的QQ号:" + this.qq);
+        };
+        var obj1 = new addPerson("nexus", "181811669");
+        obj1.showName();
+        obj1.showQQ();
+        var obj2 = new addPerson("blue", "123456789");
+        obj2.showName();
+        obj2.showQQ();
+        alert(obj1.showName==obj2.showName);//true，节约资源
+    </script>
+</head>
+<body>
+
+</body>
+</html>

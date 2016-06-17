@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .toggle(display)
+//            display
+//            类型: Boolean
+//            一个布尔值，使用 true 来显示元素，或者 false 隐藏它.
+
+//            Example: 切换所有段落的显示或隐藏状态。
+            $("button").click(function () {
+                $("p").toggle();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Toggle</button>
+
+<p>Hello</p>
+
+<p style="display: none">Good Bye</p>
+
+</body>
+</html>

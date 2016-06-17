@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        em {
+            color: blue;
+            font-weight: bold;
+        }
+
+        div {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .attr( attributeName )
+//            获取匹配的元素集合中的第一个元素的属性的值。
+//            .attr()方法只获取第一个匹配元素的属性值。要获取每个单独的元素的属性值， 我们需要依靠jQuery的 .each()或者.map()方法循环。
+
+//            1.当属性没有被设置时候，.attr()方法将返回undefined。
+//            2.除少数属性意外，属性值都是字符串，如value和tabindex。
+//            3.若要检索和更改DOM属性,比如元素的checked, selected, 或 disabled状态，请使用.prop()方法。
+
+//            .prop()方法 方法返回 property 的值,而 .attr() 方法返回 attributes 的值。
+//            例如, selectedIndex, tagName, nodeName, nodeType, ownerDocument, defaultChecked, 和 defaultSelected
+//            应使用.prop()方法进行取值或赋值。 在jQuery1.6之前，这些属性使用.attr()方法取得，但是这并不是元素的attr属性。
+//            他们没有相应的属性（attributes），只有特性(property)。
+
+//            内推:attr()只查询行间样式
+
+            var title = $("em").attr("title");
+
+            $("#div1").text(title);
+
+            $("img").attr({
+                src: "/zd/images/0.jpg",
+                title: "jQuery",
+                alt: "jQuery logo"
+            });
+
+            $("#div2").text($("img").attr("alt"));
+        });
+    </script>
+</head>
+<body>
+<p>Once there was a <em title="huge, gigantic">large</em> dinosaur...</p>
+The title of the emphasis is:
+
+<div id="div1"></div>
+
+<img>
+
+<div id="div2"></div>
+</body>
+</html>

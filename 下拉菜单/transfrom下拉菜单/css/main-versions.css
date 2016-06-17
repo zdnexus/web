@@ -1,0 +1,457 @@
+/* For back color of the nav */
+.greenish > ul {
+    background-color: #63BF63;
+}
+
+/* For main nav links */
+.greenish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.greenish > ul > li:hover > a {
+    color: #63BF63;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.greenish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #63BF63;
+}
+
+/* For sublevel menu links hover state */
+.greenish > ul > li .menu > li:hover > a {
+    color: #63BF63;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.greenish > ul > li > .menu, .greenish > ul > li > .megamenu {
+    border-top: 5px solid #63BF63;
+}
+
+/* For group heading, of megamenu, coloring */
+.greenish > ul > li > .megamenu h3 {
+    color: #63BF63;
+}
+
+/* For hover state of megamenu group item list */
+.greenish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #63BF63;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.brownish > ul {
+    background-color: #D29150;
+}
+
+/* For main nav links */
+.brownish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.brownish > ul > li:hover > a {
+    color: #D29150;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.brownish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #D29150;
+}
+
+/* For sublevel menu links hover state */
+.brownish > ul > li .menu > li:hover > a {
+    color: #D29150;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.brownish > ul > li > .menu, .brownish > ul > li > .megamenu {
+    border-top: 5px solid #D29150;
+}
+
+/* For group heading, of megamenu, coloring */
+.brownish > ul > li > .megamenu h3 {
+    color: #D29150;
+}
+
+/* For hover state of megamenu group item list */
+.brownish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #D29150;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.orangish > ul {
+    background-color: #F3A641;
+}
+
+/* For main nav links */
+.orangish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.orangish > ul > li:hover > a {
+    color: #F3A641;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.orangish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #F3A641;
+}
+
+/* For sublevel menu links hover state */
+.orangish > ul > li .menu > li:hover > a {
+    color: #F3A641;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.orangish > ul > li > .menu, .orangish > ul > li > .megamenu {
+    border-top: 5px solid #F3A641;
+}
+
+/* For group heading, of megamenu, coloring */
+.orangish > ul > li > .megamenu h3 {
+    color: #F3A641;
+}
+
+/* For hover state of megamenu group item list */
+.orangish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #F3A641;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.bluish > ul {
+    background-color: #6182E5;
+}
+
+/* For main nav links */
+.bluish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.bluish > ul > li:hover > a {
+    color: #6182E5;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.bluish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #6182E5;
+}
+
+/* For sublevel menu links hover state */
+.bluish > ul > li .menu > li:hover > a {
+    color: #6182E5;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.bluish > ul > li > .menu, .bluish > ul > li > .megamenu {
+    border-top: 5px solid #6182E5;
+}
+
+/* For group heading, of megamenu, coloring */
+.bluish > ul > li > .megamenu h3 {
+    color: #6182E5;
+}
+
+/* For hover state of megamenu group item list */
+.bluish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #6182E5;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.magentaish > ul {
+    background-color: #FF52FF;
+}
+
+/* For main nav links */
+.magentaish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.magentaish > ul > li:hover > a {
+    color: #FF52FF;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.magentaish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #FF52FF;
+}
+
+/* For sublevel menu links hover state */
+.magentaish > ul > li .menu > li:hover > a {
+    color: #FF52FF;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.magentaish > ul > li > .menu, .magentaish > ul > li > .megamenu {
+    border-top: 5px solid #FF52FF;
+}
+
+/* For group heading, of megamenu, coloring */
+.magentaish > ul > li > .megamenu h3 {
+    color: #FF52FF;
+}
+
+/* For hover state of megamenu group item list */
+.magentaish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #FF52FF;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.purplish > ul {
+    background-color: #A945A9;
+}
+
+/* For main nav links */
+.purplish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.purplish > ul > li:hover > a {
+    color: #A945A9;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.purplish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #A945A9;
+}
+
+/* For sublevel menu links hover state */
+.purplish > ul > li .menu > li:hover > a {
+    color: #A945A9;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.purplish > ul > li > .menu, .purplish > ul > li > .megamenu {
+    border-top: 5px solid #A945A9;
+}
+
+/* For group heading, of megamenu, coloring */
+.purplish > ul > li > .megamenu h3 {
+    color: #A945A9;
+}
+
+/* For hover state of megamenu group item list */
+.purplish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #A945A9;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.grayish > ul {
+    background-color: #696969;
+}
+
+/* For main nav links */
+.grayish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.grayish > ul > li:hover > a {
+    color: #696969;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.grayish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #696969;
+}
+
+/* For sublevel menu links hover state */
+.grayish > ul > li .menu > li:hover > a {
+    color: #696969;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.grayish > ul > li > .menu, .grayish > ul > li > .megamenu {
+    border-top: 5px solid #696969;
+}
+
+/* For group heading, of megamenu, coloring */
+.grayish > ul > li > .megamenu h3 {
+    color: #696969;
+}
+
+/* For hover state of megamenu group item list */
+.grayish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #696969;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.violetish > ul {
+    background-color: #E752E7;
+}
+
+/* For main nav links */
+.violetish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.violetish > ul > li:hover > a {
+    color: #E752E7;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.violetish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #E752E7;
+}
+
+/* For sublevel menu links hover state */
+.violetish > ul > li .menu > li:hover > a {
+    color: #E752E7;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.violetish > ul > li > .menu, .violetish > ul > li > .megamenu {
+    border-top: 5px solid #E752E7;
+}
+
+/* For group heading, of megamenu, coloring */
+.violetish > ul > li > .megamenu h3 {
+    color: #E752E7;
+}
+
+/* For hover state of megamenu group item list */
+.violetish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #E752E7;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.lightseagreenish > ul {
+    background-color: #20B2AA;
+}
+
+/* For main nav links */
+.lightseagreenish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.lightseagreenish > ul > li:hover > a {
+    color: #20B2AA;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.lightseagreenish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #20B2AA;
+}
+
+/* For sublevel menu links hover state */
+.lightseagreenish > ul > li .menu > li:hover > a {
+    color: #20B2AA;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.lightseagreenish > ul > li > .menu, .lightseagreenish > ul > li > .megamenu {
+    border-top: 5px solid #20B2AA;
+}
+
+/* For group heading, of megamenu, coloring */
+.lightseagreenish > ul > li > .megamenu h3 {
+    color: #20B2AA;
+}
+
+/* For hover state of megamenu group item list */
+.lightseagreenish > ul > li > .megamenu > div > ul > li:hover > a {
+    color: #f0f0f0;
+    background-color: #20B2AA;
+}
+
+/*----------------------------------------------------------------------------------------------------------------------------------*/
+
+/* For back color of the nav */
+.lightcoralish > ul {
+    background-color: #F08080;
+}
+
+/* For main nav links */
+.lightcoralish > ul > li > a {
+    color: #f0f0f0;
+}
+
+/* For hover state of main nav links */
+.lightcoralish > ul > li:hover > a {
+    color: #F08080;
+    background-color: #ffffff;
+}
+
+/* For sublevel menu links coloring */
+.lightcoralish > ul > li .menu > li > a {
+    color: #f0f0f0;
+    background-color: #F08080;
+}
+
+/* For sublevel menu links hover state */
+.lightcoralish > ul > li .menu > li:hover > a {
+    color: #F08080;
+    background-color: #ffffff;
+}
+
+/* For adding a green colored top border to sublevel menu and megamenu */
+.lightcoralish > ul > li > .menu, .lightcoralish > ul > li > .megamenu {
+    border-top: 5px solid #F08080;
+}
+
+/* For group heading, of megamenu, coloring */
+.lightcoralish > ul > li > .megamenu h3 {
+    color: #F08080;
+}
+
+/* For hover state of megamenu group item list */
+.lightcoralish > ul > li > .megamenu > div > ul > li > a:hover {
+    color: #f0f0f0;
+    background-color: #F08080;
+}

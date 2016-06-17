@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .prev( [selector ] )
+//            selector
+//            类型: Selector
+//            一个用于匹配元素的选择器字符串。
+
+//            For each paragraph, find the very previous sibling that has a class "selected".
+            $("p").prev(".selected").css("background-color", "yellow");
+        });
+    </script>
+</head>
+<body>
+<div><span>Hello</span></div>
+
+<p class="selected">Hello Again</p>
+
+<p>And Again</p>
+</body>
+</html>

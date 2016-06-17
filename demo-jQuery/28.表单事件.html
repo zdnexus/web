@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #form1 {
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //focus() 设置焦点 //blur() 失去焦点
+//            $("#ipt1").focus(function(){
+//                $("span").show();
+//            });
+//            $("#ipt1").blur(function(){
+//                $("span").hide();
+//            });
+
+            //change() 元素改变+失去焦点才会触发change事件
+//            $("#ipt1").change(function(){
+//                $("span").show();
+//            });
+
+            //选中文本+鼠标抬起触发事件
+//            $("#ipt1").select(function(){
+//                $("span").show();
+//            });
+
+            //submit提交表单
+//            $("#form1").submit(function () {
+//                alert("提交成功!");
+//            });
+        })
+    </script>
+</head>
+<body>
+<input type="text" name="" id="ipt1" value="12345"/>
+<span style="display: none">已获取焦点</span>
+<br><br>
+
+
+<input type="file" id="ipf1" value="11111">
+
+<form action="https://www.baidu.com" id="form1">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" id="sub1" value="提交">
+</form>
+</body>
+</html>

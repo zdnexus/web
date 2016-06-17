@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementsByTagName('ul')[0];
+            var aA = oUl.getElementsByTagName('a');
+            for (var i = 0; i < aA.length; ++i) {
+                aA[i].onclick = function () {
+                    oUl.removeChild(this.parentNode);
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li>dsadsadsadadsadas<a href="#">删除</a></li>
+    <li>432321321<a href="#">删除</a></li>
+    <li>zfsadadas<a href="#">删除</a></li>
+    <li>ffdsdsa432<a href="#">删除</a></li>
+</ul>
+</body>
+</html>

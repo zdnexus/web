@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.isWindow( obj )
+//            描述: 确定参数是否为一个window对象。
+//
+//            jQuery.isWindow( obj )
+//obj
+//            类型: PlainObject
+//            用于测试是否为一个window对象
+
+//            这个方法在jQuery很多地方用到，用来确定我们的操作是否为一个浏览器窗口操作。（如当前窗口或一个iframe）。
+//            判断传入的参数是否为 window。
+            $("b").append("" + $.isWindow(window));
+        });
+    </script>
+</head>
+<body>
+
+Is 'window' a window? <b></b>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .map( callback(index, domElement) )
+//            callback(index, domElement)
+//            类型: Function()
+//            一个函数对象，会在处理集合中的每个元素时被调用。
+
+//            通过一个函数匹配当前集合中的每个元素,产生一个包含新的jQuery对象。
+//            如果你想处理一个简单的数组或对象中，使用jQuery.map()代替。
+
+            var str=$(":checkbox").map(function() {
+                return this.id;
+            }).get().join("-");
+
+            alert(str);
+        });
+    </script>
+</head>
+<body>
+<form method="post" action="">
+    <fieldset>
+        <div>
+            <label for="two">2</label>
+            <input type="checkbox" value="2" id="two" name="number[]">
+        </div>
+        <div>
+            <label for="four">4</label>
+            <input type="checkbox" value="4" id="four" name="number[]">
+        </div>
+        <div>
+            <label for="six">6</label>
+            <input type="checkbox" value="6" id="six" name="number[]">
+        </div>
+        <div>
+            <label for="eight">8</label>
+            <input type="checkbox" value="8" id="eight" name="number[]">
+        </div>
+    </fieldset>
+</form>
+</body>
+</html>

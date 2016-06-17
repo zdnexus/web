@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .prevAll()
+//            获得集合中每个匹配元素的所有前面的兄弟元素，选择性筛选的选择器。
+
+            $("li.third-item").prevAll().css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li class="third-item">list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 16px;
+            font-weight: bolder;
+        }
+
+        div {
+            width: 130px;
+            height: 82px;
+            margin: 10px;
+            float: left;
+            border: 1px solid blue;
+            padding: 4px;
+        }
+
+        #container {
+            width: auto;
+            height: 105px;
+            margin: 0;
+            float: none;
+            border: none;
+        }
+
+        .hilite {
+            border-color: red;
+        }
+
+        #results {
+            display: block;
+            color: red;
+        }
+
+        p {
+            margin: 10px;
+            border: 1px solid transparent;
+        }
+
+        span {
+            color: blue;
+            border: 1px solid transparent;
+        }
+
+        input {
+            width: 100px;
+        }
+
+        em {
+            border: 1px solid transparent;
+        }
+
+        a {
+            border: 1px solid transparent;
+        }
+
+        b {
+            border: 1px solid transparent;
+        }
+
+        button {
+            border: 1px solid transparent;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            查找被点击的元素的所有子元素。
+            $("#container").click(function (e) {
+                $("*").removeClass("hilite");
+
+                var $kids = $(e.target).children();
+                var len = $kids.addClass("hilite").length;
+
+                $("#results span:first").text(len);
+                $("#results span:last").text(e.target.tagName);
+
+                e.preventDefault();
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="container">
+
+    <div>
+        <p>This <span>is the <em>way</em> we</span>
+            write <em>the</em> demo,</p>
+    </div>
+
+    <div>
+        <a href="#"><b>w</b>rit<b>e</b></a> the <span>demo,</span>
+        <button>write
+            the
+        </button>
+        demo,
+    </div>
+
+    <div>
+        This <span>the way we <em>write</em> the <em>demo</em> so</span>
+        <input type="text" value="early"/> in
+    </div>
+
+    <p>
+        <span>t</span>he <span>m</span>orning.
+        <span id="results">Found <span>0</span> children in <span>TAG</span>.</span>
+    </p>
+</div>
+</body>
+</html>

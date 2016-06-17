@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.preventDefault()
+//            描述: 如果调用这个方法，默认事件行为将不再触发。
+
+//            event.preventDefault()
+//            这个方法不接受任何参数。
+
+//            例如，在执行这个方法后，如果点击一个链接（a标签），浏览器不会跳转到新的 URL 去了。
+//            我们可以用 event.isDefaultPrevented() 来确定这个方法是否(在那个事件对象上)被调用过了。/
+
+            $("a").click(function(event) {
+                event.preventDefault();//阻止了a标签的默认跳转事件
+                $("<div/>")
+                        .append("default " + event.type + " prevented")
+                        .appendTo("#log");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<a href="http://jquery.com">default click action is prevented</a>
+
+<div id="log"></div>
+
+</body>
+</html>

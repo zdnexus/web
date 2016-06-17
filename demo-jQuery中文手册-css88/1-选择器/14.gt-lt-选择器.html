@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table{
+            margin: 30px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":gt(index)" )
+//            从0开始计数的索引值。
+
+//            jQuery( ":gt(-index)" )
+//            从0开始计数的索引值。 从最后一个元素开始反向计数。
+
+//            因为 :gt() 是一个 jQuery 延伸出来的选择器 。 并且不是的CSS规范的一部分,
+//            使用:gt()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用$("your-pure-css-selector").slice(index)代替。
+
+            $("#table1 td:gt(4)").css("background-color", "yellow");// (4,+~]
+            $("#table1 td:gt(-2)").css("color", "red");// (-2,0) 倒数第一个
+            $("#table1 td:lt(2)").css("background-color", "blue");// [0,2)
+            $("#table1 td:lt(-2)").css("color", "green");// -2 = 10 -> [0,10)
+
+
+            $("#table2 td").slice(4 + 1).css("background-color", "yellow");
+            $("#table2 td").slice(-2 + 1).css("color", "red");
+            $("#table2 td").slice(0,2).css("background-color", "blue");
+            $("#table2 td").slice(0,-2).css("color", "green");
+        });
+    </script>
+</head>
+<body>
+<table border="1" id="table1">
+    <tr>
+        <td>TD #0</td>
+        <td>TD #1</td>
+        <td>TD #2</td>
+    </tr>
+    <tr>
+        <td>TD #3</td>
+        <td>TD #4</td>
+        <td>TD #5</td>
+    </tr>
+    <tr>
+        <td>TD #6</td>
+        <td>TD #7</td>
+        <td>TD #8</td>
+    </tr>
+    <tr>
+        <td>TD #9</td>
+        <td>TD #10</td>
+        <td>TD #11</td>
+    </tr>
+</table>
+<table border="1" id="table2">
+    <tr>
+        <td>TD #0</td>
+        <td>TD #1</td>
+        <td>TD #2</td>
+    </tr>
+    <tr>
+        <td>TD #3</td>
+        <td>TD #4</td>
+        <td>TD #5</td>
+    </tr>
+    <tr>
+        <td>TD #6</td>
+        <td>TD #7</td>
+        <td>TD #8</td>
+    </tr>
+    <tr>
+        <td>TD #9</td>
+        <td>TD #10</td>
+        <td>TD #11</td>
+    </tr>
+</table>
+</body>
+</html>

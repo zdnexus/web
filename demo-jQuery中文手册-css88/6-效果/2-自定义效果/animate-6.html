@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            position:absolute;
+            background-color:#abc;
+            left:50px;
+            width:90px;
+            height:90px;
+            margin:5px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 对 div 应用动画，在 left 属性上使用相对值。执行动画多次，查看相对值的累加效果。
+            $("#right").click(function(){
+                $(".block").animate({"left": "+=50px"}, "slow");
+//                $(".block").animate({"left": "+=50"}, "slow");
+            });
+
+            $("#left").click(function(){
+                $(".block").animate({"left": "-=50px"}, "slow");
+//                $(".block").animate({"left": "-=50"}, "slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="left">&laquo;</button> <button id="right">&raquo;</button>
+
+<div class="block"></div>
+
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.isNumeric( value )
+//            描述: 确定它的参数是否是一个数字。
+
+//jQuery.isNumeric( value )
+//            value
+//            类型: Anything
+//            用于测试的值。
+
+//            $.isNumeric() 方法检查它的参数是否代表一个数值。如果是，它返回 true。否则，它返回false。该参数可以是任何类型。
+
+//            以下是使用 $.isNumeric 检测各种输入类型的例子。
+            $.isNumeric("-10");  // true
+            $.isNumeric(16);     // true
+            $.isNumeric(0xFF);   // true
+            $.isNumeric("0xFF"); // true
+            $.isNumeric("8e5");  // true (exponential notation string)
+            $.isNumeric(3.1415); // true
+            $.isNumeric(+10);    // true
+            $.isNumeric(0144);   // true (octal integer literal)
+            $.isNumeric("");     // false
+            $.isNumeric({});     // false (empty object)
+            $.isNumeric(NaN);    // false
+            $.isNumeric(null);   // false
+            $.isNumeric(true);   // false
+            $.isNumeric(Infinity); // false
+            $.isNumeric(undefined); // false
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

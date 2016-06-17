@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        ul {
+            margin-left: 20px;
+            color: blue;
+        }
+
+        li {
+            cursor: default;
+            margin: 10px 0;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .hover( handlerIn(eventObject), handlerOut(eventObject) )
+//            描述: 将二个事件函数绑定到匹配元素上，分别当鼠标指针进入和离开元素时被执行。
+
+//            .hover()方法是同时绑定 mouseenter和 mouseleave事件。我们可以用它来简单地应用在 鼠标在元素上行为。
+//            调用$(selector).hover(handlerIn, handlerOut)是以下写法的简写：
+//            $(selector).mouseenter(handlerIn).mouseleave(handlerOut);
+
+//            Example: 当鼠标在列表中来回滑动的时候添加特殊的样式， try:
+            $("li").hover(
+                    function () {
+                        $(this).append($("<span> ***</span>"));
+                    },
+                    function () {
+                        $(this).find("span:last").remove();
+                    }
+            );
+
+//li with fade class
+            $("li.fade").hover(function () {
+                $(this).fadeOut(100);
+                $(this).fadeIn(500);
+            });
+
+//            Example: 当鼠标在表格单元格中来回滑动的时候添加特殊的样式， try:
+            $("td").hover(
+                    function () {
+                        $(this).addClass("hover");
+                    },
+                    function () {
+                        $(this).removeClass("hover");
+                    }
+            );
+
+//            Example: 解除绑定上面的例子中使用:
+            $("td").unbind('mouseenter mouseleave');
+        });
+    </script>
+</head>
+<body>
+
+<ul>
+    <li>Milk</li>
+    <li class='fade'>Bread</li>
+    <li>Chips</li>
+    <li class='fade'>Socks</li>
+</ul>
+
+</body>
+</html>

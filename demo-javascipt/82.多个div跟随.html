@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            position: absolute;
+            width: 5px;
+            height: 5px;
+            background-color: blue;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        document.onmousemove = function (ev) {
+            var aDiv = document.getElementsByTagName("div");
+            for (var i = aDiv.length - 1; i > 0; --i) {
+                aDiv[i].style.left = aDiv[i - 1].offsetLeft + "px";
+                aDiv[i].style.top = aDiv[i - 1].offsetTop + "px";
+            }
+            aDiv[0].style.left = getMousePosition(ev).x + "px";
+            aDiv[0].style.top = getMousePosition(ev).y + "px";
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

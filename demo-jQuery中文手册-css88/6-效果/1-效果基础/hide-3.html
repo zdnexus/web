@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: #dad;
+            font-weight: bold;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .hide( [duration ] [, complete ] )
+//            duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//            complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+//            缓慢的隐藏所有显示的段落，600毫秒内完成的动画。
+            $("button").click(function () {
+                $("p").hide("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Hide 'em</button>
+
+<p>Hiya</p>
+
+<p>Such interesting text, eh?</p>
+
+</body>
+</html>

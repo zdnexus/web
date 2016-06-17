@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+</head>
+<body>
+
+<div ng-app="">
+
+    <!--ng-cloak 指令用于在 AngularJS 应用在加载时防止 AngularJS 代码未加载完而出现的问题。-->
+    <!--在应用正要加载时防止其闪烁-->
+    <p ng-cloak>{{ 5 + 5 }}</p>
+
+    <p><b>注意：</b> 该实例只是演示了指令的应用。</p>
+
+</div>
+
+</body>
+<script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</html>

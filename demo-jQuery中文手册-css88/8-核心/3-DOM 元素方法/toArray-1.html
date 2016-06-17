@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .toArray()
+//            描述: 返回一个包含jQuery对象集合中的所有DOM元素的数组。
+
+//            .toArray()
+//            这个方法不接受任何参数。
+
+//            选择文档中所有的div，并且返回一个DOM元素数组，然后利用浏览器内置的reverse方法反转整个数组。
+            function disp(divs) {
+                var a = [];
+                for (var i = 0; i < divs.length; i++) {
+                    a.push(divs[i].innerHTML);
+                }
+                $("span").text(a.join(" "));
+            }
+
+            disp($("div").toArray().reverse());//toArray() = get() ?
+        });
+    </script>
+</head>
+<body>
+
+Reversed - <span></span>
+
+<div>One</div>
+<div>Two</div>
+<div>Three</div>
+
+</body>
+</html>

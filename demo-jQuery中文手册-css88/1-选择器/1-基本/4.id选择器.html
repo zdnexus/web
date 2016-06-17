@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 90px;
+            height: 90px;
+            padding: 5px;
+            margin: 5px;
+            background-color: #EEEEEE;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            选择一个具有给定id属性的单个元素。
+
+//            jQuery( "#id" )
+//            一个用来查找的ID，即元素的id属性。
+
+//            对于ID选择，jQuery使用JavaScript函数document.getElementById().
+
+//          　当另一个选择是附加到ID选择器，比如h2#pageTitle，在确定作为匹配的元素前，jQuery执行一个额外的检查。浪费程序时间。
+//            调用 jQuery() (或 $()) 带上一个选择器作为它的参数，将返回一个jQuery对象包含零个或一个DOM元素的集合(数组)。
+//            每个id值在一个文件中只能使用一次。如果多个元素分配了相同的ID，将只匹配该ID选择集合的第一个DOM元素。
+//            但这种行为不应该发生;有超过一个元素的文件使用相同的ID是无效的。
+//            如果ID包含点号或冒号字符字符，你必须将 这些字符反斜杠转义.
+
+            $("#myDiv").css("border", "3px solid red");
+            $("#myID\\.entry\\[1\\]").css("border", "3px solid blue");
+        });
+    </script>
+</head>
+<body>
+
+<div id="myID.entry[1]">DIV1 id="myID.entry[1]</div>
+
+<div id="myDiv">DIV2 id="myDiv"</div>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #info{
+            width: 160px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                $.ajax({
+                    url: "demo50.php?date=" + Math.random(),
+                    type: "get",
+                    success: function (data) {
+                        var redata = eval(data);
+                        $("#info").html(redata[0].newsTitle + ":" + redata[0].newsTime).css("border", "1px solid #abc").hide().show(600);
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="获取信息">
+
+<div id="info"></div>
+</body>
+</html>

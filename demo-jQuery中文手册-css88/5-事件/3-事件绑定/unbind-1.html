@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .unbind( [eventType ] [, handler(eventObject) ] )
+//            从元素上删除一个以前附加事件处理程序。
+
+//            .unbind()
+//            此签名不接受任何参数。
+
+            $("#foo").unbind();
+//            上面的代码删除所有事件类型的处理程序。为了更加精确，我们可以传递一个事件类型：
+
+//            .unbind( event )
+//            event
+//            类型: Event
+//            一个 jQuery.Event 对象。
+
+            $("#foo").unbind("click");
+//            通过指定click事件类型， 只有该事件类型的处理程序将解除绑定。
+//            但是， 这种方法有负面影响，这是因为有可能在代码的其它地方在相同的元素上绑定了相同的事件处理。
+//            为了避免该问题，对于一个健壮性和扩展性强的应用而言，通过在使用该方法时，会传入两个参数：
+
+//            .unbind( eventType [, handler ] )
+//            eventType
+//            类型: String
+//            一个包含JavaScript事件类型的字符串，比如click 或 submit。
+//            handler
+//            类型: Function( Event eventObject )
+//            这个函数今后不在执行。
+
+            var handler = function () {
+                alert("The quick brown fox jumps over the lazy dog.");
+            };
+            $("#foo").bind("click", handler);
+            $("#foo").unbind("click", handler);
+
+            ///////////////////
+            ///////////////////
+            ///////////////////
+
+            $("#foo").bind("click", function () {
+                alert("The quick brown fox jumps over the lazy dog.");
+            });
+// Will NOT work
+            $("#foo").unbind("click", function () {
+                alert("The quick brown fox jumps over the lazy dog.");
+            });
+//            尽管上述代码中，两个匿名函数的内容是一样的，但是它们是在不同的地方被创建的，
+//            因此 JavaScript 会将它们当成是不同的函数对象。若要解除绑定特定的事件处理函数，
+//            我们需要的是指向该函数的引用，而不是内容相同的不同函数。
+
+//            项目管理经验->unbind解除具体绑定事件
+            $("p").bind("click.a", function () {
+                $(this).css("background-color", "red");
+            });//第一个程序员写的
+            $("p").bind("click.b", function () {
+                $(this).css("font-size", "30px");
+            });//第二个程序员写的
+//            点击后会出现2个情况，根据不同要求删除其中一个即可
+            $("p").unbind("click.a");
+
+//            Example: 可以像下面这样，解除绑定在段落上的所有事件：
+            $("p").unbind();
+
+//            Example: 可以像下面这样，解除绑定在段落上的 click 事件：
+            $("p").unbind("click");
+
+//            Example: 通过传入的第二个参数，仅解除绑定先前绑定的事件：
+            var foo = function () {
+                // Code to handle some kind of event
+            };
+            $("p").bind("click", foo); // ... Now foo will be called when paragraphs are clicked ...
+            $("p").unbind("click", foo); // ... foo will no longer be called.
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

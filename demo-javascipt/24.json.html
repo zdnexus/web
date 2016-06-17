@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var json = {a: 12, b: 6, c: "123"};
+        for (var i in json) {
+            alert(json[i]);//遍历json
+        }
+        json.a++;
+        alert(json["a"]);//输出json中a的值
+
+        var arr = [12, 5, "123"];
+        arr[2]=7;
+        for (var i in arr) {
+            alert(arr[i]);
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

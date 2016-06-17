@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-mouseenter 指令用于告诉 AngularJS 鼠标在 HTML 元素穿过时要执行的操作-->
+<div ng-mouseenter="count = count + 1" ng-init="count=0">鼠标穿过我!</div>
+
+<h1>{{count}}</h1>
+
+<p>
+    该实例在鼠标穿过 DIV 元素时，计算变量 "count" 会自动加 1。</p>
+
+</body>
+</html>

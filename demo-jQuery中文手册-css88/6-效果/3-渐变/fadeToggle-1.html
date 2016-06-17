@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .fadeToggle( [duration ] [, easing ] [, complete ] )
+//            描述: 通过匹配的元素的不透明度动画，来显示或隐藏它们。
+
+//            .fadeToggle( [duration ] [, easing ] [, complete ] )
+//duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//easing (默认: swing)
+//            类型: String
+//            一个字符串，表示过渡使用哪种缓动函数。（译者注：jQuery自身提供"linear" 和 "swing"，其他可以使用相关的插件）
+//complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+//            第一段落渐隐或渐显，用时 600 毫秒，并且是线性缓冲效果。而最后一个段落渐隐渐显用时 200 毫秒, 并且在每次动画完成后插入一个 "finished"。
+            $("button:first").click(function() {
+                $("p:first").fadeToggle("slow", "linear");
+            });
+
+            $("button:last").click(function () {
+                $("p:last").fadeToggle("fast", function () {
+                    $("#log").append("<div>finished</div>");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>fadeToggle p1</button>
+<button>fadeToggle p2</button>
+
+<p>This paragraph has a slow, linear fade.</p>
+
+<p>This paragraph has a fast animation.</p>
+
+<div id="log"></div>
+
+</body>
+</html>

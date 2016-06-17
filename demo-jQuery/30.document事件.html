@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            line-height: 50px;
+        }
+
+        ul {
+            display: none;
+            width: 100px;
+            border: 1px solid black;
+        }
+
+        li {
+            padding: 10px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        //文档坐标
+        $(document).click(function (e) {
+            var x = e.pageX;
+            var y = e.pageY;
+            $("#ipt1").val(x + " " + y);
+        });
+
+        $(function () {
+            //e.preventDefault() 阻止默认事件
+            $("#form1").submit(function (e) {
+                alert("提交成功!");
+                e.preventDefault();
+            });
+
+            //e.stopPropagation() 阻止事件冒泡
+//            $("#div1").click(function (e) {
+//                $("ul").show();
+//                e.stopPropagation();
+//            });
+//            $(document).click(function () {
+//                $("ul").hide();
+//            });
+
+//            $("#div1").bind("click",function(){
+//                $("ul").show();
+//                return false;//阻止事件冒泡
+//            });
+//            $(document).click(function () {
+//                $("ul").hide();
+//            });
+        })
+    </script>
+</head>
+<body>
+<input type="text" id="ipt1">
+
+<form action="https://www.baidu.com" id="form1">
+    <input type="text" name="username">
+    <input type="password" name="password">
+    <input type="submit" id="" value="提交">
+</form>
+
+<div id="div1">选中城市</div>
+<ul>
+    <li>北京</li>
+    <li>上海</li>
+    <li>广州</li>
+    <li>深圳</li>
+</ul>
+</body>
+</html>

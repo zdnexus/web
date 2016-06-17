@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oTxt1 = document.getElementById("txt1");
+            oTxt1.onkeydown = function (ev) {
+                var oEvent = ev || event;
+                if ((oEvent.keyCode < 48 || oEvent.keyCode > 57) && (oEvent.keyCode < 96 || oEvent.keyCode > 105) && oEvent.keyCode != 37 && oEvent.keyCode != 39 && oEvent.keyCode != 8) {
+                    return false;
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="txt1" type="text">
+</body>
+</html>

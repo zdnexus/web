@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: yellow;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        window.onload= function () {
+            var aDiv=document.getElementsByTagName('div');
+            alert(aDiv.length);
+            aDiv[2].style.backgroundColor='red';
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

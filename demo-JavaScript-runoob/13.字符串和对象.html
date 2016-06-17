@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    var x = "John";
+    var y = new String("John");
+
+    //    不要创建 String 对象。它会拖慢执行速度，并可能产生其他副作用
+    console.log(x);//John
+    console.log(y);//(object) {0: "J", 1: "o", 2: "h", 3: "n", length: 4, [[PrimitiveValue]]: "John"}
+    console.log(typeof x);//string
+    console.log(typeof y);//object
+    console.log(typeof x == typeof y);//false
+    console.log(typeof x === typeof y);//false
+
+    var z1 = [1, 2, 3];
+    var z2 = new Array(1, 2, 3);
+    console.log(z1);//[1,2,3]
+    console.log(z2);//[1,2,3]
+    console.log(typeof z1);//object
+    console.log(typeof z1[0]);//number
+    console.log(typeof z2);//object
+</script>
+</html>

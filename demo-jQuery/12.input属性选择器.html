@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            alert($("input").length);//input的数量
+            alert($("input:hidden").val());//类型是hidden的input的value
+
+            $("textarea").css("background", "brown");
+
+            $("input:password").css("background", "blue");//类型是password的input
+            $("input[type='password']").css("background", "blue");//类型是password的input
+
+            $("input[zd='zzz']:disabled").css("background", "green");//带zd=zzz属性和disabled的input
+            $("input[zd='zzz'][disabled=disabled]").css("background", "green");//带zd=zzz属性和disabled的input
+
+            $("input[zd='zzz']:enabled").css("background", "yellow");//带zd=zzz属性和enabled的input
+
+            $("select option:selected").css("background", "red");//是selected的option
+            $("select option[selected=selected]").css("background", "red");//是selected的option
+
+            alert($("input:checked").val());//有checked状态的input
+            alert($("input[checked=checked]").val());//有checked状态的input
+        })
+    </script>
+</head>
+<body>
+<form action="">
+    <input type="hidden" name="" value="我是隐藏的文本框"/>
+    <input type="text" name="" value="我是文本框"/>
+    <input type="password" name="" value="我是密码框"/>
+    <input type="button" name="" value="我是按钮"/>
+    <input type="submit" name="" value="我是提交按钮"/>
+    <input type="radio" name="" value="我是单选按钮"/>
+    <input type="checkbox" name="" value="我是复选按钮" checked="checked"/>
+    <input type="reset" name="" value="我是重置按钮"/>
+    <textarea name="" cols="30" rows="10">我是文本框</textarea>
+    <select name="">
+        <option value="111">111</option>
+        <option value="222" selected="selected">222</option>
+        <option value="333">333</option>
+    </select>
+    <input zd="zzz" name="" value="可以修改" disabled="disabled"/>
+    <input zd="zzz" name="" value="不能修改"/>
+</form>
+</body>
+</html>

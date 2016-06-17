@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var inputTitle = $("input").attr("title");
+
+            $("button").click(function () {
+                var input = $(this).next();
+
+                if (input.attr("title") == inputTitle) {
+                    input.removeAttr("title")
+                } else {
+                    input.attr("title", inputTitle);
+                }
+
+                $("#log").html("input title is now " + input.attr("title"));
+            });
+        });
+    </script>
+</head>
+<body>
+<button>Enable</button>
+
+<input type="text" title="hello"/>
+
+<div id="log"></div>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":not(selector)" )
+//            选择所有元素去除不匹配给定的选择器的元素。
+
+//            所有的选择器可以放置在 :not()中，例如 :not(div a) :not(div,a) :not(.a .b)
+
+            $("input:not(:checked) + span").css("background-color", "yellow");
+            $("input").attr("disabled", "disabled");
+        });
+    </script>
+</head>
+<body>
+<div>
+    <input type="checkbox" name="a"/>
+    <span>Mary</span>
+</div>
+<div>
+    <input type="checkbox" name="b"/>
+    <span>lcm</span>
+</div>
+<div>
+    <input type="checkbox" name="c" checked="checked"/>
+    <span>Peter</span>
+</div>
+</body>
+</html>

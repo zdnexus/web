@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div2 {
+            width: 50px;
+            height: 50px;
+            background: silver;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("#div1").children().css("background", "blue");//父级是#div1的所有子元素
+//            $("#div1").children("p").css("background", "blue");//父级是#div1的所有p元素
+//            $("#div1 p").css("background", "blue");//父级是#div1的所有p元素
+//            $("#div1").children().not("p").css("background", "blue");//父级是#div1,所有除了p元素的子元素
+
+//            $("#p1").parent().css("background","blue");//#p1元素的父级元素
+//            $("#p1").parents().css("background","blue");//#p1元素的所有祖先元素
+//            $("#p1").parents("#div1").css("background","blue");//#p1元素的祖先元素中的id=div1元素
+
+//            $("#p1").offsetParent().css("background","blue");//#p1元素的祖先元素中第一个absolute或者relative元素
+
+//            $("#p1").next().css("background","blue");//#p1元素紧邻的下一个同父级的兄弟元素
+//            $("#p1").nextAll().css("background", "blue");//#p1元素紧邻的所有同父级的兄弟元素
+//            $("#p1").nextAll().not("div").css("background", "blue");//#p1元素紧邻的除了div的所有同父级的兄弟元素
+//            $("#p1").nextUntil("div").css("background", "blue");//#p1元素紧邻所有同父级直到找到div的兄弟元素,不含div
+
+//            $("#p2").prev().css("background","blue");//#p2元素紧邻的前一个同父级的兄弟元素
+//            $("#div4").prev().css("background","blue");//#div4元素紧邻的前一个同父级的兄弟元素
+//            $("#p3").prevAll().css("background","blue");//#p3元素紧邻的前所有同父级的兄弟元素
+//            $("#p3").prevUntil("div").css("background","blue");//#p1元素紧邻的前所有同父级直到找到div的兄弟元素,不含div
+
+//            $("#p2").siblings().css("background","blue");//#p2元素前后所有的兄弟元素
+//            $("#p2").siblings("div").css("background","blue");//#p2元素前后所有的兄弟元素中的div元素
+
+//            $("#p1").closest("#div1").css("background","blue");//#p2元素的所有祖先元素中id=div1
+
+            //end() 方法结束当前链条中的最近的筛选操作，并将匹配元素集还原为之前的状态。
+//            $("#p3").parent().css("background","red").end().css("background","blue");//#p3元素的父级元素是红色，#p3是蓝色
+//            $("#p1").nextAll().css("background","red").end().css("background","blue");//#p1元素后面所有的同父级兄弟元素都是红色，#p3是蓝色
+
+//            $("#p2").nextAll().addBack().css("background","blue");//addBack()匹配当前元素集合不包括在内的元素
+//            $("#p2").nextAll().css("background","blue").end().css("background","blue");
+
+
+//            each() 方法规定为每个匹配元素规定运行的函数。
+//            $("#div1 > p").each(function () {
+//                alert($(this).html());
+//            })
+        })
+    </script>
+</head>
+<body>
+<div id="div1" style="position: absolute">
+    <p>我是第一个p元素</p>
+
+    <p>我是第二个p元素</p>
+
+    <div id="div2">DIV2</div>
+    <div id="div3">
+        <div id="div4">我是div3中的div4元素</div>
+
+        <p id="p1">我是div3的第一个p元素</p>
+
+        <p id="p2">我是div3的第二个p元素</p>
+
+        <p id="p3">我是div3的第三个p元素</p>
+
+        <div id="div5">我是div3中的div5元素</div>
+    </div>
+    <p>我是第三个p元素</p>
+</div>
+</body>
+</html>

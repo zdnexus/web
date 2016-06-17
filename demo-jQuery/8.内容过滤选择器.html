@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p{
+            height: 20px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            // :contains() 查找所有包含 "John" 的 p 元素
+//            $("p:contains('动画')").css("background","blue");//所有含有'动画'内容的p元素
+
+            // :has() 给所有包含 strong 元素的 p 元素
+//            $("p:has('strong')").css("background","blue");//所有含有strong元素的p元素
+
+            // :empty() p元素的内容为空
+//            $("p:empty").css("background","blue");//所有没有内容的p元素
+
+            //所有包含 "年青" 的 p 元素显示，其余的兄弟元素隐藏
+//            $("p:contains('年青')").show().siblings().hide();//所有含有'年青'的p元素,其余兄弟元素全部隐藏
+//            $("p:contains('年青')").show().siblings("p").hide();//所有含有'年青'的p元素,其余兄弟p元素隐藏
+
+            // :parent 查找所有含有子元素或者文本的 p 元素
+//            $("p:parent").css("background","blue");//所有有文本内容和子元素的p元素
+
+            //parent() 取得一个包含着所有匹配元素的唯一父元素的元素集合。
+//            $("p").parent().css("background","blue");//所有p元素的父级元素
+//            $("p").parent(".b").css("background","blue");//所有p元素的父级元素中class是b的
+//            $("p").parent("div").css("background","blue");//所有p元素的父级元素中是div的
+
+            //parents() 取得一个包含着所有匹配元素的祖先元素的元素集合（不包含根元素）。可以通过一个可选的表达式进行筛选。
+//            $("p").parents().css("background","blue");//所有p元素的父级元素
+//            $("p").parents("body").css("background","blue");//只对body设置
+        })
+    </script>
+</head>
+<body>
+<p><a href="#"></a></p>
+<p class="a">111<p>
+<p>动画的概念不同于一般意义上的动画片，动画是一种综合艺术，<strong>它是集合了绘画</strong>、漫画、电影、数字媒体、摄影、音乐、文</p>
+<div class="b"><p>学等众多艺术门类于一身的艺术表现形式。最早发源于19世纪上半叶的英国，兴盛于美国，中国动画起源于20世纪20年代。动画</p></div>
+<p>是一门年青的艺术，它是唯一有确定诞生日期的一门艺术，1892年10月28日埃米尔·雷诺首次在巴黎著名的葛莱凡蜡像馆向观众</p>
+<p></p>
+<p>放映光学影戏，标志着动画的正式诞生，同时埃米尔·雷诺也被誉为“动画之父”。</p>
+</body>
+</html>

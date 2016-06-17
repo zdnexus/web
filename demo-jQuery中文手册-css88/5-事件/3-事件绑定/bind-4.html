@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background-color: yellow;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        p.over {
+            background-color: #ccc;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").bind("click", function (event) {
+                event.preventDefault();//通过使用 .preventDefault() 方法，仅取消默认的动作。
+
+                var str = "( " + event.pageX + ", " + event.pageY + " )";
+                $("span").text("Click happened! " + str);
+            });
+            
+            $("p").bind("dblclick", function () {
+                $("span").text("Double-click happened in " + this.nodeName);
+
+                return false;//通过返回 false 的方式取消默认的动作，并防止它进行事件冒泡：
+            });
+            
+            $("p").bind("mouseenter mouseleave", function (event) {
+                $(this).toggleClass("over");
+            });
+
+//            .bind( eventType [, eventData ], preventBubble )
+//            eventType
+//            类型: String
+//            一个包含一个或多个DOM事件类型的字符串，比如"click"或"submit,"或自定义事件的名称。
+//            eventData
+//            类型: Anything
+//            一个对象，它包含的数据键值对映射将被传递给事件处理程序。
+//            preventBubble
+//            类型: Boolean
+//            第三个参数设置为false将绑定一个函数，防止默认事件，阻止事件冒泡。默认值是true。
+
+            $("p").bind("click", function () {
+                $("span").text("Double-click happened in " + this.nodeName);
+            },false);
+        });
+    </script>
+</head>
+<body>
+<p>Click or double click here.</p>
+
+<span></span>
+</body>
+</html>

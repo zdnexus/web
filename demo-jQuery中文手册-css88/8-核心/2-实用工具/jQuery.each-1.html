@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.each( collection, callback(indexInArray, valueOfElement) )
+//            描述: 一个通用的迭代函数，它可以用来无缝迭代对象和数组。
+//            数组和类似数组的对象通过一个长度属性（如一个函数的参数对象）来迭代数字索引，从0到length - 1。其他对象通过其属性名进行迭代。
+
+//            jQuery.each(array, callback )
+//array
+//            类型: Array
+//            遍历的数组。
+//callback
+//            类型: Function( Integer indexInArray, Object value )
+//            该函数会在每个对象上（迭代）调用。
+
+//            $.each()函数和 $(selector).each()是不一样的，那个是专门用来遍历一个jQuery对象。
+//            $.each()函数可用于迭代任何集合，无论是“名/值”对象（JavaScript对象）或数组。
+
+//            对象是数组
+            $.each([52, 97], function (index, value) {
+                alert(index + ": " + value);
+            });
+
+//            如果对象是作为集合使用，回调函数每次传递一个键值对的：
+            var obj = {
+                "flammable": "inflammable",
+                "duh": "no duh"
+            };
+            $.each(obj, function (key, value) {
+                alert(key + ": " + value);
+            });
+
+//            Example: 迭代一个数组，并同时访问迭代的元素及它的索引值。
+            $.each( ["a","b","c"], function(i, l){
+                alert( "Index #" + i + ": " + l );
+            });
+
+//            Example: 在一个元素的属性上进行迭代，并同时访问它的键及值。
+            $.each( { name: "John", lang: "JS" }, function(k, v){
+                alert( "Key: " + k + ", Value: " + v );
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

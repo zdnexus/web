@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            padding: 15px;
+        }
+
+        p {
+            margin-left: 10px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .position()
+//            获取匹配元素中第一个元素的当前坐标，相对于offset parent的坐标。
+//            ( 译者注：offset parent指离该元素最近的而且被定位过的祖先元素 )
+
+//            jQuery不支持获取隐藏元素的偏移坐标及所占用的边框，边距和填充的大小
+
+            var p = $("p:first");
+            var position = p.position();
+
+            $("p:last").text("left: " + position.left + ", top: " + position.top);
+        });
+    </script>
+</head>
+<body>
+<div>
+    <p>Hello</p>
+</div>
+<p></p>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: #bbf;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .wrapInner( wrappingElement )
+//            在匹配元素里的内容外包一层结构。
+            $("p").wrapInner("<b></b>");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: blue;
+            color: white;
+            height: 100px;
+            width: 150px;
+        }
+
+        div.dbl {
+            background: yellow;
+            color: black;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var divdbl = $("div:first");
+
+            divdbl.dblclick(function () {
+                divdbl.toggleClass("dbl");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div></div>
+
+<span>Double click the block</span>
+
+</body>
+</html>

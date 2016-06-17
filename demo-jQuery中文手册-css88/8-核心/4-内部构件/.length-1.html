@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            cursor: pointer;
+        }
+
+        div {
+            width: 50px;
+            height: 30px;
+            margin: 5px;
+            float: left;
+            background: green;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+//          length
+//            描述: 在jQuery对象中元素的数量。
+//            目前匹配的元素数量。.size()方法将返回相同的数字。
+
+            $(document.body).click(function () {
+                $(document.body).append($("<div>"));
+
+                var n = $("div").length;
+
+                $("span").text("There are " + n + " divs." + "Click to add more.");
+            }).trigger("click"); // trigger the click to start
+
+        })
+    </script>
+</head>
+<body>
+
+<span></span>
+
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 300px;
+            background: red;
+            position: absolute;
+            top: 50px;
+            left: -200px;
+        }
+
+        #div1 span {
+            font: 15px 'Arial', 'Microsoft Yahei', 'Arial', 'Helvetica', sans-serif normal;
+            width: 70px;
+            height: 70px;
+            background: cornflowerblue;
+            position: absolute;
+            top: 115px;
+            right: -70px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            var oSpn = document.getElementById('span1');
+
+            oSpn.onmouseover = oDiv.onmousemove = function () {
+                Start_Move(0);
+            };
+            oSpn.onmouseout = oDiv.onmouseout = function () {
+                Start_Move(-200)
+            };
+        };
+
+        var timer = null;//开始时间只能设置一个，全局变量
+        function Start_Move(Target) {
+            var oDiv1 = document.getElementById('div1');
+            var speed = 10;
+            if (Target < 0) {
+                speed = -speed;
+            }
+
+            clearInterval(timer);//消除多个定时器
+            timer = setInterval(function () {
+                if (oDiv1.offsetLeft == Target) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv1.style.left = oDiv1.offsetLeft + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <span id="span1">百度分享</span>
+</div>
+</body>
+</html>

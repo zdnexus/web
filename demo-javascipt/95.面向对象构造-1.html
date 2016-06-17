@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function addPerson(name, qq) {
+            var obj = new Object();
+            obj.name = name;
+            obj.qq = qq;
+            obj.showName = function () {
+                alert("我的名字:" + this.name);
+            };
+            obj.showQQ = function () {
+                alert("我的QQ号:" + this.qq);
+            };
+           return obj;
+        }
+
+        var obj1=addPerson("nexus", "181811669");
+        obj1.showName();
+        obj1.showQQ();
+        var obj2=addPerson("blue", "123456789");
+        obj2.showName();
+        obj2.showQQ();
+        alert(obj1.showName==obj2.showName);//false,浪费资源
+    </script>
+</head>
+<body>
+
+</body>
+</html>

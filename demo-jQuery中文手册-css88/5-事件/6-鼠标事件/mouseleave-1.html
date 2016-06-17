@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .mouseleave( handler(eventObject) )
+//            描述: 为 mouse leaves（鼠标离开） 事件绑定一个处理函数，或者触发元素上的 mouse leaves（鼠标离开） 事件。
+
+            $('#outer').mouseleave(function() {
+                $('#log').append('<div>Handler for .mouseleave() called.</div>');
+            });
+
+            //手动触发
+            $('#other').click(function() {
+                $('#outer').mouseleave();
+//                $('#outer').trigger('mouseleave');
+            });
+
+//            .mouseleave()方法只是作为.on( "mouseleave", handler )的一个速记写法，移除该事件可以使用.off( "mouseleave" )。
+            $('#outer').on('mouseleave',function(){
+                $('#log').append('<div>Handler for .mouseleave() called.</div>');
+            });
+//            $('#outer').off('mouseleave');
+        });
+    </script>
+</head>
+<body>
+
+<div id="outer">
+    Outer
+    <div id="inner">
+        Inner
+    </div>
+</div>
+
+<div id="other">
+    Trigger the handler
+</div>
+
+<div id="log"></div>
+
+</body>
+</html>

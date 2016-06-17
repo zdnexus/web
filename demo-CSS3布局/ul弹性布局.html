@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul {
+            width: 800px;
+            display: flex;
+        }
+
+        ul li {
+            -webkit-flex: 1;
+            -moz-flex: 1;
+            -o-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            list-style: none;
+        }
+
+        ul li div{
+            height: 100px;
+        }
+
+        ul li:nth-child(odd) div {
+            background-color: #b2dba1;
+        }
+
+        ul li:nth-child(even) div {
+            background-color: #f06060;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>
+        <div></div>
+    </li>
+    <li>
+        <div></div>
+    </li>
+    <li>
+        <div></div>
+    </li>
+    <li>
+        <div></div>
+    </li>
+</ul>
+
+</body>
+</html>

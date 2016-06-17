@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+    </style>
+    <script>
+        window.onscroll = function () {//悬浮框注意是window.onscroll   onloda为全部加载完毕,这个是一直都在改变
+            var oDiv = document.getElementById('div1');
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;//兼容
+
+            //oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop + 'px';
+            //Start_Move(document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop);
+            Start_Move(parseInt((document.documentElement.clientHeight - oDiv.offsetHeight) / 2 + scrollTop));//右侧中间悬浮框
+        };
+
+        var timer = null;
+        function Start_Move(Target) {
+            var oDiv = document.getElementById('div1');
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var speed = (Target - oDiv.offsetTop) / 10;
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+
+                if (oDiv.offsetTop == Target) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv.style.top = oDiv.offsetTop + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

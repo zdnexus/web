@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-keypress 指令用于告诉 AngularJS 在指定 HTML 元素上按下按键时需要的操作。-->
+<!--按键敲击的事件顺序:-->
+<!--Keydown-->
+<!--Keypress-->
+<!--Keyup-->
+<!--ngKeydown和ngKeypress略有不同，目前的测试是ngKeypress针对系统按键是无效的，而ngKeydown可以。-->
+<input ng-keypress="count = count + 1" ng-init="count=0" />
+
+<h1>{{count}}</h1>
+
+<p>该实例在输入框每次按下按键时，计算变量 "count" 会自动加 1。</p>
+
+</body>
+</html>

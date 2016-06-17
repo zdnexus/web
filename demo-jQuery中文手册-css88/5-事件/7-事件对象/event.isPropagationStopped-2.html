@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div,p").click(function(){
+                alert(1);
+            });
+
+            $("p").click(function(){
+                alert(2);
+            });
+
+            $("p").click(function(event){
+                alert(event.isPropagationStopped());//false;
+                event.stopPropagation();//阻止了div的冒泡事件
+                alert(event.isPropagationStopped());//false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>
+    111
+    <p>222</p>
+</div>
+
+</body>
+</html>

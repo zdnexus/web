@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.proxy( function, context [, additionalArguments ] )
+//function
+//            类型: Function()
+//            将要改变上下文语境的函数。
+//context
+//            类型: PlainObject
+//            函数的上下文语境会被设置成这个 object 对象。
+//additionalArguments
+//            类型: Anything
+//            任何数目的参数传递给function参数的函数引用。
+
+//            Example: 更改绑定点击处理程序函数的上下文。
+            var me = {
+                /* I'm a dog */
+                type: "dog",
+
+                /* Note that event comes *after* one and two */
+                test: function (one, two, event) {
+                    $("#log")
+
+                        /* `one` maps to `you`, the 1st additional */
+                        /* argument in the $.proxy function call */
+                            .append("<h3>Hello " + one.type + ":</h3>")
+
+                        /* the `this` keyword refers to `me` */
+                        /*(the 2nd, context, argument of $.proxy) */
+                            .append("I am a " + this.type + ", ")
+
+                        /* `two` maps to `they`, the 2nd additional */
+                        /* argument in the $.proxy function call */
+                            .append("and they are " + two.type + ".<br>")
+
+                        /* the event type is "click" */
+                            .append("Thanks for " + event.type + "ing ")
+
+                        /* the clicked element is `event.target`, */
+                        /* and its type is "button" */
+                            .append("the " + event.target.type + ".");
+                }
+            };
+
+            var you = {type: "cat"};
+            var they = {type: "fish"};
+
+
+            /* Set up handler to execute me.test() in the context */
+            /* of `me`, with `you` and `they` as additional arguments */
+            var proxy = $.proxy(me.test, me, you, they);
+
+            $("#test")
+                    .on("click", proxy);
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <button type="button" id="test">Test</button>
+</p>
+
+<div id="log"></div>
+
+</body>
+</html>

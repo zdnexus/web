@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            display: none;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input").focus(function () {
+                $(this)
+                        .next("span")
+                        .css("display", "inline")
+                        .fadeOut(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+<p><input type="text"/> <span>focus fire</span></p>
+
+<p><input type="password"/> <span>focus fire</span></p>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 400px;
+            height: 200px;
+            background-color: red;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        function css() {     //默认css(obj,name,value)
+            if (arguments.length == 2) {
+                return arguments[0].style[arguments[1]];//return obj.style[name]
+            }
+            else {
+                arguments[0].style[arguments[1]] = arguments[2];//obj.style[name]=value
+            }
+        }
+
+        function css2(obj, name, value) {
+            if (arguments.length == 2) {
+                return obj.style[name];
+            }
+            else {
+                obj.style[name] = value;
+            }
+        }
+
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            //alert(css(oDiv, "width"));
+            css(oDiv, "background", "green");//oDiv["background"]="green"
+            css2(oDiv, "width", "300px");
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

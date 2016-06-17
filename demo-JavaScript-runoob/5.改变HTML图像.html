@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<img id="myImage" src="images/pic_bulboff.gif" width="100" height="180" onclick="changeImage()">
+
+<p>点击灯泡就可以打开或关闭这盏灯</p>
+
+</body>
+<script>
+    function changeImage() {
+        var element = document.getElementById('myImage');
+
+        if (element.src.match('bulbon')) {
+            element.src = 'images/pic_bulboff.gif';
+        }
+        else {
+            element.src = 'images/pic_bulbon.gif';
+        }
+    }
+</script>
+</html>

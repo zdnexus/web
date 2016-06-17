@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>p {
+        color: red;
+    }</style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        //        .ready( handler )
+        //        当DOM准备就绪时，指定一个函数来执行。
+
+        //        .ready( handler )
+        //        handler
+        //        类型: Function()
+        //        当DOM准备就绪时，执行的一个函数。
+
+        //        函数等价
+        //        $(document).ready(handler)
+        //        $().ready(handler) (this is not recommended)
+        //        $(handler)
+
+        //        $(document).ready(function () {
+        //            $("p").text("The DOM is now loaded and can be manipulated.");
+        //        });
+
+        //        $().ready(function () {
+        //            $("p").text("The DOM is now loaded and can be manipulated.");
+        //        });
+
+        //        $(function () {
+        //            $("p").text("The DOM is now loaded and can be manipulated.");
+        //        });
+
+
+        //       当使用其他JavaScript库时，我们不妨调用$.noConflict()以避免命名空间中的混淆。
+        //       当这个函数被调用，$快捷方式将不再可用，迫使我们每次将写$的时候,写jQuery代替 。
+        //       jQuery(function () {
+        //            $("p").text("The DOM is now loaded and can be manipulated.");
+        //       });
+    </script>
+</head>
+<body>
+<p>Not loaded yet.</p>
+</body>
+</html>

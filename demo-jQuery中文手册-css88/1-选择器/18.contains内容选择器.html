@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            选择所有包含指定文本的元素。
+
+//            jQuery( ":contains(text)" )
+//            用来查找的一个文本字符串。这是区分大小写的。
+
+//            匹配的文本可以直接出现在所选的元素中，或在该元素的任何后代中，或两者兼有。正如属性值选择器，
+//            :contains()选择器中括号内的文字，可为纯文本，或用引号包围。文本必须有匹配的情况下被选中。
+
+            $("div:contains('John')").css("color", "blue");
+        });
+    </script>
+</head>
+<body>
+<div>John Resig</div>
+<div>George Martin</div>
+<div>J. Ohn</div>
+<p>Malcom John Sinclair</p>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .clone( [withDataAndEvents ] )
+//            一个Boolean值，表示是否会复制元素上的事件处理函数。
+//            一个布尔值，指示是否对事件处理程序和克隆的元素的所有子元素的数据应该被复制。默认情况下它的值相匹配的第一个参数的值（ 默认值是 false）
+
+//            出于性能方面的考虑，表单元素动态的状态（例如，用户将数据输入到 textarea中的值，或者用户在select中已经选中某一项）
+//            不会被复制到克隆元素。
+//            当克隆input元素时候，该元素的动态状态（例如，用户数据输入到文本输入框(愚人码头注： <input type="text">) 和用户选中一个复选框）
+//            将被保留在克隆元素中。
+
+//            使用.clone()可能产生id属性重复的元素的副作用，id应该是唯一的。在可能的情况下，建议，应避免克隆有此属性或标识符的元素，使用类（class）属性代替。
+
+            $("b").clone().prependTo("p");
+//            $("b").prependTo("p");
+        });
+    </script>
+</head>
+<body>
+<b>Hello</b>
+
+<p>, how are you?</p>
+</body>
+</html>

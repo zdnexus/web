@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+            margin: 2px;
+            font-size: 14px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.isFunction( obj )
+//            描述: 确定参数是否为一个Javascript 函数。
+
+//jQuery.isFunction( obj )
+//            obj
+//            类型: PlainObject
+//            将要被检查的对象。用于判断该对象是否为函数。
+
+//            Example: 测试一些参数是否为函数的例子。
+            function stub() {
+            }
+
+            var objs = [
+                function () {
+                },
+                {x: 15, y: 20},
+                null,
+                stub,
+                "function"
+            ];
+
+            jQuery.each(objs, function (i) {
+                var isFunc = jQuery.isFunction(objs[i]);
+                $("span").eq(i).text(isFunc);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>jQuery.isFunction(objs[0]) = <span></span></div>
+<div>jQuery.isFunction(objs[1]) = <span></span></div>
+<div>jQuery.isFunction(objs[2]) = <span></span></div>
+<div>jQuery.isFunction(objs[3]) = <span></span></div>
+<div>jQuery.isFunction(objs[4]) = <span></span></div>
+
+</body>
+</html>

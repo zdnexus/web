@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+        }
+
+        .peru {
+            background: peru;
+        }
+
+        .red {
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" class="red"></div>
+
+</body>
+
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(function () {
+
+        $('#div1').hover(function () {
+            $(this).addClass('peru');
+//            class中有peru和red，先找到的peru被后找到的red覆盖
+        });
+
+    });
+</script>
+</html>

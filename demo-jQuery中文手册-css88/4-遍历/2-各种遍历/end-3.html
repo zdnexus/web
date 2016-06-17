@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 10px;
+            padding: 10px;
+        }</style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            返回最初状态
+            $("p").find("span").css("color","green").end().css("border", "2px red solid");
+        });
+    </script>
+</head>
+<body>
+<p><span>Hello</span>, how are you?</p>
+</body>
+</html>

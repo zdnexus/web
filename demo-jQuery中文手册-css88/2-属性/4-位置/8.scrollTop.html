@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 10px;
+            padding: 5px;
+            border: 2px solid #666;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .scrollTop()
+//            获取匹配的元素集合中第一个元素的当前垂直滚动条的位置或设置每个匹配元素的垂直滚动条位置。
+
+            var p = $("p:first");
+
+            $("p:last").text("scrollTop:" + p.scrollTop());
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p></p>
+</body>
+</html>

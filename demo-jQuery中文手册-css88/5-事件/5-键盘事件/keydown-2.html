@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        fieldset {
+            margin-bottom: 1em;
+        }
+
+        input {
+            display: block;
+            margin-bottom: .25em;
+        }
+
+        #print-output {
+            width: 100%;
+        }
+
+        .print-output-line {
+            white-space: pre;
+            padding: 5px;
+            font-family: monaco, monospace;
+            font-size: .7em;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            当一个按键在文本框内被按下的时候显示事件对象
+            var xTriggered = 0;
+            
+            $("#target").keydown(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();
+                }
+//                which 属性指示按了哪个键或按钮。
+
+                xTriggered++;
+                var msg = "Handler for .keydown() called " + xTriggered + " time(s).";
+                
+                $("#print").html(msg);
+            });
+
+            $("#other").click(function () {
+                $("#target").keydown();//手动触发
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <label for="target">Type Something:</label>
+        <input id="target" type="text"/>
+    </fieldset>
+</form>
+
+<button id="other">
+    Trigger the handler
+</button>
+
+<div id="print"></div>
+</body>
+</html>

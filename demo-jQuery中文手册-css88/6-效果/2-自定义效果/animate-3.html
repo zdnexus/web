@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//Per-property Easing
+//            从jQuery 1.4 版本开始，我们能设置per-property 缓存函数访问一个单独的.animate()。
+//            在.animate()的第一个版本中，每个属性能获取一个数组作为他的值：数组的第一个成员是CSS属性，第二成员缓冲函数。
+//            如果为某个属性指定的缓冲函数尚未被定义，那么将会使用.animate() 方法的 easing 参数来代替。
+//            如果 easing 参数也未被定义，那么将会使用默认的缓冲函数 swing。
+
+            $("#clickme").click(function() {
+                $("#book").animate({
+                    width: ["toggle", "swing"],
+                    height: ["toggle", "swing"],
+                    opacity: "toggle"
+                }, 5000, "linear", function() {
+                    $(this).after("<div>Animation complete.</div>");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="/zd/images/0.jpg" alt="" width="100" height="123" style="position: relative; left: 10px;"/>
+
+</body>
+</html>

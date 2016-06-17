@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 如果你想根据一个标识来阻止表单被提交的话，可以像下面这样做：
+            $("form").submit( function () {
+                return this.some_flag_variable;
+            } );
+
+//            Example: 触发页面上第一个表单的提交事件：
+            $("form:first").submit();
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

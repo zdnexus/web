@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    {{shot}}
+</div>
+
+</body>
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.service('sexy', function () {
+        this.myFunc = function (x) {
+            return x.toString(16);
+        }
+    });
+
+    app.controller('myCtrl', function ($scope, sexy) {
+        $scope.shot = sexy.myFunc(31);
+    });
+
+</script>
+</html>

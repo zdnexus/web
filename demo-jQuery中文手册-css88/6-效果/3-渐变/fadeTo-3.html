@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            width: 80px;
+            margin: 0;
+            padding: 5px;
+        }
+
+        div {
+            width: 40px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+        }
+
+        div#one {
+            background: #f00;
+        }
+
+        div#two {
+            background: #0f0;
+        }
+
+        div#three {
+            background: #00f;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("div").click(function () {
+                $(this).fadeTo("fast", Math.random());
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>And this is the library that John built...</p>
+
+<div id="one"></div>
+<div id="two"></div>
+<div id="three"></div>
+
+</body>
+</html>

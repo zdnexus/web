@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p { background:#dad;
+            font-weight:bold;
+            font-size:16px; }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 在 600 毫秒内，以动画的形式切换所有段落的显示或隐藏状态。
+            $("button").click(function () {
+                $("p").toggle("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Toggle 'em</button>
+
+<p>Hiya</p>
+
+<p>Such interesting text, eh?</p>
+
+</body>
+</html>

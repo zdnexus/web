@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p {
+            color: blue;
+            margin: 8px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input").keyup(function () {
+                var value = $(this).val();
+                $("p").text(value);
+            }).keyup();
+        });
+    </script>
+</head>
+<body>
+<input type="text" value="some text"/>
+
+<p></p>
+</body>
+</html>

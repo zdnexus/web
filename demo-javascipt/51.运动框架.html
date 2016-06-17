@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 50px;
+            left: 0;
+        }
+
+        #div2 {
+            width: 1px;
+            height: 300px;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 300px;
+        }
+    </style>
+    <script>//最基础运动框架，没有运行到具体px
+    window.onload = function () {
+        var oDiv1 = document.getElementById('div1');
+        var oBtn1 = document.getElementById('btn1');
+
+        var timer = null;
+        oBtn1.onclick = function () {
+            var speed = 17;
+
+            clearInterval(timer);//点击多次button导致多个setinterval生成，speed变大,速度越快.clear上一个点击button的定时器时间
+            timer = setInterval(function () {
+                if (oDiv1.offsetLeft >= 300) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv1.style.left = oDiv1.offsetLeft + speed + 'px';//offsetleft返回的是数字。
+                }
+            }, 30);
+        }
+    }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="移动">
+
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

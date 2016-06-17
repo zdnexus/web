@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+        p {
+            margin: 4px;
+            font-size: 16px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .highlight {
+            background-color: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .toggleClass( className )
+//            在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名。
+//            当点击段落的是有切换 'highlight' 样式类
+
+            $("p").click(function () {
+                $(this).toggleClass("highlight");
+            });
+        });
+    </script>
+</head>
+<body>
+<p class="blue">Click to toggle</p>
+
+<p class="blue highlight">highlight</p>
+
+<p class="blue">on these</p>
+
+<p class="blue">paragraphs</p>
+</body>
+</html>

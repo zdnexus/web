@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            font-size: 20px;
+            width: 200px;
+            cursor: default;
+            color: blue;
+            font-weight: bold;
+            margin: 0 10px;
+        }
+
+        .hilite {
+            background: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var newText = $("p").text().split(" ").join("</span> <span>");
+            newText = "<span>" + newText + "</span>";
+
+            $("p")
+                    .html(newText)
+                    .find("span")
+                    .hover(function () {
+                        $(this).addClass("hilite");
+                    }, function () {
+                        $(this).removeClass("hilite");
+                    })
+                    .end()
+                    .find(":contains('t')")
+                    .css({
+                        "font-style": "italic",
+                        "font-weight": "bolder"
+                    });
+        });
+    </script>
+</head>
+<body>
+<p>
+    When the day is short
+    find that which matters to you
+    or stop believing
+</p>
+</body>
+</html>

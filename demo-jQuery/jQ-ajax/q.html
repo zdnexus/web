@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .loda {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                $.ajax({
+                    url: "qq.php",
+                    type: "get",
+                    data: {
+                        "username": $("input[type='text']").val()
+                    },
+                    success: function (data) {
+                        console.log(data);
+                        if (data == 1) {
+                            $(".loda").html("洪XX卧槽");
+                        }
+                        else if (data == 2) {
+                            $(".loda").html("钟XX卧槽");
+                        }
+                        else {
+                            $(".loda").html("卧槽");
+                        }
+                    }
+                })
+            })
+        })
+    </script>
+</head>
+<body>
+<input type="text">
+<input type="button" value="提交">
+
+<div class="loda"></div>
+</body>
+</html>

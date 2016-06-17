@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="myApp" ng-controller="myCtrl">
+
+<!--ng-repeat 指令用于循环输出指定次数的 HTML 元素。-->
+<h1 ng-repeat="x in records">{{x}}</h1>
+
+</body>
+<script>
+
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function($scope) {
+        $scope.records = [
+            "菜鸟教程1",
+            "菜鸟教程2",
+            "菜鸟教程3",
+            "菜鸟教程4",
+        ]
+    });
+
+</script>
+</html>

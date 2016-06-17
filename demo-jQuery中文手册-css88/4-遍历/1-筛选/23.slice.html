@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            float: left;
+            border: 2px solid blue;
+        }
+
+        span {
+            color: red;
+            font-weight: bold;
+        }
+
+        button {
+            margin: 5px;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function colorEm() {
+            var $div = $("div");
+            var start = Math.floor(Math.random() * $div.length);
+            var end = Math.floor(Math.random() * ($div.length - start)) + start + 1;
+
+            if (end == $div.length) {
+                end = undefined
+            }
+            $div.css("background-color", "");
+            if (end) {
+                $div.slice(start, end).css("background-color", "yellow");
+            }
+            else {
+                $div.slice(start).css("background-color", "yellow");
+            }
+
+            $("span").text('$("div").slice(' + start + (end ? ', ' + end : '') + ').css("background-color", "yellow");');
+        }
+
+        $(function () {
+            $("button").click(colorEm);
+        });
+    </script>
+</head>
+<body>
+<p>
+    <button>Turn slice yellow</button>
+    <span>Click the button!</span>
+</p>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

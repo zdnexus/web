@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            document.onclick = function (ev) {//document表示整个网页,body撑不开,event注意ev
+//                alert(event.clientX + " " + event.clientY); //ie chrome
+//                alert(ev.clientX + " " + ev.clientY);//ff
+                var oEvent = ev || event;
+                alert(oEvent.clientX + " " + oEvent.clientY);
+            }
+        }
+    </script>
+</head>
+<body>
+
+</body>
+</html>

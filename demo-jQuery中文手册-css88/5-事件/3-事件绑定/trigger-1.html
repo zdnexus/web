@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .trigger( eventType [, extraParameters ] )
+//            根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为。
+//            手动触发
+
+//            当我们使用.on()方法定义一个自定义事件类型，.trigger()的第二个参数就有用了。
+//            例如，假设我们自定义事件的处理程序绑定到我们的元素而不是内置的click事件，象我们上面那样：
+            $('#foo').on('custom', function(event, param1, param2) {
+                alert(param1 + "\n" + param2);
+            });
+            $('#foo').trigger('custom', ['Custom', 'Event']);
+
+//            Example: 若要提交第一个表单但又不想使用 submit() 函数，请尝试如下方法：
+            $("form:first").trigger("submit")
+
+//            Example: 若要提交第一个表单但又不想使用 submit() 函数，请尝试如下方法：
+            var event = jQuery.Event("submit");
+            $("form:first").trigger(event);
+            if ( event.isDefaultPrevented() ) {
+// Perform an action...
+            }
+
+//            Example: 向事件中传入任意的数据：
+            $("p").click( function (event, a, b) {
+// when a normal click fires, a and b are undefined
+// for a trigger like below a refers to "foo" and b refers to "bar"
+
+            } ).trigger("click", ["foo", "bar"]);
+
+//            Example: 通过 event 对象，向事件中传入任意的数据：span>
+            var event = jQuery.Event("logged");
+            event.user = "foo";
+            event.pass = "bar";
+            $("body").trigger(event);
+
+//            Example: 另外一种通过 event 对象传入数据的方法：
+            $("body").trigger({
+                type:"logged",
+                user:"foo",
+                pass:"bar"
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

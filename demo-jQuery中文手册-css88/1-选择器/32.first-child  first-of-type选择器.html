@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        span {
+            color: #008;
+        }
+
+        .soGreen {
+            color: green;
+            font-weight: bolder;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":first-child" )
+//            选择所有父级元素下的第一个子元素。
+
+//            jQuery( ":first-of-type" )
+//            选择所有相同的元素名称的第一个兄弟元素。
+
+//            jQuery( ":first" )
+//            选择第一个匹配的元素
+
+//            虽然:first只匹配一个单独的元素，
+//            但是:first-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。这相当于:nth-child(1)。
+//            :first-of-type 选择器匹配元素，在文档树中，相同的父元素并且在其他相同的元素名称之前。
+
+//            div中的所有元素的第一个元素
+//            $("div :first")
+//                   .css("text-decoration", "underline")
+//                   .hover(function () {
+//                        $(this).addClass("soGreen");
+//                    }, function () {
+//                        $(this).removeClass("soGreen");
+//                    });
+
+//            div中的所有元素的第一个i元素
+//            $("div i:first")
+//                   .css("text-decoration", "underline")
+//                   .hover(function () {
+//                        $(this).addClass("soGreen");
+//                    }, function () {
+//                        $(this).removeClass("soGreen");
+//                    });
+
+//            每个div中的第一个元素
+//            $("div :first-child")
+//                    .css("text-decoration", "underline")
+//                    .hover(function () {
+//                        $(this).addClass("soGreen");
+//                    }, function () {
+//                        $(this).removeClass("soGreen");
+//                    });
+
+//            每个div中的第一个元素是否是span，是->可设置，不是->不可设置
+//            $("div span:first-child")
+//                    .css("text-decoration", "underline")
+//                    .hover(function () {
+//                        $(this).addClass("soGreen");
+//                    }, function () {
+//                        $(this).removeClass("soGreen");
+//                    });
+
+//            所有div元素中每个div中的第一个span，有->可设置，没有->不可设置
+//            $("div span:first-of-type")
+//                    .css("text-decoration", "underline")
+//                    .hover(function () {
+//                        $(this).addClass("soGreen");
+//                    }, function () {
+//                        $(this).removeClass("soGreen");
+//                    });
+        });
+    </script>
+</head>
+<body>
+<p>ATM</p>
+<div>
+    <span>John,</span>
+    <span>Karl,</span>
+    <span>Brandon</span>
+</div>
+<div>
+    <span>Glen,</span>
+    <span>Tane,</span>
+    <span>Ralph</span>
+</div>
+<div>
+    <i>Week,</i>
+    <span>Nexus,</span>
+    <span>Tiger,</span>
+    <span>Replay</span>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <input v-model="newTodo" v-on:keyup.enter="addTodo">
+
+    <button v-on:click="addTodo">添加</button>
+
+    <button v-on:click="cleanAll">清除</button>
+
+    <ul>
+        <li v-for="todo in todos">
+            <span>{{ todo.text }}</span>
+            <button v-on:click="removeTodo($index)">X</button>
+        </li>
+    </ul>
+
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            newTodo: '',
+            todos: [
+                {text: 'Add some todos'}
+            ]
+        },
+        methods: {
+//            添加
+            addTodo: function () {
+                var self = this;
+                var text = self.newTodo.trim();
+
+                if (text) {
+                    this.todos.push({text: text});
+                    this.newTodo = '';
+                }
+            },
+
+//            删除
+            removeTodo: function (index) {
+                console.log(index);
+//                splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目。该方法会改变原始数组。
+                this.todos.splice(index, 1);
+            },
+
+//          清除
+            cleanAll: function () {
+                this.newTodo = '';
+            }
+        }
+    })
+
+</script>
+</html>

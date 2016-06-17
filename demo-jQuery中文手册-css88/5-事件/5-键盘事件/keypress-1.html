@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .keypress( handler(eventObject) )
+//            为 "keypress" 事件绑定一个处理函数，或者触发元素上的 "keypress" 事件。
+
+//            注意:：由于keypress事件没有统一的官方规范说明，所以在不同的浏览器，不同的浏览器版本，和不同的平台实际使用这个事件时可能遇到的问题。
+
+//            当浏览器捕获一个元素上键盘输入时，keypress就会发送个元素。
+//            这是类似keydown事件，除了当按键被一直按下（即连续插入字符的场合）时的处理。
+//            如果用户按下并按住这个键（不松开释放）的时候，keydown事件只触发一次，但是keypress会在每个字符插入的时候都会触发事件。
+//            此外，组合键（如Shift）会触发keydown事件，但不会触发keypress事件。
+
+            $("#target").keypress(function (event) {
+                if (event.which == 13) {
+                    event.preventDefault();//防止回车键的默认事件
+                }
+                alert("Handler for .keypress() called.");
+            });
+
+            $('#other').click(function () {
+                $("#target").keypress();//手动触发
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <input id="target" type="text" value="Hello there"/>
+    </fieldset>
+</form>
+
+<div id="other">
+    Trigger the handler
+</div>
+</body>
+</html>

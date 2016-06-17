@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function propStopped(e) {
+            var msg = "";
+            if (e.isPropagationStopped()) {
+                msg = "called"
+            } else {
+                msg = "not called";
+            }
+            $("#stop-log").append("<div>" + msg + "</div>");
+        }
+
+        $(function () {
+//            event.isPropagationStopped()
+//            描述: 根据事件对象中是否调用过 event.stopPropagation() 方法,来返回一个布尔值。//事件冒泡
+
+//            event.isPropagationStopped()
+//            这个方法不接受任何参数。
+
+            $("button").click(function (event) {
+                propStopped(event);
+                event.stopPropagation();
+                propStopped(event);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>click me</button>
+
+<div id="stop-log"></div>
+
+</body>
+</html>

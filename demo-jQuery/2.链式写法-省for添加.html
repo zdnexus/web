@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //DOM写法
+//            var aP = document.getElementsByTagName("a");
+//            for (var i = 0; i < aP.length; ++i) {
+//                aP[i].style.color = "red";
+//                aP[i].onclick = function () {
+//                    this.style.border = "1px solid blue";
+//                    alert(this.innerHTML);
+//                };
+//            }
+
+
+            //链式写法
+            var aP = $("p");//获取所有的a标签
+            aP.css("color", "red").click(function () {
+                $(this).css("border", "1px solid blue");
+                alert($(this).html());
+            })
+        });
+    </script>
+</head>
+<body>
+<p>我是第一个P标签</p>
+<p>我是第二个P标签</p>
+<p>我是第三个P标签</p>
+</body>
+</html>

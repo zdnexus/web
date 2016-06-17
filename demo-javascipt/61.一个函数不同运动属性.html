@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background-color: yellow;
+            border: 10px solid black;
+            margin: 10px;
+            font-size: 15px;
+            float: left;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById('div1');
+            var oDiv2 = document.getElementById('div2');
+            var oDiv3 = document.getElementById('div3');
+            var oDiv4 = document.getElementById('div4');
+
+            oDiv1.timer = null;
+            oDiv1.onmouseover = function () {
+                Start_Move(this, 'height', 400);
+            };
+            oDiv1.onmouseout = function () {
+                Start_Move(this, 'height', 200);
+            };
+
+            oDiv2.timer = null;
+            oDiv2.onmouseover = function () {
+                Start_Move(this, 'width', 400);
+            };
+            oDiv2.onmouseout = function () {
+                Start_Move(this, 'width', 200);
+            };
+
+            oDiv3.timer = null;
+            oDiv3.onmouseover = function () {
+                Start_Move(this, 'fontSize', 50);
+            };
+            oDiv3.onmouseout = function () {
+                Start_Move(this, 'fontSize', 15);
+            };
+
+            oDiv4.timer = null;
+            oDiv4.onmouseover = function () {
+                Start_Move(this, 'borderWidth', 100);
+            };
+            oDiv4.onmouseout = function () {
+                Start_Move(this, 'borderWidth', 10);
+            };
+        };
+
+        function Get_Style(obj, name) {
+            if (obj.currentStyle) {
+                return obj.currentStyle[name];
+            }
+            else {
+                return getComputedStyle(obj, 0)[name];
+            }
+        }
+
+        function Start_Move(obj, name, Target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var temp = parseInt(Get_Style(obj, name));
+                var speed = (Target - temp) / 5;
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+                if (temp == Target) {
+                    clearInterval(obj.timer);
+                }
+                else {
+                    obj.style[name] = temp + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3">dasdsadaa</div>
+<div id="div4"></div>
+</body>
+</html>

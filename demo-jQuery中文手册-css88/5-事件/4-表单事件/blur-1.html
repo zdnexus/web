@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .blur( handler(eventObject) )
+//            为 "blur" 事件绑定一个处理函数，或者触发元素上的 "blur" 事件（愚人码头注：此事件不支持冒泡）。
+
+            $("#target").blur(function () {
+                alert("Handler for .blur() called.");
+            });//target添加blur事件
+            $("#other").click(function () {
+                $("#target").blur();
+            });//点击other触发target的blur事件(手动触发)
+
+//            .blur()方法只是作为.on( "blur", handler )的一个速记写法，移除该事件可以使用.off( "blur" )。
+            $("#target").on("blur", function () {
+                alert("Handler for .blur() called.");
+            });//target添加blur事件
+            $("#target").off("blur");//target移除blur的所有事件
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input id="target" type="text" value="Field 1"/>
+    <input type="text" value="Field 2"/>
+</form>
+<div id="other">
+    Trigger the handler
+</div>
+</body>
+</html>

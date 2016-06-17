@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 4px;
+            font-size: 16px;
+            font-weight: bolder;
+            cursor: pointer;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .highlight {
+            background: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .toggleClass( className, switch )
+//                    在匹配的元素集合中的每个元素上用来切换的一个或多个（用空格隔开）样式类名。
+//                switch
+//                    类型: Boolean
+//                    一个布尔值，用于判断样式是否应该被添加或移除。
+
+            $("p").each(function () {
+                var count = 0;
+                $(this).click(function () {
+                    count++;
+                    $(this).find("span").text('clicks: ' + count);
+                    $(this).toggleClass("highlight", count % 3 == 0);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<p class="blue">Click to toggle (<span>clicks: 0</span>)</p>
+
+<p class="blue highlight">highlight (<span>clicks: 0</span>)</p>
+
+<p class="blue">on these (<span>clicks: 0</span>)</p>
+
+<p class="blue">paragraphs (<span>clicks: 0</span>)</p>
+</body>
+</html>

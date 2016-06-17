@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 400px;
+            height: 400px;
+            background-color: red;
+            border: 1px solid black;
+        }
+    </style>
+    <script>
+        function getStyle(obj, name) {
+            //IE
+            if (obj.currentStyle) {
+                return obj.currentStyle[name];
+            }
+            else {
+                //ff,chrome
+                return getComputedStyle(obj, null)[name];
+            }
+        }
+
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            alert(getStyle(oDiv, "width"));
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+
+</div>
+</body>
+</html>

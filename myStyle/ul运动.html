@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/zd/css/public.css">
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background: #ddd;
+            position: relative;
+            top: 50px;
+            left: 100px;
+            overflow: hidden;
+        }
+
+        #ul1 {
+            position: absolute;
+        }
+
+        #ul1 li {
+            margin-bottom: 5px;
+        }
+
+        #ul1 li a {
+            display: block;
+            width: 30px;
+            height: 30px;
+            line-height: 30px;
+        }
+
+        #ul1 li p {
+            line-height: 24px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        (function ($) {
+            $.fn.ulMove = function (opations) {
+                //默认配置
+                var defaults = {
+                    speed: 50
+                };
+
+                //合并配置
+                var settings = $.extend({}, defaults, opations);
+
+                //li的内外高度+margin+padding
+                var liHeight = $(this).children("li").outerHeight(true);
+
+                function move(obj) {
+                    obj.animate({
+                        top: "-=1"
+                    }, 0, function () {
+                        var s = Math.abs(parseInt($(this).css("top")));
+                        if (s >= liHeight) {
+                            $(this).find("li").slice(0, 1).appendTo($(this));
+                            $(this).css("top", 0);
+                        }
+                    });
+                }
+
+                var _this = this;
+                var timer = setInterval(function () {
+                    move($(_this));
+                }, settings.speed);
+
+                $(this).hover(function () {
+                    clearInterval(timer);
+                }, function () {
+                    timer = setInterval(function () {
+                        move($(_this))
+                    }, settings.speed);
+                })
+            }
+        })(jQuery);
+
+        $(function () {
+            $("#ul1").ulMove();
+        });
+    </script>
+</head>
+<body>
+<div id="div1">
+    <ul id="ul1">
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+        <li>
+            <a>aaa</a>
+
+            <p>123</p>
+
+            <p>321111111111</p>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.data
+//            描述: 当当前正在执行的处理程序绑定时，一个可选的数据对象传递给一个事件方法。
+
+
+//            在一个 for 循环里，将迭代变量 i 的值传递给 .on() 方法，保留当前迭代的值。
+            var logDiv = $("#log");
+            var buttonLength = $("button").length;
+
+            /* Note: This code is for demonstration purposes only. */
+            for (var i = 0; i < buttonLength; i++) {
+                $("button").eq(i).on("click", {value: i}, function (event) {
+                    var msgs = [
+                        "button = " + $(this).index(),
+                        "event.data.value = " + event.data.value,
+                        "i = " + i//i为什么是5???
+                    ];
+                    logDiv.append(msgs.join(", ") + "<br>");
+                });
+            }
+        });
+    </script>
+</head>
+<body>
+
+<button> 0</button>
+<button> 1</button>
+<button> 2</button>
+<button> 3</button>
+<button> 4</button>
+
+<div id="log"></div>
+
+</body>
+</html>

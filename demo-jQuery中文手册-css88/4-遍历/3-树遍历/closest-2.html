@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        li {
+            margin: 3px;
+            padding: 3px;
+            background: #EEEEEE;
+        }
+
+        li.hilight {
+            background: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            显示什么样的事件委托能用closest完成。closest 列表元素或者其后代被点击进行切换一个黄色的背景。
+            $(document).bind("click", function (e) {
+                $(e.target).closest("li").toggleClass("hilight");
+            });
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li><b>Click me!</b></li>
+    <li>You can also <b>Click me!</b></li>
+</ul>
+</body>
+</html>

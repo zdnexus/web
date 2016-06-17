@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            //hover() 模拟鼠标进去(mouseenter)和鼠标离开(mouseleave)事件
+            //hover(fn1,fn2);//写2个函数
+//            $("p").hover(
+//                    function(){
+//                        $(this).css("background","red");
+//                    },
+//                    function(){
+//                        $(this).css("background","none");
+//            });
+
+            //trigger() 根据绑定到匹配元素的给定的事件类型执行所有的处理程序和行为。
+            $("p").click(function(){
+                alert("鼠标已点击.");
+            });
+            $("p").mouseover(function(){
+                alert("鼠标已进入.");
+            });
+
+            //只能传递一个参数
+//            $("p").trigger("click");
+//            $("p").triggerHandler("mouseover");//阻止事件冒泡
+        })
+    </script>
+</head>
+<body>
+<p>我是p标签</p>
+</body>
+</html>

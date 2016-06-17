@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            $("input[type='button']").click(function(){
+//                $.ajax({
+//                    url:"demo54.php",
+//                    type:"post",
+//                    data:[
+//                        {"username":$("#username").val()},
+//                        {"email":$("#email").val()},
+//                        {"url":$("#url").val()},
+//                        {"qq":$("#qq").val()}
+//                    ],
+//                    success:function(data){
+//                    }
+//                });
+
+                var data=$("#form").serialize();//json简写合并,只能作用于#form
+                alert(data);
+                $.ajax({
+                    url:"demo53.php",
+                    type:"post",
+                    data:data,
+                    success:function(data){
+                    }
+                });
+            })
+        })
+    </script>
+</head>
+<body>
+<form id="form">
+    用户名:<input type="text" name="username" id="username"><br/>
+    邮箱地址:<input type="text" name="email" id="email"><br/>
+    url地址:<input type="text" name="url" id="url"><br/>
+    qq:<input type="text" name="qq" id="qq"><br/>
+    <input type="button" value="提交">
+</form>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.extend( target [, object1 ] [, objectN ] )
+//            描述: 将两个或更多对象的内容合并到第一个对象。
+
+//            jQuery.extend( target [, object1 ] [, objectN ] )
+//target
+//            类型: Object
+//            一个对象，如果附加的对象被传递给这个方法将那么它将接收新的属性，如果它是唯一的参数将扩展jQuery的命名空间。
+//object1
+//            类型: Object
+//            一个对象，它包含额外的属性合并到第一个参数
+//objectN
+//            类型: Object
+//            包含额外的属性合并到第一个参数
+
+//            目标对象（第一个参数）将被修改，并且将通过$.extend()返回。然而，如果我们想保留原对象，我们可以通过传递一个空对象作为目标对象：
+//            var object = $.extend({}, object1, object2);
+
+//            Example: 合并两个对象，并修改第一个对象。
+            var object1 = {
+                apple: 0,
+                banana: {weight: 52, price: 100},
+                cherry: 97
+            };
+            var object2 = {
+                banana: {price: 200},
+                durian: 100
+            };
+
+// Merge object2 into object1
+            $.extend(object1, object2);
+
+// Assuming JSON.stringify - not available in IE<8
+            $("#log").append(JSON.stringify(object1));
+        });
+    </script>
+</head>
+<body>
+
+<div id="log"></div>
+
+</body>
+</html>

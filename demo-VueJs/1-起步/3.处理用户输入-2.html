@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <input type="text" v-model="n1">
+
+    <input type="text" v-model="n2">
+
+    <button v-on:click="operation('plus');">相加</button>
+
+    <!--v-on:click = @click-->
+    <button @click="operation('mul')">相乘</button>
+
+    <p id="result">{{ n3 }}</p>
+
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            n1: '',
+            n2: '',
+            n3: '',
+        },
+        methods: {
+            operation: function (str) {
+//                trim()移除字符串两侧的字符
+//                input中的value值状态为string，运算需要转换为int
+                var m1 = parseInt(this.n1.trim());
+                var m2 = parseInt(this.n2.trim());
+
+                if(str == 'plus') {
+                    if (!isNaN(m1) && !isNaN(m2)) {
+                        this.n3 = m1 + m2;
+                    }
+                }
+                else if(str == 'mul'){
+                    if (!isNaN(m1) && !isNaN(m2)) {
+                        this.n3 = m1 * m2;
+                    }
+                }
+            }
+        }
+    })
+
+</script>
+</html>

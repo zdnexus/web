@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            font-size: 150%;
+            cursor: pointer;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 让所有段落渐渐消失，用时 600 毫秒。
+            $("p").click(function () {
+                $(this).fadeOut("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    If you click on this paragraph
+    you'll see it just fade away.
+</p>
+
+</body>
+</html>

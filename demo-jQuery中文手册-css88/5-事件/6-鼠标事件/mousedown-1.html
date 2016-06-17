@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .mousedown( handler(eventObject) )
+//            描述: 为 JavaScript 的 "mousedown" 事件绑定一个处理函数，或者触发元素上的该事件。/
+
+            $('#target').mousedown(function () {
+                alert('Handler for .mousedown() called.');
+            });
+
+            $('#other').click(function () {
+                $('#target').mousedown();//手动触发
+//                $('#target').trigger("mousedown");//手动触发
+            });
+
+//            .mousedown()方法只是作为.on( "mousedown", handler )的一个速记写法，移除该事件可以使用.off( "mousedown" )。
+            $('#target').on('mousedown', function () {
+                alert('Handler for .mousedown() called.');
+            });
+//            $('#target').off('mousedown');
+
+//            当MouseUp和MouseDown事件触发时，显示文本时。
+            $("p").mouseup(function () {
+                $(this).append('<span style="color:#F00;">Mouse up.</span>');
+            }).mousedown(function () {
+                $(this).append('<span style="color:#00F;">Mouse down.</span>');
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="target">
+    Click here
+</div>
+
+<div id="other">
+    Trigger the handler
+</div>
+
+<p>Press mouse and release here.</p>
+
+</body>
+</html>

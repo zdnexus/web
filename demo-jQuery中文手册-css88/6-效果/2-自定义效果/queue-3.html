@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: green;
+            display: none;
+        }
+
+        div.newcolor {
+            background: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: Set a queue array to delete the queue.
+            $("#start").click(function () {
+                $("div").show("slow");
+                $("div").animate({left: '+=200'}, 3000);
+                $("div").queue(function () {
+                    $(this).addClass("newcolor");
+                    $(this).dequeue();
+                });
+                $("div").animate({left: '-=200'}, 1500);
+                $("div").queue(function () {
+                    $(this).removeClass("newcolor");
+                    $(this).dequeue();
+                });
+                $("div").slideUp();
+            });
+
+            $("#stop").click(function () {
+                $("div").queue("fx", []);
+//                $("div").clearQueue();
+                $("div").stop();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<div></div>
+
+</body>
+</html>

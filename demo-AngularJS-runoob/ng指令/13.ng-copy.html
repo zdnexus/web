@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-copy 指令用于告诉 AngularJS 在 HTML 元素文本被拷贝时要执行的操作。-->
+<input ng-copy="count = count + 1" ng-init="count=0" value="拷贝这个文本" />
+
+<p>文本被拷贝 {{count}} 次。</p>
+
+<p>实例中变量 "count" 的值在输入框的文本被拷贝时会自动增加 1。</p>
+
+</body>
+</html>

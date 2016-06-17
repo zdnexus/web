@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oTxt1 = document.getElementById('txt1');
+            var oBtn1 = document.getElementById('btn1');
+            var oUl = document.getElementById('ul1');
+
+            oBtn1.onclick = function () {
+                var new_li = document.createElement('li');
+                new_li.innerHTML = oTxt1.value;//给li增加内容
+                ul1.appendChild(new_li);
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="txt1" type="text">
+<input id="btn1" type="button" value="添加li">
+<ul id="ul1">
+
+</ul>
+</body>
+</html>

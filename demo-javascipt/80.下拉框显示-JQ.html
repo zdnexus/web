@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 300px;
+            height: 200px;
+            background-color: green;
+            display: none;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = $("#div1");
+            var oBtn1 = $("#btn1");
+            $(oBtn1).click(function (event) {
+                showDiv(oDiv);//oBtn1点击显示div
+                $(document).one("click", function () {
+                    hideDiv(oDiv);//document点击隐藏div,当使用 one() 方法时，每个元素只能运行一次事件处理器函数。
+                });
+                event.stopPropagation();//jQ阻止btn父级事件向上冒泡
+            });
+            $(oDiv).click(function (event) {
+                event.stopPropagation();//jQ阻止div父级事件向上冒泡
+            });
+        }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="显示">
+
+<div id="div1"></div>
+</body>
+</html>

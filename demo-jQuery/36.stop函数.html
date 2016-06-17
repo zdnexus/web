@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            display: none;
+            width: 300px;
+            height: 400px;
+            background: aqua;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("a").hover(function () {
+//                $("#div1").slideToggle();
+//            });
+
+            $("a").hover(function () {
+                $("#div1").stop(true, false).slideDown();
+            }, function () {
+                $("#div1").stop(true, false).slideUp();
+            });
+        })
+    </script>
+</head>
+<body>
+<a>显示</a>
+
+<div id="div1">bbbb</div>
+</body>
+</html>

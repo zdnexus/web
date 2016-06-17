@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        p {
+            color: green;
+            margin: 0;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.grep( array, function(elementOfArray, indexInArray) [, invert ] )
+//            描述: 查找满足过滤函数的数组元素。原始数组不受影响。
+
+//            jQuery.grep( array, function [, invert ] )
+//array
+//            Type: ArrayLikeObject
+//            用于查询元素的类数组对象.
+//function
+//            Type: Function( Object elementOfArray, Integer indexInArray ) => Boolean
+//            该函数来处理每项元素的比对。第一个参数是正在被检查的数组的元素，第二个参数是该元素的索引值。该函数应返回一个布尔值。this将是全局的window对象。
+//invert
+//            Type: Boolean
+//            如果“invert”为false，或没有提供，函数返回一个“callback”中返回true的所有元素组成的数组。如果“invert”为true，函数返回一个“callback”中返回false的所有元素组成的数组。
+
+//            Example: F过滤出原始数组中值不为 5，并且索引值大于 4 的元素。然后再过滤掉所有值为 9 的元素。
+            var arr = [1, 9, 3, 8, 6, 1, 5, 9, 4, 7, 3, 8, 6, 9, 1];
+            $("div").text(arr.join(", "));
+
+            arr = jQuery.grep(arr, function (n, i) {
+                return (n != 5 && i > 4);
+            });
+            $("p").text(arr.join(", "));
+
+            arr = jQuery.grep(arr, function (a) {
+                return a != 9;
+            });
+            $("span").text(arr.join(", "));
+        });
+    </script>
+</head>
+<body>
+
+<div></div>
+<p></p>
+<span></span>
+
+</body>
+</html>

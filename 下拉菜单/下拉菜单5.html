@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>Musical drop down menu (html5 / css3) | Script Tutorials</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            font: 15px/1.3 Arial, sans-serif;
+            background: url("../images/background.jpg") no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            width: 100%;
+            height: 70px;
+            position: relative;
+            color: #fff;
+            background: #212121;
+            box-shadow: 0 -1px 2px #111111;
+            z-index: 100;
+        }
+
+        header h2 {
+            position: absolute;
+            left: 50%;
+            margin-left: -400px;
+            font-size: 22px;
+            font-weight: normal;
+            line-height: 70px;
+        }
+
+        header a.stuts, a.stuts:visited {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            color: #fcfcfc;
+            font-size: 15px;
+            line-height: 31px;
+            margin: 23px 0 0 110px;
+        }
+
+        header a span {
+            font-size: 22px;
+            font-weight: bold;
+            margin-left: 5px;
+        }
+
+        #nav-header {
+            font: 13px "Lucida Sans Unicode", Verdana, Arial, sans-serif normal;
+            margin: 30px auto;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        #nav-header ul {
+            display: inline-table;
+            position: relative;
+            text-shadow: 0 -1px 3px #202020;
+            box-shadow: 0 3px 4px #8b8b8b;
+            /*background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #787878), color-stop(0.5, #5E5E5E), color-stop(0.51, #707070), color-stop(1, #838383));*/
+            background-image: -webkit-linear-gradient(bottom, #787878 0%, #5E5E5E 50%, #707070 51%, #838383 100%);
+            background-image: -moz-linear-gradient(left bottom, #787878 0%, #5E5E5E 50%, #707070 51%, #838383 100%);
+            background-color: #5f5f5f;
+            /*background-color和background的区别？？？*/
+            padding: 0 10px;
+            border-radius: 10px;
+        }
+
+        #nav-header ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #nav-header ul li {
+            position: relative;
+            float: left;
+        }
+
+        #nav-header ul li a {
+            display: block;
+            padding: 10px 20px;
+            color: #fff;
+            line-height: 35px;
+            /*background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, #787878), color-stop(0.5, #5E5E5E), color-stop(0.51, #707070), color-stop(1, #838383));*/
+            background-image: -webkit-linear-gradient(bottom, #787878 0%, #5E5E5E 50%, #707070 51%, #838383 100%);
+            background-image: -moz-linear-gradient(left bottom, #787878 0%, #5E5E5E 50%, #707070 51%, #838383 100%);
+            background-color: #5f5f5f;
+            /*background-color和background的区别？？？*/
+            border-bottom: 1px solid #575757;
+            border-left: 1px solid #929292;
+            border-right: 1px solid #5d5d5d;
+            border-top: 1px solid #797979;
+        }
+
+        #nav-header ul ul {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 2;
+            border: 0;
+            padding: 0;
+        }
+
+        #nav-header ul ul li {
+            float: none;
+        }
+
+        #nav-header ul ul li a {
+            display: block;
+            padding: 5px 10px;
+            background: #838383;
+            box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        @-webkit-keyframes animation {
+            0% {
+                -webkit-transform: scale(1);
+            }
+            30% {
+                -webkit-transform: scale(1.5);
+            }
+            100% {
+                -webkit-transform: scale(1.1);
+            }
+        }
+
+        @-moz-keyframes animation {
+            0% {
+                -moz-transform: scale(1);
+            }
+            30% {
+                -moz-transform: scale(1.5);
+            }
+            100% {
+                -moz-transform: scale(1.1);
+            }
+        }
+
+        @-o-keyframes animation {
+            0% {
+                -moz-transform: scale(1);
+            }
+            30% {
+                -moz-transform: scale(1.5);
+            }
+            100% {
+                -moz-transform: scale(1.1);
+            }
+        }
+
+        @keyframes animation {
+            0% {
+                transform: scale(1);
+            }
+            30% {
+                transform: scale(1.5);
+            }
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+        #nav-header ul li:hover > a {
+            -webkit-animation-name: animation;
+            -webkit-animation-duration: 0.3s;
+            -webkit-animation-timing-function: linear;
+            -webkit-animation-iteration-count: 1;
+            -webkit-animation-direction: normal;
+            -webkit-animation-delay: 0s;
+            -webkit-animation-play-state: running;
+            -webkit-animation-fill-mode: forwards;
+            /*-webkit-animation:animation 0.3s linear;*/
+
+            -moz-animation-name: animation;
+            -moz-animation-duration: 0.3s;
+            -moz-animation-timing-function: linear;
+            -moz-animation-iteration-count: 1;
+            -moz-animation-direction: normal;
+            -moz-animation-delay: 0s;
+            -moz-animation-play-state: running;
+            -moz-animation-fill-mode: forwards;
+
+            -o-animation-name: animation;
+            -o-animation-duration: 0.3s;
+            -o-animation-timing-function: linear;
+            -o-animation-iteration-count: 1;
+            -o-animation-direction: normal;
+            -o-animation-delay: 0s;
+            -o-animation-play-state: running;
+            -o-animation-fill-mode: forwards;
+        }
+
+        #nav-header ul li:hover > ul {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <h2> html5 / css3</h2>
+    <a href="#" class="stuts">Back to <span>Java Script</span></a>
+</header>
+
+<nav id="nav-header">
+    <ul>
+        <li><a href="#">Menu 1</a>
+            <ul>
+                <li><a href="#">Submenu 1</a></li>
+                <li><a href="#">Submenu 2</a></li>
+                <li><a href="#">Submenu 3</a></li>
+                <li><a href="#">Submenu 4</a></li>
+                <li><a href="#">Submenu 5</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Menu 2</a>
+            <ul>
+                <li><a href="#">Submenu 2-1</a></li>
+                <li><a href="#">Submenu 2-2</a></li>
+                <li><a href="#">Submenu 2-3</a></li>
+                <li><a href="#">Submenu 2-4</a></li>
+                <li><a href="#">Submenu 2-5</a></li>
+                <li><a href="#">Submenu 2-6</a></li>
+                <li><a href="#">Submenu 2-7</a></li>
+                <li><a href="#">Submenu 2-8</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Menu 3</a>
+            <ul>
+                <li><a href="#">Submenu 3-1</a></li>
+                <li><a href="#">Submenu 3-2</a></li>
+                <li><a href="#">Submenu 3-3</a></li>
+                <li><a href="#">Submenu 3-4</a></li>
+                <li><a href="#">Submenu 3-5</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Menu 4</a></li>
+        <li><a href="#">Menu 5</a></li>
+        <li><a href="#">Menu 6</a></li>
+    </ul>
+</nav>
+<script>
+    // add event handler realization
+    var addEvent = (function () {
+        if (document.addEventListener) {
+            return function (el, type, fn) {
+                if (el && el.nodeName || el === window) {
+                    el.addEventListener(type, fn, false);
+                } else if (el && el.length) {
+                    for (var i = 0; i < el.length; i++) {
+                        addEvent(el[i], type, fn);
+                    }
+                }
+            };
+        } else {
+            return function (el, type, fn) {
+                if (el && el.nodeName || el === window) {
+                    el.attachEvent('on' + type, function () {
+                        return fn.call(el, window.event);
+                    });
+                } else if (el && el.length) {
+                    for (var i = 0; i < el.length; i++) {
+                        addEvent(el[i], type, fn);
+                    }
+                }
+            };
+        }
+    })();
+
+    /*
+    // variables
+    var aLoops = []; // sound loops
+
+    // initialization
+    addEvent(window, 'load', function (event) {
+        // load music files
+        aLoops[0] = new Audio('../media/background.ogg');
+        aLoops[0].volume = 0.3;
+        aLoops[1] = new Audio('../media/button.ogg');
+        aLoops[1].volume = 1.0;
+        aLoops[2] = new Audio('../media/button_click.ogg');
+        aLoops[2].volume = 1.0;
+
+        aLoops[0].addEventListener('ended', function () { // loop background sound
+            this.currentTime = 0;
+            this.play();
+        }, false);
+        aLoops[0].play();
+    });
+
+
+
+    // all the buttons
+    var aBtns = document.querySelectorAll("#nav-header li");
+
+    // onmouseover event handler
+    addEvent(aBtns, 'mouseover', function (event) {
+        aLoops[1].currentTime = 0;
+        aLoops[1].play(); // play click sound
+    });
+
+    // onmouseout event handler
+    addEvent(aBtns, 'mouseout', function (event) {
+        aLoops[1].currentTime = 0;
+        aLoops[1].pause(); // play click sound
+    });
+
+    // onclick event handler
+    addEvent(aBtns, 'click', function (event) {
+        aLoops[2].currentTime = 0;
+        aLoops[2].play(); // play click sound
+    });
+
+     */
+</script>
+</body>
+</html>

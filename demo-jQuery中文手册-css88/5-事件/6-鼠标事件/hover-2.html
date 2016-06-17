@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        ul {
+            margin-left: 20px;
+            color: blue;
+        }
+
+        li {
+            cursor: default;
+        }
+
+        li.active {
+            background-color: black;
+            color: white;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .hover( handlerInOut(eventObject) )
+//            描述: 将一个单独事件函数绑定到匹配元素上，分别当鼠标指针进入和离开元素时被执行。
+
+//            .hover( handlerInOut(eventObject) )
+//            handlerInOut(eventObject)
+//            类型: Function()
+//            当鼠标指针进入或离开元素时触发执行的事件函数
+
+//            调用$(selector).hover(handlerInOut)是以下写法的简写：
+//            $(selector).bind("mouseenter mouseleave", handlerInOut);
+
+            $("li")
+                    .filter(":odd")
+                    .hide()
+                    .end()
+                    .filter(":even")
+                    .hover(
+                    function () {
+                        $(this).toggleClass("active")
+                                .next()
+                                .stop(true, true)
+                                .slideToggle();
+                    }
+            );
+        });
+    </script>
+</head>
+<body>
+
+<ul>
+    <li>Milk</li>
+    <li>White</li>
+    <li>Carrots</li>
+    <li>Orange</li>
+    <li>Broccoli</li>
+    <li>Green</li>
+</ul>
+
+</body>
+</html>

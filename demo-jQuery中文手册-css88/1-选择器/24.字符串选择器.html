@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "[attribute*='value']" )
+//            选择指定属性具有包含一个给定的子字符串的元素。（选择给定的属性是以包含某些值的元素）
+
+            $("input[name*='man']").val('has man in it!');
+        })
+    </script>
+</head>
+<body>
+<input name="man-news"/>
+<input name="milkman"/>
+<input name="letterman2"/>
+<input name="newmilk"/>
+<input name="newmanilk"/>
+</body>
+</html>

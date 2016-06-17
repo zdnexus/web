@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        h3 {
+            margin: 0;
+        }
+
+        div, span, p {
+            width: 80px;
+            height: 40px;
+            padding: 10px;
+            margin: 10px;
+            background-color: #EEEEEE;
+            float: left;
+        }
+
+        /*为什么span设置了float变成了块状元素?*/
+        /*设置float后，就不用再display:block;了，浮动后自动就是块元素了*/
+
+        /*为什么test包裹了里面浮动的子元素?*/
+        /*父元素是float的浮动元素可以包裹浮动的子元素*/
+
+        #test {
+            width: auto;
+            height: auto;
+            background-color: transparent;
+
+            /*float: none;*/
+            /*overflow: hidden;*/
+
+            /*display: inline-block;*/
+        }
+
+        /*float: left导致#test包裹子元素,body没有包裹浮动的#test*/
+
+        /*浮动导致body没有包裹#test，#test可设置为inline-block,body会包裹下面3个元素*/
+        /*清除浮动元素: 1. overflow: hidden...  2: float...  3: *:before:{clear:both}...*/
+    </style>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "*" )
+//            不要使用*选择器, 除非被它自己使用，否则 * 选择器或通用选择器，其速度是极其慢的。
+//            查找文档中的每一个元素（包括 html,head, body 等）。
+
+            var elementCount = $("*").css("border", "3px solid red").length;//13 -> html的所有子元素
+            var test_elementCount = $("#test").find("*").css("border", "3px solid blue").length;//4 -> id=test的所有子元素
+            $("body").prepend("<h3>" + elementCount + " " + test_elementCount + " elements found</h3>");
+        });
+    </script>
+</head>
+<body>
+
+<div id="test">
+    <div>DIV</div>
+
+    <span>SPAN</span>
+
+    <p>
+        P
+        <button>BUTTON</button>
+    </p>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app>
+
+    <!--ng-blur失去焦点-->
+    <div ng-cotoller="myCtrl" ng-init="count=0;">
+        <input ng-blur="count=count+1;">
+
+        <h1 ng-bind="count"></h1>
+    </div>
+
+</div>
+
+</body>
+</html>

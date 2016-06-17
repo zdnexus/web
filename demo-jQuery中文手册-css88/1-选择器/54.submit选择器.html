@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":submit" )
+//            选择所有类型为提交的元素
+
+//            :submit选择通常适用于按钮或input元素。
+//            请注意，一些浏览器将<button>元素作为type="default"默认处理，而其他浏览器（如Internet Explorer）并非如此。
+//            为了确保标签能在所有浏览器下正常工作，并保证一致，它始终选择能提交表单的按钮，总是指定一个type属性。
+
+//            因为:submit 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:submit 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了当使用:submit 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用[type="submit"]代替.
+
+            var submitEl = $("td :submit").parent("td").css({
+                background: "yellow",
+                border: "3px red solid"
+            }).end();
+            $("#result").text("jQuery matched " + submitEl.length + " elements.");
+
+            $("form").submit(function () {
+                return false;
+            });// so it won't submit
+
+// Extra JS to make the HTML easier to edit (None of this is relevant to the ":submit" selector
+            $("#exampleTable").find("td").each(function () {
+                var inputEl = $(this).children();
+                var inputType = inputEl.attr("type") ? " type='" + inputEl.attr("type") + "'" : "";
+                $(this).before("<td>" + inputEl[0].nodeName + inputType + "</td>");
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <table id="exampleTable" border="1" cellpadding="10" align="center">
+        <tr>
+            <th>
+                Element Type
+            </th>
+            <th>
+                Element
+            </th>
+        </tr>
+        <tr>
+            <td>
+                <input type="button" value="Input Button"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="checkbox"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="file"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="hidden"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="image"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="password"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="radio"/>
+            </td>
+
+        </tr>
+        <tr>
+            <td>
+                <input type="reset"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="text"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <select>
+                    <option>Option</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <textarea></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button>Button</button>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit">Button type="submit"</button>
+            </td>
+        </tr>
+    </table>
+</form>
+<div id="result"></div>
+</body>
+</html>

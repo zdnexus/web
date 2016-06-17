@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":text" )
+//            选择所有类型为text的input元素。
+
+//            $(':text')允许我们选择所有<input type="text">元素。如同其他伪类选择器（那些以“:”开始），
+//            建议使用此类选择器时，跟在一个标签名或者其它选择器后面，否则，默认使用了全局通配符选择器 "*"。
+//            换句话说$(':text') 等同于 $('*:text')，所以应该使用$('input:text')来提升效率。
+
+//            可以通过下面的例子，反映出 $(':text') 和 $('[type=text]') 之间的区别：
+//            $('<input>').is('[type=text]'); // false
+//            $('<input>').is(':text'); // true
+
+//            因为:text 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:text 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了当使用:text 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用[type="text"]代替.
+
+            var input = $("form input:text").css({
+                background: "yellow",
+                border: "3px solid red"
+            });
+//            var input = $("form input[type='text']").css({
+//                background: "yellow",
+//                border: "3px solid red"
+//            });
+
+            $("div").text("For this type jQuery found " + input.length + ".")
+                    .css("color", "red");
+            $("form").submit(function () {
+                return false;
+            }); // so it won't submit
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input type="button" value="Input Button"/>
+    <input type="checkbox"/>
+    <input type="file"/>
+    <input type="hidden"/>
+    <input type="image"/>
+    <input type="password"/>
+    <input type="radio"/>
+    <input type="reset"/>
+    <input type="submit"/>
+    <input type="text"/>
+    <select>
+        <option>Option</option>
+    </select>
+    <textarea></textarea>
+    <button>Button</button>
+</form>
+<div>
+</div>
+</body>
+</html>

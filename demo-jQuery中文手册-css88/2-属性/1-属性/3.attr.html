@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#div1").attr({
+                "style":"background-color:black"
+            });
+
+            alert($("#div1").attr("style"));//background-color:black
+            alert($("#div1").attr("width"));//undefined
+
+            alert($("img").attr("width"));//100
+            alert(typeof  $("img").attr("width"));//string
+        });
+    </script>
+</head>
+<body>
+<div id="div1" style="width: 200px;height: 200px;"></div>
+<img width="100" height="100">
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div, p {
+            width: 80px;
+            height: 40px;
+            padding-top: 8px;
+            position: absolute;
+            top: 0;
+            margin: 0;
+        }
+
+        p {
+            background: #fcc;
+            text-align: center;
+        }
+
+        div {
+            background: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 找到正确答案！渐变耗时 250 毫秒，并且在完成后改变字体样式。
+            var getPos = function (n) {
+                return (Math.floor(n) * 90) + "px";
+            };
+
+            $("p").each(function (n) {
+                var r = Math.floor(Math.random() * 3);//0,1,2
+                var tmp = $(this).text();
+
+                $(this).text($("p:eq(" + r + ")").text());
+                $("p:eq(" + r + ")").text(tmp);
+                $(this).css("left", getPos(n));
+            });
+
+            $("div").each(function (n) {
+                $(this).css("left", getPos(n));
+            })
+                    .css("cursor", "pointer")
+                    .click(function () {
+                        $(this).fadeTo(250, 0.25, function () {
+                            $(this)
+                                    .css("cursor", "")
+                                    .prev()
+                                    .css({
+                                        "font-weight": "bolder",
+                                        "font-style": "italic"
+                                    });
+                        });
+                    });
+        });
+    </script>
+</head>
+<body>
+
+<p>Wrong</p>
+
+<div></div>
+
+<p>Wrong</p>
+
+<div></div>
+
+<p>Right!</p>
+
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        textarea {
+            height: 35px;
+        }
+
+        div {
+            color: red;
+        }
+
+        fieldset {
+            margin: 0;
+            padding: 0;
+            border-width: 0;
+        }
+
+        .marked {
+            background-color: yellow;
+            border: 3px red solid;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":button" )
+//            选择所有按钮元素和类型为按钮的元素。
+
+//            一个和$(":button")等价的选择器，使用有效的CSS是$("button, input[type='button']")。
+
+//            因为:button 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:button 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了当使用:button 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":button").
+
+            var input = $(":button").addClass("marked");//2
+//            var input = $("input").filter(":button").addClass("marked");//1
+//            var input = $("button, input[type='button']").filter(":button").addClass("marked");//2
+
+            $("div").text("For this type jQuery found " + input.length + ".");
+            $("form").submit(function () {
+                return false;
+            });// so it won't submit
+        });
+    </script>
+</head>
+<body>
+<form>
+    <fieldset>
+        <input type="button" value="Input Button"/>
+        <input type="checkbox"/>
+        <input type="file"/>
+        <input type="hidden"/>
+        <input type="image"/>
+        <input type="password"/>
+        <input type="radio"/>
+        <input type="reset"/>
+        <input type="submit"/>
+        <input type="text"/>
+        <select>
+            <option>Option</option>
+            <option></option>
+        </select>
+        <textarea></textarea>
+        <button>Button</button>
+    </fieldset>
+</form>
+<div></div>
+</body>
+</html>

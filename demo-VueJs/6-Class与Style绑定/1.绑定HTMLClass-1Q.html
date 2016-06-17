@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .static {
+            width: 100px;
+            height: 100px;
+            background-color: #003388;
+            color: #ccc;
+        }
+
+        .class-a {
+            background-color: #009900;
+        }
+
+        .class-b {
+            background-color: #ff3111;
+        }
+
+        .class-c {
+            background-color: silver;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div class="static" v-bind:class="{ 'class-a': isA, 'class-b': isB }"></div>
+    <div class="static" v-bind:class="{ 'class-a': isB, 'class-b': isA }"></div>
+    <div class="static" v-bind:class="classJsonA"></div>
+    <div class="static" v-bind:class="classJsonB">这里有问题</div>
+    <br/>
+    <br/>
+    <br/>
+    <!--根据isA的值来判断绑定classC的值-->
+    <div class="static" v-bind:class="isA ? classA:''"></div>
+    <div class="static" v-bind:class="isC == 'grey' ? classC:''"></div>
+    <br/>
+    <br/>
+    <br/>
+    <!--绑定多个class-->
+    <div class="static" v-bind:class="[classA,classB]"></div>
+    <!--判断是否绑定多个class-->
+    <!--始终绑定classC，根据isB的值来判断绑定classD的值-->
+    <div class="static" v-bind:class="[classA,isB ? classB:'']"></div>
+    <!--isA的值来判断绑定classD的值,isB的值来判断绑定classD的值-->
+    <div class="static" v-bind:class="[isA ? '':classA , isB ? classB:'']"></div>
+    <!--判断isC是否是grey的字符串和isB的值-->
+    <div class="static" v-bind:class="[isC == 'grey' ? classC:'' , isB ? classB:'']"></div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            isA: true,
+            isB: false,
+            isC: 'grey',
+            classJsonA: {
+                'class-a': true,
+                'class-b': false,
+            },
+//            为什么无效
+            classJsonB: {
+                'class-a': this.isB,
+                'class-b': this.isA,
+            },
+            classA: 'class-a',
+            classB: 'class-b',
+            classC: 'class-c',
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .get()
+//            Description: 通过检索匹配jQuery对象得到对应的DOM元素。
+
+//            .get()
+//            这个方法不接收任何参数
+
+//            选择文档中的所有div，并且作为一个数组返回。然后使用浏览器原生的 reverse 方法将数组翻转。
+            function disp(divs) {
+                var a = [];
+                for (var i = 0; i < divs.length; i++) {
+                    a.push(divs[i].innerHTML);
+                }
+                $("span").text(a.join(" "));
+            }
+
+            disp($("div").get().reverse());
+        });
+    </script>
+</head>
+<body>
+
+Reversed - <span></span>
+
+<div>One</div>
+<div>Two</div>
+<div>Three</div>
+
+</body>
+</html>

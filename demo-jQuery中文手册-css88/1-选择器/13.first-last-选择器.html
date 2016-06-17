@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        tr {
+            color: blue;
+            font-weight: bold;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":first" )
+//            选择第一个匹配的元素
+
+//            jQuery( ":last" )
+//            选择最后一个匹配的元素
+
+//            :first伪类选择器相当于:eq(0)。它也可以写为:lt(1)。
+//            虽然:first只匹配一个单独的元素，但是:first-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。
+//            :last伪类选择器相当于:eq(-1)。它也可以写为:gt(-2)。
+//            虽然:last只匹配一个单独的元素，但是:last-child选择器可以匹配多个：即为每个父级元素匹配第一个子元素。
+
+//            因为 :first() :last()是一个 jQuery 延伸出来的一个选择器。 并且不是的CSS规范的一部分,
+//            使用:first() :last()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用.filter(":first") .filter(":last")代替。
+
+            $("table tr:first").css("color", "red");
+//            $("table tr").filter(":first").css("color", "red");
+            $("table tr:last").css("color", "green");
+//            $("table tr").filter(":last").css("color", "green");
+        });
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>TD #0</td>
+        <td>TD #1</td>
+        <td>TD #2</td>
+    </tr>
+    <tr>
+        <td>TD #3</td>
+        <td>TD #4</td>
+        <td>TD #5</td>
+    </tr>
+    <tr>
+        <td>TD #6</td>
+        <td>TD #7</td>
+        <td>TD #8</td>
+    </tr>
+    <tr>
+        <td>TD #9</td>
+        <td>TD #10</td>
+        <td>TD #11</td>
+    </tr>
+</table>
+</body>
+</html>

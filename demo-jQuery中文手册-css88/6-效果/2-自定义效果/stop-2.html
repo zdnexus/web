@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            position: absolute;
+            background-color: #abc;
+            left: 0px;
+            top: 30px;
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            点击 Go 按钮，立刻开始执行动画。然后点击 STOP 按钮，动画元素会在它所在的位置停下来。
+//            另外一种测试方法时，多次点击不同的动画按钮，此时尚未被执行的动画会被添加到动画队列中，
+//            而后再点击 STOP 按钮，则会立刻停止当前的动画，继续执行队列中的其它动画。
+
+            /* Start animation */
+            $("#go").click(function () {
+                $(".block").animate({left: '+=100px'}, 2000);
+            });
+
+            /* Stop animation when button is clicked */
+            $("#stop").click(function () {
+                $(".block").stop();//stop(false,false);停止相对应的一个运动函数
+//                $(".block").stop(true,false);//立即停止
+            });
+
+            /* Start animation in the opposite direction */
+            $("#back").click(function () {
+                $(".block").animate({left: '-=100px'}, 2000);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="go">Go</button>
+<button id="stop">STOP!</button>
+<button id="back">Back</button>
+
+<div class="block"></div>
+
+</body>
+</html>

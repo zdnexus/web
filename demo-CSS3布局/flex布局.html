@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul {
+            display: flex;
+        }
+
+        ul li {
+            display: inline-flex;
+            /*inline-flex会隐藏list-type:none*/
+        }
+
+        ul li div{
+            width: 100px;
+            height: 100px;
+        }
+
+        ul li:nth-child(odd) div {
+            background-color: #b2dba1;
+        }
+
+        ul li:nth-child(even) div {
+            background-color: #f06060;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>
+        <div></div>
+    </li>
+
+    <li>
+        <div></div>
+    </li>
+
+    <li>
+        <div></div>
+    </li>
+
+    <li>
+        <div></div>
+    </li>
+
+    <li>
+        <div></div>
+    </li>
+</ul>
+
+</body>
+</html>

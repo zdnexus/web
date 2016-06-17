@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            如果一个jQuery对象表示一个DOM元素的集合，
+//            .find()方法允许我们能够通过查找DOM树中的这些元素的后代元素，匹配的元素将构造一个新的jQuery对象。
+//            .find()和.children()方法是相似的，但后者只是再DOM树中向下遍历一个层级（愚人码头注：就是只查找子元素，而不是后代元素）。
+
+//            .find( element )
+//            类型: Element
+//            一个用于匹配元素的DOM元素。
+
+            $("li.item-ii").find("li").css("background-color", "red");
+
+//            .find( jQuery object )
+//            类型: jQuery
+//            一个用于匹配元素的jQuery对象。
+
+            var $allListElements = $("li");
+            $("li.item-ii").find($allListElements).css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<ul class="level-1">
+    <li class="item-i">I</li>
+    <li class="item-ii">II
+        <ul class="level-2">
+            <li class="item-a">A</li>
+            <li class="item-b">B
+                <ul class="level-3">
+                    <li class="item-1">1</li>
+                    <li class="item-2">2</li>
+                    <li class="item-3">3</li>
+                </ul>
+            </li>
+            <li class="item-c">C</li>
+        </ul>
+    </li>
+    <li class="item-iii">III</li>
+</ul>
+</body>
+</html>

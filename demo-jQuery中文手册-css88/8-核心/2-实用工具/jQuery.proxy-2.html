@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.proxy( context, name )
+//context
+//            类型: PlainObject
+//            函数的上下文语境会被设置成这个 object 对象。
+//name
+//            类型: String
+//            将要改变上下文语境的函数名(这个函数必须是前一个参数 context 对象的属性)。
+
+//            Example: 通过调用参数为"context, function name"的jQuery.proxy()方法，强制修改函数的上下文语境。 并且在第一次点击事件执行后，解除绑定。
+            var obj = {
+                name: "John",
+                test: function () {
+                    $("#log").append(this.name);
+                    $("#test").off("click", obj.test);
+                }
+            };
+
+            $("#test").on("click", jQuery.proxy(obj, "test"));
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <button id="test">Test</button>
+</p>
+
+<p id="log"></p>
+
+</body>
+</html>

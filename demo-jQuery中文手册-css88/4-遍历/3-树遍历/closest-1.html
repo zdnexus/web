@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .closest( selector )
+//            从元素本身开始，在DOM 树上逐级向上级元素匹配，并返回最先匹配的祖先元素。
+
+//            .closest( element )
+//            类型: Element
+//            一个用于匹配元素的DOM元素。
+
+            $("li.item-a")
+                    .closest("ul")
+                    .css("background-color", "red");
+
+//            .closest()方法是从自身元素开始查找的，然后在 DOM 树中向上遍历，直到找到了所提供的表达式列表项 A。
+//            $("li.item-a")
+//                    .closest("li")
+//                    .css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<ul id="one" class="level-1">
+    <li class="item-i">I</li>
+    <li id="ii" class="item-ii">II
+        <ul class="level-2">
+            <li class="item-a">A</li>
+            <li class="item-b">B
+                <ul class="level-3">
+                    <li class="item-1">1</li>
+                    <li class="item-2">2</li>
+                    <li class="item-3">3</li>
+                </ul>
+            </li>
+            <li class="item-c">C</li>
+        </ul>
+    </li>
+    <li class="item-iii">III</li>
+</ul>
+</body>
+</html>

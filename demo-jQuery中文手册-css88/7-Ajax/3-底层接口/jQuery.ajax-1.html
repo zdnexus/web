@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 保存数据到服务器，成功时显示信息。
+            $.ajax({
+                method: "POST",
+                url: "some.php",
+                data: {name: "John", location: "Boston"}
+            }).done(function (msg) {
+                alert("Data Saved: " + msg);
+            });
+
+//            Example: 装入一个 HTML 网页最新版本。
+            $.ajax({
+                url: "test.html",
+                cache: false//如果设置为 false ，浏览器将不缓存此页面。
+            }).done(function( html ) {
+                $("#results").append(html);
+            });
+
+//            Example: 发送 XML 数据至服务器。设置 processData 选项为 false，防止自动转换数据格式。
+            var xmlDocument = [$(" ")];
+            var xmlRequest = $.ajax({
+                url: "page.php",
+                processData: false,//如果要发送 DOM 树信息或其它不希望转换的信息，请设置为 false。
+                data: xmlDocument
+            });
+
+            xmlRequest.done(handleResponse);
+
+//            Example: 发送id作为数据发送到服务器， 保存一些数据到服务器上， 并通一旦它的完成知用户。  如果请求失败，则提醒用户。
+            var menuId = $("ul.nav").first().attr("id");
+            var request = $.ajax({
+                url: "script.php",
+                method: "POST",
+                data: {id : menuId},
+                dataType: "html"
+            });
+
+            request.done(function(msg) {
+                $("#log").html( msg );
+            });
+
+            request.fail(function(jqXHR, textStatus) {
+                alert( "Request failed: " + textStatus );
+            });
+
+//            Example: 载入并执行一个JavaScript文件.
+            $.ajax({
+                method: "GET",
+                url: "test.js",
+                dataType: "script"
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

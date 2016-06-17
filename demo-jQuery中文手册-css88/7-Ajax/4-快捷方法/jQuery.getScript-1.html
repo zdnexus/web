@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .block {
+            background-color: blue;
+            width: 150px;
+            height: 70px;
+            margin: 10px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.getScript( url [, success(script, textStatus, jqXHR) ] )
+//            描述: 使用一个HTTP GET请求从服务器加载并执行一个 JavaScript 文件
+
+//            jQuery.getScript( url [, success(script, textStatus, jqXHR) ] )
+//url
+//            类型: String
+//            一个包含发送请求的URL字符串。
+//success(script, textStatus, jqXHR)
+//            类型: Function()
+//            当请求成功后执行的回调函数。
+
+//            $.ajax({
+//                url: url,
+//                data:data,
+//                success: success
+//            });
+
+//            默认情况下，$.getScript() cache选项被设置为 false。
+//            这将在请求的URL的查询字符串中追加一个时间戳参数，以确保每次浏览器下载的脚本被重新请求。
+//            您可以全局的使用 $.ajaxSetup()设置cache(缓存)属性覆盖该功能：cache: true
+
+//            Example: 我们动态加载新的官方jQuery 颜色动画插件，一旦该插件加载完成就会触发一些颜色动画。
+            var url = "//code.jquery.com/color/jquery.color-git.js";
+
+            $.getScript(url, function () {
+                $(".block")
+                        .animate({
+                            backgroundColor: "rgb(255, 180, 180)"
+                        }, 1000)
+                        .delay(500)
+                        .animate({
+                            backgroundColor: "olive"
+                        }, 1000)
+                        .delay(500)
+                        .animate({
+                            backgroundColor: "#00f"
+                        }, 1000);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="go">&raquo; Run</button>
+
+<div class="block"></div>
+
+</body>
+</html>

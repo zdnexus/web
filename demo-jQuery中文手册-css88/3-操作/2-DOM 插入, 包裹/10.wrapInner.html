@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px green solid;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        p {
+            background: yellow;
+            margin: 2px;
+            padding: 2px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            为 body 元素的内容包裹一个对象树
+            $("body").wrapInner("<div><div><p><em><b></b></em></p></div></div>");
+        });
+    </script>
+</head>
+<body>
+Plain old text, or is it?
+</body>
+</html>

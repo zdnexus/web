@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 80px;
+            height: 80px;
+            background: #abc;
+            border: 2px solid black;
+            margin: 10px;
+            float: left;
+        }
+
+        div.after {
+            border-color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            获得每个匹配元素集合中所有下面的同辈元素，选择性筛选的选择器。
+
+//            查找第一个 div 后面的所有 div，并为它们添加样式。
+            $("div:first").nextAll().addClass("after");
+        });
+    </script>
+</head>
+<body>
+<div>first</div>
+
+<div>sibling
+    <div>child</div>
+</div>
+
+<div>sibling</div>
+
+<div>sibling</div>
+</body>
+</html>

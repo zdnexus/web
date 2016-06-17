@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .change( handler )
+//            为JavaScript 的 "change" 事件绑定一个处理函数，或者触发元素上的 "change" 事件。
+
+//            一个元素的值改变的时候将触发change事件。此事件仅限用于<input>元素，<textarea>和<select>元素。
+//            对于下拉选择框，复选框和单选按钮，当用户用鼠标作出选择，该事件立即触发，
+//            但对于其他类型的input元素，该事件触发将推迟，直到元素失去焦点才会触点。
+
+//            .change()方法只是作为.on( "change", handler )的一个速记写法，移除该事件可以使用.off( "change" )。
+
+//            $(".target").change(function () {
+//                alert("Handler for .change() called.");
+//            });
+
+            $(".target").on("change", function () {
+                alert("Handler for .change() called.");
+            })
+
+//            Example: 所有文本输入元素添加一个的有效性测试:
+            $("input[type='text']").change( function() {
+                // check input ($(this).val()) for validity here
+            });
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <input class="target" type="text" value="Field 1"/>
+
+    <select class="target">
+        <option value="option1" selected="selected">Option 1</option>
+        <option value="option2">Option 2</option>
+    </select>
+</form>
+
+<div id="other">
+    Trigger the handler
+</div>
+
+</body>
+</html>

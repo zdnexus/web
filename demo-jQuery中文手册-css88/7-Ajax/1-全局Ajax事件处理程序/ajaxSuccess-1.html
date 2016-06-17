@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .ajaxSuccess( handler(event, XMLHttpRequest, ajaxOptions) )返回: jQuery
+//            描述: 绑定一个函数当 Ajax 请求成功完成时执行。 这是一个Ajax Event.
+
+//            .ajaxSuccess( handler(event, XMLHttpRequest, ajaxOptions) )
+//            handler(event, XMLHttpRequest, ajaxOptions)
+//            类型: Function()
+//            被调用的函数。
+
+//            每当一个Ajax请求成功完成，jQuery就会触发ajaxSuccess事件，在这个时间点所有处理函数都会使用.ajaxSuccess()方法注册并执行。
+
+//            当Ajax请求成功完成时，显示一个信息。
+            $(document).ajaxSuccess(function (event, request, settings) {
+                $("span").text("123");
+            });
+
+            $("button").click(function () {
+                $.ajax({
+                    url: "/zd/1.php",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        name: $("input[name='user_name']").val()
+                    },
+                    success: function (data) {
+                        alert(data.name + " " + data.info);
+                    },
+                    error: function (data) {
+                        alert("发送失败!");
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" name="user_name">
+
+<button>提交</button>
+
+<span></span>
+
+</body>
+</html>

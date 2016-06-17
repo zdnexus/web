@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            padding: 10px;
+            height: 50px;
+            float: left;
+            margin: 5px;
+            background: red;
+            cursor: pointer;
+        }
+
+        .mod {
+            background: blue;
+            cursor: default;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var modWidth = 60;
+
+            $("div").one("click", function () {
+                $(this).outerWidth(modWidth).addClass("mod");
+                modWidth -= 8;
+            });
+        });
+    </script>
+</head>
+<body>
+<div>d</div>
+<div>d</div>
+<div>d</div>
+<div>d</div>
+<div>d</div>
+</body>
+</html>

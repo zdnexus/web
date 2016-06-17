@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="m in messagesList">
+            <a v-bind:href="m.url" v-text="m.url"></a>
+        </li>
+    </ul>
+
+    <ul>
+        <li v-for="m in messagesList">
+            <a href="{{m.url}}">{{m.url}}</a>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            messagesList: [],
+        },
+        methods: {
+            addLi: function () {
+                this.messagesList.push({url: 'http://www.baidu.com'});
+                this.messagesList.push({url: 'http://www.sina.com'});
+                this.messagesList.push({url: 'http://www.163.com'});
+                this.messagesList.shift();
+            }
+        },
+        ready: function () {
+            var self = this;
+
+            self.addLi();
+        }
+    })
+
+</script>
+</html>

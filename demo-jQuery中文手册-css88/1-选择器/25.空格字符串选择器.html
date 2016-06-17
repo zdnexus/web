@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "[attribute~='value']" )
+//            选择指定属性用空格分隔的值中包含一个给定值的元素。
+
+            $("input[name~='man']").val('mr. man is in it!');
+        });
+    </script>
+</head>
+<body>
+<input name="man-news"/>
+<input name="milk man"/>
+<input name="milk man123"/>
+<input name="milk man 123"/>
+<input name="letterman2"/>
+<input name="newmilk"/>
+</body>
+</html>

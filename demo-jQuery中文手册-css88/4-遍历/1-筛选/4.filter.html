@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .filter( selector )
+//            selector
+//            类型: Selector
+//            一个用于匹配元素的选择器字符串。
+
+//            该调用的结果是1，3，和5项的背景变为红色，因为他们匹配这个选择器（记得:even 和 :odd使用基于0的索引）。
+            $("li").filter(":even").css("background-color", "red");
+
+            $("li").filter(":eq(3)").css("background-color", "blue");//4
+            $("li").filter(":eq(-1)").css("background-color", "black");//-1
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+    <li>list item 6</li>
+</ul>
+</body>
+</html>

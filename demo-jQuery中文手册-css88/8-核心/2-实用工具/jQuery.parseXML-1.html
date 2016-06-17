@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.parseXML( data )
+//            描述: 解析一个字符串到一个XML文档。
+
+//            jQuery.parseXML( data )
+//data
+//            类型: String
+//            用来解析的格式良好的XML字符串。
+
+//            创建一个jQuery对象使用一个XML字符串并得到标题节点的值。
+            var xml = "<rss version='2.0'><channel><title>RSS Title</title></channel></rss>",
+                    xmlDoc = $.parseXML(xml),//string转xml jQuery.parseXML使用原生解析函数浏览器创建一个有效的XML文档。
+                    $xml = $(xmlDoc),
+                    $title = $xml.find("title");
+
+            /* append "RSS Title" to #someElement */
+            $("#someElement").append($title.text());
+
+            /* change the title to "XML Title" */
+            $title.text("XML Title");
+
+            /* append "XML Title" to #anotherElement */
+            $("#anotherElement").append($title.text());
+        });
+    </script>
+</head>
+<body>
+
+<p id="someElement"></p>
+
+<p id="anotherElement"></p>
+
+</body>
+</html>

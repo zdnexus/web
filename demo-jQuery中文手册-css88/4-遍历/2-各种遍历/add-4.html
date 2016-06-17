@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .add( html )
+//            html
+//            类型: HTML
+//            HTML片段添加到匹配的元素集合。
+
+//            动态的向匹配的元素集合中添加一些元素。
+            $("p").clone().add("<span>Again</span>").appendTo(document.body);
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+</body>
+</html>

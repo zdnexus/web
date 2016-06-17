@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #orig, #copy, #copy-correct {
+            float: left;
+            width: 20%;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+// sort order is not guaranteed here and may vary with browser
+            $("#copy").append($("#orig .elem")
+                    .clone()
+                    .children("a")
+                    .prepend("foo - ")
+                    .parent()
+                    .clone());
+
+            $("#copy").append($("#orig .elem")
+                    .children("a")
+                    .clone()
+                    .prepend("foo - ")
+                    .parent()
+                    .clone());
+
+// correct way to approach where order is maintained
+            $("#copy-correct").append($("#orig .elem")
+                    .clone()
+                    .children("a")
+                    .prepend("bar - ")
+                    .end());
+        });
+    </script>
+</head>
+<body>
+<div id="orig">
+    <div class="elem"><a>1</a></div>
+    <div class="elem"><a>2</a></div>
+    <div class="elem"><a>3</a></div>
+    <div class="elem"><a>4</a></div>
+    <div class="elem"><a>5</a></div>
+</div>
+<div id="copy"></div>
+<div id="copy-correct"></div>
+</body>
+</html>

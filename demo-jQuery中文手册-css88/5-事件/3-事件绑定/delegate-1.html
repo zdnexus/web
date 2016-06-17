@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .delegate( selector, eventType, handler(eventObject) )
+//            为所有匹配选择器（selector参数）的元素绑定一个或多个事件处理函数，基于一个指定的根元素的子集，
+//            匹配的元素包括那些目前已经匹配到的元素，也包括那些今后可能匹配到的元素。
+
+//            从jQuery 1.7开始，.delegate()已经被.on()方法取代。但是，对于早期版本，它仍然是使用事件代理（委派）最有效的方式。
+//            事件绑定和代理（委派）的更多信息请查看.on()方法。在一般情况下，这些是两种方法的等效的方法：
+
+            $("table").delegate("td", "click", function() {
+                $(this).toggleClass("chosen");
+            });
+
+            $("table").on("click", "td", function() {
+                $(this).toggleClass("chosen");
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('ul1');
+            var aA = oDiv.getElementsByTagName('a');
+            for (var i = 0; i < aA.length; ++i) {
+                aA[i].onclick=function(){
+                    this.parentNode.style.display='none';//a的父节点是li
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li>dsadada<a href="javascript:;">隐藏</a></li>
+    <li>321321<a href="javascript:;">隐藏</a></li>
+    <li>432423<a href="javascript:;">隐藏</a></li>
+    <li>ssssddsadasfdsfsd<a href="javascript:;">隐藏</a></li>
+    <li>2121321<a href="javascript:;">隐藏</a></li>
+    <li>ewqssdsadada<a href="javascript:;">隐藏</a></li>
+    <li>gdfsdada<a href="javascript:;">隐藏</a></li>
+</ul>
+</body>
+</html>

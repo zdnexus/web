@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: green;
+            display: none;
+        }
+
+        div.newcolor {
+            background: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 通过设置一个队列数组，来删除已有的队列。
+            $("#start").click(function () {
+                $("div").show("slow");
+                $("div").animate({left: '+=200'}, 3000);
+                jQuery.queue($("div")[0], "fx", function () {
+                    $(this).addClass("newcolor");
+                    jQuery.dequeue(this);
+                });
+                $("div").animate({left: '-=200'}, 1500);
+                jQuery.queue($("div")[0], "fx", function () {
+                    $(this).removeClass("newcolor");
+                    jQuery.dequeue(this);
+                });
+                $("div").slideUp();
+            });
+
+            $("#stop").click(function () {
+                jQuery.queue($("div")[0], "fx", []);
+                $("div").stop();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<div></div>
+
+</body>
+</html>

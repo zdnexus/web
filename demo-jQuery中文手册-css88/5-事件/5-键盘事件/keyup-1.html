@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .keyup( handler(eventObject) )
+//            为 "keyup" 事件绑定一个处理函数，或者触发元素上的 "keyup" 事件。
+
+//            当用户在一个元素上释放按键的时候，keyup事件就会被附加到这个元素。
+//            它可以绑定到任何元素，但该事件只是发送到获取焦点的元素上。
+//            不同的浏览器中，可获得焦点的元素略有不同，但是表单元素总是能获取焦点，所以对于此事件类型表单元素是最合适的。/
+
+            $("#target").keyup(function () {
+                alert("Handler for .keyup() called.");
+            });
+
+            $("#other").click(function () {
+                $("#target").keyup();
+            });
+
+//            .keyup()方法只是作为.on( "keyup", handler )的一个速记写法，移除该事件可以使用.off( "keyup" )。
+//            $("#target").on("keyup",function(){
+//                alert("Handler for .keyup() called.");
+//            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input id="target" type="text" value="Hello there"/>
+</form>
+
+<div id="other">
+    Trigger the handler
+</div>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 50px;
+            height: 30px;
+            margin: 5px;
+            float: left;
+            background: green;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            jQuery.fx.off
+//            描述: 全局的禁用所有动画。
+//            动画可以通过设置这个属性为false重新打开。
+
+//            切换开启和关闭动画。
+            var toggleFx = function () {
+                jQuery.fx.off = !jQuery.fx.off;
+            };
+            toggleFx();
+
+            $("button").click(toggleFx);
+
+            $("input").click(function () {
+                $("div").toggle("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <input type="button" value="Run"/>
+    <button>Toggle fx</button>
+</p>
+
+<div></div>
+
+</body>
+</html>

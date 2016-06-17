@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 8px;
+            font-size: 16px;
+        }
+
+        .selected {
+            color: blue;
+        }
+
+        .highlight {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .addClass( className )
+//            为每个匹配元素所要增加的一个或多个样式名。
+
+            $("p").last().addClass("selected");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>and</p>
+
+<p>Goodbye</p>
+</body>
+</html>

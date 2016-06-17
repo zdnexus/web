@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #info {
+            color: red;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                $.ajax({
+                    url: "demo555.php?date=" + Math.random(),
+//                    url: "demo55.php?date=" + Math.random(),
+                    type: "get",
+                    success: function (data) {
+                        $("#info").html(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown) {
+                        if (textStatus == "timeout") {
+                            $("#info").html("请求超时,请刷新页面");
+                        }
+                        if (errorThrown == "Not Found") {
+                            $("#info").html("您请求的地址不存在");
+                        }
+                    }
+                })
+            });
+            $(document).ajaxStart(function () {
+                $("#loading").show();
+            });
+            $(document).ajaxStop(function () {
+                $("#loading").hide();
+            });
+            $(document).ajaxError(function() {
+                $( "#info" ).html( "ajax请求发生错误" );
+            });
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="获取信息">
+<img src="images/loading.gif" id="loading" style="display: none;">
+
+<div id="info"></div>
+</body>
+</html>

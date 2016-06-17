@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin: 10px;
+            /*IE兼容性*/
+            filter: alpha(opacity:30);
+            /*其他兼容性*/
+            opacity: 0.3;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var aDiv = document.getElementsByTagName('div');
+
+            for (var i = 0; i < aDiv.length; ++i) {
+                aDiv[i].timer = null;
+                aDiv[i].alpha = 30;
+                aDiv[i].onmouseover = function () {
+                    Start_Move(this, 100);
+                };
+                aDiv[i].onmouseout = function () {
+                    Start_Move(this, 30);
+                };
+            }
+        };
+
+        function Start_Move(obj, Target) {
+            clearInterval(obj.timer);
+
+            obj.timer = setInterval(function () {
+                var speed = (Target - obj.alpha) / 5;
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+                if (obj.alpha == Target) {
+                    clearInterval(obj.timer);
+                }
+                else {
+                    obj.alpha += speed;
+                    obj.style.filter = 'alpha(opacity:' + obj.alpha + ')';
+                    obj.style.opacity = obj.alpha / 100;
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

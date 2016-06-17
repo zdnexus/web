@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 将原始数组中的每个值加 4 后，映射到新的数组中。
+            $.map([0, 1, 2], function (n) {
+                return n + 4;
+            });//[4,5,6]
+
+//            Example: 若原始数组中的值大于 0，则将该值加 1 后，映射到新的数组中，否则在结果数组中将不包含该值。
+            $.map([0, 1, 2], function (n) {
+                return n > 0 ? n + 1 : null;
+            });//[2,3]
+
+//            Example: 将原始数组中每个值及该值加 1 后的值作为返回结果，映射到新生成的数组中。
+            $.map([0, 1, 2], function (n) {
+                return [n, n + 1];
+            });//[0, 1, 1, 2, 2, 3]
+
+//            Example: 将原始对象中的每个值乘 2 后，映射到新生成的数组中。
+            var dimensions = {width: 10, height: 15, length: 20};
+            dimensions = $.map(dimensions, function (value, index) {
+                return value * 2;
+            });//[20, 30, 40]
+
+//            Example: 将对象中的键映射到新生成的数组中。
+            var dimensions = {width: 10, height: 15, length: 20};
+            var keys = $.map(dimensions, function (value, key) {
+                return key;
+            });//["width", "height", "length"]
+
+//            Example: 将原始数组中每个值的两次方作为返回结果，映射到新生成的数组中。
+            $.map([0, 1, 2, 3], function (a) {
+                return a * a;
+            });//[0,1,4,9]
+
+//            Example: 在处理函数中，通过返回 null 的方式来移除该元素。移除条件是该值小于 50。同时将未被移除的元素值减小 45。
+            $.map([0, 1, 52, 97], function (a) {
+                return (a > 50 ? a - 45 : null);
+            });//[7,52]
+
+//            Example: 通过在处理函数中返回数组的方式，在最终返回的结果数组中添加元素。
+            var array = [0, 1, 52, 97];
+            array = $.map(array, function (a, index) {
+                return [a - 45, index];
+            });//[-45, 0, -44, 1, 7, 2, 52, 3]
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

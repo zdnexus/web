@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )
+//            描述: 使用一个HTTP GET请求从服务器加载JSON编码的数据。
+
+//            jQuery.getJSON( url [, data ] [, success(data, textStatus, jqXHR) ] )
+//url
+//            类型: String
+//            一个包含发送请求的URL字符串
+//data
+//            类型: PlainObject or String
+//            一个普通的对象或字符串，用来发送请求给服务器。
+//success
+//            Type: Function( PlainObject data, String textStatus, jqXHR jqXHR )
+//            当请求成功后执行的回调函数。
+
+//            默认：get和json
+//            $.getJSON({
+//                url: url,
+//                data: data,
+//                success: success,
+//            });
+
+            $.getJSON("/zd/2.php", function (data) {
+                var items = [];
+
+                $.each(data, function (key, val) {
+                    items.push("<li id='" + key + "'>" + val + "</li>");
+                });
+
+                $("<ul>", {
+                    class: "my-new-list",
+                    html: items.join("")
+                }).appendTo("body");
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

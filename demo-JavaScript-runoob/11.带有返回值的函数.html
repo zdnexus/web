@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p>本例调用的函数会执行一个计算，然后返回结果：</p>
+
+<p id="demo"></p>
+
+</body>
+<script>
+    function myFunction(a, b) {
+        if(a < b){
+            return;//undefined 终止运行函数
+//            return null;
+        }
+        return a * b;
+    }
+
+    document.getElementById('demo').innerHTML = myFunction(4, 13);
+</script>
+</html>

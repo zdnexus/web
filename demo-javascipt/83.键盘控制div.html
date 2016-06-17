@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background-color: green;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        document.onkeydown = function (ev) {
+            var oEvent = ev || event;
+            var oDiv = document.getElementById("div1");
+
+            if (oEvent.keyCode == 37) {
+                oDiv.style.left = oDiv.offsetLeft - 10 + "px";
+            }
+            else if (oEvent.keyCode == 39) {
+                oDiv.style.left = oDiv.offsetLeft + 10 + "px";
+            }
+            else if (oEvent.keyCode == 38) {
+                oDiv.style.top = oDiv.offsetTop - 10 + "px";
+            }
+            else if (oEvent.keyCode == 40) {
+                oDiv.style.top = oDiv.offsetTop + 10 + "px";
+            }
+
+            if (oDiv.offsetLeft < 0) {
+                oDiv.style.left = 0;
+            }
+            else if (oDiv.offsetLeft > document.documentElement.clientWidth - oDiv.offsetWidth) {
+                oDiv.style.left = document.documentElement.clientWidth - oDiv.offsetWidth + "px";
+            }
+            if (oDiv.offsetTop < 0) {
+                oDiv.style.top = 0;
+            }
+            else if (oDiv.offsetTop > document.documentElement.clientHeight - oDiv.offsetHeight) {
+                oDiv.style.top = document.documentElement.clientHeight - oDiv.offsetHeight + "px";
+            }
+        };
+    </script>
+</head>
+<body>
+<div>
+    <div id="div1"></div>
+</div>
+</body>
+</html>

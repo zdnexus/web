@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.namespace
+//            描述: 当事件被触发时此属性包含指定的命名空间。
+
+            $("p").bind("test.something", function (event) {
+                alert(event.namespace);
+            });
+
+            $("button").click(function (event) {
+                $("p").trigger("test.something");//alert(something)
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>display event.namespace</button>
+
+<p></p>
+
+</body>
+</html>

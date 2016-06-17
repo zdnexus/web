@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            float: left;
+        }
+
+        #div1 {
+            /*从上向下*/
+            background: -webkit-linear-gradient(top, #fff 0%, #000 100%);
+            background: -moz-linear-gradient(top, #fff 0%, #000 100%);
+            background: -o-linear-gradient(top, #fff 0%, #000 100%);
+            background: linear-gradient(to bottom, #fff 0%, #000 100%);
+        }
+
+        #div2 {
+            /*从下向上*/
+            background: -webkit-linear-gradient(bottom, #fff 0%, #000 100%);
+            background: -moz-linear-gradient(bottom, #fff 0%, #000 100%);
+            background: -o-linear-gradient(bottom, #fff 0%, #000 100%);
+            background: linear-gradient(to top, #fff 0%, #000 100%);
+        }
+
+        #div3 {
+            /*从左往右*/
+            background: -webkit-linear-gradient(left, #fff 0%, #000 100%);
+            background: -moz-linear-gradient(left, #fff 0%, #000 100%);
+            background: -o-linear-gradient(left, #fff 0%, #000 100%);
+            background: linear-gradient(to right, #fff 0%, #000 100%);
+        }
+
+        #div4 {
+            /*从右往左*/
+            background: -webkit-linear-gradient(right, #fff 0%, #000 100%);
+            background: -moz-linear-gradient(right, #fff 0%, #000 100%);
+            background: -o-linear-gradient(right, #fff 0%, #000 100%);
+            background: linear-gradient(to left, #fff 0%, #000 100%);
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4"></div>
+</body>
+</html>

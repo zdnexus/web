@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<!--ng-init 指令添加一些不必要的逻辑到 scope 中，建议你可以在控制器中 ng-controller 指令执行它 。-->
+<div ng-app="" ng-init="myText='Hello World!'">
+
+    <h1>{{myText}}</h1>
+
+    <p> ng-init 指令创建了 AngularJS 变量，你可以在应用中使用它。</p>
+
+</div>
+
+</body>
+</html>

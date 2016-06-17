@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .hide()
+//            描述: 隐藏匹配的元素。
+
+//            .hide()
+//            这个方法不接受任何参数。
+
+            $("p").click(function () {
+                $(this).hide();
+            });
+//            匹配的元素将被立即隐藏，没有动画。这大致相当于调用.css('display', 'none')，
+//            但display属性值保存在jQuery的数据缓存中，所以display可以方便以后可以恢复到其初始值。
+//            如果一个元素的display属性值为inline，那么隐藏再显示时，这个元素将再次显示inline。
+
+
+
+//            .hide( [duration ] [, complete ] )
+//            duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//            complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+            $("#clickme").click(function () {
+                $("#book").hide("slow", function () {
+                    alert("Animation complete.");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>1111</p>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="../../images/0.jpg" alt="" width="100" height="123"/>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .ajaxError( handler(event, jqXHR, ajaxSettings, thrownError) )
+//            描述: Ajax请求出错时注册一个回调处理函数，这是一个 Ajax Event。
+
+//            .ajaxError( handler(event, jqXHR, ajaxSettings, thrownError) )
+//            handler(event, jqXHR, ajaxSettings, thrownError)
+//            类型: Function()
+//            被调用的函数。
+
+//            每当一个Ajax请求出错时，jQuery就会触发ajaxError事件，在这个时间点所有处理函数会使用.ajaxError()方法注册并执行。
+
+//            当Ajax请求失败后显示一个信息.
+            $(document).ajaxError(function (event, request, settings) {
+//                通过查看request.responseText获取返回的AJAX内容。
+//                settings.url为连接url的接口
+                $("body").append( "<li>Error requesting page " + settings.url + "</li>" );
+            });
+
+            $("button").click(function () {
+                $.ajax({
+                    url: "/zd/1.php",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        name: $("input[name='user_name']").val()
+                    },
+                    success: function (data) {
+                        alert(data.name + " " + data.info);
+                    },
+                    error: function (data) {
+                        alert("发送失败!");
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" name="user_name">
+
+<button>提交</button>
+
+</body>
+</html>

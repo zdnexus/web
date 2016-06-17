@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .soLast {
+            text-decoration: line-through;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":last-child" )
+//            选择所有父级元素下的最后一个子元素。
+
+//            jQuery( ":last-of-type" )
+//            选择的所有元素之间具有相同元素名称的最后一个兄弟元素。
+
+//            jQuery( ":last" )
+//            选择最后一个匹配的元素
+
+//            虽然:last只匹配一个单独的元素，
+//            但是:last-child选择器可以匹配多个：即为每个父级元素匹配最后一个子元素。这相当于:nth-last-child(1)。
+//            :last-of-type 选择器匹配元素，在文档树中，相同的父元素并且在其他相同的元素名称之前。
+
+//            所有div元素中的所有元素的最后一个元素
+//            $("div :last")
+//                    .css({color: "red", fontSize: "180%"})
+//                    .hover(function () {
+//                        $(this).addClass("soLast");
+//                    }, function () {
+//                        $(this).removeClass("soLast");
+//                    });
+
+//            所有div元素中的所有元素的最后一个span元素
+//            $("div span:last")
+//                    .css({color: "red", fontSize: "180%"})
+//                    .hover(function () {
+//                        $(this).addClass("soLast");
+//                    }, function () {
+//                        $(this).removeClass("soLast");
+//                    });
+
+//            每个div中的最后一个元素
+//            $("div :last-child")
+//                    .css({color: "red", fontSize: "180%"})
+//                    .hover(function () {
+//                        $(this).addClass("soLast");
+//                    }, function () {
+//                        $(this).removeClass("soLast");
+//                    });
+
+//            每个div中的最后一个元素是否是span，是->可设置，不是->不可设置
+//            $("div span:last-child")
+//                    .css({color: "red", fontSize: "180%"})
+//                    .hover(function () {
+//                        $(this).addClass("soLast");
+//                    }, function () {
+//                        $(this).removeClass("soLast");
+//                    });
+
+            //每个div中的最后一个span，有->可设置，没有->不可设置
+//            $("div span:last-of-type")
+//                    .css({color: "red", fontSize: "180%"})
+//                    .hover(function () {
+//                        $(this).addClass("soLast");
+//                    }, function () {
+//                        $(this).removeClass("soLast");
+//                    });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <span>John,</span>
+    <span>Karl,</span>
+    <span>Brandon</span>
+</div>
+<div>
+    <span>Glen,</span>
+    <span>Tane,</span>
+    <span>Ralph</span>
+</div>
+<div>
+    <span>Nexus,</span>
+    <span>Tiger,</span>
+    <span>Replay</span>
+    <i>Week,</i>
+</div>
+<p>ATM</p>
+</body>
+</html>

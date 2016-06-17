@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        /* entire container, keeps perspective */
+        .flip-container {
+            perspective:1000px;
+        }
+
+        .flip-container, .front, .back {
+            width: 320px;
+            height: 480px;
+        }
+
+        /* flip speed goes here */
+        .flipper {
+            position: relative;
+            transform-style: preserve-3d;
+            -webkit-transition: 0.6s;
+            -moz-transition: 0.6s;
+            -o-transition: 0.6s;
+            transition: 0.6s;
+        }
+
+        /* hide back of pane during swap */
+        .front, .back {
+            backface-visibility: hidden;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .front{
+            background: url("../images/1.jpg");
+            background-size: 100% 100%;
+        }
+
+        .back{
+            background: url("../images/2.jpg");
+            background-size: 100% 100%;
+            transform: rotateY(180deg);
+        }
+
+        /* flip the pane when hovered */
+        .flip-container:hover .flipper {
+            transform: rotateY(180deg);
+        }
+    </style>
+</head>
+<body>
+<div class="flip-container">
+    <div class="flipper">
+        <div class="front">
+            <!-- 前面内容 -->
+        </div>
+        <div class="back">
+            <!-- 背面内容 -->
+        </div>
+    </div>
+</div>
+</body>
+</html>

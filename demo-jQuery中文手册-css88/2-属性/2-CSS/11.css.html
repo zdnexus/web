@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            background-color: saddlebrown;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#div1").click(function(){
+                $(this).css("width","500px");
+//                $(this).css("width","500");
+//                $(this).css("width",500);
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

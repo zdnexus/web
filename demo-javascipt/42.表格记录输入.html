@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oTab = document.getElementById('tb1');
+
+            var oName = document.getElementById('name');
+            var oAge = document.getElementById('age');
+            var oBtn = document.getElementById('btn1');
+            var id=oTab.tBodies[0].rows.length+1;
+
+            oBtn.onclick = function () {
+                var new_tr = document.createElement('tr');
+
+                var new_td_1 = document.createElement('td');
+                new_td_1.innerHTML = id++;//重点
+                new_tr.appendChild(new_td_1);
+
+                var new_td_2 = document.createElement('td');
+                new_td_2.innerHTML = oName.value;
+                new_tr.appendChild(new_td_2);
+
+                var new_td_3 = document.createElement('td');
+                new_td_3.innerHTML = oAge.value;
+                new_tr.appendChild(new_td_3);
+
+                var new_td_4 = document.createElement('td');
+                new_td_4.innerHTML = '<a href="javascript:;">删除</a>';
+                new_tr.appendChild(new_td_4);
+
+                oTab.tBodies[0].appendChild(new_tr);
+
+                new_td_4.getElementsByTagName('a')[0].onclick= function () {
+                    oTab.tBodies[0].removeChild(this.parentNode.parentNode);//重点
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input id="name" type="text"/>
+<input id="age" type="text"/>
+<input id="btn1" type="button" value="添加到表格"/>
+<table id="tb1" border="1" width="500">
+    <thead>
+    <tr>
+        <td>ID</td>
+        <td>姓名</td>
+        <td>年薪</td>
+        <td>操作</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>1</td>
+        <td>z</td>
+        <td>12</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>d</td>
+        <td>13</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>3</td>
+        <td>s</td>
+        <td>28</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>4</td>
+        <td>fg</td>
+        <td>32</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>5</td>
+        <td>wq</td>
+        <td>31</td>
+        <td></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

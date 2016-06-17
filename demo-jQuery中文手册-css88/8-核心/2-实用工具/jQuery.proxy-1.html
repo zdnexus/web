@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.proxy( function, context )
+//            描述: 接受一个函数，然后返回一个新函数，并且这个新函数始终保持了特定的上下文语境。
+
+//            jQuery.proxy( function, context )
+//function
+//            类型: Function()
+//            将要改变上下文语境的函数。
+//context
+//            类型: PlainObject
+//            函数的上下文语境(this)会被设置成这个 object 对象。
+
+//            Example: 修改使用参数为"function, context"的jQuery.proxy()方法绑定的点击事件的上下文语境。并且在第一次点击事件执行后，解除原先的绑定。
+            var me = {
+                type: "zombie",
+                test: function (event) {
+                    /* Without proxy, `this` would refer to the event target */
+                    /* use event.target to reference that element. */
+                    var element = event.target;
+                    $(element).css("background-color", "red");
+
+                    /* With proxy, `this` refers to the me object encapsulating */
+                    /* this function. */
+                    $("#log").append("Hello " + this.type + "<br>");
+                    $("#test").unbind("click", this.test);
+                }
+            };
+
+            var you = {
+                type: "person",
+                test: function (event) {
+                    $("#log").append(this.type + " ");
+                }
+            };
+
+            /* execute you.test() in the context of the `you` object */
+            /* no matter where it is called */
+            /* i.e. the `this` keyword will refer to `you` */
+            var youClick = $.proxy(you.test, you);
+
+
+            /* attach click handlers to #test */
+            $("#test")
+
+                /* this === "zombie"; handler unbound after first click */
+                    .on("click", $.proxy(me.test, me))
+
+                /* this === "person" */
+                    .on("click", youClick)
+
+                /* this === "zombie" */
+                    .on("click", $.proxy(you.test, me))
+
+                /* this === "<button> element" */
+                    .on("click", you.test);
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <button type="button" id="test">Test</button>
+</p>
+
+<div id="log"></div>
+
+</body>
+</html>

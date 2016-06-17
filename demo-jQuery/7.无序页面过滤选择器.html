@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div4 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 300px;
+            background-color: slateblue;
+        }
+
+        #div5 {
+            width: 200px;
+            height: 200px;
+            position: absolute;
+            top: 0;
+            left: 600px;
+            background-color: slateblue;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("div p:first").css("background", "blue");//div里所有的p标签的第一个
+//            $("div p:last").css("background", "blue");//div里所有的p标签的最后一个
+//            $("div p:not('.a')").css("background","blue");//div里所有除了class是a的p标签
+//            $("#div2 p:not('.a')").css("background","blue");//#div2里所有的除了class=a的p标签
+
+            //！！！！！
+            // ':eq()' 只匹配一个元素，  ':nth-child '而这个将为每一个父元素匹配子元素。
+            // nth-child从1开始的，而:eq()是从0算起的！
+            //#div3的第二个子元素是p标签，所以设置为蓝色
+//            $("div p:nth-child(2)").css("background", "blue"); //父级是div里的第二个子元素是否为p标签，是p标签设置为蓝色
+
+            //索引从0开始,父级是div的所有的p标签
+//            $("div p:even").css("background","blue");//div里所有的p标签,下标为偶数的,0-2-4-6-8-10
+//            $("div p:odd").css("background","blue");//div里所有的p标签,下标为奇数的,1-3-5-7-9
+//            $("div p:eq(3)").css("background","blue");//div里所有的p标签,下标为3的,第4个p标签
+//            $("div p:gt(1)").css("background","blue");//div里所有的p标签,下标大于1，索引从2开始->(1,+)
+//            $("div p:lt(4)").css("background", "blue");//div里所有的p标签,下标小于4，索引从3开始->(-,4)
+
+            //:header 匹配如 h1, h2, h3~h6之类的标题元素
+//            $("div :header").css("background", "blue");//div里所有的标题元素（h1 - h6）
+
+            //运动至left=1000px,top=500px 时间为2000ms=2s //CSS:animation -> JQ:animate;
+//            $("#div4").animate({"left": "1000", "top": "500"}, 2000);
+//            $("#div5").animate({"left": "0", "top": "500"}, 2000);
+//            $("div:animated").css("background", "black");//animated->选中正在运动的元素  animate->animated
+        })
+    </script>
+</head>
+<body>
+<h2>这是body的第一个h2标签</h2>
+
+<p>这是body的第一个p标签</p>
+
+<div id="div1">
+    <p>这是div1的第一个p标签</p>
+
+    <h3>这是div1的第一个h3标签</h3>
+
+    <p class="a">这是div1的class=a的第二个p标签</p>
+</div>
+<div id="div2">
+    <p class="a">这是div2的class=a的第一个p标签</p>
+
+    <h3>这是div2的第一个h3标签</h3>
+
+    <p>这是div2的第二个p标签</p>
+
+    <p>这是div2的第三个p标签</p>
+
+    <h1>这是div2的第一个h1标签</h1>
+
+    <p class="a">这是div2的第四个的class=a的p标签</p>
+
+    <h5>这是div2的第一个h5标签</h5>
+
+    <p>这是div2的第五个p标签</p>
+</div>
+<div id="div3">
+    <h3>这是div3的第一个h3标签</h3>
+
+    <p>这是div3的第一个p标签</p>
+</div>
+<div id="div4">DIV4</div>
+<div id="div5">DIV5</div>
+<p>这是body的第二个p标签</p>
+</body>
+</html>

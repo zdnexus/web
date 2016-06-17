@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.noConflict( [removeAll ] )
+//            描述: 放弃jQuery控制$ 变量。
+
+//            jQuery.noConflict( [removeAll ] )
+//removeAll
+//            类型: Boolean
+//            一个布尔值，判断是否从全局作用域中内去除所有jQuery变量(包括jQuery本身)。
+
+//            调用$.noConflict(true) 将返回全局的jQuery变量给第一个版本。
+
+            $.noConflict();
+            jQuery(document).ready(function ($) {
+                // Code that uses jQuery's $ can follow here.
+            });
+            // Code that uses other library's $ can follow here.
+
+
+//            Example: 将$引用的对象映射回原始的对象。
+            jQuery.noConflict();
+// Do something with jQuery
+            jQuery("div p").hide();
+// Do something with another library's $()
+            $("content").style.display = 'none';
+
+//            Example: 恢复使用别名$，然后创建并执行一个函数，在这个函数的作用域中仍然将$作为jQuery的别名来使用。
+//            在这个函数中，原来的$对象是无效的。这个函数对于大多数不依赖于其他库的插件都十分有效。
+            jQuery.noConflict();
+            (function ($) {
+                $(function () {
+                    // more code using $ as alias to jQuery
+                });
+            })(jQuery);
+// other code using $ as an alias to the other library
+
+//            Example: 你可以通过jQuery.noConflict() ready约束为一小段代码
+            var j = jQuery.noConflict();
+// Do something with jQuery
+            j("div p").hide();
+// Do something with another library's $()
+            $("content").style.display = 'none';
+
+//            Example: 创建一个新的别名用以在接下来的库中使用jQuery对象。
+            var dom = {};
+            dom.query = jQuery.noConflict(true);
+// Do something with the new jQuery
+            dom.query("div p").hide();
+// Do something with another library's $()
+            $("content").style.display = 'none';
+// Do something with another version of jQuery
+            jQuery("div > p").hide();
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        data: {
+            a: 1
+        },
+//        created 钩子在实例创建后调用：
+        created: function () {
+            // `this` 指向 vm 实例
+            alert('a is: ' + this.a);
+            // -> "a is: 1"
+        }
+    });
+
+</script>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        .tab {
+            width: 300px;
+        }
+
+        .tab .tabNav {
+            width: 300px;
+            display: inline-table;
+            text-align: center;
+        }
+
+        .tabNav li {
+            width: 78px;
+            display: inline-block;
+            padding: 10px;
+            border: 1px solid #abc;
+            background: #eee;
+        }
+
+        /*.tab .tabNav {*/
+        /*width: 300px;*/
+        /*display: inline-table;*/
+        /*text-align: center;*/
+        /*}*/
+
+        /*.tabNav li {*/
+        /*width: 78px;*/
+        /*display: block;*/
+        /*padding: 10px;*/
+        /*border: 1px solid #abc;*/
+        /*float: left;*/
+        /*}*/
+        /*???下面出现空格???*/
+
+        .tabNav li.activeLi {
+            background: #5E5E5E;
+        }
+
+        .tab .tabContent div {
+            display: none;
+            width: 298px;
+            height: 298px;
+            background: #4b545f;
+            border: 1px solid black;
+        }
+
+        .tab div.activeDiv {
+            display: block;
+            background: #0ac2d2;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/zdnexus.js"></script>
+    <script>
+        $(function () {
+            $(".tab").tabChange({
+//                eventType_click:"mouseover"
+            }).css("color","green");//return $(this)->链式操作
+        })
+    </script>
+</head>
+<body>
+<div class="tab">
+    <ul class="tabNav">
+        <li class="activeLi">html</li>
+        <li>css</li>
+        <li>javascript</li>
+    </ul>
+    <div class="tabContent">
+        <div class="activeDiv">html</div>
+        <div>css</div>
+        <div>javascript</div>
+    </div>
+</div>
+</body>
+</html>

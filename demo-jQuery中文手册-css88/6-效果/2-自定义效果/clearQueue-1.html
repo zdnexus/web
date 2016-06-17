@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: green;
+            display: none;
+        }
+
+        div.newcolor {
+            background: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .clearQueue( [queueName ] )
+//            描述: 从列队中移除所有未执行的项。
+
+//            .clearQueue( [queueName ] )
+//            queueName
+//            类型: String
+//            一个含有队列名的字符串。默认是fx，标准的效果队列。
+
+//            当.clearQueue()方法被访问的时候，所有在这个列队中未执行的函数将被移除 。
+//            当不使用参数的时候，.clearQueue()会从标准的动画队列fx中移除剩下的函数。
+//            这个方法类似.stop(true)。然而.stop()方法只适用在动画中。
+//            .clearQueue()还可以用来移除用.queue()方法添加到普通jQuery列表的任何函数。
+
+            $("#start").click(function () {
+
+                var myDiv = $("div");
+
+                myDiv.show("slow");
+                myDiv.animate({left: "+=200"}, 5000);
+                myDiv.queue(function () {
+                    var _this = $(this);
+
+                    _this.addClass("newcolor");
+                    _this.dequeue();
+                });
+
+                myDiv.animate({left: "-=200"}, 1500);
+                myDiv.queue(function () {
+                    var _this = $(this);
+
+                    _this.removeClass("newcolor");
+                    _this.dequeue();
+                });
+                myDiv.slideUp();
+
+            });
+
+            $("#stop").click(function () {
+                var myDiv = $("div");
+
+                myDiv.clearQueue();
+                myDiv.stop();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="start">Start</button>
+<button id="stop">Stop</button>
+
+<div></div>
+
+</body>
+</html>

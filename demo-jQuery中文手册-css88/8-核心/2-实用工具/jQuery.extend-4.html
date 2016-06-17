@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var defaults = {validate: false, limit: 5, name: "foo"};
+            var options = {validate: true, name: "bar"};
+
+// Merge defaults and options, without modifying defaults
+//            目标对象（第一个参数）将被修改，并且将通过$.extend()返回。然而，如果我们想保留原对象，我们可以通过传递一个空对象作为目标对象：
+
+            var settings = $.extend({}, defaults, options);
+
+// Assuming JSON.stringify - not available in IE<8
+            $("#log").append("<div><b>defaults -- </b>" + JSON.stringify(defaults) + "</div>");
+            $("#log").append("<div><b>options -- </b>" + JSON.stringify(options) + "</div>");
+            $("#log").append("<div><b>settings -- </b>" + JSON.stringify(settings) + "</div>");
+        });
+    </script>
+</head>
+<body>
+
+<div id="log"></div>
+
+</body>
+</html>

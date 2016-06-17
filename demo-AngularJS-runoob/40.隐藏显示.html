@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <button ng-click="toggle();">隐藏/显示</button>
+
+    <div ng-show="myVar">
+        <p>名: <input type="text" ng-model="firstName"></p>
+
+        <p>姓: <input type="text" ng-model="lastName"></p>
+
+        <p>Full Name: {{firstName + " " + lastName}}</p>
+    </div>
+
+</div>
+
+</body>
+<script>
+
+    var app = angular.module("myApp", []);
+
+    app.controller("myCtrl", function ($scope) {
+        $scope.firstName = "John";
+        $scope.lastName = "Doe";
+        $scope.myVar = true;
+        $scope.toggle = function () {
+            $scope.myVar = !$scope.myVar;
+        }
+    })
+
+</script>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div.out { width:40%; height:120px; margin:0 15px;
+            background-color:#D6EDFC; float:left; }
+        div.in {  width:60%; height:60%;
+            background-color:#FFCC00; margin:10px auto; }
+        p { line-height:1em; margin:0; padding:0; }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var i = 0;
+
+            $("div.overout").mouseover(function() {
+                i += 1;
+                $(this).find("span").text( "mouse over x " + i );
+            }).mouseout(function(){
+                $(this).find("span").text("mouse out ");
+            });
+
+            var n = 0;
+
+            $("div.enterleave").mouseenter(function() {
+                n += 1;
+                $(this).find("span").text( "mouse enter x " + n );
+            }).mouseleave(function() {
+                $(this).find("span").text("mouse leave");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div class="out overout">
+    <span>move your mouse</span>
+
+    <div class="in">
+    </div>
+</div>
+
+<div class="out enterleave">
+    <span>move your mouse</span>
+
+    <div class="in">
+    </div>
+</div>
+
+</body>
+</html>

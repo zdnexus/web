@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .nth {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":nth-of-type(index/even/odd/equation)" )
+//            选择同属于一个父元素之下，并且标签名相同的子元素中的第n个。
+
+//            它选择的是匹配所有父元素下同类型中的第n个同级兄弟元素
+//            每个div中二级子元素中的第二个span
+            $("div span:nth-of-type(2)")
+                    .append("<span> is 2nd sibling span</span>")
+                    .addClass("nth");
+        })
+    </script>
+</head>
+<body>
+<div>
+    <span>John</span>,
+    <b>Kim</b>,
+    <span>Adam</span>,
+    <b>Rafael</b>,
+    <span>Oleg</span>
+</div>
+<div>
+    <b>Dave</b>,
+    <span>Ann</span>
+</div>
+<div>
+    <i><span>Maurice</span></i>,
+    <span>Richard</span>,
+    <span>Ralph</span>,
+    <span>Jason</span>
+</div>
+</body>
+</html>

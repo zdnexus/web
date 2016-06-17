@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            display: none;
+        }
+
+        div {
+            display: none;
+        }
+
+        p {
+            font-weight: bold;
+            background-color: #fcd;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        function doIt() {
+            $("span,div").show("slow");
+        }
+
+//        Example: 动画显示所有 span 和 input 元素。可以试着在下面的文本框中输入 yes 并按回车。
+        $(function () {
+            /* can pass in function name */
+            $("button").click(doIt);
+
+            $("form").submit(function () {
+                if ($("input").val() == "yes") {
+                    $("p").show(4000, function () {
+                        $(this).text("Ok, DONE! (now showing)");
+                    });
+                }
+                $("span,div").hide("fast");//为什么先运行这个函数？
+                /* to stop the submit */
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Do it!</button>
+
+<span>Are you sure? (type 'yes' if you are) </span>
+
+<div>
+    <form>
+        <input type="text" value="as;ldkfjalsdf"/>
+    </form>
+</div>
+
+<p style="display:none;">I'm hidden...</p>
+
+</body>
+</html>

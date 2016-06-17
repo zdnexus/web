@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.unique( array )
+//            描述: 删除数组中重复元素。只处理删除DOM元素数组，而不能处理字符串或者数字数组。
+
+//            jQuery.unique( array )
+//array
+//            类型: Array
+//            DOM元素的数组。
+
+//            如果一个节点和已经在数组中的节点完全相同，那么它被认为是重复的;  两个不同的节点具有相同的属性是被认为不重复的。
+
+            var divs = $("div").get(); // unique() must take a native array //6
+
+            // add 3 elements of class dup too (they are divs)
+            divs = divs.concat($(".dup").get());//$(".dup").get() = 3
+            $("div:eq(1)").text("Pre-unique there are " + divs.length + " elements.");
+
+            divs = jQuery.unique(divs);
+            $("div:eq(2)")
+                    .text("Post-unique there are " + divs.length + " elements.")
+                    .css("color", "red");
+        });
+    </script>
+</head>
+<body>
+
+<div>There are 6 divs in this document.</div>
+<div></div>
+<div class="dup"></div>
+<div class="dup"></div>
+<div class="dup"></div>
+<div></div>
+
+</body>
+</html>

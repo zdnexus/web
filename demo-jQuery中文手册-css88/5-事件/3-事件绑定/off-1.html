@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .off( events [, selector ] [, handler ] )
+//            移除一个事件处理函数。
+
+//            Example: 移除所有段落上的事件：
+            $("p").off()
+
+//            Example: R移除所有段落上的代理事件：
+            $("p").off( "click", "**" )
+
+//            Example: 通过传入的第三个参数，仅移除先前绑定的事件处理函数：
+            var foo = function () {
+                // code to handle some kind of event
+            };
+
+// ... now foo will be called when paragraphs are clicked ...
+            $("body").on("click", "p", foo);
+
+// ... foo will no longer be called.
+            $("body").off("click", "p", foo);
+
+//            Example: 通过指定名字空间，解除绑定表单上所有的代理事件：
+            var validate = function () {
+                // code to validate form entries
+            };
+
+// delegate events under the ".validator" namespace
+            $("form").on("click.validator", "button", validate);
+
+            $("form").on("keypress.validator", "input[type='text']", validate);
+
+// remove event handlers in the ".validator" namespace
+
+            $("form").off(".validator");
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

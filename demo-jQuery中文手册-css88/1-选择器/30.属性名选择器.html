@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//        jQuery( "[attribute]" )
+//        选择所有具有指定属性的元素，该属性可以是任何值。
+
+            $("div[id]").one("click", function () {
+                var idString = $(this).text() + " = " + $(this).attr("id");
+                $(this).text(idString);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>no id</div>
+<div id="hey">with id</div>
+<div id="there">has an id</div>
+<div>nope</div>
+</body>
+</html>

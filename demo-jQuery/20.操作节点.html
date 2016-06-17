@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <style>
+        .a {
+            width: 100px;
+            height: 100px;
+            background: saddlebrown;
+        }
+
+        .div1 {
+            background: brown;
+        }
+
+        .div2 {
+            background: aqua
+        }
+    </style>
+    <script>
+        $(function () {
+//            $("p").wrap("<div>111</div>");//每个p标签单独被div包裹
+
+//            $("p").wrapInner("<div>111</div>");//每个p标签里的内容被div包裹
+
+            //每个p标签单独被具体class的div包裹
+//            $("p").wrap(function () {
+//                return  "<div class='"+ $(this).html() +"'></div>"
+//            });
+
+//            $("p").wrapAll("<div></div>");//所有p标签被一个div包裹
+
+//            $("p").slice(0, 2).wrapAll("<div></div>");//#p1和#p2被div包裹
+//            $("p").filter("#p1,#p2").wrapAll("<div></div>");//#p1和#p2被div包裹
+//            $("#p1,#p2").wrapAll("<div></div>");//#p1和#p2被div包裹
+
+//            $("#p1,#p3").wrapAll("<div></div>");//#p1和#p3被div包裹,#p3被自动提上
+
+//            $("#p2").remove();//remove() 删除#p2
+
+//            $("#p2").empty();//empty() 清除#p2内容
+
+//            $("#p4").unwrap();//unwrap() 清除#p4父级元素
+
+            //clone(true)复制节点
+//            $("p").click(function () {
+//                alert($(this).html());
+//            });
+//            var newP = $("p").clone(true);//复制所有p标签的节点//默认值是false，true表示克隆值也有function.
+//            var newP = $("p").slice(0, 2).clone(true);//复制下标是0,1的p标签
+//            $("body").append(newP);
+
+//            $("#p2").replaceWith("<div class='a'>div标签</div>");//#p2替换成class=a的div
+//            $("<div class='a'>div标签</div>").replaceAll($("#p2"));//反写
+
+//            $("#p2").attr("title","t1");//添加style属性
+//            $("#p2").attr("class", "div1");//添加style->class属性
+//            $("#p2").removeAttr("class");//删除全部的class属性
+
+//            $("#p2").removeClass();//删除所有class
+//            $("#p2").removeClass("p");//只删除class中的class=p
+        });
+    </script>
+</head>
+<body>
+<p id="p1">我是第一个p标签</p>
+
+<p id="p2" class="p pp">我是第二个p标签</p>
+
+<p id="p3">我是第三个p标签</p>
+
+<div id="div1">
+    <p id="p4">我是div1里的第一个p标签</p>
+</div>
+</body>
+</html>

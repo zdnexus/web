@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+        p {
+            margin: 4px;
+            font-size: 16px;
+            font-weight: bolder;
+        }
+
+        .blue {
+            color: blue;
+        }
+
+        .under {
+            text-decoration: underline;
+        }
+
+        .highlight {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            从匹配的元素中移除所有样式类。
+
+            $("p:eq(1)").removeClass();
+        });
+    </script>
+</head>
+<body>
+<p class="blue under">Hello</p>
+
+<p class="blue under highlight">and</p>
+
+<p class="blue under">then</p>
+
+<p class="blue under">Goodbye</p>
+</body>
+</html>

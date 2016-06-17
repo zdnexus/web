@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+
+    <p>{{ message }}</p>
+
+    <!--VueJs中的value优先级比v-model高 和AngularJs相反-->
+    <!--带vue控制器直接写入data，没有vue控制器需要加{{ }}-->
+    <input type="text" value="3" v-model="message" maxlength="{{maxLength}}"/>
+
+    <input type="text" value="3" v-model="message" v-bind:maxlength="maxLength"/>
+    
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            message: 'nexus',
+            maxLength:6,
+        }
+    })
+
+</script>
+</html>

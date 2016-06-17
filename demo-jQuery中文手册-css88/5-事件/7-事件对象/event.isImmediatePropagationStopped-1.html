@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function immediatePropStopped(e) {
+            var msg = "";
+            if ( e.isImmediatePropagationStopped() ) {
+                msg =  "called"
+            } else {
+                msg = "not called";
+            }
+            $("#stop-log").append( "<div>" + msg + "</div>" );
+        }
+
+        $(function () {
+//            event.isImmediatePropagationStopped()
+//            描述: 根据事件对象中是否调用过 event.stopImmediatePropagation() 方法,来返回一个布尔值。
+//            用于阻止剩余的事件处理函数的执行，并防止当前事件在DOM树上冒泡。
+
+//            event.isImmediatePropagationStopped()
+//            这个方法不接受任何参数。
+
+//            检测 event.stopImmediatePropagation() 是否被调用过。
+            $("button").click(function(event) {
+                immediatePropStopped(event);
+                event.stopImmediatePropagation();
+                immediatePropStopped(event);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>click me</button>
+
+<div id="stop-log"></div>
+
+</body>
+</html>

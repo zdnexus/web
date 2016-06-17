@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .focus( handler(eventObject) )
+//            为 JavaScript 的 "focus" 事件绑定一个处理函数，或者触发元素上的 "focus" 事件。
+
+//            当一个元素获得焦点时，focus事件被触发。此事件起初适用于有限的元素，比如表单元素（<input>, <select>等）和链接元素（<a href>）。
+//            在最近版本的浏览器中，该事件可以扩展到所有包括通过显式设置tabindex属性的元素类型。
+//            一个元素可以通过键盘命令获得焦点，如Tab键，或按鼠标点击的元素。
+
+//            试图将焦点设置到一个隐藏的元素在Internet Explorer中导致错误。
+//            请注意，.focus()只能在可见元素上使用。
+//            要在一个元素执行focus事件却又不想让这个元素获取焦点的话， 请使用.triggerHandler("focus") 来代替 .focus()。
+
+            $("#target").focus(function() {
+                alert("Handler for .focus() called.");
+            });
+
+//            我们可以点击另一个元素触发这个事件：
+            $("#other").click(function() {
+                $("#target").focus();
+            });
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input id="target" type="text" value="Field 1" />
+    <input type="text" value="Field 2" />
+</form>
+<div id="other">
+    Trigger the handler
+</div>
+</body>
+</html>

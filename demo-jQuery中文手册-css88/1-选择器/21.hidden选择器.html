@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 70px;
+            height: 40px;
+            background: #ee77ff;
+            margin: 5px;
+            float: left;
+        }
+
+        span {
+            display: block;
+            clear: left;
+            color: red;
+        }
+
+        .starthidden {
+            display: none;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":hidden" )
+//            选择所有隐藏的元素。
+
+//            元素可以被认为是隐藏的几个情况：
+//            1.他们的CSS display值是none。
+//            2.他们是type="hidden"的表单元素。
+//            3.它们的宽度和高度都显式设置为0。
+//            4.一个祖先元素是隐藏的，因此该元素是不会在页面上显示。
+//            5.元素visibility: hidden或opacity: 0被认为是可见的，因为他们仍然占据布局空间。
+//            6.在动画，隐藏一个元素，该元素被认为是可见的直到动画结束。
+
+//            不在文档中的元素是被认为是不可见的;如果当他们被插入到文档中，jQuery没有办法知道他们是否是可见的，因为元素可见性依赖于适用的样式。
+
+//            在动画显示的元素期间，动画一旦开始，该元素就被认为是可见的。
+
+//            在jQuery 1.3.2中，:hidden判断方式做了修改。如果他或者其任何父级元素不占据布局空间，这个元素就被认为是隐藏的。
+//            CSS的能见度属性（visibility）不影响这个选择器的判断（因此$(elem).css('visibility','hidden').is(':hidden') == false ）。
+
+//            因为:hidden() 是一个 jQuery 延伸出来的一个选择器。 并且不是的CSS规范的一部分,
+//            使用:hidden()查询不能充分利用原生DOM提供的querySelectorAll()方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用.filter(":hidden")代替
+
+            alert($("body").children().filter(":hidden").length);//2 children只针对二级子元素
+
+            $("span:first").text("Found " + $("body").find(":hidden").length + " hidden elements total.");//5
+            $("div:hidden").show(3000);
+            $("span:last").text("Found " + $("input:hidden").length + " hidden inputs.");//3
+
+            alert($("body").children().filter(":hidden").length);//0 children只针对二级子元素
+            alert($("body").find(":hidden").not(".aaa").length);//2  find针对所有子元素,查找全部除了class为aaa的子元素
+        });
+    </script>
+</head>
+<body>
+<span></span>
+
+<div></div>
+<div style="display:none;">Hider!</div>
+<div></div>
+<div class="starthidden">Hider!</div>
+<div></div>
+<form>
+    <input type="hidden"/>
+    <input type="hidden"/>
+    <input type="hidden" class="aaa"/>
+</form>
+<span></span>
+</body>
+</html>

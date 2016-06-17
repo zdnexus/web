@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 100px;
+            height: 80px;
+            margin: 5px;
+            float: left;
+            background: #b9e;
+        }
+
+        span {
+            padding: 2px;
+            margin: 3px;
+            line-height: 1.4;
+            border: 1px solid #000;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":only-of-type" )
+//            选择所有没有兄弟元素，且具有相同的元素名称的元素。
+
+//      选择所有没有兄弟元素，且具有相同的元素名称的元素。子元素中唯一的元素
+
+            $("div button:only-of-type").text("Alone").css("border", "2px blue solid");
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button>Sibling!</button>
+    <button>Sibling!</button>
+</div>
+<div>
+    <button>Sibling!</button>
+</div>
+<div>
+    None
+</div>
+<div>
+    <button>Sibling!</button>
+    <span>Sibling!</span>
+    <span>Sibling!</span>
+</div>
+</body>
+</html>

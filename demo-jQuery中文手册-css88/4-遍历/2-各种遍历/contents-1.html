@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .contents()
+//            这个方法不接受任何参数
+//            获得匹配元素集合中每个元素的子元素，包括文字和注释节点。
+
+//            此代码首先检索<div class="container">的内容，然后过滤它的文本节点，并且将它被包裹在段落标记内。
+//            这是通过测试元素的.nodeType属性。这个DOM属性保存一个数字代码，以显示节点的类型;文本节点使用代码3。
+//            再次过滤的内容，这次是<br />元素，这些元素都将被删除。
+            $(".container").contents().filter(function () {
+                return this.nodeType == 3;
+            })
+                    .wrap("<p></p>")
+                    .end()
+                    .filter("br")
+                    .remove();
+        });
+    </script>
+</head>
+<body>
+<div class="container">
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed
+    do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    <br/><br/>
+    Ut enim ad minim veniam, quis nostrud exercitation ullamco
+    laboris nisi ut aliquip ex ea commodo consequat.
+    <br/><br/>
+    Duis aute irure dolor in reprehenderit in voluptate velit
+    esse cillum dolore eu fugiat nulla pariatur.
+</div>
+</body>
+</html>

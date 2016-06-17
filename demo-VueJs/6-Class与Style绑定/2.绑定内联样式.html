@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">123</div>
+    <div v-bind:style="styleObject">123</div>
+    <!--绑定多个style-->
+    <div v-bind:style="[styleObjectA , styleObjectB]">123</div>
+    <!--判断值来绑定多个style-->
+    <div v-bind:style="[isA ? styleObjectA : '' , isB ? styleObjectB : '']">123</div>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            activeColor: 'red',
+            fontSize: 30,
+
+            styleObject: {
+                color: 'blue',
+                fontSize: '20px',
+            },
+
+            isA: true,
+            isB: false,
+            styleObjectA: {
+                color: 'green',
+            },
+            styleObjectB: {
+                fontSize: '50px',
+            }
+        }
+    })
+
+</script>
+</html>

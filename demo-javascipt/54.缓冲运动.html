@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 50px;
+            left: 0;
+        }
+
+        #div2 {
+            width: 1px;
+            height: 400px;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBtn = document.getElementById('btn1');
+
+            oBtn.onclick = function () {
+                Start_Move(300);
+            }
+        }
+
+        var timer = null;
+        function Start_Move(Target) {
+            var oDiv = document.getElementById('div1');
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                var speed = (Target - oDiv.offsetLeft) / 30;//速度=（目标值-当前值）/系数    距离越短，速度越来越慢
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);//缓冲运动中速度一定要注意取整,不然不能运动到整px。
+
+                if (oDiv.offsetLeft == Target) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="开始运动"/>
+
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

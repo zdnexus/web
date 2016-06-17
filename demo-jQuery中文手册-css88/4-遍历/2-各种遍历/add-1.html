@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .add( selector )
+//            创建一个新的jQuery对象 ，元素添加到匹配的元素集合中。
+
+//            .add( elements )
+//            elements
+//            类型: Element
+//            一个或多个元素添加到匹配的元素集合。
+
+//            $("li")
+//                    .add("p")
+//                    .css("background-color", "red");
+
+//            $("li")
+//                    .add(document.getElementsByTagName("p")[0])
+//                    .css("background-color", "red");
+
+//            .add( html )
+//            html
+//            类型: HTML
+//            HTML片段添加到匹配的元素集合。
+
+//            $("li")
+//                    .add("<p id='new'>new paragraph</p>")
+//                    .css("background-color", "red");
+//            虽然已经创建新的段落，并且改变其背景颜色，但是它仍然没有出现在页面上。
+//            要想在页面上显示该段落，我们需要在链式方式中使用 jQuery 的插入方法。
+//            在jQuery 1.4结果从.add()将总是返回文档顺序（而不是一个简单的串联）。
+//            注意: 要使用.add()相反的方法， 您可以使用.not( elements | selector ) 从jQuery返回中移除元素， 或使用.end()返回到添加之前的选择（集合）。
+//            $("li")
+//                    .add("<p id='new'>new paragraph</p>")
+//                    .css("background-color", "red")
+//                    .not("li")
+//                    .appendTo(document.body);
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li>list item 3</li>
+</ul>
+<p>a paragraph</p>
+</body>
+</html>

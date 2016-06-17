@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .ajaxStop( handler() )返回: jQuery
+//            描述: 在AJAX 请求完成时执行一个处理函数。 这是一个 Ajax Event。
+
+//            .ajaxStop( handler() )
+//            handler()
+//            类型: Function()
+//            被调用的函数。
+
+//            每当一个Ajax请求完成，jQuery检查是否有任何其他响应过程中的Ajax请求（愚人码头注：未完成的请求）。
+//            如果都执行完成，jQuery就会触发ajaxStop事件，在这个时间点所有处理函数都会使用.ajaxStop()方法注册并执行。
+//            如果一个未处理完成的Ajax请求用beforeSend回调函数返回false取消，ajaxStop事件也被触发
+
+//            在Ajax请求停止后隐藏加载信息：
+            $(document).ajaxStop(function() {
+                $("span").text("123");
+            });
+
+            $("button").click(function () {
+                $.ajax({
+                    url: "/zd/1.php",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        name: $("input[name='user_name']").val()
+                    },
+                    success: function (data) {
+                        alert(data.name + " " + data.info);
+                    },
+                    error: function (data) {
+                        alert("发送失败!");
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" name="user_name">
+
+<button>提交</button>
+
+<span></span>
+
+</body>
+</html>

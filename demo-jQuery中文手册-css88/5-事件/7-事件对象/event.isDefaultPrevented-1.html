@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.isDefaultPrevented()
+//            描述: 根据事件对象中是否调用过 event.preventDefault() 方法,来返回一个布尔值。//检查默认事件行为是否触发
+
+//            event.isDefaultPrevented()
+//            这个方法不接受任何参数。
+
+            $("a").click(function(event){
+                alert( event.isDefaultPrevented() ); // false
+                event.preventDefault();//阻止了a标签的默认跳转事件
+                alert( event.isDefaultPrevented() ); // true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<a href="https://www.baidu.com">111</a>
+
+</body>
+</html>

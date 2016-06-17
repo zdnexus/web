@@ -1,0 +1,4 @@
+1.父级div是透明色的时候，子级div用margin分开布局。如果用父级padding不用子级margin，则导致内div加大没有透明色的。
+2.不要对子元素一起定高宽度，因为子元素可能自己有padding对自己尺寸加大。
+3.不能写table tr,th,td{} 要一个一个的写table tr{},table th{},table td{}
+4.

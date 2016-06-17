@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../css/public.css" rel="stylesheet" type="text/css"/>
+    <style>
+        /*无高度的父级元素靠子元素撑起，需要加伪元素，关键字:display: block 和 clear: both;*/
+        /*div里的ul宽度自动继承了父级div的宽度*/
+        .big {
+            width: 1000px;
+            background: red;
+        }
+
+        .left {
+            width: 500px;
+            height: 300px;
+            background: silver;
+            float: left;
+            z-index: 1;
+        }
+
+        .right {
+            width: 600px;
+            height: 400px;
+            background: saddlebrown;
+            float: right;
+            z-index: 1;
+        }
+
+        .clear {
+            zoom: 1;
+        }
+
+        .clear:after {
+            display: block;
+            clear: both;
+            content: "";
+            visibility: hidden;
+            height: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="big clear">
+    <div class="left"></div>
+    <div class="right"></div>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+</div>
+</body>
+</html>

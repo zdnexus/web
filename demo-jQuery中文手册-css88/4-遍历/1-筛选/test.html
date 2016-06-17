@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 16px;
+        }
+
+        ul {
+            float: left;
+            margin: 0 30px;
+            color: blue;
+        }
+
+        #results {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .map( callback(index, domElement) )
+
+//            A contrived example to show some functionality.
+            alert($("<li>").length);
+            var mappedItems = $("li").map(function (index) {
+
+//                if (index == 0) {
+//                    /* make the first item all caps */
+//                    $(replacement).text($(replacement).text().toUpperCase());
+//                } else if (index == 1 || index == 3) {
+//                    /* delete the second and fourth items */
+//                    replacement = null;
+//                } else if (index == 2) {
+//                    /* make two of the third item and add some text */
+//                    replacement = [replacement, $("<li>").get(0)];
+//                    $(replacement[0]).append("<b> - A</b>");
+//                    $(replacement[1]).append("Extra <b> - B</b>");
+//                }
+//
+//                /* replacement will be a dom element, null,
+//                 or an array of dom elements */
+//                return replacement;
+            });
+            $("#results").append(mappedItems);
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>First</li>
+    <li>Second</li>
+    <li>Third</li>
+    <li>Fourth</li>
+    <li>Fifth</li>
+</ul>
+
+<ul id="results">
+
+</ul>
+</body>
+</html>

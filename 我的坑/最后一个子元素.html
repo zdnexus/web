@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#div1 span:last-child").css({color: "red"});
+            $("#div1 span:first-child").css({color: "blue"});
+
+            $("#div2 span:last-of-type").css({color: "red"});
+            $("#div2 span:first-of-type").css({color: "blue"});
+        })
+    </script>
+</head>
+<body>
+
+<div id="div1">
+    <div>
+        <span>1</span>
+        <span>2</span>
+        <span>3</span>
+    </div>
+    <span>222</span>
+    <span>333</span>
+    <span>444</span>
+</div>
+
+<div id="div2">
+    <div>
+        <span>1111</span>
+        <span>2222</span>
+    </div>
+    <span>222</span>
+    <span>333</span>
+    <span>444</span>
+</div>
+
+
+</body>
+</html>

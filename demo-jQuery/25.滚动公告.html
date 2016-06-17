@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            setInterval(function () {
+                var newLi = $("#ul1 > li:first").clone(true);
+                $("#ul1>li:first").remove();
+                $("#ul1").append(newLi);
+            }, 1000);
+        })
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li>我是第一条公告</li>
+    <li>我是第二条公告</li>
+    <li>我是第三条公告</li>
+    <li>我是第四条公告</li>
+    <li>我是第五条公告</li>
+    <li>我是第六条公告</li>
+    <li>我是第七条公告</li>
+    <li>我是第八条公告</li>
+    <li>我是第九条公告</li>
+    <li>我是第十条公告</li>
+</ul>
+</body>
+</html>

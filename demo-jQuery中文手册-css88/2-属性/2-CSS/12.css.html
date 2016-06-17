@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 20px;
+            height: 15px;
+            background-color: #f33;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div").click(function () {
+                $(this).css({
+                    width: function (index, value) {
+                        return parseFloat(value) * 1.2;
+                    },
+                    height: function (index, value) {
+                        return parseFloat(value) * 1.2;
+                    }
+
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<div>click</div>
+<div>click</div>
+</body>
+</html>

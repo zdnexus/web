@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+    body {background-color: #eef; }
+div { padding: 20px; }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.pageX, event.pageY
+//            描述: 鼠标相对于文档的位置（坐标）。
+
+            $(document).bind("mousemove",function(e){
+                $("#log").text("e.pageX: " + e.pageX + ", e.pageY: " + e.pageY);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="log"></div>
+
+</body>
+</html>

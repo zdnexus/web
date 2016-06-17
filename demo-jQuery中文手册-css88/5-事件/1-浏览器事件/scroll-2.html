@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        p {
+            color: green;
+        }
+
+        span {
+            color: red;
+            display: none;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .scroll( handler(eventObject) )
+//            handler(eventObject)
+//            类型: Function()
+//            每次事件触发时会执行的函数。
+
+//            在页面滚动时触发一系列动作：
+            $("p").clone().appendTo(document.body);
+            $("p").clone().appendTo(document.body);
+            $("p").clone().appendTo(document.body);
+            $(window).scroll(function () {
+                $("span").css("display", "inline").fadeOut("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+<div>Try scrolling the iframe.</div>
+
+<p>Paragraph - <span>Scroll happened!</span></p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .block {
+        background-color: #abc;
+        border: 2px solid black;
+        width: 200px;
+        height: 80px;
+        margin: 10px;
+    }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            点击 slideToggle 按钮，会开始动画。然后在动画结束前再次点击该按钮，此时，会立刻从当前位置向反方向开始动画。
+            var $block = $(".block");
+            /* Toggle a sliding animation animation */
+            $("#toggle").on("click", function() {
+                $block.stop().slideToggle(1000);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="toggle">slideToggle</button>
+
+<div class="block"></div>
+
+</body>
+</html>

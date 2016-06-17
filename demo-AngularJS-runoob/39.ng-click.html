@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <button ng-click="count = count + 1">点我！</button>
+
+    <button ng-click="numPlus(count,1)">点我！</button>
+
+    <p>{{ count }}</p>
+
+</div>
+
+</body>
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function ($scope) {
+        $scope.count = 0;
+
+        $scope.numPlus = function (x, k) {
+            $scope.count = x + k;
+        };
+    });
+
+</script>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 过滤出数组中值大于 0 的元素。
+            $.grep([0, 1, 2], function (n, i) {
+                return n > 0;
+            });
+//            Result:[1, 2]
+
+//invert
+//            Type: Boolean
+//            如果“invert”为false，或没有提供，函数返回一个“callback”中返回true的所有元素组成的数组。
+//            如果“invert”为true，函数返回一个“callback”中返回false的所有元素组成的数组。
+
+//            Example: 过滤出数组中值不大于 0 的元素。
+            $.grep([0, 1, 2], function (n, i) {
+                return n > 0;
+            }, true);
+//            Result:[0]
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

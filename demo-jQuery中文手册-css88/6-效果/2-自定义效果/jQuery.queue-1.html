@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 40px;
+            height: 40px;
+            position: absolute;
+            left: 0px;
+            top: 30px;
+            background: green;
+            display: none;
+        }
+
+        div.newcolor {
+            background: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        function runIt() {
+            $("div").show("slow");
+            $("div").animate({left: '+=200'}, 2000);
+            $("div").slideToggle(1000);
+            $("div").slideToggle("fast");
+            $("div").animate({left: '-=200'}, 1500);
+            $("div").hide("slow");
+            $("div").show(1200);
+            $("div").slideUp("normal", runIt);
+        }
+
+        $(function () {
+//            jQuery.queue( element [, queueName ] )
+//            描述: 显示在匹配的元素上的已经执行的函数列队。
+//            注意： 这是一个底层的方法，你应该用.queue()代替。
+
+            $("#show").click(function () {
+                var n = jQuery.queue($("div")[0], "fx");
+                $("span").text("Queue length is: " + n.length);
+            });
+
+            runIt();
+        });
+    </script>
+</head>
+<body>
+
+<button id="show">Show Length of Queue</button>
+
+<span></span>
+
+<div></div>
+
+</body>
+</html>

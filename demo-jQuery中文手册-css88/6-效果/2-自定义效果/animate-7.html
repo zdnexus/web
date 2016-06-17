@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background-color: #bca;
+            width: 200px;
+            height: 1.1em;
+            text-align: center;
+            border: 2px solid green;
+            margin: 3px;
+            font-size: 14px;
+        }
+
+        button {
+            font-size: 14px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//queue (default: true)
+//            Type: Boolean or String
+//            一个布尔值，指示是否将动画放置在效果队列中。如果为false时，将立即开始动画。
+//            从jQuery1.7开始，队列选项也可以接受一个字符串，在这种情况下，在动画被添加到由该字符串表示的队列中。
+//            当一个自定义的队列名称被使用，动画不会自动启动;你必须调用.dequeue("queuename")来启动它。
+
+//            Example: 第一个按钮要执行的动画中，使用了 queue: false 选项，
+//            该动画使元素的宽度扩大到了总宽 90%,并且 文字大小也变大了。一旦字体大小改变完了，边框的动画就会开始。
+//            第二个按钮要执行的动画中，包含了一系列动画，当前一个动画完成时，后一个动画就会开始。
+            $("#go1").click(function () {
+                $("#block1").animate({width: "90%"}, {queue: false, duration: 3000})
+                        .animate({fontSize: "24px"}, 1500)
+                        .animate({borderRightWidth: "15px"}, 1500);
+            });
+
+            $("#go2").click(function () {
+                $("#block2").animate({width: "90%"}, 1000)
+                        .animate({fontSize: "24px"}, 1000)
+                        .animate({borderRightWidth: "15px"}, 1000);
+            });
+
+            $("#go3").click(function () {
+                $("#go1").add("#go2").click();
+            });
+
+            $("#go4").click(function () {
+                $("div").css({width: "", fontSize: "", borderWidth: ""});
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="go1">&raquo; Animate Block1</button>
+<button id="go2">&raquo; Animate Block2</button>
+<button id="go3">&raquo; Animate Both</button>
+<button id="go4">&raquo; Reset</button>
+
+<div id="block1">Block1</div>
+<div id="block2">Block2</div>
+
+</body>
+</html>

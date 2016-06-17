@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":root" )
+//            选择该文档的根元素。
+
+//            在HTML中，文档的根元素，和$(":root")选择的元素一样， 永远是<html>元素。
+            $("<b></b>").html($(":root")[0].nodeName).appendTo("#log");//appendTo() 内部添加
+
+//            $("<b></b>").html($(":root").map(function(){
+//                return this.nodeName;
+//            }).get()).appendTo("#log");//appendTo() 内部添加
+        });
+    </script>
+</head>
+<body>
+<div id="log">The root of this document is:</div>
+</body>
+</html>

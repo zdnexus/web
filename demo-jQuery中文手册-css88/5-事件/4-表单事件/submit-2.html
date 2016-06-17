@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 0;
+            color: blue;
+        }
+
+        div, p {
+            margin-left: 10px;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            如果你想根据一个标识来阻止表单被提交的话，可以像下面这样做：
+            $("form").submit(function () {
+                if ($("input:first").val() == "correct") {
+                    $("span")
+                            .text("Validated...")
+                            .show();
+
+                    return true;
+                }
+                $("span")
+                        .text("Not valid!")
+                        .show()
+                        .fadeOut(1000);
+
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Type 'correct' to validate.</p>
+
+<form action="javascript:alert('success!');">
+    <div>
+        <input type="text"/>
+
+        <input type="submit"/>
+    </div>
+</form>
+
+<span></span>
+</body>
+</html>

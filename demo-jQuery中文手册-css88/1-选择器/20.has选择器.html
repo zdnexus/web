@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p{
+            color:blue;
+        }
+
+        .test {
+            border: 3px solid red;
+        }
+
+        .test2{
+            background:#0ac2d2;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":has(selector)" )
+//            选择元素其中至少包含指定选择器匹配的一个种元素。
+
+//            如果表达式 $('div:has(p)') 匹配一个 <div>，那么应有一个<p>存在于 <div> 后代元素中的任何地方，不是直接的子元素也可以。
+
+//            因为 :has() 是一个 jQuery 延伸出来的一个选择器 。并且不是的CSS规范的一部分,
+//            使用:has()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用$("your-pure-css-selector").has(selector/DOMElement) 代替。
+
+            $("div:has(p)").addClass("test test2");
+//            $("div").has("p").addClass("test test2");
+        });
+    </script>
+</head>
+<body>
+<div><p>Hello in a paragraph</p></div>
+
+<div>Hello again! (with no paragraph)</div>
+</body>
+</html>

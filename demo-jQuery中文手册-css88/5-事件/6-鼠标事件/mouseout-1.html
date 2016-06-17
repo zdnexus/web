@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .mouseout( handler(eventObject) )
+//            描述: 为 JavaScript 的 "mouseout" 事件绑定一个处理函数，或者触发元素上的该事件。（愚人码头注：支持事件冒泡）
+
+            $('#outer').mouseout(function() {
+                $('#log').append('<div>Handler for .mouseout() called.</div>');
+            });
+
+            $('#other').click(function() {
+                $('#outer').mouseout();
+//                $('#outer').triangle('mouseout');
+            });
+
+//            .mouseout()方法只是作为.on( "mouseout", handler )的一个速记写法，移除该事件可以使用.off( "mouseout" )。
+            $('#other').on('mouseout',function(){
+                $('#log').append('<div>Handler for .mouseout() called.</div>');
+            });
+//            $('#other').off('mouseout');
+        });
+    </script>
+</head>
+<body>
+
+<div id="outer">
+    Outer
+    <div id="inner">
+        Inner
+    </div>
+</div>
+
+<div id="other">
+    Trigger the handler
+</div>
+<div id="log"></div>
+
+</body>
+</html>

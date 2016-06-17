@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.get( [settings] )
+//            描述: 使用一个HTTP GET请求从服务器加载数据。
+
+//            jQuery.get( url [, data ] [, success(data, textStatus, jqXHR) ] [, dataType ] )
+//url
+//            类型: String
+//            一个包含发送请求的URL字符串
+//data
+//            类型: PlainObject, String
+//            发送给服务器的字符串或Key/value键值对。
+//success(data, textStatus, jqXHR)
+//            类型: Function()
+//            当请求成功后执行的回调函数。 如果提供dataType选项，那么这个success选项是必须的， 但你可以使用null或jQuery.noop作为占位符。
+//dataType
+//            类型: String
+//            从服务器返回的预期的数据类型。默认：智能猜测（xml, json, script, 或 html）。
+
+//            默认为get
+//            $.get({
+//                url: url,
+//                data: data,
+//                success: success,
+//                dataType: dataType
+//            });
+
+            $.get("/zd/1.php", function (data) {
+                $("#div1").html(data);
+            });
+
+//            Example: 请求 test.php 页面, 但是忽略返回结果.
+            $.get("test.php");
+
+//            Example: 请求 test.php 页面 并且发送url参数(虽然仍然忽视返回的结果)。
+            $.get("test.php", {name: "John", time: "2pm"});
+
+//            Example: 传递数组形式data参数给服务器 (虽然仍然忽视返回的结果).
+            $.get("test.php", {'choices[]': ["Jon", "Susan"]});
+
+//            Example: Alert 从 test.php请求的数据结果 (HTML 或者 XML,取决于返回的结果).
+            $.get("test.php", function (data) {
+                alert("Data Loaded: " + data);
+            });
+
+//            Example: Alert 从 test.cgi请求并且发送url参数的数据结果 (HTML 或者 XML,取决于返回的结果).
+            $.get("test.cgi", {name: "John", time: "2pm"},
+                    function (data) {
+                        alert("Data Loaded: " + data);
+                    });
+
+//            Example: 获取test.php的页面已返回的JSON格式的内容 (<?php echo json_encode(array("name"=>"John","time"=>"2pm")); ?>), 并且加到页面中.
+            $.get("test.php",
+                    function (data) {
+                        $('body').append("Name: " + data.name) // John
+                                .append("Time: " + data.time); //  2pm
+                    }, "json");
+        });
+    </script>
+</head>
+<body>
+
+<div id="div1"></div>
+
+</body>
+</html>

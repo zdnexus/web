@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //JQ的attr()有bug
+            //全选
+            $("#chkAll").click(function () {
+//                $("input[type='checkbox']").attr("checked","checked");
+                $("input[type='checkbox']").prop("checked", true);//check是bool值
+            });
+
+            //全不选
+            $("#chkNone").click(function () {
+//                $("input[type='checkbox']").removeAttr("checked");
+                $("input[type='checkbox']").prop("checked", false);
+            });
+
+            //反选
+            $("#chkReverse").click(function () {
+                $("input[type='checkbox']").each(function () {
+                    $(this).prop("checked", !$(this).prop("checked"));
+                });
+            });
+        })
+    </script>
+</head>
+<body>
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<input type="checkbox">
+<br>
+<input type="button" id="chkAll" value="全选">
+<input type="button" id="chkNone" value="不选">
+<input type="button" id="chkReverse" value="反选">
+</body>
+</html>

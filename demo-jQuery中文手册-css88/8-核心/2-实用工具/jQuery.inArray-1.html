@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.inArray( value, array [, fromIndex ] )
+//            描述: 在数组中查找指定值并返回它的索引（如果没有找到，则返回-1）。
+
+//            jQuery.inArray( value, array [, fromIndex ] )
+//value
+//            类型: Anything
+//            要查找的值。
+//array
+//            类型: Array
+//            一个数组，通过它来查找。
+//fromIndex
+//            类型: Number
+//            数组索引值，表示从哪里在开始查找。默认值是0，这将查找整个数组。
+
+//            返回数组中指定元素的索引值。
+            var arr = [4, "Pete", 8, "John"];
+            var $spans = $("span");
+
+            $spans.eq(0).text(jQuery.inArray("John", arr));
+            $spans.eq(1).text(jQuery.inArray(4, arr));
+            $spans.eq(2).text(jQuery.inArray("Karl", arr));//-1
+            $spans.eq(3).text(jQuery.inArray("Pete", arr, 2));//-1
+        });
+    </script>
+</head>
+<body>
+
+<div>"John" found at <span></span></div>
+<div>4 found at <span></span></div>
+<div>"Karl" not found, so <span></span></div>
+<div>"Pete" is in the array, but not at or after index 2, so <span></span></div>
+
+</body>
+</html>

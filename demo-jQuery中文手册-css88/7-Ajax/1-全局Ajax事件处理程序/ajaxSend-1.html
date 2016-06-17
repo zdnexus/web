@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .ajaxSend( handler(event, jqXHR, ajaxOptions) )
+//            描述: 在Ajax请求发送之前绑定一个要执行的函数，这是一个 Ajax Event.
+
+//            .ajaxSend( handler(event, jqXHR, ajaxOptions) )
+//            handler(event, jqXHR, ajaxOptions)
+//            类型: Function()
+//            被调用的函数。
+
+//            每当一个Ajax请求即将发送，jQuery就会触发ajaxSend事件，在这个时间点所有处理函数都会使用.ajaxSend()方法注册并执行。
+
+//            当Ajax请求即将发送前显示一个信息。
+            $(document).ajaxSend(function (event, request, settings) {
+//                通过查看request.responseText获取返回的AJAX内容。
+//                settings.url为连接url的接口
+                $("body").append( "<li>Starting request at " + settings.url + "</li>" );
+            });
+
+            $("button").click(function () {
+                $.ajax({
+                    url: "/zd/1.php",
+                    type: "POST",
+                    dataType: "json",
+                    data: {
+                        name: $("input[name='user_name']").val()
+                    },
+                    success: function (data) {
+                        alert(data.name + " " + data.info);
+                    },
+                    error: function (data) {
+                        alert("发送失败!");
+                    }
+                })
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input type="text" name="user_name">
+
+<button>提交</button>
+
+</body>
+</html>

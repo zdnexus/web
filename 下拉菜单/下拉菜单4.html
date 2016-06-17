@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        body {
+            width: 100%;
+            height: 100%;
+            position: fixed;
+            background: #063d4c;
+            box-shadow: inset 0 0 150px rgba(0, 0, 0, 0.5);
+        }
+
+        @-webkit-keyframes animation {
+            0% {
+                background: #bdedfa
+            }
+            100% {
+                background: #063d4c
+            }
+        }
+
+        @-moz-keyframes animation {
+            0% {
+                background: #bdedfa
+            }
+            100% {
+                background: #063d4c
+            }
+        }
+
+        @-ms-keyframes animation {
+            0% {
+                background: #bdedfa
+            }
+            100% {
+                background: #063d4c
+            }
+        }
+
+        @-o-keyframes animation {
+            0% {
+                background: #bdedfa
+            }
+            100% {
+                background: #063d4c
+            }
+        }
+
+        @keyframes animation {
+            0% {
+                background: #bdedfa
+            }
+            100% {
+                background: #063d4c
+            }
+        }
+
+        #nav-header {
+            font: 15px 'Gudea', sans-serif normal;
+            margin: 50px auto;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        #nav-header ul {
+            display: inline-table;
+            position: relative;
+            -webkit-transition: all 0.2s linear;
+            -moz-transition: all 0.2s linear;
+            -o-transition: all 0.2s linear;
+            transition: all 0.2s linear;
+        }
+
+        #nav-header ul li {
+            float: left;
+            background: #565656;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 1px 2px rgba(0, 0, 0, 0.3), inset -1px 0 0 rgba(255, 255, 255, 0.1), inset 1px 0 0 rgba(0, 0, 0, 0.2);
+            text-transform: uppercase;
+            -webkit-transition: box-shadow, background 0.2s linear;
+            -moz-transition: box-shadow, background 0.2s linear;
+            -o-transition: box-shadow, background 0.2s linear;
+            transition: box-shadow, background 0.2s linear;
+        }
+
+        #nav-header ul li:first-child {
+            border-radius: 10px 0 0 10px;
+        }
+
+        #nav-header ul li:last-child {
+            border-radius: 0 10px 10px 0;
+        }
+
+        #nav-header ul li:hover {
+            background: #063d4c;
+            -webkit-animation: animation 0.5s 1;
+            -moz-animation: animation 0.5s 1;
+            -o-animation: animation 0.5s 1;
+            animation: animation 0.5s 1;
+        }
+
+        #nav-header ul li a {
+            display: block;
+            padding: 10px;
+            color: white;
+        }
+
+        #nav-header ul li:active {
+            background: #05303c;
+            box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.1), inset 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        #nav-header ul li:active a {
+            padding: 11px 10px 9px 10px
+        }
+    </style>
+</head>
+<body>
+<nav id="nav-header">
+    <ul>
+        <li><a href="#">First Item</a></li>
+        <li><a href="#">Second Item</a></li>
+        <li><a href="#">Third Item</a></li>
+    </ul>
+</nav>
+</body>
+</html>

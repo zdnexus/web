@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px solid blue;
+        }
+
+        p {
+            background: yellow;
+            margin: 4px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .unwrap() 这个方法不接受任何参数。
+//            将匹配元素集合的父级元素删除，保留自身（和兄弟元素，如果存在）在原来的位置。
+
+            var pTags = $("p");
+            $("button").click(function () {
+                if (pTags.parent().is("div")) {
+                    pTags.unwrap();
+                } else {
+                    pTags.wrap("<div></div>");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<button>wrap/unwrap</button>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+</body>
+</html>

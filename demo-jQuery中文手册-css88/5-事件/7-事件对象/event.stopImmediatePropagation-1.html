@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            height: 30px;
+            width: 150px;
+            background-color: #ccf;
+        }
+
+        div {
+            height: 30px;
+            width: 150px;
+            background-color: #cfc;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.stopImmediatePropagation()
+//            描述: 阻止剩余的事件处理函数执行并且防止事件冒泡到DOM树上。
+
+//            event.stopImmediatePropagation()
+//            这个方法不接受任何参数。
+
+//            使用 event.isImmediatePropagationStopped() 来确定这个方法是否(在那个事件对象上)调用过了。
+
+            $("p").click(function (event) {
+                event.stopImmediatePropagation();//阻止剩余事件和冒泡
+            });
+
+            $("p").click(function (event) {
+                // This function won't be executed
+                $(this).css("background-color", "#f00");
+            });
+
+            $("div").click(function (event) {
+                // This function will be executed
+                $(this).css("background-color", "#f00");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>paragraph</p>
+
+<div>division</div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var isFormParent = $("input[type='checkbox']").parent().is("form");
+
+            $("div").text("isFormParent = " + isFormParent);
+        });
+    </script>
+</head>
+<body>
+<form><p><input type="checkbox"/></p></form>
+<div></div>
+</body>
+</html>

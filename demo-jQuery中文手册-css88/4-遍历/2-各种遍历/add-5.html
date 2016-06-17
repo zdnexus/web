@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .add( elements )
+//            elements
+//            类型: Element
+//            一个或多个元素添加到匹配的元素集合。
+
+//            向匹配的元素集合中添加一些元素对象。
+            $("p").add(document.getElementById("a")).css("background-color", "yellow");
+
+
+//            .add( jQuery object )
+//            jQuery object
+//            类型: jQuery object
+//            一个现有的jQuery对象添加到匹配的元素集合。
+            
+//            $("p").add($("#a")).css("background-color", "yellow");
+//            $("p").add("#a").css("background-color", "yellow");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+<span id="a">Hello Again</span>
+</body>
+</html>

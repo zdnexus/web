@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $.holdReady(true);
+        $.getScript("/zd/js/jss.js", function () {
+            $.holdReady(false);//false表示不运行holdReady函数了，直接运行$.ready();你不信改true来试试？
+        });
+        $(function () {
+            alertSm();
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oTxt1 = document.getElementById("txt1");
+            var oTxt2 = document.getElementById("txt2");
+            var oTxt3 = document.getElementById("txt3");
+            var oBtn1 = document.getElementById("btn1");
+
+            oBtn1.onclick = function () {
+                if (isNaN(oTxt1.value) || isNaN(oTxt2.value)) {//非数字返回NaN
+                    alert("您输入的数字有错误");
+                }
+                else {
+                    oTxt3.value = parseInt(oTxt1.value) + parseInt(oTxt2.value);//parseInt（）转化为int
+                    alert(typeof oTxt3.value);//弹出oTxt3.value的数据类型 string
+                }
+            };
+
+            var a = 12;
+            alert(typeof  a);//number
+
+            a = "123";
+            alert(typeof  a);//string
+
+            a = true;
+            alert(typeof  a);//boolean
+
+            a = function () {
+            };
+            alert(typeof  a);//function
+
+            var b;
+            alert(typeof  b);//undefined
+
+            alert(typeof  c);//undefined
+        };
+    </script>
+</head>
+<body>
+<input id="txt1" type="text"/>
+<input id="txt2" type="text"/>
+<input id="btn1" type="button" value="求和"/>
+<input id="txt3" type="text"/>
+</body>

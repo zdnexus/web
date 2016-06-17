@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.which
+//            描述: 针对键盘和鼠标事件，这个属性能确定你到底按的是哪个键。
+
+//            Example: 记录按键
+            $("#whichkey").bind("keydown", function (e) {
+                $("#log").html(e.type + ": " + e.which);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input id="whichkey" value="type something">
+
+<div id="log"></div>
+
+</body>
+</html>

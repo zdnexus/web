@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #table1 {
+            width: 600px;
+            text-align: center;
+            border-collapse: collapse;
+            z-index: 1;
+        }
+
+        #table1, tr, th, td {
+            border: 1px solid #abc;
+        }
+
+        #table1 th, td {
+            height: 50px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                var iSearch = $("input[type='text']").val();
+//                $("#table1 tr:contains(" + iSearch + ")").css("background", "red");
+                $("#table1 tr:not(:first)").hide().filter(":contains(" + iSearch + ")").show();
+            })
+        })
+    </script>
+</head>
+<body>
+<table id="table1">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>职位</th>
+        <th>工资</th>
+        <th>操作</th>
+    </tr>
+    <tr>
+        <td>钟东</td>
+        <td>21</td>
+        <td>web前端工程师</td>
+        <td>5000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>胡典文</td>
+        <td>22</td>
+        <td>java工程师</td>
+        <td>2000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>杨凯</td>
+        <td>23</td>
+        <td>php前端工程师</td>
+        <td>15000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>周阳</td>
+        <td>24</td>
+        <td>web设计师</td>
+        <td>13000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+    <tr>
+        <td>李腾</td>
+        <td>25</td>
+        <td>搬砖大工头</td>
+        <td>11000</td>
+        <td><a href="#" class="view">查看</a> <a href="#" class="del">删除</a> <a href="#" class="revise">修改</a></td>
+    </tr>
+</table>
+<input type="text">
+<input type="button" id="search" value="搜索">
+</body>
+</html>

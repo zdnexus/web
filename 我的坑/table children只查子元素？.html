@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            //children() 只选择改元素的子元素，没有孙元素
+
+//            alert($("table tr").length);
+            $("table tr").css("background","red");
+
+
+//            alert($("table").children("tr").length);
+//            $("table").children("tr").css("background","red");
+
+//            alert($("table").children().length);
+//            $("table").children("tbody").children("tr").css("background","red");
+
+
+//            $("div").children("p").css("background","red");
+        })
+    </script>
+</head>
+<body>
+<table>
+    <tr>
+        <th>111</th>
+        <th>222</th>
+        <th>333</th>
+    </tr>
+    <tr>
+        <td>333</td>
+        <td>333</td>
+        <td>333</td>
+        <td>333</td>
+    </tr>
+    <tr>
+        <td>333</td>
+        <td>333</td>
+        <td>333</td>
+        <td>333</td>
+    </tr>
+</table>
+<div>
+    <p>123</p>
+</div>
+</body>
+</html>

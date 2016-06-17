@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style></style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("div p:first").css("background", "blue");//div里所有的p标签的第一个
+//            $("div p:last").css("background", "blue");//div里所有的p标签的最后一个
+//            $("div p:not('.a')").css("background","blue");//div里所有除了class是a的p标签
+//            $("#div3 p:not('.a')").css("background","blue");//#div3里所有除了class=a的p标签
+
+            // ':eq()' 只匹配一个元素，  ':nth-child '而这个将为每一个父元素匹配子元素。
+            // nth-child从1开始的，而:eq()是从0算起的！
+//            $("div p:nth-child(2)").css("background", "blue"); //每个父元素是div的第二个p标签
+
+            //索引从0开始,父级是div的所有的p标签
+//            $("div p:even").css("background","blue");//div里所有的p标签,下标为偶数的,0-2-4-6-8-10
+//            $("div p:odd").css("background","blue");//div里所有的p标签,下标为奇数的,1-3-5-7-9
+//            $("div p:eq(3)").css("background","blue");//div里所有的p标签,下标为3的,第4个p标签
+//            $("div p:gt(1)").css("background","blue");//div里所有的p标签,下标大于1，索引从2开始->(1,+)
+//            $("div p:lt(4)").css("background", "blue");//div里所有的p标签,下标小于4，索引从3开始->(-,4)
+        })
+    </script>
+</head>
+<body>
+<div id="div1">
+    <p>这是div1的第一个p标签</p>
+    <p class="a">这是div1的class=a的第二个p标签</p>
+</div>
+<div id="div2">
+    <p class="a">这是div2的class=a的第一个p标签</p>
+
+    <p>这是div2的第二个p标签</p>
+
+    <p>这是div2的第三个p标签</p>
+
+    <p class="a">这是div2的class=a的第四个p标签</p>
+
+    <p>这是div2的第四个p标签</p>
+</div>
+<div id="div3">
+    <p>这是div3的第一个p标签</p>
+    <p class="a">这是div3的class=a的第二个p标签</p>
+    <p>这是div3的第二个p标签</p>
+</div>
+</body>
+</html>

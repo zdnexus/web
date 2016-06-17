@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<span id="span1">Visit Microsoft!</span>
+
+</body>
+<script>
+
+    var dom = document.getElementById('span1');
+    var str = dom.innerHTML;
+
+    console.log(str);
+    str = str.replace(/Microsoft/, '<span style="color:green;">W3School</span>');
+    console.log(str);
+    dom.innerHTML = str;
+
+</script>
+</html>

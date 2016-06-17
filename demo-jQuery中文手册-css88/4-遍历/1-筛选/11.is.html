@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .is( element )
+//            element
+//            类型: Element
+//            个用于匹配元素的DOM元素。
+
+//            返回true，因为input的父级是一个表单的元素。
+            var isFormParent = $("input[type='checkbox']").parent().is("form");
+
+            $("div").text("isFormParent = " + isFormParent);
+        });
+    </script>
+</head>
+<body>
+<form><input type="checkbox"/></form>
+<div></div>
+</body>
+</html>

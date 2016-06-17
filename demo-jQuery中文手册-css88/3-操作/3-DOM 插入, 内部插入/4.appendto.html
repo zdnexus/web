@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            将所有的 span 插入到 ID 为 "foo" 的元素内的末尾。
+            $("span").appendTo("#foo");
+        });
+    </script>
+</head>
+<body>
+<span>I have nothing more to say... </span>
+
+<div id="foo">FOO!</div>
+</body>
+</html>

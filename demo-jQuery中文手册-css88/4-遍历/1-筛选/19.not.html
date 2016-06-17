@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .not( selector )
+//            从匹配的元素集合中移除指定的元素。
+
+//            .not( selector )
+//            selector
+//            类型: Selector
+//            一个用于匹配元素的选择器字符串。
+
+            $("li").not(":even").css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

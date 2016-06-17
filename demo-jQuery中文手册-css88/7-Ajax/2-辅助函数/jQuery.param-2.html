@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var params = {
+                width: 1680,
+                height: 1050
+            };
+            var str = jQuery.param(params);
+
+            $("#results").text(str);
+        });
+    </script>
+</head>
+<body>
+
+<div id="results"></div>
+
+</body>
+</html>

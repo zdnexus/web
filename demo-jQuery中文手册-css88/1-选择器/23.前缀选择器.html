@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        a {
+            display: inline-block;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "[attribute|='value']" )
+//            选择指定属性值等于给定字符串或以该字符串为前缀（该字符串后跟一个连字符“-” ）的元素。
+
+            $("a[hreflang|='en']").css('border', '3px solid green');
+        });
+    </script>
+</head>
+<body>
+<a href="example.html" hreflang="en">Some text</a>
+
+<a href="example.html" hreflang="en-UK">Some other text</a>
+
+<a href="example.html" hreflang="en~UK">Some other text</a>
+
+<a href="example.html" hreflang="en*UK">Some other text</a>
+
+<a href="example.html" hreflang="english">will not be outlined</a>
+</body>
+</html>

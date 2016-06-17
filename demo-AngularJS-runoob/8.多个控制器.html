@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+
+        <p>名: <input type="text" ng-model="firstName"></p>
+
+        <p>姓: <input type="text" ng-model="lastName"></p>
+
+        <p>姓名: <span ng-bind="firstName + ' ' + lastName"></span></p>
+
+    </div>
+
+    <div ng-controller="herCtrl">
+
+        <p>名: <input type="text" ng-model="firstName"></p>
+
+        <p>姓: <input type="text" ng-model="lastName"></p>
+
+        <p>姓名: <span ng-bind="firstName + ' ' + lastName"></span></p>
+
+    </div>
+
+</div>
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+//    各个控制器的私有变量,各自有自己的领域,互不影响
+    app.controller('myCtrl', function ($scope) {
+        $scope.firstName = "zhong";
+        $scope.lastName = "dong";
+    });
+
+    app.controller('herCtrl', function ($scope) {
+        $scope.firstName = "niang";
+        $scope.lastName = "ying";
+    });
+
+</script>
+
+</body>
+</html>

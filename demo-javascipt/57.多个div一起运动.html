@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+            margin: 10px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var aDiv = document.getElementsByTagName('div');
+
+            for (var i = 0; i < aDiv.length; ++i) {
+                aDiv[i].timer = null;
+                aDiv[i].onmouseover = function () {
+                    Start_Move(this, 400);
+                };
+                aDiv[i].onmouseout = function () {
+                    Start_Move(this, 100);
+                };
+            }
+        };
+
+        function Start_Move(obj, Target) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                var speed = (Target - obj.offsetWidth) / 5;
+                speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
+                if (obj.offsetWidth == Target) {
+                    clearInterval(obj.timer);
+                }
+                else {
+                    obj.style.width = obj.offsetWidth + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

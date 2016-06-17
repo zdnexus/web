@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div, span {
+            width: 80px;
+            height: 80px;
+            margin: 5px;
+            background-color: #bbffaa;
+            font-size: 14px;
+            float: left;
+        }
+
+        #small {
+            width: 60px;
+            height: 25px;
+            font-size: 12px;
+            background-color: #fab;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "prev ~ siblings" )
+//            匹配 “prev” 元素之后的所有siblings兄弟元素。具有相同的父元素，并匹配过滤“siblings”选择器。
+
+//            (prev + next) 和 (prev ~ siblings)之间最值得注意的不同点是他们各自的可及之范围。前者只达到紧随的同级元素，后者扩展了该达到跟随其的所有同级元素。
+
+            $("#prev ~ div").css("border", "3px solid blue");
+        });
+    </script>
+</head>
+<body>
+<div>div (doesn't match since before #prev)</div>
+<span id="prev">span#prev</span>
+
+<div>div sibling</div>
+
+<div>div sibling
+    <div id="small">div niece</div>
+</div>
+<span>span sibling (not div)</span>
+
+<div>div sibling</div>
+</body>
+</html>

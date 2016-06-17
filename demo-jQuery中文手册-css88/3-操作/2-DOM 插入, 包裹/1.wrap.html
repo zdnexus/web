@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px solid blue;
+        }
+
+        p {
+            background: yellow;
+            margin: 4px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            在集合中匹配的每个元素周围包裹一个HTML结构。
+
+//            .wrap()函数可以接受任何字符串或对象，可以传递给$()工厂函数来指定一个DOM结构。
+//            这种结构可以嵌套了好几层深，但应该只包含一个核心的元素。每个匹配的元素都会被这种结构包裹
+//            。该方法返回原始的元素集，以便之后使用链式方法。
+
+            $("p").wrap("<div></div>");
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+</body>
+</html>

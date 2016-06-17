@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .nextAll( [selector ] )
+//            类型: String
+//            一个字符串，其中包含一个选择器表达式针对匹配元素。
+
+//            获得每个匹配元素集合中所有下面的同辈元素，选择性筛选的选择器。
+
+//            如果一个jQuery对象代表了一组DOM元素，.nextAll()方法允许我们在DOM树上遍历所有元素的后继元素，并且构建一个新的匹配元素的jQuery对象。
+            $("li.third-item").nextAll().css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li class="third-item">list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

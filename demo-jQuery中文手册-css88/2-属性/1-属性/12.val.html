@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#single").val("Single2");
+            $("#multiple").val(["Multiple2", "Multiple3"]);
+            $("input").val(["check1", "check2", "radio1"]);
+        });
+    </script>
+</head>
+<body>
+<select id="single">
+    <option>Single</option>
+    <option>Single2</option>
+</select>
+
+<select id="multiple" multiple="multiple">
+    <option selected="selected">Multiple</option>
+    <option>Multiple2</option>
+    <option selected="selected">Multiple3</option>
+</select>
+
+<br/>
+
+<input type="checkbox" name="checkboxname" value="check1"/> check1
+<input type="checkbox" name="checkboxname" value="check2"/> check2
+<input type="radio" name="r" value="radio1"/> radio1
+<input type="radio" name="r" value="radio2"/> radio2
+</body>
+</html>

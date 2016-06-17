@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 16px;
+            font-weight: bolder;
+        }
+
+        p {
+            margin: 5px 0;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .children( [selector ] )
+//            selector
+//            类型: Selector
+//            一个用于匹配元素的选择器字符串。
+
+//            查找含有 "selected" 样式的 div 的所有子元素。
+            $("div").children(".selected").css("color", "blue");
+        });
+    </script>
+</head>
+<body>
+<div>
+    <span>Hello</span>
+
+    <p class="selected">Hello Again</p>
+
+    <div class="selected">And Again</div>
+
+    <p>And One Last Time</p>
+</div>
+</body>
+</html>

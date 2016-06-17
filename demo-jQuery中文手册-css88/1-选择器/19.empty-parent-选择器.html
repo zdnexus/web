@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":empty" )
+//            选择所有没有子元素的元素（包括文本节点）。
+
+//            jQuery( ":parent" )
+//            选择所有含有子元素或者文本的父级元素。
+
+//            需要注意的一件重要的事情是:empty(和 :parent)的子元素包括文本节点。
+
+//            因为:parent :empty 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:parent :empty查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":parent") .filter(":empty")
+
+            $("table td:parent").append("Was parent!").css("background", "#911efe");
+//            $("table td").filter(":parent").append("Was parent!").css("background", "#911efe");
+            $("table td:empty").text("Was empty!").css("background", "rgb(255,220,200)");
+//            $("table td").filter(":empty").text("Was empty!").css("background", "rgb(255,220,200)");
+        });
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>TD #0</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>TD #2</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>TD#5</td>
+    </tr>
+</table>
+</body>
+</html>

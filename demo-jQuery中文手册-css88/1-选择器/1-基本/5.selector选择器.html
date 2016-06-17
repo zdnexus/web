@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div, span, p {
+            width: 126px;
+            height: 60px;
+            padding: 3px;
+            margin: 2px;
+            font-size: 14px;
+            background-color: #EEEEEE;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            将每一个选择器匹配到的元素合并后一起返回。
+
+//            jQuery( "selector1, selector2, selectorN" )
+//            这个多个表达组合是一种有效的方法来选择不同的元素。
+
+//            Example: 查找任何匹配下面三个选择器的元素。
+            $("div , span , p.myClass").css("border", "3px solid red");
+
+//            map()返回各自的tagName
+//            map(callback)为包装集中的每一个元素调用回调函数，并将返回值收集到jQuery对象的实例中
+            var list = $("div , p , span").map(function () {
+                return this.tagName;
+            }).get().join(", ");
+            $("body").append("<b>" + list + "</b><br/>");
+
+//            each(iterator)遍历匹配集里所有的元素，为每一个元素调用传入的迭代函数
+            var list = $("div , p , span").each(function () {
+                return this.tagName;
+            }).get().join(", ");
+            $("body").append("<b>" + list + "</b><br/>");
+
+//            使用 AJAX 的 GET 请求来改变 div 元素的文本：
+//            join() 方法用于把数组中的所有元素放入一个字符串。
+        });
+    </script>
+</head>
+<body>
+
+<div>DIV</div>
+
+<p class="myClass">P1 class="myClass"</p>
+
+<p class="notMyClass">P2 class="notMyClass"</p>
+
+<span>span</span>
+
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    <div ng-repeat="my in myWelcome">
+        {{my}}
+    </div>
+</div>
+
+</body>
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope, $http) {
+        $http.get("/zd/demo-php/2.php").then(function (res) {
+            console.log(res);
+
+            $scope.myWelcome = res.data;
+        });
+    });
+
+</script>
+</html>

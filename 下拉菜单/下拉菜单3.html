@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #nav-header {
+            font: 15px 'microsoft yahei', sans-serif normal;
+            background: #222;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        #nav-header ul {
+            position: relative;
+        }
+
+        #nav-header ul li {
+            position: relative;
+            -webkit-transition: padding .05s linear;
+            -moz-transition: padding .05s linear;
+            -o-transition: padding .05s linear;
+            transition: padding .05s linear;
+        }
+
+        #nav-header ul > li {
+            display: inline-block;
+            /*display: inline-block === float:left*/
+        }
+
+        #nav-header ul li a {
+            display: block;
+            padding: 20px 10px;
+            color: #777;
+            -webkit-transition: all .1s ease-out;
+            -moz-transition: all .1s ease-out;
+            -o-transition: all .1s ease-out;
+            transition: all .1s ease-out;
+        }
+
+        #nav-header ul li:hover > a {
+            color: #eee;
+        }
+
+        #nav-header ul li .dropdownContain {
+            width: 160px;
+            position: absolute;
+            left: 50%;
+            top: -500px;
+            margin-left: -80px; /* half of width */
+            z-index: 2;
+        }
+
+        #nav-header ul li .dropdownContain .triangle {
+            width: 0;
+            height: 0;
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            margin-left: -8px;
+            border-left: 8px solid transparent;
+            border-right: 8px solid transparent;
+            border-bottom: 8px solid white;
+        }
+
+        #nav-header ul li .dropdownContain .dropOut {
+            background: white;
+            opacity: 0;
+            border-radius: 5px;
+            box-shadow: 1px 1px 5px rgba(0, 0, 0, .15);
+            -webkit-transition: all .1s ease-out;
+            -moz-transition: all .1s ease-out;
+            -o-transition: all .1s ease-out;
+            transition: all .1s ease-out;
+        }
+
+        #nav-header ul li:hover .dropdownContain {
+            top: 60px;
+        }
+
+        #nav-header ul li:hover .dropdownContain .dropOut {
+            opacity: 1;
+        }
+
+        #nav-header ul li .dropdownContain .dropOut ul {
+            padding: 10px 0;
+        }
+
+        #nav-header ul li .dropdownContain .dropOut ul li {
+            display: block;
+            float: none;
+            width: 125px;
+            padding: 12px 0 10px 15px;
+            margin: 0 10px;
+            color: #777;
+            border-radius: 5px;
+            text-align: left;
+            -webkit-transition: background .1s ease-out;
+            -moz-transition: background .1s ease-out;
+            -o-transition: background .1s ease-out;
+            transition: background .1s ease-out;
+        }
+
+        #nav-header ul li .dropdownContain .dropOut ul li:hover {
+            background: #f6f6f6;
+        }
+
+        #nav-header ul li .dropdownContain .dropOut ul li:hover {
+            border-bottom-color: #000;
+        }
+    </style>
+</head>
+<body>
+<nav id="nav-header">
+    <ul>
+        <li><a href="#">View</a></li>
+        <li class="drop">
+            <a href="#">You</a>
+
+            <div class="dropdownContain">
+                <div class="triangle"></div>
+                <div class="dropOut">
+                    <ul>
+                        <li>Plan</li>
+                        <li>Account Settings</li>
+                        <li>Switch Account</li>
+                        <li>Sign Out</li>
+                        <li>Test Media</li>
+                    </ul>
+                </div>
+            </div>
+
+        </li>
+        <li><a href="#">Help</a></li>
+    </ul>
+</nav>
+</body>
+</html>

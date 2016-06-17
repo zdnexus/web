@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<div ng-init="myVar = 'http://www.runoob.com'">
+    <h1>菜鸟教程</h1>
+    <p>访问 <a ng-href="{{myVar}}">{{myVar}}</a> 学习!</p>
+</div>
+
+<p>该实例可以使用了原生的 href 属性，但在 AngularJS 中， ng-href 属性更安全。</p>
+
+</body>
+</html>

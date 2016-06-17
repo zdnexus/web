@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #nav-header {
+            font: 15px 'microsoft yahei', sans-serif normal;
+            margin: 30px auto;
+            text-align: center;
+            white-space: nowrap;
+            text-transform: uppercase;
+        }
+
+        #nav-header ul {
+            display: inline-table;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #nav-header ul li {
+            float: left;
+        }
+
+        #nav-header ul li a,
+        #nav-header ul li a:after {
+            display: block;
+            position: relative;
+            padding: 15px 40px;
+            color: white;
+            background: #900;
+            background: -webkit-linear-gradient(top, #900 0%, #6A0808 50%, #620303 50%, #6A0808 100%);
+            background: -moz-linear-gradient(top, #900 0%, #6A0808 50%, #620303 50%, #6A0808 100%);
+            background: -ms-linear-gradient(top, #900 0%, #6A0808 50%, #620303 50%, #6A0808 100%);
+            background: -o-linear-gradient(top, #900 0%, #6A0808 50%, #620303 50%, #6A0808 100%);
+            background: linear-gradient(top, #900 0%, #6A0808 50%, #620303 50%, #6A0808 100%);
+            box-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.1);
+            -webkit-transition: all 0.3s ease-in-out;
+            -moz-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        #nav-header ul li a:after {
+            content: attr(data-base);
+            position: absolute;
+            top: 100%;
+            left: 0;
+            color: #333;
+            background: white;
+            background: -webkit-linear-gradient(top, #ddd, white);
+            background: -moz-linear-gradient(top, #ddd, white);
+            background: -o-linear-gradient(top, #ddd, white);
+            background: -ms-linear-gradient(#ddd, white);
+            background: linear-gradient(top, #ddd, white);
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        /*为什么要加border-top: 1px 和 margin-bottom: 1px？？？*/
+        #nav-header ul li a:hover {
+            margin-top: -50px;
+            margin-bottom: 1px;
+        }
+    </style>
+</head>
+<body>
+<nav id="nav-header">
+    <ul>
+        <li><a href="#" data-base="Home">Home</a></li>
+        <li><a href="#" data-base="About">About</a></li>
+        <li><a href="#" data-base="Portfolio">Portfolio</a></li>
+        <li><a href="#" data-base="Comments">Comments</a></li>
+        <li><a href="#" data-base="Contact">Contact</a></li>
+    </ul>
+</nav>
+</body>
+</html>

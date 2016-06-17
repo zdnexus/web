@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .show()
+//            这个方法不接受任何参数。
+
+            $("#p1").click(function () {
+                $("#p2").show();
+            });
+
+//            .show( [duration ] [, complete ] )
+//            duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//            complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+            $('#clickme').click(function () {
+                $('#book').show('slow', function () {
+                    alert("Animation complete.");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p id="p1">111</p>
+
+<p id="p2" style="display: none;">222</p>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="../../images/0.jpg" alt="" width="100" height="123" style="display: none"/>
+
+</body>
+</html>

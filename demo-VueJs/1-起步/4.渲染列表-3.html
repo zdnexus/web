@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <ul>
+        <li v-for="todo in todos">
+            <span style="color:#d2346e;" v-if="todo.dataType" v-text="todo.dataType"></span>
+            <i v-if="todo.message" v-text="todo.message.title"></i>
+            <b v-if="todo.message" v-text="todo.message.content"></b>
+        </li>
+    </ul>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            todos: [
+                {
+                    dataType: 'false',
+                    message:
+                    {
+                        title: 'Learn',
+                        content: 'AngularJs'
+                    }
+                },
+                {
+                    dataType: 'true',
+                    message:
+                    {
+                        title: 'Learn',
+                        content: 'VueJs'
+                    }
+                },
+                {
+                    dataType: false,
+                    message:
+                    {
+                        title: 'Learn',
+                        content: 'ReactJs'
+                    }
+                },
+            ]
+        }
+    });
+
+</script>
+</html>

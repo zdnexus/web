@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            /*IE兼容性*/
+            filter: alpha(opacity:30);
+            /*其他兼容性*/
+            opacity: 0.3;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            oDiv.onmouseover = function () {
+                Start_Move(100);
+            };
+            oDiv.onmouseout = function () {
+                Start_Move(30);
+            };
+        };
+
+        var timer = null;
+        var alpha = 30;//因为没有offsetfilter和offsetopacity，用temp代替，再替换原有透明度。
+        function Start_Move(Target) {
+            var oDiv = document.getElementById('div1');
+            var speed = 0;
+            if (alpha < Target) {
+                speed = 10;
+            }
+            else {
+                speed = -10;
+            }
+
+            clearInterval(timer);
+            timer = setInterval(function () {
+                if (alpha == Target) {
+                    clearInterval(timer);
+                }
+                else {
+                    alpha += speed;
+                    oDiv.style.filter = 'alpha(opacity:' + alpha + ')';
+                    oDiv.style.opacity = alpha / 100;
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

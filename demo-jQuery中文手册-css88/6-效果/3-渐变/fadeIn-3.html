@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            position: relative;
+            width: 400px;
+            height: 90px;
+        }
+
+        div {
+            position: absolute;
+            width: 400px;
+            height: 65px;
+            font-size: 36px;
+            text-align: center;
+            color: yellow;
+            background: red;
+            padding-top: 25px;
+            top: 0;
+            left: 0;
+            display: none;
+        }
+
+        span {
+            display: none;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: Fades a red block in over the text. Once the animation is done, it quickly fades in more text on top.
+            $("a").click(function () {
+                $("div").fadeIn(3000, function () {
+                    $("span").fadeIn(100);
+                });
+
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    Let it be known that the party of the first part
+    and the party of the second part are henceforth
+    and hereto directed to assess the allegations
+    for factual correctness... (<a href="#">click!</a>)
+</p>
+
+<div><span>CENSORED!</span></div>
+
+</body>
+</html>

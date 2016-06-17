@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            在所有的段落内的尾部，追加一个 jQuery 对象（类似于一个 DOM 元素数组）。
+            $("p").append($("strong"));
+        });
+    </script>
+</head>
+<body>
+<strong>Hello world!!!</strong>
+
+<p>I would like to say: </p>
+</body>
+</html>

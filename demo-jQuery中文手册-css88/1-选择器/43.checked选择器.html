@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":checked" )
+//            匹配所有勾选的元素。
+
+//            这个 :checked 选择器适用于复选框和单选框。对于下拉框元素, 使用 :selected 选择器。
+
+            var countChecked = function () {
+                var n = $("input:checked").length;
+                $("div").text(n + (n === 1 ? " is" : " are") + " checked!");
+            };
+            countChecked();
+
+            $("input[type='checkbox']").on("click", countChecked);
+        })
+    </script>
+</head>
+<body>
+<form>
+    <p>
+        <input type="checkbox" name="newsletter" value="Hourly" checked="checked">
+        <input type="checkbox" name="newsletter" value="Daily">
+        <input type="checkbox" name="newsletter" value="Weekly">
+        <input type="checkbox" name="newsletter" value="Monthly" checked>
+        <input type="checkbox" name="newsletter" value="Yearly">
+    </p>
+</form>
+<div></div>
+</body>
+</html>

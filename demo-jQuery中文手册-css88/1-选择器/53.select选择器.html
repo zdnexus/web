@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":selected" )
+//            获取 select 元素中所有被选中的元素。
+
+//            :selected 选择器只为适用于为<option>元素。它不适用复选框和单选框，复选框和单选框请使用:checked。
+
+//            因为:selected 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            用:selected 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了当使用:selected 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":selected")代替.
+
+
+//            change():一个元素的值改变的时候将触发change事件。
+//            此事件仅限用于<input>元素，<textarea>和<select>元素。
+//            对于下拉选择框，复选框和单选按钮，当用户用鼠标作出选择，该事件立即触发，
+//            但对于其他类型的input元素，该事件触发将推迟，直到元素失去焦点才会触点。
+//            trigger():手动触动
+
+            $("select").change(function () {
+                var str = "";
+                $("select option:selected").each(function () {
+                    str += $(this).text() + " ";
+                });
+//                $("select option").filter(":selected").each(function () {
+//                    str += $(this).text() + " ";
+//                });
+
+                $("div").text(str);
+            }).trigger('change');
+        });
+    </script>
+</head>
+<body>
+<select name="garden" multiple="multiple">
+    <option>Flowers</option>
+    <option selected="selected">Shrubs</option>
+    <option>Trees</option>
+    <option selected="selected">Bushes</option>
+    <option>Grass</option>
+    <option>Dirt</option>
+</select>
+
+<div></div>
+</body>
+</html>

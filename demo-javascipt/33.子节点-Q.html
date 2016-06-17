@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--children  or  childNodes?-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        ul li {
+            margin: 5px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oUl = document.getElementById("ul1");//对ull的子节点操作，
+
+//            oUl.childNodes.length = oUl.children.length
+            for (var i = 0; i < oUl.childNodes.length; ++i) {
+                //nodeType=3  ->  文本节点
+                //nodeType=1  ->  元素节点
+                if (oUl.childNodes[i].nodeType == 1) {
+                    oUl.childNodes[i].style.background = "red";//获取子节点检查是否为元素节点
+                }
+            }
+
+            for (var i = 0; i < oUl.children.length; ++i) {//children只选择元素节点
+                oUl.children[i].style.background = "green";
+            }
+        }
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

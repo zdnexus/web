@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 50px;
+            height: 70px;
+            float: left;
+            margin: 5px;
+            background: rgb(255, 140, 0);
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div").one("click", function () {
+                $(this).height(30)
+                        .css({cursor: "auto", backgroundColor: "green"});
+            });
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

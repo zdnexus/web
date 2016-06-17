@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.globalEval( code )
+//            描述: 在全局上下文下执行一些JavaScript代码。
+
+//            jQuery.globalEval( code )
+//code
+//            类型: String
+//            用来执行的JavaScript代码。
+
+//            此方法的表现不同于正常使用的JavaScript eval()，因为它是在全局上下文下执行（这对加载外部动态脚本很重要）。
+//            在全局上下文中执行脚本。
+            function test(){
+                jQuery.globalEval("var newVar = true;")
+            }
+            test();
+            // newVar === true
+
+
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

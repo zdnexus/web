@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 80px;
+            height: 80px;
+            margin: 0 5px;
+            border: 1px solid #AAA;
+            background-color: yellow;
+            float: left;
+        }
+
+        div.color-green {
+            background-color: green;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        function animateIt(obj) {
+//            利用回调函数让obj无限次运行slideToggle函数
+//            使用slideToggle注意margin-top=0
+            obj.slideToggle("slow", function(){
+                animateIt($(this));
+            });
+        }
+
+        $(function () {
+//            jQuery( ":animated" )
+//            选择所有正在执行动画效果的元素.
+
+//            如果您使用一个自定义的jQuery绑定一个没有效果模块， :animated选择器会抛出一个错误。
+
+//            因为:animated 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:animated 查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了当使用:animated 的时候在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":animated").
+
+            animateIt($("#mover2"));
+            $("#run").click(function () {
+                $("div:animated").toggleClass("color-green");
+//                $("div").filter(":animated").toggleClass("color-green");
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="mover1"></div>
+<div id="mover2"></div>
+<div id="mover3"></div>
+<button id="run">Run</button>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        #div1{
+            position: absolute;
+            display: block;
+        }
+
+        #div1 img{
+            width: 100px;
+            /*vertical-align: middle*/
+            /*什么鬼*/
+            /*vertical-align: -webkit-baseline-middle;*/
+        }
+
+        #div1 img:last-of-type {
+            width: 5%;
+        }
+    </style>
+</head>
+<body>
+<div id="div1">
+    <img src="../images/0.jpg" style="vertical-align: middle;">
+    <img src="../images/0.jpg" style="vertical-align: middle;">
+    <img src="../images/0.jpg" style="vertical-align: middle;">
+    <img src="../images/0.jpg" style="vertical-align: middle;">
+    <img src="../images/0.jpg" style="vertical-align: middle;">
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<img src="../images/0.jpg" width="500" style="vertical-align: middle">123
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+
+<div class="buttons">
+    <img src="../images/0.jpg" height="100"style="margin-right: 8px;vertical-align: middle;" ng-click="optEvent()">
+    <img src="../images/0.jpg" height="300"style="margin-right: 8px;vertical-align: middle;" ng-click="optEvent()">
+</div>
+
+</body>
+</html>

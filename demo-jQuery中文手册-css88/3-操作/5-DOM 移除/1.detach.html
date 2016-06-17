@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+            margin: 6px 0;
+        }
+
+        p.off {
+            background: black;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .detach( [selector ] )
+//            从DOM中去掉所有匹配的元素。
+//            .detach() 方法和.remove()一样, 除了 .detach()保存所有jQuery数据和被移走的元素相关联。当需要移走一个元素，不久又将该元素插入DOM时，这种方法很有用。
+            $("p").click(function () {
+                $(this).toggleClass("off");
+            });
+
+            var p = null;
+            $("button").click(function () {
+                if (p) {
+                    p.appendTo("body");
+                    p = null;
+                } else {
+                    p = $("p").detach();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+how are
+<p>you?</p>
+<button>Attach/detach paragraphs</button>
+</body>
+</html>

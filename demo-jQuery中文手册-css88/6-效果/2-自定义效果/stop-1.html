@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .stop( [clearQueue ] [, jumpToEnd ] )
+//            描述: 停止匹配元素当前正在运行的动画。
+
+            $("#hoverme").hover(function () {
+                $(this).find("img").stop(true, true).fadeOut();
+            }, function () {
+                $(this).find("img").stop(true, true).fadeIn();
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="hoverme">
+    Hover me
+    <img src="/zd/images/0.jpg" alt="" width="100" height="123"/>
+</div>
+
+</body>
+</html>

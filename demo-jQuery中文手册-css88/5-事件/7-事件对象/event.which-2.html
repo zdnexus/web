@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("#whichkey").bind("mousedown",function(e){
+                $("#log").html(e.type + ": " +  e.which );
+            });
+        });
+    </script>
+</head>
+<body>
+
+<input id="whichkey" value="type something">
+
+<div id="log"></div>
+
+</body>
+</html>

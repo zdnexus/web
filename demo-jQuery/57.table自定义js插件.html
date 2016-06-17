@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #table1 {
+            width: 500px;
+            height: 300px;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        #table1, tr, th, td {
+            border: 1px solid #fff;
+        }
+
+        tr {
+            background: #abc;
+        }
+
+        .evenRow {
+            background: #38a;
+        }
+
+        .oddRow {
+            background: #190;
+        }
+
+        .currentRow {
+            background: yellow;
+        }
+
+        .evenRow2 {
+            background: #98a;
+        }
+
+        .oddRow2 {
+            background: #55a;
+        }
+
+        .currentRow2 {
+            background: #81a;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/zdnexus.js"></script>
+    <script>
+        $(function () {
+            $("table").tableChangeColor({
+                evenRowClass: "evenRow2",
+                oddRowClass: "oddRow2",
+                currentRowClass: "currentRow2",
+//                eventType_mouseover:"click"//eventType_mouseover被覆盖为click
+            });
+        });
+    </script>
+</head>
+<body>
+<table id="table1">
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>身高</th>
+        <th>体重</th>
+    </tr>
+    <tr>
+        <td>张三</td>
+        <td>22</td>
+        <td>177</td>
+        <td>67KG</td>
+    </tr>
+    <tr>
+        <td>李四</td>
+        <td>23</td>
+        <td>163</td>
+        <td>54KG</td>
+    </tr>
+    <tr>
+        <td>王五</td>
+        <td>21</td>
+        <td>173</td>
+        <td>57KG</td>
+    </tr>
+</table>
+</body>
+</html>

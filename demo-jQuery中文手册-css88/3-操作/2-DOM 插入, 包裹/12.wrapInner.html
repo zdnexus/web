@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: #9f9;
+        }
+
+        .red {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").wrapInner($("<span class='red'></span>"));
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+</body>
+</html>

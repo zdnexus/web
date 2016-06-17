@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 3px;
+            width: 50px;
+            position: absolute;
+            height: 50px;
+            left: 10px;
+            top: 30px;
+            background-color: yellow;
+        }
+
+        div.red {
+            background-color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .dequeue( [queueName ] )
+//            描述: 执行匹配元素队列的下一个函数。
+
+//            .dequeue( [queueName ] )
+//            queueName
+//            类型: String
+//            一个含有队列名的字符串。默认是fx，标准的效果队列。
+
+            $("button").click(function () {
+                $("div").animate({left: '+=200px'}, 2000);
+                $("div").animate({top: '0px'}, 600);
+                $("div").queue(function () {
+                    $(this).toggleClass("red");
+                    $(this).dequeue();
+                });
+                $("div").animate({left: '10px', top: '30px'}, 700);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Start</button>
+
+<div></div>
+
+</body>
+</html>

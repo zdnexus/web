@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: relative;
+            height: 30px;
+            overflow: hidden;
+        }
+
+        #div1 ul {
+            position: absolute;
+        }
+
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/zdnexus.js"></script>
+    <script>
+        //        $(function(){
+        //            alert($("#ul1").css("color"));
+        //        })
+
+        $("#div1").myScroll();
+    </script>
+</head>
+<body>
+<div id="div1">
+    <ul id="ul1" style="color: red;">
+        <li>111</li>
+        <li>222</li>
+        <li>333</li>
+        <li>333</li>
+        <li>333</li>
+    </ul>
+</div>
+</body>
+</html>

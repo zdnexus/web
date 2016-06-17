@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        p.over {
+            background: #ccc;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            点击任何一个段落时，就在它后面追加一个段落。注意，
+//            .on() 会为任何段落添加事件，包括新生成的段落，因为当事件冒泡到已经存在的 body 元素上时，就会触发绑定的事件。
+            var count = 0;
+            $("body").on("click", "p", function () {
+                $(this).after("<p>Another paragraph! " + (++count) + "</p>");
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Click me!</p>
+<span></span>
+</body>
+</html>

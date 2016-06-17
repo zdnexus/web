@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+            function fn1() {
+                $("p").append(" 1 ");
+            }
+            function fn2() {
+                $("p").append(" 2 ");
+            }
+            function fn3(n) {
+                $("p").append(n + " 3 " + n);
+            }
+
+            /* create a deferred object */
+            var dfd = $.Deferred();
+
+            /* add handlers to be called when dfd is resolved */
+            dfd
+                /* .done() can take any number of functions or arrays of functions */
+                    .done( [fn1, fn2], fn3, [fn2, fn1] )
+                /* we can chain done methods, too */
+                    .done(function(n) {
+                        $("p").append(n + " we're done.");
+                    });
+
+            /* resolve the Deferred object when the button is clicked */
+            $("button").bind("click", function() {
+                dfd.resolve("and");
+            });
+
+        })
+    </script>
+</head>
+<body>
+
+<button>Go</button>
+<p>Ready...</p>
+
+</body>
+</html>

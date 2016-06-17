@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var txt1 = document.getElementById("txt1");
+            alert(txt1.value);//DOM
+
+            var oTxt2 = $("#txt1");
+            alert(oTxt2.val());//JQ
+
+            var oTxt3 = $("#txt1");
+            alert(oTxt3[0].value);//JQ转DOM
+
+            var oTxt4=document.getElementById("txt1");
+            alert($(oTxt4).val());//DOM转JQ
+        })
+    </script>
+</head>
+<body>
+<input type="text" id="txt1" value="aaa">
+</body>
+</html>

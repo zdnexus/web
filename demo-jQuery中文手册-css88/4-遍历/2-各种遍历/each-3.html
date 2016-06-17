@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        ul {
+            font-size: 18px;
+            margin: 0;
+        }
+
+        span {
+            color: blue;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+
+        .example {
+            font-style: italic;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            如果你不想要普通的DOM元素，而想获得的是jQuery对象的话，使用$(this)函数。例如：
+            $("span").click(function () {
+                $("li").each(function () {
+                    $(this).toggleClass("example");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+To do list: <span>(click here to change)</span>
+<ul>
+    <li>Eat</li>
+    <li>Sleep</li>
+    <li>Be merry</li>
+</ul>
+</body>
+</html>

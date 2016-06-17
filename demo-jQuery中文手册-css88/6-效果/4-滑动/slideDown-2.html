@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: #de9a44;
+            margin: 3px;
+            width: 80px;
+            height: 40px;
+            display: none;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 用 600 毫秒让所有的 div 下滑显示出来。
+            $(document.body).click(function () {
+                if ($("div:first").is(":hidden")) {
+                    $("div").slideDown("slow");
+                }
+                else {
+                    $("div").hide();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+Click me!
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+            margin: 6px 0;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .remove()
+
+//            将匹配元素集合从DOM中删除。（愚人码头注：同时移除元素上的事件及 jQuery 数据。）
+
+//            和 .empty()相似。.remove() 将元素移出DOM。
+//            当我们想将元素自身移除时我们用 .remove()，同时也会移除元素内部的一切，包括绑定的事件及与该元素相关的jQuery数据。
+//            要删除的元素不删除数据和事件的情况下，使用.detach()来代替。
+
+            $("button").click(function () {
+                $("p").remove();
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+how are
+<p>you?</p>
+<button>Call remove() on paragraphs</button>
+</body>
+</html>

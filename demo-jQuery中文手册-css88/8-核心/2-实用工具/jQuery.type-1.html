@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.type( obj )
+//            描述: 确定JavaScript 对象的类型[[Class]] 。
+
+//            jQuery.type( obj )
+//obj
+//            类型: Anything
+//            用来获取JavaScript数据类型[[Class]]的对象。
+
+            alert(jQuery.type(undefined) === "undefined");//true;
+            alert(jQuery.type() === "undefined");//true;
+            alert(jQuery.type(window.notDefined) === "undefined");//true;
+            alert(jQuery.type(null) === "null");//true;
+//            如果对象有一个内部的[[Class]]和一个浏览器的内置对象的 [[Class]] 相同，我们返回相应的 [[Class]] 名字。 (有关此技术的更多细节。 )
+            alert(jQuery.type(true) === "boolean");//true;
+            alert(jQuery.type(3) === "number");//true;
+            alert(jQuery.type("test") === "string");//true;
+            alert(jQuery.type(function () {
+                    }) === "function");//true;
+            alert(jQuery.type([]) === "array");//true;
+            alert(jQuery.type(new Date()) === "date");//true;
+            alert(jQuery.type(new Error()) === "error");// as of jQuery 1.9 //true;
+            alert(jQuery.type(/test/) === "regexp");//true;
+
+            $("b").append("" + jQuery.type(/test/));
+        });
+    </script>
+</head>
+<body>
+
+Is it a RegExp? <b></b>
+
+</body>
+</html>

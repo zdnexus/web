@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        #bar{
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .bind( eventType [, eventData ], handler(eventObject) )
+//            eventType
+//            类型: String
+//            一个包含一个或多个DOM事件类型的字符串，比如"click"或"submit,"或自定义事件的名称。
+//            eventData
+//            类型: Anything
+//            一个对象，它包含的数据键值对映射将被传递给事件处理程序。
+//            handler(eventObject)
+//            类型: Function()
+//            每当事件触发时执行的函数。
+
+//            Passing Event Data（传递事件数据）
+            var message = "Spoon!";
+            $("#foo").bind("click", function() {
+                alert(message);
+            });
+            message = "Not in the face!";//变量message的值已经改变了。
+            $("#bar").bind("click", function() {
+                alert(message);
+            });
+//            由于两个事件处理函数的闭包中，都引用了 message，所以，
+//            当事件被触发时，这两个事件处理都会显示 Not in the face!，因为变量的值已经改变了。
+//            为了避免这个问题，我们可以使用 eventData 来传递信息：
+            var message = "Spoon!";
+            $("#foo").bind("click", {msg: message}, function(event) {
+                alert(event.data.msg);
+            });
+            message = "Not in the face!";
+            $("#bar").bind("click", {msg: message}, function(event) {
+                alert(event.data.msg);
+            });
+//            这一次该变量没有提供给处理函数;相反，变量通过值传递给eventData ，所以就可以在事件绑定的时候进行赋值操作。
+//            第一个处理程序，现在将显示Spoon!而第二个会提醒Not in the face!。
+
+
+
+//            Example: 点击段落时，显示其中的内容：
+            $("p").bind("click", function(){
+                alert( $(this).text() );
+            });
+
+//            Example: 在事件处理之前，你可以传入一些额外的数据：
+            function handler(event) {
+                alert(event.data.foo);
+            }
+            $("p").bind("click", {foo: "bar"}, handler);
+
+//            Example: 通过返回 false 的方式取消默认的动作，并防止它进行事件冒泡：
+            $("form").bind("submit", function() { return false; });
+
+//            Example: 通过使用 .preventDefault() 方法，仅取消默认的动作。
+            $("form").bind("submit", function(event) {
+                event.preventDefault();
+            });
+
+//            Example: 通过使用 .stopPropagation() 方法，防止事件冒泡，但是默认执行默认的动作。
+            $("form").bind("submit", function(event) {
+                event.stopPropagation();
+            });
+
+//            Example: 同时绑定多个事件。
+            $("div.test").bind({
+                click: function(){
+                    $(this).addClass("active");
+                },
+                mouseenter: function(){
+                    $(this).addClass("inside");
+                },
+                mouseleave: function(){
+                    $(this).removeClass("inside");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="foo"></div>
+
+<div id="bar"></div>
+</body>
+</html>

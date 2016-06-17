@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("#b1").click(function () {
+//                for (var i = 0; i < $("div").length; ++i) {
+//                    $("div:eq(" + i + ")").delay(500 * i).animate({marginTop: 500}, 1500, "easeOutBounce");
+//                }
+
+                $("div").each(function () {
+                    $(this).delay(500 * $(this).index()).animate({marginTop: 500}, 1500, "easeOutBounce");
+                })
+            });
+
+            $("#b2").click(function () {
+                $("div").css("marginTop", 10);
+            })
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <button id="b1">YYF卧槽</button>
+    <button id="b2">566卧槽</button>
+</p>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            font-size: 10px;
+            font-family: Arial;
+        }
+
+        h1, h2 {
+            margin: 3px 0;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":header" )
+//            选择所有标题元素，像h1, h2, h3 等.
+
+//            因为 :header() 是一个 jQuery 延伸出来的一个选择器 并且不是的CSS规范的一部分,
+//            使用:header()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用.filter(":header") 代替。
+
+            $(":header").css({
+                "color": "blue",
+                "background-color": "#ccc"
+            });
+
+//            $("body").children().filter(":header").css({
+//                "color": "blue",
+//                "background-color": "#ccc"
+//            });
+
+//            $("body").find(":header").css({
+//                "color": "blue",
+//                "background-color": "#ccc"
+//            });
+        });
+    </script>
+</head>
+<body>
+<h1>Header 1</h1>
+
+<p>Contents 1</p>
+
+<h2>Header 2</h2>
+
+<p>Contents 2</p>
+</body>
+</html>

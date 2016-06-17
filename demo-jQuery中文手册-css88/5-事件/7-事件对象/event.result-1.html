@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.result
+//            描述: 事件被触发的一个事件处理程序的(最后)返回值，除非值是 undefined
+
+            $("button").click(function (event) {
+                return "hey";
+            });
+
+            $("button").click(function (event) {
+                $("p").html(event.result);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>display event.result</button>
+
+<p></p>
+
+</body>
+</html>

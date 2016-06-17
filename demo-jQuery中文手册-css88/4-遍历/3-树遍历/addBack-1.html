@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .addBack( [selector ] )
+//            添加堆栈中元素集合到当前集合，一个选择性的过滤选择器。
+//            selector
+//            类型: Selector
+//            一个字符串，其中包含一个选择器表达式，匹配当前元素集合不包括在内的元素
+
+            $("li.third-item")
+                    .nextAll()
+                    .addBack()
+                    .css("background-color", "red");
+//            首先，初始选择位于第3项，初始化堆栈集合只包含这项。调用.nextAll() 后将第4和第5项推入堆栈。
+//            最后，调用.addBack() 合并这两个组元素在一起，创建一个jQuery对象，
+//            指向所有三个项元素（按照文档中的顺序）：{[<li.third-item>,<li>,<li> ]}
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li class="third-item">list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            display: none;
+            width: 200px;
+            height: 200px;
+            background: slateblue;
+        }
+
+        #div2{
+            width: 200px;
+            height: 200px;
+            background: orangered;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            $("div:visible").css("background","red");//所有visible的div
+            $("div:hidden").css("background","blue").show();//所有hidden的div，链式写法
+        })
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            float: left;
+        }
+
+        span {
+            color: blue;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":nth-last-child(index/even/odd/equation)" )
+//            选择所有他们父元素的第n个子元素。计数从最后一个元素开始到第一个。
+
+//            jQuery( ":nth-last-of-type(index/even/odd/equation)" )
+//            选择所有他们父级兄弟元素下具有相同的元素名（愚人码头注：标签名，比如<li>）的倒数第n个子元素，计数从最后一个元素开始到第一个。
+
+//            注意li只有一个的时候,first-child等于last-child
+            $("ul li:nth-last-child(1)").append("<span> - 2nd to last!</span>");
+        });
+    </script>
+</head>
+<body>
+<div>
+    <ul>
+        <li>John</li>
+        <li>Karl</li>
+        <li>Adam</li>
+    </ul>
+</div>
+<div>
+    <ul>
+        <li>Dan</li>
+    </ul>
+</div>
+<div>
+    <ul>
+        <li>Dave</li>
+        <li>Rick</li>
+        <li>Timmy</li>
+        <li>Gibson</li>
+    </ul>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .submit( handler(eventObject) )
+//            为 JavaScript 的 "submit" 事件绑定一个处理函数，或者触发元素上的该事件。
+
+//            当用户试图提交表单时，就会在这个表单元素上触发submit事件。它只能绑定在<form>元素上。
+//            以下几种情况会导致表单被提交：用户点击了<input type="submit">, <input type="image">, 或者 <button type="submit">，
+//            或者当某些表单元素获取焦点时，敲击Enter（回车键），都可以提交。
+
+//            根据不同的浏览器，Enter 键可能会导致表单被提交，如果这个表单只有一个文本框或只有一个 submit 按钮的话。
+//            界面不应该依赖于这个键的特殊行为，除非已经使用了 keypress 事件来监听 Enter 键的按下。
+
+            $("#target").submit(function() {
+                alert("Handler for .submit() called.");
+                return false;
+            });
+
+            $("#other").click(function() {
+                $("#target").submit();//手动触发
+            });
+
+//            .submit()方法只是作为.on( "submit", handler )的一个速记写法，移除该事件可以使用.off( "submit" )。
+        });
+    </script>
+</head>
+<body>
+<form id="target" action="destination.html">
+    <input type="text" value="Hello there" />
+    <input type="submit" value="Go" />
+</form>
+
+<div id="other">
+    Trigger the handler
+</div>
+</body>
+</html>

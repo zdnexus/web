@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            height: 300px;
+            background-color: red;
+            border: 3px solid black;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementsByTagName('div')[0];
+
+            oDiv.onmouseover = function () {
+                this.timer=null;
+                Start_Move(this)
+            };
+        };
+
+        function Start_Move(obj) {
+            clearInterval(obj.timer);
+            obj.timer = setInterval(function () {
+                if (parseInt(obj.style.width) == 100) {
+                    clearInterval(obj.timer);
+                }
+                else {
+                    obj.style.width = parseInt(obj.style.width) - 1 + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<div style="width: 300px"></div>
+</body>
+</html>

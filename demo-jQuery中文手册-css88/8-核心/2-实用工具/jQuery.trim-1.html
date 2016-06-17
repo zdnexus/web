@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.trim( str )
+//            描述: 去掉字符串起始和结尾的空格。
+
+//            jQuery.trim( str )
+//str
+//            类型: String
+//            The string to trim.
+
+//            Example: 删除在开始和在字符串的末尾两个空格。
+            var str = "         lots of spaces before and after         ";
+            $("#original").html("Original String: '" + str + "'");
+            $("#trimmed").html("$.trim()'ed: '" + $.trim(str) + "'");
+            $("#trimmed2").html("$.trim()'ed: '" + $.trim("    hello, how are you?    ") + "'");
+        });
+    </script>
+</head>
+<body>
+
+<pre id="original"></pre>
+
+<pre id="trimmed"></pre>
+
+<pre id="trimmed2"></pre>
+
+</body>
+</html>

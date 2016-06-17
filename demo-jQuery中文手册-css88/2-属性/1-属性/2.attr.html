@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+
+        b {
+            font-weight: bolder;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div").attr("id", function (i) {
+                return "div-id" + i;
+            }).each(function () {
+                $(this).children("span").html("(ID = '<b>" + this.id + "</b>')");
+            });
+
+            $("img").attr("src", function () {
+                return "/zd/images/" + this.title;
+            });
+        });
+    </script>
+</head>
+<body>
+<div>Zero-th <span></span></div>
+
+<div>First <span></span></div>
+
+<div>Second <span></span></div>
+
+<img title="0.jpg">
+
+</body>
+</html>

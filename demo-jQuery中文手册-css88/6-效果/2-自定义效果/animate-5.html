@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background-color: #bca;
+            width: 100px;
+            border: 1px solid green;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 点击按钮，根据指定的一系列属性，在 div 上应用动画。
+            $("#go").click(function () {
+                $("#block").animate({
+                    width: "70%",
+                    opacity: 0.4,
+                    marginLeft: "0.6in",//0.6英寸
+                    fontSize: "3em",
+                    borderWidth: "10px"
+                }, 1500);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button id="go">&raquo; Run</button>
+
+<div id="block">Hello!</div>
+
+</body>
+</html>

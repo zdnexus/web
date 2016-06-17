@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #div1{
+            width: 200px;
+            height: 200px;
+        }
+
+        .red{
+            background-color: red;
+        }
+
+        .bor{
+            border-radius: 5px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            alert($("#div1").hasClass("red"));//true
+            alert($("#div1").hasClass("bor"));//true
+            alert($("#div1").hasClass("red bor"));//true
+        });
+    </script>
+</head>
+<body>
+<div id="div1" class="red bor"></div>
+</body>
+</html>

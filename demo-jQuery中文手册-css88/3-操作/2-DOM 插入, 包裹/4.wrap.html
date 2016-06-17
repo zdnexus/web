@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px solid blue;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        .doublediv {
+            border-color: red;
+        }
+
+        p {
+            background: yellow;
+            margin: 4px;
+            font-size: 14px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script>
+        $(function () {
+            $("p").wrap($(".doublediv"));
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+
+<div class="doublediv">
+    <div></div>
+</div>
+</body>
+</html>

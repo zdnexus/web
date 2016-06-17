@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            position: absolute;
+            left: 0;
+            top: 30px;
+            width: 200px;
+            height: 200px;
+            background: saddlebrown;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+            $("button").click(function(){
+               $("#div1").animate({
+                   "top":"500px"
+               },2000).animate({
+                   "left":"500px"
+               },2000).animate({
+                   "top":"100px"
+               },2000).animate({
+                   "left":"100px"
+               },2000);
+            });
+            $("#ipt1").click(function(){
+                //stop(a,b)
+                //一个布尔值，指示是否取消以列队动画。默认 false.
+                //一个布尔值指示是否当前动画立即完成。默认false.
+                $("#div1").stop();
+//                $("#div1").stop(false,false);//默认 false:不取消列队动画 false:不立即完成
+//                $("#div1").stop(true,false);//true:取消列队动画,false:不立即完成
+//                $("#div1").stop(true,true);//true:取消列队动画,true:立即完成这个动画的结果
+//                $("#div1").stop(false,true);//false:不取消列队动画,true:立即完成这个动画的结果
+            });
+
+            $("#ipt2").click(function(){
+                $("#div1").dequeue();//同时执行剩下函数
+            });
+
+            $("#ipt3").click(function(){
+                $("#div1").finish();
+            });
+
+            $("#ipt4").click(function(){
+                $("#div1").slideUp(1000).delay(1000).fadeIn(1000);//延迟一秒后再执行
+            })
+        })
+    </script>
+</head>
+<body>
+<button>RUNING MAN</button>
+<input id="ipt1" type="button" value="stop">
+<input id="ipt2" type="button" value="dequeue">
+<input id="ipt3" type="button" value="finish">
+<input id="ipt4" type="button" value="delay">
+<div id="div1">我是div元素</div>
+</body>
+</html>

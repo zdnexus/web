@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-paste 指令用于告诉 AngularJS 文本在 HTML 元素上粘贴时需要执行的操作。-->
+<input ng-paste="count = count + 1" ng-init="count=0" value="粘贴文本到这!"/>
+
+<p>粘贴了 {{count}} 次文本。</p>
+
+<p>该实例演示了文本在输入框粘贴时，计算变量 "count" 会自动加 1。</p>
+
+</body>
+</html>

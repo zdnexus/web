@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+            border: 2px white solid;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .filter( )
+//            筛选元素集合中匹配表达式 或 通过传递函数测试的 那些元素集合。
+
+
+//            .filter( element )
+//            element
+//            类型: Element
+//            一个或多个DOM元素来匹配当前元素集合。
+
+//            .filter( jQuery object )
+//            jQuery object
+//            类型: Object
+//            现有jQuery对象，用于进一步筛选当前元素集合。
+
+//            改变所有 div 的颜色，然后为含有 "middle" 样式的 div 添加边框。
+            $("div").css("background-color", "#c8ebcc")
+                    .filter(".middle")
+                    .css("border-color", "red");
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div class="middle"></div>
+<div></div>
+</body>
+</html>

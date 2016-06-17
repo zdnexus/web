@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .animate( properties [, duration ] [, easing ] [, complete ] )
+//            描述: 根据一组 CSS 属性，执行自定义动画。
+
+//properties
+//            类型: PlainObject
+//            一个CSS属性和值的对象,动画将根据这组对象移动。
+//duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。（愚人码头注：默认值: "normal"， 三种预定速度的字符串("slow", "normal", 或 "fast")或表示动画时长的毫秒数值(如：1000) ）
+//easing (默认: swing)
+//            类型: String
+//            一个字符串，表示过渡使用哪种缓动函数。（译者注：jQuery自身提供"linear" 和 "swing"）
+//complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+//            对透明度，左偏移值和高度应用动画：
+//            $("#clickme").click(function () {
+//                $("#book").animate({
+//                    opacity: 0.25,
+//                    left: "+=50",
+//                    height: "toggle"
+//                });//duration不填写默认为normal
+//            });
+
+//            $("#clickme").click(function () {
+//                $("#book").animate({
+//                    opacity: 0.25,
+//                    left: "+=50",
+//                    height: "toggle"
+//                }, "slow");//duration = "slow",
+//            });
+
+//            $("#clickme").click(function() {
+//                $("#book").animate({
+//                    opacity: 0.25,
+//                    left: "+=50",
+//                    height: "toggle"
+//                }, 5000, function() {
+//                    alert("Animation complete.");
+//                });//5000ms里运行完毕后执行函数
+//            });
+
+            $("#clickme").click(function () {
+                $("#book").animate({
+                    opacity: 0.25,
+                    left: "+=50",
+                    height: "toggle"
+                }, 5000, "swing", function () {
+                    alert("Animation complete.");
+                });//5000ms里用“swing”缓冲函数运行，完毕后执行函数
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="/zd/images/0.jpg" alt="" width="100" height="123" style="position: relative; left: 10px;"/>
+
+</body>
+</html>

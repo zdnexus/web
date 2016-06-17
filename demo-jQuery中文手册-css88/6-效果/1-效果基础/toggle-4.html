@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 点击按钮时，显示所有的段落，再次点击时，隐藏它们，如此往复。
+            var flip = 0;
+
+            $("button").click(function () {
+                $("p").toggle(flip++ % 2 == 0);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Toggle</button>
+
+<p>Hello</p>
+
+<p style="display: none">Good Bye</p>
+
+</body>
+</html>

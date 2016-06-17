@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            在所有的段落内的尾部，追加一个元素。
+            $("p").append(document.createTextNode("Hello"));
+//            $("p").append("Hello");
+        });
+    </script>
+</head>
+<body>
+<p>I would like to say: </p>
+</body>
+</html>

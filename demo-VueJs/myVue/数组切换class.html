@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        div {
+            width: 200px;
+            height: 300px;
+        }
+
+        .d1 {
+            background-color: #0015d6;
+        }
+
+        .d2 {
+            background-color: #0099cc;
+        }
+
+    </style>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+    <script>
+        window.onload = function () {
+
+            new Vue({
+                el: "#app",
+
+                data: function () {
+                    return {
+                        arr: [true],
+                        bbb: true
+                    }
+                },
+
+                ready: function () {
+                    console.log(this.arr + " " + this.bbb);
+                },
+
+                methods: {
+                    aaa: function () {
+                        for (var i = 0; i < this.arr.length; ++i) {
+                            this.arr[i] = !this.arr[i];
+                            console.log(this.arr);
+                        }
+                        this.bbb = !this.bbb;
+                        console.log(this.arr + " " + this.bbb);
+                    }
+                }
+            })
+        }
+    </script>
+</head>
+<body>
+<div id="app">
+    <div :class="{'d1':arr[0] == true,'d2':arr[0] == false}" @click="aaa"></div>
+    <div :class="{'d1':bbb == true,'d2':bbb == false}" @click="aaa"></div>
+</div>
+</body>
+</html>

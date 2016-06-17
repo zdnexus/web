@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Just a Generic Page</title>
+    <script>
+        //        1
+        setTimeout(wakeUpUser, 5000);
+
+        function wakeUpUser() {
+            alert("Are you going to stare at this boring page forever?");
+        }
+
+
+        //        2
+        var a = 1;
+        var b = '2';
+        var c = a + b;
+
+        console.log(c);//12
+        console.log(typeof c);//string
+
+
+        //        3
+        var scoops = 5;
+        while (scoops > 0) {
+            document.write("<p style='color: #d2346e;'>Another scoop!</p>");
+            scoops = scoops - 1;
+        }
+
+
+        //        4
+        var name = "Joe";
+        var i = 0;
+        while (i < 2) {
+            document.write("Happy Birthday to you.<br/>");
+            i = i + 1;
+        }
+        document.write("Happy Birthday dear " + name + ",<br/>");
+        document.write("Happy Birthday to you.<br/>");
+
+
+        //        5
+        var word = "bottles";
+        var count = 10;
+        while (count > 0) {
+            console.log(count + " " + word + " of beer on the wall");
+            console.log(count + " " + word + " of beer,");
+            console.log("Take one down, pass it around,");
+            count = count - 1;
+            if (count > 0) {
+                console.log(count + " " + word + " of beer on the wall.");
+            } else {
+                console.log("No more " + word + " of beer on the wall.");
+            }
+        }
+    </script>
+</head>
+<body>
+
+<!--从顶向下，先运行script中的document.write函数后再添加body的dom标签-->
+<!--您只能在 HTML 输出中使用 document.write。如果您在文档加载后使用该方法，会覆盖整个文档。-->
+<h1>
+    Just a generic heading
+</h1>
+
+<p>
+    Not a lot to read about here. I'm just an obligatory paragraph living inan example in a JavaScript book. I'm looking
+    for something to make my life moreexciting.
+</p>
+
+</body>
+</html>

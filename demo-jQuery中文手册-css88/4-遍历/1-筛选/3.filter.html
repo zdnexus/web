@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+            border: 3px white solid;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .filter( function(index) )
+//            function(index)
+//            类型: Function()
+//            一个函数用作测试集合中的每个元素。this 是当前DOM元素。
+
+//            我们可以利用过滤函数中的 index 参数，该参数是从 0 开始的索引值，此索引值代表未经过滤的匹配元素集合中的元素位置：
+//            改变所有 div 的颜色，然后为第二个 div (index == 1) 及 id 为 "fourth" 的 div 添加边框。
+            $("div").css("background-color", "#b4b0da")
+                    .filter(function (index) {
+                        return index == 1 || $(this).attr("id") == "fourth";
+                    })
+                    .css("border", "3px double red");
+
+            $("li").filter(function(index) {
+                return $("strong", this).length == 1;
+            }).css("background-color", "red");
+
+//            $("li").filter(function(index) {
+//                return $(this).find("strong").length == 1;
+//            }).css("background-color", "yellow");
+        });
+    </script>
+</head>
+<body>
+<div id="first"></div>
+<div id="second"></div>
+<div id="third"></div>
+<div id="fourth"></div>
+<div id="fifth"></div>
+<div id="sixth"></div>
+
+<ul>
+    <li><strong>list</strong> item 1 -one strong tag</li>
+    <li><strong>list</strong> item <strong>2</strong> -two <span>strong tags</span></li>
+    <li>list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+    <li>list item 6</li>
+</ul>
+</body>
+</html>

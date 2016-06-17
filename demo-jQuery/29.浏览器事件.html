@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(window).resize(function(){
+            alert("窗口变化了！")
+        });
+
+        $(window).scroll(function(){
+            $("body").append("<p>滚动条位置发生偏移</p>");
+        });
+    </script>
+</head>
+<body style="height: 1000px;">
+
+</body>
+</html>

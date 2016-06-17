@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #info {
+            width: 160px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                $.ajax({
+                    url: "demo52.txt?date=" + Math.random(),
+                    type: "get",
+                    success: function (data) {
+                        $("#info").html(data);
+                    }
+                })
+            });
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="获取信息">
+<div id="info"></div>
+</body>
+</html>

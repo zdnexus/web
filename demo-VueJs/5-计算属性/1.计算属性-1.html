@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="example">
+    <input type="text" v-model="a">
+
+    <!--这里{{b}}里面的b只是函数返回，当a发生变化，b返回的值也发现变化-->
+    <!--$watch变种？-->
+    a={{ a }}, b={{ b }}
+</div>
+
+</body>
+<script type="text/javascript">
+
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            a: 1
+        },
+//        computed: 实例计算属性
+        computed: {
+            // 一个计算属性的 getter
+            b: function () {
+                // `this` 指向 vm 实例
+                return this.a + 1;
+            }
+        }
+    });
+
+    console.log(vm.b); // -> 2
+    vm.a = 2;
+    console.log(vm.b); // -> 3
+
+</script>
+</html>

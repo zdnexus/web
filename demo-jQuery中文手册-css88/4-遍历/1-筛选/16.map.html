@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .map( callback(index, domElement) )
+
+//            获取表单中所有表单元素的值。
+            $("p").append($("input").map(function () {
+                return $(this).val();
+            }).get().join(", "));
+        });
+    </script>
+</head>
+<body>
+<p><b>Values: </b></p>
+
+<form>
+    <input type="text" name="name" value="John"/>
+    <input type="text" name="password" value="password"/>
+    <input type="text" name="url" value="http://ejohn.org/"/>
+</form>
+</body>
+</html>

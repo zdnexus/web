@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.parseJSON( json )
+//            描述: 接受一个标准格式的 JSON 字符串，并返回解析后的 JavaScript 值。
+
+//            jQuery.parseJSON( json )
+//json
+//            类型: String
+//            要解析的 JSON 字符串。
+
+//            解析一个 JSON 字符串。 JSON 字符串是双引号包裹
+            var obj = jQuery.parseJSON('{"name":"John"}');//string转json
+            alert(obj.name === "John");
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.hasData()
+//            确定任何一个元素是否有与之相关的jQuery数据。
+
+            var $p = $("p"), p = $p[0];
+
+            $p.append($.hasData(p) + " ");
+            /* false */
+
+            jQuery.data(p, "testing");
+            $p.append(jQuery.hasData(p) + " ");
+            /* false*/
+
+            jQuery.data(p, "testing", 123);
+            $p.append(jQuery.hasData(p) + " ");
+            /* true*/
+
+            jQuery.removeData(p, "testing");
+            $p.append(jQuery.hasData(p) + " ");
+            /* false */
+
+            $p.on("click", function () {
+            });
+            $p.append(jQuery.hasData(p) + " ");
+            /* true */
+
+            $p.off("click");
+            $p.append(jQuery.hasData(p) + " ");
+            /* false */
+        });
+    </script>
+</head>
+<body>
+<p>Results: </p>
+</body>
+</html>

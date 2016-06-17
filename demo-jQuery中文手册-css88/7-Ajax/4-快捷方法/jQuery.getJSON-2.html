@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        img {
+            height: 100px;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 从 Flickr JSONP API中加载最近的四张标签为猫的图片：
+            $.getJSON("http://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?",
+                    {
+                        tags: "mount rainier",
+                        tagmode: "any",
+                        format: "json"
+                    },
+                    function (data) {
+                        $.each(data.items, function (i, item) {
+                            $("<img/>").attr("src", item.media.m).appendTo("#images");
+                            if (i == 3) return false;
+                        });
+                    });
+
+//            Example: 通过test.js加载这个JSON数据，并使用返回的JSON数据中的 name值：
+            $.getJSON("test.js", function (json) {
+                alert("JSON Data: " + json.users[3].name);
+            });
+
+//            Example: 通过额外的Key/value参数从test.js加载这个JSON数据,并使用返回的JSON数据中的 name值：.
+            $.getJSON("test.js", {name: "John", time: "2pm"}, function (json) {
+                alert("JSON Data: " + json.users[3].name);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="images"></div>
+
+</body>
+</html>

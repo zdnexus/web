@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.merge( first, second )
+//            描述: 合并两个数组内容到第一个数组。
+
+//            jQuery.merge( first, second )
+//first
+//            类型: ArrayLikeObject
+//            第一个用于合并的数组，其中将会包含合并后的第二个数组的内容。
+//second
+//            类型: ArrayLikeObject
+//            第二个用于合并的数组，该数组不会被修改，其中的内容将会被合并到第一个数组中。
+
+//            $.merge()操作形成一个数组，其中包含两个数组的所有元素。追加到第一个数组中的第二个数组元素的顺序会被保留。
+//            $.merge()函数是破坏性的。它会修改第一个数组的内容，并将第二个数组的内容添加到第一个数组中。
+
+//            如果您需要保留原始的第一个数组，请在调用$.merge()前拷贝一个出来。幸运的是， $.merge()本身也可以用于拷贝操作：
+            var newArray = $.merge([], oldArray);
+
+//            Example: 合并两个数组，修改第一个参数的内容。
+            $.merge([0, 1, 2], [2, 3, 4]);//[0,1,2,2,3,4]
+
+//            Example: 合并两个数组，修改第一个参数的内容。
+            var a = [3, 2, 1], b = [4, 3, 2];
+            $.merge(a, b);//a=[3,2,1,4,3,2]
+
+//            Example: 合并两个数组，但是对第一个参数进行拷贝，这样就可以保证原始的内容不被修改。
+            var first = ["a", "b", "c"];
+            var second = ["d", "e", "f"];
+            $.merge($.merge([], first), second);//["a","b","c","d","e","f"]
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

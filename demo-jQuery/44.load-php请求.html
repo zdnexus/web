@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            color: red
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input[type='button']").click(function () {
+                var url = "load-test.php";
+                var sendData = {"username": $("#username").val()};
+                $(".load").load(url, sendData, function (data) {
+                    alert(data);
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="text" name="username" id="username">
+<input type="button" value="发送">
+
+<div class="load"></div>
+</body>
+</html>

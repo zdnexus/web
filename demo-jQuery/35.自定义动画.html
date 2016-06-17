@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: absolute;
+            left: 0;
+            top: 30px;
+            width: 200px;
+            height: 200px;
+            background: saddlebrown;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("input").click(function () {
+//                $("#div1").animate({
+//                    "left": "600px",
+//                    "top": "300px",
+//                    "opacity": "0.5",
+//                }, 2500,function(){
+//                    $(this).css("background","red");
+//                });
+                $("#div1").animate({
+                    "left":"+=100px"//每次点击增加100px
+                },2000)
+            });
+        });
+    </script>
+</head>
+<body>
+<input type="button" value="移动">
+
+<div id="div1"></div>
+</body>
+</html>

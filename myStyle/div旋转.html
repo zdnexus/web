@@ -1,0 +1,49 @@
+<!--汉字下拉菜单注意加   white-space:nowrap; 强制不换行-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        @-webkit-keyframes animation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(315deg);
+            }
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: firebrick;
+            position: absolute;
+            left: 30%;
+            top: 20%;
+        }
+
+        #div1:hover {
+            -webkit-animation: animation 3s forwards;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            -webkit-transition: all 3s;
+        }
+
+        #div2:hover {
+            transform: rotate(315deg);
+        }
+    </style>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

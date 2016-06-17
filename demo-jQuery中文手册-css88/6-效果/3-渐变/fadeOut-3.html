@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            cursor: pointer;
+        }
+
+        span.hilite {
+            background: yellow;
+        }
+
+        em {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 将你点击的 span 淡出隐藏。
+            $("span").click(function () {
+                $(this).fadeOut(1000, function () {
+                    $("em").text("'" + $(this).text() + "' has faded!");
+                    $(this).remove();
+                });
+            });
+
+            $("span").hover(function () {
+                $(this).addClass("hilite");
+            }, function () {
+                $(this).removeClass("hilite");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<h3>
+    Find the modifiers -
+    <em></em>
+</h3>
+
+<p>
+    If you <span>really</span> want to go outside
+    <span>in the cold</span> then make sure to wear
+    your <span>warm</span> jacket given to you by
+    your <span>favorite</span> teacher.
+</p>
+
+</body>
+</html>

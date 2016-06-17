@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        table {
+            background-color: #eeeeee;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":even" )
+//            选择所引值为偶数的元素，从 0 开始计数。
+
+//            jQuery( ":odd" )
+//            选择所引值为偶数的元素，从 1 开始计数。
+
+//            因为:even 和 :odd是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分，
+//            使用:even :odd查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，首先使用纯CSS选择器选择元素，然后使用.filter(":even") .filter(":odd")
+
+//            even查找表格中索引值是偶数的行(即实际表格中的奇数行)，即匹配第一行、第三行、第五行等 (索引值是 0, 2 ,4 等 )。
+//            odd查找表格中索引值是偶数的行(即实际表格中的奇数行)，即匹配第一行、第三行、第五行等 (索引值是 1, 3 ,5 等 )。
+
+            $("table tr:even").css("background-color", "#bbbbff");//偶数
+//            $("table tr").filter(":even").css("background-color", "#bbbbff");
+            $("table tr:odd").css("background-color", "#abc");//奇数
+//            $("table tr").filter(":odd").css("background-color", "#abc");
+        });
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>TD #0</td>
+        <td>TD #1</td>
+        <td>TD #2</td>
+    </tr>
+    <tr>
+        <td>TD #3</td>
+        <td>TD #4</td>
+        <td>TD #5</td>
+    </tr>
+    <tr>
+        <td>TD #6</td>
+        <td>TD #7</td>
+        <td>TD #8</td>
+    </tr>
+    <tr>
+        <td>TD #9</td>
+        <td>TD #10</td>
+        <td>TD #11</td>
+    </tr>
+</table>
+</body>
+</html>

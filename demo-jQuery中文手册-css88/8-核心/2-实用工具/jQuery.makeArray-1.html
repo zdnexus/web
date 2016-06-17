@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.makeArray( obj )
+//            描述: 转换一个类似数组的对象成为真正的JavaScript数组。
+
+//            jQuery.makeArray( obj )
+//obj
+//            类型: PlainObject
+//            转换成一个原生数组的任何对象。
+
+//            Example: 将一个 HTMLElements 集合转换成对应的数组。
+            var elems = document.getElementsByTagName("div"); // returns a nodeList
+            var arr = jQuery.makeArray(elems);
+
+            arr.reverse(); // use an Array method on list of dom elements
+            $(arr).appendTo(document.body);
+
+
+//            Example: 将一个 jQuery 对象转换成一个数组。
+            var obj = $("li");
+            var arr = $.makeArray(obj);
+//            Result:
+            alert(typeof obj === "object");//object
+            alert(obj.jquery);//2.14
+            alert(jQuery.isArray(arr));//true
+        });
+    </script>
+</head>
+<body>
+
+<div>First</div>
+<div>Second</div>
+<div>Third</div>
+<div>Fourth</div>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+</body>
+</html>

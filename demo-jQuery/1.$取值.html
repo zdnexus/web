@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        window.onload = function () {
+//            var ali = $("ul li");   //11
+//            var ali = $("li");   //11
+//            var ali = $("li.aaa");  //4
+//            var ali = $("ul li.aaa"); //4
+//            var ali = $("ul .aaa"); //4
+//
+//            var ali = $("#ul1 li");   //8
+//            var ali = $("#ul1 li.aaa"); //3
+//            var ali = $("#ul1 .aaa"); // 3
+            alert(ali.length);
+        };
+
+
+        //$(document).ready() === window.onload()
+        $(document).ready(function () {
+            alert("Hello World!!!");
+        });
+
+        //$(function ()) === window.onload() 可多次使用
+        $(function () {
+            alert("我是简写的!!!");
+        });
+    </script>
+</head>
+<body>
+<nav>
+    <ul id="ul1">
+        <li></li>
+        <li class="aaa"></li>
+        <li></li>
+        <li></li>
+        <li class="aaa"></li>
+        <li></li>
+        <li></li>
+        <li class="aaa"></li>
+    </ul>
+    <ul id="ul2">
+        <li></li>
+        <li class="aaa"></li>
+        <li></li>
+    </ul>
+</nav>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .siblings( [selector ] )
+//            selector
+//            类型: Selector
+//            一个用于匹配元素的选择器字符串。
+
+//            查找每个含有 "selected" 样式的 div 的所有兄弟元素。
+            $("p").siblings(".selected").css("background-color", "yellow");
+            $("p").siblings("div").css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<div><span>Hello</span></div>
+
+<p class="selected">Hello Again</p>
+
+<p>And Again</p>
+</body>
+</html>

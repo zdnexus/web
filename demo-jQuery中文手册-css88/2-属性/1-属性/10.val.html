@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("button").click(function () {
+                var text = $(this).text();
+                $("input").val(text);
+            });
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button>Feed</button>
+    <button>the</button>
+    <button>Input</button>
+</div>
+<input type="text" value="click a button"/>
+</body>
+</html>

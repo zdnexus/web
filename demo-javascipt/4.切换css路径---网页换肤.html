@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--鼠标单击更换背景图片-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--b1.css为页面默认情况-->
+    <!--任何标签加id-->
+    <link id="cssLink" rel="stylesheet" type="text/css" href="css/b1.css"/>
+    <script>
+        function skin1() {
+            var oBg = document.getElementById("cssLink");
+            oBg.href = "css/b1.css";
+        }
+
+        function skin2() {
+            var oBg = document.getElementById("cssLink");
+            oBg.href = "css/b2.css";
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="更换皮肤1" onclick="skin1();"/>
+<input type="button" value="更换皮肤2" onclick="skin2();"/>
+</body>
+</html>

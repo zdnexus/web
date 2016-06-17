@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":image" )
+//            选择所有图像类型的元素。
+
+//            因为 :image 是 jQuery 延伸出来的一个选择器。 并且不是的CSS规范的一部分,
+//            使用:image查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用[type="image"]代替。
+
+            var input = $("input:image").css({
+                background: "yellow",
+                border: "3px red solid"
+            });
+//            var input = $("input[type='image']").css({
+//                background: "yellow",
+//                border: "3px red solid"
+//            });
+
+            $("div").text("For this type jQuery found " + input.length + ".")
+                    .css("color", "red");
+            $("form").submit(function () {
+                return false;
+            }); // so it won't submit
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input type="button" value="Input Button"/>
+    <input type="checkbox"/>
+
+    <input type="file"/>
+    <input type="hidden"/>
+    <input type="image"/>
+
+    <input type="password"/>
+    <input type="radio"/>
+    <input type="reset"/>
+
+    <input type="submit"/>
+    <input type="text"/>
+    <select>
+        <option>Option
+        <option/>
+    </select>
+
+    <textarea></textarea>
+    <button>Button</button>
+</form>
+<div>
+</div>
+</body>
+</html>

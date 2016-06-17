@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .empty() 这个方法不接受任何参数。
+//            从DOM中移除集合中匹配元素的所有子节点。
+//            这个方法不仅移除子元素（和其他后代元素），同样移除元素里的文本。因为，根据说明，元素里任何文本字符串都被看做是该元素的子节点。请看下面的HTML：
+            $("button").click(function () {
+                $("p").empty();
+            });
+        });
+    </script>
+</head>
+<body>
+<p>
+    Hello, <span>Person</span> <a href="javascript:;">and person</a>
+</p>
+
+<button>Call empty() on above paragraph</button>
+</body>
+</html>

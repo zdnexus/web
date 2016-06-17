@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var arr = $("form[fname='f1'] input").map(function () {
+                return $(this).val();
+            }).get().join("-");
+            //map()  把每个元素通过函数传递到当前匹配集合中，生成包含返回值的新的 jQuery 对象。
+            //get()  方法获得由选择器指定的 DOM 元素。
+            //join() 方法用于把数组中的所有元素放入一个字符串。
+            alert(typeof arr);//string
+            $("#p1").html(arr);
+
+//            slice() 方法可从已有的数组中返回选定的元素。返回数组中的部分
+            var n = $("form[fname='f1'] input").length;//3
+            $("form[fname='f1'] input").slice(n - 1, n).css("background", "red");//(2,3)->[2]，索引：0 -> [a,b)
+
+            var aA = $("form[fname='f1'] input").slice(n - 2, n);//获取最后2个的input (1,3)->[1][2]
+            alert(aA.length);//2
+        })
+    </script>
+</head>
+<body>
+<form fname="f1" action="">
+    <input type="text" value="111"/>
+    <input type="text" value="222"/>
+    <input type="text" value="333"/>
+
+    <p id="p1"></p>
+</form>
+</body>
+</html>

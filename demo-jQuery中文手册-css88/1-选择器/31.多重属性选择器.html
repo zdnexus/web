@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( "[attributeFilter1][attributeFilter2][attributeFilterN]" )
+//            选择匹配所有指定的属性筛选器的元素
+
+            $("input[id][name$='man']").val("only this one");
+        })
+    </script>
+</head>
+<body>
+<input id="man-news" name="man-news"/>
+<input name="milkman"/>
+<input id="letterman" name="new-letterman"/>
+<input name="newmilk"/>
+</body>
+</html>

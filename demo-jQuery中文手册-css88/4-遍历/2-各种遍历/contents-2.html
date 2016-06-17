@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p").contents().filter(function () {
+                alert(this.nodeType);
+                return this.nodeType != 1;
+            }).wrap("<b/>");
+        });
+    </script>
+</head>
+<body>
+<p>Hello <a href="http://ejohn.org/">John</a>, how are you doing?<em> I don't know... </em></p>
+</body>
+</html>

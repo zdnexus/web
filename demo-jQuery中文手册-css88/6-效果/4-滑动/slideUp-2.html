@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: #3d9a44;
+            margin: 3px;
+            width: 80px;
+            height: 40px;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 让所有的 div 向上滑，用时 400 毫秒。
+            $(document.body).click(function () {
+                if ($("div:first").is(":hidden")) {
+                    $("div").show("slow");
+                }
+                else {
+                    $("div").slideUp();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+
+Click me!
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>

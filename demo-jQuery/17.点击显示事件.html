@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="../css/public.css"/>
+    <style>
+        #ul1 {
+            display: inline-block;
+            position: relative;
+        }
+
+        #ul1 li {
+            display: inline-block;
+            padding: 10px 12px;
+            border: 1px solid #abc;
+        }
+
+        #ul1 li.active {
+            background: #abc;;
+        }
+
+        #content div {
+            display: none;
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            border: 1px solid #abc;
+            text-align: center;
+        }
+
+        #content div.show {
+            display: block;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            var oUl = document.getElementById("ul1");
+//            var aLi = oUl.getElementsByTagName("li");
+//            var oDiv = document.getElementById("content");
+//            var aDiv = oDiv.getElementsByTagName("div");
+//
+//            for (var i = 0; i < aLi.length; ++i) {
+//                aLi[i].index = i;
+//                aLi[i].onclick = function () {
+////                    alert(i);//undefined
+//                    for (var i = 0; i < aLi.length; ++i) {
+//                        aLi[i].className = "";
+//                        aDiv[i].style.display = "none";
+//                    }
+////                    alert(i);//3
+//                    this.className = "active";
+//                    aDiv[this.index].style.display = "block";
+//                }
+//            }
+
+
+//            $("#ul1 li").click(function () {
+//                $(this).addClass("active").siblings("li").removeClass("active");
+//                $("#content > div").eq($(this).index()).show().siblings("div").hide();
+//            })
+
+            $("#ul1 li").click(function () {
+//                $(this).addClass("active").siblings("li").removeClass("active").parent().next().children().eq($(this).index()).show().siblings("div").hide();
+                $(this).addClass("active").siblings("li").removeClass("active").parent().nextAll("#content").children().eq($(this).index()).show().siblings("div").hide();
+            })
+        })
+    </script>
+</head>
+<body>
+<ul id="ul1">
+    <li class="active">php</li>
+    <li>ruby</li>
+    <li>python</li>
+</ul>
+<div id="content">
+    <div class="show">php介绍</div>
+    <div>ruby介绍</div>
+    <div>python介绍</div>
+</div>
+</body>
+</html>

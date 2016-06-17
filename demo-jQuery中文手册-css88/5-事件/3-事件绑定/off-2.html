@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        button { margin:5px; }
+        button#theone { color:red; background:yellow; }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        function aClick() {
+            $("div")
+                    .show()
+                    .fadeOut("slow");
+        }
+
+        $(function () {
+            $("#bind").click(function () {
+                $("body")
+                        .on("click", "#theone", aClick)
+                        .find("#theone")
+                        .text("Can Click!");
+            });
+
+            $("#unbind").click(function () {
+                $("body")
+                        .off("click", "#theone", aClick)
+                        .find("#theone")
+                        .text("Does nothing...");
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="theone">Does nothing...</button>
+
+<button id="bind">Add Click</button>
+
+<button id="unbind">Remove Click</button>
+
+<div style="display:none;">Click!</div>
+</body>
+</html>

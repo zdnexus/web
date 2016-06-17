@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #div1 {
+            width: 100%;
+            height: 100%;
+            background-image: url("images/ydy.png");
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: cover;
+        }
+
+        #btn {
+            width: 15rem;
+            height: 5rem;
+            position: absolute;
+            left: 50%;
+            top: 31rem;
+            margin-left: -7.5rem;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+<a id="btn" href="http://a.app.qq.com/o/simple.jsp?pkgname=com.geometry"></a>
+
+</body>
+<script>
+
+    (function (doc, win) {
+        var docEl = doc.documentElement,
+                resizeEvt = "orientationchange"in window ? "orientationchange" : "resize",
+                recalc = function () {
+                    var clientWidth = docEl.clientWidth;
+                    if (!clientWidth) return;
+                    if (clientWidth < 640) {
+                        docEl.style.fontSize = 12 * (clientWidth / 320) + "px";
+                        console.log(12 * (clientWidth / 320) + "px");
+                    } else {
+                        //docEl.style.fontSize ="12px";
+                        docEl.style.fontSize = 12 * ( 640 / 320) + "px";
+                    }
+                };
+
+        if (!doc.addEventListener) return;
+        win.addEventListener(resizeEvt, recalc, false);
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+
+</script>
+</html>

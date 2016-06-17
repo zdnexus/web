@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.data( element, key, value )
+//            存储任意数据到指定的元素,返回设置的值。
+
+//            注意这是一个底层的方法，你应该用.data()代替。
+
+//            这个方法目前并不提供在XML文档上跨平台设置，作为Internet Explorer不允许XML 文档中通过自定义属性附加数据。
+
+            var div = $("div")[0];
+
+            jQuery.data(div, "test", {first: 16, last: "pizza"});
+
+            $("span:first").text(jQuery.data(div, "test").first);
+            $("span:last").text(jQuery.data(div, "test").last);
+        });
+    </script>
+</head>
+<body>
+<div>
+    The values stored were
+    <span></span>
+    and
+    <span></span>
+</div>
+</body>
+</html>

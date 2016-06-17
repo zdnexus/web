@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo{
+            width: 200px;
+            height: 300px;
+            border: 1px solid violet;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .delay( duration [, queueName ] )
+//            描述: 设置一个延时来推迟执行队列中后续的项。
+//            由于其本身的限制，比如无法取消延时——.delay()，它不是JavaScript的原生 setTimeout函数的替代品，
+
+//            .delay( duration [, queueName ] )
+//duration
+//            类型: Integer
+//            一个整数，指示的毫秒数，用于设定下个队列推迟执行的时间。
+//queueName
+//            类型: String
+//            一个作为队列名的字符串。默认是动画队列 fx。标准的效果队列。
+            
+//            当这句语句执行的时候，这个元素会以300毫秒的卷起动画，接着暂停800毫秒，最后有400毫秒的淡入动画。
+            $("#foo").slideUp(300).delay(800).fadeIn(400);
+        });
+    </script>
+</head>
+<body>
+
+<div id="foo"></div>
+
+</body>
+</html>

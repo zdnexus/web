@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 100px;
+            height: 200px;
+            background-color: red;
+            position: absolute;
+            top: 50px;
+            right: 1000px;
+        }
+
+        #div2 {
+            width: 1px;
+            height: 400px;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 100px;
+        }
+
+        #div3 {
+            width: 1px;
+            height: 400px;
+            background-color: black;
+            position: absolute;
+            top: 0;
+            left: 300px;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            var oBtn1 = document.getElementById('btn1');
+            var oBtn2 = document.getElementById('btn2');
+
+            oBtn1.onclick = function () {
+                Start_Move(100);
+            }
+            oBtn2.onclick = function () {
+                Start_Move(300);
+            }
+        }
+
+        var timer = null;
+        function Start_Move(Target) {
+            var oDiv = document.getElementById('div1');
+            var speed = 0;
+
+            clearInterval(timer);
+            timer = setInterval(function () {//有2个DIV，所以注意速度在正负极切换，所以把speed放在setInterval的函数里
+                if (oDiv.offsetLeft < Target) {
+                    speed = 7;
+                }
+                else {
+                    speed = -7;
+                }
+                if (Math.abs(Target - oDiv.offsetLeft) <= 7) {//运行快到目标的时候直接被赋值距离
+                    clearInterval(timer);
+                    oDiv.style.left = Target + 'px';
+                }
+                if (oDiv.offsetLeft == Target) {
+                    clearInterval(timer);
+                }
+                else {
+                    oDiv.style.left = oDiv.offsetLeft + speed + 'px';
+                }
+            }, 30);
+        }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="运动到100"/>
+<input id="btn2" type="button" value="运动到300"/>
+
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+</body>
+</html>

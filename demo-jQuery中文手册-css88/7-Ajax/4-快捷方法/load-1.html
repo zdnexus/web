@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .load( url [, data ] [, complete(responseText, textStatus, XMLHttpRequest) ] )
+//            描述: 从服务器载入数据并且将返回的 HTML 代码并插入至 匹配的元素 中。
+
+//            .load( url [, data ] [, complete(responseText, textStatus, XMLHttpRequest) ] )
+//url
+//            类型: String
+//            一个包含发送请求的URL字符串
+//data
+//            类型: PlainObject, String
+//            向服务器发送请求的Key/value参数，例如{name:"愚人码头",age:23}
+//complete(responseText, textStatus, XMLHttpRequest)
+//            类型: Function()
+//            当请求成功后执行的回调函数。
+
+//            这个方法是从服务器获取数据最简单的方法。除了不是全局函数，这个方法和$.get(url, data, success) 基本相同，它有一个隐含的回调函数。
+//            当他检查到一个成功的请求(i.e. 当 textStatus是 "success" 或者 "notmodified")时，.load() 方法将返回的HTML 内容数据设置到相匹配的节点中。
+//            这就意味着大多数采用这个方法可以很简单:$('#result').load('ajax/test.html');
+
+//            Example: 在一个有序列表中，加载其他页面的#ul1的li导航。
+            $("#new-projects").load("load.html #ul1 li");
+        });
+    </script>
+</head>
+<body>
+
+<b>Projects:</b>
+
+<ol id="new-projects"></ol>
+
+</body>
+</html>

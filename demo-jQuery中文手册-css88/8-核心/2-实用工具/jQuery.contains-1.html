@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.contains( container, contained )
+//            描述: 检查一个DOM元素是另一个DOM元素的后代。
+
+//            jQuery.contains( container, contained )
+//container
+//            类型: Element
+//            DOM元素作为容器，可以包含其他元素
+//contained
+//            类型: Element
+//            DOM元素，可能被其他元素所包含
+
+//            检测一个元素是否在另一个元素之内。 不支持文档和注释节点。
+            $.contains(document.documentElement, document.body); // true
+            $.contains(document.body, document.documentElement); // false
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

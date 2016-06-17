@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jquery/2.1.3/jquery.min.js"></script>
+    <script>
+//        2.13把2.14覆盖了
+        $(function () {
+//            Example: Load two versions of jQuery (not recommended). Then, restore jQuery's globally scoped variables to the first loaded jQuery.
+            var $log = $("#log");
+
+            $log.append("1 loaded jQuery version ($): " + $.fn.jquery + "<br>");//2.13
+
+            /*
+             Restore globally scoped jQuery variables to the first version loaded
+             (the newer version)
+             */
+            //cdn.bootcss.com/jquery/2.1.3/jquery.min.js
+            var jq162 = jQuery.noConflict(true);//2.13的jQuery权力移除给jq162
+
+            $log.append("<h3>After $.noConflict(true)</h3>");
+            $log.append("2 loaded jQuery version ($): " + $.fn.jquery + "<br>");//2.14 此时$是被覆盖的2.14
+            $log.append("3 loaded jQuery version (jq162): " + jq162.fn.jquery + "<br>");//2.13 jq162是jQuery
+
+            jq162("<p>123<p>").appendTo(document.body);
+        });
+    </script>
+</head>
+<body>
+
+<div id="log">
+    <h3>Before $.noConflict(true)</h3>
+</div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            var disX = 0;
+            var disY = 0;
+            oDiv.onmousedown = function (ev) {
+                disX = getMousePosition(ev).x - oDiv.offsetLeft;
+                disY = getMousePosition(ev).y - oDiv.offsetTop;
+                if (oDiv.setCapture) {
+                    //IE
+                    oDiv.onmousemove = mouseMove;
+                    oDiv.onmouseup = mouseUp;
+                    oDiv.setCapture();//IE的事件捕获
+                }
+                else {
+                    //FF CHROME
+                    document.onmousemove = mouseMove;
+                    document.onmouseup = mouseUp;
+                }
+                return false;//阻止默认行为
+
+                function mouseMove(ev) {
+                    var l = getMousePosition(ev).x - disX;
+                    var t = getMousePosition(ev).y - disY;
+                    if (l < 0) {
+                        l = 0;
+                    }
+                    else if (l > document.documentElement.clientWidth - oDiv.offsetWidth) {
+                        l = document.documentElement.clientWidth - oDiv.offsetWidth;
+                    }
+                    if (t < 0) {
+                        t = 0;
+                    }
+                    else if (t > document.documentElement.clientHeight - oDiv.offsetHeight) {
+                        t = document.documentElement.clientHeight - oDiv.offsetHeight;
+                    }
+                    oDiv.style.left = l + "px";
+                    oDiv.style.top = t + "px";
+                }
+
+                function mouseUp() {
+                    this.onmousemove = null;
+                    this.onmouseup = null;
+                    if (oDiv.releaseCapture) {
+                        oDiv.releaseCapture();
+                    }
+                }
+            };
+        };
+    </script>
+</head>
+<body>dadadasdasdasdasdsadsadaas
+dsadasdas
+<div id="div1">dsadsadsadasda</div>
+dsadassadsadsa
+</body>
+</html>

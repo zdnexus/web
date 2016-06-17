@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        strong {
+            color: red;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var maxLength = 140;
+            $("textarea").keyup(function () {
+                var l = $(this).val().length;
+                $("strong").text(maxLength - l);
+
+                if (parseInt($("strong").text()) < 0) {
+                    alert("不能超过140个字.");
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<textarea name="" id="" cols="30" rows="10" maxlength="140"></textarea>
+<span>你还可以输入<strong>140</strong>个字</span>
+</body>
+</html>

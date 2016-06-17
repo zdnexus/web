@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-size: 12px;
+            font-family: Arial;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $("#success").load("/not-here.php", function (response, status, xhr) {
+                if (status == "error") {
+                    var msg = "Sorry but there was an error: ";
+
+                    $("#error").html(msg + xhr.status + " " + xhr.statusText);//404 Not Found.
+                }
+            });
+
+//            Example: 将feeds.html 文件载人到 ID为feeds的DIV.
+            $("#feeds").load("feeds.html");
+
+//            Example: 发送数组形式的data参数到服务器。
+            $("#objectID").load("test.php", {'choices[]': ["Jon", "Susan"]});
+
+//            Example: Same as above, but will POST the additional parameters to the server and a callback that is executed when the server is finished responding.
+            $("#feeds").load("feeds.php", {limit: 25}, function () {
+                alert("The last 25 entries in the feed have been loaded");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<b>Successful Response (should be blank):</b>
+
+<div id="success"></div>
+
+<b>Error Response:</b>
+
+<div id="error"></div>
+
+</body>
+</html>

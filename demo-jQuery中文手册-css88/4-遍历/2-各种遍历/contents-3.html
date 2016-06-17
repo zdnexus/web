@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            改变背景颜色的iframe里面的链接。
+            $("#frameDemo").contents().find("a").css("background-color", "#BADA55");
+        });
+    </script>
+</head>
+<body>
+<iframe src="https://www.baidu.com" width="80%" height="600" id='frameDemo'></iframe>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            position: relative;
+            background-color: #abc;
+            width: 40px;
+            height: 40px;
+            float: left;
+            margin: 5px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 对第一个 div 的 left 属性应用动画，在动画执行的过程中，在 step 函数中改变其余 div 的 left 属性。
+            $("#go").click(function () {
+                $(".block:first").animate({
+                    left: 10
+                }, {
+                    duration: 1000,
+                    step: function (now, fx) {
+                        $(".block:gt(0)").css("left", now);
+                    }
+                });
+            });
+
+
+//            Example: 对所有段落的高和透明度使用 toggle 动画，用时 600 毫秒。
+            $("p").animate({
+                height: "toggle",
+                opacity: "toggle"
+            }, "slow");
+
+//            Example: 对所有段落应用动画，使其 left 属性变为 50，透明度变为 1（即，不透明，可见），用时 500 毫秒。
+            $("p").animate({
+                left: 50,
+                opacity: 1
+            }, 500);
+
+//            Example: Animate the left and opacity style properties of all paragraphs; run the animation outside the queue, so that it will automatically start without waiting for its turn.
+            $("p").animate({
+                left: "50px",
+                opacity: 1
+            }, {
+                duration: 500,
+                queue: false
+            });
+
+//            Example: 一个使用 'easing' 缓冲函数的例子，只要当你提供的插件中包含 easing 函数即可。注意，以下代码只能在处于隐藏的元素上才会看出效果。
+            $("p").animate({
+                opacity: "show"
+            }, "slow", "easein");
+
+//            Example: 对所有段落的高和透明度使用 toggle 动画，用时 600 毫秒。
+            $("p").animate({
+                height: "toggle",
+                opacity: "toggle"
+            }, {
+                duration: "slow"
+            });
+
+//            Example: 一个使用 'easing' 缓冲函数的例子，只要当你提供的插件中包含 easing 函数即可。
+            $("p").animate({
+                opacity: "show"
+            }, {
+                duration: "slow",
+                easing: "easein"
+            });
+
+//            Example: 一个使用回调函数的例子。第一个参数是一个 CSS 属性数组，第二个参数表示动画耗时 1000 毫秒，第三个参数说明使用的是 easing 缓冲效果, 第四个参数是一个匿名的回调函数。
+            $("p").animate({
+                height: 200,
+                width: 400,
+                opacity: 0.5
+            }, 1000, "linear", function () {
+                alert("all done");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>
+    <button id="go">Run »</button>
+</p>
+
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+<div class="block"></div>
+
+</body>
+</html>

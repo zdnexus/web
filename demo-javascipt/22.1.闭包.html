@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //子函数可以使用父函数的局部变量
+        function A() { //父函数
+            var a = 12;
+
+            function B() {//子函数
+                alert(a);
+            }
+
+            B();
+        }
+        A();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

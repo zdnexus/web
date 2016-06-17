@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+    {{myHeader}}
+</div>
+
+</body>
+<script>
+//    AngularJS $timeout 服务对应了 JS window.setTimeout 函数。
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope, $timeout) {
+        $scope.myHeader = "Hello World!";
+        $timeout(function () {
+            $scope.myHeader = "How are you today?";
+        }, 2000);
+    });
+</script>
+</html>

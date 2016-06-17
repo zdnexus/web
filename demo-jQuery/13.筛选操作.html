@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            filter() 将匹配元素集合缩减为匹配指定选择器的元素。
+//            $("#div1 p").first().css("background","blue");//#div1里所有p标签的第一个p
+//            $("#div1 p").filter(":first").css("background","blue");
+//            $("#div1 p").eq(0).css("background", "blue");
+
+//            $("#div1 p").filter("#qqq").css("background","blue");//#div1里所有p标签的id=#qqq
+//            $("#div1 p").filter(".a").css("background","blue");//#div1里所有p标签的class=a
+
+//            $("div p").eq(5).css("background", "blue");//div里所有的p标签,下标是5的p标签,第6个p标签
+
+//            $("#div2 p:odd").css("background","blue");//#div2里所有p标签,下标为奇数的,1-3-5
+//            $("#div2 p").filter(":odd").css("background","blue");
+
+//            $("#div2 p").filter(":nth-child(3)").css("background","yellow");//#div2里所有p标签的的第三个p元素
+//            $("#div2 p").filter("#p1").css("background","black");//#div2里所有p标签的中id=#p1
+
+            $("p").click(function () {
+                if ($(this).is(".a")) {//检查class是否为first,返回一个bull值
+                    alert($(this).html());
+                    $("p").not(".a").css("color", "blue");//获取除了class为first以外的p标签
+                }
+            })
+        })
+    </script>
+</head>
+<body>
+<div id="div1">
+    <p>我是div1的第一个标签</p>
+
+    <p class="a">我是div1的第二个标签</p>
+
+    <p id="qqq">我是div1的第三个标签</p>
+
+    <p>我是div1的第四个标签</p>
+
+    <p>我是div1的第五个标签</p>
+</div>
+<div id="div2">
+    <p>我是div2的第一个标签</p>
+
+    <p>我是div2的第二个标签</p>
+
+    <p>我是div2的第三个标签</p>
+
+    <p>我是div2的第四个标签</p>
+
+    <p id="p1">我是div2的第五个标签</p>
+</div>
+</body>
+</html>

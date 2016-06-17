@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<script>
+    var a = parseInt("abc");//NaN
+    var b = parseInt("abc");//NaN
+    alert(a == b);//false  NaN和NaN不相等
+
+    a = 5;
+    b = "5";
+    alert(a == b);//true 先隐形转换后在比较
+
+    a = 5;
+    b = "5";
+    alert(a === b);//false 直接比较
+
+    a = "12";
+    b = "5";
+    alert(a - b);// 7  字符串相减，2个都要隐形转换
+    alert(typeof  a);//string
+    alert(typeof (a - b));//number
+
+    a = "12";
+    b = "5";
+    alert(a + b);//125
+    alert(typeof (a + b));//string
+
+    a = "12";
+    b = 5;
+    alert(a + b);//125
+    alert(typeof  (a + b));//string
+
+    a = "32a4322q4sa32ds";
+    alert(parseInt(a));//32
+
+
+</script>
+<body>
+
+</body>
+</html>

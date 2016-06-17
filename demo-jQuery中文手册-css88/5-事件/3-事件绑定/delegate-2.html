@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        p.over {
+            background: #ccc;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            点击添加另一个段落。请注意， .delegate() 绑定所有段落的click事件 - 甚至是新的段落。
+            $("body").delegate("p", "click", function (event) {
+                event.preventDefault();//要取消默认动作只有通过使用preventDefault方法。
+
+                $(this).after("<p>Another paragraph!</p>");
+
+                return false;//返回false，取消默认的行为，防止从它冒出来的，：
+            });
+
+//            新的段落没有click事件
+//            $("p").bind("click", function () {
+//                $(this).after("<p>Another paragraph!</p>");
+//            });
+        });
+    </script>
+</head>
+<body>
+<p>Click me!</p>
+<span></span>
+</body>
+</html>

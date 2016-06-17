@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 5px;
+            float: left;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div").click(function () {
+//                .css( propertyName )
+//                获取匹配元素集合中的第一个元素的样式属性的计算值
+
+                var color = $(this).css("background-color");
+                $("#result").html("That div is <span style='color:" + color + ";'>" + color + "</span>.");
+            });
+        });
+    </script>
+</head>
+<body>
+<div style="background-color:blue;"></div>
+<div style="background-color:rgb(15,99,30);"></div>
+<div style="background-color:#123456;"></div>
+<div style="background-color:#f11;"></div>
+<span id="result">&nbsp;</span>
+</body>
+</html>

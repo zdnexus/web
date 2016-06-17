@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            margin: 5px;
+            background: yellow;
+        }
+
+        button {
+            margin: 5px;
+            font-size: 14px;
+        }
+
+        p {
+            margin: 5px;
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="../../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.data( element, key )
+//            返回用jQuery.data(element, name, value)储存在元素上的相应名字的数据，或者元素上完整的数据存储
+
+            $("button").click(function (e) {
+                e.stopPropagation();
+                var value = "", div = $("div")[0];
+
+                switch ($("button").index(this)) {
+                    case 0 :
+                        value = jQuery.data(div, "blah");
+                        break;
+                    case 1 :
+                        jQuery.data(div, "blah", "hello");
+                        value = "Stored!";
+                        break;
+                    case 2 :
+                        jQuery.data(div, "blah", 86);
+                        value = "Stored!";
+                        break;
+                    case 3 :
+                        jQuery.removeData(div, "blah");
+                        value = "Removed!";
+                        break;
+                }
+
+//                alert(typeof value);//undefined typeof 为undefined 需要转换
+                $("span").text("" + value);//显示undefined，需要在前面加""，强制转换为字符串
+            });
+        });
+    </script>
+</head>
+<body>
+<div>A div</div>
+<button>Get "blah" from the div</button>
+<button>Set "blah" to "hello"</button>
+<button>Set "blah" to 86</button>
+<button>Remove "blah" from the div</button>
+<p>The "blah" value of this div is <span>?</span></p>
+</body>
+</html>

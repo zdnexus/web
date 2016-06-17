@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 100px;
+            height: 80px;
+            margin: 5px;
+            float: left;
+            background: #b9e
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":only-child" )
+//            如果某个元素是其父元素的唯一子元素，那么它就会被选中。
+
+            $("div button:only-child").text("Alone").css("border", "2px blue solid");
+        });
+    </script>
+</head>
+<body>
+<div>
+    <button>Sibling!</button>
+    <button>Sibling!</button>
+</div>
+<div>
+    <button>Sibling!</button>
+</div>
+<div>
+    None
+</div>
+<div>
+    <button>Sibling!</button>
+    <button>Sibling!</button>
+    <button>Sibling!</button>
+</div>
+<div>
+    <button>Sibling!</button>
+</div>
+</body>
+</html>

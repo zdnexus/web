@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            display: none;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .focusin( handler(eventObject) )
+//            描述: 将一个事件函数绑定到 "focusin" 事件。
+
+//            focusin 事件会在元素（或者其内部的任何元素）获得焦点时触发。
+//            这跟 focus 事件的显著区别在于，它可以在父元素上检测子元素获得焦点的情况(换而言之，它支持事件冒泡)。
+
+//            .focusin()方法只是作为.on( "focusin", handler )的一个速记写法，移除该事件可以使用.off( "focusin" )。
+
+            $("p").focusin(function () {
+                $(this)
+                        .find("span")
+                        .css("display", "inline")
+                        .fadeOut(1000);
+            });
+
+            $("p").on("focusin", function () {
+                $(this)
+                        .find("span")
+                        .css("display", "inline")
+                        .fadeOut(1000);
+            });
+            $("p").off("focusin");//移除事件
+        });
+    </script>
+</head>
+<body>
+
+<p><input type="text"/> <span>focusin fire</span></p>
+
+<p><input type="password"/> <span>focusin fire</span></p>
+
+</body>
+</html>

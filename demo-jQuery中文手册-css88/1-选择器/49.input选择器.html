@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery( ":input" )
+//            选择所有 input, textarea, select 和 button 元素.
+//            :input 选择器基本上选择所有表单控件。
+
+//            因为 :input 是 jQuery 延伸出来的一个选择器。并且不是的CSS规范的一部分,
+//            使用:input()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//            为了在现代浏览器上获得更佳的性能，请使用 .filter(":input")代替。
+
+            var allInputs = $(":input");
+            var formChildren = $("form > *");
+//            var formChildren = $("form").children().filter(":input");
+
+            $("#messages").text("Found " + allInputs.length + " inputs and the form has " + formChildren.length + " children.");
+            $("form").submit(function () {
+                return false;
+            });// so it won't submit
+        });
+    </script>
+</head>
+<body>
+<form>
+    <input type="button" value="Input Button"/>
+    <input type="checkbox"/>
+    <input type="file"/>
+    <input type="hidden"/>
+    <input type="image"/>
+    <input type="password"/>
+    <input type="radio"/>
+    <input type="reset"/>
+    <input type="submit"/>
+    <input type="text"/>
+    <select>
+        <option>Option</option>
+    </select>
+    <textarea></textarea>
+    <button>Button</button>
+</form>
+<div id="messages"></div>
+</body>
+</html>

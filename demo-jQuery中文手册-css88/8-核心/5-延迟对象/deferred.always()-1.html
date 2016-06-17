@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+
+//            deferred.always( alwaysCallbacks [, alwaysCallbacks ] )
+//            描述: 当Deferred（延迟）对象解决或拒绝时，调用添加处理程序。
+
+//            deferred.always( alwaysCallbacks [, alwaysCallbacks ] )
+//        alwaysCallbacks
+//            类型: Function()
+//            一个函数，或者函数数组，当Deferred（延迟）对象得到解决或拒绝时被调用。
+//        alwaysCallbacks
+//            类型: Function()
+//            可选的一个函数，或者函数数组，当Deferred（延迟）对象得到解决或拒绝时被调用。
+
+            $.get("/zd/1.php").always( function() {
+                alert("$.get completed with success or error callback arguments");
+            } );
+
+//            不管成功或者失败都会弹出
+            $.get("/zd/11111.php").always( function() {
+                alert("$.get completed with success or error callback arguments");
+            } );
+
+        })
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

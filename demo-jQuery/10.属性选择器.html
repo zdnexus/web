@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p {
+            height: 20px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("p[title]").css("background", "blue");//所有有title属性的p元素
+//            $("p[title='t2']").css("background", "blue");//所有有title=t2的元素
+            
+//            $("p[zd='zzz']").css("background", "blue");//自定义属性,所有带zd=zzz属性的p元素
+//            $("p[zd]").css("background", "blue");//自定义属性,所有带zd属性的p元素
+//            $("p[title][zd='ddd']").css("background", "blue");//混合属性,style属性+自定义属性,所有title属性也有zd=ddd属性的p元素
+            
+//            $("p[qqq]").css("background", "blue");//自定义属性,所有带qqq属性的p元素
+//            $("div[zd]").css("background", "blue");//所有有zd属性的div
+        })
+    </script>
+</head>
+<body>
+<p><a href="#"></a></p>
+
+<p qqq="111">动画的概念不同于一般意义上的动画片，动画是一种综合艺术，<strong>它是集合了绘画</strong>、漫画、电影、数字媒体、摄影、音乐、文</p>
+
+<p title="t1">学等众多艺术门类于一身的艺术表现形式。最早发源于19世纪上半叶的英国，兴盛于美国，中国动画起源于20世纪20年代。动画</p>
+
+<p zd="zzz">是一门年青的艺术，它是唯一有确定诞生日期的一门艺术，1892年10月28日埃米尔·雷诺首次在巴黎著名的葛莱凡蜡像馆向观众</p>
+
+<p qqq="222" zd="z"></p>
+
+<p title="t2">放映光学影戏，标志着动画的正式诞生，同时埃米尔·雷诺也被誉为“动画之父”。</p>
+
+<p title="t2" zd="ddd">哈哈哈</p>
+
+<p title="t3" zd="zzz">啊啊啊</p>
+
+<div title="t2" zd="ddd">噢噢噢</div>
+
+</body>
+</html>

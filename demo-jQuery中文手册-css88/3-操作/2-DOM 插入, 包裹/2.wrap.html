@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px blue solid;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        p {
+            background: yellow;
+            margin: 2px;
+            padding: 2px;
+        }
+
+        strong {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("span").wrap("<div><div><p><em><b></b></em></p></div></div>");
+        });
+    </script>
+</head>
+<body>
+<span>Span Text</span>
+<strong>What about me?</strong>
+<span>Another One</span>
+<strong><span>What about me?</span></strong>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p { width:400px; }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 让所有的段落滑上或滑下，用时 600 毫秒。
+            $("button").click(function () {
+                $("p").slideToggle("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<button>Toggle</button>
+
+<p>
+    This is the paragraph to end all paragraphs.  You
+    should feel <em>lucky</em> to have seen such a paragraph in
+    your life.  Congratulations!
+</p>
+
+</body>
+</html>

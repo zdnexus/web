@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 40px;
+            height: 40px;
+            margin: 10px;
+            float: left;
+            border: 2px blue solid;
+            padding: 2px;
+        }
+
+        span {
+            font-size: 14px;
+        }
+
+        p {
+            clear: left;
+            margin: 10px;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            Find the very previous sibling of each div.
+            var $curr = $("#start");
+            
+            $curr.css("background-color", "#f99");
+            $("button").click(function () {
+                $curr = $curr.prev();
+                $("div").css("background-color", "");
+                $curr.css("background-color", "#f99");
+            });
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div><span>has child</span></div>
+<div></div>
+<div></div>
+<div></div>
+<div id="start"></div>
+<div></div>
+
+<p>
+    <button>Go to Prev</button>
+</p>
+</body>
+</html>

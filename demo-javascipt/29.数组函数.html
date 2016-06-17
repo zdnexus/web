@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var a = [1, 2, 3];
+        var b = [2, 3, 4];
+
+        alert(a.concat(b));//1,2,3,2,3,4
+
+        alert(a);//1,2,3  a本身没有变，因为没有赋值
+
+        alert(a.join('-'));//1-2-3
+
+        a = a.concat(b);
+        alert(a);//1,2,3,2,3,4 a被赋值
+
+        var c = [14, 5, 13, -5, 0];
+        c.sort();//sort() 只对字符串处理
+        alert(c);//-5,0,13,14,5，没有排序好
+
+        //sort添加比较函数，把字符串当成数字处理
+        c.sort(function (n1, n2) {
+                    if (n1 > n2) {
+                        return 1;
+                    }
+                    else if (n1 < n2) {
+                        return -1;
+                    }
+                    else {
+                        return 0;
+                    }
+                }
+        );
+        alert(c);//-5,0,5,13,14
+
+        var d = ["r", "z", "e", "a"];
+        d.sort();//直接可对字符串排序
+        alert(d);//a,e,r,z
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

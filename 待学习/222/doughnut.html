@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+    <title>Chart.js柱形图DEMO演示环形图DEMO演示</title>
+    <meta name="viewport" content="initial-scale = 1, user-scalable = no">
+    <meta charset="UTF-8">
+    <style>
+        #canvas{
+            position: relative;
+        }
+
+        #canvas #div1{
+            width: 30px;
+            height: 50px;
+            background-color: red;
+            position: absolute;
+            left: 130px;
+            top:50px;
+
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script src="Chart.js"></script>
+    <script>
+        $(function(){
+            var doughnutData = [
+                {
+                    value: 30,
+                    color: "#F7464A"
+                },
+                {
+                    value: 50,
+                    color: "#46BFBD"
+                },
+                {
+                    value: 100,
+                    color: "#FDB45C"
+                },
+                {
+                    value: 40,
+                    color: "#949FB1"
+                },
+                {
+                    value: 200,
+                    color: "#4D5360"
+                }
+
+            ];
+
+            var myDoughnut = new Chart(document.getElementById("canvas").getContext("2d")).Doughnut(doughnutData);
+        });
+    </script>
+</head>
+<body>
+<canvas id="canvas" height="450" width="450">
+    <div id="div1"></div>
+</canvas>
+</body>
+</html>

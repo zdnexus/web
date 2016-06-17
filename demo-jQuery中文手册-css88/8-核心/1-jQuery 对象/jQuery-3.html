@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 查找文档中第一个表单中的所有单选按钮。
+            $("input:radio", document.forms[0]);
+
+//            Example: 查找 Ajax 返回的 XML 文档中的所有 div 元素。
+            $("div", xml.responseXML);
+
+//            Example: 将页面的背景色设置成黑色。
+            $(document.body).css("backgroundColor", "black");
+
+//            Example: 隐藏 myForm 表单中的所有 input 元素。
+            $("form.myForm input").hide()
+
+//            Example: 动态创建一个 div 元素(以及它的内容)，并将它追加到 body 元素后。在 jQuery 内部是通过所指定元素的 innerHTML 属性对新生成的元素进行赋值的。
+            $("<div><p>Hello</p></div>").appendTo("body");
+
+//            Example: 创建一些 DOM 元素。
+            $("<div/>", {
+                class: "test",
+                text: "Click me!",
+                click: function () {
+                    $(this).toggleClass("test");
+                }
+            }).appendTo("body");
+
+//            Example: 当 DOM 加载完成时执行函数。
+            $(function () {
+                // Document is ready
+            });
+
+//            Example: 为了更加安全的使用 jQuery 的 $ 别名，而不依赖全局的 $ 别名，我们可以同时使用 $(document).ready() 的快捷方式和参数来达到此目的。
+            jQuery(function ($) {
+                // Your code using failsafe $ alias here...
+            });
+        });
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

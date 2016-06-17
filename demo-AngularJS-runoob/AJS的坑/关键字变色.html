@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <input type="text" ng-model="ipt">
+
+    <p id="p1" ng-bind-html="contentHtml | trustHtml"></p>
+
+</div>
+
+</body>
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function ($scope) {
+        $scope.ipt = '';
+        $scope.content = '在 JavaScript 代码里写着 XML 格式的代码称为 JSX；可以去 JSX 语法 里学习更多 JSX 相关的知识。为了把 JSX' +
+                '转成标准的 JavaScript，我们用标签包裹着含有 JSX的代码，然后引入库来实现在浏览器里的代码转换。';
+        $scope.contentHtml = $scope.content;
+
+
+        $scope.$watch('ipt', function () {
+            $scope.contentHtml = $scope.content.replace($scope.ipt, '<span style="color: #ff0000;">' + $scope.ipt + '</span>');
+        });
+    });
+
+//    ng输入htmlfilter格式
+    app.filter('trustHtml', function ($sce) {
+        return function (input) {
+            return $sce.trustAsHtml(input);
+        }
+    });
+
+</script>
+</html>

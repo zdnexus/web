@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="/zd/css/public.css">
+    <style>
+        .user-options {
+            width: 250px;
+            min-height: 720px;
+            background-color: #dcdcdc;
+            overflow: hidden;
+        }
+
+        #leftNavigation {
+            margin-top: 30px;
+        }
+
+        #leftNavigation li {
+            margin: 5px 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        #leftNavigation li a {
+            width: 250px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            color: #555555;
+            font-size: 18px;
+            display: block;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            position: relative;
+            -webkit-transition: color 0.2s ease;
+            -moz-transition: color 0.2s ease;
+            -o-transition: color 0.2s ease;
+            transition: color 0.2s ease;
+        }
+
+        #leftNavigation > li > a:hover {
+            color: white;
+            background-color: #e55a47;
+        }
+
+        #leftNavigation li ul {
+            display: none;
+        }
+
+        #leftNavigation li ul li a {
+            font-size: 14px;
+        }
+
+        #leftNavigation li ul li a:hover{
+            color: #e55a47;
+        }
+
+        #leftNavigation > li.active > a{
+            color: white;
+            background-color: #e55a47;
+        }
+
+        #leftNavigation > li.active > ul {
+            display: block;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        (function ($) {
+
+            $.fn.navClick = function (opations) {
+
+                var settings = $.extend({
+
+                    classActive: 'active'
+
+                }, opations);
+
+
+                $(this).children("li").click(function () {
+                    $(this).toggleClass(settings.classActive);
+                    $(this).siblings().removeClass(settings.classActive);
+                });
+
+
+            }
+
+        })(jQuery);
+
+
+        $(function () {
+            $("#leftNavigation").navClick();
+        });
+    </script>
+</head>
+<body>
+<div class="user-options">
+    <ul id="leftNavigation">
+        <li>
+            <a href="https://www.baidu.com">账户首页</a>
+        </li>
+        <li>
+            <a>资金管理</a>
+            <ul>
+                <li>
+                    <a href="https://www.baidu.com">资产统计</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">资产流水</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">在线充值</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">提现</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">体验金</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a>投资管理</a>
+            <ul>
+                <li>
+                    <a href="https://www.baidu.com">投资记录</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">回款计划</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a>个人设置</a>
+            <ul>
+                <li>
+                    <a href="https://www.baidu.com">安全中心</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">绑定银行卡</a>
+                </li>
+                <li>
+                    <a href="https://www.baidu.com">系统消息</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</body>
+</html>

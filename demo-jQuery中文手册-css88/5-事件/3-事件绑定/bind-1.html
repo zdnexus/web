@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        #foo.entered {
+            background-color: yellow;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .bind( eventType [, eventData ], handler(eventObject) )
+//            为一个元素绑定一个事件处理程序。
+
+//            对于早期版本，.bind()方法用于直接附加一个事件处理程序到元素上。处理程序附加到jQuery对象中当前选中的元素，
+//            所以，在.bind()绑定事件的时候，这些元素必须已经存在。
+//            对于新增加的元素,对于更为灵活的事件绑定，可以查看.on() 或者 .delegate()事件代理。
+
+//            .bind( eventType [, eventData ], handler(eventObject) )
+//            eventType
+//            类型: String
+//            一个包含一个或多个DOM事件类型的字符串，比如"click"或"submit,"或自定义事件的名称。
+//            eventData
+//            类型: Anything
+//            一个对象，它包含的数据键值对映射将被传递给事件处理程序。
+//            handler(eventObject)
+//            类型: Function()
+//            每当事件触发时执行的函数。
+
+//            此代码将使元素ID为foo响应click事件。当在用户点击这个元素之后，警报将显示。
+            $("#foo").bind("click", function () {
+                alert("User clicked on 'foo.'");
+            });
+            $("#foo").bind("mouseenter mouseleave", function () {
+                $(this).toggleClass("entered");
+            });
+//            合并写入:
+            $("#foo").bind({
+                "click": function () {
+                    alert("User clicked on 'foo.'");
+                },
+                "mouseenter mouseleave": function () {
+                    $(this).toggleClass("entered");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="foo"></div>
+</body>
+</html>

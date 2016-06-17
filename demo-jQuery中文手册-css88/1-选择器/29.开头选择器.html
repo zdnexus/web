@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function(){
+//            jQuery( "[attribute^='value']" )
+//            选择指定属性是以给定字符串开始的元素
+
+            $("input[name^='news']").val("a letter");
+        });
+    </script>
+</head>
+<body>
+<input name="newsletter" />
+
+<input name="milkman" />
+<input name="newsboy" />
+<input name="news-boy" />
+</body>
+</html>

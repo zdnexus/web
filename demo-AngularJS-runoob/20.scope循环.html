@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <ul>
+        <li ng-repeat="x in names">
+            <h1>{{x}}</h1>
+            <h3>{{$index}}</h3>
+        </li>
+    </ul>
+
+</div>
+
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function($scope) {
+        $scope.names = ["Emil", "Tobias", "Linus"];
+    });
+
+</script>
+
+</body>
+</html>

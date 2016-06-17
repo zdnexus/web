@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background-color: blue;
+            color: white;
+            height: 100px;
+            width: 150px;
+        }
+
+        div.contextmenu {
+            background-color: yellow;
+            color: black;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            var div = $("div:first");
+
+            div.contextmenu(function () {
+                div.toggleClass("contextmenu");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div></div>
+
+<span>Right click the block</span>
+
+</body>
+</html>

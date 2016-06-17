@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .click( handler(eventObject) )
+//            为 JavaScript 的"click" 事件绑定一个处理器，或者触发元素上的 "click" 事件。
+
+//            click事件触发需要以下几点：
+//            鼠标指针在元素里面时点击。
+//            鼠标指针在元素里面时释放。
+
+//            .click( handler(eventObject) )
+//            handler(eventObject)
+//            类型: Function()
+//            每次事件触发时会执行的函数。
+
+            $("#target").click(function() {
+                alert("Handler for .click() called.");
+            });
+
+//            .click()
+//            这个方法不接受任何参数
+//            是.trigger( "click" )的快捷方式。一个元素被点击和鼠标按键被按下和释放时候将触发 click 事件。任何HTML元素都可以接收此事件。
+
+            $("#other").click(function() {
+                $("#target").click();//手动触发
+//                $("#target").trigger("click");//手动触发.trigger( "click" )
+            });
+
+//            .click()方法只是作为.on( "click", handler )的一个速记写法，移除该事件可以使用.off( "click" )。
+
+//            Example: 在页面上所有段落上触发click事件。
+//            $("p").click();
+            $("#other").click();//页面加载完后自动触发
+        });
+    </script>
+</head>
+<body>
+
+<div id="target">
+    Click here
+</div>
+
+<div id="other">
+    Trigger the handler
+</div>
+
+</body>
+</html>

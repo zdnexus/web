@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1{
+            position: relative;
+            width: 50px;
+            height: 500px;
+            background-color: gray;
+            margin: 10px;
+            float: left;
+        }
+
+        #div2{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background-color: red;
+        }
+
+        #div3{
+            position: relative;
+            width: 500px;
+            height: 50px;
+            background-color: bisque;
+            margin: 10px;
+            float: left;
+        }
+
+        #div4{
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background-color:saddlebrown;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload= function () {
+            var oDiv1=document.getElementById("div1");
+            var oDiv2=document.getElementById("div2");
+            tzY(oDiv2,oDiv1);
+
+            var oDiv3=document.getElementById("div3");
+            var oDiv4=document.getElementById("div4");
+            tzX(oDiv4,oDiv3);
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2"></div>
+</div>
+
+<div id="div3">
+    <div id="div4"></div>
+</div>
+</body>
+</html>

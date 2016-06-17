@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background-color: #ece023;
+            width: 30px;
+            height: 40px;
+            margin: 2px;
+            float: left;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            当点击 div 之后用 2 秒时间隐藏这个 div。当它完全隐藏后将其移除。试试一次多点几个 div 看看。
+            for (var i = 0; i < 5; i++) {
+                $("<div>").appendTo(document.body);
+            }
+
+            $("div").click(function () {
+                $(this).hide(2000, function () {
+                    $(this).remove();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+</body>
+</html>

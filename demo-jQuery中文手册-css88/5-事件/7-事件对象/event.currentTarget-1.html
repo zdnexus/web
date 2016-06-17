@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.currentTarget
+//            描述: 在事件冒泡过程中的当前DOM元素。
+
+//            这个属性总是等于函数的this。
+//            如果您使用jQuery.proxy或另一种形式操作作用域，this 将等于您所提供的context（上下文），而不是event.currentTarget
+
+            $("p").click(function(event) {
+                alert( event.currentTarget === this ); // true
+            });
+        });
+    </script>
+</head>
+<body>
+
+<p>11111111111</p>
+
+</body>
+</html>

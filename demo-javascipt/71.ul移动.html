@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            addLi1();
+            var oDiv_mark = document.getElementsByClassName("mark_main")[0];
+            var oBtn_left = document.getElementsByClassName("btn1")[0];
+            var oBtn_right = document.getElementsByClassName("btn2")[0];
+            var aLi1 = document.getElementById("ul1").getElementsByTagName("li");
+            var oUl = document.getElementById("ul2");
+            var aLi2 = oUl.getElementsByTagName("li");
+            var base_speed = 3;
+            var speed = -base_speed;
+
+            //鼠标移入移出
+            oDiv_mark.onmouseover = function () {
+                starMove(this, "opacity", 100);
+            };
+            oDiv_mark.onmouseout = function () {
+                starMove(this, "opacity", 0);
+            };
+
+            //图片移动
+            oBtn_left.onclick = function () {
+                speed = -base_speed;
+                ulMove(oUl, speed);
+            };
+            oBtn_right.onclick = function () {
+                speed = base_speed;
+                ulMove(oUl, speed);
+            };
+
+            var picIndex = 2;//li-index
+            var picNow = 0;//上一个图片位置
+            for (var i = 0; i < aLi2.length; ++i) {
+                aLi2[i].index = i;
+                aLi2[i].onmouseover = function () {
+                    ulMove(oUl, 0);
+                    starMove(aLi2[this.index], "opacity", 100);
+                };
+                aLi2[i].onmouseout = function () {
+                    ulMove(oUl, speed);
+                    if (this.index != picNow) {
+                        starMove(aLi2[this.index], "opacity", 60);
+                    }
+                };
+                aLi2[i].onclick = function () {
+                    if (this.index != picNow) {
+                        var j = (this.index) % aLi1.length;
+                        aLi1[j].style.zIndex = picIndex++;
+                        aLi1[j].childNodes[0].style.height = 0;
+                        starMove(aLi1[j].childNodes[0], "height", 300);
+                        for (var i = 0; i < aLi2.length; ++i) {
+                            starMove(aLi2[i], "opacity", 60);
+                        }
+                        starMove(aLi2[this.index], "opacity", 100);
+                        if (this.index < 6) {
+                            starMove(aLi2[this.index + 6], "opacity", 100);
+                        }
+                        else {
+                            starMove(aLi2[this.index - 6], "opacity", 100);
+                        }
+                        picNow = this.index;
+                    }
+                };
+            }
+            ulMove(oUl, speed);
+        };
+    </script>
+</head>
+<body>
+<div class="titlebox">
+    <div class="main">
+        <div class="mark_main">
+            <input type="button" class="btn1">
+            <input type="button" class="btn2">
+        </div>
+        <ul id="ul1"></ul>
+    </div>
+    <div class="bottom">
+        <ul id="ul2"></ul>
+    </div>
+</div>
+</body>
+</html>

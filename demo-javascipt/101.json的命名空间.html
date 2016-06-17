@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        function F() {
+            alert(123);
+        }
+
+        var json = {};
+        json.a = {};
+        json.b = {};
+        json.c = {};
+
+        json.a.get = F;
+        json.b.get = F;
+        json.c.get = F;
+
+        json.a.get();
+        json.b.get();
+        json.c.get();
+    </script>
+</head>
+<body>
+
+</body>
+</html>

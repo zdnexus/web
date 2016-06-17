@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .full {
+            border: 1px solid red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .has( )
+//            筛选匹配元素集合中的那些有相匹配的选择器或DOM元素的后代元素。
+
+//            .has( selector )
+//            selector
+//            类型: String
+//            一个用于匹配元素的选择器字符串。
+
+//            .has( contained )
+//            contained
+//            类型: Element
+//            用于匹配元素的DOM元素。
+
+            $("ul").append("<li>" + ($("ul").has("li").length ? "Yes" : "No") + "</li>");
+            $("ul").has("li").addClass("full");
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>Does the UL contain an LI?</li>
+</ul>
+</body>
+</html>

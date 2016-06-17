@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #table1 {
+            width: 500px;
+            height: 500px;
+            border: 1px solid black;
+            text-align: center;
+            border-collapse: collapse;
+        }
+
+        #table1 tr, td {
+            border: 1px solid black;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            var oTable = document.getElementById("table1");
+//            var aTr = oTable.getElementsByTagName("tr");
+//
+//            for (var i = 0; i < aTr.length; ++i) {
+//                if (i % 2 == 0) {
+//                    aTr[i].style.background = "red";
+//                }
+//                else {
+//                    aTr[i].style.background = "yellow";
+//                }
+//            }
+
+//            $("#table1 tr:even").css("background","red");//偶数
+//            $("#table1 tr:odd").css("background","yellow");//奇数
+
+            //end()表示在filter(":even")执行后返回$("#table1 tr")的状态,重新再选择一次.
+            $("#table1 tr").filter(":even").css("background","red").end().filter(":odd").css("background","yellow");
+        })
+    </script>
+</head>
+<body>
+<table id="table1">
+    <tr>
+        <td>111</td>
+        <td>222</td>
+        <td>333</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>222</td>
+        <td>333</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>222</td>
+        <td>333</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>222</td>
+        <td>333</td>
+    </tr>
+    <tr>
+        <td>111</td>
+        <td>222</td>
+        <td>333</td>
+    </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,15 @@
+/* line 4, ../sass/first.scss */
+div {
+  color: #1875e7;
+}
+
+/* line 9, ../sass/first.scss */
+#main p {
+  color: #00ff00;
+  width: 97%;
+}
+/* line 13, ../sass/first.scss */
+#main p .redbox {
+  background-color: #ff0000;
+  color: #000000;
+}

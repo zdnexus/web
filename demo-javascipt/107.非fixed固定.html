@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            height: 2000px;
+        }
+
+        #div1 {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            background-color: red;
+        }
+    </style>
+    <script>
+        window.onscroll = window.onresize = function () {
+            var oDiv = document.getElementById("div1");
+            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+            var l = document.documentElement.clientWidth - oDiv.offsetWidth;
+            var t = document.documentElement.clientHeight - oDiv.offsetHeight + scrollTop;
+            oDiv.style.left = l + "px";
+            oDiv.style.top = t + "px";
+        };
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 40px;
+            height: 40px;
+            margin: 5px;
+            float: left;
+            border: 2px blue solid;
+            text-align: center;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("button").click(function () {
+                $("div").each(function (index, domEle) {
+                    // domEle == this
+                    $(domEle).css("background-color", "yellow");
+                    if ($(this).is("#stop")) {
+                        $("span").text("Stopped at div index #" + index);
+                        return false;//你可以使用 'return' 来提前结束 each() 循环。
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<button>Change colors</button>
+<span></span>
+
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div id="stop">Stop here</div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

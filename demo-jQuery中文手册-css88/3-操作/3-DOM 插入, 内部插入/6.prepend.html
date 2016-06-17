@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            Prepends a DOM Element to all paragraphs.
+            $("p").prepend(document.createTextNode("Hello "));
+//            $("p").prepend("Hello ");
+        });
+    </script>
+</head>
+<body>
+<p>is what I'd say</p>
+
+<p>is what I said</p>
+</body>
+</html>

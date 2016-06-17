@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .not( elements )
+//            elements
+//            类型: Elements
+//            要从匹配元素集合中移除的一个或多个DOM元素。
+
+            $("li").not(document.getElementById('notli'))
+                    .css("background-color", "red");
+
+//            .not( jQuery object )
+//            jQuery object
+//            类型: PlainObject
+//            现有匹配当前元素集合的jQuery对象。
+
+            $("li").not($("#notli"))
+                    .css("background-color", "red");
+            $("li").not("#notli")
+                    .css("background-color", "red");
+
+
+//            从段落集合中移除 ID 是 "selected" 的元素。
+//            $("p").not( $("#selected")[0] )
+
+//            从段落集合中移除 ID 是 "selected" 的元素。
+//            $("p").not("#selected")
+
+//            从段落集合中移除满足 "div p.selected" 的元素
+//            $("p").not($("div p.selected"))
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list item 1</li>
+    <li>list item 2</li>
+    <li id="notli">list item 3</li>
+    <li>list item 4</li>
+    <li>list item 5</li>
+</ul>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/vue/1.0.12/vue.min.js"></script>
+</head>
+<body>
+
+<div id="example-2">
+    <!--v-if判断是否添加这个p标签-->
+    <p v-if="greeting">Hello</p>
+
+    <p v-if="disagree">World</p>
+</div>
+
+</body>
+<script type="text/javascript">
+
+    var exampleVM2 = new Vue({
+        el: '#example-2',
+        data: {
+            greeting: true,
+            disagree: false
+        }
+    })
+
+</script>
+</html>

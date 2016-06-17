@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .contextmenu( handler )
+//            描述: 为 JavaScript 的"contextmenu" 事件绑定一个处理器，或者触发元素上的 "contextmenu" 事件。
+
+//            .contextmenu( handler )
+//            handler
+//            类型: Function( Event eventObject )
+//            每次事件触发时会执行的函数。
+
+//            在这个元素上单击鼠标右键显示警报后弹框:
+            $("#target").contextmenu(function () {
+                alert("Handler for .contextmenu() called.");
+            });
+
+            $("#target").contextmenu();//自动触发
+
+//            .contextmenu()方法只是作为.on( "contextmenu", handler )的一个速记写法，移除该事件可以使用.off( "contextmenu" ).
+            $("#target").on("contextmenu", function () {
+                alert("Handler for .contextmenu() called.");
+            });
+            $("#target").off("contextmenu");//移除contextmenu事件
+
+//            当contextmenu事件在段落元素上被触发时候,显示“Hello World！”对话框：
+            $("p").contextmenu(function () {
+                alert("Hello World!");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="target">
+    Right-click here
+</div>
+
+<p>111111111</p>
+
+</body>
+</html>

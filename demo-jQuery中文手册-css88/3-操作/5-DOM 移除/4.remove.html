@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            background: yellow;
+            margin: 6px 0;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .remove( [selector ] )
+//            selector
+//            类型: String
+//            一个选择器表达式用来过滤将被移除的匹配元素集合。
+            $("button").click(function () {
+                $("p").remove(":contains('Hello')");
+//                $("p").filter(":contains('Hello')").remove();
+            });
+        });
+    </script>
+</head>
+<body>
+<p class="hello">Hello</p>
+how are
+<p>you?</p>
+
+<button>Call remove(":contains('Hello')") on paragraphs</button>
+</body>
+</html>

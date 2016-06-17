@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 70px;
+            height: 70px;
+            background: #abc;
+            border: 2px solid black;
+            margin: 10px;
+            float: left;
+        }
+
+        div.before {
+            border-color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            Locate all the divs preceding the last div and give them a class.
+            $("div:last").prevAll().addClass("before");
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</body>
+</html>

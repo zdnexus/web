@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            event.relatedTarget
+//            描述: 在事件中涉及的其它任何DOM元素。
+
+            $("a").mouseout(function(event) {
+                alert(event.relatedTarget.nodeName); // "DIV"
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>
+    <a href="#">111</a>
+</div>
+
+<a href="#">222</a>
+
+</body>
+</html>

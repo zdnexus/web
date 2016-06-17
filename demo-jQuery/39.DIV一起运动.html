@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div{
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+
+        #div1{
+            left: 50px;
+            background: saddlebrown;
+        }
+        #div2{
+            left: 200px;
+            background: sandybrown;
+        }
+        #div3{
+            left: 400px;
+            background: aqua;
+        }
+
+        #div4{
+            display: none;
+            width: 200px;
+            height: 200px;
+            background: aqua;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <script>
+        $(function(){
+            $("input").click(function(){
+                setInterval()
+            })
+        })
+    </script>
+</head>
+<body>
+<input type="button" value="点我">
+<div id="div1"></div>
+<div id="div2"></div>
+<div id="div3"></div>
+<div id="div4">bbbb</div>
+</body>
+</html>

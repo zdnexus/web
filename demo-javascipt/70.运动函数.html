@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <style>
+        .divClass {
+            width: 200px;
+            height: 200px;
+            background: yellow;
+            border: 10px solid black;
+            font-size: 15px;
+            margin: 10px;
+            float: left;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            var oDiv3 = document.getElementById("div3");
+            var oDiv4 = document.getElementById("div4");
+            var oDiv5 = document.getElementById("div5");
+
+            oDiv1.onmouseover = function () {
+                starMove(this, "height", 400);
+            };
+            oDiv1.onmouseout = function () {
+                starMove(this, "height", 200);
+            };
+
+            oDiv2.onmouseover = function () {
+                starMove(this, "width", 400);
+            };
+            oDiv2.onmouseout = function () {
+                starMove(this, "width", 200);
+            };
+
+            oDiv3.onmouseover = function () {
+                starMove(this, "font-size", 50);
+            };
+            oDiv3.onmouseout = function () {
+                starMove(this, "font-size", 15);
+            };
+
+            oDiv4.onmouseover = function () {
+                starMove(this, "border-width", 100);
+            };
+            oDiv4.onmouseout = function () {
+                starMove(this, "border-width", 10);
+            };
+
+            oDiv5.onmouseover = function () {
+                starMove(this, "opacity", 100);
+            };
+            oDiv5.onmouseout = function () {
+                starMove(this, "opacity", 30);
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="div1" class="divClass"></div>
+<div id="div2" class="divClass"></div>
+<div id="div3" class="divClass">abc</div>
+<div id="div4" class="divClass"></div>
+<div id="div5" class="divClass" style="filter: alpha(opacity=30);opacity: 0.3"></div>
+</body>
+</html>

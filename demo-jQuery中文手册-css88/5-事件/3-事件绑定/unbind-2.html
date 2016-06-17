@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        #foo {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            触发一个事件处理程序只有三次：
+            var timesClicked = 0;
+            $("#foo").bind("click", function (event) {
+                alert("The quick brown fox jumps over the lazy dog.");
+                timesClicked++;
+                if (timesClicked >= 3) {
+                    $(this).unbind(event);//移除事件
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<div id="foo"></div>
+</body>
+</html>

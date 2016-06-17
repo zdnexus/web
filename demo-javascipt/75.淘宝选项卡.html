@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/styles.css"/>
+    <style>
+        #div1 {
+            position: relative;
+            width: 520px;
+            height: 280px;
+            background-color: blue;
+            margin: 100px auto;
+            overflow: hidden;
+        }
+
+        #div1 ul {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #div1 ul li {
+            float: left;
+        }
+
+        #div1 ul li img {
+            width: 520px;
+            height: 280px;
+            /*图片居中，消除left的间距*/
+            vertical-align: middle;
+        }
+
+        #div1 ol {
+            position: absolute;
+            left: 50%;
+            bottom: 15px;
+            width: 65px;
+            margin-left: -32px;
+            height: 13px;
+            border-radius: 65px;
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        #div1 ol li {
+            float: left;
+            width: 9px;
+            height: 9px;
+            border-radius: 9px;
+            display: inline-block;
+            background-color: #B7B7B7;
+            margin: 2px;
+            cursor: pointer;
+        }
+
+        #div1 ol li.active {
+            background-color: #FF4400;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById("div1");
+            var oUl = oDiv.getElementsByTagName("ul")[0];
+            var aBtn = oDiv.getElementsByTagName("ol")[0].getElementsByTagName("li");
+
+            for (var i = 0; i < aBtn.length; ++i) {
+                aBtn[i].index = i;
+                aBtn[i].onclick = function () {
+                    for (var i = 0; i < aBtn.length; ++i) {
+                        aBtn[i].className = "";
+                    }
+                    this.className = "active";
+                    starMove(oUl, "top", -oDiv.offsetHeight * (this.index));
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<div id="div1">
+    <ul>
+        <li><a href="#"><img src="images/1.jpg"></a></li>
+        <li><a href="#"><img src="images/2.jpg"></a></li>
+        <li><a href="#"><img src="images/3.jpg"></a></li>
+        <li><a href="#"><img src="images/4.jpg"></a></li>
+        <li><a href="#"><img src="images/5.jpg"></a></li>
+    </ul>
+    <ol>
+        <li class="active"></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ol>
+</div>
+</body>
+</html>

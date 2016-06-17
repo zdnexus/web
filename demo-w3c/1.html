@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<!--script在body中-->
+<body>
+<p id="intro">Hello World!</p>
+<!--<b></b> 字体加粗-->
+<p>本例演示 <b>getElementById</b> 方法！</p>
+<script>
+    var x = document.getElementById('intro');
+    document.write("My name is Nexus.");//不带\n
+    document.write(x.innerHTML);//innerHTML 属性设置或返回表格行的开始和结束标签之间的 HTML。并没有返回p标签，所以没有\n
+    document.write("????");
+    document.write("<p>来自 intro 段落的文本:" + x.innerHTML + "</p>");//p标签自带\n
+    document.write("....");
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+@charset "UTF-8";
+* {
+    margin: 0;
+    padding: 0;
+}
+
+blockquote, body, button, dd, dl, dt, fieldset, form, h1, h2, h3, h4, h5, h6, hr, input, legend, li, ol, p, pre, td, textarea, th, ul
+{
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+.titlebox {
+    width: 600px;
+    height: 500px;
+    margin: 50px auto;
+}
+
+.titlebox .main {
+    position: relative;
+    width: 600px;
+    height: 300px;
+    background-color: white;
+}
+
+.titlebox .main ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.titlebox .main ul li {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.titlebox .main ul li img {
+    width: 600px;
+    height: 300px;
+}
+
+.titlebox .main .mark_main {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 600px;
+    height: 300px;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    z-index: 999;
+}
+
+.titlebox .main .mark_main .btn1 {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    background-image: url("../images/left.jpg");
+    background-size: 100% 100%;
+    z-index: 1000;
+}
+
+.titlebox .main .mark_main .btn2 {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    background-image: url("../images/right.jpg");
+    background-size: 100% 100%;
+    z-index: 1000;
+}
+
+.titlebox .bottom {
+    position: relative;
+    width: 600px;
+    height: 200px;
+    background-color: black;
+    /*ul运动隐藏关键*/
+    overflow: hidden;
+}
+
+.titlebox .bottom ul {
+    /*运动位置必须是absolute;*/
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.titlebox .bottom ul li {
+    filter: alpha(opacity=60);
+    opacity: 0.6;
+    float: left;
+}
+
+.titlebox .bottom ul li img {
+    width: 180px;
+    height: 180px;
+    border: 10px solid gray;
+}

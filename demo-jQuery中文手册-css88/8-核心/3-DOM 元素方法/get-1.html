@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            color: red;
+        }
+
+        div {
+            background: yellow;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .get( index )
+//            描述: 通过jQuery对象获取一个对应的DOM元素。
+
+//            .get( [index ] )
+//index
+//            类型: Integer
+//            从0开始计数，用来确定获取哪个元素。
+
+            $("*", document.body).click(function (e) {
+                e.stopPropagation();
+                var domEl = $(this).get(0);
+                $("span:first").text("Clicked on - " + domEl.tagName);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<span>&nbsp;</span>
+
+<p>In this paragraph is an <span>important</span> section</p>
+
+<div>
+    <input type="text"/>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        var str = "abCsscsq";
+        var s = /c/;
+        alert(str.search(s));//5
+
+        //i不分大小写
+        str = "abCssasq";
+        s = /c/i;
+        alert(str.search(s));//2
+        alert(str.substr(3, 5));//ssasq
+        alert(str.charAt(2));//C
+
+
+        str = "1-56-79-0-85-59";
+        s = str.split("-");//分割数组
+        alert(s);//1 56 79 0 85 59
+
+        //  \d表示数字，/\d\d\d/搜索三位纯数字出现的位置
+        str = "ad123sf 43 223 vcxzxcv";
+        s = /\d\d\d/;
+        alert(str.search(s));//2 123的1的位置
+
+
+        //global表示全部 +表示量词
+        str = "dasd34as ds11adsa3 4a1q1 59 dsa33";
+        s = /\d+/g;//所有纯数字
+        alert(str.match(s));//34 11 3 4 1 1 59 33
+
+        s = /\d\d/g;//\d\d 2位的纯数字匹配
+        alert(str.match(s));//34 11 59 33
+
+        s = /\d\d/;
+        alert(str.match(s));//34
+
+
+        //i:不分大小写  g:全部搜索
+        str = "aaa AAdsadsaAAA adsadseA";
+        s = /a/ig;
+        alert(str.replace(s, '0'));//000 00ds0ds0000 0ds0dse0
+
+        //[]范围-任何数字
+        str = "apc xpc wpc spc qpc ppc zpc";
+        s = /[abq]pc/g;//apc qpc
+        alert(str.match(s));
+
+        s = /[a-l]pc/g;//apc
+        alert(str.match(s));
+
+
+        //过滤敏感词
+        window.onload = function () {
+            var oTxt1 = document.getElementById("txt1");
+            var oTxt2 = document.getElementById("txt2");
+            var oBtn = document.getElementById("btn1");
+            oBtn.onclick = function () {
+                var s = /北京|百度|淘宝/g;
+                oTxt2.value = oTxt1.value.replace(s, "**");
+            };
+        };
+
+
+        //        \d   数字                    [0-9]
+        //        \D   ^  数字                 [^0-9]
+        //        \w   英文，数字，下划线       [0-9a-zA-Z]
+        //        \W   ^ 英文，数字，下划线
+        //        \s   tab,空格，空白字符
+        //        \S   ^   tab,空格，空白字符
+        //        {}表示出现数字个数  []这个位置的数字范围
+        //        修辞前面的\d
+        //        \d{8} 8位数字
+        //        [1-9]\d{7}  第一个是数字1-9 后面7个是数字
+        //        {n,m}最少n次，最多m次
+        //        [1-9]\d{4,10} QQ号判断
+        //        {n,}最少n次，最多不限
+        //        ? 可有可无，放在括号后面
+        //        [^0-9a-zA-Z]除了数字字母
+
+        //        010-49959595   49559595
+        //        (0\d{2,3}-)?[1-9]\d{7}(-\d{1,5})?
+    </script>
+</head>
+<body>
+<textarea id="txt1" rows="10" cols="40"></textarea><br/>
+<input id="btn1" type="button" value="过滤"/>
+<textarea id="txt2" rows="10" cols="40"></textarea><br/>
+
+</body>
+</html>

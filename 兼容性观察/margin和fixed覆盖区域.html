@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+下面有fixed的页面，所以HTML最下面的dom还需要加一个高度的div来覆盖这个fixed的高度让用户看到全部信息。
+
+!!!增加一个margin-bottom后发现只有安卓可以看到全部信息，ios的部分信息被fixed覆盖。!!!
+
+换成padding-bottom成功。
+
+或者margin-bottom下面加一个有高度的dom标签。
+<div style="height: 1px;"></div>
+
+利用伪元素添加有高度的block不行，伪元素增加只是在最后一个子元素的后面。并没有在margin-bottom的后面。盒模型不包括margin
+
+</body>
+<script>
+
+    localStorage.a = 3;
+    var b = localStorage.getItem("a");
+    alert(b);
+
+
+</script>
+</html>

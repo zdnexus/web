@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            float: left;
+        }
+
+        p {
+            clear: left;
+            font-weight: bold;
+            font-size: 16px;
+            color: blue;
+            margin: 0 10px;
+            padding: 2px;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .add( elements )
+//            elements
+//            类型: Element
+//            一个或多个元素添加到匹配的元素集合。
+
+//            查找所有的 div，并且添加一个边框。然后将所有的段落添加到 jQuery 对象中，并将它们的背景色变成黄色。
+            $("div").css("border", "2px solid red")
+                    .add("p")
+                    .css("background-color", "yellow");
+        });
+    </script>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<p>Added this... (notice no border)</p>
+</body>
+</html>

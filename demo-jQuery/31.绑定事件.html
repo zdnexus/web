@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            //点击事件冒泡 div.click -> p.click
+            $("div").click(function () {
+                alert($(this).text());
+            });
+//            $("p").click(function () {
+//                alert($(this).text());
+//            });
+            //bind()添加click事件和运行函数
+//            $("p").bind("click", function () {
+//                alert($(this).text());
+//            });
+
+
+
+//            $("p").bind("click", function (e) {
+//                alert($(this).text());
+//                e.stopPropagation();//阻止事件冒泡
+//            });
+//            $("p").bind("click", function () {
+//                alert($(this).text());
+//                return false;//阻止事件冒泡和默认行为（此元素没有默认行为）
+//            });
+            //？？？第三个参数设置为false将绑定一个函数，防止默认事件，阻止事件冒泡。默认值是true。？？？
+//            $("p").bind("click", function () {
+//                alert($(this).text());
+//            },false);
+
+
+
+            //bind():添加多个事件   unbind():移出绑定事件
+//            $("p").bind({
+//                "click": function () {
+//                    alert($(this).text());
+//                    return false;//阻止事件冒泡
+//                },
+//                "mouseout": function () {
+//                    alert("111");
+//                    return false;//阻止事件冒泡
+//                }
+//            });
+//            $("p").unbind("click");
+//            $("p").unbind("click mouseout");//移出多个事件
+
+
+
+            //one 只有一次添加事件，然后自动移出，只能点击一次
+//            $("p").one("click", function () {
+//                alert($(this).text());
+//            });
+
+
+
+            // delegate():为所有匹配选择器（selector参数）的元素绑定一个或多个事件处理函数，
+            // 基于一个指定的根元素的子集，匹配的元素包括那些目前已经匹配到的元素，也包括那些今后可能匹配到的元素。
+            // delegate()让旧的p标签和新增加的p标签都有绑定事件 undelegate()移出p的绑定事件
+//            $("body").delegate("p", "click", function () {
+//                $(this).append("<p>我是新增加的标签</p>");
+//                return false;//阻止事件冒泡
+//            });
+//            $("body").undelegate("p","click");
+
+            // 旧的p标签有绑定事件,新增加的p标签没有绑定事件
+//            $("p").bind("click",function(){
+//                $("body").append("<p>我是新增加的标签</p>");
+//                return false;//阻止事件冒泡
+//            });
+
+
+
+            // on()代替delegate(),off()移出,格式出现变化
+            // 代码优化->多个标签添加事件的时候最好用on添加,新旧都有绑定事件
+//            $("p").on("click",function(){
+//                $(this).append("<p>我是新增加的标签</p>");
+//                return false;//阻止事件冒泡
+//            });
+//            $("p").off("click");
+
+
+
+            //项目管理经验->unbind解除具体绑定事件
+//            $("p").bind("click.hehe",function(){
+//                $(this).css("background","red");
+//            });//第一个程序员写的
+//            $("p").bind("click.haha",function(){
+//                $(this).css("font-size","30px");
+//            });//第二个程序员写的
+            //点击后会出现2个情况，根据不同要求删除其中一个即可
+//            $("p").unbind("click.hehe");
+        })
+    </script>
+</head>
+<body>
+<div>111
+    <p>我是p标签</p>
+</div>
+</body>
+</html>

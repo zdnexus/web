@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            在匹配的集合中选择索引值为index的元素。
+
+//            jQuery( ":eq(index)" )
+//            要匹配元素的索引值（从0开始计数）
+
+//            jQuery( ":eq(-index)" )
+//            要匹配元素的索引值（从0开始计数）, 从最后一个元素开始倒计数。（愚人码头注：-1匹配倒数第一个元素）
+
+//             因为 :eq() 是一个 jQuery 延伸出来的选择器，并不是的CSS规范的一部分,
+//             使用:eq()查询不能充分利用原生DOM提供的querySelectorAll() 方法来提高性能。
+//             为了在现代浏览器上获得更佳的性能，请使用$("your-pure-css-selector").eq(index)代替。
+
+            $("table td:eq(3)").css("background-color", "red");
+//            $("table td").filter(":eq(3)").css("background-color", "red");
+        });
+    </script>
+</head>
+<body>
+<table border="1">
+    <tr>
+        <td>TD #0</td>
+        <td>TD #1</td>
+        <td>TD #2</td>
+    </tr>
+    <tr>
+        <td>TD #3</td>
+        <td>TD #4</td>
+        <td>TD #5</td>
+    </tr>
+    <tr>
+        <td>TD #6</td>
+        <td>TD #7</td>
+        <td>TD #8</td>
+    </tr>
+    <tr>
+        <td>TD #9</td>
+        <td>TD #10</td>
+        <td>TD #11</td>
+    </tr>
+</table>
+</body>
+</html>

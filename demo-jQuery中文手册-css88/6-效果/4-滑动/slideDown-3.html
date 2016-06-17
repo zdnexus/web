@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            background: #cfd;
+            margin: 3px;
+            width: 50px;
+            text-align: center;
+            float: left;
+            cursor: pointer;
+            border: 2px outset black;
+            font-weight: bolder;
+        }
+
+        input {
+            display: none;
+            width: 120px;
+            float: left;
+            margin: 10px;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+            $("div").click(function () {
+                $(this).css({
+                    borderStyle: "inset",
+                    cursor: "wait"
+                });
+
+                $("input").slideDown(1000, function () {
+                    $(this)
+                            .css("border", "2px red inset")
+                            .filter(".middle")
+                            .css("background", "yellow")
+                            .focus();
+
+                    $("div").css("visibility", "hidden");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div>Push!</div>
+
+<input type="text"/>
+<input type="text" class="middle"/>
+<input type="text"/>
+
+</body>
+</html>

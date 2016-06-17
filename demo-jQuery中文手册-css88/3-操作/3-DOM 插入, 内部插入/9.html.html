@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin: 8px;
+            font-size: 20px;
+            color: blue;
+            cursor: pointer;
+        }
+
+        b {
+            text-decoration: underline;
+        }
+
+        button {
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            获取集合中第一个匹配元素的HTML内容
+            $("p").click(function () {
+                var htmlStr = $(this).html();
+                $(this).text(htmlStr);
+            });
+
+        });
+    </script>
+</head>
+<body>
+<p>
+    <b>Click</b> to change the <span id="tag">html</span>
+</p>
+
+<p>
+    to a <span id="text">text</span> node.
+</p>
+
+<p>
+    This
+    <button name="nada">button</button>
+    does nothing.
+</p>
+</body>
+</html>

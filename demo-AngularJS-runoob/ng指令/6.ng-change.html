@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="myApp">
+
+<div ng-controller="myCtrl">
+    <!--ng-change 指令用于告诉 AngularJS 在 HTML 元素值改变时需要执行的操作。-->
+    <input type="text" ng-change="myFunc()" ng-model="myValue"/>
+
+    <p>The input field has changed {{count}} times.</p>
+</div>
+
+</body>
+<script>
+    angular.module('myApp', [])
+            .controller('myCtrl', ['$scope', function ($scope) {
+                $scope.myValue = '123';
+                $scope.count = 0;
+                $scope.myFunc = function () {
+                    $scope.count++;
+                };
+            }]);
+</script>
+</html>

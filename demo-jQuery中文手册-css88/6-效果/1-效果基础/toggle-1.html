@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .toggle( [duration ] [, complete ] )
+//            描述: 显示或隐藏匹配元素。
+
+//            .toggle( [duration ] [, complete ] )
+//            duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//            complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+//            通过改变CSS的display属性，匹配的元素将被立即显示或隐藏，没有动画。如果元素是最初显示，它会被隐藏，如果隐藏的，它会显示出来。
+
+//            随着最初显示的元素，我们可以在第一次点击的时候将其缓慢隐藏：
+//            第二次单击将再次显示元素：
+            $("#clickme").click(function() {
+                $("#book").toggle("slow", function() {
+                    alert("Animation complete.");
+                });
+            });
+
+//            .toggle(display)
+//            display
+//            类型: Boolean
+//            一个布尔值，使用 true 来显示元素，或者 false 隐藏它.
+
+            $("button").click(function(){
+                $("p").toggle();
+            })
+        });
+    </script>
+</head>
+<body>
+
+<button>click</button>
+
+<p>111</p>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="../../images/0.jpg" alt="" width="100" height="123" />
+
+</body>
+</html>

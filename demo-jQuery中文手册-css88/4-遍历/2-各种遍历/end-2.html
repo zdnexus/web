@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p, div {
+            margin: 1px;
+            padding: 1px;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        div {
+            color: blue;
+        }
+
+        b {
+            color: red;
+        }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        jQuery.fn.showTags = function (n) {
+            var tags = this.map(function () {
+                return this.tagName;
+            }).get().join(", ");
+
+            $("b:eq(" + n + ")").text(tags);
+            return this;
+        };
+
+        $(function () {
+            $("p")
+                    .showTags(0)
+                    .find("span")
+                    .showTags(1)
+                    .css("background", "yellow")
+                    .end()
+                    .showTags(2)
+                    .css("font-style", "italic");
+        });
+    </script>
+</head>
+<body>
+<p>
+    Hi there <span>how</span> are you <span>doing</span>?
+</p>
+
+<p>
+    This <span>span</span> is one of several <span>spans</span> in this <span>sentence</span>.
+</p>
+
+<div>
+    Tags in jQuery object initially: <b></b>
+</div>
+
+<div>
+    Tags in jQuery object after find: <b></b>
+
+</div>
+
+<div>
+    Tags in jQuery object after end: <b></b>
+</div>
+</body>
+</html>

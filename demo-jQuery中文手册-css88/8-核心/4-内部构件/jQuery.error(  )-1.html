@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.error( message )
+//            描述: 接受一个字符串，并抛出包含这个字符串的异常。
+
+//            jQuery.error( message )
+//         message
+//            类型: String
+//            将要发出的消息.
+
+//            这个方法主要是为了让插件开发人员可以重载此方法，并以更好的方式显示错误消息，或者提供更多相关信息。
+//            重载 jQuery.error 以便可以在 Firebug 中显示。
+            jQuery.error = console.error;
+        })
+    </script>
+</head>
+<body>
+
+
+</body>
+</html>

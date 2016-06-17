@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        div#five {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            Example: 对数组进行迭代，迭代过程中同时显示关键字及数值
+            var arr = ["one", "two", "three", "four", "five"];
+            var obj = {one: 1, two: 2, three: 3, four: 4, five: 5};
+
+            jQuery.each(arr, function (i, val) {
+                $("#" + val).text("Mine is " + val + ".");
+
+                // Will stop running after "three"
+                return ( val !== "three" );
+            });
+
+            jQuery.each(obj, function (i, val) {
+                $("#" + i).append(document.createTextNode(" - " + val));
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="one"></div>
+<div id="two"></div>
+<div id="three"></div>
+<div id="four"></div>
+<div id="five"></div>
+
+</body>
+</html>

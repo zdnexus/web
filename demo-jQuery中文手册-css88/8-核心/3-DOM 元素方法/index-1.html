@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .index()
+//            描述: 从匹配的元素中搜索给定元素的索引值，从0开始计数。
+
+//            .index( element )
+//element
+//            类型: Element, jQuery
+//            将要用于查找的DOM元素，或者jQuery对象中的第一个元素。
+
+            var listItem = document.getElementById("bar");
+            alert("Index: " + $("li").index(listItem));//1
+
+            var listItem = $("#bar");
+            alert("Index: " + $("li").index(listItem));//1
+
+//            .index( selector )
+//selector
+//            类型: Selector
+//            一个选择器，代表一个jQuery对象，将会从这个对象中查找元素。
+
+            var listItems = $("li:gt(0)");//1
+            alert("Index: " + $("li").index(listItems));//1
+
+//            如果我们将一个字符串传递给 .index() 方法，这个字符串会被解析成jQuery选择器，
+//            将会定位到调用 .index() 的jQuery对象中第一个元素，相对于由这个选择器匹配到的元素集合中的位置：
+            var listItem = $("#bar");
+            alert("Index: " + listItem.index("li"));//1
+
+//            如果我们忽略参数， .index() 将返回集合中第一个元素相对于其同辈元素的位置：
+            alert("Index: " + $("#bar").index());//1
+        });
+    </script>
+</head>
+<body>
+
+<ul>
+    <li id="foo">foo</li>
+    <li id="bar">bar</li>
+    <li id="baz">baz</li>
+</ul>
+
+</body>
+</html>

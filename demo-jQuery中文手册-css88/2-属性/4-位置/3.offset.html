@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            margin-left: 10px;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("p:last").offset({
+                top: 10,
+                left: 30
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>2nd Paragraph</p>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        p {
+            color: green;
+            margin: 0;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            jQuery.map( array, callback(elementOfArray, indexInArray) )
+//            描述: 将一个数组中的所有元素转换到另一个数组中。
+
+//            jQuery.map( array, callback(elementOfArray, indexInArray) )
+//array
+//            类型: Array
+//            待转换数组。
+//callback(elementOfArray, indexInArray)
+//            类型: Function()
+//            处理每一个元素的函数。第一个参数是数组元素，第二个参数是该元素的索引值。该函数可以返回任何值。在函数内部，this将是全局的window对象。
+
+//            Example: 使用$.map() 修改一个数组的值。
+            var arr = ["a", "b", "c", "d", "e"];
+            $("div").text(arr.join(", "));
+
+            arr = jQuery.map(arr, function (n, i) {
+                return (n.toUpperCase() + i);
+            });
+            $("p").text(arr.join(", "));
+
+            arr = jQuery.map(arr, function (a) {
+                return a + a;
+            });
+            $("span").text(arr.join(", "));
+        });
+    </script>
+</head>
+<body>
+
+<div></div>
+<p></p>
+<span></span>
+
+</body>
+</html>

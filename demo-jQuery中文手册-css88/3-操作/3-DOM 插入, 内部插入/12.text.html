@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        p {
+            color: blue;
+            margin: 8px;
+        }
+
+        b {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .text()
+//            得到匹配元素集合中每个元素的合并文本，包括他们的后代
+
+            var str = $("p:first").text();
+            $("p:last").html(str);
+        });
+    </script>
+</head>
+<body>
+<p><b>Test</b> Paragraph.</p>
+
+<p></p>
+</body>
+</html>

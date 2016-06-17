@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            color: blue;
+        }
+
+        span {
+            color: red;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .data( key, value )
+//            在匹配元素上存储任意相关数据.
+
+            $("div").data("test", {first: 16, last: "pizza!"});
+            $("span:first").text($("div").data("test").first);
+            $("span:last").text($("div").data("test").last);
+        });
+    </script>
+</head>
+<body>
+<div>
+    The values stored were
+    <span></span>
+    and
+    <span></span>
+</div>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!--汉字下拉菜单注意加   white-space:nowrap; 强制不换行-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+            margin: 0;
+            padding: 0;
+            border: 0 none;
+            outline: 0;
+            color: inherit;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #nav-header {
+            position: relative;
+            font: 15px 'microsoft yahei', sans-serif normal;
+            margin: 0 auto;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        #nav-header > ul {
+            display: inline-block;
+            padding: 0 20px;
+            background-color: #efefef;
+            background-image: -webkit-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+            background-image: -moz-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+            background-image: -o-linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+            background-image: linear-gradient(top, #efefef 0%, #bbbbbb 100%);
+            box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            margin-bottom: -4px;
+        }
+
+        /*为什么要加after伪元素?*/
+        #nav-header ul:after {
+            content: "";
+            display: block;
+            clear: both;
+        }
+
+        #nav-header > ul > li {
+            float: left;
+        }
+
+        #nav-header > ul > li > a {
+            display: block;
+            padding: 25px 40px;
+            color: #757575;
+        }
+
+        /*加了a标签后，为什么ul li:hover{}里的文本颜色不起作用了*/
+        /*a是放在li里面的话，a里设置有color优先级高于ul li*/
+        #nav-header > ul > li:hover > a {
+            color: #eee;
+            background-color: #4b545f;
+            background-image: -webkit-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+            background-image: -moz-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+            background-image: -o-linear-gradient(top, #4f5964 0%, #5f6975 40%);
+            background-image: linear-gradient(top, #4f5964 0%, #5f6975 40%);
+        }
+
+        #nav-header ul li ul {
+            display: none;
+            position: absolute;
+            background: #5f6975;
+        }
+
+        #nav-header ul > li:hover > ul {
+            display: block;
+        }
+
+        /*float:none为li全部按其中最长长度显示???*/
+        /*float:left为li各自长度显示???*/
+        #nav-header ul ul li {
+            position: relative;
+            border-top: 1px solid #6b727c;
+            border-bottom: 1px solid #575f6a;
+            float: none;
+        }
+
+        #nav-header ul ul li a {
+            display: block;
+            padding: 15px 40px;
+            color: #eee;
+        }
+
+        #nav-header ul ul li:hover > a {
+            background: #4b545f;
+        }
+
+        /* #nav-header ul li ul li ul */
+        #nav-header ul ul ul {
+            position: absolute;
+            top: 0;
+            left: 100%;
+        }
+    </style>
+</head>
+<body>
+<nav id="nav-header">
+    <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Tutorials</a>
+            <ul>
+                <li><a href="#">Photoshop</a></li>
+                <li><a href="#">Illustrator</a></li>
+                <li><a href="#">Web Design</a>
+                    <ul>
+                        <li><a href="#">HTML</a></li>
+                        <li><a href="#">CSS</a>
+                            <ul>
+                                <li><a href="#">ATM</a></li>
+                                <li><a href="#">LEO</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+        <li><a href="#">Articles</a>
+            <ul>
+                <li><a href="#">Web Design</a></li>
+                <li><a href="#">User Experience</a></li>
+            </ul>
+        </li>
+        <li><a href="#">Inspiration</a></li>
+    </ul>
+</nav>
+</body>
+</html>

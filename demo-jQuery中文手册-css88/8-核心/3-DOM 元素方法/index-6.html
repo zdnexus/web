@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            font-weight: bold;
+            color: #090;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+            var barIndex = $("#bar").index();
+            
+            $("div").html("Index: " + barIndex);
+        });
+    </script>
+</head>
+<body>
+
+<ul>
+    <li id="foo">foo</li>
+    <li id="bar">bar</li>
+    <li id="baz">baz</li>
+</ul>
+
+<div></div>
+
+</body>
+</html>

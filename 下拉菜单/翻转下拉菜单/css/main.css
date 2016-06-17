@@ -1,0 +1,280 @@
+/* ==============================================================================================
+This copyright notice must be kept untouched in the stylesheet at all times.
+The original version of this stylesheet and the associated (x)html
+is available at http://www.script-tutorials.com/whirling-dropdown-menu/
+Copyright (c) Script Tutorials. All rights reserved.
+This stylesheet and the associated (x)html may be modified in any way to fit your requirements.
+================================================================================================= */
+
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, input, select {
+    margin: 0;
+    padding: 0;
+    border: 0 none;
+    outline: 0;
+    color: inherit;
+}
+
+ul li {
+    list-style-type: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+html {
+    background-color: #fff;
+}
+
+#nav-header {
+    position: relative;
+    margin: 0 auto;
+    text-align: center;
+    white-space: nowrap;
+}
+
+#nav-header .menu {
+    display: inline-block;
+    position: relative;
+    margin-bottom: -3px;
+    text-transform: uppercase;
+}
+
+.menu > li {
+    float: left;
+}
+
+.menu > li:first-child > a {
+    border-radius: 5px 0 0 5px;
+}
+
+.menu > li:last-child > a {
+    border-radius: 0 5px 5px 0;
+}
+
+.menu li a {
+    display: block;
+    padding: 10px 25px;
+    font-family: 'Lucida Console';
+    font-size: 18px;
+    color: #808080;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #292929), color-stop(100%, #252525));
+    background-image: -webkit-linear-gradient(left, #292929 0%, #252525 100%);
+    background-image: -moz-linear-gradient(left, #292929 0%, #252525 100%);
+    background-image: -o-linear-gradient(left, #292929 0%, #252525 100%);
+    background-image: -ms-linear-gradient(left, #292929 0%, #252525 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#292929', endColorstr='#252525');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#292929', endColorstr='#252525')";
+    background-image: linear-gradient(left, #292929 0%, #252525 100%);
+    border-top: 2px solid #303030;
+    border-bottom: 2px solid #181818;
+    border-left: 3px solid rgba(0, 0, 0, 0);
+    border-right: 3px solid rgba(0, 0, 0, 0);
+}
+
+/* onhover styles */
+.menu li:hover > a {
+    background-color: #1c1c1c;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #1c1c1c), color-stop(100%, #1b1b1b));
+    background-image: -webkit-linear-gradient(left, #1c1c1c 0%, #1b1b1b 100%);
+    background-image: -moz-linear-gradient(left, #1c1c1c 0%, #1b1b1b 100%);
+    background-image: -o-linear-gradient(left, #1c1c1c 0%, #1b1b1b 100%);
+    background-image: -ms-linear-gradient(left, #1c1c1c 0%, #1b1b1b 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b');
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr='#1c1c1c', endColorstr='#1b1b1b')";
+    background-image: linear-gradient(#1c1c1c, #1b1b1b);
+    border-top: 2px solid #1B1B1B;
+    border-bottom: 2px solid #222222;
+}
+
+.menu > li:hover > a {
+    border-left: 3px solid #C4302B;
+    border-right: 3px solid #C4302B;
+    color: #C4302B;
+}
+
+/* submenu styles */
+.menu > li .submenu {
+    visibility: hidden;
+    position: absolute;
+
+    /*下面注释有惊喜!!!*/
+    -webkit-perspective: 400px;
+    -moz-perspective: 400px;
+    -ms-perspective: 400px;
+    -o-perspective: 400px;
+    perspective: 400px;
+}
+
+.menu > li .submenu > li {
+    visibility:hidden;
+
+    -webkit-transform: rotateY(90deg);
+    -moz-transform: rotateY(90deg);
+    -ms-transform: rotateY(90deg);
+    -o-transform: rotateY(90deg);
+    transform: rotateY(90deg);
+
+    -webkit-transition: visibility .4s, -webkit-transform .5s;
+    -moz-transition: visibility .4s, -moz-transform .5s;
+    -ms-transition: visibility .4s, -ms-transform .5s;
+    -o-transition: visibility .4s, -o-transform .5s;
+    transition: visibility .4s, transform .5s;
+}
+
+.menu > li:hover .submenu > li {
+    visibility: visible;
+
+    /*-webkit-transform: rotateY(0deg);*/
+    /*-moz-transform: rotateY(0deg);*/
+    /*-ms-transform: rotateY(0deg);*/
+    /*-o-transform: rotateY(0deg);*/
+    /*transform: rotateY(0deg);*/
+
+    /*none为不转换，转为默认值？？？*/
+    -webkit-transform: none;
+    -moz-transform: none;
+    -ms-transform: none;
+    -o-transform: none;
+    transform: none;
+}
+
+.submenu > li:hover > a {
+    color: #fff;
+    border-left: 3px solid #fff;
+    border-right: 3px solid #fff;
+}
+
+/*
+/* CSS3 delays for transition effects */
+.menu > li:hover .submenu li:nth-child(1) {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+.menu > li:hover .submenu li:nth-child(2) {
+    -webkit-transition-delay: 50ms;
+    -moz-transition-delay: 50ms;
+    -ms-transition-delay: 50ms;
+    -o-transition-delay: 50ms;
+    transition-delay: 50ms;
+}
+
+.menu > li:hover .submenu li:nth-child(3) {
+    -webkit-transition-delay: 100ms;
+    -moz-transition-delay: 100ms;
+    -ms-transition-delay: 100ms;
+    -o-transition-delay: 100ms;
+    transition-delay: 100ms;
+}
+
+.menu > li:hover .submenu li:nth-child(4) {
+    -webkit-transition-delay: 150ms;
+    -moz-transition-delay: 150ms;
+    -ms-transition-delay: 150ms;
+    -o-transition-delay: 150ms;
+    transition-delay: 150ms;
+}
+
+.menu > li:hover .submenu li:nth-child(5) {
+    -webkit-transition-delay: 200ms;
+    -moz-transition-delay: 200ms;
+    -ms-transition-delay: 200ms;
+    -o-transition-delay: 200ms;
+    transition-delay: 200ms;
+}
+
+.menu > li:hover .submenu li:nth-child(6) {
+    -webkit-transition-delay: 250ms;
+    -moz-transition-delay: 250ms;
+    -ms-transition-delay: 250ms;
+    -o-transition-delay: 250ms;
+    transition-delay: 250ms;
+}
+
+.menu > li:hover .submenu li:nth-child(7) {
+    -webkit-transition-delay: 300ms;
+    -moz-transition-delay: 300ms;
+    -ms-transition-delay: 300ms;
+    -o-transition-delay: 300ms;
+    transition-delay: 300ms;
+}
+
+.menu > li:hover .submenu li:nth-child(8) {
+    -webkit-transition-delay: 350ms;
+    -moz-transition-delay: 350ms;
+    -ms-transition-delay: 350ms;
+    -o-transition-delay: 350ms;
+    transition-delay: 350ms;
+}
+
+/*
+
+.submenu li:nth-child(1) {
+    -webkit-transition-delay: 350ms;
+    -moz-transition-delay: 350ms;
+    -ms-transition-delay: 350ms;
+    -o-transition-delay: 350ms;
+    transition-delay: 350ms;
+}
+
+.submenu li:nth-child(2) {
+    -webkit-transition-delay: 300ms;
+    -moz-transition-delay: 300ms;
+    -ms-transition-delay: 300ms;
+    -o-transition-delay: 300ms;
+    transition-delay: 300ms;
+}
+
+.submenu li:nth-child(3) {
+    -webkit-transition-delay: 250ms;
+    -moz-transition-delay: 250ms;
+    -ms-transition-delay: 250ms;
+    -o-transition-delay: 250ms;
+    transition-delay: 250ms;
+}
+
+.submenu li:nth-child(4) {
+    -webkit-transition-delay: 200ms;
+    -moz-transition-delay: 200ms;
+    -ms-transition-delay: 200ms;
+    -o-transition-delay: 200ms;
+    transition-delay: 200ms;
+}
+
+.submenu li:nth-child(5) {
+    -webkit-transition-delay: 150ms;
+    -moz-transition-delay: 150ms;
+    -ms-transition-delay: 150ms;
+    -o-transition-delay: 150ms;
+    transition-delay: 150ms;
+}
+
+.submenu li:nth-child(6) {
+    -webkit-transition-delay: 100ms;
+    -moz-transition-delay: 100ms;
+    -ms-transition-delay: 100ms;
+    -o-transition-delay: 100ms;
+    transition-delay: 100ms;
+}
+
+.submenu li:nth-child(7) {
+    -webkit-transition-delay: 50ms;
+    -moz-transition-delay: 50ms;
+    -ms-transition-delay: 50ms;
+    -o-transition-delay: 50ms;
+    transition-delay: 50ms;
+}
+
+.submenu li:nth-child(8) {
+    -webkit-transition-delay: 0s;
+    -moz-transition-delay: 0s;
+    -ms-transition-delay: 0s;
+    -o-transition-delay: 0s;
+    transition-delay: 0s;
+}
+
+*/

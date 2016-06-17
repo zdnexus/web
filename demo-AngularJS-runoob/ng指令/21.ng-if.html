@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body ng-app="">
+
+<!--ng-if 指令不同于 ng-hide， ng-hide 隐藏元素，而 ng-if 是从 DOM 中移除元素。-->
+保留 HTML: <input type="checkbox" ng-model="myVar" ng-init="myVar = true;">
+
+<div ng-if="myVar">
+    <h1>Welcome</h1>
+    <p>Welcome to my home.</p>
+    <hr>
+</div>
+
+<p>当复选框取消选中时 DIV 元素将移除。</p>
+<p>当重新选中复选框，DIV 元素会重新显示。</p>
+
+</body>
+</html>

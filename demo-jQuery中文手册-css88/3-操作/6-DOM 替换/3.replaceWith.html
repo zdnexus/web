@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            border: 2px solid blue;
+            color: red;
+            margin: 3px;
+        }
+
+        p {
+            border: 2px solid red;
+            color: blue;
+            margin: 3px;
+            cursor: pointer;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .replaceWith( function )
+//            function
+//            类型: Function()
+//            一个函数，返回的内容会替换匹配的元素集合。
+
+//            用来替换的元素从老地方移到新位置，而不是复制。
+            $("p").click(function () {
+                $(this).replaceWith($("div"));
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Hello</p>
+
+<p>cruel</p>
+
+<p>World</p>
+
+<div>Replaced!</div>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(function () {
+//            .serializeArray()
+//            描述: 将用作提交的表单元素的值编译成拥有name和value对象组成的数组。例如[ { name: a value: 1 }, { name: b value: 2 },...]
+
+//            .serializeArray()
+//            这个方法不接受任何参数。
+
+            $('form').submit(function() {
+                console.log($(this).serializeArray());
+                return false;
+            });
+        });
+    </script>
+</head>
+<body>
+
+<form>
+    <div>
+        <input type="text" name="a" value="1" id="a"/>
+    </div>
+
+    <div>
+        <input type="text" name="b" value="2" id="b"/>
+    </div>
+
+    <div>
+        <input type="hidden" name="c" value="3" id="c"/>
+    </div>
+
+    <div>
+        <textarea name="d" rows="8" cols="40">4</textarea>
+    </div>
+
+    <div>
+        <select name="e">
+            <option value="5">5</option>
+            <option value="6" selected="selected">6</option>
+            <option value="7">7</option>
+        </select>
+    </div>
+
+    <div>
+        <input type="checkbox" name="f" value="8" id="f"/>
+    </div>
+
+    <div>
+        <input type="submit" name="g" value="Submit" id="g"/>
+    </div>
+</form>
+
+</body>
+</html>

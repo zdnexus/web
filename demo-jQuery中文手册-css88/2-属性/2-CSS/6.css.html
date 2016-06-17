@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        div {
+            height: 50px;
+            margin: 5px;
+            padding: 5px;
+            float: left;
+        }
+
+        #box1 {
+            width: 50px;
+            color: yellow;
+            background-color: blue;
+        }
+
+        #box2 {
+            width: 80px;
+            color: rgb(255, 255, 255);
+            background-color: rgb(15, 99, 30);
+        }
+
+        #box3 {
+            width: 40px;
+            color: #fcc;
+            background-color: #123456;
+        }
+
+        #box4 {
+            width: 70px;
+            background-color: #f11;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("div").click(function () {
+//                .css( propertyNames )
+//                一个或多个CSS属性组成的一个数组
+
+                var html = ["The clicked div has the following styles:"];
+                var styleProps = $(this).css(["width", "height", "color", "background-color"]);
+
+//                $.each(Object, function(p1, p2) {
+//                    this;       //这里的this指向每次遍历中Object的当前属性值
+//                    p1; p2;     //访问附加参数
+//                }, ['参数1', '参数2']);
+                $.each(styleProps, function (prop, value) {
+                    html.push(prop + ": " + value);
+                });
+
+                $("#result").html(html.join("<br/>"));
+            });
+        });
+    </script>
+</head>
+<body>
+<p id="result">&nbsp;</p>
+<div id="box1">1</div>
+<div id="box2">2</div>
+<div id="box3">3</div>
+<div id="box4">4</div>
+</body>
+</html>

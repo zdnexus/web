@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .fadeOut( [duration ] [, complete ] )
+//            描述: 通过淡出的方式隐藏匹配元素。->display:none;
+
+//            .fadeOut( [duration ] [, complete ] )
+//duration (默认: 400)
+//            类型: Number or String
+//            一个字符串或者数字决定动画将运行多久。
+//complete
+//            类型: Function()
+//            在动画完成时执行的函数。
+
+            $('#clickme').click(function () {
+                $('#book').fadeOut('slow', function () {
+                    alert("Animation complete.");
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="/zd/images/0.jpg" alt="" width="100" height="123"/>
+
+</body>
+</html>

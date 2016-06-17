@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        button {
+            display: block;
+            margin: 3px;
+            color: red;
+            width: 200px;
+        }
+
+        div {
+            color: red;
+            border: 2px solid blue;
+            width: 200px;
+            margin: 3px;
+            text-align: center;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .replaceWith( newContent )
+//            newContent
+//            类型: String, Element, jQuery
+//            用来插入的内容，可能是HTML字符串，DOM元素，或者jQuery对象。
+
+
+//            点击按钮，用包含同样文字的div替换按钮：
+            $("button").click(function () {
+                $(this).replaceWith("<div>" + $(this).text() + "</div>");
+            });
+        });
+    </script>
+</head>
+<body>
+<button>First</button>
+<button>Second</button>
+<button>Third</button>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: salmon;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+
+        #div2 {
+            width: 300px;
+            height: 100px;
+            background-color: blue;
+            filter: alpha(opacity=30);
+            opacity: 0.3;
+        }
+    </style>
+    <script src="js/nexus_move.js"></script>
+    <script>
+        window.onload = function () {
+            var oDiv1 = document.getElementById("div1");
+            var oDiv2 = document.getElementById("div2");
+            oDiv1.onmousemove = function () {
+                starMove3(oDiv1, {"width": 400, "height": 400, "opacity": 100});
+                starMove3(oDiv2, {"width": 100, "height": 500, "opacity": 100});
+            };
+            oDiv1.onmouseout = function () {
+                starMove3(oDiv1, {"width": 200, "height": 200, "opacity": 30});
+                starMove3(oDiv2, {"width": 300, "height": 100, "opacity": 30});
+            };
+        };
+    </script>
+</head>
+<body>
+<div id="div1"></div>
+<div id="div2"></div>
+</body>
+</html>

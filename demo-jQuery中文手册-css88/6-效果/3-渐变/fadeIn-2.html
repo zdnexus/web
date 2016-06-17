@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span {
+            color: red;
+            cursor: pointer;
+        }
+
+        div {
+            margin: 3px;
+            width: 80px;
+            display: none;
+            height: 80px;
+            float: left;
+        }
+
+        div#one {
+            background: #f00;
+        }
+
+        div#two {
+            background: #0f0;
+        }
+
+        div#three {
+            background: #00f;
+        }
+    </style>
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            Example: 淡出所有段落，在600毫秒内完成这些动画。
+            $(document.body).click(function () {
+                $("div:hidden:first").fadeIn("slow");
+            });
+        });
+    </script>
+</head>
+<body>
+
+<span>Click here...</span>
+
+<div id="one"></div>
+<div id="two"></div>
+<div id="three"></div>
+
+</body>
+</html>

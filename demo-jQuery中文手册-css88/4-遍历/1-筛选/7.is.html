@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .is( selector )
+//            判断当前匹配的元素集合中的元素，是否为一个选择器，DOM元素，或者jQuery对象，如果这些元素至少一个匹配给定的参数，那么返回true。
+
+//            .is( element )
+//            element
+//            类型: Element
+//            个用于匹配元素的DOM元素。
+
+//            在<ul> 元素上绑定一个单击处理程序，然后限制的代码只有当列表项目本身时触发，并不是它的子元素被点击：
+            $("ul").click(function (event) {
+                var $target = $(event.target);
+                if ($target.is("li")) {
+                    $target.css("background-color", "red");
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li>list <strong>item 1</strong></li>
+    <li><span>list item 2</span></li>
+    <li>list item 3</li>
+</ul>
+</body>
+</html>

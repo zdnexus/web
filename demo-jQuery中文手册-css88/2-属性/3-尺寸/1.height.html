@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: yellow;
+        }
+
+        button {
+            font-size: 12px;
+            margin: 2px;
+        }
+
+        p {
+            width: 150px;
+            border: 1px red solid;
+        }
+
+        div {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            .height( value )
+//            设置每一个匹配元素的高度值。
+
+//            当调用.height(value)方法的时候，这个“value”参数可以是一个字符串（数字加单位）或者是一个数字。
+//            如果这个“value”参数只提供一个数字，jQuery会自动加上单位px。
+//            CSS高度属性不包含padding, border, 或者 margin。
+//            将这个属性值改成border-box，将造成这个函数改变这个容器的outerHeight，而不是原来的内容高度。
+
+            function showHeight(ele, h) {
+                $("div").text("The height for the " + ele +
+                        " is " + h + "px.");
+            }
+
+            $("#getp").click(function () {
+                showHeight("paragraph", $("p").height());
+            });
+
+            $("#getd").click(function () {
+                showHeight("document", $(document).height());
+            });
+
+            $("#getw").click(function () {
+                showHeight("window", $(window).height());
+            });
+        });
+    </script>
+</head>
+<body>
+<button id="getp">Get Paragraph Height</button>
+<button id="getd">Get Document Height</button>
+<button id="getw">Get Window Height</button>
+
+<div>&nbsp;</div>
+<p>
+    Sample paragraph to test height
+</p>
+</body>
+</html>

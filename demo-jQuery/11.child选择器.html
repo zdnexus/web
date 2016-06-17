@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        p {
+            height: 20px;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            $("div p:first").css("background", "blue");//div里所有p元素的第一个
+
+            //！！！！！
+            // ':nth-child '而这个将为每一个父元素匹配子元素。
+            // nth-child从1开始的,不能忽略其他元素
+            // 表示选取div的所有p元素,第一个子元素是p可设置，不是p不可设置
+//            $("div p:first-child").css("background", "blue");///div里所有p元素的第一个子元素是否是p元素，是就可设置
+//            $("div p:last-child").css("background", "blue");///div里所有p元素的最后一个子元素是否是p元素，是就可设置
+//            $("div p:nth-child(2)").css("background", "blue");///div里所有p元素的第2个p子元素是否是p元素，是就可设置
+//            $("div p:nth-child(3n+1)").css("background", "blue");//n=0 -> div里所有p元素的第3n+1个p子元素,1,4,7,10
+//            $("div p:nth-last-child(2)").css("background", "blue");//div里所有p元素的倒数第n个p元素
+//            $("div p:nth-child(odd)").css("background", "blue");//div里所有p元素的下标偶数的p元素
+//            $("div p:nth-child(even)").css("background", "blue");//div里所有p元素的下标奇数的p元素
+//            $("div p:only-child").css("background", "blue");//div里p元素的唯一子元素是p元素
+
+            //关联div里所有的p元素,忽略其他元素
+//            $("div p:first-of-type").css("background","blue");//div里所有p元素的第一个
+//            $("div p:last-of-type").css("background","blue");//div里所有p元素的最后一个
+
+//            $("div p:nth-of-type(4)").css("background","blue");//div里所有p元素的第4个
+//            $("div p:nth-last-of-type(2)").css("background","blue");//div里所有p元素的倒数第2个
+
+//            :first-child 匹配的是某父元素的第一个子元素，可以说是结构上的第一个子元素。
+//            :first-of-type 匹配的是某父元素下相同类型子元素中的第一个，比如 p:first-of-type，就是指所有类型为p的子元素中的第一个。这里不再限制是第一个子元素了，只要是该类型元素的第一个就行了。
+        })
+    </script>
+</head>
+<body>
+<div id="div1">
+    <h3>这是div1的第一个h3元素</h3>
+
+    <p>这是div1的第一个p元素</p>
+
+    <p>这是div1的第二个p元素</p>
+
+    <p>这是div1的第三个p元素</p>
+
+    <p>这是div1的第四个p元素</p>
+
+    <p>这是div1的第五个p元素</p>
+
+    <h3>这是div1的第二个h3元素</h3>
+</div>
+<div id="div2">
+    <p>这是div2的第一个p元素</p>
+</div>
+<div id="div3">
+    <p>这是div3的第一个p元素</p>
+
+    <p>这是div3的第二个p元素</p>
+</div>
+<div id="div4">
+    <p>这是div4的第一个p元素</p>
+
+    <p class="a">这是div4的class='a'的第二个p元素</p>
+
+    <p class="b">这是div4的class='b'的第三个p元素</p>
+
+    <p>这是div4的第四个p元素</p>
+
+    <h3>这是div4的第一个h3元素</h3>
+</div>
+</body>
+</html>

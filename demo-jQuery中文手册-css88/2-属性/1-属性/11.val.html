@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+//            blur 失去焦点
+
+            $("input").on("blur", function () {
+                $(this).val(function (i, val) {
+                    return val.toUpperCase();
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+<p>Type something and then click or tab out of the input.</p>
+<input type="text" value="type something"/>
+</body>
+</html>

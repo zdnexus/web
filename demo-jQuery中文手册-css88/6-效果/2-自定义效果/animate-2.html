@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
+    <script src="//cdn.bootcss.com/jqueryui/1.11.4/jquery-ui.js"></script>
+    <script>
+        $(function () {
+//            .animate( properties, options )
+
+//properties
+//            类型: PlainObject
+//            一个CSS属性和值的对象,动画将根据这组对象移动。
+//options
+//            类型: PlainObject
+//            一组包含动画选项的值的集合。 支持的选项:
+//duration (default: 400)
+//            Type: Number or String
+//            一个字符串或者数字决定动画将运行多久。（愚人码头注：默认值: "normal"， 三种预定速度的字符串("slow", "normal", 或 "fast")或表示动画时长的毫秒数值(如：1000) ）
+//easing (default: swing)
+//            Type: String
+//            一个字符串，表示过渡使用哪种缓动函数。（愚人码头注：jQuery自身提供"linear" 和 "swing"，其他效果可以使用jQuery Easing Plugin插件）
+//queue (default: true)
+//            Type: Boolean or String
+//            一个布尔值，指示是否将动画放置在效果队列中。如果为false时，将立即开始动画。 从jQuery1.7开始，队列选项也可以接受一个字符串，在这种情况下，在动画被添加到由该字符串表示的队列中。当一个自定义的队列名称被使用，动画不会自动启动;你必须调用.dequeue("queuename")来启动它。
+//specialEasing
+//            Type: PlainObject
+//            由此方法的第一个参数properties定义的一个或多个CSS属性，及其相应的缓动函数组成的键值对map。( 1.4 新增)
+//step
+//            Type: Function( Number now, Tween tween )
+//            每个动画元素的每个动画属性将调用的函数。这个函数为修改Tween 对象提供了一个机会来改变设置中得属性值。
+//progress
+//            Type: Function( Promise animation, Number progress, Number remainingMs )
+//            每一步动画完成后调用的一个函数，无论动画属性有多少，每个动画元素都执行单独的函数。 (version added: 1.8)
+//complete
+//            Type: Function()
+//            在动画完成时执行的函数。
+//done
+//            Type: Function( Promise animation, Boolean jumpedToEnd )
+//            在动画完成时执行的函数。 (他的Promise对象状态已完成). (version added: 1.8)
+//fail
+//            Type: Function( Promise animation, Boolean jumpedToEnd )
+//            动画失败完成时执行的函数。(他的Promise对象状态未完成)。 (version added: 1.8)
+//always
+//            Type: Function( Promise animation, Boolean jumpedToEnd )
+//            在动画完成或未完成情况下停止时执行的函数。(他的Promise对象状态已完成或未完成)。 (version added: 1.8)
+
+//            第二个版本的.animate()提供了一个step选项- 每步动画执行后调用的回调函数。
+//            启用自定义动画类型或改变正在执行的动画，此功能是非常有用。它接受两个参数（now 和 fx），this是当前正在执行动画的DOM元素集合。
+//            now: 每一步动画属性的数字值
+//            fx: jQuery.fx 原型对象的一个引用，其中包含了多项属性，比如elem 表示前正在执行动画的元素，start和end分别为动画属性的第一个和最后一个的值，prop为进行中的动画属性。
+
+            $("#clickme").click(function () {
+                $("#book").animate({
+                    opacity: 0.25,
+                    left: "+=50",
+                    height: "toggle"
+                }, {
+                    duration: 1000,
+                    step: function (now, fx) {
+                        var data = fx.elem.id + ' ' + fx.prop + ': ' + now;
+                        $('body').append('<div>' + data + '</div>');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+
+<div id="clickme">
+    Click here
+</div>
+
+<img id="book" src="/zd/images/0.jpg" alt="" width="100" height="123" style="position: relative; left: 10px;"/>
+
+</body>
+</html>

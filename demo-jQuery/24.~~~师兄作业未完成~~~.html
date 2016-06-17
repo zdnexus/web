@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            position: relative;
+            width: 300px;
+        }
+
+        #div2 {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        #table1 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            text-align: center;
+            border-collapse: collapse;
+            z-index: 1;
+        }
+
+        #table1, tr, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            height: 50px;
+        }
+
+        th {
+            position: relative;
+        }
+
+        td a {
+            color: red;
+        }
+
+        #div3 {
+            display: block;
+            width: 300px;
+            height: 20px;
+            background: grey;
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+        }
+
+        #div4 {
+            width: 20px;
+            height: 300px;
+            background: grey;
+            position: absolute;
+            top: 0;
+            right: -20px;
+        }
+
+        #div3-sc, #div4-sc {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: black;
+        }
+    </style>
+    <script src="js/jquery-1.11.3.min.js"></script>
+    <script>
+        function getMousePosition(ev) {
+            var oEvent = ev || event;
+            var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+            var scrollLeft = document.body.scrollLeft || document.documentElement.scrollLeft;
+            return {x: oEvent.clientX + scrollLeft, y: oEvent.clientY + scrollTop};
+        }
+
+        function tzX(obj1, obj2, O1, O2) {
+            obj1.onmousedown = function (ev) {
+                var disX = getMousePosition(ev).x - obj1.offsetLeft;
+                document.onmousemove = function (ev) {
+                    var l = getMousePosition(ev).x - disX;
+                    if (l < 0) {
+                        l = 0;
+                    }
+                    else if (l > obj2.offsetWidth - obj1.offsetWidth) {
+                        l = obj2.offsetWidth - obj1.offsetWidth;
+                    }
+                    obj1.style.left = l + "px";
+
+                    //滚动控制程序
+                    var k = l / (obj2.offsetWidth - obj1.offsetWidth);
+                    O2.style.left = -k * (O2.offsetWidth - O1.offsetWidth) + "px";
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false;//阻止默认行为
+            };
+        }
+
+        function tzY(obj1, obj2, O1, O2) {
+            obj1.onmousedown = function (ev) {
+                var disY = getMousePosition(ev).y - obj1.offsetTop;
+                document.onmousemove = function (ev) {
+                    var l = getMousePosition(ev).y - disY;
+                    if (l < 0) {
+                        l = 0;
+                    }
+                    else if (l > obj2.offsetHeight - obj1.offsetHeight) {
+                        l = obj2.offsetHeight - obj1.offsetHeight;
+                    }
+                    obj1.style.top = l + "px";
+
+                    //滚动控制程序
+                    var k = l / (obj2.offsetHeight - obj1.offsetHeight);
+                    O2.style.top = -k * (O2.offsetHeight - O1.offsetHeight) + "px";
+                };
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                };
+                return false;//阻止默认行为
+            };
+        }
+
+        $(function () {
+            tzX($("#div3-sc")[0], $("#div3")[0], $("#div2")[0], $("#table1")[0]);
+            tzY($("#div4-sc")[0], $("#div4")[0], $("#div2")[0], $("#table1")[0]);
+
+//            console.error($("#table1 tr:first").children("th").length);//5
+
+            $("#table1 tr:first").attr("position","fixed");
+
+
+
+
+        })
+    </script>
+</head>
+<body>
+<div id="div1">
+    <div id="div2">
+        <table id="table1">
+            <tr class="tr1">
+                <th>姓名</th>
+                <th>第一次作业</th>
+                <th>第二次作业</th>
+                <th>第三次作业</th>
+                <th>第四次作业</th>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>钟东</td>
+                <td>1</td>
+                <td>2</td>
+                <td>3</td>
+                <td>4</td>
+            </tr>
+        </table>
+    </div>
+    <div id="div3">
+        <div id="div3-sc"></div>
+    </div>
+    <div id="div4">
+        <div id="div4-sc"></div>
+    </div>
+</div>
+</body>
+</html>

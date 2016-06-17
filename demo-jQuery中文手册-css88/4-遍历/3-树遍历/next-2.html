@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        span { color:blue; font-weight:bold; }
+        button { width:100px; }
+    </style>
+    <script src="/zd/js/jquery-1.11.3.min.js"></script>
+    <script>
+        $(function () {
+            $("button[disabled]").next().text("this button is disabled");
+        });
+    </script>
+</head>
+<body>
+<div><button disabled="disabled">First</button> - <span></span></div>
+
+<div><button>Second</button> - <span></span></div>
+
+<div><button disabled="disabled">Third</button> - <span></span></div>
+</body>
+</html>

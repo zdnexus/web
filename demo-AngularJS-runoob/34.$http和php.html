@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="//cdn.bootcss.com/angular.js/1.5.0/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-app="myApp" ng-controller="myCtrl">
+
+    <ul>
+        <li ng-repeat="item in data">
+            {{item.Name}}
+            {{item.City}}
+            {{item.Country}}
+        </li>
+    </ul>
+
+</div>
+
+</body>
+<script>
+
+    var app = angular.module('myApp', []);
+
+    app.controller('myCtrl', function ($scope, $http) {
+        $http.get("data.php").success(function (res) {
+            console.log(res);
+
+            if (res.status == 1) {
+                $scope.data = res.records;
+            }
+        })
+    });
+
+</script>
+</html>

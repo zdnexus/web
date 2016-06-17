@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        window.onload = function () {
+            var oBtn1 = document.getElementById("btn1");
+            var oBtn2 = document.getElementById("btn2");
+            var time = null;
+
+            oBtn1.onclick = function () {
+                time = setInterval(function () {
+                    alert("a");
+                }, 1000);//setInterval函数返回time提供clearInterval关闭
+                //setInterval   间隔性   clearInterval  关闭间隔性
+                //setTimeout    延时性   clearTimeOut   关闭延时性
+            };
+            oBtn2.onclick = function () {
+                clearInterval(time);
+            };
+        }
+    </script>
+</head>
+<body>
+<input id="btn1" type="button" value="开启"/>
+<input id="btn2" type="button" value="关闭"/>
+</body>
+</html>
