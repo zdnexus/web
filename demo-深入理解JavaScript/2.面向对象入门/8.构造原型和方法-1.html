@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    构造函数->添加属性
+    function createPerson(name, qq) {
+        //        加工
+        //        系统自动建立,this就是new,:
+        //        var this = new Object();
+
+        //        加工
+        this.name = name;
+        this.qq = qq;
+
+        //        出厂
+        //        系统自动返回
+        //        return this;//return非常重要
+    }
+
+    //    函数原型添加方法
+    createPerson.prototype.showName = function () {
+        console.log('我的名字叫' + this.name);
+    };
+    createPerson.prototype.showQQ = function () {
+        console.log('我的QQ号是' + this.qq);
+    };
+
+    var obj = new createPerson('zdNexus', '181811669');
+    obj.showName();//我的名字叫zdNexus
+    obj.showQQ();//我的QQ号是181811669
+
+    var obj2 = new createPerson('zdQQQ', '13398769160');
+    obj2.showName();//我的名字叫zdQQQ
+    obj2.showQQ();//我的QQ号是13398769160
+
+    console.log(obj.showName === obj2.showName);//true 使用了同一个方法
+</script>
+</html>

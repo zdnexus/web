@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr = [1, 2, 3];
+    arr.a = 12;
+    arr.show = function () {
+//        当前的方法（函数）属于谁，this就是谁
+//        当前的方法show属于arr，所以是this是arr，this.a是12
+        console.log(this.a);//12
+    };
+    arr.show();
+
+
+    function show() {
+//        this就是window
+        console.log(this);
+        return this;
+    }
+    window.show = function () {
+//        当前的方法show属于window，所以是this是window
+        console.log(this);
+        return this;
+    };
+    console.log(show() === window.show());//true
+</script>
+</html>

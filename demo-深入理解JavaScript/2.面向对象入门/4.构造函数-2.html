@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    重复->构造函数
+    //    工厂模式:
+    function createPerson(name, qq) {
+        //        原料
+        var obj = new Object();
+
+        //        加工
+        obj.name = name;
+        obj.qq = qq;
+        obj.showName = function () {
+            console.log('我的名字叫' + this.name);
+        };
+        obj.showQQ = function () {
+            console.log('我的QQ号是' + this.qq);
+        };
+
+        //        出厂
+        return obj;//return非常重要
+    }
+
+    var obj = createPerson('zdNexus', '181811669');
+    obj.showName();//我的名字叫zdNexus
+    obj.showQQ();//我的QQ号是181811669
+    var obj2 = createPerson('zdQQQ', '13398769160');
+    obj2.showName();//我的名字叫zdQQQ
+    obj2.showQQ();//我的QQ号是13398769160
+
+    console.log('我的名字叫' + this.name);//undefined
+    console.log(obj.showName);
+    //    function () {
+    //        console.log('我的名字叫' + this.name);
+    //    }
+    console.log(obj.showName());//    我的名字叫zdNexus
+    console.log(obj.showName === obj.showName());//false
+    console.log(obj.showName === obj2.showName);//false 新建内容相同的对象和方法，浪费系统资源
+</script>
+</html>

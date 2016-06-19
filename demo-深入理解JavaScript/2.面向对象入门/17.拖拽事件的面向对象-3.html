@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: #00ff00;
+            position: absolute;
+        }
+
+        #div2 {
+            width: 300px;
+            height: 300px;
+            background-color: #2aabd2;
+            position: absolute;
+            top: 300px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">AAA</div>
+<div id="div2">BBB</div>
+
+</body>
+<script>
+    function drag(id) {
+        var _this = this;
+        this.oDiv = document.getElementById(id);
+
+        this.oDiv.onmousedown = function (e) {
+            _this.dragMouseDown(e);
+
+            return false;//避免文字选中
+        }
+    }
+
+    //    鼠标按下
+    drag.prototype.dragMouseDown = function (e) {
+        var _this = this;
+//            IE：有window.event对象
+//            FF：没有window.event对象。可以通过给函数的参数传递event对象。如onmousemove=doMouseMove(event)
+        var oEvent = e || event;
+        this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+        this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+        document.onmousemove = function (e) {
+            _this.dragMouseMove(e);
+        };
+
+        document.onmouseup = function () {
+            _this.dragMouseUp();
+        };
+    };
+
+    //    鼠标移动
+    drag.prototype.dragMouseMove = function (e) {
+        var oEvent = e || event;
+
+        this.oDiv.style.left = oEvent.clientX - this.disX + 'px';
+        this.oDiv.style.top = oEvent.clientY - this.disY + 'px';
+    };
+
+    //    鼠标松开
+    drag.prototype.dragMouseUp = function () {
+        document.onmousemove = null;
+        document.onmouseup = null;
+    };
+
+    window.onload = function () {
+        //继承属性
+        function drag2(id) {
+            drag.call(this, id);
+        }
+
+        //继承方法(循环添加单一变量避免引用)
+        for (var i in drag.prototype) {
+            drag2.prototype[i] = drag.prototype[i];
+        }
+
+        //修改其中一个的mouseMove(鼠标移动) 增加一个新功能：避免跨界,drag没有这个功能
+        drag2.prototype.dragMouseMove = function (e) {
+            var oEvent = e || event;
+            var X = oEvent.clientX - this.disX;
+            var Y = oEvent.clientY - this.disY;
+
+            if (X < 0) {
+                X = 0;
+            }
+            else if (X > document.documentElement.clientWidth - this.oDiv.offsetWidth) {
+                X = document.documentElement.clientWidth - this.oDiv.offsetWidth;
+            }
+            if (Y < 0) {
+                Y = 0;
+            }
+            else if (Y > document.documentElement.clientHeight - this.oDiv.offsetHeight) {
+                Y = document.documentElement.clientHeight - this.oDiv.offsetHeight;
+            }
+            this.oDiv.style.left = X + 'px';
+            this.oDiv.style.top = Y + 'px';
+        };
+
+        new drag('div1');
+        new drag2('div2');
+    }
+</script>
+</html>

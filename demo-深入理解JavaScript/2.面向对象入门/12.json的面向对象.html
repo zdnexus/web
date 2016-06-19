@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+//    json:单体对象,不适合多个对象
+    var json = {
+        name: 'zdNexus',
+        qq: '181811669',
+        showName: function () {
+            console.log('我的名字叫:' + this.name);
+        },
+        showQQ: function () {
+            console.log('我的QQ号是:' + this.qq);
+        }
+    };
+
+    json.showName();
+    json.showQQ();
+</script>
+</html>

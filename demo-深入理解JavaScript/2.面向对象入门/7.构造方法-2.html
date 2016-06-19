@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr1 = new Array(1, 2, 3, 4, 5);
+    var arr2 = new Array(6, 7, 8, 9, 0);
+
+    //    sum是Array单独的方法, 往类上加方法
+    //    Array是类，arr1和arr2是对象
+    Array.prototype.sum = function () {
+        var result = 0;
+
+        for (var i = 0; i < this.length; i++) {
+            result += this[i];
+        }
+
+        return result;
+    };
+
+    console.log(arr1.sum());//15
+    console.log(arr2.sum());//30
+</script>
+</html>

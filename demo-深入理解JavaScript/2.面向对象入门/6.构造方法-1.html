@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var arr1 = new Array(1, 2, 3, 4, 5);
+    var arr2 = new Array(6, 7, 8, 9, 0);
+
+//    sum是arr1单独的方法,往对象上加方法
+    arr1.sum = function () {
+        var result = 0;
+
+        for (var i = 0; i < this.length; i++) {
+            result += this[i];
+        }
+
+        return result;
+    };
+
+    console.log(arr1.sum);
+//    function () {
+//        var result = 0;
+//        for (var i = 0; i < this.length; i++) {
+//            result += i;
+//        }
+//        return result;
+//    };
+    console.log(arr1.sum());//15
+    console.log(arr2.sum());//ERROR:arr2.sum is not a function
+</script>
+</html>

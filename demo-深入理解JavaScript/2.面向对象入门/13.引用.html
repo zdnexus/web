@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+//    数组的引用
+    var arr1 = [1, 2, 3];
+    var arr2 = arr1;//引用,同一空间
+
+    arr1.push(4);
+    arr2.push(5);
+
+    console.log(arr1);//1,2,3,4,5
+    console.log(arr2);//1,2,3,4,5
+
+//    单一变量没有引用
+    var a = 1;
+    var b = a;
+    b += 1;
+
+    console.log(a);//1
+    console.log(b);//2
+</script>
+</html>

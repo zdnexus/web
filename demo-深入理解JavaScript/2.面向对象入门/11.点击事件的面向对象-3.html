@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bgGrey {
+            width: 300px;
+            height: 300px;
+            background-color: #ccc;
+            display: none;
+        }
+
+        .active {
+            background-color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <input type="button" value="aaa" class="active">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+    <div class="bgGrey" style="display: block;">apple</div>
+    <div class="bgGrey">banana</div>
+    <div class="bgGrey">cup</div>
+</div>
+
+</body>
+<script>
+    //    面向对象改写：
+//    新建类型
+    function tabSwitch(id) {
+        var _this = this;
+        var oDiv = document.getElementById(id);
+//        避免全局变量使用属性
+        this.aDiv = oDiv.getElementsByTagName('div');
+        this.aBtn = oDiv.getElementsByTagName('input');
+
+        for (var i = 0; i < this.aBtn.length; i++) {
+//        添加索引
+            this.aBtn[i].index = i;
+//        添加点击事件
+//        this.aBtn[i].onclick = fnClick;//ERROR:fnClick不是一个函数，是tabSwitch的方法，所以要加this.fnClick，
+//        this.aBtn[i].onclick = this.fnClick;//ERROR:fnClick里面的this是input无法读取this.btn
+            this.aBtn[i].onclick = function () {
+//                _this为new tabSwitch,this为当前点击的btn
+                _this.fnClick(this);
+            }
+        }
+    }
+
+//    添加方法
+    tabSwitch.prototype.fnClick = function (btnClick) {
+//            dom全部还原
+        for (var i = 0; i < this.aBtn.length; i++) {
+            this.aBtn[i].className = '';
+            this.aDiv[i].style.display = 'none';
+        }
+//            this为当前点击事件的dom改变class
+        btnClick.className = 'active';
+//            当前点击对应顺序的div改变display
+        this.aDiv[btnClick.index].style.display = 'block';
+    };
+
+    //window onloda 页面载入
+    window.onload = function () {
+        new tabSwitch('div1');
+    }
+</script>
+</html>

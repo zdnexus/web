@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .bgGrey {
+            width: 300px;
+            height: 300px;
+            background-color: #ccc;
+            display: none;
+        }
+
+        .active {
+            background-color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <input type="button" value="aaa" class="active">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+    <div class="bgGrey" style="display: block;">apple</div>
+    <div class="bgGrey">banana</div>
+    <div class="bgGrey">cup</div>
+</div>
+
+</body>
+<script>
+    var oDiv = document.getElementById('div1');
+    var aDiv = oDiv.getElementsByTagName('div');
+    var aBtn = oDiv.getElementsByTagName('input');
+
+    for (var i = 0; i < aBtn.length; i++) {
+//        添加索引
+        aBtn[i].index = i;
+//        添加点击事件
+        aBtn[i].onclick = function () {
+//            dom全部还原
+            for (var i = 0; i < aBtn.length; i++) {
+                aBtn[i].className = '';
+                aDiv[i].style.display = 'none';
+            }
+//            this为当前点击事件的dom改变class
+            this.className = 'active';
+//            当前点击对应顺序的div改变display
+            aDiv[this.index].style.display = 'block';
+        };
+    }
+</script>
+</html>

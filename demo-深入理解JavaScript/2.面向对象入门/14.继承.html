@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function show(a, b) {
+        console.log('this是' + this + '\na是' + a + '\nb是' + b + '\n');
+    }
+
+    show();//window undefined undefined
+    show.call();//window undefined undefined
+    show.call(1, 2);//1 2 undefined
+    show.call(this, 1, 2);//window 1 2
+
+    //    A函数原型
+    function A() {
+        this.a = 12;
+    }
+    //    A函数添加方法
+    A.prototype.show = function () {
+        console.log(this.a);
+    };
+
+    //    继承A
+    function B() {
+//        this->new B();
+//        利用call()让B函数继承了A函数的属性
+        A.call(this);
+    }
+    //    B函数添加A函数的方法
+    //WRONG:
+    //prototype属性是数组，这里是是引用，非常危险
+    B.prototype = A.prototype;
+    //RIGHT:避免被引用逐个单一的A函数方法添加到B函数方法(单一变量没有引用)
+    //    for (var i in A.prototype) {
+    //        B.prototype[i] = A.prototype[i];
+    //    }
+    B.prototype.fn = function () {
+        console.log('zdNexus');
+    };
+
+    var objA = new A();
+    var objB = new B();
+
+    objA.show();//12
+    objB.show();//12
+    objA.fn();//zdNexus 为什么A函数可以访问到B函数的fn方法???
+    //    B.prototype = A.prototype  prototype是数组，不是单一变量，导致被引用
+    //    B函数的prototype引用指向了A函数的prototype,给B函数建立方法也是给A函数建立方法
+
+</script>
+</html>

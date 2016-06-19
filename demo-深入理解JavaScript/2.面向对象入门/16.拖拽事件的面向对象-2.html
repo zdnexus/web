@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: #00ff00;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">AAA</div>
+
+</body>
+<script>
+    function drag(id) {
+        var _this = this;
+        this.oDiv = document.getElementById(id);
+
+        this.oDiv.onmousedown = function (e) {
+            _this.mouseDown(e);
+        }
+    }
+
+    drag.prototype.mouseDown = function (e) {
+        var _this = this;
+//            IE：有window.event对象
+//            FF：没有window.event对象。可以通过给函数的参数传递event对象。如onmousemove=doMouseMove(event)
+        var oEvent = e || event;
+        this.disX = oEvent.clientX - this.oDiv.offsetLeft;
+        this.disY = oEvent.clientY - this.oDiv.offsetTop;
+
+        document.onmousemove = function (e) {
+            var oEvent = e || event;
+
+            _this.oDiv.style.left = oEvent.clientX - _this.disX + 'px';
+            _this.oDiv.style.top = oEvent.clientY - _this.disY + 'px';
+        };
+
+        document.onmouseup = function () {
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    };
+
+    window.onload = function () {
+        new drag('div1');
+    }
+</script>
+</html>
