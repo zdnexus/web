@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    parseInt(string, radix) 函数可解析一个字符串，并返回一个整数。
+    //    string	必需。要被解析的字符串。
+    //    radix     可选。表示要解析的数字的基数。该值介于 2 ~ 36 之间。
+    //    如果省略该参数或其值为 0，则数字将以 10 为基础来解析。如果它以 “0x” 或 “0X” 开头，将以 16 为基数。
+    //    如果该参数小于 2 或者大于 36，则 parseInt() 将返回 NaN。
+
+    //    注释：只有字符串中的第一个数字会被返回。
+    //    注释：开头和结尾的空格是允许的。
+
+    console.log(parseInt("10"));	    //返回 10
+    console.log(parseInt(" 10   3"));	//返回 10
+    console.log(parseInt("19",10));		//返回 19 (10+9)
+    console.log(parseInt("11",2));		//返回 3 (2+1)
+    console.log(parseInt("17",8));		//返回 15 (8+7)
+    console.log(parseInt("1f",16));		//返回 31 (16+15)
+    console.log(parseInt("010"));		//未定：返回 10 或 8
+</script>
+</html>

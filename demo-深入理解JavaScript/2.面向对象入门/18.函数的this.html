@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function A() {
+        console.log('a');
+//        this -> window
+        this.B = function () {
+            console.log('b');
+        };
+        this.X1 = 1;
+    }
+
+    A.prototype.C = function () {
+        console.log('c');
+    };
+
+    A();//a
+    B();//b
+    window.B();//b
+    console.log(X1)//1
+
+</script>
+</html>

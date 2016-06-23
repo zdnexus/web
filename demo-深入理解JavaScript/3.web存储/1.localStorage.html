@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    localStorage - 没有时间限制的数据存储
+    //    sessionStorage - 针对一个 session 的数据存储
+
+    //    localStorage 方法存储的数据没有时间限制。第二天、第二周或下一年之后，数据依然可用。
+    localStorage.lastname = "Smith";
+    console.log(localStorage.lastname);
+
+    //    下面的例子对用户访问页面的次数进行计数：
+    if (localStorage.pagecount) {
+        localStorage.pagecount = Number(localStorage.pagecount) + 1;
+    }
+    else {
+        localStorage.pagecount = 1;
+    }
+    document.write("Visits " + localStorage.pagecount + " time(s).");
+</script>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    sessionStorage 方法针对一个 session 进行数据存储。当用户关闭浏览器窗口后，数据会被删除。
+    sessionStorage.lastname = "Smith";
+    console.log(sessionStorage.lastname);
+
+    if (sessionStorage.pagecount) {
+        sessionStorage.pagecount = Number(sessionStorage.pagecount) + 1;
+    }
+    else {
+        sessionStorage.pagecount = 1;
+    }
+    document.write("Visits " + sessionStorage.pagecount + " time(s) this session.");
+</script>
+</html>
