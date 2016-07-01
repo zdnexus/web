@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    全局对象 window
+    function myFunction1(a, b) {
+        return a * b;
+    }
+    console.log(window.myFunction1(10, 2));//20
+
+    function myFunction2() {
+        return this;
+    }
+    console.log(myFunction2());//window
+
+    //    函数作为方法调用
+    var myObject = {
+        firstName: "John",
+        lastName: "Doe",
+        fullName: function () {
+            return this.firstName + " " + this.lastName;
+        }
+    };
+    myObject.fullName();// 返回 "John Doe"
+
+    //    使用构造函数调用函数
+    function myFunction3(arg1, arg2) {
+        this.firstName = arg1;
+        this.lastName = arg2;
+    }
+    var x = new myFunction3("John", "Doe"); // This	creates a new object
+    console.log(x.firstName);// 返回 "John"
+    console.log(x.lastName);// 返回 "Doe"
+
+    //    作为函数方法调用函数
+    function myFunction4(a, b) {
+        return a + b;
+    }
+    function myFunction5(a, b) {
+        myFunction4.call(this, a, b);
+    }
+    console.log(myFunction5(4, 5));//9
+</script>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+
+</body>
+<script>
+    var carName;
+    console.log(carName);//undefined
+    var carName = 'Volvo';
+    console.log(carName);//Volvo
+    var carName;
+    console.log(carName);//Volvo
+
+    var carsName1 = new Array();
+    carsName1[0] = 'Saab';
+    carsName1[1] = 'Volvo';
+    carsName1[2] = 'BMW';
+    console.log(carsName1);//['Saab', 'Volvo', 'BMW']
+
+    var carsName2 = new Array('Saab', 'Volvo', 'BMW');
+    console.log(carsName2);//['Saab', 'Volvo', 'BMW']
+
+    var carsName3 = ['Saab', 'Volvo', 'BMW'];
+    console.log(carsName3);//['Saab', 'Volvo', 'BMW']
+    //    可以使用内置属性 length 来计算字符串的长度：
+    console.log(carsName3.length);//3
+
+    console.log(1 + '3');//13
+    console.log(typeof (1 + '3'));//string
+    console.log(typeof 1 + '3');//number3
+
+    var person = {
+        firstName: 'John',
+        lastName: 'Doe',
+        id1: null,
+        id2: undefined,
+        fullName: function () {
+            return this.firstName + ' ' + this.lastName;
+        }
+    };
+    console.log(person.length);//undefined
+    console.log(person.firstName);//John
+    console.log(person['lastName']);//Doe
+    //    在 JavaScript 中, null 用于对象, undefined 用于变量，属性和方法。
+    console.log(person.id1 == person.id2);//true
+    console.log(person.id1 === person.id2);//false
+    console.log(typeof person.id1);//object
+    console.log(typeof person.id2);//undefined
+    console.log(typeof person.id1 == typeof person.id2);//false
+
+    document.getElementById('demo1').innerHTML = person.fullName;//返回对象的方法
+    document.getElementById('demo2').innerHTML = person.fullName();//返回对象的方向的值
+
+    //    正确的方式是我们需要先使用 typeof 来检测对象是否已定义：
+    if (typeof myObj !== "undefined" && myObj !== null){
+
+    }
+</script>
+</html>

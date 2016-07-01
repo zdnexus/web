@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var a = {
+        name: '菜鸟教程',
+        site: 'http://www.runoob.com'
+    };
+
+    //    JSON.stringify() json转string
+    var a_toString = JSON.stringify(a);//json 转 string
+    console.log(a_toString);
+    console.log(typeof a_toString);
+
+    //    var b = "{'name': '菜鸟教程','site': 'http://www.runoob.com'}";//ERROR
+    var b = '{"name": "菜鸟教程","site": "http://www.runoob.com"}';
+
+    //    JSON.parse() string转json
+    var b_toJson = JSON.parse(b, function (key, value) {
+        console.log(key + " : " + value);
+        return value;
+    });
+    console.log(b_toJson);
+    console.log(typeof b_toJson);//object
+</script>
+</html>

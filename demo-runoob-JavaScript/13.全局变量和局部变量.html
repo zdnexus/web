@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+</body>
+<script>
+    var a = 1;
+
+    var myFunction1 = function () {
+        console.log('myFunction1 a=' + a);//1
+
+        a = 100;//全局变量a被改变了
+    };
+
+    var myFunction2 = function () {
+        console.log('myFunction2 a=' + a);//undefined 为什么下面申请了局部变量a这里为undefined而不是全局变量？
+
+        var a = 2;//函数内局部变量 和 外部函数的a是两个值，外部a值无法赋值在这里
+        console.log('myFunction2 a=' + a);//2
+
+        a = 3;
+        console.log('myFunction2 a=' + a);//3
+
+        var b = 4;//函数内局部变量
+        console.log('myFunction2 a=' + b);//4
+
+        c = 5;//全局变量
+        console.log('myFunction2 a=' + c);//5
+    };
+
+    myFunction1();
+
+    myFunction2();
+
+    console.log('index a=' + a);//100
+    //    console.log('index b=' + b);//ERROR b is not defined
+    console.log('index c=' + c);//5
+</script>
+</html>

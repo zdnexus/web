@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1 id="h1" onclick="this.style.color='red'">Hello World!</h1>
+<h1 id="h2" onclick="changeColor1();">Hello World!</h1>
+<h1 id="h3" onclick="changeColor2(this);">Hello World!</h1>
+
+</body>
+<script>
+    function changeColor1() {
+        console.log(this);//window
+    }
+
+    function changeColor2(id) {
+        id.style.color = 'red';
+    }
+</script>
+</html>

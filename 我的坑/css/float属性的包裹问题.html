@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .divClass {
+            width: 100px;
+            height: 100px;
+            margin: 5px;
+            background-color: red;
+            float: left;
+        }
+
+        .test {
+            float: left;
+            /*float会让宽度按子元素来固定*/
+            overflow: hidden;
+            /*overflow会变成块状元素，宽度会继承和父级元素*/
+        }
+    </style>
+</head>
+<body>
+<div class="test">
+    <div class="divClass"></div>
+    <div class="divClass"></div>
+    <div class="divClass"></div>
+</div>
+</body>
+</html>

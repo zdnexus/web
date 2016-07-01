@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            padding: 5px;
+            height: 300px;
+            background-color: #b2dba1;
+            box-sizing: border-box;
+        }
+
+        #div2 {
+            width: 300px;
+        }
+
+        #div3 {
+            height: 100px;
+            background-color: #1e88e5;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+<!--div是块状元素，默认宽度是父元素的宽度，这里是body的宽度-->
+<div id=div2>
+    <div id="div3"></div>
+    <!--div3的默认宽度是div2的宽度-->
+</div>
+
+</body>
+</html>

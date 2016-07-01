@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<p>
+    本例调用的函数会执行一个计算，然后返回结果：
+</p>
+
+<p id="demo1"></p>
+<p id="demo2"></p>
+<p id="demo3"></p>
+<p id="demo4"></p>
+<p id="demo5"></p>
+<p id="demo6"></p>
+<p id="demo7"></p>
+<p id="demo8"></p>
+<p id="demo9"></p>
+<p id="demo10"></p>
+
+</body>
+<script>
+    function myFunction(a, b) {
+        if (a < b) {
+            return 'small';
+        }
+        else if (a == b) {
+            return 'same';
+        }
+        else if (a > b) {
+            return a * b;
+        }
+        else {
+            return;//没有return值默认为undefined 终止运行函数
+        }
+    }
+    document.getElementById('demo1').innerHTML = myFunction(4, 13);//small
+    document.getElementById('demo2').innerHTML = myFunction(4, 4);//same
+    document.getElementById('demo3').innerHTML = myFunction(13, 4);//52
+    document.getElementById('demo4').innerHTML = myFunction();//same (undefined,undefined)
+    document.getElementById('demo5').innerHTML = myFunction(4);//undefined (4,undefined)
+
+    var myVar1 = myFunction;//变量myVar1变成函数myFunction
+    document.getElementById('demo6').innerHTML = myVar1;
+    document.getElementById('demo7').innerHTML = myVar1(13, 4);//52
+    document.getElementById('demo8').innerHTML = myVar1(4);//undefined
+
+    var myVar2 = myFunction();
+    document.getElementById('demo9').innerHTML = myVar2;//same (undefined,undefined)
+
+    var myVar3 = myFunction();
+    document.getElementById('demo10').innerHTML = myVar3(13, 4);//ERROR myVar3是myFunction()函数的返回值，不是一个函数
+</script>
+</html>

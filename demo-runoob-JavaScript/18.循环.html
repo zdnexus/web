@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var person = {
+        firstName: 'John',
+        lastName: 'Doe',
+        age: 25
+    };
+    for (x in person) {
+        console.log(person[x]);//John Doe 25
+    }
+
+    for (var i = 0; i < 10; i++) {
+        if (i === 3 || i === 5 || i === 9) {
+            continue;
+        }
+        console.log(i);//0 1 2 4 6 7 8
+    }
+</script>
+</html>

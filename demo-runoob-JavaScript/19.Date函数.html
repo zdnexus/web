@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var myDate = new Date();
+
+    console.log(myDate.getYear());        //获取当前年份(2位)
+    console.log(myDate.getFullYear());    //获取完整的年份(4位,1970-????)
+    console.log(myDate.getMonth() + 1);       //获取当前月份(0-11,0代表1月)
+    console.log(myDate.getDate());        //获取当前日(1-31)
+
+    console.log(myDate.getDay());         //获取当前星期X(0-6,0代表星期天)
+
+    console.log(myDate.getTime());        //获取当前时间(从1970.1.1开始的毫秒数)
+    console.log(myDate.getHours());       //获取当前小时数(0-23)
+    console.log(myDate.getMinutes());     //获取当前分钟数(0-59)
+    console.log(myDate.getSeconds());     //获取当前秒数(0-59)
+
+    console.log(myDate.getMilliseconds());    //获取当前毫秒数(0-999)
+    
+    console.log(myDate.toLocaleDateString());     //获取当前日期
+    var mytime = myDate.toLocaleTimeString();     //获取当前时间
+    console.log(myDate.toLocaleString());        //获取日期与时间
+</script>
+</html>

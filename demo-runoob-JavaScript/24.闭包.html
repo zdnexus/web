@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var counter = 0;//全局变量
+    function add() {
+        counter += 1;
+
+        console.log(counter);
+    }
+    add();//1
+    add();//2
+    add();//3
+
+    function add2() {
+        var counter = 0;//局部变量
+        counter += 1;
+        console.log(counter);
+    }
+    add2();//1
+    add2();//1
+    add2();//1
+
+    function add3() {
+        var counter = 0;//局部变量
+        function plus() {
+            counter += 1;
+        }
+        plus();
+        console.log(counter);
+    }
+    add3();//1
+    add3();//1
+    add3();//1
+
+    var add4 = (function () {
+        var counter = 0;
+        return function () {
+            console.log(counter += 1);
+        }
+    })();
+    add4();//1
+    add4();//2
+    add4();//3
+</script>
+</html>

@@ -3,35 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <style>
-        #div1 {
+        .divClass {
             width: 200px;
             height: 200px;
         }
 
         .peru {
-            background: peru;
+            background-color: peru;
         }
 
         .red {
-            background: red;
+            background-color: red;
         }
     </style>
 </head>
 <body>
 
-<div id="div1" class="red"></div>
+<div id="div1" class="divClass red"></div>
+<div id="div2" class="divClass peru"></div>
 
 </body>
-
 <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $(function () {
-
         $('#div1').hover(function () {
             $(this).addClass('peru');
-//            class中有peru和red，先找到的peru被后找到的red覆盖
+//            class中有peru和red，red优先级比peru高，red无法被peru覆盖
         });
 
+        $('#div2').hover(function () {
+            $(this).addClass('red');
+//            red可以覆盖peru
+        });
     });
 </script>
 </html>

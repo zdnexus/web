@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var a = 1, str;
+    //    可以为number
+    switch (a) {
+        case 1:
+            str = 'AAA';
+            break;
+        case 2:
+            str = 'BBB';
+            break;
+        case 3:
+            str = 'CCC';
+            break;
+        default:
+            break;
+    }
+    console.log(str);//AAA
+
+    a = '1';
+    //    可以为string(混合)
+    switch (a) {
+        case '1':
+            str = 'AAA';
+            break;
+        case 2:
+            str = 'BBB';
+            break;
+        case 3:
+            str = 'CCC';
+            break;
+        default:
+            break;
+    }
+    console.log(str);//AAA
+
+    a = '11';
+    //    可以为string(混合)
+    //    switch比较为===
+    switch (a) {
+        case 11:
+            str = 'AAA';
+            break;
+        case '11':
+            str = 'BBB';
+            break;
+        default:
+            break;
+    }
+    console.log(str);//BBB
+</script>
+</html>

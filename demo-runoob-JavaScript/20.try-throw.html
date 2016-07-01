@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id='demo'/>
+<button type="button" onclick="myFunction()">点我</button>
+<p id="result"></p>
+
+</body>
+<script>
+    function myFunction() {
+        try {
+            var x = document.getElementById('demo').value;
+
+            if (x.trim() === '') {
+                throw '值为空';
+            }
+            else if (isNaN(x)) {
+                throw '不是数字';
+            }
+            else if (x > 10) {
+                throw '太大';
+            }
+            else if (x < 5) {
+                throw '太小';
+            }
+        }
+        catch (err) {
+            var y = document.getElementById('result');
+
+            y.innerHTML = err;
+        }
+    }
+</script>
+</html>

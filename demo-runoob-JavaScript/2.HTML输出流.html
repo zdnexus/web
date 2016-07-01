@@ -10,17 +10,18 @@
     JavaScript 能够直接写入 HTML 输出流中：
 </p>
 
+<!--body中的JavaScript-->
 <script>
     document.write("<h1>这是一个标题。</h1>");
     document.write("<p>这是一个段落。</p>");
-    document.write("<h4>啊啊啊啊。</h4>", "<h2>噢噢噢。</h2>");
+    document.write("<h4>啊啊啊。</h4>", "<p>噢噢噢。</p>");
     //    虽然根据 DOM 标准，该方法只接受单个字符串作为参数。不过根据经验，write() 可接受任何多个参数。
     //    document.write(exp1,exp2,exp3,....)
 </script>
 
 <p>
     您只能在 HTML 输出流中使用 <strong>document.write</strong>。
-    如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。
+    <span style="color: red;">如果您在文档已加载后使用它（比如在函数中），会覆盖整个文档。</span>
 </p>
 
 </body>
