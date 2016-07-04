@@ -42,7 +42,7 @@
     var add4 = (function () {
         var counter = 0;
         return function () {
-            console.log(counter += 1);
+            console.log(counter += 1);//通过返回一个可以访问父级函数变量的函数
         }
     })();
     add4();//1

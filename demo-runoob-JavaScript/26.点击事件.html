@@ -9,15 +9,39 @@
 <h1 id="h1" onclick="this.style.color='red'">Hello World!</h1>
 <h1 id="h2" onclick="changeColor1();">Hello World!</h1>
 <h1 id="h3" onclick="changeColor2(this);">Hello World!</h1>
+<h1 id="h4">Hello World!</h1>
+<h1 id="h5">Hello World!</h1>
 
 </body>
 <script>
     function changeColor1() {
         console.log(this);//window
+        this.style.color = 'red';//ERROR
     }
 
     function changeColor2(id) {
+        console.log(this);//window
         id.style.color = 'red';
+    }
+
+    //    addEventListener(event, function, useCapture);
+    //    默认值为 false, 即冒泡传递，当值为 true 时, 事件使用捕获传递。
+    document.getElementById('h4').addEventListener('click', function () {
+        console.log(this);//h4
+        this.style.color = 'red';
+    }, false);
+
+
+    document.getElementById('h5').addEventListener('click', changeColor1, false);//h5
+    document.getElementById('h5').removeEventListener('click', changeColor1);//h5
+
+    //    跨浏览器解决方法:
+    var x = document.getElementById("h5");
+    if (x.addEventListener) {                    // 所有主流浏览器，除了 IE 8 及更早版本
+        x.addEventListener("click", changeColor1);
+    }
+    else if (x.attachEvent) {                  // IE 8 及更早版本
+        x.attachEvent("onclick", changeColor1);
     }
 </script>
 </html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="demo">Click the button to sort the array.</p>
+<button onclick="myFunction()">Try it</button>
+<button onclick="myFunction2()">Try it</button>
+<button onclick="myFunction3()">Try it</button>
+
+</body>
+<script>
+    function myFunction() {
+        var fruits = ["Banana", "Orange", "Apple", "Mango"];
+        fruits.sort();
+        var x = document.getElementById("demo");
+        x.innerHTML = fruits;
+    }
+
+    function myFunction2() {
+        var points = [40, 100, 1, 5, 25, 10];
+        points.sort(function (a, b) {
+            return a - b
+        });
+        var x = document.getElementById("demo");
+        x.innerHTML = points;
+    }
+
+    function myFunction3() {
+        var points = [40, 100, 1, 5, 25, 10];
+        points.sort(function (a, b) {
+            return b - a
+        });
+        var x = document.getElementById("demo");
+        x.innerHTML = points;
+    }
+
+    console.log(Math.floor(Math.random()*11));//0-11
+</script>
+</html>
