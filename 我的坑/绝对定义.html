@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        .div1 {
+        #div1 {
             width: 600px;
             height: 600px;
-            background-color: blue;
             border: 50px solid red;
+            padding: 50px;
+            background-color: blue;
             position: relative;
         }
 
-        .div2 {
+        #div2 {
             width: 300px;
             height: 300px;
             border: 50px solid green;
@@ -22,7 +23,7 @@
             top: 50px;
         }
 
-        .div3 {
+        #div3 {
             width: 100px;
             height: 100px;
             background-color: silver;
@@ -30,15 +31,20 @@
             left: 50px;
             top: 50px;
         }
-
-        /* 相对于父元素绝对定位 style+padding+border+margin 只相对于 父元素的style*/
+        /* 相对于父元素绝对定位 padding+border+margin 只相对于 父元素的style*/
     </style>
 </head>
 <body>
-<div class="div1">
-    <div class="div2">
-        <div class="div3"></div>
+
+<div id="div1">
+    div1
+    <div id="div2">
+        div2
+        <div id="div3">
+            div3
+        </div>
     </div>
 </div>
+
 </body>
 </html>
