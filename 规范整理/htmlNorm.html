@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<dl>
+    <dt>
+    <h2>HTML规范</h2>
+    </dt>
+    <dd>
+        <ol>
+            <li>
+                <p>引入 CSS 时必须指明 rel="stylesheet"</p>
+            </li>
+            <li>
+                <p>引入 CSS 和 JavaScript 时无须指明 type 属性</p>
+            </li>
+            <li>
+                <p>展现定义放置于外部 CSS 中，行为定义放置于外部 JavaScript 中</p>
+            </li>
+            <li>
+                <p>在 head 中引入页面需要的所有 CSS 资源</p>
+            </li>
+            <li>
+                <p>JavaScript 应当放在页面末尾，或采用异步加载</p>
+            </li>
+            <li>
+                <p>保证 favicon 可访问</p>
+            </li>
+            <li>
+                <p>若页面欲对移动设备友好，需指定页面的 viewport</p>
+            </li>
+            <li>
+                <p>对于无需自闭合的标签，不允许自闭合</p>
+                <h5>常见无需自闭合标签有input、br、img、hr等</h5>
+                <pre><code>
+<span class="h5-comment">&lt;!-- Good --&gt;</span>
+&lt;<span class="h5-title">img</span> <span class="h5-attribute">src</span>=<span
+                        class="h5-value">"pingan.png"</span> <span class="h5-attribute">alt</span>=<span
+                        class="h5-value">"pingan"</span>&gt;
+&lt;<span class="h5-title">input</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"text"</span>&gt;
+
+<span class="h5-comment">&lt;!-- Not Good --&gt;</span>
+&lt;<span class="h5-title">img</span> <span class="h5-attribute">src</span>=<span
+                        class="h5-value">"pingan.png"</span> <span class="h5-attribute">alt</span>=<span
+                        class="h5-value">"pingan"</span>/&gt;
+&lt;<span class="h5-title">input</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"text"</span>/&gt;
+                </code></pre>
+            </li>
+            <li>
+                <p>对 HTML5 中规定允许省略的闭合标签，不允许省略闭合标签</p>
+            </li>
+            <li>
+                <p>标签名必须使用小写字母。</p>
+            </li>
+            <li>
+                <p>标签使用必须符合标签嵌套规则</p>
+                <h5>比如 div 不得置于 p 中，tbody 必须置于 table 中</h5>
+            </li>
+            <li>
+                <p>属性名必须使用小写字母，属性值必须用双引号包围(不允许使用单引号)</p>
+            </li>
+            <li>
+                <p>自定义属性建议以 xxx- 为前缀，推荐使用 data-</p>
+            </li>
+            <li>
+                <p>禁止 img 的 src 取值为空。延迟加载的图片也要增加默认的 src，避免为 img 添加不必要的 title 属性，为重要图片添加 alt 属性</p>
+            </li>
+            <li>
+                <p>添加 width 和 height 属性，以避免页面抖动</p>
+            </li>
+            <li>
+                <p>有下载需求的图片采用 img 标签实现，无下载需求的图片采用 CSS 背景图实现</p>
+            </li>
+            <li>
+                <p>有文本标题的控件必须使用 label 标签将其与其标题相关联</p>
+            </li>
+            <li>
+               <p>使用 button 元素时必须指明 type 属性值</p>
+            </li>
+            <li>
+                <p>当使用 JavaScript 进行表单提交时，如果条件允许，应使原生提交功能正常工作</p>
+            </li>
+        </ol>
+    </dd>
+</dl>
+
+</body>
+</html>
