@@ -2,18 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
     <style>
         #ul1 li div {
             width: 100px;
             height: 100px;
             background-color: #000;
+            display: inline-block;
         }
 
         #ul2 li {
             width: 100px;
             height: 100px;
             background-color: #f1a02f;
+            display: inline-block;
         }
     </style>
 </head>
@@ -21,6 +22,7 @@
 
 <ul id="ul1">
     <li>
+        <div></div>
         <div></div>
     </li>
     <li>
@@ -46,19 +48,16 @@
 </ul>
 
 </body>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
 <script>
     $('#ul1 div').click(function () {
-        alert($(this).index());//都是0
-//        alert($('#ul1 div').index(this));
+        alert($(this).index());//index()只相等于父级的index
+        alert($('#ul1 div').index(this));//所有div中this的index
     });
 
     $('#ul2 li').click(function () {
         alert($(this).index());
-//        alert($('#ul2 li').index(this));
+        alert($('#ul2 li').index(this));
     });
-
-    var a = '123';
-    console.log(a * 100);
-    console.log(a * a);
 </script>
 </html>
