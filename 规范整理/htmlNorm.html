@@ -29,10 +29,10 @@
                 <p>JavaScript 应当放在页面末尾，或采用异步加载</p>
             </li>
             <li>
-                <p>保证 favicon 可访问</p>
+                <p>若页面欲对移动设备友好，需指定页面的 viewport</p>
             </li>
             <li>
-                <p>若页面欲对移动设备友好，需指定页面的 viewport</p>
+                <p>利用标签的语义化进行编写</p>
             </li>
             <li>
                 <p>对于无需自闭合的标签，不允许自闭合</p>
@@ -82,10 +82,80 @@
                 <p>有文本标题的控件必须使用 label 标签将其与其标题相关联</p>
             </li>
             <li>
-               <p>使用 button 元素时必须指明 type 属性值</p>
+                <p>使用 button 元素时必须指明 type 属性值</p>
             </li>
             <li>
                 <p>当使用 JavaScript 进行表单提交时，如果条件允许，应使原生提交功能正常工作</p>
+            </li>
+            <li>
+                <p>HTML 属性应该按照特定的顺序出现以保证易读性</p>
+                <ul>
+                    <li>
+                        <h5>id</h5>
+                    </li>
+                    <li>
+                        <h5>class</h5>
+                    </li>
+                    <li>
+                        <h5>name</h5>
+                    </li>
+                    <li>
+                        <h5>data-xxx</h5>
+                    </li>
+                    <li>
+                        <h5>src, for, type, href</h5>
+                    </li>
+                    <li>
+                        <h5>title, alt</h5>
+                    </li>
+                    <li>
+                        <h5>aria-xxx, role</h5>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <p>属性的定义，统一使用双引号。</p>
+            </li>
+            <li>
+                <p>HTML5 规范中 disabled、checked、selected 等属性不用设置值,方便压缩代码,而且其中的布尔值并不代表其的属性</p>
+            </li>
+            <li>
+                <p>语义嵌套约束</p>
+            <pre><code>
+&lt;<span class="h5-title">li</span>&gt; 用于 &lt;<span class="h5-title">ul</span>&gt; 或 &lt;<span
+                    class="h5-title">ol</span>&gt; 下;
+
+&lt;<span class="h5-title">dd</span>&gt; ， &lt;<span class="h5-title">dt</span>&gt; 用于 &lt;<span
+                    class="h5-title">dd</span>&gt; 下;
+
+&lt;<span class="h5-title">thead</span>&gt; , &lt;<span class="h5-title">tbody</span>&gt; , &lt;<span class="h5-title">tfoot</span>&gt; , &lt;<span
+                    class="h5-title">tr</span>&gt; ,  &lt;<span class="h5-title">td</span>&gt; 用于 &lt;<span
+                    class="h5-title">table</span>&gt; 下;
+            </code></pre>
+            </li>
+            <li>
+                <p>严格嵌套约束</p>
+                <pre><code>
+&lt;<span class="h5-title">a</span>&gt; 里不可以嵌套交互式元素&lt;<span class="h5-title">a</span>&gt; , &lt;<span class="h5-title">button</span>&gt; , &lt;<span
+                        class="h5-title">select</span>&gt;
+
+&lt;<span class="h5-title">p</span>&gt; 里不能嵌套块级元素&lt;<span class="h5-title">div</span>&gt; , &lt;<span class="h5-title">h1</span>&gt; ~ &lt;<span
+                        class="h5-title">h5</span>&gt; , &lt;<span class="h5-title">p</span>&gt; , &lt;<span
+                        class="h5-title">ul</span>&gt; ,  &lt;<span class="h5-title">ol</span>&gt; ,  &lt;<span
+                        class="h5-title">li</span>&gt; ,  &lt;<span class="h5-title">dl</span>&gt; ,  &lt;<span
+                        class="h5-title">dt</span>&gt; ,  &lt;<span class="h5-title">dd</span>&gt; ,  &lt;<span
+                        class="h5-title">form</span>&gt;等
+                </code></pre>
+            </li>
+            <li>
+                <p>favicon</p>
+                <p>在未指定 favicon 时，大多数浏览器会请求 Web Server 根目录下的 favicon.ico 。为了保证 favicon 可访问，避免404，必须遵循以下两种方法之一：
+                    1.在 Web Server 根目录放置 favicon.ico 文件；<br/>
+                    2.使用 link 指定 favicon；<br/>
+<pre><code>
+&lt;<span class="h5-attribute">link</span> <span class="h5-attribute">rel</span>=<span class="h5-value">"shortcut icon"</span> <span class="h5-attribute">href</span>=<span class="h5-value">"path/to/favicon.ico"</span>&gt;</span>
+</code></pre>
+                </p>
             </li>
         </ol>
     </dd>
