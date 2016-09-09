@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="content"></div>
+
+</body>
+<script type="text/babel">
+    var CommentBox = React.createClass({
+        render() {
+            return (
+                    <div className="commentBox">
+                        <h1>Comments</h1>
+                        <CommentList />
+                        <CommentForm />
+                    </div>
+            );
+        }
+    });
+
+    var CommentList = React.createClass({
+        render() {
+            return (
+                    <div className="CommentList">
+                        Hello, world! I am a CommentList.
+                    </div>
+            );
+        }
+    });
+
+    var CommentForm = React.createClass({
+        render() {
+            return (
+                    <div className="CommentForm">
+                        Hello, world! I am a CommentForm.
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <CommentBox />,
+            document.getElementById('content')
+    );
+</script>
+</html>

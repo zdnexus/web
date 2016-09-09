@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="content"></div>
+
+</body>
+<script type="text/babel">
+    var data = {
+        listTitle: 'Here\'s the book list',
+        listData: [
+            {name: "沙滩搁浅我们的旧时光", author: 'XiaoMing'},
+            {name: "女人天生高贵", author: 'XiaoDong'},
+            {name: "海是彩色的灰尘", author: 'XiaoXi'}
+        ]
+    };
+
+    var ContentBox = React.createClass({
+        render() {
+            return (
+                    <div className="ContentBox">
+                        <ContentTitle title={this.props.data.listTitle}></ContentTitle>
+                        <ContentList data={this.props.data.listData}></ContentList>
+                    </div>
+            );
+        }
+    });
+
+    var ContentTitle = React.createClass({
+        render() {
+            return (
+                    <div className="ContentTitle">
+                        <h1>{this.props.title}</h1>
+                    </div>
+            );
+        }
+    });
+
+    var ContentList = React.createClass({
+        render() {
+            var listData = this.props.data;
+            console.log(listData);
+            console.log(this.props.data);
+            console.log(listData === this.props.data);
+
+            listData.map(function (item,index) {
+                if(index === 0){
+                    item.author = 'XXX';
+                }
+            });
+
+            console.log(listData);
+            console.log(this.props.data);
+            console.log(listData === this.props.data);
+
+
+
+            let dataItem = this.props.data.map(function (data, index) {
+                return (
+                        <Content data={data} key={index}/>
+                );
+            });
+
+            return (
+                    <div className="ContentList">
+                        {dataItem}
+                    </div>
+            );
+        }
+    });
+
+    var Content = React.createClass({
+        render() {
+            return (
+                    <div className="Content">
+                        <h3 className="Content-name">{this.props.data.name}</h3>
+                        <span className="Content-author">{this.props.data.author}</span>
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <ContentBox data={data}/>,
+            document.getElementById('content')
+    );
+</script>
+</html>

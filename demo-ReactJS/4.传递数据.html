@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="build/react.js"></script>
+    <script src="build/react-dom.js"></script>
+    <script src="build/browser.min.js"></script>
+</head>
+<body>
+
+<div id="content"></div>
+
+</body>
+<script type="text/babel">
+    var CommentList = React.createClass({
+        render() {
+            return (
+                    <div className="commentList">
+                        <Comment author="Pete Hunt">This is one comment</Comment>
+                        <Comment author="Jordan Walke">This is *another* comment</Comment>
+                    </div>
+            );
+        }
+    });
+
+    var Comment = React.createClass({
+        render() {
+            return (
+                    <div className="comment">
+                        <h2 className="commentAuthor">
+                            {this.props.author}
+                        </h2>
+                        {this.props.children}
+                    </div>
+            );
+        }
+    });
+
+    ReactDOM.render(
+            <CommentList />,
+            document.getElementById('content')
+    )
+</script>
+</html>
