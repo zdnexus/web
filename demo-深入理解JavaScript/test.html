@@ -6,13 +6,29 @@
 </head>
 <body>
 
+<div id="div1" style="width: 300px;height: 300px;background-color: #2e6da4;"></div>
+<div id="div2" style="width: 300px;height: 300px;background-color: red;"></div>
+
 </body>
 <script>
-    "use strict";
-    function test() {
-        alert(this);
+    function divClick(str, number) {
+        console.log(this);
+        this.numerber = number;
+
+        let x = document.getElementById(str);//div1
+
+        let self = this;
+
+        x.onclick = function (){
+            self.alertNumber();
+        }
     }
 
-    test();
+    divClick.prototype.alertNumber = function () {
+        alert(this.numerber);
+    };
+
+    new divClick('div1', 1);
+    new divClick('div2', 10);
 </script>
 </html>

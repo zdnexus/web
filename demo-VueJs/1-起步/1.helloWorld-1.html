@@ -8,22 +8,17 @@
 <body>
 
 <div id="app">
-
     {{ message }}
-
-    <span style="color: #d2346e;" v-text="message" ></span>
-
+    <span style="color: red;" v-text="message"></span>
 </div>
 
 </body>
-<script type="text/javascript">
-
+<script>
     new Vue({
         el: '#app',
         data: {
             message: 'Hello Vue.js!',
         }
     })
-
 </script>
 </html>

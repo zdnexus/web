@@ -12,17 +12,17 @@
     //    该方法只接受原始字符串作为参数，如果 string 参数不是原始字符串，那么该方法将不作任何改变地返回。
     //    因此请不要为 eval() 函数传递 String 对象来作为参数。
 
-    console.log(eval(123));//123 返回原始行参
+    console.log(eval(123));//123 返回函数行参，不做任何改变
 
     console.log(eval("x=10;y=20;document.write(x*y)"));//undefined
 
     console.log(eval("2+2"));//4
 
     var x = 10;
-    console.log(eval(x + 17));//27 返回原始行参
+    console.log(eval(x + 17));//27 返回计算结果(函数行参)，不做任何改变
 
     x = '10';
-    console.log(eval(x + 17));//1017 返回原始行参
+    console.log(eval(x + 17));//1017 返回计算结果(函数行参)，不做任何改变
 
     var myeval = eval;	// 可能会抛出 EvalError 异常
     myeval("2+3");	// 可能会抛出 EvalError 异常

@@ -1,16 +1,20 @@
-/**
- * Created by Administrator on 2016/4/5.
- */
+'use strict';
 
-var http = require("http");
+var http = require('http');
 
-http.createServer(function (request, response) {
-    //response.writeHead(statusCode, [reasonPhrase], [headers])
-    // statusCode   HTTP״̬�룬��200(����ɹ�����404��δ�ҵ����ȡ�
+function start() {
+    function onRequest(request, response) {
+        console.log('Request received.');
+        //（请注意，当我们在服务器访问网页时，我们的服务器可能会输出两次“Request received.”。
+        // 那是因为大部分服务器都会在你访问 http://localhost:8888 /时尝试读取 http://localhost:8888/favicon.ico )
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.write('Hello World!');
+        response.end();
+    }
 
-    response.writeHead(200, {"Content-Type": "text/plain"});
-    response.write("Hello World");
-    response.end();
-}).listen(8888);
+    http.createServer(onRequest).listen(8888);
 
-console.log("Server has started.");
+    console.log('Server has started.');
+}
+
+exports.start = start;

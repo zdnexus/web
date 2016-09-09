@@ -10,7 +10,7 @@
 <div id="app">
     <ul>
         <li v-for="todo in todos">
-            <span style="color:#d2346e;" v-if="todo.dataType" v-text="todo.dataType"></span>
+            <span style="color:red;" v-if="todo.dataType" v-text="todo.dataType"></span>
             <i v-if="todo.message" v-text="todo.message.title"></i>
             <b v-if="todo.message" v-text="todo.message.content"></b>
         </li>
@@ -18,32 +18,28 @@
 </div>
 
 </body>
-<script type="text/javascript">
-
+<script>
     new Vue({
         el: '#app',
         data: {
             todos: [
                 {
                     dataType: 'false',
-                    message:
-                    {
+                    message: {
                         title: 'Learn',
                         content: 'AngularJs'
                     }
                 },
                 {
                     dataType: 'true',
-                    message:
-                    {
+                    message: {
                         title: 'Learn',
                         content: 'VueJs'
                     }
                 },
                 {
                     dataType: false,
-                    message:
-                    {
+                    message: {
                         title: 'Learn',
                         content: 'ReactJs'
                     }
@@ -51,6 +47,5 @@
             ]
         }
     });
-
 </script>
 </html>

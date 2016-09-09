@@ -1,20 +1,23 @@
-/**
- * Created by Administrator on 2016/4/6.
- */
+'use strict';
 
-var http = require("http");
+var http = require('http');
+var url = require('url');
 
-function start() {
+function start(router,handle) {
     function onRequest(request, response) {
-        console.log("Request received.");
-        response.writeHead(200, {"Content-Type": "text/plain"});
-        response.write("Hello World!");
+        var pathname = url.parse(request.url).pathname;
+        console.log('Request for' + pathname + ' received.');
+
+        router(handle,pathname);
+
+        response.writeHead(200, {'Content-Type': 'text/plain'});
+        response.write('Hello World');
         response.end();
     }
 
     http.createServer(onRequest).listen(8888);
 
-    console.log("Server has started.");
+    console.log('Server has started.');
 }
 
 exports.start = start;

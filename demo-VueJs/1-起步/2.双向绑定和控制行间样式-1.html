@@ -8,20 +8,15 @@
 <body>
 
 <div id="app">
-
     <p>{{ message }}</p>
-
     <!--VueJs中的value优先级比v-model高 和AngularJs相反-->
     <!--带vue控制器直接写入data，没有vue控制器需要加{{ }}-->
     <input type="text" value="3" v-model="message" maxlength="{{maxLength}}"/>
-
     <input type="text" value="3" v-model="message" v-bind:maxlength="maxLength"/>
-    
 </div>
 
 </body>
-<script type="text/javascript">
-
+<script>
     new Vue({
         el: '#app',
         data: {
@@ -29,6 +24,5 @@
             maxLength:6,
         }
     })
-
 </script>
 </html>

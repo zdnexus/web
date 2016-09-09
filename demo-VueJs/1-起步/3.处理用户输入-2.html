@@ -8,50 +8,54 @@
 <body>
 
 <div id="app">
-
-    <input type="text" v-model="n1">
-
-    <input type="text" v-model="n2">
-
-    <button v-on:click="operation('plus');">相加</button>
-
+    <input type="text" v-model="X">
+    <input type="text" v-model="Y">
+    <button v-on:click="operation('add');">加法</button>
     <!--v-on:click = @click-->
-    <button @click="operation('mul')">相乘</button>
-
-    <p id="result">{{ n3 }}</p>
-
+    <button @click="operation('sub')">减法</button>
+    <button @click="operation('mul')">乘法</button>
+    <button @click="operation('div')">除法</button>
+    <p id="result">{{ Z }}</p>
 </div>
 
 </body>
-<script type="text/javascript">
-
+<script>
     new Vue({
         el: '#app',
         data: {
-            n1: '',
-            n2: '',
-            n3: '',
+            X: '',
+            Y: '',
+            Z: '',
         },
         methods: {
-            operation: function (str) {
+            operation(str) {
 //                trim()移除字符串两侧的字符
 //                input中的value值状态为string，运算需要转换为int
-                var m1 = parseInt(this.n1.trim());
-                var m2 = parseInt(this.n2.trim());
+                var m1 = parseFloat(this.X.trim());
+                var m2 = parseFloat(this.Y.trim());
 
-                if(str == 'plus') {
+                if (str == 'add') {
                     if (!isNaN(m1) && !isNaN(m2)) {
-                        this.n3 = m1 + m2;
+                        this.Z = m1 + m2;
                     }
                 }
-                else if(str == 'mul'){
+                else if (str == 'sub') {
                     if (!isNaN(m1) && !isNaN(m2)) {
-                        this.n3 = m1 * m2;
+                        this.Z = m1 - m2;
+                    }
+                }
+                else if (str == 'mul') {
+                    if (!isNaN(m1) && !isNaN(m2)) {
+                        this.Z = m1 * m2;
+                    }
+                }
+                else if (str == 'div') {
+                    if (!isNaN(m1) && !isNaN(m2)) {
+                        this.Z = m1 / m2;
                     }
                 }
             }
         }
     })
-
 </script>
 </html>
