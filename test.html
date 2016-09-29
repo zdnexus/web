@@ -5,55 +5,51 @@
     <title>Title</title>
 </head>
 <body>
-
+<h1>321321</h1>
 </body>
 <script>
-//    let arr = [1, 2, 3];
-//    arr.map(function (item, index) {
-//        console.log(index + ' ' + item);
-//        console.log(this);
-//    });
-//    arr.push(this);
-//    console.log(arr);
-//    console.log(arr[2]);
-//
-//
-//    let arr1 = [1, 2, 3];
-//    let arr2 = [4, 5, 6];
-//    let arr3 = arr1.concat(arr2);
-//    console.log(arr3);
-//
-//    var arr4 = [];
-//
-//    arr4.push(arr1.map(function (data) {
-//        if (data === 1 || data === 3) {
-//            return data;
-//        }
-//    }))
-//    console.log('arr4', arr4);
-//
-//
-//
-    var a;
-    var b='';
+    //    1
+    let str = '321321321321' +
+            '\n' +
+            '\t' +
+            '\n' +
+            '321321312312'
+
+    console.log(str);
+
+
+    let s = str.replace(/\n/g, 'a');
+
+    console.log(s);
+
+
+    //    2
+    let url = 'http://sjdkf-:3012023/jsljksdk?payState=123213&code=123&message=2的数据库及';
+
+
+    function cutBind(str) {
+        let ob = {};
+        let cutStr = str.substr(url.indexOf('?') + 1);
+
+        if (cutStr) {
+            let cutArr = cutStr.split('&');
+
+            cutArr.map(function (cutItem) {
+                let index = cutItem.indexOf('=');
+                let key = cutItem.substr(0, index);
+                let value = cutItem.substr(index + 1);
+                ob[key] = value;
+            });
+        }
+        return ob;
+    }
+
+
+    //    let s = cutBind(url);
+    //    console.log(s);
+
+    //    3
+    var a = (true) ? 1 : 2;
     console.log(typeof a);
-    console.log(typeof b);
-
-    var ob = {b:'',};
-//    console.log(ob.a);//undefined
-//    console.log(ob.b);//''
-//    console.log(ob.a == ob.b);
-//    console.log(ob.a != ob.b);
-//    if(!ob.a){console.log(1)}
-//    if(!ob.b){console.log(2)}
-
-//    if(ob && ob.b){
-//        console.log('a');
-//    }
-//    else{
-//        console.log('b');
-//    }
-
-
 </script>
 </html>

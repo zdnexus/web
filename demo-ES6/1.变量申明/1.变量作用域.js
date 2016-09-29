@@ -1,16 +1,28 @@
 'use strict';
 
-function f1() {
-    let x1 = 1;
+function func() {
+    let isRight = true;
+    let x = 1;
+    var y = 2;
+
     // 块级作用域
-    if (true) {
-        let x1 = 2;
-        var y1 = 3;
-        console.log(x1);// 2
-        console.log(y1);// 3
+    if (isRight) {
+        let x = 3;
+        var y = 4;
+        console.log('函数内块级作用域:x=', x);// x = 3
+        console.log('函数内块级作用域:y=', y);// y = 4
     }
-    console.log(x1);// 1
-    console.log(y1);// 3
+    console.log(x);// 1
+    console.log(y);// 3
+
+    if (isRight) {
+        // var x = 5;
+        let y = 6;
+        console.log(x);// 3
+        console.log(y);// 4
+    }
+    console.log(x);// 3
+    console.log(y);// 4
 
     // 函数作用域
     function f2() {
@@ -60,4 +72,4 @@ function f1() {
     console.log(arr2[2]());// 2
 }
 
-f1();
+func();
