@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" onmouseover="changeDivBgcToBlack()" onmouseout="changeDivBgcToRed()"></div>
+
+</body>
+<script>
+
+    function changeDivBgcToBlack() {
+        var oDiv = document.getElementById('div1');
+
+        oDiv.style.width = '300px';
+        oDiv.style.height = '300px';
+        oDiv.style.backgroundColor = 'black';//Error oDiv.style.background-color='black';
+    }
+
+    function changeDivBgcToRed() {
+        var oDiv = document.getElementById('div1');
+
+        oDiv.style.width = '200px';
+        oDiv.style.height = '200px';
+        oDiv.style.backgroundColor = 'red';
+    }
+
+</script>
+</html>

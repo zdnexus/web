@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+
+<input id="txt1" type="text" value="求求求">
+<input type="button" value="更换名字" onclick="setInputValue()">
+
+</body>
+<script>
+    
+    function setInputValue() {
+        var oTxt = document.getElementById('txt1');
+
+        oTxt['value'] = '我问问';//oTxt.value = oTxt['value']
+    }
+    
+</script>
+</html>

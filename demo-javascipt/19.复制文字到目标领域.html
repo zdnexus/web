@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<input id="txt1" type="text">
+<input id="btn1" type="button" value="复制文字">
+
+<div id="div1"></div>
+
+</body>
+<script>
+    var oTxt = document.getElementById('txt1');
+    var oBtn = document.getElementById('btn1');
+    var oDiv = document.getElementById('div1');
+
+    oBtn.onclick = function () {
+        //oDiv.innerHTML = oTxt.value;//innerHTML插入value在html的样式
+        oDiv.innerHTML += oTxt.value + '<br/>';//可以插入html格式<h2><p>
+    };
+</script>
+</html>

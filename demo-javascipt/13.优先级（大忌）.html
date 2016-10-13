@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<!--要么只用class，要么用style，优先级-->
+<!--行间style优先级比box大，无法从绿色变换到红色-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            border: 1px solid black;
+        }
+
+        div.box {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<input type="button" value="变红" onclick="changeDivBgcToRed()">
+<input type="button" value="变绿" onclick="changeDivBgcToGreen()">
+
+<div id="div1"></div>
+
+</body>
+<script>
+    
+    function changeDivBgcToRed() {
+        var oDiv = document.getElementById('div1');
+
+        oDiv.className = 'box';//改变class，变红后可变绿
+    }
+    
+    function changeDivBgcToGreen() {
+        var oDiv = document.getElementById('div1');
+
+        oDiv.style.backgroundColor = 'green';//直接改变style元素，优先级大于class，变绿后不能变红
+    }
+    
+</script>
+</html>

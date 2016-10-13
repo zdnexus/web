@@ -4,10 +4,6 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        #div1 input.active {
-            background: lightseagreen;
-        }
-
         #div1 div {
             display: none;
             width: 200px;
@@ -15,6 +11,10 @@
             background-color: gray;
             border: 1px solid black;
             margin: 10px;
+        }
+
+        #div1 input.active {
+            background: yellow;
         }
     </style>
 </head>
@@ -29,7 +29,7 @@
     <input type="button" value="出国">
 
     <!--第一个改变style为默认形式-->
-    <div style="display: block">11111</div>
+    <div>11111</div>
     <div>22222</div>
     <div>33333</div>
     <div>44444</div>
@@ -42,15 +42,20 @@
     var aDiv = oDiv.getElementsByTagName('div');//获取#div1中的所有div
 
     for (var i = 0; i < aBtn.length; ++i) {
-        aBtn[i].index = i;//添加index子元素为索引
-        aBtn[i].onclick = function () {
+        aBtn[i].index = i;//添加index索引
+        aBtn[i].onmousemove = function () {
             for (var i = 0; i < aBtn.length; ++i) {
                 aBtn[i].className = '';//每个btn设置空class
                 aDiv[i].style.display = 'none';//每个div隐藏
             }
-//            this为当前事件的父级，为onclick事件父级aBtn[i]
-            this.className = 'active';//，点击的点为改变class,被点击的点显示，改变class
-            aDiv[this.index].style.display = 'block';//利用索引aBtn数组相匹配的div
+            this.className = 'active';// this为当前事件的父级,被点击的点显示，改变class
+            aDiv[this.index].style.display = 'block';//利用索引相匹配的div
+        };
+        aBtn[i].onmouseout = function () {
+            for (var i = 0; i < aBtn.length; ++i) {//每次点击还原所有点为空class，点击的点为改变class
+                aBtn[i].className = '';//每个点变成空class
+                aDiv[i].style.display = 'none';//每个点隐藏
+            }
         };
     }
 </script>
