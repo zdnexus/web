@@ -9,30 +9,29 @@
 <input id="btn1" type="button" value="全选">
 <input id="btn2" type="button" value="不选">
 <input id="btn3" type="button" value="反选">
+<br/>
 
-<!--被控制的input被圈在同一div中-->
-<div id="div1">
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-    <input type="checkbox"><br/>
-</div>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+<input type="checkbox" class="checkbox"><br/>
+
 </body>
 <script>
-    //        checkbox->checked状态
     var oBtn1 = document.getElementById('btn1');
     var oBtn2 = document.getElementById('btn2');
     var oBtn3 = document.getElementById('btn3');
-    var oDiv = document.getElementById('div1');//只需要选取#div1中的input，避免所有的input
-    var aCh = oDiv.getElementsByTagName('input');
+    var aCh = document.getElementsByClassName('checkbox');
 
     oBtn1.onclick = function () {
         for (var i = 0; i < aCh.length; ++i) {

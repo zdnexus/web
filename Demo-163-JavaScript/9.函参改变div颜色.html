@@ -13,20 +13,18 @@
 </head>
 <body>
 
-<input type="button" value="变宽" onclick="setStyle('width','400px')">
-<input type="button" value="变高" onclick="setStyle('height','400px')">
-<input type="button" value="变红" onclick="setStyle('background-color','red')">
+<input type="button" value="变黑" onclick="setDivBgcColor('black')">
+<input type="button" value="变黄" onclick="setDivBgcColor('yellow')">
+<input type="button" value="变红" onclick="setDivBgcColor('red')">
 
 <div id="div1"></div>
 
 </body>
 <script>
-
-    function setStyle(name, value) {
+    function setDivBgcColor(color) {
         var oDiv = document.getElementById('div1');
 
-        oDiv.style[name] = value;//oDiv.style.name = oDiv.style[name]
+        oDiv.style.backgroundColor = color;//改变bg是改变style里的bg,style里已申明。
     }
-
 </script>
 </html>

@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <title></title>
     <style>
-        #div1 div {
+        input.active {
+            background: yellow;
+        }
+
+        div {
             display: none;
             width: 200px;
             height: 200px;
@@ -12,34 +16,27 @@
             border: 1px solid black;
             margin: 10px;
         }
-
-        #div1 input.active {
-            background: yellow;
-        }
     </style>
 </head>
 <body>
 
-<div id="div1">
-    <!--行间写class,style里写classname-->
-    <!--第一个改变class为默认形式-->
-    <input class="active" type="button" value="教育">
-    <input type="button" value="培训">
-    <input type="button" value="招生">
-    <input type="button" value="出国">
+<!--行间写class,style里写classname-->
+<!--第一个改变class为默认形式-->
+<input class="active" type="button" value="教育">
+<input type="button" value="培训">
+<input type="button" value="招生">
+<input type="button" value="出国">
 
-    <!--第一个改变style为默认形式-->
-    <div>11111</div>
-    <div>22222</div>
-    <div>33333</div>
-    <div>44444</div>
-</div>
+<!--第一个改变style为默认形式-->
+<div>11111</div>
+<div>22222</div>
+<div>33333</div>
+<div>44444</div>
 
 </body>
 <script>
-    var oDiv = document.getElementById('div1');
-    var aBtn = oDiv.getElementsByTagName('input');//获取#div1中的所有input
-    var aDiv = oDiv.getElementsByTagName('div');//获取#div1中的所有div
+    var aBtn = document.getElementsByTagName('input');//获取#div1中的所有input
+    var aDiv = document.getElementsByTagName('div');//获取#div1中的所有div
 
     for (var i = 0; i < aBtn.length; ++i) {
         aBtn[i].index = i;//添加index索引

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1 id="h1"></h1>
+<h1 id="h2"></h1>
+</body>
+<script>
+    var s1 = 'adsadsa321321321dsadsa321321321dsads4234324323dsa';
+    document.getElementById('h1').innerHTML = s1;
+
+    var s2 = s1.replace(/\d+/g,'<span style="color:red">$&</span>');
+
+    document.getElementById('h2').innerHTML = s2;
+</script>
+</html>

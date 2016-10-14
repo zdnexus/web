@@ -34,18 +34,16 @@
 </head>
 <body>
 
-<input type="button" value="变色" onclick="changeDivBgcToColor()">
+<input type="button" value="变色" onclick="setDivBgcColor()">
 
 <div id="div1" class="bgc"></div>
 
 </body>
 <script>
-    
-    function changeDivBgcToColor() {
+    function setDivBgcColor() {
         var oDiv = document.getElementById('div1');
 
         oDiv.className = 'box';//改变类class在JS中必须写成className;
     }
-    
 </script>
 </html>

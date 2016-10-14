@@ -38,33 +38,21 @@
 <body>
 
 <!--行间样式级别最高,行间样式可以被JS读取-->
-<div id="div1" class="box" style="background-color: white" onclick="alertDvi1Bgc()"></div>
+<div id="div1" class="box" style="background-color: white" onclick="alertDviBgc('div1')"></div>
 
 <!--div.box对div2无效-->
 <!--css样式不能被JS读取-->
-<div id="div2" class="box" onclick="alertDvi2Bgc()"></div>
+<div id="div2" class="box" onclick="alertDviBgc('div2')"></div>
 
 <!--#div3.box2对div2有效-->
-<div id="div3" class="box2"></div>
+<div id="div3" class="box2" onclick="alertDviBgc('div3')"></div>
 
 </body>
 <script>
-
-    function alertDvi1Bgc() {
-        var oDiv = document.getElementById('div1');
-
-        console.log(oDiv.style);
+    function alertDviBgc(divName) {
+        var oDiv = document.getElementById(divName);
 
         alert(oDiv.style.backgroundColor);
     }
-
-    function alertDvi2Bgc() {
-        var oDiv = document.getElementById('div2');
-
-        console.log(oDiv.style);
-
-        alert(oDiv.style.backgroundColor);
-    }
-
 </script>
 </html>
