@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script>
+        //        函数从顶层往下读取,input没有在行间加载onclick函数
+        //        var oBtn = document.getElementById('btn1');//btn1 还没有加载进来。
+        //
+        //                oBtn.onclick = function () {
+        //                    alert('Hello World!');
+        //                };
+
+        window.onload = function () {
+            var oBtn = document.getElementById('btn1');
+
+            oBtn.onclick = function () {
+                alert('Hello World!');
+            };
+        };
+    </script>
+</head>
+<body>
+
+<!--提取onclick事件提到script中-->
+<input id="btn1" type="button" value="按钮">
+
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        div {
+            width: 200px;
+            /*高度自适应*/
+            border: 1px solid #dfb86d;
+            background-color: #fffde4;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<!--getElementById只能通过id获取元素-->
+<!--display在style里，document.getElementById('div1').style.display-->
+<!--通过JS给标签增加行间样式用来覆盖原本的样式-->
+<!--""字符串中加''，''字符串中""-->
+<input type="checkbox"
+       onmouseover="document.getElementById('div1').style.display='block'"
+       onmouseout="document.getElementById('div1').style.display='none'">
+
+<input type="checkbox"
+       onmouseover="document.getElementById('div2').style.display='block'"
+       onmouseout="document.getElementById('div2').style.display='none'">
+
+<input type="checkbox"
+       onmouseover="document.getElementById('div3').style.display='block'"
+       onmouseout="document.getElementById('div3').style.display='none'">
+
+<input type="checkbox"
+       onmouseover="document.getElementById('div4').style.display='block'"
+       onmouseout="document.getElementById('div4').style.display='none'">
+
+<div id="div1">
+    <!--width:padding + border + margin = 0+2+0=2 /+200=202-->
+    <!--height:padding + border + margin = 0+2+6=8 /+36=44-->
+    <p style="color:#dc9632;margin:3px">
+        <!--margin:3px 距离父级元素的为3px-->
+        为了您的信息安全，请不要在网吧里点击自动登录。
+    </p>
+</div>
+
+<div id="div2" style="color:#dc9632;padding:3px">
+    <!--padding:3px 内元素的外距离为3px-->
+    <!--width:padding + border + margin = 6+2+0=8 /+200=208-->
+    <!--height:padding + border + margin = 6+2+0=8 /+36=44-->
+    为了您的信息安全，请不要在网吧里点击自动登录。
+</div>
+
+<div id="div3">
+    <!--width:padding + border + margin = 0+2+0=2 /+200=202-->
+    <!--height:padding + border + margin = 0+2+0=2 /+36=38-->
+    <span style="color:#dc9632;margin:3px">
+        <!--span的margin-top和margin-bottom无效-->
+        为了您的信息安全，请不要在网吧里点击自动登录。
+    </span>
+</div>
+
+<div id="div4" style="padding:3px">
+    <!--width:padding + border + margin = 6+2+0=8 /+200=208-->
+    <!--height:padding + border + margin = 6+2+6=14 /+36=50-->
+    <p style="color:#dc9632;margin:3px">
+        为了您的信息安全，请不要在网吧里点击自动登录。
+    </p>
+</div>
+
+</body>
+</html>

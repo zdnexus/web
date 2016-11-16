@@ -1,0 +1,105 @@
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  50% {
+    -webkit-transform: rotate(180deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+.rotate-once {
+  -webkit-animation: spin 500ms linear 1;
+}
+.rotate-once-anti-clockwise {
+  -webkit-animation: spin 500ms linear 1 alternate;
+}
+.rotate-infinite {
+  -webkit-animation: spin 700ms linear infinite;
+}
+.rotate-infinite-anti-clockwise {
+  -webkit-animation: spin 700ms linear infinite alternate;
+}
+@-webkit-keyframes text_ease_in_out {
+  0%{
+    -webkit-transform: translate3d(13rem,0,0);
+    opacity: 1;
+  }
+  85%{
+    -webkit-transform: translate3d(-13rem,0,0);
+    opacity: 1;
+  }
+  86%{
+    -webkit-transform: translate3d(-13rem,0,0);
+    opacity: 0;
+  }
+  90%{
+    -webkit-transform: translate3d(13rem,0,0);
+    opacity: 0;
+  }
+  99%{
+    opacity: 0;
+  }
+  100%{
+    opacity: 1;
+  }
+}
+.text_ease_in_out{
+  -webkit-animation: text_ease_in_out 9000ms linear infinite;
+}
+@-webkit-keyframes dropBox_to_rise {
+  0%{
+    -webkit-transform: translate3d(0,6.3rem,0);
+  }
+  100%{
+    -webkit-transform: translate3d(0,0,0);
+  }
+}
+.dropBox_to_rise {
+  -webkit-animation: dropBox_to_rise 500ms ease-in-out;
+}
+@-webkit-keyframes page_right_in {
+  0%{
+    -webkit-transform: translate3D(13rem,0,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+}
+.page_right_in{
+  -webkit-animation: page_right_in 500ms ease-in-out;
+}
+@-webkit-keyframes page_left_in {
+  0%{
+    -webkit-transform: translate3D(-13rem,0,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+}
+.page_left_in{
+  -webkit-animation: page_left_in 500ms ease-in-out;
+}
+@-webkit-keyframes page_top_in {
+  0%{
+    -webkit-transform: translate3D(0,-30rem,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+}
+.page_top_in{
+  -webkit-animation: page_top_in 500ms ease-in-out;
+}
+@-webkit-keyframes page_bottom_in {
+  0%{
+    -webkit-transform: translate3D(0,30rem,0);
+  }
+  100%{
+    -webkit-transform: translate3D(0,0,0);
+  }
+}
+.page_bottom_in{
+  -webkit-animation: page_bottom_in 500ms ease-in-out;
+}

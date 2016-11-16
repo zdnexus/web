@@ -1,0 +1,1112 @@
+#page_main{
+    background-image: url("images/mainBg.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+}
+#backBtn{
+    position: absolute;
+    left:10px;
+    background: url(images/icon_gt.png) no-repeat 0 center;
+    text-indent: 0.4rem;
+    background-size:auto 45%;
+}
+#navTitle{
+    /*font-size:0.85rem;*/
+}
+#closeBtn{
+    position: absolute;
+    left:2.2rem;
+    display: none;
+}
+.colorB{
+    color: #3399ff;
+}
+.op2 {
+    opacity: 0.2;
+}
+.underLine{
+    text-decoration: underline;
+    color: #333;
+    font-weight:bold;
+}
+.menuIcon{
+    position: absolute;
+    width: 3.4rem;
+    height: 3.4rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+#sIcon {
+    background-image: url('images/sicon.png');
+    top:6.3rem;
+    left: 5.2rem;
+}
+#dIcon {
+    background-image: url('images/dicon.png');
+    top:9rem;
+    left: 8.1rem;
+}
+#qIcon{
+    background-image: url('images/qicon.png');
+    top:10.1rem;
+    left: 4.2rem
+}
+#fIcon{
+    background-image: url('images/ficon.png');
+    top:12.9rem;
+    left: 7.1rem;
+
+}
+#yIcon{
+    background-image: url('images/yicon.png');
+    top:11.3rem;
+    left: 0.4rem;
+}
+#hIcon{
+    background-image: url('images/hicon.png');
+    top:14rem;
+    left: 3.3rem;
+}
+#paymentType,#resultType,#refundType,#payDoneType{
+    width: 2.8rem;
+    height: 2.8rem;
+    background-repeat: no-repeat;
+    background-size: contain;
+    margin: 0.9rem auto 1rem auto;
+    border-radius: 2rem;
+}
+.refundIcon{
+    background-image: url('images/icon_refund.png');
+    border:2px solid #ff9999;
+}
+.sIcon{
+    background-image: url('images/sicon.png');
+    border:2px solid #74addc;
+}
+.dIcon{
+    background-image: url('images/dicon.png');
+    border:2px solid #f0c65e;
+}
+.fIcon{
+    background-image: url('images/ficon.png');
+    border:2px solid #5cb1bf;
+}
+.hIcon{
+    background-image: url('images/hicon.png');
+    border:2px solid #e79a5d;
+}
+.qIcon{
+    background-image: url('images/qicon.png');
+    border:2px solid #df5d5c;
+}
+.yIcon{
+    background-image: url('images/yicon.png');
+    border:2px solid #716baf;
+}
+.location{
+    position: absolute;
+    top:6.4rem;
+    left: 4.9rem;
+    width: 4rem;
+    height: 0.47rem;
+    line-height: 0.47rem;
+    background-image: url('images/location.png');
+    background-repeat: no-repeat;
+    background-position: left;
+    background-size: contain;
+    color:#666666;
+    display: none;
+}
+.location .cityName{
+    padding: 0 0 0 0.5rem;
+}
+#payNoUse{
+    position: absolute;
+    top:7.6rem;
+    width: 100%;
+    text-align: center;
+    color: #999999;
+}
+#changeCity{
+    position: absolute;
+    top: 9.4rem;
+    width: 100%;
+    text-align: center;
+    color: #2d4486;
+}
+.area{
+    width: 8rem;
+    height: 4.6rem;
+    background-image: url("images/area.png");
+    background-size: contain;
+    position: absolute;
+    top:13rem;
+    left: 2.1rem;
+}
+.serviceCont{
+    padding: 0.5rem 0.6rem;
+    color: #666666;
+}
+.serP1{
+    line-height: 0.9rem;
+}
+.serP11{
+    padding: 0.77rem 0 0.22rem 0;
+}
+.serP2{
+    padding: 0.5rem 0 0 0.77rem;
+    position: relative;
+    line-height: 0.85rem;
+}
+.serP2 span{
+    position: absolute;
+    left: 0;
+}
+.serP2 b{
+    font-weight: normal;
+}
+.serP3{
+    padding: 0.5rem 0 0 0.89rem;
+    position: relative;
+    line-height: 0.85rem;
+}
+.serP3 span{
+    position: absolute;
+    left: 0;
+}
+.padding4{
+    padding: 0.55rem 0 0 0;
+}
+#canNotUse{
+    display: none;
+}
+#canUse{
+    /*position: absolute;*/
+    /*top:6.58rem;*/
+}
+#citySelect{
+    padding-left: 0.4rem;
+    width: 10.4rem;
+    height: 1.8rem;
+    border: 1px solid #c1c1c1;
+    border-radius: 0.2rem;
+    margin: 0 0 0.8rem 0.6rem;
+    position: relative;
+}
+
+#cusSelect,.cusInput{
+    width: 10.4rem;
+    padding-left: 0.4rem;
+    height: 1.8rem;
+    border: 1px solid #c1c1c1;
+    border-radius: 0.2rem;
+    margin: 0 0 0 0.6rem;
+    position: relative;
+}
+.selIcon{
+    border-left: 0.2rem solid transparent;
+    border-right: 0.2rem solid transparent;
+    border-top: 0.33rem solid rgba(129,129,129,0.6);
+    position: absolute;
+    top: 0.81rem;
+    right: 0.6rem;
+}
+.selTitle{
+    background-color: #FFF;
+    position: absolute;
+    top: -0.26rem;
+    color: #999999;
+    left: 0.4rem;
+    padding: 0 0.2rem;
+}
+.selCont{
+    /* position: absolute; */
+    /* top: 0; */
+    /* left: 0.4rem; */
+    text-indent:0.2rem;
+    line-height: 1.8rem;
+    height: 1.8rem;
+    color: #333333;
+    overflow: hidden;
+    width: 80%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+#inputName,#barCode,#billMoney{
+    margin: 0.82rem 0 0 0.58rem;
+}
+.inputTitle{
+    display: none;
+    background-color: #FFF;
+    position: absolute;
+    top: -0.26rem;
+    color: #999999;
+    left: 0.4rem;
+    padding: 0 0.2rem;
+    z-index: 10;
+}
+.textInput{
+    width: 9rem;
+    height: 1.05rem;
+    line-height: 1.05rem;
+    position: absolute;
+    left: 0.4rem;
+    border: none;
+    outline: none;
+    z-index: 1;
+    padding: 0;
+    margin-top: 0.35rem;
+    color: #000;
+    text-indent: 0.2rem;
+}
+.questionIcon{
+    background-image: url("images/question.png");
+    background-repeat: no-repeat;
+    width: 0.44rem;
+    height: 0.44rem;
+    background-size: contain;
+    display: inline-block;
+    margin: 0 0 0 0.19rem;
+}
+.quesP{
+    margin: 0.19rem 0 0 1rem;
+    color: #999999;
+}
+.checkBtnBlock{
+    margin: 0.2rem 0 0 1.98rem;
+}
+#checkBtn{
+    background-color: #96a1c2;
+    color:#cfd3e2;
+}
+.btnNotes{
+    width: 100%;
+    margin: 0.38rem 0;
+    color: #999999;
+    text-align: center;
+}
+.oneId{
+    /*padding-left: 0.2rem;*/
+    color: #333333;
+}
+#pop-dropBox{
+    width: 100%;
+    height: 6.3rem;
+    background-color: #FFF;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    display:none;
+}
+.delWindow{
+    width: 100%;
+    /*height: 6.3rem;*/
+    background-color: #fff;
+    position: fixed;
+    bottom: 0;
+    z-index: 100;
+    display:none;
+}
+#dropCont{
+    margin: 1rem 0 0 0;
+    width: 100%;
+    text-align: center;
+    line-height: 0.9rem;
+}
+#dropBoxBtn{
+    margin: 1rem 0 0 2rem;
+    border-color: #3b508e;
+    color: #3b508e;
+}
+#compName{
+    /*position: absolute;*/
+    /*top: 6.41rem;*/
+    width: 100%;
+    text-align: center;
+    color: #999999;
+}
+#orderNo{
+    /*position: absolute;*/
+    /*top: 7.38rem;*/
+    width: 100%;
+    text-align: center;
+    color: #999999;
+    margin-top: 0.4rem;
+}
+#orderList{
+    /*position: absolute;*/
+    /*top: 9.4rem;*/
+    width: 100%;
+    display: none;
+    padding-bottom: 2rem;
+    /*margin-top: 1.6rem;*/
+}
+#orderFeed{
+    width: 100%;
+    display: none;
+}
+.oneOrder{
+    margin: 0 0 0.76rem 0;
+    height: 2.28rem;
+    line-height: 2.28rem;
+    background-color: #f9f9f9;
+    /*border-top: 1px solid #C0C0C0;*/
+    position: relative;
+    color: #333;
+}
+.oneOrderP{
+    padding: 0 0 0 0.64rem;
+    color: #333333;
+}
+.oneOrderBg{
+    position: absolute;
+    width: 100%;
+    height: 24px;
+    background-image: url("images/orderBg.png");
+    background-repeat: repeat-x;
+    bottom: -24px;
+    background-size:0.4rem auto;
+}
+
+.orderTitle{
+    padding-top: 1.15rem;
+    padding-bottom: 0.4rem;
+    color: #666666;
+    font-style: normal;
+    margin: 0 0 0 0.63rem;
+}
+
+#payBtn{
+    background-color: #2d4486;
+    position: fixed;
+    bottom: -10rem;
+    -webkit-transition-duration: 500ms;
+    color: #ffffff;
+}
+
+.payListTitle{
+    margin: 0.7rem 0 0 9rem;
+    color: #2d4486;
+    background-image: url(images/payListIcon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    padding: 0 0 0 0.7rem;
+}
+.payListCont{
+    /*position: absolute;*/
+    /*top: 2.59rem;*/
+    width: 100%;
+    /*height: 11.5rem;*/
+    overflow: hidden;
+    padding-bottom: 5rem;
+    margin-top: 0.3rem;
+}
+.onePayList{
+    height: 1.6rem;
+    margin-bottom: 0.8rem;
+    padding: 0 0 0 1.58rem;
+    background-repeat: no-repeat;
+    background-position: 0.5rem center;
+}
+#addMoreAccount{
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid #d7d7d7;
+    width: 12rem;
+    z-index:21;
+    background-color:#ffffff;
+}
+.payName{
+    margin-bottom: 0.28rem;
+    color: #333333;
+}
+.payAccount{
+    color: #999999;
+}
+.sPayType{
+    background-image: url("images/sSmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.dPayType{
+    background-image: url("images/dSmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.qPayType{
+    background-image: url("images/qSmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.fPayType{
+    background-image: url("images/fSmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.yPayType{
+    background-image: url("images/ySmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.hPayType{
+    background-image: url("images/hSmallIcon.png");
+    background-size: auto 0.8rem;
+}
+.moreAccountTitle{
+    /*height: 1.61rem;*/
+    /*line-height: 1.61rem;*/
+    padding:0.55rem;
+    color: #666666;
+    text-align: center;
+}
+.accountList{
+    color: #666666;
+    float: left;
+    margin-left: 1.8rem;
+}
+.accountList p{
+    padding-bottom: 0.8rem;
+}
+#selectbox{
+    width: 100%;
+    height: 6.3rem;
+    background-color: #FFF;
+    position: absolute;
+    bottom: 0;
+    z-index: 100;
+    display:none;
+    text-align:center;
+    background-color: #f9f9f9;
+}
+.foot_top{
+    position: relative;
+    width: 100%;
+    height: 1.77rem;
+    line-height: 1.77rem;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    background-color:white;
+}
+.select_title{
+    font-size:0.6666rem;
+    color:#333333;
+}
+.enter{
+    position: absolute;
+    top: 0;
+    right: 0.6rem;
+    font-size:0.5454rem;
+    color:#989898;
+}
+.cancel{
+    position: absolute;
+    top: 0;
+    color:#989898;
+    font-size:0.5454rem;
+    left: 0.6rem;
+}
+.sparechoice{
+    height: 1.7777rem;
+    line-height: 1.7777rem;
+}
+.sparechoice.on{
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    background-color:white;
+}
+.orderList_p{
+    padding-left: 1.8rem;
+    background-image: url('images/icon_nochoice.png');
+    background-repeat: no-repeat;
+    background-position: 0.6rem 50%;
+    background-size: 0.8rem auto;
+}
+.orderList_p.on{
+    background-image: url('images/icon_choice.png');
+}
+.Payboder{
+    width: 1.61rem;
+    height:1.61rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border-radius:50%;
+}
+.border_color1{
+    border:1px solid #dceaf6;
+}
+.border_color2{
+    border: 1px solid #f9e9bf;
+}
+.border_color3{
+    border: 1px solid #f7d6d6;
+}
+.moreAccountList .Payboder{
+    margin-bottom: 0.4rem;
+}
+.textCenter{
+    text-align: center;
+}
+.del_title{
+    padding:1rem 0;
+}
+.delEnter{
+    height: 1.86rem;
+    line-height: 1.86rem;
+    width: 8.1rem;
+    margin-left: 50%;
+    -webkit-transform: translate3d(-50%,0,0);
+    -webkit-border-radius: 1.6111rem;
+    border: 2px solid #cc0000;
+    color: #cc0000;
+}
+.delCancel{
+    margin-top:1rem;
+    margin-bottom: 1rem;
+    /*height: 1.6111rem;*/
+    /*line-height: 1.6111rem;*/
+}
+.sidebar{
+    position: absolute;
+    right: 0;
+    top:1px;
+    width: 6.3333rem;
+    height:2.29rem;
+    color: white;
+    z-index:9;
+}
+.set_remark{
+    height: 2.29rem;
+    line-height: 2.29rem;
+    float: left;
+    background-color: #cccccc;
+    width: 3.9rem;
+}
+.del_list{
+    height: 2.29rem;
+    line-height: 2.29rem;
+    display: inline-block;
+    background-color: #cc0000;
+    width: 2.4333rem;
+}
+.fr{
+    float: right;
+    margin-right: 0.61rem;
+}
+.obligation{
+    color:#00cc33;
+}
+.refunding{
+    color:#3399ff;
+}
+.transactionClose{
+    color:#999999;
+}
+.payComplete{
+    position: absolute;
+    top: 6.16rem;
+    width: 100%;
+}
+.payAmount{
+    position: absolute;
+    top: 6.9444rem;
+    width: 100%;
+}
+#payListBox{
+    position: absolute;
+    top: 8.7777rem;
+    width: 100%;
+}
+.payList{
+    /*height: 2rem;*/
+    width: 100%;
+    color:#666666;
+    margin-bottom:1.2rem;
+    /*line-height: 2rem;*/
+}
+.payList b{
+    display: inline-block;
+    /*height: 2rem;*/
+    /*line-height: 2rem;*/
+    width: 50%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-indent: 0.6rem;
+}
+.payList span{
+    /*height: 2rem;*/
+    width: 46%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    text-align: right;
+}
+.displayMore{
+    /*line-height: 2rem;*/
+}
+.displayMore p{
+    color:#3399ff;
+    display: inline-block;
+    text-indent: 0.8rem;
+    background-image: url('images/icon_dl.png');
+    background-repeat: no-repeat;
+    background-position: 0 center;
+    font-size:0.6rem;
+    -webkit-background-size: 0.6rem auto;
+    background-size: 0.6rem auto;
+}
+.displayMore p.on{
+    background-image: url('images/icon_du.png');
+}
+.refundBox{
+    /*position: absolute;*/
+    /*top: 9.3rem;*/
+    width: 100%;
+    /*padding-bottom: 2rem;*/
+    /*margin-top: 1.6rem;*/
+}
+.refundTitle{
+    width: 100%;
+    line-height:0.7rem;
+    color: #999999;
+}
+.refundTitle_box{
+    width: 100%;
+    line-height: 0.7rem;
+    margin-bottom: 1.8rem;
+    color: #999999;
+}
+.refundIntro{
+    position: absolute;
+    top: 6.88rem;
+    width: 100%;
+}
+.refundAmount{
+    margin-top: 0.3rem;
+    color: #333333;
+    width: 100%;
+}
+#payBox{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 2rem;
+    line-height: 2rem;
+    display: none;
+}
+#payCancel{
+    width: 50%;
+    float: left;
+    background-color: #efefef;
+    color: #999;
+}
+#payNow{
+    width: 50%;
+    float: right;
+    background-color: #2d4486;
+    color: #ffffff;
+}
+#markTitle{
+    margin-top: .7777rem;
+    width: 100%;
+    padding: 0 0.55rem;
+    color: #999999;
+}
+#markChoiceList{
+    width: 100%;
+    padding: 0 0.55rem;
+    border-bottom: 1px solid #cccccc;
+}
+.markList{
+    line-height: 1.75rem;
+    height: 1.75rem;
+}
+.markList.on{
+    background-image: url("images/icon_right.png");
+    background-repeat:no-repeat;
+    background-position: 10rem center;
+    -webkit-background-size:0.61rem 0.55rem;
+    background-size:0.61rem 0.55rem;
+}
+#addMark{
+    padding: 0 0.55rem;
+    width: 100%;
+    line-height: 1.77rem;
+    height: 1.77rem;
+}
+.addMarkTitle{
+    display: inline-block;
+}
+#markInput{
+    line-height: 1.22rem;
+    height: 1.22rem;
+    width: 7.5rem;
+    border:0;
+    outline: none;
+    text-indent: 1em;
+}
+#pdLogo{
+    margin-top: 4rem;
+    width: 100%;
+    height: 3.66rem;
+    background:url('images/icon_payDone.png') no-repeat center center;
+    -webkit-background-size: auto 100%;
+    background-size: auto 100%;
+}
+#pdTitle{
+    margin-top: 1.33rem;
+    width: 100%;
+
+}
+#pdIntro{
+    margin-top: 0.5rem;
+}
+#pdIntro b{
+    color:#3399ff;
+}
+#pdBtnBox{
+    width: 100%;
+    margin-top: 4.3rem;
+    height: 1.61rem;
+    line-height: 1.61rem;
+    color: white;
+}
+#pdBtn{
+    margin: 0 auto;
+    height: 1.61rem;
+    line-height: 1.61rem;
+    width: 8rem;
+    background-color: #2d4486;
+    border-radius:1.61rem;
+}
+.listBox{
+    padding: 0.4rem 0 0 0;
+}
+.listTitle{
+    padding-bottom:0.15rem;
+    margin-left:0.55rem;
+    border-bottom:1px solid #d7d7d7;
+    margin-bottom:0.5333rem;
+    color: #999999;
+}
+.red{
+    color:red;
+}
+#showOrnot{
+    display:none;
+}
+.userlistbox{
+    position: relative;
+    height:2.6rem;
+    width:100%;
+}
+.userList{
+    height: 1.62rem;
+    background-repeat: no-repeat;
+    background-position: 0.61rem center;
+    padding: 0.5rem 0 0.5rem 1.62rem;
+    width: 10.5rem;
+    position: absolute;
+    left: 0;
+    z-index: 10;
+    background-color: #fff;
+}
+.userName{
+    color:#333333;
+}
+.userAcount{
+    margin-top:0.4rem;
+    color:#999999;
+}
+#subBtn{
+    margin-top:1rem;
+    margin-left:2rem;
+    background-color: #96a1c2;
+}
+#payDoneBtn{
+    /*margin-top: 1.6rem;*/
+    /*position: absolute;*/
+    /*bottom: 1rem;*/
+    margin: 1.6rem auto 0 auto;
+    /*left: 50%;*/
+    /*margin-left: -4rem;*/
+}
+#payDoneBox{
+    margin:0;
+}
+#cusSelectCont{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 40;
+    display: none;
+}
+.cusSelTitle{
+    text-align: center;
+    height: 1.8rem;
+    line-height: 1.8rem;
+    background: #FFF;
+    border-bottom: 1px solid #dadada;
+
+}
+.cusSelCont{
+    width: 100%;
+    height: 9rem;
+    background: #f9f9f9;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+.cusSelUl{
+    z-index: 40;
+    position: absolute;
+    width: 100%;
+}
+.cusSelUl li{
+    height: 1.8rem;
+    line-height: 1.8rem;
+}
+.selActive{
+    background: #FFF;
+    border-top:1px solid #d7d7d7;
+    border-bottom: 1px solid #d7d7d7;
+    width: 100%;
+    height: 1.8rem;
+    position: absolute;
+    z-index: 0;
+    top:3.6rem;
+}
+.liActive{
+    color: #3399ff;
+}
+.inputBox{
+    margin: 0.8rem 0 0 0;
+}
+#selNoUse{
+    color: #999999;
+    width: 100%;
+    padding: 0.8rem 13% 0 13%;
+    box-sizing: border-box;
+    text-align: center;
+    line-height: 1rem;
+}
+#navBlock{
+    width: 100%;
+    color:#000;
+    font-size:0.7rem;
+    /*position: fixed;*/
+    padding-top:0.4rem;
+    text-align: center;
+    line-height:1.2rem;
+    background-color:#fff;
+    /*z-index:10;*/
+    display: none;
+}
+/*#backBtn{*/
+    /*float: left;*/
+    /*padding: 0 0.2rem 0 0.8rem;*/
+/*}*/
+/*#navTitle{*/
+    /*float: left;*/
+    /*width: 6rem;*/
+/*}*/
+.navInfo{
+    padding: 0 0 0 0.5rem;
+}
+.backIcon{
+    padding: 0 10px 0 0;
+}
+/*#closeBtn{*/
+    /*display: none;*/
+    /*float: left;*/
+/*}*/
+
+#page_remark{
+    overflow: hidden;
+}
+
+.select_con {
+    background-color: #f8f8f8;
+    color: #7d7d7d;
+    height: 10.5rem;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    z-index: 102;
+    left: 0;
+    bottom: 0;
+    display: block;
+    overflow: hidden;
+}
+
+.tool-top {
+    background: #fff;
+    height: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid #d7d7d7;
+    border-top:1px solid #d7d7d7;;
+    line-height: 1.5rem;
+    background-color: #fff;
+    z-index: 10;
+}
+.back{
+    position: absolute;
+    left:0.3rem;
+    background: url(images/icon_gt.png) no-repeat 0 center;
+    text-indent: 0.3rem;
+    background-size:auto 30%;
+}
+.title{
+    text-align: center;
+}
+.save{
+    position: absolute;
+    right:0.3rem;
+    top:0;
+}
+.opt_panel {
+    padding: .5rem 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+.opt_inner {
+    width: 100%;
+    height: 5rem;
+    overflow: hidden;
+    z-index: 3;
+    position: relative;
+}
+.opt_box {
+    width: 48%;
+    float: left;
+    display: block;
+}
+.opt_bg {
+    height: 1rem;
+    background: #fff;
+    position: absolute;
+    top: 2.5rem;
+    width: 100%;
+}
+.select_con2 {
+    background-color: #f8f8f8;
+    color: #7d7d7d;
+    height: 7.5rem;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    z-index: 102;
+    left: 0;
+    bottom: 0;
+    display: none;
+    overflow: hidden;
+}
+.tool-top {
+    background: #fff;
+    height: 1.5rem;
+    position: relative;
+    border-bottom: 1px solid #d7d7d7;
+    border-top:1px solid #d7d7d7;;
+    line-height: 1.5rem;
+    background-color: #fff;
+    z-index: 10;
+}
+.tool-top .back2, .tool-top .save2 ,.tool-top .title2{
+    top: 0;
+    font-size: .5rem;
+    background: transparent;
+    text-indent: 0;
+}
+.back2{
+    position: absolute;
+    left:0.6rem;
+    background: url(images/icon_gt.png) no-repeat 0 center;
+    text-indent: 0.3rem;
+    background-size:auto 30%;
+}
+.title2{
+    text-align: center;
+}
+.save2{
+    position: absolute;
+    right:0.6rem;
+    top:0;
+}
+.opt_panel {
+    padding: .5rem 0;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+}
+.opt_inner {
+    width: 100%;
+    height: 5rem;
+    overflow: hidden;
+    z-index: 3;
+    position: relative;
+}
+.opt_bg {
+    height: 1rem;
+    background: #fff;
+    position: absolute;
+    top: 2.5rem;
+    width: 100%;
+}
+.opt_box {
+    width: 48%;
+    float: left;
+    display: block;
+}
+.opt_li {
+    height: 1rem;
+    line-height: 1rem;
+    font-size: .6rem;
+    font-weight:100;
+}
+.opt_li.now {
+    color: #3399ff;
+}
+.gray{
+    color: #999999;
+}
+.notice-board-container {
+    display: none;
+}
+.notice-board-mask {
+    width: 100%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+}
+.notice-board {
+    width: 102%;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    position: fixed;
+    top: 1.6rem;
+    left: -2%;
+    background: #ffe6e6;
+    z-index: 999;
+    margin: 0 0.1rem;
+    color: #333333;
+    border-bottom: 1px solid #d7d7d7;
+    border-top: 1px solid #d7d7d7;
+    overflow: hidden;
+}
+.notice-board-content {
+    padding: 0 0.5rem;
+    height: 1.2rem;
+    white-space: nowrap;
+    color: #ff3333;
+}
+.notice-board-text {
+    white-space: normal;
+}
+.Camara{
+    width: 1.05rem;
+    height: 0.9rem;
+    -webkit-background-size:cover;
+    background-size:cover;
+    background-image: url(images/icon_camara.png);
+    position: absolute;
+    right: 0.3rem;
+    top: 0.45rem;
+}

@@ -1,0 +1,43 @@
+body{
+    position: relative;
+    width:12rem;
+    height: 100%;
+    overflow-x: hidden;
+    margin:0 auto;
+}
+#page{
+    position: relative;
+    width: 100%;
+    height:100%;
+}
+.pageMode{
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+#newAlert{
+    display: none;
+    max-width: 10rem;
+    min-height: 1rem;
+    line-height: 1rem;
+    padding: 0.4rem 0.6rem;
+    border-radius: 0.4rem;
+    background-color: rgba(0, 0, 0, 0.8);
+    color: #FFF;
+    box-sizing: border-box;
+    z-index: 60;
+    text-align: center;
+    width: 100%;
+    position: fixed;
+    top: 35%;
+    left: 1rem;
+}
+.errorP{
+    width: 80%;
+    position: relative;
+    left: 10%;
+    text-align: center;
+    font-size: 0.7rem;
+    padding: 20% 0 0 0;
+    line-height: 1rem;
+}

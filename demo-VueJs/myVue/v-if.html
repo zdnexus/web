@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<script src="//cdn.bootcss.com/vue/1.0.28/vue.min.js"></script>-->
+    <script src="//cdn.bootcss.com/vue/2.0.3/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <img v-if="1<0" :src="xxx[3].url">
+</div>
+
+</body>
+<script type="text/javascript">
+
+    new Vue({
+        el: '#app',
+        data: {
+            code: 1,
+            xxx: [
+                {url: 'https://sf-static.b0.upaiyun.com/v-581868a3/global/img/user-64.png'},
+                {url: 'https://sf-static.b0.upaiyun.com/v-581868a3/global/img/user-64.png'},
+                {url: 'https://sf-static.b0.upaiyun.com/v-581868a3/global/img/user-64.png'}
+            ]
+        }
+    })
+
+</script>
+</html>

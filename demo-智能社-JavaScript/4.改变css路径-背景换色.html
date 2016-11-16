@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link id="cssLink" rel="stylesheet" type="text/css" href="css/b1.css">
+    <!--b1.css为页面默认style-->
+    <!--任何标签都可以加上id-->
+</head>
+<body>
+
+<input type="button" value="更换皮肤1" onclick="changBodyBgcToStyle1()">
+<input type="button" value="更换皮肤2" onclick="changBodyBgcToStyle2()">
+
+</body>
+<script>
+    function changBodyBgcToStyle1() {
+        var cssLink = document.getElementById('cssLink');
+
+        cssLink.href = 'css/b1.css';
+    }
+
+    function changBodyBgcToStyle2() {
+        var cssLink = document.getElementById('cssLink');
+
+        cssLink.href = 'css/b2.css';
+    }
+</script>
+</html>

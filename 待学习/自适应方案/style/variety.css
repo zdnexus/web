@@ -1,0 +1,55 @@
+body {
+  font-family: "Tahoma", "Helvetica", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans-serif";
+}
+.font-d1-en,
+.font-d2-en,
+.font-d3-en,
+.font-h1-en,
+.font-h2-en,
+.font-h3-en,
+.font-t1-en,
+.font-t2-en,
+.font-t3-en {
+  font-family: "SanFrancisco", "Roboto";
+}
+.font-d1-cn,
+.font-d2-cn,
+.font-d3-cn,
+.font-h1-cn,
+.font-h2-cn,
+.font-h3-cn,
+.font-t1-cn,
+.font-t2-cn,
+.font-t3-cn {
+  font-family: "苹方－简体", "DroidSansFallback";
+}
+.font-d1 {
+  font-size: 1.7777rem;
+}
+.font-d2 {
+  font-size: 1.1333rem;
+}
+.font-d3 {
+  font-size: 0.8rem;
+}
+.font-h1 {
+  font-size: 0.7333rem;
+}
+.font-h2 {
+  font-size: 0.6666rem;
+}
+.font-h3 {
+  font-size: 0.6rem;
+}
+.font-t1 {
+  font-size: 0.5333rem;
+}
+.font-t2 {
+  font-size: 0.4444rem;
+}
+.font-t3 {
+  font-size: 0.4rem;
+}
+.font-p1{
+  font-size:1.3333rem;
+}

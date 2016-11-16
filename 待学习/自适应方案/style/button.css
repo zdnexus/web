@@ -1,0 +1,167 @@
+/**
+**  默认按钮        40a*8a(边距3a 居中 最大34a)
+**  普通状态
+      色块(block):
+        background-color:主题色            color:#FFF
+      线框(frame):
+        background-color:无       border-color:主题色     color:主题色
+      文字链(font):
+        background-color:无       border-color:无        color:#666
+
+**  点击状态
+      色块:
+        background-color:主题色加深10%            color:#FFF
+      线框:
+        background-color:无       border-color:主题色加深10%    color:主题色加深10%
+      文件链:
+        background-color:无       border-color:无        color:#333
+
+**  不可点击状态
+      色块:
+        background-color:主题色变浅50%             color:#FFF
+      线框:
+        background-color:无       border-color:主题色变浅50%    color:主题色变浅50%
+      文件链:
+        background-color:无       border-color:无        color:#D7D7D7
+**/
+.cta-button,
+.cta-button-disabled {
+  width: 12rem;
+  height: 2rem;
+  line-height: 2rem;
+  text-align: center;
+  font-size: 0.6rem;
+}
+.cta-button,
+.cta-button:link,
+.cta-button:visited {
+  background-color: #3399ff;
+  color: #FFF;
+}
+.cta-button:hover,
+.cta-button:active {
+  background-color: #007fff;
+  color: #FFF;
+}
+.cta-button-disabled {
+  background-color: #99ccff;
+  color: rgba(255, 255, 255, 0.5);
+}
+.normal-button-block,
+.normal-button-frame,
+.normal-button-font,
+.normal-button-block-disabled,
+.normal-button-frame-disabled,
+.normal-button-font-disabled {
+  width: 8rem;
+  height: 1.6rem;
+  line-height: 1.6rem;
+  text-align: center;
+  font-size: 0.6rem;
+  border-radius: 0.8rem;
+}
+.small-button-block,
+.small-button-frame,
+.small-button-font,
+.small-button-block-disabled,
+.small-button-frame-disabled,
+.small-button-font-disabled {
+  width: 4.8rem;
+  height: 1.4rem;
+  line-height: 1.4rem;
+  text-align: center;
+  font-size: 0.6rem;
+  border-radius: 0.8rem;
+}
+.min-button-block,
+.min-button-frame,
+.min-button-font,
+.min-button-block-disabled,
+.min-button-frame-disabled,
+.min-button-font-disabled {
+  width: 2.4rem;
+  height: 1rem;
+  line-height: 1rem;
+  text-align: center;
+  font-size: 0.6rem;
+  border-radius: 0.8rem;
+}
+.normal-button-block,
+.small-button-block,
+.min-button-block,
+.normal-button-block:link,
+.small-button-block:link,
+.min-button-block:link,
+.normal-button-block:visited,
+.small-button-block:visited,
+.min-button-block:visited {
+  background-color: #3399ff;
+  color: #FFF;
+}
+.normal-button-block:hover,
+.small-button-block:hover,
+.min-button-block:hover,
+.normal-button-block:active,
+.small-button-block:active,
+.min-button-block:active {
+  background-color: #007fff;
+  color: #FFF;
+}
+.normal-button-block-disabled,
+.small-button-block-disabled,
+.min-button-block-disabled {
+  background-color: #99ccff;
+  color: rgba(255, 255, 255, 0.5);
+}
+.normal-button-frame,
+.small-button-frame,
+.min-button-frame,
+.normal-button-frame:link,
+.small-button-frame:link,
+.min-button-frame:link,
+.normal-button-frame:visited,
+.small-button-frame:visited,
+.min-button-frame:visited {
+  border: 1px solid #3399ff;
+  color: #3399ff;
+}
+.normal-button-frame:hover,
+.small-button-frame:hover,
+.min-button-frame:hover,
+.normal-button-frame:active,
+.small-button-frame:active,
+.min-button-frame:active {
+  background-color: #cce5ff;
+  border: 1px solid #3399ff;
+  color: #3399ff;
+}
+.normal-button-frame-disabled,
+.small-button-frame-disabled,
+.min-button-frame-disabled {
+  background-color: #99ccff;
+  color: rgba(255, 255, 255, 0.5);
+}
+.normal-button-font,
+.small-button-font,
+.min-button-font,
+.normal-button-font:link,
+.small-button-font:link,
+.min-button-font:link,
+.normal-button-font:visited,
+.small-button-font:visited,
+.min-button-font:visited {
+  color: #666;
+}
+.normal-button-font:hover,
+.small-button-font:hover,
+.min-button-font:hover,
+.normal-button-font:active,
+.small-button-font:active,
+.min-button-font:active {
+  color: #333;
+}
+.normal-button-font-disabled,
+.small-button-font-disabled,
+.min-button-font-disabled {
+  color: #d7d7d7;
+}

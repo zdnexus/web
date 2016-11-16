@@ -1,0 +1,310 @@
+/**
+** 重置一些基础标签的样式,并且初始化一些基本元素
+**/
+html,
+body,
+div,
+span,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+abbr,
+address,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+samp,
+small,
+strong,
+sub,
+sup,
+var,
+b,
+i,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+article,
+aside,
+canvas,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section,
+summary {
+  display: block;
+}
+nav ul {
+  list-style: none;
+}
+/* let's clear some floats */
+.clearfix:after {
+  content: " ";
+  display: block;
+  clear: both;
+}
+body {
+  line-height: 1;
+  position: relative;
+  font-family: "Tahoma", "Helvetica", "Helvetica Neue", "Helvetica", "Lucida Grande", "Arial", "Hiragino Sans GB", "Microsoft Yahei", "WenQuanYi Micro Hei", "sans-serif";
+}
+.borderBox {
+  box-sizing: border-box;
+}
+.row {
+  box-sizing: border-box;
+  margin-right: -0.15rem;
+  margin-left: -0.15rem;
+}
+.row:before {
+  display: table;
+  content: " ";
+}
+.row:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.container {
+  box-sizing: border-box;
+  width: 100%;
+  padding-right: 0.15rem;
+  padding-left: 0.15rem;
+  margin-right: auto;
+  margin-left: auto;
+  z-index: 10;
+}
+.container:before {
+  display: table;
+  content: " ";
+}
+.container:after {
+  display: table;
+  content: " ";
+  clear: both;
+}
+.mask-no-color {
+  z-index: 20;
+  background-color: transparent;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.col-xs-1 {
+  width: 8.33333333%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-1 {
+  margin-left: 8.33333333%;
+}
+.col-high-1 {
+  height: 1rem;
+}
+.col-xs-2 {
+  width: 16.66666667%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-2 {
+  margin-left: 16.66666667%;
+}
+.col-high-2 {
+  height: 2rem;
+}
+.col-xs-3 {
+  width: 25%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-3 {
+  margin-left: 25%;
+}
+.col-high-3 {
+  height: 3rem;
+}
+.col-xs-4 {
+  width: 33.33333333%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-4 {
+  margin-left: 33.33333333%;
+}
+.col-high-4 {
+  height: 4rem;
+}
+.col-xs-5 {
+  width: 41.66666667%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-5 {
+  margin-left: 41.66666667%;
+}
+.col-high-5 {
+  height: 5rem;
+}
+.col-xs-6 {
+  width: 50%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-6 {
+  margin-left: 50%;
+}
+.col-high-6 {
+  height: 6rem;
+}
+.col-xs-7 {
+  width: 58.33333333%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-7 {
+  margin-left: 58.33333333%;
+}
+.col-high-7 {
+  height: 7rem;
+}
+.col-xs-8 {
+  width: 66.66666667%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-8 {
+  margin-left: 66.66666667%;
+}
+.col-high-8 {
+  height: 8rem;
+}
+.col-xs-9 {
+  width: 75%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-9 {
+  margin-left: 75%;
+}
+.col-high-9 {
+  height: 9rem;
+}
+.col-xs-10 {
+  width: 83.33333333%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-10 {
+  margin-left: 83.33333333%;
+}
+.col-high-10 {
+  height: 10rem;
+}
+.col-xs-11 {
+  width: 91.66666667%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-offset-11 {
+  margin-left: 91.66666667%;
+}
+.col-high-11 {
+  height: 11rem;
+}
+.col-xs-12 {
+  width: 100%;
+  float: left;
+  position: relative;
+  min-height: 1px;
+  box-sizing: border-box;
+}
+.col-high-12 {
+  height: 12rem;
+}
+b{
+  font-weight: normal;
+}
+ul,ol{
+  list-style:none;
+}

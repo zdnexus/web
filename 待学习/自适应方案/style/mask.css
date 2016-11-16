@@ -1,0 +1,44 @@
+#mask-no-color {
+    z-index: 20;
+    position: fixed;
+    background-color: transparent;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#mask-color-black,
+#mask-color-dark-gray,
+#mask-color-gray,
+#mask-color-light-gray,
+#mask-color-opacity-black{
+    z-index: 30;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+}
+#mask-color-black {
+    background-color: black;
+}
+#mask-color-dark-gray {
+    background-color: darkgray;
+}
+#mask-color-gray {
+    background-color: gray;
+}
+#mask-color-light-gray {
+    background-color: lightgray;
+}
+#mask-color-opacity-black {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#pop-scene {
+    z-index: 50;
+    text-align: center;
+    width: 100%;
+    position: absolute;
+}

@@ -1,0 +1,12 @@
+/*iphone4*/
+@media only screen
+and (min-device-width : 310px)
+and (max-device-width : 321px){
+
+}
+/*LG G3*/
+@media only screen
+and (min-device-width : 350px)
+and (max-device-width : 361px){
+
+}

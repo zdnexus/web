@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let arr = [0, false, '', [], undefined];
+
+    for (let i in arr) {
+        if (arr[i]) {
+            console.log(arr[i] + ' is not kong');
+        }
+        else {
+            console.log(arr[i] + ' is kong');
+        }
+    }
+</script>
+</html>
