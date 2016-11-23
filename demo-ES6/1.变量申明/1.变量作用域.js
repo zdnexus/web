@@ -11,30 +11,31 @@ function func() {
     if (isRight) {
         x = 3;
         y = 4;
-        console.log('函数内的块级作用域一:x=', x);// x = 3
-        console.log('函数内的块级作用域一:y=', y);// y = 4
+        console.log('函数内的块级作用域一:let x=', x);// x = 3
+        console.log('函数内的块级作用域一:var y=', y);// y = 4
     }
-    console.log('函数内的作用域一:x=',x);// 3
-    console.log('函数内的作用域一:y=',y);// 4
+    console.log('函数内的作用域一:let x=',x);// 3
+    console.log('函数内的作用域一:var y=',y);// 4
 
     // 块级作用域二
     if (isRight) {
         let x = 5;
         var y = 6;
-        console.log('函数内的块级作用域二:x=', x);// x = 5
-        console.log('函数内的块级作用域二:y=', y);// y = 6
+        console.log('函数内的块级作用域二:let x=', x);// x = 5
+        console.log('函数内的块级作用域二:var y=', y);// y = 6
     }
-    console.log('函数内的作用域二:x=',x);// 1
-    console.log('函数内的作用域二:y=',y);// 3
+    console.log('函数内的作用域二:let x=',x);// 3
+    console.log('函数内的作用域二:var y=',y);// 6
 
+    // 块级作用域三
     if (isRight) {
-        // var x = 5;
-        let y = 6;
-        console.log(x);// 3
-        console.log(y);// 4
+        // var x = 7;//ERROR
+        let y = 8;
+        console.log('函数内的块级作用域三:var x=',x);// 3
+        console.log('函数内的块级作用域三:let y=',y);// 8
     }
-    console.log(x);// 3
-    console.log(y);// 4
+    console.log('函数内的作用域三:x=',x);// 3
+    console.log('函数内的作用域三:y=',y);// 6
 
     // 函数作用域
     function f2() {
