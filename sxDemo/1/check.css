@@ -1,0 +1,13 @@
+.info-container{
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 600px;
+    width: 80%;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.row {
+    margin-left: 20px;
+}

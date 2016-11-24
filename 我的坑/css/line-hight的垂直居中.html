@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div1 {
+            width: 300px;
+            height: 300px;
+            margin: 20px;
+            line-height: 300px;
+            background-color: #d0d0d0;
+            color: #fff;
+            text-align: center;
+            position: relative;
+            float: left;
+        }
+
+        .div1 span {
+            background-color: #00b800;
+            /*问题：这里对span垂直居中为什么会生效？*/
+            /*vertical-align: middle;*/
+        }
+
+        .div1 .vertical-align{
+            width: 200px;
+            height: 200px;
+            background-color: #0ac2d2;
+            display: inline-block;
+            vertical-align: middle;
+            /*问题：inline-block会有4px的间隙，如何不用绝对定位更好地垂直居中？*/
+            /*margin-bottom: 4px;*/
+        }
+
+        .div1 .center{
+            width: 200px;
+            height: 200px;
+            background-color: #2d4486;
+            position: absolute;
+            top: 50%;
+            left: 40%;
+            transform: translate(-50%,-50%);
+        }
+    </style>
+</head>
+<body>
+<div class="div1" style="font-size: 100px"><span>垂直居中</span></div>
+<div class="div1">
+    <span class="vertical-align"></span>
+    <span class="center"></span>
+</div>
+</body>
+</html>

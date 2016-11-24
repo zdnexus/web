@@ -20,8 +20,12 @@
     let a = [1, 2, 3];
     console.log(a);
 
-    a.map((item, index)=> {
-        console.log(item, index);
-    })
+    for (var i in a) {
+        console.log(a[i]);
+    }
+
+    a.map(function (item) {
+        console.log(item);
+    });
 </script>
 </html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div class="a"></div>
+<div class="a"></div>
+<div class="a"></div>
+
+</body>
+<script>
+    let arr = [11, 22, 33];
+    for (let i in arr) {
+        console.log(i + ' ' + arr[i])
+    }
+    //0 11
+    //1 22
+    //2 33
+    arr.map(function (item, index) {
+        console.log(index + ' ' + item);
+    });
+    //0 11
+    //1 22
+    //2 33
+
+    //改变数组
+    arr.map(function (item, index) {
+        arr[index] = 3;
+    });
+    console.log(arr);
+    //3 3 3
+    arr.map(function (item, index) {
+        item = 5;
+    });
+    console.log(arr);
+    //3 3 3
+
+
+    let aDiv = document.getElementsByClassName('a');
+    console.log(aDiv);
+    for (let i in aDiv) {
+        console.log(i + ' ' + aDiv[i]);
+    }
+    for (let i in aDiv) {
+        console.log(i);
+        console.log(aDiv[i]);
+    }
+    //  报错：aDiv.map is not a function(…)
+    aDiv.map(function (item, index) {
+        console.log(index + ' ' + item);
+    })
+</script>
+</html>
