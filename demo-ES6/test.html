@@ -10,10 +10,20 @@
 
 </body>
 <script>
-    window.a = 1;
-    console.log(a);// 1
+    var map = new Map();
+    map.set('first', 'hello');
+    map.set('second', 'world');
 
-    a = 2;
-    console.log(window.a);// 1
+    console.log(map);
+
+    for (let [key, value] of map) {
+        console.log(key + " is " + value);
+    }
+
+    let map2 = [{'xx':'hello'},{'yy':'world'}]
+
+    console.log(map2);
+
+    console.log(map === map2)
 </script>
 </html>

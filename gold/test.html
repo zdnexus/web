@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!--<script src="native.js"></script>-->
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <script src="zepto.min.js"></script>
+    <script src="native.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            line-height: 50px;
+            font-size: 30px;
+            border: 2px solid #eee;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="获取登陆态" onclick="getSSOTicket()">
+<input type="button" value="商品列表" onclick="getList()">
+<input type="button" value="商品详情" onclick="getDetails()">
+<input type="button" value="创建订单" onclick="create()">
+<!--<input type="button" value="确认订单" onclick="cfOrder()">-->
+<input type="button" value="跳转支付" onclick="toPay()">
+<input type="button" value="查询全量地区" onclick="Address()">
+<ul id="responseData">
+
+</ul>
+<script>
+    var responseData = document.getElementById("responseData");
+    var dom = "<li>出参:</li>";
+    var URL = {
+        "list": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/product/list.do",
+        "details": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/product/productDetails.do",
+        "handing": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/order/handing.do",
+        "verify": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/order/verify.do",
+        "payment": "https://pa18-wapmall-dmzstg1.pingan.com.cn:53443/chaoshi/payPre/life/index.shtml",
+        "address": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/area/list.do",
+        "payback": "https://test-kitchen-dmzstg1.pingan.com.cn:24380/jkkit-la-integreated-web/gateway/gold/order/verify.do"
+    };
+    var lf = location.href;
+    if (lf.indexOf("payback") > -1) {
+        payback();
+    }
+    var queryData = {
+        anyDoorSdkVersion: "3.6.0.64",
+        appId: "PA01100000000_01_SDK",
+        appVersion: "1.0",
+        deviceId: "3217417a5ae876c8c3483ed22d06ab009",
+        deviceType: "android",
+        osVersion: "4.4.2",
+        pluginId: "PA02100000000_02_SWJ",
+        ssoTicket: "M0TqoPmY_zTgCyY1af76-RKg!8ozz",
+        timestamp: "1479784981496",
+        signature: "6zk96JSK86meAExyaiwgp+YfdzQ="
+    };
+    var productName = "";
+    var productId = "10023000";
+    var productCode = "life_product_001";
+    var skuId = "10019520";
+    var suggestPrice = "-1";//建议价格
+    var purchaseQuantity = "1";//购买数量
+    var orderAmount = "0";//价格=建议价格*购买数量
+    var orderNo = "0";
+    var resData = {};
+    var paymentData = {};
+    function getList() {
+        queryData.data = JSON.stringify({
+            "platformType": "01",
+            "secondLevelType": "10000041"
+        });
+        console.log(queryData);
+        $.ajax({
+            "type": "POST",
+            "url": URL.list,
+            "dataType": "json",
+            "data": queryData,
+            success: function (res) {
+                console.log(res);
+                productId = res.responseData.dataList[19].productId;
+                productCode = res.responseData.dataList[19].productCode;
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+
+    function getDetails() {
+        queryData.data = JSON.stringify({
+            "platformType": "01",
+            "productId": productId,
+            "productCode": productCode
+        });
+        console.log(queryData);
+        $.ajax({
+            "type": "POST",
+            "url": URL.details,
+            "dataType": "json",
+            "data": queryData,
+            success: function (res) {
+                console.log(res);
+                skuId = res.responseData.productSku[0].skuId;
+                suggestPrice = res.responseData.productSku[0].suggestPrice;
+                purchaseQuantity = res.responseData.productSku[0].miniBuyAmount;
+                productName = res.responseData.productName;
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    function create() {
+        queryData.data = JSON.stringify({
+            "buyPlatform": "1",
+            "productId": productId,
+            "productCode": productCode,
+            "skuId": skuId,
+            "orderAmount": suggestPrice * purchaseQuantity,
+            "purchaseQuantity": purchaseQuantity,
+            "productName": productName,
+            "deliverInfo": {
+                "deliverName": "海华",
+                "deliverPhone": "18518550591",
+                "deliverProvince": "110000",
+                "deliverCity": "110100",
+                "deliverArea": "110101",
+                "deliverAddress": "海华村1栋101",
+                "deliverDate": "20161130",
+                "deliverTime": "20161130",
+                "deliverRemark": "注意轻拿轻放"
+            }
+        });
+        console.log(queryData);
+        $.ajax({
+            type: "POST",
+            url: URL.handing,
+            dataType: "json",
+            data: queryData,
+            success: function (res) {
+                console.log(res);
+                orderNo = res.responseData.orderNo;
+                paymentData.actualPayAmount = res.responseData.actualPayAmount;
+                paymentData.createdTime = res.responseData.createdTime;
+                paymentData.orderAmount = res.responseData.orderAmount;
+                paymentData.orderExpireFlag = res.responseData.orderExpireFlag;
+                paymentData.orderNo = res.responseData.orderNo;
+                paymentData.orderStatus = res.responseData.orderStatus;
+                paymentData.payOrderNo = res.responseData.payOrderNo;
+                paymentData.paymentNo = res.responseData.paymentNo;
+                paymentData.productCode = res.responseData.productCode;
+                paymentData.productId = res.responseData.productId;
+                paymentData.productName = res.responseData.productName;
+                paymentData.productSide = res.responseData.productSide;
+                paymentData.secondLevelType = res.responseData.secondLevelType;
+                paymentData.clientNo = res.responseData.clientNo;
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    function cfOrder() {
+        queryData.data = JSON.stringify({
+            "orderNo": orderNo
+        });
+        console.log(queryData);
+        $.ajax({
+            type: "POST",
+            url: URL.verify,
+            dataType: "json",
+            data: queryData,
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    function Address() {
+        $.ajax({
+            type: "POST",
+            data: queryData,
+            dataType: "json",
+            url: URL.address,
+            success: function (res) {
+                console.log(queryData);
+                console.log(res.responseData);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+
+    function getSSOTicket() {
+        App.call(["sendMessage"], function (ticketInfo) {
+            ssoTickInfo = JSON.parse(ticketInfo);
+            queryData.ssoTicket = ssoTickInfo.SSOTicket;
+            queryData.timestamp = ssoTickInfo.timestamp;
+            queryData.signature = ssoTickInfo.signature;
+        }, function () {
+            console.log('获取SSOTicket失败');
+        }, ["getSSOTicket"]);
+    }
+
+    function toPay() {
+        location.href = URL.payment + "?channel=1982&channelSecond=1982003&platId=999103016&payClassify=24&from=wap-chaoshi&userId="
+                + paymentData.clientNo
+                + "&hook=http%3A%2F%2Flocalhost%3A8081%2Fwebpacktest%2Findex.html%3Fpayback%3Dpayback&orderNo="
+                + paymentData.orderNo
+                + "&productId=" + paymentData.productId
+                + "&orderAmount=" + paymentData.orderAmount
+                + "&payOrderNo=" + paymentData.payOrderNo
+                + "&productCode=" + paymentData.productCode
+                + "&productName=" + paymentData.productName;
+    }
+
+    function payback() {
+        queryData.data = JSON.stringify({
+            "orderNo": orderNo
+        });
+        $.ajax({
+            type: "POST",
+            url: URL.payback,
+            dataType: "json",
+            data: queryData,
+            success: function (res) {
+                console.log(res);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        })
+    }
+    function showRes(data) {
+        for (var i = 0 in data) {
+            if (typeof data[i] === "object") {
+                showRes(data[i]);
+            } else {
+                dom += "<li>" + data[i] + "</li>";
+            }
+        }
+        responseData.innerHTML = dom;
+    }
+</script>
+</body>
+</html>
