@@ -1,22 +1,20 @@
 'use strict';
 
-function func() {
+function A() {
     let isRight = true;
-    let x = 1;
-    var y = 2;
-
+    let x = 1;//声明一个块作用域的局部变量,只作用于A()
+    var y = 2;//声明一个变量
     console.log('let x=', x);// x = 1
     console.log('var y=', y);// y = 2
     // 块级作用域一
     if (isRight) {
         x = 3;
         y = 4;
-        console.log('函数内的块级作用域一:let x=', x);// x = 3
-        console.log('函数内的块级作用域一:var y=', y);// y = 4
+        console.log('函数内的块级作用域一:x=', x);// x = 3
+        console.log('函数内的块级作用域一:y=', y);// y = 4
     }
-    console.log('函数内的作用域一:let x=',x);// 3
-    console.log('函数内的作用域一:var y=',y);// 4
-
+    console.log('函数内的作用域一:let x=', x);// 3
+    console.log('函数内的作用域一:var y=', y);// 4
     // 块级作用域二
     if (isRight) {
         let x = 5;
@@ -24,32 +22,28 @@ function func() {
         console.log('函数内的块级作用域二:let x=', x);// x = 5
         console.log('函数内的块级作用域二:var y=', y);// y = 6
     }
-    console.log('函数内的作用域二:let x=',x);// 3
-    console.log('函数内的作用域二:var y=',y);// 6
-
+    console.log('函数内的作用域二:let x=', x);// 3
+    console.log('函数内的作用域二:var y=', y);// 6
     // 块级作用域三
     if (isRight) {
         // var x = 7;//ERROR
         let y = 8;
-        console.log('函数内的块级作用域三:var x=',x);// 3
-        console.log('函数内的块级作用域三:let y=',y);// 8
+        console.log('函数内的块级作用域三:var x=', x);// 3
+        console.log('函数内的块级作用域三:let y=', y);// 8
     }
-    console.log('函数内的作用域三:x=',x);// 3
-    console.log('函数内的作用域三:y=',y);// 6
+    console.log('函数内的作用域三:let x=', x);// 3
+    console.log('函数内的作用域三:var y=', y);// 6
 
     // 函数作用域
     function f2() {
-        var x1 = 4;
-        var y1 = 5;
-        let x2 = 6;
-        var y2 = 7;
+        let x = 1;
+        var y = 2;
     }
-
     f2();
-    console.log(x1);// 1 (x1并没有被函数里的x1代替)
-    console.log(y1);// 3 (y1并没有被函数里的y1代替)
-    // console.log(x2);// ERROR x2 is not defined
-    // console.log(y2);// ERROR y2 is not defined
+    console.log(x2);//1 (x1并没有被函数里的x1代替)
+    console.log(y2);//3 (y1并没有被函数里的y1代替)
+    // console.log(x2);//ERROR x2 is not defined
+    // console.log(y2);//ERROR y2 is not defined
 
 
     // 循环作用域
@@ -85,4 +79,4 @@ function func() {
     console.log(arr2[2]());// 2
 }
 
-func();
+A();
