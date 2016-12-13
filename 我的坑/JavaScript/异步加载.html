@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    let b = 2;
+
+    function f1() {
+        let a = 1;
+        setTimeout(function () {
+            a += 10;
+            b += 20;
+        }, 3000);
+
+        return a;
+    }
+
+    let zd = f1();
+    console.log(zd);//1
+    setTimeout(function () {
+        console.log(zd);//1
+        console.log(b);//2
+        console.log(f1());//1
+    }, 1000);
+    setTimeout(function () {
+        console.log(zd);//1
+        console.log(b);//22
+        console.log(f1());//1
+    }, 3000);
+</script>
+</html>

@@ -3,17 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        #div1 {
+            width: 300px;
+            height: 500px;
+            background-color: #2d4486;
+            display: -webkit-flex;
+            -webkit-flex-direction: column;
+        }
+
+        #div2 {
+            flex: 1;
+            background-color: #0ac2d2;
+        }
+
+        #div3 {
+            height: 200px;
+            background-color: #00b800;
+        }
+    </style>
 </head>
 <body>
-<h1 id="h1"></h1>
-<h1 id="h2"></h1>
+
+<div id="div1">
+    <div id="div2"></div>
+    <div id="div3"></div>
+</div>
 </body>
 <script>
-    var s1 = 'adsadsa321321321dsadsa321321321dsads4234324323dsa';
-    document.getElementById('h1').innerHTML = s1;
+    //    var s1 = 'adsadsa321321321dsadsa321321321dsads4234324323dsa';
+    //    document.getElementById('h1').innerHTML = s1;
+    //
+    //    var s2 = s1.replace(/\d+/g,'<span style="color:red">$&</span>');
+    //
+    //    document.getElementById('h2').innerHTML = s2;
 
-    var s2 = s1.replace(/\d+/g,'<span style="color:red">$&</span>');
 
-    document.getElementById('h2').innerHTML = s2;
+    //    var a = '      321312';
+    //    console.log(a.trim())
+    //    console.log(a)
+
+    //    var a = '0005';
+    //    console.log(parseInt(a));//5
+    //    console.log(a == 5);//true
+    //    console.log(a > 0);//true
+    //    console.log(a < 0);//false
+    //
+    //    var arr = [1, 2, 3];
+    //    var str = '1';
+    //    console.log(arr[str]);//2
+    //    console.log(str > 0);//true
+    //    console.log(typeof str);//string
+    //    console.log(typeof --str);//number
+    //
+    //    var num = '0';
+    //    console.log(num);
+    //    if (num) {
+    //        console.log('Nexus1');
+    //    }
+    //    num = '1';
+    //    if (--num) {
+    //        console.log('Nexus2');
+    //    }
+    //    console.log(arr[num]);//1
+    //    console.log(num > 0);//false
+    //    console.log(num == 0);//true
+    //    console.log(num === 0);//false
+    //    console.log(num < 0);//false
+    //    console.log(typeof num);//string
+    //    console.log(typeof --num);//number
+
+    //    var str = '1';
+    //    if (str > 0) {
+    //        console.log('>0');
+    //    }
+    //    else if (str == 0) {
+    //        console.log('==0');
+    //    }
+    //    else {
+    //        console.log('<0');
+    //    }
+
+    let str = '';
+    if (str) {
+        console.log('a');
+    }
+    if (!str) {
+        console.log('b');
+    }
 </script>
 </html>
