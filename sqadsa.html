@@ -3,29 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style>
-        #div1 {
-            width: 100px;
-            height: 100px;
-            background-color: red;
-        }
-    </style>
 </head>
 <body>
 
-<div id="div1"></div>
 
 </body>
 <script>
-    let a = [1, 2, 3];
-    console.log(a);
+    let arr = [1, 2, 3];
+    console.log(arr);//1,2,3
 
-    for (var i in a) {
-        console.log(a[i]);
+    for (let i in arr) {
+        console.log(typeof i);//string
+        console.log(arr[i]);//1
     }
 
-    a.map(function (item) {
-        console.log(item);
+    arr.map(function (item, index) {
+        console.log(typeof index);//number
+        console.log(index + ':' + item);
     });
 </script>
 </html>
