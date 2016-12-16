@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="../js/jquery-1.11.3.min.js"></script>
+</head>
+<body>
+
+<input type="text" id="ipt" value="1">
+
+<button id="btn">1</button>
+
+<select id="slt">
+    <option value="1">111</option>
+    <option value="2" selected="selected">222</option>
+    <option value="3">333</option>
+</select>
+
+</body>
+<script>
+    console.log(typeof $("#ipt").val());//string
+    console.log(typeof $("#btn").val());//string
+    console.log(typeof $("#slt option:selected").val());//string
+
+    var a = 1;
+    console.log(typeof a);//number
+</script>
+</html>
