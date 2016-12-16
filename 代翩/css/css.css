@@ -1,0 +1,40 @@
+.index {
+    width: 1440px;
+    margin: 0 auto;
+}
+
+.head {
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    background-color: #fff;
+}
+
+.head .img {
+    width: 48px;
+    height: 52px;
+    background: url(../image/网站_03.png);
+    margin-left: 30px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.head .span {
+    width: 180px;
+    height: 52px;
+    background: url(../image/网站_05.png);
+    margin-left: 6px;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.head .nav {
+    float: right;
+    font-size: 18px;
+    color: #2d292a;
+}
+
+.head .nav li{
+    float: left;
+    margin-right: 80px;
+}

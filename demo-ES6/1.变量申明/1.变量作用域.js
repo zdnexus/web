@@ -1,9 +1,9 @@
 'use strict';
 
 // let声明的变量只在它所在的代码块有效。
-// 在文件里的和块状里var声明的变量在全局有效
-// console.log('文件作用域一:let a=', a);// ReferenceError: a is not defined
-console.log('文件作用域一:var b=', b);// undefined 变量提升
+// 在JS文件里和块状里用var声明的变量在全局有效
+// console.log('文件作用域一:a=', a);// ReferenceError: a is not defined
+console.log('文件作用域一:b=', b);// undefined 变量提升
 // 块级作用域一
 {
     let a = 1;
