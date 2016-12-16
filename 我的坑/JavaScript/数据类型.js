@@ -25,10 +25,16 @@ let num4 = 0;
 if (num4) {
     console.log(arr[num4]);
 }
-else{
+else {
     console.log(num4);//0
     console.log(typeof num4);//number
 }
+let num5 = '0005';
+console.log(parseInt(num5));//5
+console.log(num5 == 5);//true
+console.log(num5 === 5);//false
+console.log(num5 > 0);//true
+console.log(num5 < 0);//false
 
 let x = 3;
 let y = '5';
@@ -40,3 +46,11 @@ console.log(x * y);//15
 console.log(typeof (x * y));//number
 console.log(x / y);//0.6
 console.log(typeof (x / y));//number
+
+let str = '';
+if (str) {
+    console.log('str不是空');
+}
+if (!str) {
+    console.log('str是空');
+}
