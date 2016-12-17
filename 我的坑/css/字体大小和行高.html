@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <style>
+        html {
+            font-size: 50px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            /*line-height: 1;*/
+        }
+
+        p {
+            font-size: 30px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            word-break: break-all;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: #0ac2d2;
+
+        }
+
+        .two {
+            -webkit-line-clamp: 2;
+        }
+
+        #div3 {
+            height: 130.4px;
+            background-color: #2d4486;
+        }
+
+        #div4 {
+            background-color: #6b727c;
+        }
+
+        #div5 {
+            background-color: #cecece;
+        }
+
+        #div6 {
+            background-color: #2b542c;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <p>zdnexus</p>
+    <p style="font-family: 'microsoft yahei'">zdnexus</p>
+    <p style="font-family: Arial">zdnexus</p>
+    <p style="font-family: 'Calibri'">zdnexus</p>
+</div>
+
+<div id="div2">
+    <p>zdnexus</p>
+    <p class="two">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
+</div>
+
+<div id="div3"></div>
+
+<div id="div4">
+    <p style="line-height: 30px;">zdnexus</p>
+    <p style="line-height: 60px;">zdnexus</p>
+    <p style="line-height: 90px;">zdnexus</p>
+</div>
+
+<div id="div5">
+    <p style="line-height: 1">zdnexus</p>
+    <p style="line-height: 2">zdnexus</p>
+    <p style="line-height: 3">zdnexus</p>
+</div>
+
+<div id="div6">
+    <p style="font-size:1rem;line-height: 1">zdnexus</p>
+    <p style="font-size:1rem;line-height: 2">zdnexus</p>
+    <p style="font-size:1rem;line-height: 3">zdnexus</p>
+</div>
+
+</body>
+<script>
+    var aP = document.getElementById('div1').getElementsByTagName('p');
+    console.log(aP);//aP是HTMLCollection数据类型
+    console.log(aP.length);//4
+    //aP是HTMLCollection数据类型，不用使用map,foreach函数
+    //    aP.map(function () {
+    //
+    //    });
+    //    aP.foreach(function (item) {
+    //    });
+    for (let i in aP) {
+//        HTMLElement.offsetHeight 是一个只读属性,它返回该元素的像素高度,高度包含该元素的垂直内边距和边框,且是一个整数。
+        aP[i].innerText += '的行高是' + aP[i].offsetHeight;
+    }
+    console.log(document.getElementById('div3').offsetHeight);//130
+</script>
+</html>
