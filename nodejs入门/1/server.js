@@ -9,7 +9,7 @@ function start() {
         // 那是因为大部分服务器都会在你访问 http://localhost:8888 /时尝试读取 http://localhost:8888/favicon.ico )
         response.writeHead(200, {'Content-Type': 'text/plain'});
         response.write('Hello World!');
-        response.end();
+        response.end('到这里就结束了');
     }
 
     http.createServer(onRequest).listen(8888);

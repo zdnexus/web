@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    console.log(a);//ERROR
+    console.log(window.a);//undefined
+    let a = 1;
+    console.log(a);//1
+    console.log(window.a);//undefined
+    window.a = 2;
+    console.log(a);//1
+    console.log(window.a);//2
+</script>
+</html>
