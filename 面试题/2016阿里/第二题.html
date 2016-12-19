@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var x = 1;
+    function main() {
+//        问题：x是全局变量，为什么不是1？
+//        解决：因为下面又有var申请了变量，有函数的局部作用域而且变量提升造成了覆盖了全局变量，所以是undefined
+        alert(x);//undefined  undefined
+        var x;
+        alert(this.x);//1  undefined
+        this.x = 3;
+    }
+
+    main();
+    new main();
+</script>
+</html>

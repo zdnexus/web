@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    文件作用域
+    console.warn('文件作用域');
+    console.log('this =', this);//window
+    console.log('x =', x);//undefined
+    console.log('this.x =', this.x);//undefined
+    var x = 1;
+    console.log('x =', x);//1
+    console.log('this.x =', this.x);//1
+    this.x = 2;
+    console.log('x =', x);//2
+    console.log('this.x =', this.x);//2
+    console.log('this =', this);//window
+    //块状作用域
+    {
+        console.warn('块状作用域');
+        console.log('x =', x);//2
+        console.log('this.x =', this.x);//2
+        console.log('window.x =', window.x);//2
+        var x = 3;
+        console.log('x =', x);//3
+        console.log('this.x =', this.x);//3
+        console.log('window.x =', window.x);//3
+        this.x = 4;
+        console.log('x =', x);//4
+        console.log('this.x =', this.x);//4
+        console.log('window.x =', window.x);//4
+        console.log('this === window', this === window);//true
+    }
+    //函数作用域
+    function main1() {
+        console.warn('main1函数作用域');
+//        问题：x是全局变量，为什么不是4？
+//        解决：因为下面又有var申请了变量，有函数的局部作用域而且变量提升造成了覆盖了全局变量，所以是undefined
+        console.log('x = ', x);//undefined
+        console.log('this.x =', this.x);//4
+        console.log('window.x =', window.x);//4
+        var x = 5;
+        console.log('x = ', x);//5
+        console.log('this.x =', this.x);//4
+        console.log('window.x =', window.x);//4
+        this.x = 6;
+        console.log('x = ', x);//5
+        console.log('this.x = ', this.x);//6
+        console.log('window.x =', window.x);//6
+        console.log('this === window', this === window);//true
+    }
+    function main2() {
+        console.warn('main2函数作用域');
+        console.log('x = ', x);//undefined
+        console.log('this.x =', this.x);//undefined
+        console.log('window.x =', window.x);//6
+        var x = 7;
+        console.log('x = ', x);//7
+        console.log('this.x =', this.x);//undefined
+        console.log('window.x =', window.x);//6
+        this.x = 8;
+        console.log('x = ', x);//7
+        console.log('this.x = ', this.x);//8
+        console.log('window.x =', window.x);//6
+        console.log('this === window', this === window);//false
+    }
+    main1();
+    new main2();
+</script>
+</html>
