@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var http = require('http');
+var http = require('http');//NodeJS的http模块
 var function2 = require('./function2');
 var functions = require('./functions');
 
@@ -21,7 +21,7 @@ http.createServer(function (request, response) {
 
 function function1(res) {
     console.log('function1开始运行');
-    res.write('hello，我是function1.');
+    res.write('hello，我是function1');
 }
 
 console.log('Server running at http://localhost:8000/');

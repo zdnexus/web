@@ -3,18 +3,18 @@
  */
 'use strict';
 
-var http = require('http');
-var url = require('url');
+var http = require('http');//NodeJS的http模块
+var url = require('url');//NodeJS的url模块
 // 路由器配置
-var router = require('./7.1.router');
+var router = require('./router');
 
 http.createServer(function (request, response) {
     response.writeHead(200, {'Content-Type': 'text/plain'});
     // 每次访问会默认查找favicon.ico，清除第二次访问
     if (request.url !== '/favicon.ico') {
-        var pathname = url.parse(request.url).pathname.replace(/\//, '');
+        var pathname = url.parse(request.url).pathname.replace(/\//, '');//获取url参数
         var inTheRouter = false;
-        // 路由地址寻找
+        // 在路由列表中搜索参数名
         for (let i in router) {
             if (i === pathname) {
                 inTheRouter = true;
@@ -22,11 +22,7 @@ http.createServer(function (request, response) {
             }
         }
         // 空字符串重定向为index
-        if (!pathname) {
-            router['index'](response);
-        }
-        else {
-            // 匹配到的跳转至相关地址
+        if (pathname) {
             if (inTheRouter) {
                 router[pathname](response);
             }
@@ -34,6 +30,9 @@ http.createServer(function (request, response) {
             else {
                 router['error'](response);
             }
+        }
+        else {
+            router['index'](response);
         }
         console.log('主程序执行完毕');
     }

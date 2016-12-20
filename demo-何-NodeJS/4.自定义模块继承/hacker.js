@@ -6,6 +6,7 @@
 var User = require('./user');
 
 function hacker(name, event) {
+    // 模块继承
     User.apply(this, [name, event]);
     this.printHackerInfo = function (res) {
         res.write(this.name + this.event + '\n');

@@ -5,7 +5,7 @@
 
 function function2(res) {
     console.log('function2开始运行');
-    res.write('hello，我是function2.');
+    res.write('hello，我是function2');
 }
 
 module.exports = function2;

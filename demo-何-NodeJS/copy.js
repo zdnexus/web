@@ -3,9 +3,9 @@
  */
 'use strict';
 
-var http = require('http');
-var url = require('url');
-var router = require('./router');
+var http = require('http');//NodeJS的http模块
+var url = require('url');//NodeJS的url模块
+var router = require('./router');//路由列表
 
 http.createServer(function (request, response) {
     // 每次访问会默认查找favicon.ico，清除第二次访问
