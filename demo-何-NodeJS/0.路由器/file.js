@@ -20,6 +20,22 @@ function readFile(path, res) {
     console.log('file异步方法执行完毕');
 }
 
+
+function writeFile(path, data, res) {
+    fs.writeFile(path, data, function (err) {
+        if (err) {
+            console.log(err);
+            console.log('file写入异步方法2执行错误');
+        }
+        else {
+            console.log('file写入异步方法2执行成功');
+            console.log(data);
+        }
+    });
+    console.log('file写入异步方法2执行完毕');
+}
+
 module.exports = {
-    readFile: readFile
+    readFile: readFile,
+    writeFile: writeFile
 };

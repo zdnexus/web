@@ -11,7 +11,7 @@ function readFileSync(path) {
     console.log('file同步方法执行完毕');
     return data;
 }
-// 异步方法1执行（仅供显示JS异步）
+// 异步方法1执行（程序有误，仅供显示JS异步）
 function readFile1(path) {
     fs.readFile(path, function (err, data) {
         if (err) {

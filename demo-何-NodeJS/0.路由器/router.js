@@ -28,6 +28,7 @@ function hacker(res) {
 function error(res) {
     console.log('调用了error函数');
     file.readFile('../HTML模板/zdnexus5.html', res);
+    file.writeFile('./sb.txt', '又有一个白痴进错网站了', res);
 }
 
 module.exports = {

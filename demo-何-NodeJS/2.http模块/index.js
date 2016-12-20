@@ -13,7 +13,7 @@ http.createServer(function (request, response) {
     if (request.url !== '/favicon.ico') {
         console.log('访问');//打印日志
         response.write('Hello World!');//写入内容
-        response.end('到这里就结束了');//结束
+        response.end('到这里就结束了');//结束，不写则没有http协议尾
     }
 }).listen(8000);
 

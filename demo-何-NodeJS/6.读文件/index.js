@@ -15,7 +15,7 @@ http.createServer(function (request, response) {
         // response.write(data1);
         // response.end('');
 
-        // 异步方法1执行（程序有误，异步展示）
+        // 异步方法1执行（程序有误，仅供显示JS异步）
         // var data2 = file.readFile1('../HTML模板/zdnexus1.html');
         // if (data2) {
         //     response.write(data2);
