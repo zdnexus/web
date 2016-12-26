@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{
+            height: 10000px;
+            background-color: #2d292a;
+        }
+
+        #div1 {
+            height: 300px;
+            background-color: #0ac2d2;
+            overflow-y: scroll;
+        }
+
+        #div2 {
+            height: 1000px;
+            background-color: #3e8f3e;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <div id="div2"></div>
+</div>
+
+</body>
+<script>
+    window.addEventListener('scroll', function () {
+        console.log('window在滑动');
+    },false);
+
+    document.getElementById('div1').addEventListener('scroll', function () {
+        console.log('div1在滑动');
+    },false);
+</script>
+</html>

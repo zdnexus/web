@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background: red;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div"></div>
+<div class="div"></div>
+<div class="div"></div>
+
+</body>
+<script>
+    var divArr = document.getElementsByClassName('div');
+
+    //    ERROR
+    //    for (var i = 0; i < divArr.length; ++i) {
+    //        divArr[i].onclick = function () {
+    //            alert(i);
+    //        };
+    //    }
+
+    //    IIFE
+    //    for (var i = 0; i < divArr.length; ++i) {
+    //        divArr[i].onclick = (function (i) {
+    //            alert(i);
+    //        })(i);
+    //    }
+
+    //    IIFE修改
+    //    for (var i = 0; i < divArr.length; ++i) {
+    //        divArr[i].onclick = (function (i) {
+    //            return function () {
+    //                alert(i);
+    //            }
+    //        })(i);
+    //    }
+
+    //    闭包#1
+    //    for (var i = 0; i < divArr.length; ++i) {
+    //        (function (i) {
+    //            divArr[i].onclick = function () {
+    //                alert(i);
+    //            }
+    //        })(i);
+    //    }
+
+    //    闭包#2
+    function ALT1(i) {
+        alert(i);
+    }
+    function ALT2(i) {
+        return function () {
+            alert(i);
+        }
+    }
+    for (var i = 0; i < divArr.length; ++i) {
+//        divArr[i].onclick = ALT1(i);
+        divArr[i].onclick = ALT2(i);
+    }
+</script>
+</html>
