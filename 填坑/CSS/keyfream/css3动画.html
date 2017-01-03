@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            height: 200px;
+            display: flex;
+        }
+
+        ul li {
+            flex: 1;
+            position: relative;
+            list-style: none;
+        }
+
+        ul li > div {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            -webkit-transform: translate(-50%, -50%);
+        }
+
+        /*loading 1*/
+        @-webkit-keyframes rotate {
+            0% {
+                -webkit-transform: rotate(0deg) scale(1);
+            }
+
+            50% {
+                -webkit-transform: rotate(180deg) scale(0.6);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg) scale(1);
+            }
+        }
+
+        .img {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #ccc;
+            border-radius: 100%;
+            border-bottom-color: transparent;
+            background-color: transparent;
+            /*运动名称 时间 速度 延迟 次数 正反向 运动到最后的帧数*/
+            -webkit-animation: rotate 0.75s linear 0s infinite normal both;
+        }
+
+        /*loading 2*/
+        @-webkit-keyframes toastImg {
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .toastImg > div {
+            width: 5px;
+            height: 15px;
+            border-radius: 2px;
+            background-color: #333;
+            -webkit-animation-fill-mode: both;
+            position: absolute;
+        }
+
+        .toastImg > div:nth-child(1) {
+            top: 20px;
+            left: 0;
+            -webkit-animation: toastImg 1.2s ease-in-out 0.12s infinite;
+        }
+
+        .toastImg > div:nth-child(2) {
+            top: 14.142px;
+            left: 14.142px;
+            -webkit-transform: rotate(-45deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.24s infinite;
+        }
+
+        .toastImg > div:nth-child(3) {
+            top: 0;
+            left: 20px;
+            -webkit-transform: rotate(90deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.36s infinite;
+        }
+
+        .toastImg > div:nth-child(4) {
+            top: -14.142px;
+            left: 14.142px;
+            -webkit-transform: rotate(45deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.48s infinite;
+        }
+
+        .toastImg > div:nth-child(5) {
+            top: -20px;
+            left: 0;
+            -webkit-animation: toastImg 1.2s ease-in-out 0.6s infinite;
+        }
+
+        .toastImg > div:nth-child(6) {
+            top: -14.142px;
+            left: -14.142px;
+            -webkit-transform: rotate(-45deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.72s infinite;
+        }
+
+        .toastImg > div:nth-child(7) {
+            top: 0;
+            left: -20px;
+            -webkit-transform: rotate(90deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.84s infinite;
+        }
+
+        .toastImg > div:nth-child(8) {
+            top: 14.142px;
+            left: -14.142px;
+            -webkit-transform: rotate(45deg);
+            -webkit-animation: toastImg 1.2s ease-in-out 0.96s infinite;
+        }
+    </style>
+</head>
+<body>
+
+<ul>
+    <li>
+        <div>
+            <div class="img"></div>
+        </div>
+
+    </li>
+    <li>
+        <div>
+            <div class="toastImg">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </li>
+</ul>
+
+</body>
+</html>

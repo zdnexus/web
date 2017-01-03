@@ -9,38 +9,54 @@
 </body>
 <script>
 
+    //    var a;
+    //    if (a) {
+    //        alert(1);
+    //    }
+    //    else {
+    //        alert(2);//
+    //    }
+    //    a = "";
+    //    if (a) {
+    //        alert(1);
+    //    }
+    //    else {
+    //        alert(2);//
+    //    }
+    //    a = null;
+    //    if (a) {
+    //        alert(1);
+    //    }
+    //    else {
+    //        alert(2);//
+    //    }
+    //    a = " ";
+    //    if (a) {
+    //        alert(1);//
+    //    }
+    //    else {
+    //        alert(2);
+    //    }
+
+</script>
+<script>
     var a;
+    console.log(typeof a);//undefined
+    console.log(typeof typeof a);//string
 
-    if (a) {
-        alert(1);
-    }
-    else {
-        alert(2);//
-    }
+    var b = '';
+    console.log(typeof b);//string
+    console.log(typeof typeof b);//string
 
-    a = "";
-    if (a) {
-        alert(1);
-    }
-    else {
-        alert(2);//
-    }
+    var c = null;
+    console.log(typeof c);//object
+    console.log(typeof typeof c);//string
 
-    a = null;
-    if (a) {
-        alert(1);
-    }
-    else {
-        alert(2);//
-    }
-
-    a = " ";
-    if (a) {
-        alert(1);//
-    }
-    else {
-        alert(2);
-    }
-
+    console.log(a == b);//false
+    console.log(a === b);//false
+    console.log(a == c);//true
+    console.log(a === c);//false
+    console.log(b == c);//false
+    console.log(b === c);//false
 </script>
 </html>

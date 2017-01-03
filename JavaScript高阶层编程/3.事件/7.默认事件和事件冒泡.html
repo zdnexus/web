@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="myBtn">Button</button>
+<a id="myLink" href="https://www.baidu.com">BaiDu</a>
+
+</body>
+<script>
+    'use strict';
+
+    var link = document.getElementById('myLink');
+    link.onclick = function (event) {
+        var event = window.event || event;
+        if (event.preventDefault) {
+            event.preventDefault(); // 阻止默认事件
+        } else {
+            window.event.returnValue = false; // IE6~IE8 阻止默认事件
+        }
+    };
+
+    var btn = document.getElementById('myBtn');
+    btn.onclick = function (event) {
+        var event = window.event || event;
+        if (event.stopPropagation) {
+            event.stopPropagation();
+        } else {
+            event.cancelBubble = true; // IE6~IE8 阻止事件冒泡
+        }
+        console.log('Btn clicked');
+    };
+
+    document.body.onclick = function (event) {
+        console.log('Body clicked');
+    };
+</script>
+</html>

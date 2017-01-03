@@ -5,13 +5,13 @@
     <title>Title</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <style>
-        html {
-            font-size: 50px;
-        }
-
         * {
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            font-size: 50px;
         }
 
         body {
@@ -22,29 +22,21 @@
             font-size: 30px;
             overflow: hidden;
             text-overflow: ellipsis;
-            display: -webkit-box;
-            -webkit-line-clamp: 1;
-            -webkit-box-orient: vertical;
             word-break: break-all;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
+            display: -webkit-box;
         }
 
         #div2 {
             width: 200px;
             height: 200px;
             background-color: #0ac2d2;
-
-        }
-
-        .two {
-            -webkit-line-clamp: 2;
+            font-family: 'microsoft yahei';
         }
 
         #div3 {
-            height: 130.4px;
-            background-color: #2d4486;
-        }
-
-        #div4 {
+            width: 500px;
             background-color: #6b727c;
         }
 
@@ -68,15 +60,13 @@
 
 <div id="div2">
     <p>zdnexus</p>
-    <p class="two">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
+    <p style="-webkit-line-clamp: 2">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
 </div>
 
-<div id="div3"></div>
-
-<div id="div4">
-    <p style="line-height: 30px;">zdnexus</p>
-    <p style="line-height: 60px;">zdnexus</p>
-    <p style="line-height: 90px;">zdnexus</p>
+<div id="div3">
+    <p style="line-height: 30px;">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
+    <p style="line-height: 60px;">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
+    <p style="line-height: 90px;">zdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexuszdnexus</p>
 </div>
 
 <div id="div5">

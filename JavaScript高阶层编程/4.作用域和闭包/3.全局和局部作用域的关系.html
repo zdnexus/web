@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    'use strict';
+
+    var global = 'A'; // 声明一个全局变量
+
+    function checkscope() {
+        var global = 'B'; // 声明一个同名的局部变量
+        return global; // 返回局部变量的值，而不是全局变量的值
+    }
+
+    console.log(global); // 'A'
+    console.log(checkscope()); // 'B'
+    console.log(global); // 'A'
+    //    在函数体内，局部变量的优先级高于同名的全局变量。
+    // 如果在函数内声明的一个局部变量或者函数参数中带有的变量和全局变量重名，那么全局变量就被局部变量所遮盖。
+</script>
+</html>
