@@ -29,16 +29,16 @@
     delete window.age2;
     // 在 IE < 9 时抛出错误，在其他所有浏览器中都返回 true
     delete window.color;
-    console.log(age2);           // 30
-    // console.log(color);       // Uncaught ReferenceError: color is not defined
-    console.log(window.age2);    // 30
-    console.log(window.color);   // undefined
+    console.log(age2);          // 30
+    // console.log(color);      // Uncaught ReferenceError: color is not defined
+    console.log(window.age2);   // 30
+    console.log(window.color);  // undefined
 
     // 弹出窗口
     // window.open() 方法会返回一个指向新窗口的引用。引用的对象与其他 window 对象大致相似，但我们可以对其进行更多控制。
     var win = window.open('http://shijiajie.com/', 'newWindow',
             'height=400,width=400,top=0,left=0,resizable=yes');
-    console.log(win.opener === window);   // true
+    console.log(win.opener === window); // true
     // 调整大小
     win.resizeTo(500, 500);
     // 移动位置
@@ -51,8 +51,7 @@
     // 如果是浏览器扩展或其他程序阻止的弹出窗口，那么 window.open() 通常会抛出一个错误。
     var blocked = false;
     try {
-        var win = window.open('http://shijiajie.com', '_blank');
-        if (win == null) {
+        if (window.open('http://shijiajie.com', '_blank') == null) {
             blocked = true;
         }
     } catch (ex) {

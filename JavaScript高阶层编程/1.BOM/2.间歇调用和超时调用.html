@@ -15,28 +15,27 @@
     // 注意：把它取消
     clearTimeout(timeoutId);
 
-    // 利用闭包计算函数运行的次数
+    // 利用闭包计算函数运行次数
     function f1() {
         var n = 0;
-        return function () {
+        return function count() {
             ++n;
-            console.log('我这是第' + n + '次运行。');
+            console.log('setTimeout：我这是第' + n + '次运行。');
             if (n < 5) {
-                setTimeout(f, 500);
+                setTimeout(count, 500);
             } else {
                 clearTimeout(time1);
                 console.log('Done.');
             }
         }
     }
-    var f = f1();
-    var time1 = setTimeout(f, 500);
+    var time1 = setTimeout(f1(), 500);
 
     function f2() {
         var n = 0;
         return function () {
             ++n;
-            console.log('我这是第' + n + '次运行。');
+            console.log('setInterval：我这是第' + n + '次运行。');
             if (n === 5) {
                 clearTimeout(time2);
                 console.log('Done.');
