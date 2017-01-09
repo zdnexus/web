@@ -8,14 +8,17 @@
 
 </body>
 <script>
-    // 设置超时调用
+    //  JavaScript 是单线程语言，但它允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行。
+    // 前者是在指定的时间过后执行代码，而后者则是每隔指定的时间就执行一次代码。
+
+    //  设置超时调用
     var timeoutId = setTimeout(function () {
         console.log("Hello world!");
     }, 1000);
-    // 注意：把它取消
+    //  注意：把它取消
     clearTimeout(timeoutId);
 
-    // 利用闭包计算函数运行的次数
+    //  利用闭包计算函数运行的次数
     function f1() {
         var n = 0;
         return function () {
