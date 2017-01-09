@@ -8,30 +8,44 @@
 
 </body>
 <script>
-    //  全局作用域
+    // window 对象有双重角色，它既是通过 JavaScript 访问浏览器窗口的一个接口，又是 ECMAScript 规定的 Global 对象。
+    // 这意味着在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象，因此有权访问 isNaN()、isFinite()、parseInt()、parseFloat() 等方法。
+
+    // 全局作用域
     var age = 29;
     function sayAge() {
         console.log(this.age);
     }
-    console.log(window.age);    //  29
-    sayAge();                   //  29
-    window.sayAge();            //  29
+    console.log(age);                   //  29
+    console.log(window.age);            //  29
+    sayAge();                           //  29，this = window
+    window.sayAge();                    //  29，this = window
+    console.log(age === window.age);    //  true
 
     //  全局变量不能通过 delete 运算符删除，而直接在 window 对象上的定义的属性可以
     //  使用 var 语句添加的 window 属性有一个名为 Configurable 的特性，这个特性的值被默认设置为 false，
     //  因此这样定义的属性不可以通过 delete 运算符删除。IE8 及更早版本在遇到使用 delete 删除 window 属性的语句时，都会抛出错误，以示警告。
-    var age = 29;
-    window.color = 'red';
+    console.log(phone);         //  undefined
+    console.log(window.phone);  //  undefined
+    var phone = 'nexus';
+    console.log(phone);         //  'nexus'
+    console.log(window.phone);  //  'nexus'
+    delete phone;
+    console.log(phone);         //  'nexus'
+    console.log(window.phone);  //  'nexus'
     //  在 IE < 9 时抛出错误，在其他所有浏览器中都返回 false
-    delete window.age;
-    console.log(age);           //  29
-    console.log(window.age);    //  29
-    delete age;
-    console.log(age);           //  29
-    console.log(window.age);    //  29
+    delete window.phone;
+    console.log(phone);         //  'nexus'
+    console.log(window.phone);  //  'nexus'
+
+    //    console.log(color);   //  Uncaught ReferenceError: color is not defined
+    console.log(window.color);  //  undefined
+    window.color = 'red';
+    console.log(color);         //  'red'
+    console.log(window.color);  //  'red'
     //  在 IE < 9 时抛出错误，在其他所有浏览器中都返回 true
     delete window.color;
-    //  console.log(color);     //  Uncaught ReferenceError: color is not defined
+    //    console.log(color);   //  Uncaught ReferenceError: color is not defined
     console.log(window.color);  //  undefined
 
     //  弹出窗口
