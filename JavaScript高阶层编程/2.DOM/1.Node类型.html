@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul">
+    <li id="li">1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+
+</body>
+<script>
+    var ul = document.getElementById('ul');
+    //  如果二者相等，则意味着 someNode 确实是一个元素。
+    if (ul.nodeType === 1) {
+        console.log('变量ul是一个元素');
+    }
+
+    var firstChild = ul.childNodes[0];
+    console.log(firstChild);    // #Test
+    var secondChild = ul.childNodes.item(1);
+    console.log(secondChild);   // <li>
+    var count = ul.childNodes.length;
+    console.log(count);     // 7
+
+    var firstChildren = ul.children[0];
+    console.log(firstChildren); // <li>
+    var length = ul.children.length;
+    console.log(length);    // 3
+
+    console.log(ul.children[0] === ul.childNodes[1]);                   //  true
+    console.log(ul.children[1] === ul.children[0].nextSibling);         //  false
+    console.log(ul.children[0].nextSibling);                            //  #Test
+    console.log(ul.children[1] === ul.children[0].nextElementSibling);  //  true
+    console.log(ul.children[0].nextElementSibling);                     //  <li>
+
+    if (ul.children[2].nextElementSibling === null) {
+        console.log("Last node in the parent’s childNodes list.");
+    }
+    if (ul.children[0].previousElementSibling === null) {
+        console.log("First node in the parent’s childNodes list.");
+    }
+
+
+    var li = document.getElementById('li');
+    console.log(li.parentNode === document.getElementById('ul'));                       //  true
+    console.log(li.parentNode.parentNode === document.getElementsByTagName('body')[0]); //  true
+</script>
+</html>

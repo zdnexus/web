@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<p id="p1"></p>
+
+</body>
+<script>
+    var star = (new Date).getTime();
+    console.log(star);
+    var arr = [];
+    for (let i = 0; i < 1000000; ++i) {
+        arr[i] = 0;
+    }
+    console.log(arr);
+    var end = (new Date).getTime();
+    console.log(end);
+    console.log('用时：', end - star);
+
+
+    var star2 = (new Date).getTime();
+    console.log(star);
+    var arr2 = [];
+    for (let i = 0; i < arr.length; ++i) {
+        arr2[i] = arr[i];
+    }
+    console.log(arr2);
+    var end2 = (new Date).getTime();
+    console.log(end);
+    console.log('用时：', end2 - star2);
+</script>
+</html>
