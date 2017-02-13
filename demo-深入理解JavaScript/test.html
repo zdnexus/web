@@ -3,32 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: #00b800;
+        }
+
+        .a {
+            background-color: blue !important;
+        }
+
+        .b {
+            background-color: #0f0f0f;
+        }
+    </style>
 </head>
 <body>
 
-<div id="div1" style="width: 300px;height: 300px;background-color: #2e6da4;"></div>
-<div id="div2" style="width: 300px;height: 300px;background-color: red;"></div>
+<div class="a b"></div>
 
 </body>
 <script>
-    function divClick(str, number) {
-        console.log(this);
-        this.numerber = number;
-
-        let x = document.getElementById(str);//div1
-
-        let self = this;
-
-        x.onclick = function (){
-            self.alertNumber();
-        }
+    var a = 1;
+    function T() {
+        var a = 2;
+        console.log(a);
     }
-
-    divClick.prototype.alertNumber = function () {
-        alert(this.numerber);
-    };
-
-    new divClick('div1', 1);
-    new divClick('div2', 10);
+    console.log(a);
+    T();
+    console.log(a);
 </script>
 </html>

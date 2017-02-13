@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // location 对象是很特别的一个对象，因为它既是 window 对象的属性，也是 document 对象的属性；
+    // 换句话说，window.location 和 document.location 引用的是同一个对象。
+
+    // 当通过上述任何一种方式修改URL之后，浏览器的历史记录中就会生成一条新记录，因此用户通过单击“后退”按钮都会导航到前一个页面。
+    // 要禁用这种行为，可以使用 replace() 方法。
+    // 调用 replace() 方法可以导航到一个新 URL，同时该 URL 会替换浏览器历史记录中当前显示的页面。
+    setTimeout(function () {
+        location.replace('http://shijiajie.com/');
+    }, 1000);
+
+    // 查询字符串参数
+    function urlArgs() {
+        var args = {};                                  //  定义一个空对象
+        var query = location.search.substring(1);       //  查找到查询串，并去掉'? '
+        var pairs = query.split('&');                   //  根据'&'符号将查询字符串分隔开
+        for (var i = 0; i < pairs.length; i++) {        //  对于每个片段
+            var pos = pairs[i].indexOf('=');            //  查找'name=value'
+            if (pos == -1)
+                continue;                               //  如果没有找到的话，就跳过
+            var name = pairs[i].substring(0, pos);      //  提取name
+            var value = pairs[i].substring(pos + 1);    //  提取value
+            value = decodeURIComponent(value);          //  对value进行解码
+            args[name] = value;                         //  存储为属性
+        }
+        return args;                                    //  返回解析后的参数
+    }
+    console.log(urlArgs());
+
+    // 位于 reload() 调用之后的代码可能会也可能不会执行，这要取决于网络延迟或系统资源等因素。为此，最好将 reload() 放在代码的最后一行。
+    location.reload();        //  重新加载（有可能从缓存中加载）
+    location.reload(true);    //  重新加载（从服务器重新加载）
+</script>
+</html>

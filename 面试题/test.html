@@ -8,17 +8,9 @@
 
 </body>
 <script>
-    function A() {
-        var a = 1000;
-
-        return function () {
-            return a;
-        };
-    }
-
-    var b = A();
-
-    console.log(b());
+    console.log(this);
+    console.log(name);         //
+    var name = 'nexus';
 
 </script>
 </html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="t">
+    <span>aaa</span>
+    <span>bbb</span>
+    <span>ccc</span>
+</div>
+
+</body>
+<script>
+    var t = document.getElementById('t');
+    document.writeln(t.firstChild.innerHTML);               // undefined
+    document.writeln(t.lastChild.innerHTML);                // undefined
+
+    document.writeln(t.childNodes[1].innerHTML);            // aaa
+    document.writeln(t.parentNode.getAttribute('name'));    // null
+
+    document.writeln(t.nextSibling.innerHTML);              // undefined
+    document.writeln(t.previousSibling.innerHTML);          // undefined
+</script>
+</html>

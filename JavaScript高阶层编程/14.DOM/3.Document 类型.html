@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="myDiv">Some text</div>
+
+<img src="../img/0.jpg">
+<img src="../img/1.jpg" name="myImage">
+<img src="../img/2.jpg">
+
+</body>
+<script>
+    var html = document.documentElement;            // 取得对<html>的引用
+    console.log(html === document.childNodes[1]);   // true
+
+    // 取得文档标题
+    var originalTitle = document.title;
+
+    // 设置文档标题
+    document.title = 'New page title';
+
+    var div = document.getElementById('myDiv');   // 取得<div>元素的引用
+    // IE8 及较低版本不区分 ID 的大小写，因此 'myDiv' 和 'mydiv' 会被当作相同的元素 ID。
+    // 如果页面中多个元素的ID值相同，getElementById() 只返回文档中第一次出现的元素。
+
+    var images = document.getElementsByTagName('img');
+    console.log(images.length);        // 输出图像的数量
+    console.log(images[1].src);        // 输出第二个图像元素的src特性
+    console.log(images.item(1).src);   // 输出第二个图像元素的src特性
+
+    var myImage = images.namedItem('myImage');
+    console.log(myImage.src);
+
+    console.log(document.images);
+    console.log(document.getElementsByTagName('img'));
+    console.log(document.images === document.getElementsByTagName('img'))
+</script>
+</html>

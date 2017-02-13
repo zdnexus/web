@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // JavaScript 是单线程语言，但它允许通过设置超时值和间歇时间值来调度代码在特定的时刻执行。
+    // 前者是在指定的时间过后执行代码，而后者则是每隔指定的时间就执行一次代码。
+
+    // JavaScript 是一个单线程序的解释器，因此一定时间内只能执行一段代码。
+    // 为了控制要执行的代码，就有一个 JavaScript 任务队列。这些任务会按照将它们添加到队列的顺序执行。
+    // setTimeout() 的第二个参数告诉 JavaScript 再过多长时间把当前任务添加到队列中。
+    // 如果队列是空的，那么添加的代码会立即执行；如果队列不是空的，那么它就要等前面的代码执行完了以后再执行。
+
+    // 取消间歇调用的重要性要远远高于取消超时调用，因为在不加干涉的情况下，间歇调用将会一直执行到页面卸载。
+
+    // 设置超时调用
+    // 只要是在指定的时间尚未过去之前调用 clearTimeout()，就可以完全取消超时调用。
+    // 前面的代码在设置超时调用之后马上又调用了 clearTimeout()，结果就跟什么也没有发生一样。
+    console.log(timeoutId);
+    var timeoutId = setTimeout(function () {
+        console.log('Hello world!');
+    }, 500);
+    console.log(timeoutId);
+    // 注意：把它取消
+    clearTimeout(timeoutId);
+
+    function func1() {
+        var num = 0;
+        var max = 10;
+        var intervalId = null;
+
+        function incrementNumber() {
+            num++;
+            // 如果执行次数达到了max设定的值，则取消后续尚未执行的调用
+            if (num < max) {
+                console.log('func1：我是第' + num + '次运行。');
+            }
+            else {
+                clearInterval(intervalId);
+                console.log('Done');
+            }
+        }
+
+        intervalId = setInterval(incrementNumber, 500);
+    }
+    func1();
+
+    function func2() {
+        var num = 0;
+        var max = 10;
+
+        function incrementNumber() {
+            num++;
+
+            // 如果执行次数未达到max设定的值，则设置另一次超时调用
+            if (num < max) {
+                console.log('func2：我是第' + num + '次运行。');
+                setTimeout(incrementNumber, 500);
+            } else {
+                console.log('Done');
+            }
+        }
+
+        setTimeout(incrementNumber, 500);
+    }
+    func2();
+</script>
+</html>

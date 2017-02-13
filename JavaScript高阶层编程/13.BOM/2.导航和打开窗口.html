@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 这个方法可以接收4个参数：要加载的URL、窗口目标、一个特性字符串以及一个表示新页面是否取代浏览器历史记录中当前加载页面的布尔值。
+    // 通常只须传递第一个参数，最后一个参数只在不打开新窗口的情况下使用。
+    // 弹出窗口
+    window.open('http://shijiajie.com/', 'newWindow');
+
+    // window.open() 方法会返回一个指向新窗口的引用。引用的对象与其他 window 对象大致相似，但我们可以对其进行更多控制。
+    var win = window.open('http://shijiajie.com/', 'newWindow',
+            'height=400,width=400,top=0,left=0,resizable=yes');
+    console.log(win.opener === window); //  true
+    // 调整大小
+    win.resizeTo(500, 500);
+    // 移动位置
+    win.moveTo(100, 100);
+    // 关闭窗口
+    win.close();
+
+    // 弹出窗口屏蔽程序
+    // 如果是浏览器内置的屏蔽程序阻止的弹出窗口，那么 window.open() 很可能会返回 null，
+    // 如果是浏览器扩展或其他程序阻止的弹出窗口，那么 window.open() 通常会抛出一个错误。
+    var blocked = false;
+    try {
+        var win = window.open('https://www.baidu.com', '_blank');
+        if (win == null) {
+            blocked = true;
+        }
+    } catch (ex) {
+        blocked = true;
+    }
+    if (blocked) {
+        console.log('The popup was blocked!');
+    }
+</script>
+</html>

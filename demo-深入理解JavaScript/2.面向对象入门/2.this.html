@@ -8,26 +8,29 @@
 
 </body>
 <script>
+    a = 1;
     var arr = [1, 2, 3];
-    arr.a = 12;
+    arr.a = 10;
     arr.show = function () {
 //        当前的方法（函数）属于谁，this就是谁
-//        当前的方法show属于arr，所以是this是arr，this.a是12
-        console.log(this.a);//12
+//        当前的方法show属于arr，所以是this是arr
+        console.log(this.a);
     };
     arr.show();
 
 
     function show() {
-//        this就是window
+//        console.log('hello');
         console.log(this);
         return this;
     }
     window.show = function () {
-//        当前的方法show属于window，所以是this是window
+//        console.log('world');
         console.log(this);
         return this;
     };
+    show();
+    window.show();
     console.log(show() === window.show());//true
 </script>
 </html>

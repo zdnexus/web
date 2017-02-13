@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="myDiv" class="bd" title="Body text" lang="en" dir="ltr" xxx="zd"></div>
+
+</body>
+<script>
+    //    nodeType 的值为1；
+    //    nodeName 的值为元素的标签名；
+    //    nodeValue 的值为 null；
+    //    parentNode 可能是 Document 或 Element；
+    //    其子节点可能是 Element、Text、Comment、ProcessingInstruction、CDATASection 或 EntityReference。
+    var div = document.getElementById('myDiv');
+    // div.tagName 实际上输出的是 "DIV" 而非 "div"。在HTML中，标签名始终都以全部大写表示；
+    // 而在 XML（有时候也包括 XHTML）中，标签名则始终会与源代码中的保持一致。
+    console.log(div.tagName);                   // 'DIV'
+    // 要访问元素的标签名，可以使用 nodeName 属性，也可以使用 tagName 属性；这两个属性会返回相同的值（使用后者主要是为了清晰起见）。
+    console.log(div.tagName === div.nodeName);  // true
+
+    // 不能这样比较，很容易出错！
+    if (div.tagName == 'div') {
+        console.log('不能这样比较，很容易出错！');
+    }
+    // 这样最好（适用于任何文档）
+    if (div.tagName.toLowerCase() == 'div') {
+        console.log('这样最好（适用于任何文档）');
+    }
+
+    console.log(div.id);            // 'myDiv'
+    console.log(div.className);     // 'bd'
+    console.log(div.title);         // 'Body text'
+    console.log(div.lang);          // 'en'
+    console.log(div.dir);           // 'ltr'
+    console.log(div.xxx);           // undefined
+
+    // 设置特性
+    // 与 getAttribute() 对应的方法是 setAttribute()，这个方法接受两个参数：要设置的特性名和值。
+    // 如果特性已经存在，setAttribute() 会以指定的值替换现有的值；如果特性不存在，setAttribute() 则创建该属性并设置相应的值。
+    div.setAttribute('id', 'someOtherId');// div.id = 'someOtherId';
+    div.setAttribute('class', 'ft');
+    div.setAttribute('title', 'Some other text');
+    div.setAttribute('lang', 'fr');
+    div.setAttribute('dir', 'rtl');
+    div.setAttribute('hercolor', 'black');
+
+    console.log(div.xxx);                       // undefined
+    console.log(div.getAttribute('xxx'));       // zd
+
+    console.log(div.hercolor);                  // undefined
+    console.log(div.getAttribute('hercolor'));  // black
+
+    div.mycolor = 'red';
+    console.log(div.mycolor);                   // red
+    console.log(div.getAttribute('mycolor'));   // null（IE除外）
+
+    // removeAttribute()，这个方法用于彻底删除元素的特性。调用这个方法不仅会清除特性的值，而且也会从元素中完全删除特性
+    div.removeAttribute('class');
+</script>
+</html>

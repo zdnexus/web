@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<ul id="ul">
+    <li id="li">1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+
+</body>
+<script>
+    // DOM（文档对象模型）是针对 HTML 和 XML 文档的一个 API。DOM 描绘了一个层次化的节点树，允许开发人员添加、移除和修改页面的某一部分。
+
+
+    // Node 类型
+    // DOM1 级定义了一个 Node 接口，该接口将由 DOM 中的所有节点类型实现。
+    // 这个 Node 接口在 JavaScript 中是作为 Node 类型实现的；除了 IE 之外，在其他所有浏览器中都可以访问到这个类型。
+    // JavaScript 中的所有节点类型都继承自 Node 类型，因此所有节点类型都共享着相同的基本属性和方法。
+
+    var ul = document.getElementById('ul');
+    //  如果二者相等，则意味着 someNode 确实是一个元素。
+    if (ul.nodeType === 1) {
+        console.log('ul is an element:' + ul.nodeName);
+    }
+
+    // 每个节点都有一个 childNodes 属性，其中保存着一个 NodeList 对象。
+    // NodeList 是一种类数组对象，用于保存一组有序的节点，可以通过位置来访问这些节点。
+    var firstChild = ul.childNodes[0];
+    console.log(firstChild);    // #Test
+    var secondChild = ul.childNodes.item(1);
+    console.log(secondChild);   // <li>
+    var count = ul.childNodes.length;
+    console.log(count);         // 7
+
+    // 每个节点都有一个 parentNode 属性，该属性指向文档树中的父节点。包含在 childNodes 列表中的所有节点都具有相同的父节点，因此它们的 parentNode 属性都指向同一个节点。
+    console.log(firstChild.parentNode === secondChild.parentNode);                      // true
+    var li = document.getElementById('li');
+    console.log(li.parentNode === document.getElementById('ul'));                       // true
+    console.log(li.parentNode.parentNode === document.getElementsByTagName('body')[0]); // true
+
+    // 包含在 childNodes 列表中的每个节点相互之间都是同胞节点。
+    // 通过使用列表中每个节点的 previousSibling 和 nextSibling 属性，可以访问同一列表中的其他节点。
+    // 列表中第一个节点的 previousSibling 属性值为 null，而列表中最后一个节点的 nextSibling 属性的值同样也为 null，
+    // 当然，如果列表中只有一个节点，那么该节点的 nextSibling 和 previousSibling 都为 null。
+    if (ul.children[2].nextElementSibling === null) {
+        console.log('Last node in the parent’s childNodes list.');
+    }
+    if (ul.children[0].previousElementSibling === null) {
+        console.log('First node in the parent’s childNodes list.');
+    }
+
+    // 父节点的 firstChild 和 lastChild 属性分别指向其 childNodes 列表中的第一个和最后一个节点。
+    // 其中，someNode.firstChild 的值始终等于 someNode.childNodes[0]，
+    // 而 someNode.lastChild 的值始终等于 someNode.childNodes [someNode.childNodes.length-1]。
+    // 在只有一个子节点的情况下， firstChild 和 lastChild 指向同一个节点。如果没有子节点，那么 firstChild 和 lastChild 的值均为 null。
+    console.log(ul.firstChild === ul.childNodes[0]);                        // true
+    console.log(ul.lastChild === ul.childNodes[ul.childNodes.length - 1]);  // true
+
+    console.log(ul.childNodes.length);
+    console.log(ul.childNodes[0]);
+    console.log(ul.childNodes[0].nextSibling);
+    console.log(ul.childNodes[0].nextSibling.nextSibling);
+    console.log(ul.childNodes[0].nextElementSibling);
+    console.log(ul.childNodes[0].nextElementSibling.nextElementSibling);
+
+    console.log(ul.children.length);
+    console.log(ul.children[0]);
+    console.log(ul.children[0].nextSibling);
+    console.log(ul.children[0].nextSibling.nextSibling);
+    console.log(ul.children[0].nextElementSibling);
+    console.log(ul.children[0].nextElementSibling.nextElementSibling);
+
+    console.log(ul.children[0] === ul.childNodes[0]);                       // false
+    console.log(ul.children[0] === ul.childNodes[1]);                       // true
+    console.log(ul.childNodes[1] === ul.childNodes[0].nextSibling);         // true
+    console.log(ul.childNodes[1] === ul.childNodes[0].nextElementSibling);  // true
+    console.log(ul.children[1] === ul.children[0].nextSibling);             // false
+    console.log(ul.children[1] === ul.children[0].nextElementSibling);      // true
+    console.log(ul.childNodes[1] === ul.children[0].nextSibling);           // true
+</script>
+</html>

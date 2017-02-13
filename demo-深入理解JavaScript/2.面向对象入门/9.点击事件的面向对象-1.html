@@ -11,6 +11,10 @@
             display: none;
         }
 
+        .bgGrey:first-of-type {
+            display: block;
+        }
+
         .active {
             background-color: #1e88e5;
         }
@@ -19,10 +23,10 @@
 <body>
 
 <div id="div1">
-    <input type="button" value="aaa" class="active">
-    <input type="button" value="bbb">
-    <input type="button" value="ccc">
-    <div class="bgGrey" style="display: block;">apple</div>
+    <input type="button" value="a" class="active">
+    <input type="button" value="b">
+    <input type="button" value="c">
+    <div class="bgGrey">apple</div>
     <div class="bgGrey">banana</div>
     <div class="bgGrey">cup</div>
 </div>

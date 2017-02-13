@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // window 对象有双重角色，它既是通过 JavaScript 访问浏览器窗口的一个接口，又是 ECMAScript 规定的 Global 对象。
+    // 这意味着在网页中定义的任何一个对象、变量和函数，都以 window 作为其 Global 对象，
+    // 因此有权访问 isNaN()、isFinite()、parseInt()、parseFloat() 等方法。
+
+    // 全局作用域
+    // 由于 window 对象同时扮演着 ECMAScript 中 Global 对象的角色，因此所有在全局作用域中声明的变量、函数都会变成 window 对象的属性和方法。
+    // 变量
+    var num = 29;
+    console.log(num);                   //
+    console.log(window.num);            //
+    console.log(num == window.num);     //
+    console.log(num === window.num);    //
+    // 函数
+    function sayNum() {
+        console.log(this.num);
+    }
+    console.log(sayNum);                        //
+    console.log(window.sayNum);                 //
+    console.log(sayNum == window.sayNum);       //
+    console.log(sayNum === window.sayNum);      //
+    sayNum();                                   //
+    window.sayNum();                            //
+    console.log(sayNum());                      //
+    console.log(window.sayNum());               //
+    console.log(sayNum() == window.sayNum());   //
+    console.log(sayNum() === window.sayNum());  //
+
+    // 抛开全局变量会成为 window 对象的属性不谈，定义全局变量与在 window 对象上直接定义属性还是有一点差别：
+    // 全局变量不能通过 delete 运算符删除，而直接在 window 对象上的定义的属性可以。
+    // 使用 var 语句添加的 window 属性有一个名为 Configurable 的特性，这个特性的值被默认设置为 false，
+    // 因此这样定义的属性不可以通过 delete 运算符删除。IE8 及更早版本在遇到使用 delete 删除 window 属性的语句时，都会抛出错误，以示警告。
+    // 变量
+    console.log(str);           //
+    console.log(window.str);    //
+    var str = 'nexus';
+    console.log(str);           //
+    console.log(window.str);    //
+    delete str;
+    console.log(str);           //
+    console.log(window.str);    //
+    delete window.str;          //  在 IE < 9 时抛出错误，在其他所有浏览器中都返回 false
+    console.log(str);           //
+    console.log(window.str);    //
+    //  window 对象的属性
+//    console.log(color);         //
+    console.log(window.color);  //
+    window.color = 'red';
+    console.log(color);         //
+    console.log(window.color);  //
+    delete color;
+//    console.log(color);         //
+    console.log(window.color);  //
+    delete window.color;        //  在 IE < 9 时抛出错误，在其他所有浏览器中都返回 true
+//    console.log(color);         //
+    console.log(window.color);  //
+</script>
+</html>
