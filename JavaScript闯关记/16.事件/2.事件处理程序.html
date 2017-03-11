@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--当单击这个按钮时，就会在控制台打印 'Input clicked'。这个操作是通过指定 onclick 特性并将一些 JavaScript 代码作为它的值来定义的。-->
+<input type="button" value="Input clicked" onclick="console.log('Input clicked')"/>
+
+<!--在这个例子中，单击按钮就会调用 showMessage() 函数。这个函数是在一个独立的 <script> 元素中定义的，当然也可以被包含在一个外部文件中。-->
+<!--事件处理程序中的代码在执行时，有权访问全局作用域中的任何代码。-->
+<input type="button" value="showMessage" onclick="showMessage"/>
+<input type="button" value="showMessage()" onclick="showMessage()"/>
+
+<!--通过 event 变量，可以直接访问事件对象，你不用自己定义它，也不用从函数的参数列表中读取。-->
+<input type="button" value="event.type" onclick="console.log(event.type)">
+
+<!--在这个函数内部，this 值等于事件的目标元素，-->
+<input type="button" value="this.value" onclick="console.log(this.value)">
+
+<!--事件处理程序要访问自己的属性就简单多了。-->
+<input type="button" value="value" onclick="console.log(value)">
+
+<!--showMessage()未加载-->
+<input type="button" value="try showMessage" onclick="try{showMessage();}catch(ex){}">
+
+<h1></h1>
+
+<!--附加-->
+<input type="button" id="ipt1" value="showEvent(event)" onclick="showEvent(event)">
+<input type="button" id="ipt2" value="JS showEvent()">
+<input type="button" id="ipt3" value="JS showEvent() fix">
+<input type="button" id="ipt4" value="JS showEvent() fixed">
+<button type="button" id="ipt5" value="点击我">zdnexus</button>
+
+</body>
+<script>
+    // 事件处理程序
+    // 事件就是用户或浏览器自身执行的某种动作。
+    // 诸如 click、load 和 mouseover，都是事件的名字。而响应某个事件的函数就叫做事件处理程序（或事件侦听器）。
+    // 事件处理程序的名字以 "on" 开头，因此 click 事件的事件处理程序就是 onclick，load 事件的事件处理程序就是 onload。
+
+    // 在 HTML 中指定事件处理程序有三个缺点。
+    // 1.假设 showMessage() 函数是在按钮下方、页面的最底部定义的。如果用户在页面解析 showMessage() 函数之前就单击了按钮，就会引发错误。
+    // 2.这样扩展事件处理程序的作用域链在不同浏览器中会导致不同结果。
+    // 不同 JavaScript 引擎遵循的标识符解析规则略有差异，很可能会在访问非限定对象成员时出错。（详情见作用域和闭包的第六章）
+    // 3.第三个缺点是，HTML 与 JavaScript 代码紧密耦合。如果要更换事件处理程序，就要改动两个地方：HTML 代码和 JavaScript 代码。
+    // 而这正是许多开发人员摒弃 HTML 事件处理程序，转而使用 JavaScript 指定事件处理程序的原因所在。
+    function showMessage() {
+        console.log('Hello world!');
+    }
+
+    // 含参传入
+    function showEvent(event) {
+        console.log(event.type);
+    }
+
+    // IE6 ~ IE8 不兼容
+    document.getElementById('ipt2').onclick = function (event) {
+        console.log(event.type);
+    };
+
+    // IE6 ~ IE8 兼容分析
+    document.getElementById('ipt3').onclick = function (event) {
+        console.log(event);                             // IE6 ~ IE8 为 undefined
+        // IE6 ~ IE8 在 onclick 函数的事件处理对象是 window.event
+        console.log(window.event);                      // Object
+        console.log(event === window.event);            // IE11 为 true，IE6 ~ IE10 为 false
+        console.log(event.type === window.event.type);  //
+    };
+
+    // IE6 ~ IE8 兼容方案
+    document.getElementById('ipt4').onclick = function (event) {
+        var e = event || window.event;
+        console.log(e.type);
+        console.log(this.value);
+    };
+
+    // IE6 ~ IE7 显示 button 标签 value 显示的是标签的内容而不是 value 值
+    document.getElementById('ipt5').onclick = function () {
+        console.log(this.value);
+    };
+</script>
+</html>

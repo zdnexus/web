@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    Array.prototype.zdmap = function (callback, thisArg) {
+    //        // 检测调用宿主
+    //        if (this == null) {
+    //            throw new TypeError('this is null or not defined');
+    //        }
+    //
+    //        // 检测函参
+    //        if (Object.prototype.toString.call(callback) != '[object Function]') {
+    //            throw new TypeError(callback + ' is not a function');
+    //        }
+    //
+    //        var T, A, k;
+    //
+    //        // QQQ
+    //        var O = Object(this);
+    //
+    //        // QQQ
+    //        var len = O.length >>> 0;
+    //
+    //        if (thisArg) {
+    //            T = thisArg;
+    //        }
+    //
+    //        A = new Array(len);
+    //
+    //        k = 0;
+    //
+    //        while (k < len) {
+    //
+    //            var kValue, mappedValue;
+    //
+    //            //遍历O,k为原数组索引
+    //            if (k in O) {
+    //
+    //                //kValue为索引k对应的值.
+    //                kValue = O[k];
+    //
+    //                // 执行callback,this指向T,参数有三个.分别是kValue:值,k:索引,O:原数组.
+    //                mappedValue = callback.call(T, kValue, k, O);
+    //
+    //                // 返回值添加到新数组A中.
+    //                A[k] = mappedValue;
+    //            }
+    //            // k自增1
+    //            k++;
+    //        }
+    //
+    //        return A;
+    //    };
+    //
+    //    var arr = [1, 2, 3];
+    //    var res = arr.zdmap(function (item, index, array) {
+    //        console.log(item);
+    //        console.log(index);
+    //        console.log(array);
+    //        console.log(this);
+    //        return item * 2;
+    //    });
+    //    console.log(res);
+
+    //
+    //    function f1(a, b, c) {
+    //        return a + b + c;
+    //    }
+    //    console.log(f1.call(undefined, 1, 2, 3));
+    //    console.log(f1());
+
+
+//    Array.prototype.wokao = function (callback, thisArg) {
+//        if (this == null) {
+//            throw new TypeError('null');
+//        }
+//
+//        if (Object.prototype.toString.call(callback) === '[object Function]') {
+//            throw new TypeError('no Function');
+//        }
+//
+//        var T, A;
+//
+//        if (thisArg) {
+//            T = thisArg;
+//        }
+//
+//        var O = Object(this);
+//        var len = O.length >>> 0;
+//
+//        A = new Array(len);
+//
+//        var k = 0;
+//        while (k < len) {
+//            if (k in O) {
+//                A[k] = callback.call(T, O[k], k, O);
+//            }
+//            ++k;
+//        }
+//
+//        return A;
+//    };
+//
+//    var arr = [1, 2, 3];
+//    var res = arr.wokao(function (item, index, array) {
+//        console.log(item);
+//        console.log(index);
+//        console.log(array);
+//        console.log(this);
+//
+//        return item * 2;
+//    }, arr);
+//    console.log(res);
+//
+//
+//    console.log(typeof arr.wokao);
+
+
+    function fn1() {
+        for (var i = 0; i < 10; i++) {
+            var tc = setTimeout(function(i) {
+                console.log(tc);
+                console.log(i);
+                clearTimeout(tc);
+                console.log('');
+            }, 500,i);
+        }
+        console.log(tc);
+    }
+    fn1();
+
+</script>
+</html>

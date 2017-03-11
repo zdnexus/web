@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myDiv {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            background-color: #00b800;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myDiv" class="bd we" title="Body text" lang="en" dir="ltr" my_special_attribute="zd"></div>
+
+<ul id="ul">
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+<script>
+    // Element 类型
+    //    nodeType 的值为1；
+    //    nodeName 的值为元素的标签名；
+    //    nodeValue 的值为 null；
+    //    parentNode 可能是 Document 或 Element；
+    //    其子节点可能是 Element、Text、Comment、ProcessingInstruction、CDATASection 或 EntityReference。
+    var div = document.getElementById('myDiv');
+    // div.tagName 实际上输出的是 'DIV' 而非 'div'。在HTML中，标签名始终都以全部大写表示；
+    // 而在 XML（有时候也包括 XHTML）中，标签名则始终会与源代码中的保持一致。
+    console.log(div.tagName);                   // 'DIV'
+    // 要访问元素的标签名，可以使用 nodeName 属性，也可以使用 tagName 属性；这两个属性会返回相同的值（使用后者主要是为了清晰起见）。
+    console.log(div.tagName === div.nodeName);  // true
+
+    // 不能这样比较，很容易出错！
+    if (div.tagName == 'div') {
+        console.log('不能这样比较，很容易出错！');
+    }
+    // 这样最好（适用于任何文档）
+    if (div.tagName.toLowerCase() == 'div') {
+        console.log('这样最好（适用于任何文档）');
+    }
+
+    // 元素中指定的所有信息，都可以通过下列 JavaScript 代码取得：
+    console.log(div.id);                    // 'myDiv'
+    console.log(div.className);             // 'bd we'
+    console.log(div.title);                 // 'Body text'
+    console.log(div.lang);                  // 'en'
+    console.log(div.dir);                   // 'ltr'
+    console.log(div.my_special_attribute);  // undefined（IE8及以下：'zd'）
+
+    // 像下面这样通过为每个属性赋予新的值，也可以修改对应的每个特性：
+    //    div.id = 'someOtherId';
+    //    div.className = 'ft';
+    //    div.title = 'Some other text';
+    //    div.lang = 'fr';
+    //    div.dir ='rtl';
+
+    // 取得特性
+    // 传递给 getAttribute() 的特性名与实际的特性名相同。
+    // 因此要想得到 class 特性值，应该传入 'class' 而不是 'className'，后者只有在通过对象属性访问特性时才用。
+    // 如果给定名称的特性不存在，getAttribute() 返回 null。
+    console.log(div.getAttribute('id'));                    // 'myDiv'
+    console.log(div.getAttribute('class'));                 // 'bd'
+    console.log(div.getAttribute('title'));                 // 'Body text'
+    console.log(div.getAttribute('lang'));                  // 'en'
+    console.log(div.getAttribute('dir'));                   // 'ltr'
+    console.log(div.getAttribute('my_special_attribute'));  // 'zd'
+
+    // 设置特性
+    // 与 getAttribute() 对应的方法是 setAttribute()，这个方法接受两个参数：要设置的特性名和值。
+    // 如果特性已经存在，setAttribute() 会以指定的值替换现有的值；如果特性不存在，setAttribute() 则创建该属性并设置相应的值。
+    //    div.setAttribute('id', 'someOtherId');
+    div.setAttribute('class', 'ft');
+    div.setAttribute('title', 'Some other text');
+    div.setAttribute('lang', 'fr');
+    div.setAttribute('dir', 'rtl');
+    div.setAttribute('hercolor', 'black');
+
+    // 属性的值与通过 getAttribute() 返回的值并不相同。
+    // 第一类特性就是 style，用于通过 CSS 为元素指定样式。在通过 getAttribute() 访问时，返回的 style 特性值中包含的是CSS文本，
+    // 而通过属性来访问它则会返回一个对象。由于 style 属性是用于以编程方式访问元素样式的，因此并没有直接映射到 style 特性。
+    // 第二类与众不同的特性是 onclick 这样的事件处理程序。当在元素上使用时，onclick 特性中包含的是 JavaScript 代码，
+    // 如果通过 getAttribute() 访问，则会返回相应代码的字符串。而在访问 onclick 属性时，则会返回一个 JavaScript 函数
+    // （如果未在元素中指定相应特性，则返回 null）。这是因为 onclick 及其他事件处理程序属性本身就应该被赋予函数值。
+    console.log(div.my_special_attribute);                      // undefined（IE8及以下：'zd'）
+    console.log(div.getAttribute('my_special_attribute'));      // zd
+    console.log(div.getAttribute('background-color'));          // null
+    console.log(div.getAttribute('style'));                     // null
+
+    console.log(div.hercolor);                                  // undefined（IE8及以下：'black'）
+    console.log(div.getAttribute('hercolor'));                  // black
+
+    div.mycolor = 'red';
+    console.log(div.mycolor);                                   // red
+    console.log(div.getAttribute('mycolor'));                   // null（IE8及以下：'red'）
+
+    // removeAttribute()，这个方法用于彻底删除元素的特性。调用这个方法不仅会清除特性的值，而且也会从元素中完全删除特性
+    div.removeAttribute('class');
+
+    // 创建元素
+    var newDiv = document.createElement('div');
+    newDiv.id = 'myDiv';
+    newDiv.className = 'box';
+    document.body.appendChild(newDiv);
+
+    // 元素的子节点
+    // 方法一：
+    var ul = document.getElementById('ul');
+    for (var i = 0, len = ul.childNodes.length; i < len; i++) {
+        if (ul.childNodes[i].nodeType == 1) {
+            //执行某些操作
+        }
+    }
+    // 方法二:
+    var items = ul.getElementsByTagName('li');
+</script>
+</html>

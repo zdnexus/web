@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myDiv{
+            width: 300px;
+            height: 300px;
+            background-color: #0ac2d2;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myDiv">Click Me</div>
+
+</body>
+<script>
+    // 事件流
+    // 事件流描述的是从页面中接收事件的顺序。但有意思的是，IE 和 Netscape 开发团队居然提出了差不多是完全相反的事件流的概念。
+    // IE 的事件流是事件冒泡流，而 Netscape Communicator 的事件流是事件捕获流。
+
+    // 事件冒泡
+    // IE 的事件流叫做事件冒泡（event bubbling），
+    // 即事件开始时由最具体的元素（文档中嵌套层次最深的那个节点）接收，然后逐级向上传播到较为不具体的节点（文档）
+    // click 事件首先在 <div> 元素上发生，而这个元素就是我们单击的元素。
+    // 然后，click 事件沿 DOM 树向上传播，在每一级节点上都会发生，直至传播到 document 对象。
+    document.getElementById('myDiv').onclick = function () {
+        console.log('Div click');
+    };
+
+    document.body.onclick = function () {
+        console.log('Body click');
+    };
+
+    // 事件捕获
+    // Netscape Communicator 团队提出的另一种事件流叫做事件捕获（event capturing）。
+    // 事件捕获的思想是不太具体的节点应该更早接收到事件，而最具体的节点应该最后接收到事件。事件捕获的用意在于在事件到达预定目标之前捕获它。
+</script>
+</html>

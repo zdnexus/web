@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="myBtn" value="312312">
+
+</body>
+<script>
+    var btn = document.getElementById("myBtn");
+    btn.onclick = function (event) {
+        console.log(event); // IE6 ~ IE8：undefined
+        // 所有浏览器
+        console.log(window.event);
+        console.log(window.event.srcElement === event.srcElement);  // true
+    };
+
+    var a = 1;
+    var b = '1';
+    console.log(a == b);
+
+    var obj1 = {x: 1};
+    var obj2 = {x: 1};
+    var obj3 = obj1;
+    console.log(obj1 == obj2);
+    console.log(obj1 == obj3);
+    console.log(obj2 == obj3);
+</script>
+</html>

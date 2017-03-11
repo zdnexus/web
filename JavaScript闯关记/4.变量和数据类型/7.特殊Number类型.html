@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 正无穷Infinity、负无穷-Infinity
+    console.log(Number.MAX_VALUE);  // 最大数 1.7976931348623157e+308
+    console.log(Number.MIN_VALUE);  // 最小数 5e-324
+
+    console.log(Number.POSITIVE_INFINITY);  // 正无穷  Infinity
+    console.log(Number.NEGATIVE_INFINITY);  // 负无穷 -Infinity
+
+    // JavaScript 提供了 isFinite() 函数，来确定一个数是不是有穷的。
+    console.log(isFinite(100));         // true
+    console.log(isFinite(Infinity));    // false
+
+    console.log(typeof Infinity);   // 'number'
+    console.log(typeof -Infinity);  // 'number'
+
+    // 0作为除数是不会报错的，正数除以0返回正无穷，负数除以0返回负无穷，0除以0返回NaN
+    console.log(1 / 0);     // Infinity
+    console.log(-1 / 0);    // -Infinity
+    console.log(0 / 0);     // NaN
+
+    // NaN
+    // NaN（not a number），是一个特殊的数值。之所以称它为「非数值」，是因为它不能参与算数运算，
+    // 任何涉及 NaN 的操作都返回 NaN。并且 NaN 与任何值都不相等（包括自身）。
+    console.log(typeof NaN);            // 'number'
+    console.log(NaN - NaN);             // NaN
+    console.log(NaN - Infinity);        // NaN
+    console.log(Infinity - Infinity);   // NaN
+    console.log(Infinity + Infinity);   // Infinity
+    console.log(-Infinity + Infinity);  // NaN
+    console.log(-Infinity - Infinity);  // -Infinity
+
+    var b = NaN;
+    console.log(b === b);               // false
+    console.log(NaN === NaN);           // false
+
+    // JavaScript 提供了 isNaN() 函数，来确定一个数是不是 NaN。例如：
+    // isNaN() 函数在接收到一个值之后，会尝试使用转型函数 Number() 将这个值转换为数值，
+    console.log(isNaN(100));            //  false
+    console.log(isNaN(true));           //  false
+    console.log(isNaN(NaN));            //  true
+    console.log(isNaN('sss'));          //  true
+    console.log(isNaN('100'));          //  false
+    console.log(isNaN('100s'));         //  true
+</script>
+</html>

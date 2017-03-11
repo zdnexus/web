@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script>
+        // 可是这种做法意味着必须等到全部 JavaScript 代码都被下载、解析和执行完成之后，才能开始呈现页面的内容
+        // （浏览器在遇到 <body> 元素时才开始呈现内容）。
+
+        // 对于那些需要加载很多 JavaScript 代码的页面来说，会导致页面出现明显的延迟（浏览器窗口一片空白）。
+        // 为了避免这个问题，最好的做法是把 <script> 元素放到 HTML 文档的最后面，</body> 元素之前
+        // <script> 元素都会按照他们在页面中出现的先后顺序依次被解析。
+    </script>
+</head>
+<body>
+
+</body>
+<script type="text/javascript">
+    // 在 HTML5 规范中，<script> 的 type 属性默认是 "text/javascript"，所以可以省略；
+    // 但是在 HTML 4.01 和 XHTML 1.0 规范中，type 属性是必须的。
+
+    // 带有 src 属性的 <script> 元素不应该之间再包含额外的 JavaScript 代码。
+    // 如果包含了嵌入的代码，则只会下载并执行外部脚本文件，嵌入的代码会被忽略。
+</script>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js">
+    console.log('x'); // 永远不会执行
+</script>
+</html>

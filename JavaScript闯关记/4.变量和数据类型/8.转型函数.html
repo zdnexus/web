@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // Number()、parseInt()、parseFloat() 转型函数
+    // isNaN() 函数在接收到一个值之后，会尝试使用转型函数 Number() 将这个值转换为数值，转换规则如下：
+
+    // undefined
+    console.log(Number(undefined));         // NaN
+    console.log(parseInt(undefined));       // NaN
+    console.log(parseFloat(undefined));     // NaN
+
+    // null
+    console.log(Number(null));              // 0
+    console.log(parseInt(null));            // NaN
+    console.log(parseFloat(null));          // NaN
+
+    // true
+    console.log(Number(true));              // 1
+    console.log(parseInt(true));            // NaN
+    console.log(parseFloat(true));          // NaN
+
+    // false
+    console.log(Number(false));             // 0
+    console.log(parseInt(false));           // NaN
+    console.log(parseFloat(false));         // NaN
+
+    // ''
+    console.log(Number(''));                // 0
+    console.log(parseInt(''));              // NaN
+    console.log(parseFloat(''));            // NaN
+
+    // '123'
+    console.log(Number('123'));             // 123
+    console.log(parseInt('123'));           // 123
+    console.log(parseFloat('123.3'));       // 123
+
+    // '123s'
+    console.log(Number('123s'));            // NaN
+    console.log(parseInt('123s'));          // 123
+    console.log(parseInt('123s'));          // 123
+
+    // '098.2'
+    console.log(Number('098.2'));           // 98.2
+    console.log(parseFloat('098.2'));       // 98.2
+    console.log(parseFloat('123.23.23'));   // 123.23
+</script>
+</html>

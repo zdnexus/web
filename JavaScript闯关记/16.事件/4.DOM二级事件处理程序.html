@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="myBtn" value="button">
+
+</body>
+<script>
+    // DOM2 级事件处理程序
+    // addEventListener() 和 removeEventListener()
+    // 所有 DOM 节点中都包含这两个方法，并且它们都接受3个参数：要处理的事件名、作为事件处理程序的函数和一个布尔值。
+    // 最后这个布尔值参数如果是 true，表示在捕获阶段调用事件处理程序；如果是 false，表示在冒泡阶段调用事件处理程序。
+    var btn = document.getElementById('myBtn');
+
+    // IE9 ~ IE11
+    if (window.addEventListener) {
+        document.body.addEventListener('click', function () {
+            console.log('Body click');
+        }, false);
+
+        btn.addEventListener('click', function () {
+            console.log('Btn addEventListener ~ 1');
+            console.log(this.id);   // 'myBtn'
+        }, false);
+
+        // 使用 DOM2 级方法添加事件处理程序的主要好处是可以添加多个事件处理程序。
+        // 不会覆盖前面的 addEventListener，按照函数的顺序运行。
+        // 这里为按钮添加了两个事件处理程序。这两个事件处理程序会按照添加它们的顺序触发，
+        btn.addEventListener('click', function () {
+            console.log('Btn addEventListener ~ 2');
+            console.log(this.value);    // 'button'
+        }, false);
+
+        // removeEventListener() 无效
+        btn.removeEventListener('click', function () {
+            console.log('Btn addEventListener ~ 2');
+            console.log(this.value);    // 'button'
+        }, false);
+
+        // addEventListener() 和 removeEventListener() 中使用了指向相同的函数，而不是相同的匿名函数。
+        var handler = function () {
+            console.log('Hello World!');
+        };
+        btn.addEventListener('click', handler, false);
+        // removeEventListener() 有效
+        btn.removeEventListener('click', handler, false);
+    }
+</script>
+</html>

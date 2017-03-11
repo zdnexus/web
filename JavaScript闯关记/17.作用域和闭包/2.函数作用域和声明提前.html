@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 在一些类似 C 语言的编程语言中，花括号内的每一段代码都具有各自的作用域，
+    // 而且变量在声明它们的代码段之外是不可见的，我们称为块级作用域（block scope），而 JavaScript 中没有块级作用域。
+    // JavaScript 取而代之地使用了函数作用域（function scope），变量在声明它们的函数体以及这个函数体嵌套的任意函数体内都是有定义的。
+
+    // 块级作用域
+    function f1(o) {
+        var i = 0; // i 在整个函数体内均是有定义的
+        if (typeof o == 'string') {
+            var j = 0; // j 在函数体内是有定义的，不仅仅是在这个代码段内
+            for (var k = 0; k < 10; k++) { // k 在函数体内是有定义的，不仅仅是在循环内
+                console.log(k); // 输出数字0~9
+            }
+            console.log(k); // k 已经定义了，输出10
+        }
+        console.log(j); // j 已经定义了，但可能没有初始化
+    }
+    f1('abc');
+
+    // JavaScript 的函数作用域是指在函数内声明的所有变量在函数体内始终是可见的。有意思的是，这意味着变量在声明之前甚至已经可用。
+    // JavaScript 的这个特性被非正式地称为声明提前（hoisting），即 JavaScript 函数里声明的所有变量（但不涉及赋值）都被「提前」至函数体的顶部，
+    var scope = 'A';
+    function f2() {
+        console.log(scope); // undefined
+        var scope = 'B';    // 变量在这里赋初始值，但变量本身在函数体内任何地方均是有定义的
+        console.log(scope); // 'B'
+    }
+    f2();
+
+    // 由于 JavaScript 没有块级作用域，因此一些程序员特意将变量声明放在函数体顶部，而不是将声明靠近放在使用变量之处。
+    // 这种做法使得他们的源代码非常清晰地反映了真实的变量作用域。
+    function f3() {
+        var scope;          // 在函数顶部声明了局部变量
+        console.log(scope); // undefined
+        scope = 'local';    // 这里将其初始化并赋值
+        console.log(scope); // 这里它具有了我们所期望的值
+    }
+    f3();
+
+</script>
+</html>

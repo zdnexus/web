@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 挑战一
+    function f1() {
+        function inner() {
+            console.log(this);
+        }
+        return inner;
+    }
+    var ret = f1();
+    ret();
+
+    // 挑战二
+    scope2 = 'A';
+    function f2() {
+        var scope2 = 'B';
+
+        function inner() {
+            console.log(scope2);
+        }
+
+        return inner;
+    }
+    ret = f2();
+    ret();
+
+    // 挑战三
+    scope3 = 'A';
+    function f3() {
+        var scope3 = 'B';
+
+        function inner() {
+            console.log(scope3);
+        }
+
+        scope3 = 'C';
+        return inner;
+    }
+    ret = f3();
+    ret();
+
+
+    // 挑战四
+    scope4 = 'A';
+    function f4() {
+        console.log(scope4);
+    }
+    function f5() {
+        var scope4 = 'B';
+        f4();
+        return f4;
+    }
+    ret = f5();
+    ret();
+
+    // 挑战五
+    var name1 = 'The Window';
+    var obj1 = {
+        name1: 'My Object',
+        getNameFunc: function () {
+            return function () {
+                console.log(this.name1);
+            }
+        }
+    };
+    obj1.getNameFunc()();
+
+    // 挑战六
+    var name2 = 'The Window';
+    var obj2 = {
+        name2: 'My Object',
+        getNameFunc: function () {
+            var _this = this;
+            return function () {
+                console.log(_this.name2);
+            };
+        }
+    };
+    obj2.getNameFunc()();
+
+    // 挑战七
+    var name3 = 'The Window';
+    var obj3 = {
+        name3: 'My Object',
+        getNameFunc: function () {
+            return function () {
+                console.log(this.name3);
+            }.bind(this);
+        }
+    };
+    obj3.getNameFunc()();
+</script>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 我们创建的每个函数都有一个 prototype（原型）属性。使用原型的好处是可以让所有新对象实例共享它所包含的属性和方法。
+    // 换句话说，不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型中，
+    function Person() {
+    }
+    Person.prototype.name = 'Glx';
+    Person.prototype.age = 28;
+    Person.prototype.job = 'Sale Engineer';
+    Person.prototype.showMsg = function () {
+        console.log('我的名字叫' + this.name + '，今年' + this.age + '岁，工作是' + this.job);
+    };
+
+    var person1 = new Person();
+    var person2 = new Person();
+    person1.showMsg();    // '我的名字叫Glx，今年28岁，工作是Sale Engineer'
+    person2.showMsg();    // '我的名字叫Glx，今年28岁，工作是Sale Engineer'
+
+    // 问题：call和apply无法调用 prototype 属性。
+    // 在另一个对象的作用域中call调用：
+    var person3 = new Object();
+    Person.call(person3);
+    console.log(person3.name); // undefined
+//    person3.showMsg(); // TypeError: person3.showMsg is not a function
+
+    // 在另一个对象的作用域中apply调用：
+    var person4 = new Object();
+    Person.apply(person4);
+    console.log(person4.name); // undefined
+//    person4.showMsg(); // TypeError: person4.showMsg is not a function
+
+    // 新对象具有相同的属性和方法，相同的内存地址，没有浪费内存空间。
+    console.log(person1.showMsg == person2.showMsg);    // true
+    console.log(person3.showMsg);                       // undefined
+    console.log(person4.showMsg);                       // undefined
+    console.log(person3.showMsg == person4.showMsg);    // true
+</script>
+</html>

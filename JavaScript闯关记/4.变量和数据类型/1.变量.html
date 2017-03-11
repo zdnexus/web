@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 变量
+    // JavaScript 的变量是松散类型的，所谓松散类型就是可以用来保存任何类型的数据。
+    // 换句话说，每个变量仅仅是一个用于保存值的占位符而已。定义变量时要使用关键字 var 来声明的：
+
+    // 这行代码定义了一个名为 message 的变量，该变量可以用来保存任何值（像未经过初始化的变量，会保存一个特殊的值 undefined）。
+    var message = 'hello';
+
+    // JavaScript 也支持直接初始化变量，因此在定义变量的同时就可以设置变量的值，
+    message = 100;  // 有效的语句，不好的写法
+    // 变量 message 一开始保存了一个字符串值 'hello'，然后该值又被一个数字值100取代。
+    // 虽然我们不建议修改变量所保存值的类型，但这种操作在 JavaScript 中完全有效。
+
+    // 即使用 var 运算符定义的变量是的该作用域中的局部变量。
+    // 也就是说，如果在函数中使用 var 定义一个变量，那么这个变量在函数退出后就会被销毁，
+    function test() {
+        var message2 = 'hello'; // 局部变量
+    }
+    test();
+//    console.log(message2);  // 产生错误
+
+    // 省略了 var 运算符，因而 message 就成了全局变量。
+    // 这样，只要调用一次 test() 函数，这个变量就有了定义，就可以在函数外部的任何地方被访问到。
+    // 虽然省略 var 运算符可以定义全局变量，但这也不是推荐的做法，
+    // 因为在局部作用域中定义全局变量很难维护，给未经声明的变量赋值在严格模式下会抛出 ReferenceError 错误。
+    function test2() {
+        message3 = 'hello'; // 全局变量，不好的写法
+    }
+    test2();
+    console.log(message3);  // 'hello'
+</script>
+</html>

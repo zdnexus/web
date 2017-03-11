@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+<script>
+    // 理解 NodeList 及其“近亲” NamedNodeMap 和 HTMLCollection，是从整体上透彻理解 DOM 的关键所在。
+    // 这三个集合都是“动态的”；换句话说，每当文档结构发生变化时，它们都会得到更新。因此，它们始终都会保存着最新、最准确的信息。
+
+    // 第一行代码会取得文档中所有 <div> 元素的 HTMLCollection。
+    // 由于这个集合是“动态的”，因此只要有新 <div> 元素被添加到页面中，这个元素也会被添加到该集合中。
+    // 浏览器不会将创建的所有集合都保存在一个列表中，而是在下一次访问集合时再更新集合。
+    // 考虑到循环体每次都会创建一个新 <div> 元素并将其添加到文档中，因此 divs.length 的值在每次循环后都会递增。
+    // 既然i和 divs.length 每次都会同时递增，结果它们的值永远也不会相等。
+    var i, div, divs = document.getElementsByTagName('div');
+    for (i = 0; i < divs.length; i++) {
+        console.log(divs.length);
+        div = document.createElement('div');
+        document.body.appendChild(div);
+    }
+</script>
+</html>

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 如果两个操作数都是数值，则执行数值比较。
+    // 如果两个操作数都是字符串，则比较两个字符串对应的字符编码值（可以通过字符串的 charCodeAt() 函数获取字符编码值）。
+    // 如果一个操作数是数值，则将另一个操作数转换为一个数值，然后执行数值比较。
+    // 如果一个操作数是对象，则调用这个对象的 valueOf() 方法，用得到的结果按照前面的规则执行比较。如果对象没有 valueOf()方法，则调用 toString()方法，并用得到的结果根据前面的规则执行比较。
+    // 如果一个操作数是布尔值，则先将其转换为数值，然后再执行比较。
+
+    var result1 = 'Brick' < 'alphabet';
+    console.log(result1);   // true
+
+    var result2 = 'brick' < 'alphabet';
+    console.log(result2);   // false
+
+    var result3 = '23' < '3';
+    console.log(result3);   // true
+
+    var result4 = '23' < 3;
+    console.log(result4);   // false
+
+    var result5 = 'a' < 3;
+    console.log(result5);   // false
+
+    var result6 = NaN < 3;
+    console.log(result6);   // false
+
+    var result7 = NaN >= 3;
+    console.log(result7);   //  false
+
+    var result8 = true > 0;
+    console.log(result8);   //  true
+
+    // in 运算符
+    // in 运算符希望它的左操作数是一个字符串或可以转换为字符串，希望它的右操作数是一个对象。
+    // 如果右侧的对象拥有一个名为左操作数值的属性名，那么表达式返回 true，
+    var point = {x: 1, y: 1};
+    console.log('x' in point);          // true，对象有一个名为'x'的属性
+    console.log('z' in point);          // false，对象中不存在名为'z'的属性
+    console.log('toString' in point);   // true，对象继承了toString()方法
+
+    var data = [7, 8, 9];
+    console.log('0' in data);           // true，数组包含元素'0'
+    console.log(1 in data);             // true，数字转换为字符串
+    console.log(3 in data);             // false，没有索引为3的元素
+
+    // instanceof 运算符
+    // instanceof 运算符希望左操作数是一个对象，右操作数标识对象的类。如果左侧的对象是右侧类的实例，则表达式返回 true；否则返回 false。
+    var d = new Date();     // 通过 Date() 构造函数来创建一个新对象
+    console.log(d instanceof Date);     // true，d 是由 Date() 创建的
+    console.log(d instanceof Object);   // true，所有的对象都是 Object 的实例
+    console.log(d instanceof Number);   // false，d 不是一个 Number 对象
+
+    var a = [1, 2, 3];      // 通过数组字面量的写法创建一个数组
+    console.log(a instanceof Array);    // true，a 是一个数组
+    console.log(a instanceof Object);   // true，所有的数组都是对象
+    console.log(a instanceof RegExp);   // false，数组不是正则表达式
+
+    // 逻辑非
+    console.info('逻辑非');
+    console.log(!false);          // true
+    console.log(!'blue');         // false
+    console.log(!0);              // true
+    console.log(!NaN);            // true
+    console.log(!'');             // true
+    console.log(!12345);          // false
+    console.log(!!'blue');        // true
+    console.log(!!0);             // false
+    console.log(!!NaN);           // false
+    console.log(!!'');            // false
+    console.log(!!12345);         // true
+
+    // 逗号运算符
+    // 逗号运算符多用于声明多个变量；但除此之外，逗号运算符还可以用于赋值。在用于赋值时，逗号运算符总会返回表达式中的最后一项
+    var num = (5, 1, 4, 8, 0); // num 的值为 0
+</script>
+</html>

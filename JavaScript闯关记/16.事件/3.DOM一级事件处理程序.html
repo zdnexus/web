@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="ipt1" class="btn" value="button1" onclick="console.log(this.value)">
+<input type="button" id="ipt2" class="btn" value="button2" onclick="showValue()">
+<input type="button" id="ipt3" class="btn" value="button3" >
+
+</body>
+<script>
+    // DOM1 级事件处理程序
+    // 通过 JavaScript 指定事件处理程序的传统方式，就是将一个函数赋值给一个事件处理程序属性。
+    // 原因一是简单，二是具有跨浏览器的优势。要使用 JavaScript 指定事件处理程序，首先必须取得一个要操作的对象的引用。
+
+    // 检查this
+    function showValue() {
+        console.log(this.value);
+    }
+
+    var ipt3 = document.getElementById('ipt3');
+    // 每个元素（包括 window 和 document）都有自己的事件处理程序属性，这些属性通常全部小写，例如 onclick。
+    // 将这种属性的值设置为一个函数，就可以指定事件处理程序，
+    // 在这些代码运行以前不会指定事件处理程序，因此如果这些代码在页面中位于按钮后面，就有可能在一段时间内怎么单击都没有反应。
+    ipt3.onclick = function () {
+        console.log('Btn onclick ~ 1');
+    };
+    // 覆盖前面的 onclick
+    ipt3.onclick = function () {
+        console.log('Btn onclick ~ 2');
+        console.log(this);
+        console.log(this === document.getElementById('ipt3'));  // true
+        console.log(this.id);                                   // 'ipt3'
+        console.log(this.getAttribute('id'));                   // 'ipt3'
+        console.log(this.className);                            // 'btn'
+        console.log(this.getAttribute('class'));                // IE8 ~ IE11 : 'btn'，IE6 ~ IE7 : null
+        console.log(this.getAttribute('className'));            // IE8 ~ IE11 : null，IE6 ~ IE7 : 'btn'
+        console.log(this.value);                                // 'button3'
+        console.log(this.getAttribute('value'));                // 'button3'
+        console.log(this.myString);                             // undefined
+        console.log(this.getAttribute('myString'));             // null
+    };
+    // 删除事件处理程序，通过覆盖删除事件处理
+//    btn3.onclick = null;
+</script>
+</html>

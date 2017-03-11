@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // null
+    console.log(null == null);      // true
+    console.log(null === null);     // true
+
+    // 0
+    console.log(null + 0);   // 0
+    console.log(null - 0);   // 0
+    console.log(null * 0);   // 0
+    console.log(null / 0);   // NaN
+    console.log(null % 0);   // NaN
+
+    // 非0
+    console.log(null + 1);   // 1
+    console.log(null - 1);   // -1
+    console.log(null * 1);   // 0
+    console.log(null / 1);   // 0
+    console.log(null % 1);   // 0
+
+    // NaN
+    console.log(null + NaN); // NaN
+    console.log(null - NaN); // NaN
+    console.log(null * NaN); // NaN
+    console.log(null / NaN); // NaN
+    console.log(null % NaN); // NaN
+
+    // Infinity
+    console.log(null + Infinity);    // Infinity
+    console.log(null - Infinity);    // -Infinity
+    console.log(null * Infinity);    // NaN
+    console.log(null / Infinity);    // 0
+    console.log(null % Infinity);    // 0
+
+    // -Infinity
+    console.log(null + -Infinity);   // -Infinity
+    console.log(null - -Infinity);   // Infinity
+    console.log(null * -Infinity);   // NaN
+    console.log(null / -Infinity);   // 0
+    console.log(null % -Infinity);   // 0
+
+    // null
+    console.log(null + null);    // 0
+    console.log(null - null);    // 0
+    console.log(null * null);    // 0
+    console.log(null / null);    // NaN
+    console.log(null % null);    // NaN
+
+    // undefined
+    console.log(null + undefined);   // NaN
+    console.log(null - undefined);   // NaN
+    console.log(null * undefined);   // NaN
+    console.log(null / undefined);   // NaN
+    console.log(null % undefined);   // NaN
+</script>
+</html>

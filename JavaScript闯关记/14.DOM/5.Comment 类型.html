@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="myDiv"><!--A comment --></div>
+
+</body>
+<script>
+    // Comment 类型
+    //    nodeType 的值为8；
+    //    nodeName 的值为 '#comment'；
+    //    nodeValue 的值是注释的内容；
+    //    parentNode 可能是 Document 或 Element；
+    //    不支持（没有）子节点。
+    var div = document.getElementById('myDiv');
+    var comment = div.firstChild;
+    console.log(comment.data);    // 'A comment'
+
+    // 开发人员很少会创建和访问注释节点，因为注释节点对算法鲜有影响。
+    // 此外，浏览器也不会识别位于 </html> 标签后面的注释。如果要访问注释节点，一定要保证它们位于 <html> 和 </html> 之间。
+    document.createComment('A comment ');
+</script>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="myBtn">Button</button>
+<a id="myLink" href="https://www.baidu.com">BaiDu</a>
+
+</body>
+<script>
+    // 事件对象的 eventPhase 属性，可以用来确定事件当前正位于事件流的哪个阶段。
+    // 如果是在捕获阶段调用的事件处理程序，那么 eventPhase 等于 1；
+    // 如果事件处理程序处于目标对象上，则 eventPhase 等于 2；
+    // 如果是在冒泡阶段调用的事件处理程序，eventPhase 等于 3。
+    // 这里要注意的是，尽管“处于目标”发生在冒泡阶段，但 eventPhase 仍然一直等于 2。
+
+    var link = document.getElementById('myLink');
+    link.onclick = function (event) {
+        var e = event || window.event;
+
+        console.log('Link clicked');
+        // IE6 ~ IE8 兼容方案
+        if (e.preventDefault) {
+            e.preventDefault();     // 阻止默认事件
+            console.log(e.eventPhase);
+        } else {
+            e.returnValue = false;  // IE6 ~ IE8 阻止默认事件
+        }
+    };
+
+    var btn = document.getElementById('myBtn');
+    btn.onclick = function (event) {
+        var e = event || window.event;
+
+        console.log('Btn clicked');
+        if (e.stopPropagation) {
+            e.stopPropagation();
+            console.log(e.eventPhase);
+        } else {
+            e.cancelBubble = true; // IE6 ~ IE8 阻止事件冒泡
+        }
+    };
+
+    document.body.onclick = function (event) {
+        var e = event || window.event;
+
+        console.log('Body clicked');
+        console.log(e.eventPhase);
+    };
+</script>
+</html>

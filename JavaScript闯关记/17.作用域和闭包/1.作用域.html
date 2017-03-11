@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 作用域
+    // 任何程序设计语言都有作用域的概念，简单的说，作用域就是变量与函数的可访问范围，即作用域控制着变量与函数的可见性和生命周期。
+    // 在 JavaScript 中，变量的作用域有全局作用域和局部作用域两种。
+
+    // 全局作用域（Global Scope）
+    // 在代码中任何地方都能访问到的对象拥有全局作用域
+
+    // 最外层函数和在最外层函数外面定义的变量拥有全局作用域
+    var global = 'A'; // 显式声明一个全局变量
+
+    function f1() {
+        return global;
+    }
+    console.log(f1()); // 'A'
+
+    function f2() {
+        global = 'B';
+        return global;
+    }
+    console.log(f2());      // 'B'
+    console.log(global);    // 'B'
+
+    // 局部作用域（Local Scope）
+    // 和全局作用域相反，局部作用域一般只在固定的代码片段内可访问到。最常见的是在函数体内定义的变量，只能在函数体内使用。
+
+    // 在函数体内，局部变量的优先级高于同名的全局变量。返回局部变量的值，而不是全局变量的值
+    function f3() {
+        var global = 'C'; // 显式声明一个局部变量
+        return global;
+    }
+    console.log(f3());      // 'C'
+    console.log(global);    // 'B'
+
+    // 返回局部变量的值，而不是全局变量的值
+    function f4() {
+        var global = 'D'; // 显式声明一个局部变量
+        global = 'E';
+        return global;
+    }
+    console.log(f4());      // 'E'
+    console.log(global);    // 'B'
+
+    function f5() {
+        var local = 'F'; // 显式声明一个局部变量
+        return local;
+    }
+    console.log(f5());  // 'F'
+    // 上面代码中，在函数体内定义了变量 local，在函数体内是可以访问了，在函数外访问就报错了。
+//    console.log(local); // Uncaught ReferenceError: local is not defined
+
+    // 全局和局部作用域的关系
+
+    // 尽管在全局作用域编写代码时可以不写 var 语句，但声明局部变量时则必须使用 var 语句。
+    global = 'G';           // 声明一个全局变量，甚至不用 var 来声明
+    function checkscope2() {
+        global = 'H';        // 糟糕！我们刚修改了全局变量
+        myGlobal = 'I';      // 这里显式地声明了一个新的全局变量
+        return [global, myGlobal];// 返回两个值
+    }
+    console.log(checkscope2()); // ['H', 'I']，产生了副作用
+    console.log(global);         // 'H'，全局变量修改了
+    console.log(myGlobal);       // 'I'，全局命名空间搞乱了
+
+    // 函数定义是可以嵌套的。由于每个函数都有它自己的作用域，因此会出现几个局部作用域嵌套的情况
+    global = 'J';         // 全局变量
+    function checkscope() {
+        var global = 'K';      //局部变量
+        function nested() {
+            var global = 'L'; // 嵌套作用域内的局部变量
+            return global;               // 返回当前作用域内的值
+        }
+        return nested();
+    }
+    console.log(checkscope());          // 'L'
+</script>
+</html>

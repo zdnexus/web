@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div></div>
+
+</body>
+<script>
+    // JS
+    // IE8及以下 将 <script> 视为一个特殊的元素，不允许 DOM 访问其子节点。
+    function loadScript(str) {
+        var script = document.createElement("script");
+        script.type = "text/javascript";
+        script.appendChild(document.createTextNode(str));
+        document.body.appendChild(script);
+    }
+//    loadScript("function sayHi(){alert('hi');}sayHi();");
+
+    // 兼容解决方案：
+    function loadScriptString(str) {
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        try {
+            script.appendChild(document.createTextNode(str));
+        } catch (ex) {
+            script.text = str;
+        }
+        document.body.appendChild(script);
+    }
+//    loadScriptString("function sayHi(){alert('hi');}sayHi();");
+
+    // CSS
+    // 以上代码在所有主流浏览器中都可以正常运行。
+    // 需要注意的是，必须将 <link> 元素添加到 <head> 而不是 <body> 元素，才能保证在所有浏览器中的行为一致。
+    // 加载外部样式文件的过程是异步的，也就是加载样式的过程没有固定的次序。一般来说，知不知道样式已经加载完成并不重要。
+    function loadStyles(url) {
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = url;
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(link);
+    }
+//    loadStyles('styles.css');
+
+    function loadStyleString(css) {
+        var style = document.createElement('style');
+        style.type = 'text/css';
+        try {
+            style.appendChild(document.createTextNode(css));
+        } catch (ex) {
+            style.styleSheet.cssText = css;
+        }
+        var head = document.getElementsByTagName('head')[0];
+        head.appendChild(style);
+    }
+//    loadStyleString("div{background-color:#0ac2d2}");
+</script>
+</html>

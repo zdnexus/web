@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // delete 运算符
+    // delete 运算符用来删除对象属性或者数组元素，如果删除成功或所删除的目标不存在，delete 将返回 true。
+    // 然而，并不是所有的属性都可删除，一些内置核心和客户端属性是不能删除的，
+    // 通过 var 语句声明的变量不能删除，通过 function 语句定义的函数也是不能删除的。例如：
+
+    // 定义一个对象
+    var o = {x: 1, y: 2};
+//    console.log('x' in o);              // true，这个属性在对象中存在
+//    console.log(delete o.x);            // true，删除一个属性
+//    console.log(delete o.x);            // true，什么都没做，x 在已上一步被删除
+//    console.log('x' in o);              // false，这个属性在对象中不再存在
+//    console.log(delete o.toString);     // true，什么也没做，toString 是继承来的
+//    console.log(delete 1);              // true，无意义
+
+    // 定义一个数组
+    var arr = ['x', 'y', 'z'];
+    console.log(2 in arr);              // true，下标为2的元素，在数组中存在
+    console.log(delete arr[2]);         // true，删除下标为2的元素（最后一个数组元素）
+    console.log(delete arr[2]);         // true，什么都没做，arr[2] 在已上一步被删除
+    console.log(2 in arr);              // false，下标为2的元素，在数组中不再存在
+    console.log(arr);                   // ['x','y']
+    console.log(arr[2]);                // undefined，下标为2的元素，位置被空了出来
+    console.log(arr.length);            // 3，数组长度并不会因 delete 而改变
+    console.log(delete arr);            // false，通过 var 语句声明的变量不能删除
+    console.log(delete window.arr);     // false，通过 var 语句声明的变量不能删除
+
+    window.arr2 = [1, 2, 3];
+    console.log(delete arr2);           // true，删除一个 window 属性
+
+    window.arr2 = [1, 2, 3];
+    console.log(delete window.arr2);    // true，删除一个 window 属性
+
+    // 定义一个函数
+    function f1(args) {
+    }
+    console.log(delete f1);             // false，通过 function 语句声明的函数不能删除
+
+    var f2 = function () {
+    };
+    console.log(delete f2)              // false，通过 function 语句声明的函数不能删除
+</script>
+</html>

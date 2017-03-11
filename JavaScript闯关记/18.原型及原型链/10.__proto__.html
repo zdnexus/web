@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    function Person(name) {
+        this.name = name;
+    }
+    Person.prototype.sayName = function () {
+        console.log('My name is ' + this.name);
+    };
+    var person1 = new Person('nexus');
+    person1.sayName(); // 'My name is nexus'
+    // 为什么在构造函数的 prototype 中定义了属性和方法，它的实例中就能访问呢？
+    // 那是因为当调用构造函数创建一个新实例后，该实例的内部将包含一个指针__proto__，指向构造函数的原型。
+    console.log(person1.__proto__ === Person.prototype); // true
+
+    // 我先创建了一个空对象 person，然后把 person.__proto__ 指向了 Person 的原型对象，便继承了 Person 原型对象中的所有属性和方法，
+    // 最后又以 person 为作用域执行了 Person 函数，person 便就拥有了 Person 的所有属性和方法。这个过程和 var person = new Person(); 完全一样。
+    var person2 = {}; // person2 为新的空对象
+    person2.__proto__ = Person.prototype; // person2 的指针 __proto__ 指向构造函数 Person 的原型
+    person2.sayName(); // 'My name is undefined'
+    Person.call(person2, 'Glx'); // person2 添加自己的属性。
+    person2.sayName(); // 'My name is Glx'
+    console.log(person2.__proto__ === Person.prototype); // true
+
+    // 简单来说，当我们访问一个对象的属性时，
+    // 如果这个属性不存在，那么就会去__proto__ 里找，这个 __proto__ 又会有自己的 __proto__，
+    // 于是就这样一直找下去，直到找到为止。在找不到的情况下，搜索过程总是要一环一环地前行到原型链末端才会停下来。
+</script>
+</html>

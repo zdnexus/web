@@ -19,5 +19,10 @@ arr.map(function (item, index) {
     console.log(typeof index + ':' + index + ':' + item);//number
 });
 
-let arr = [, ,];
-console.log(arr.length);
+// let arr = [, ,];
+// console.log(arr.length);
+
+arr = [];
+arr.map((item)=>{
+    console.log(item.a);
+});
