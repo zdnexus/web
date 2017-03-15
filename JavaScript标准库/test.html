@@ -7,133 +7,68 @@
 <body>
 
 </body>
+<!--<script src="test.js"></script>-->
 <script>
-    //    Array.prototype.zdmap = function (callback, thisArg) {
-    //        // 检测调用宿主
-    //        if (this == null) {
-    //            throw new TypeError('this is null or not defined');
+    'use strict';
+
+    //    function fn1() {
+    //        for (var i = 0; i < 10; i++) {
+    //            var tc = setTimeout(function(i) {
+    //                console.log(tc);
+    //                console.log(i);
+    //                clearTimeout(tc);
+    //                console.log('');
+    //            }, 500,i);
     //        }
+    //        console.log(tc);
+    //    }
+    //    fn1();
+
+    //    console.log(typeof null); // 'object';
+    //    console.log(null instanceof Object);    // false
+    //    console.log(Object instanceof Object);    // false
+    //    console.log(Function instanceof Function);    // false
+
+    //    var f1 = function () {
     //
-    //        // 检测函参
-    //        if (Object.prototype.toString.call(callback) != '[object Function]') {
-    //            throw new TypeError(callback + ' is not a function');
-    //        }
+    //    };
+    //    var n = new f1();
+    //    console.log(n instanceof f1);
+
+
+    //    console.log(f1 instanceof f1);
+    //    console.log(f1 instanceof Function);
+    //    console.log(n instanceof Function);
+
+
+    //    var arr = [1, 2, 3];
     //
-    //        var T, A, k;
-    //
-    //        // QQQ
-    //        var O = Object(this);
-    //
-    //        // QQQ
-    //        var len = O.length >>> 0;
-    //
-    //        if (thisArg) {
-    //            T = thisArg;
-    //        }
-    //
-    //        A = new Array(len);
-    //
-    //        k = 0;
-    //
-    //        while (k < len) {
-    //
-    //            var kValue, mappedValue;
-    //
-    //            //遍历O,k为原数组索引
-    //            if (k in O) {
-    //
-    //                //kValue为索引k对应的值.
-    //                kValue = O[k];
-    //
-    //                // 执行callback,this指向T,参数有三个.分别是kValue:值,k:索引,O:原数组.
-    //                mappedValue = callback.call(T, kValue, k, O);
-    //
-    //                // 返回值添加到新数组A中.
-    //                A[k] = mappedValue;
-    //            }
-    //            // k自增1
-    //            k++;
-    //        }
-    //
-    //        return A;
+    //    var f1 = function (a, b) {
+    //        console.log(a, b);
     //    };
     //
-    //    var arr = [1, 2, 3];
-    //    var res = arr.zdmap(function (item, index, array) {
-    //        console.log(item);
-    //        console.log(index);
-    //        console.log(array);
-    //        console.log(this);
-    //        return item * 2;
-    //    });
-    //    console.log(res);
-
+    //    var arr1 = arr.map(parseInt);
     //
-    //    function f1(a, b, c) {
-    //        return a + b + c;
-    //    }
-    //    console.log(f1.call(undefined, 1, 2, 3));
-    //    console.log(f1());
+    //    console.log(arr);
+    //
+    //    console.log(parseInt(1, 0)); // 1
+    //    console.log(parseInt(2, 1)); // NaN
+    //    console.log(parseInt(3, 2)); // NaN
 
 
-//    Array.prototype.wokao = function (callback, thisArg) {
-//        if (this == null) {
-//            throw new TypeError('null');
-//        }
-//
-//        if (Object.prototype.toString.call(callback) === '[object Function]') {
-//            throw new TypeError('no Function');
-//        }
-//
-//        var T, A;
-//
-//        if (thisArg) {
-//            T = thisArg;
-//        }
-//
-//        var O = Object(this);
-//        var len = O.length >>> 0;
-//
-//        A = new Array(len);
-//
-//        var k = 0;
-//        while (k < len) {
-//            if (k in O) {
-//                A[k] = callback.call(T, O[k], k, O);
-//            }
-//            ++k;
-//        }
-//
-//        return A;
-//    };
-//
-//    var arr = [1, 2, 3];
-//    var res = arr.wokao(function (item, index, array) {
-//        console.log(item);
-//        console.log(index);
-//        console.log(array);
-//        console.log(this);
-//
-//        return item * 2;
-//    }, arr);
-//    console.log(res);
-//
-//
-//    console.log(typeof arr.wokao);
+    //    var arr = [1, 5, 15];
+    //    var arr2 = arr.filter(function (val) {
+    //        return val < 10;
+    //    });
+    //    console.log(arr2);
 
 
-    function fn1() {
-        for (var i = 0; i < 10; i++) {
-            var tc = setTimeout(function(i) {
-                console.log(tc);
-                console.log(i);
-                clearTimeout(tc);
-                console.log('');
-            }, 500,i);
-        }
-        console.log(tc);
+    var a = [0];
+
+    if ([0]) {
+        console.log(a == true);
+    } else {
+        console.log("wut");
     }
-    fn1();
-
 </script>
 </html>

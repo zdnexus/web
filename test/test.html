@@ -10,12 +10,21 @@
 <script>
     var str = 'https://maam-dmzstg3.pingan.com.cn:56443/cmnres/gold/index.html#/orderDetail/20170309015155731?pluginId=PA02100000000_02_SWJ&extraParamValue=%7B%22orderNo%22%3A%2220170309015155731%22,%22payOrderNo%22%3A%222017030901433165%22,%22code%22%3A%22248999%22%7D';
 
-    console.log(decodeURIComponent(str));
+    var url = decodeURIComponent(str);
 
+    let objStart = url.lastIndexOf('=');
+    let objStr = url.substr(objStart + 1);
+    let obj = JSON.parse(objStr);
 
-//    var s2 = 'pluginId=PA02100000000_02_SWJ&extraParamValue={"orderNo":"20170309015155731","payOrderNo":"2017030901433165","code":"248999"}';
-//    var s3 = '{"orderNo":"20170309015155731","payOrderNo":"2017030901433165","code":"248999"}';
-//    var j2 = JSON.parse(s3);
-//    console.log(j2);
+    console.log(obj);
+    console.log(obj.code);
+
+    //
+    //
+    //    var s2 = 'pluginId=PA02100000000_02_SWJ&extraParamValue={"orderNo":"20170309015155731","payOrderNo":"2017030901433165","code":"248999"}';
+    //    var s3 = '{"orderNo":"20170309015155731","payOrderNo":"2017030901433165","code":"248999"}';
+    //    var j2 = JSON.parse(s3);
+    //    console.log(j2);
+
 </script>
 </html>
