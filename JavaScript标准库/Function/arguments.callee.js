@@ -3,7 +3,6 @@
  */
 // 'use strict';
 
-
 {
     let factorial = function (n) {
         return (n > 1) ? factorial(n - 1) * n : 1;

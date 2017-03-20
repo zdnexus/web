@@ -3,8 +3,42 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        div {
+            width: 300px;
+            height: 300px;
+            background-color: #0000ee;
+            position: relative;
+        }
+
+        div:after {
+            content: '3212';
+            position: absolute;
+            right: 10px;
+
+        }
+
+        select {
+            position: relative;
+            display: block;
+        }
+
+        select:after {
+            content: '3212';
+            position: absolute;
+            right: 10px;
+
+        }
+    </style>
 </head>
 <body>
+
+<div></div>
+
+
+<select>
+    <option>&gt;</option>
+</select>
 
 </body>
 <script>
