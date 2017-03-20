@@ -15,7 +15,6 @@
 function func1(arg) {
     console.log(arg);//1
     // let arg; // 报错 (暂时性死区)
-    // console.log(arg);
 }
 
 function func2(arg) {
@@ -24,7 +23,6 @@ function func2(arg) {
     console.log(arg);//a
     {
         let arg = 'b'; // 不报错
-        console.log(arg);//b
         // let arg;// 报错
     }
     console.log(arg);//a
