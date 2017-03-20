@@ -24,12 +24,12 @@
             if (n < 5) {
                 setTimeout(count, 500);
             } else {
-                clearTimeout(time1);
-                console.log('Done.');
+                clearTimeout(t1);
+                console.log('SetTimeout done.');
             }
         }
     }
-    var time1 = setTimeout(f1(), 500);
+    var t1 = setTimeout(f1(), 500);
 
     function f2() {
         var n = 0;
@@ -37,11 +37,11 @@
             ++n;
             console.log('setInterval：我这是第' + n + '次运行。');
             if (n === 5) {
-                clearTimeout(time2);
-                console.log('Done.');
+                clearTimeout(t2);
+                console.log('setInterval done.');
             }
         }
     }
-    var time2 = setInterval(f2(), 500);
+    var t2 = setInterval(f2(), 500);
 </script>
 </html>
