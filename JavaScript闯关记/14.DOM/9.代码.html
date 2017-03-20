@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body name="ddd">
+
+<div id="t1" class="content" style="background: red;" wife="sophie" onclick="alert('123');"><span>aaa</span><span>bbb</span><span>ccc</span></div>
+
+<div id="t2" class="content" style="background: red;" wife="sophie" onclick="alert('123');">
+    <span>aaa</span>
+    <span>bbb</span>
+    <span>ccc</span>
+</div>
+
+</body>
+<script>
+    // 挑战一
+    var t1 = document.getElementById('t1');
+    console.log(t1.firstChild.innerHTML);               // 'aaa'
+    console.log(t1.lastChild.innerHTML);                // 'ccc'
+    console.log(t1.childNodes[1].innerHTML);            // 'bbb'
+    console.log(t1.parentNode.getAttribute('name'));    // 'ddd'
+    console.log(t1.nextSibling.innerHTML);              // undefined
+    console.log(t1.previousSibling.innerHTML);          // undefined
+
+    // 挑战二
+    var t2 = document.getElementById('t2');
+    console.log(t2.firstChild.innerHTML);               // undefined
+    console.log(t2.lastChild.innerHTML);                // undefined
+    console.log(t2.childNodes[1].innerHTML);            // 'aaa'
+    console.log(t2.parentNode.getAttribute('name'));    // 'ddd'
+    console.log(t2.nextSibling.innerHTML);              // undefined
+    console.log(t2.previousSibling.innerHTML);          // undefined
+    
+    console.log(t2.class);                               // undefined
+    console.log(t2.getAttribute('class'));               // 'content'
+    console.log(t2.className);                           // 'content'
+    console.log(t2.getAttribute('className'));           // null
+    console.log(t2.style);                               // OBJECT
+    console.log(t2.getAttribute('style'));               // 'background: red;'
+    console.log(t2.style.background);                    // 'red'
+    console.log(t2.style.backgroundColor);               // 'red'
+    console.log(t2.getAttribute('style.background'));    // null
+    console.log(t2.wife);                                // undefined
+    console.log(t2.getAttribute('wife'));                // 'sophie'
+    console.log(t2.onclick);
+    //    function onclick(event) {
+    //        alert('123');
+    //    }
+    console.log(t2.getAttribute('onclick'));             // alert('123');
+</script>
+</html>

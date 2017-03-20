@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 系统对话框
+    // 浏览器通过 alert()、confirm() 和 prompt() 方法可以调用系统对话框向用户显示消息
+
+    // 为了确定用户是单击了OK还是Cancel，可以检查 confirm() 方法返回的布尔值：
+    // true 表示单击了OK，false 表示单击了Cancel或单击了右上角的 X 按钮。
+    if (confirm('Are you sure?')) {
+        alert('I\'m so glad you\'re sure! ');
+    } else {
+        alert('I\'m sorry to hear you\'re not sure.');
+    }
+
+    // prompt() 方法接受两个参数：要显示给用户的文本提示和文本输入域的默认值（可以是一个空字符串）。
+    // 如果用户单击了 OK 按钮，则 promp() 返回文本输入域的值；
+    // 如果用户单击了 Cancel 或没有单击 OK 而是通过其他方式关闭了对话框，则该方法返回 null。
+    var result = prompt('What is your name? ', '');
+    if (result !== null) {
+        alert('Welcome, ' + result);
+    }
+</script>
+</html>

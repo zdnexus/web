@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="button" id="myBtn" value="button">
+
+</body>
+<script>
+    // IE 事件处理程序
+    // IE 实现了与 DOM 中类似的两个方法：attachEvent() 和 detachEvent()。
+    // 这两个方法接受相同的两个参数：事件处理程序名称与事件处理程序函数。
+    // 由于 IE8 及更早版本只支持事件冒泡，所以通过 attachEvent() 添加的事件处理程序都会被添加到冒泡阶段。
+
+    var btn = document.getElementById('myBtn');
+
+    // 在使用 attachEvent() 方法的情况下，事件处理程序会在全局作用域中运行，因此 this 等于 window。
+    // attachEvent() 的第一个参数是 "onclick"，而非 DOM 的 addEventListener() 方法中的 "click"。
+    // IE6 ~ IE10
+    if (window.attachEvent) {
+        document.body.attachEvent('onclick', function () {
+            console.log('Body attachEvent onclick');
+        });
+
+        btn.attachEvent('onclick', function () {
+            console.log('Btn attachEvent onclick ~ 1');
+            console.log(this === window);   // true
+            console.log(this.id);           // undefined
+        });
+
+        // 不会覆盖前面的 attachEvent，与 DOM 方法不同的是，这些事件处理程序不是以添加它们的顺序执行，而是以相反的顺序被触发。
+        btn.attachEvent('onclick', function (event) {
+            console.log('Btn attachEvent onclick ~ 2');
+            console.log(event.type);    // 'click'
+        });
+
+        // detachEvent() 无效
+        btn.detachEvent('onclick', function (event) {
+            console.log('Btn attachEvent onclick ~ 2');
+            console.log(event.type);    // 'click'
+        });
+
+        var handler = function () {
+            console.log('Hello World!');
+        };
+        btn.attachEvent('onclick', handler);
+        // detachEvent() 有效
+        btn.detachEvent('onclick', handler);
+    }
+
+    // IE9 ~ IE11
+    if (window.addEventListener) {
+        btn.addEventListener('click', function () {
+            console.log('Btn addEventListener click');
+            console.log(this === window);   // false
+            console.log(this.id);           // 'myBtn'
+        }, false);
+
+        document.body.addEventListener('click', function () {
+            console.log('Body addEventListener click');
+        }, false);
+    }
+</script>
+</html>

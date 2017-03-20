@@ -8,28 +8,25 @@
 
 </body>
 <script>
-    "use strict";
+    //    'use strict';
     //    - 消除Javascript语法的一些不合理、不严谨之处，减少一些怪异行为;
     //    - 消除代码运行的一些不安全之处，保证代码运行的安全；
     //    - 提高编译器效率，增加运行速度；
     //    - 为未来新版本的Javascript做好铺垫。
 
-    var a = 12;//变量：自由的，不属于任何人
-    console.log(a);//12
-    console.log(this.a);//12
 
-    var arr = [1, 2, 3, 4, 5, 6];
-    arr.a = 12;//属性：属于一个对象的变量
-    console.log(arr.a);//12
+//    var a = 1;// 变量：自由的，不属于任何人
+//    console.log(a);//1
+//    console.log(window.a);//1
+//    console.log(this.a);
 
-    function aaa() { //函数：自由的
-        console.log(this);
-    }
-    arr.aaa = function () { //方法：属于一个对象
-        console.log(this);
-    };
-    aaa();//window 如果有use strict显示undefined，没有是window
-    arr.aaa();//[1, 2, 3, 4, 5, 6, a: 12]
-    console.log(aaa() === arr.aaa());//true
+        var arr = [1, 2, 3, 4, 5, 6];
+        arr.func2 = function () { //方法：属于一个对象
+            console.log(this[3]);
+        };
+    //    func2();
+        arr.func2();
+    //    console.log(func2() == arr.func2());
+    //    console.log(func2() === arr.func2());
 </script>
 </html>

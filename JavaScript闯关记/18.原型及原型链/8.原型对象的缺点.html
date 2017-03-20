@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 原型模式也不是没有缺点。首先，它省略了为构造函数传递初始化参数这一环节，结果所有实例在默认情况下都将取得相同的属性值。
+    // 虽然这会在某种程度上带来一些不方便，但还不是原型的最大问题。原型模式的最大问题是由其共享的本性所导致的。
+    // 原型中所有属性是被很多实例共享的，这种共享对于函数非常合适。
+    
+    function Person() {
+    }
+
+    Person.prototype = {
+        constructor: Person,
+        name: 'Glx',
+        age: 28,
+        job: 'Sale Engineer',
+        friends: ['Glx', 'Lis'],
+        showMsg: function () {
+            console.log('原型：我的名字叫' + this.name + '，今年' + this.age + '岁，工作是' + this.job);
+        }
+    };
+
+    var person1 = new Person();
+    var person2 = new Person();
+
+    person1.friends.push('Pol');
+
+    console.log(person1.friends);   // ['Glx','Lis','Pol']
+    console.log(person2.friends);   // ['Glx','Lis','Pol']
+    // 共享数组
+    console.log(person1.friends === person2.friends);   // true
+</script>
+</html>

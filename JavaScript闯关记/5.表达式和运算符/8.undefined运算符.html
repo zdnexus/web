@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // undefined
+    console.log(undefined == undefined);      // true
+    console.log(undefined === undefined);     // true
+
+    // 0
+    console.log(undefined + 0);   // NaN
+    console.log(undefined - 0);   // NaN
+    console.log(undefined * 0);   // NaN
+    console.log(undefined / 0);   // NaN
+    console.log(undefined % 0);   // NaN
+
+    // 非0
+    console.log(undefined + 1);   // NaN
+    console.log(undefined - 1);   // NaN
+    console.log(undefined * 1);   // NaN
+    console.log(undefined / 1);   // NaN
+    console.log(undefined % 1);   // NaN
+
+    // NaN
+    console.log(undefined + NaN); // NaN
+    console.log(undefined - NaN); // NaN
+    console.log(undefined * NaN); // NaN
+    console.log(undefined / NaN); // NaN
+    console.log(undefined % NaN); // NaN
+
+    // Infinity
+    console.log(undefined + Infinity);    // NaN
+    console.log(undefined - Infinity);    // NaN
+    console.log(undefined * Infinity);    // NaN
+    console.log(undefined / Infinity);    // NaN
+    console.log(undefined % Infinity);    // NaN
+
+    // -Infinity
+    console.log(undefined + -Infinity);   // NaN
+    console.log(undefined - -Infinity);   // NaN
+    console.log(undefined * -Infinity);   // NaN
+    console.log(undefined / -Infinity);   // NaN
+    console.log(undefined % -Infinity);   // NaN
+
+    // null
+    console.log(undefined + null);    // NaN
+    console.log(undefined - null);    // NaN
+    console.log(undefined * null);    // NaN
+    console.log(undefined / null);    // NaN
+    console.log(undefined % null);    // NaN
+
+    // undefined
+    console.log(undefined + undefined);   // NaN
+    console.log(undefined - undefined);   // NaN
+    console.log(undefined * undefined);   // NaN
+    console.log(undefined / undefined);   // NaN
+    console.log(undefined % undefined);   // NaN
+</script>
+</html>

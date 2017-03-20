@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .active {
+            background-color: #1e88e5;
+        }
+
+        .bgGrey {
+            width: 300px;
+            height: 300px;
+            background-color: #ccc;
+            display: none;
+        }
+
+        .bgGrey:first-of-type {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    <input type="button" value="aaa" class="active">
+    <input type="button" value="bbb">
+    <input type="button" value="ccc">
+    <div class="bgGrey">apple</div>
+    <div class="bgGrey">banana</div>
+    <div class="bgGrey">cup</div>
+</div>
+
+</body>
+<script>
+    //    var oDiv = document.getElementById('div1');
+    //    var aDiv = oDiv.getElementsByTagName('div');
+    //    var aInput = oDiv.getElementsByTagName('input');
+    //    for (var i = 0; i < aInput.length; ++i) {
+    //        aInput[i].index = i;
+    //        aInput[i].onclick = function () {
+    //            for (var i = 0; i < aInput.length; ++i) {
+    //                aInput[i].className = '';
+    //                aDiv[i].style.display = 'none';
+    //            }
+    //            this.className = 'active';
+    //            aDiv[this.index].style.display = 'block';
+    //        }
+    //    }
+
+
+    //    var oDiv = document.getElementById('div1');
+    //    var aDiv = oDiv.getElementsByTagName('div');
+    //    var aInput = oDiv.getElementsByTagName('input');
+    //    function inputClick() {
+    //        for (var i = 0; i < aInput.length; ++i) {
+    //            aInput[i].className = '';
+    //            aDiv[i].style.display = 'none';
+    //        }
+    //        this.className = 'active';
+    //        aDiv[this.index].style.display = 'block';
+    //    }
+    //
+    //    for (var i = 0; i < aInput.length; ++i) {
+    //        aInput[i].index = i;
+    //        aInput[i].onclick = inputClick;
+    //    }
+
+    function tabSwitch(id) {
+        var _this = this;
+        var oDiv = document.getElementById(id);
+        this.aDiv = oDiv.getElementsByTagName('div');
+        this.aInput = oDiv.getElementsByTagName('input');
+
+        for (var i = 0; i < this.aInput.length; ++i) {
+            this.aInput[i].index = i;
+            this.aInput[i].onclick = function () {
+                _this.inputClick(this);
+            }
+        }
+    }
+
+    tabSwitch.prototype.inputClick = function (btn) {
+        for (var i = 0; i < this.aInput.length; ++i) {
+            this.aInput[i].className = '';
+            this.aDiv[i].style.display = 'none';
+        }
+        btn.className = 'active';
+        this.aDiv[btn.index].style.display = 'block';
+    };
+
+    new tabSwitch('div1');
+</script>
+</html>

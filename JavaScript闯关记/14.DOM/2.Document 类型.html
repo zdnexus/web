@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        img{
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myDiv">Some text</div>
+
+<img src="../img/0.jpg">
+<img src="../img/1.jpg" name="myImage">
+<img src="../img/2.jpg">
+
+</body>
+<script>
+    // Document 类型
+    //    nodeType 的值为9；
+    //    nodeName 的值为 '#document'；
+    //    nodeValue 的值为 null；
+    //    parentNode 的值为 null；
+    //    ownerDocument 的值为 null；
+    //    其子节点可能是一个 DocumentType（最多一个）、Element（最多一个）、ProcessingInstruction 或 Comment。
+    console.log(document.doctype === document.childNodes[0]);           // true
+    console.log(document.documentElement === document.childNodes[1]);   // true
+
+    // 文档信息
+    // 取得文档标题
+    var originalTitle = document.title;
+
+    // 设置文档标题
+    document.title = 'New page title';
+
+    // 取得完整的URL
+    var url = document.URL;
+    console.log(url);
+
+    // 取得域名
+    var domain = document.domain;
+    console.log(domain);
+
+    // 取得来源页面的URL
+    var referrer = document.referrer;
+    console.log(referrer);
+
+    // getElementById()，接收一个参数：要取得的元素的 ID。如果找到相应的元素则返回该元素，如果不存在带有相应 ID 的元素，则返回 null。
+    // IE8及较低版本 不区分 ID 的大小写，因此 'myDiv' 和 'mydiv' 会被当作相同的元素 ID。
+    // 如果页面中多个元素的ID值相同，getElementById() 只返回文档中第一次出现的元素。
+    var div = document.getElementById('myDiv');   // 取得<div>元素的引用
+
+    // getElementsByTagName()，接受一个参数，即要取得元素的标签名，而返回的是包含零或多个元素的 NodeList。
+    // 在HTML文档中，这个方法会返回一个HTMLCollection 对象，作为一个“动态”集合，该对象与 NodeList非常类似
+    var images = document.getElementsByTagName('img');
+    console.log(images.length);        // 输出图像的数量
+    console.log(images[1].src);        // 输出第二个图像元素的src特性
+    console.log(images.item(1).src);   // 输出第二个图像元素的src特性
+
+    var myImage = images.namedItem('myImage');
+    console.log(myImage.src);
+
+    // 要想取得文档中的所有元素，可以向 getElementsByTagName() 中传入 '*'。在 JavaScript 及 CSS 中，星号（*）通常表示“全部”。
+    var allElements = document.getElementsByTagName('*');
+
+    console.log(document.images);
+    console.log(document.getElementsByTagName('img'));
+    console.log(document.images === document.getElementsByTagName('img'));
+
+    // 与 getElementsByTagName() 类似，getElementsByName() 方法也会返回一个 HTMLCollectioin。
+    // 但是，对于这里的单选按钮来说，namedItem() 方法则只会取得第一项（因为每一项的 name 特性都相同）。
+    console.log(document.getElementsByName('myImage')[0].src === document.getElementsByTagName('img')[1].src);
+
+    // 文档写入
+    document.write('<strong>' + (new Date()).toString() + '</strong>');
+    // 如果在文档加载结束后再调用 document.write()，那么输出的内容将会重写整个页面，
+//    window.onload = function(){
+//        document.write('Hello world!');
+//    };
+</script>
+</html>

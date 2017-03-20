@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--内联事件处理函数中的 this-->
+<button onclick="alert(this.tagName.toLocaleUpperCase());">
+    Show this
+</button>
+<!--如果 this 被包含在匿名函数中，则是window。-->
+<button onclick="alert((function(){return this})());">
+    Show in this
+</button>
+<!--如果 this 被包含在JS代码的匿名函数中，则是undefined。this的作用域不同。-->
+<button onclick="alert(f1());">
+    Show out this
+</button>
+
+<button id="btn" type="button">click</button>
+
+</body>
+<script>
+    // this
+    // this 是 JavaScript 的关键字，指函数执行时的上下文，跟函数定义时的上下文无关。随着函数使用场合的不同，this 的值会发生变化。
+    // 但是有一个总的原则，那就是 this 指代的是调用函数的那个对象。
+
+    // 在全局上下文中，也就是在任何函数体外部，this 指代全局对象。
+    // 在浏览器中，this 指代全局对象 window
+    console.log(this === window); // true
+
+    // 函数上下文的 this
+    // 在「严格模式」下，禁止 this 关键字指向全局对象（在浏览器环境中也就是 window 对象），this 的值将维持 undefined 状态。
+    function f1() {
+        console.log(this === window); // true
+        return this;
+    }
+    console.log(f1() === window); // true
+
+    function f2() {
+        'use strict';
+        return this;
+    }
+    console.log(f2() === undefined); // true
+
+    // 对象方法中的 this
+    // 当我们执行 o.f() 时，方法 f() 中的 this 指代调用函数的那个对象，也就是对象 o，所以 this.str 也就是 o.str。
+    var o = {
+        str: 'stone',
+        f3: function () {
+            return this.str;
+        }
+    };
+    console.log(o.f3()); // 'stone'
+
+    // 对象方法中的 this
+    var f4 = function () {
+        return this.str;
+    };
+    var o2 = {str: 'stone'};
+    o2.f = f4;
+    console.log(f4());      // undefined
+    console.log(o2.f());    // 'stone'
+
+    // eval() 方法中的 this
+    // 全局上下文
+    function f5() {
+        console.log(eval('this') === window); // true
+        return eval('this');
+    }
+    console.log(f5() === window); // true
+
+    // 函数上下文
+    var o3 = {
+        str: 'stone',
+        f6: function () {
+            return eval('this.str');
+        }
+    };
+    console.log(o3.f6()); // 'stone'
+
+    // call() 和 apply() 方法中的 this
+    var str = 'bea';
+    function f7(n1, n2) {
+        if (n1 && n2) {
+            console.log(n1 + n2 + this.str);
+        }
+        else if (n1) {
+            console.log(n1 + this.str);
+        }
+        else if (n2) {
+            console.log(n2 + this.str);
+        }
+        else {
+            console.log(this.str);
+        }
+    }
+    var o4 = {};
+    o4.str = 'nexus';
+    o4.f = f7;
+    o4.f();                 // 'nexus'
+    f7.apply(o3);           // 'stone'
+    f7.call(o3);            // 'stone'
+
+    f7.apply(o3, [1, 2]);   // '3stone'
+    f7.call(o3, 1, 2);      // '3stone'
+
+    f7.apply(window);           // '3bea'
+    f7.apply(window, [1, 2]);   // '3bea'
+    f7.call(window, 1, 2);      // '3bea'
+
+    // bind() 方法中的 this
+    str = 'bea';
+    function f8() {
+        return this.str;
+    }
+    var f9 = f8.bind({
+        str: 'nexus'
+    });
+    console.log(f8());  // 'bea'
+    console.log(f9());  // 'nexus'
+    var o6 = {
+        str: 'Glx',
+        f8: f8,
+        f9: f9
+    };
+    console.log(o6.f8());  // 'Glx'
+    console.log(o6.f9());  // 'nexus'
+
+    // DOM 事件处理函数中的 this
+    var btn = document.getElementById('btn');
+    // IE9 ~ IE11
+    // 当函数使用 addEventListener，被用作事件处理函数时，它的 this 指向触发事件的元素。
+    btn.addEventListener('click', function () {
+        this.style.backgroundColor = '#A5D9F3';
+    }, false);
+    // 但在 IE6 ~ IE10 浏览器中，当函数使用 attachEvent ，被用作事件处理函数时，它的 this 却指向 window。
+    if (btn.attachEvent) {
+        btn.attachEvent('onclick', function () {
+            console.log(this === window);  // true
+        });
+    }
+</script>
+</html>

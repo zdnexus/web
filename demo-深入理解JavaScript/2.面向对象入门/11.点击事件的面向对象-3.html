@@ -11,6 +11,10 @@
             display: none;
         }
 
+        .bgGrey:first-of-type {
+            display: block;
+        }
+
         .active {
             background-color: #1e88e5;
         }
@@ -22,7 +26,7 @@
     <input type="button" value="aaa" class="active">
     <input type="button" value="bbb">
     <input type="button" value="ccc">
-    <div class="bgGrey" style="display: block;">apple</div>
+    <div class="bgGrey">apple</div>
     <div class="bgGrey">banana</div>
     <div class="bgGrey">cup</div>
 </div>
@@ -30,7 +34,7 @@
 </body>
 <script>
     //    面向对象改写：
-//    新建类型
+    //    新建类型
     function tabSwitch(id) {
         var _this = this;
         var oDiv = document.getElementById(id);
@@ -51,7 +55,7 @@
         }
     }
 
-//    添加方法
+    //    添加方法
     tabSwitch.prototype.fnClick = function (btnClick) {
 //            dom全部还原
         for (var i = 0; i < this.aBtn.length; i++) {

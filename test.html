@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a {
+            width: 500px;
+            height: 500px;
+            background-color: #00bcd4;
+
+        }
+
+        .b {
+            width: 100px;
+            height: 100px;
+            background-color: #0000ee;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<!--<div id="div1" class="b a" style="background-color: #0000ee"></div>-->
+
+<div class="a">
+    <div class="b"></div>
+</div>
+
+</body>
+<script>
+    var a = 1;
+    function f1() {
+        console.log(a);
+    }
+
+    function f2() {
+        var a = 2;
+        f1();
+    }
+
+    f2();
+
+
+</script>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // String 类型
+    // String 类型用于表示由零或多个16位 Unicode 字符组成的字符序列，即字符串。字符串可以由双引号（'）或单引号（'）表示，
+
+    // 转义字符可出现在字符串中的任意位置，且长度为1。如要在字符串中显示 \ ，则必须使用 \ 进行转义。
+    console.log('\n\\'.length);     // 2
+    console.log('\\hello'.length);  // 6
+
+    // 对数值使用 toString() 方法时，可以传入一个数字基数，以此输出对应进制的字符串值。
+    console.log(true.toString());   // 'true'
+
+    var num = 10;
+    // 对数值使用 toString() 方法时，可以传入一个数字基数，以此输出对应进制的字符串值
+    console.log(num.toString());    // '10'
+    console.log(num.toString(2));   // '1010'
+    console.log(num.toString(8));   // '12'
+    console.log(num.toString(16));  // 'a'
+
+    // 大部分值都可以使用继承而来的 toString()方法转换为字符串，但 undefined 和 null 值没有这个方法。
+    var num2;
+//    console.log(num2.toString());    // Uncaught TypeError: Cannot read property 'toString' of undefined
+
+    // 在不知道要转换的值是不是 undefined 或 null 的情况下，还可以使用转型函数 String()，这个函数能够将任何类型的值转换为字符串。
+    // String() 函数遵循下列转换规则：
+    // 如果值有 toString() 方法，则调用该方法（没有参数）并返回相应的结果；
+    // 如果值是 undefined，则返回 'undefined'；
+    // 如果值是 null，则返回 'null'。
+    var value;
+    console.log(String(10));        // '10'
+    console.log(String(true));      // 'true'
+    console.log(String(null));      // 'null'
+    console.log(String(undefined)); // 'undefined'
+    console.log(String(value));     // 'undefined'
+</script>
+</html>

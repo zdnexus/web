@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<div id="div1" class="div">
+ <span id="s1" class="sp" lang="zh-cn">
+ </span>
+</div>
+</body>
+<script type="text/javascript">
+    function test() {
+        var o = document.getElementById("div1");
+        var child = o.children;
+        console.log("div1.children运行结果:");
+        for(i = 0; i < child.length; i++){
+            console.log(child[i].tagName);
+        }
+        child = o.childNodes;
+        console.log("div1.childNodes运行结果:");
+        for(i = 0; i < child.length; i++){
+            console.log(child[i].tagName);
+        }
+
+    }
+
+    test();
+</script>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        /*appearance 属性允许您使元素看上去像标准的用户界面元素。*/
+        div {
+            appearance: button;
+            -moz-appearance: button; /* Firefox */
+            -webkit-appearance: button; /* Safari and Chrome */
+        }
+
+        select {
+            appearance: button;
+            -moz-appearance: button; /* Firefox */
+            -webkit-appearance: button; /* Safari and Chrome */
+        }
+    </style>
+</head>
+<body>
+
+<p><b>注释：</b>Internet Explorer 和 Opera 不支持 appearance 属性。</p>
+
+<div>一些文本。</div>
+
+<select>
+    <option selected="" value="0">身份证、姓名登录</option>
+    <option value="1">测试登录</option>
+</select>
+
+</body>
+</html>

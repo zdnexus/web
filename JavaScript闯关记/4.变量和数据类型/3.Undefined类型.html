@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // Undefined 类型
+    // Undefined 类型只有1个值，即 undefined。使用 var 声明变量但未对其加以初始化时，这个变量的值就是 undefined，
+    // 直接使用未声明的变量会产生错误。对未声明或已声明但未初始化的变量执行 typeof 运算符会返回 "undefined" 值，
+
+    var message;    // 这个变量声明之后默认取得了 undefined 值
+    var age;        // 这个变量并没有声明
+    console.log(message);          // 'undefined'
+    console.log(typeof message);   // 'undefined'
+
+    //    console.log(age);               // 产生错误
+    console.log(typeof age);        // 'undefined'
+</script>
+</html>

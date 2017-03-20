@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        // try 语句
+        function message()
+        {
+            try
+            {
+                adddlert("Welcome guest!")
+            }
+            catch(err)
+            {
+                txt="此页面存在一个错误。\n\n"
+                txt+="错误描述: " + err.description + "\n\n"
+                txt+="点击OK继续。\n\n"
+                alert(txt)
+            }
+        }
+    </script>
+</head>
+<body>
+
+<input type="button" value="View message" onclick="message()" />
+
+</body>
+<script>
+    // switch 语句
+    switch ('25') {
+        case 25:
+            console.log("number");
+            break;
+        case '25':
+            console.log("string");
+            break;
+        default:
+            console.log("Other");
+    }
+
+    switch ('hello1') {
+        case 'hello' + 1:
+            console.log('Greeting was found.');
+            break;
+        default:
+            console.log('Unexpected message was found.');
+    }
+
+    // break 和 continue 语句
+    var sum = 0;
+    for (var i = 1; i < 10; i++) {
+        if (i == 5) {
+            break;
+        }
+        sum += i;
+    }
+    console.log(sum);   // 10
+
+    sum = 0;
+    for (var i = 1; i < 10; i++) {
+        if (i == 5) {
+            continue;
+        }
+        sum += i;
+    }
+    console.log(sum);   // 40
+
+    // label 语句
+    sum = 0;
+    outermost:
+            for (var i = 0; i < 10; i++) {
+                for (var j = 0; j < 10; j++) {
+                    if (i == 5 && j == 5) {
+                        break outermost;
+                    }
+                    sum++;
+                }
+            }
+    console.log(sum);   // 55
+
+    // throw 语句
+    function factorial(x) {
+        // 如果输入参数是非法的，则抛出一个异常
+        if (x < 0) {
+            throw new Error("x不能是负数");
+        }
+        // 否则，计算出一个值，并正常地返回它
+        for (var f = 1; x > 1; f *= x, x--) /* empty */ ;
+
+        return f;
+    }
+//    factorial(-1);
+    console.log(factorial(5));
+
+    // with 语句
+    var qs = location.search.substring(1);
+    var hostName = location.hostname;
+    var url = location.href;
+    console.log(qs);
+    console.log(hostName);
+    console.log(url);
+
+    // 由于大量使用 with 语句会导致性能下降，同时也会给调试代码造成困难，因此在开发大型应用程序时，不建议使用 with 语句。严格模式下不允许使用 with 语句，否则将视为语法错误。
+    with(location){
+        var qs2 = search.substring(1);
+        var hostName2 = hostname;
+        var url2 = href;
+        console.log(qs2);
+        console.log(hostName2);
+        console.log(url2);
+    }
+
+    // debugger 语句
+    function f(o) {
+        if (o === undefined) {
+            debugger;  // 程序会停止在该位置
+        }
+        // 函数的其他部分
+    }
+    f()
+</script>
+</html>

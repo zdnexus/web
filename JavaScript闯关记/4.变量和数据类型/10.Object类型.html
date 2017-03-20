@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //  JavaScript 中所有对象都继承自 Object 类型，每个对象都具有下列基本的属性和方法：
+    //  constructor：保存着用于创建当前对象的函数（构造函数）。
+    //  hasOwnProperty()：用于检查给定的属性在当前对象实例中是否存在。
+    //  propertyIsEnumerable()：用于检查给定的属性是否能够使用for-in语句来枚举。
+    //  isPrototypeOf()：用于检查对象是否是传入对象的原型。
+    //  toString() 方法：返回对象的字符串表示。
+    //  toLocaleString()：返回对象的本地字符串表示。
+    //  valueOf()：返回对象的字符串、数值或布尔值表示（通常与toString()方法的返回值相同）。
+
+    // 以下两种方法都可以创建一个空对象，这两种方法在语义上是相同的。
+    // 第二种更方便的方法叫作「对象字面量」法。这也是 JSON 格式的核心语法，一般我们优先选择第二种方法。
+    var obj = new Object();
+    var obj2 = {}; // 好的写法
+
+    // 对象字面量
+    var obj3 = {
+        name: 'Carrot',
+        'for': 'Max',
+        details: {
+            color: 'orange',
+            size: 12
+        }
+    };
+    console.log(obj3.details.color);        // 'orange'
+    console.log(obj3['details']['size']);   // 12
+    obj3.name = 'Simon'; // 赋值
+    var name = obj3.name; // 访问
+    console.log(name);                      // 'Simon'
+    console.log(obj3.name);                 // 'Simon'
+
+    obj3['name'] = 'Glx'; // 赋值
+    var name2 = obj3['name']; // 访问
+    console.log(name2);                     // 'Glx'
+    console.log(obj3.name);                 // 'Glx'
+</script>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 可写（writable attribute），表明是否可以设置该属性的值。
+    // 可枚举（enumerable attribute），表明是否可以通过 for-in 循环返回该属性。
+    // 可配置（configurable attribute），表明是否可以删除或修改该属性。
+
+    // 属性的访问错误
+    var person = {};
+    console.log(person.wife); // undefined
+    //    console.log(person.wife.name);   // Uncaught TypeError: Cannot read property 'name' of undefined
+    console.log(person && person.wife && person.wife.name); // undefined
+
+    // 删除属性
+    // delete 运算符用来删除对象属性，事实上 delete 只是断开属性和宿主对象的联系，并没有真正的删除它。
+    // delete 运算符只能删除自有属性，不能删除继承属性（要删除继承属性必须从定义这个属性的原型对象上删除它，
+    // 而且这会影响到所有继承自这个原型的对象）。
+
+    // 检测属性
+    var o = {x: 1};
+    console.log('x' in o);              // true
+    console.log('y' in o);              // false
+    console.log(o.hasOwnProperty('x')); // true
+    console.log(o.hasOwnProperty('y')); // false
+
+    // 枚举属性
+    console.log(o.propertyIsEnumerable('x'));           // true，可枚举
+    console.log(o.propertyIsEnumerable('toString'));    // false，不可枚举
+    for (var p in o) {
+        console.log(p); // 输出x，不会输出toString
+    }
+
+    // 属性的 getter 和 setter
+    var oo = {
+        name: '贤心',
+        get sex() {
+            return 'man';
+        }
+    };
+    //显然这是不允许的，因为贤心并不希望外界去改变他是男性的事实，所以对于sex只设置了只读功能
+    oo.sex = 'woman';
+    console.log(oo.sex); //结果依然是man
+
+    oo = {
+        name: '贤心',
+        set sex(val) {
+            this.sexx = val;
+        },
+        get sex() {
+            if (this.sexx) {
+                return this.sexx;
+            } else {
+                return 'man';
+            }
+        }
+    };
+    oo.sex = 'woman';
+    console.log(oo.sex); //结果woman
+</script>
+</html>

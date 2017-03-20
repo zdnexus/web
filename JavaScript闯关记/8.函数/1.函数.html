@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // 没有重载
+    function addSomeNumber(num) {
+        return num + 100;
+    }
+    function addSomeNumber(num, num2) {
+        return num + 200;
+    }
+    var result = addSomeNumber(100);    // 300
+    console.log(result);
+
+
+    // 函数声明与函数表达式
+    // 对代码求值时，JavaScript 引擎在第一遍会声明函数并将它们放到源代码树的顶部。
+    // 所以，即使声明函数的代码在调用它的代码后面，JavaScript 引擎也能把函数声明提升到顶部。
+    var addSomeNumber2 = function (num) {
+        return num + 100;
+    };
+    function addSomeNumber2(num) {
+        return num + 200;
+    }
+    var result2 = addSomeNumber2(100);
+    console.log(result2);
+
+    // 函数的属性和方法
+</script>
+</html>

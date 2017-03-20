@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #my {
+            width: 300px;
+            height: 300px;
+            background-color: blue;
+        }
+    </style>
+</head>
+<body>
+
+<div id="my"></div>
+
+</body>
+<script>
+    var ele = document.getElementById('my');
+    console.log(ele.offsetWidth);                 // 300
+    console.log(ele.style.width);                 // ''
+    console.log(ele.style.backgroundColor);             // ''
+
+    //    var style = document.defaultView.getComputedStyle(ele, null);
+    //    console.log(style.width);                   // '300px'
+    //    console.log(style.backgroundColor);         // 'rgb(0, 0, 255)'
+
+    // IE8及以下 兼容问题
+    //    var computedStyle = ele.currentStyle;
+    //    console.log(computedStyle.backgroundColor);     //'blue'
+    //    console.log(computedStyle.width);               //'100px'
+
+    // 兼容方案：
+    function getStyles(ele) {
+        var styles;
+        if (document.defaultView && document.defaultView.getComputedStyle) {
+            styles = document.defaultView.getComputedStyle(ele, null);
+        }
+        else if (ele.currentStyle) {
+            styles = ele.currentStyle;
+        }
+        return styles;
+    }
+    var div = document.getElementById('my');
+    var divStyles = getStyles(div);
+    console.log(divStyles.width);
+    console.log(divStyles.backgroundColor);
+</script>
+</html>

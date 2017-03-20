@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // Attr 类型
+    //    nodeType 的值为11；
+    //    nodeName 的值是特性的名称；
+    //    nodeValue 的值是特性的值；
+    //    parentNode 的值为 null；
+    //    在 HTML 中不支持（没有）子节点；
+    //    在 XML 中子节点可以是 Text或 EntityReference。
+    var element = document.createElement('div');
+    var attr = document.createAttribute('align');
+    attr.value = 'left';
+    element.setAttributeNode(attr);
+    console.log(element.attributes['align'].value);       // 'left'
+    console.log(element.getAttributeNode('align').value); // 'left'
+    console.log(element.getAttribute('align'));           // 'left'
+</script>
+</html>

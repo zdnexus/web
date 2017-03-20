@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    // ++ -- 运算符
+    // ++ -- 递增递减运算符借鉴自 C 语言，它们分前置型和后置型，作用是改变一个变量的值。
+
+    var a = 5;
+    console.log(a++);   // 5
+    console.log(++a);   // 7
+    console.log(a--);   // 7
+    console.log(--a);   // 5
+
+    // 当 + - 作为一元运算符时，应用于数值，表示数值的正负。应用于非数值，先按 Number() 转型函数对这个值执行转换，再表示该值的正负。
+    // 从左往右运算
+    console.log('1' + 2);                   // '12'
+    console.log(1 + '2');                   // '12'
+    console.log('1' + 2 + 3);               // '123'
+    console.log(1 + 2 + '3');               // '33'
+    console.log(1 + '2' + 3);               // '123'
+
+    // 加
+    console.log('1' + 2);                   // '12'
+    console.log(typeof '1' + 2);            // 'string2'
+    console.log(typeof ('1' + 2));          // 'string'
+
+    console.log('1' + '2');                 // '12'
+    console.log(typeof '1' + '2');          // 'string2'
+    console.log(typeof ('1' + '2'));        // 'string'
+
+    // 减
+    console.log('1' - 2);                   // -1
+    console.log(typeof ('1' - 2));          // 'number'
+
+    console.log('1' - '2');                 // -1
+    console.log(typeof ('1' - '2'));        // 'number'
+
+    // 乘
+    console.log('1' * 2);                   // 2
+    console.log(typeof ('1' * 2));          // 'number'
+
+    console.log('1' * '2');                 // 2
+    console.log(typeof ('1' * '2'));        // 'number'
+
+    // 除
+    console.log('1' / 2);                   // 0.5
+    console.log(typeof ('1' * 2));          // 'number'
+
+    console.log('1' / '2');                 // 0.5
+    console.log(typeof ('1' / '2'));        // 'number'
+
+    console.log('1' / 2 / '20');            // 0.025
+    console.log(typeof ('1' / 2 / '20'));   // 'number'
+</script>
+</html>
