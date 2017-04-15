@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(this.a.a);
+
+    var val;
+    console.log(val);               // 'undefined'
+    // Uncaught TypeError: Cannot read property 'a' of undefined
+    //    console.log(val.a);
+
+    var obj = {};
+    console.log(obj.val);           // 'undefined'
+
+    var obj2 = {
+//        val: {
+//            a: 1
+//        }
+    };
+    console.log(obj2);              // Object
+    console.log(obj2.val && obj2.val.a);  //
+
+
+    var arr = [];
+
+</script>
+</html>

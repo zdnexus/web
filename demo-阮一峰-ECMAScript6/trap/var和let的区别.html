@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    console.log(a);// undefined
+    console.log(window.a);// undefined
+    var a = 1;
+    console.log(a);// 1
+    console.log(window.a);// 1
+    a = 2;
+    console.log(a);// 2
+    console.log(window.a);// 2
+    window.a = 3;
+    console.log(a);// 3
+    console.log(window.a);// 3
+
+    console.log('');
+
+    console.log(b);// Error
+    console.log(window.b);// undefined
+    let b = 1;
+    console.log(b);// 1
+    console.log(window.b);// undefined
+    window.b = 2;
+    console.log(b);// 1
+    console.log(window.b);// 2
+</script>
+</html>

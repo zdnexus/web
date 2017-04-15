@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .div {
+            width: 200px;
+            height: 200px;
+        }
+
+        .peru {
+            background-color: peru;
+        }
+
+        .red {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" class="div red"></div>
+<div id="div2" class="div peru"></div>
+
+</body>
+<script src="//cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('#div1').click(function () {
+            $(this).addClass('peru');
+//            class中有peru和red，red优先级比peru高，red无法被peru覆盖
+        });
+
+        $('#div2').click(function () {
+            $(this).addClass('red');
+//            red可以覆盖peru
+        });
+    });
+</script>
+</html>

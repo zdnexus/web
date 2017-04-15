@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .show1 {
+            display: block;
+        }
+
+        .div {
+            width: 300px;
+            height: 300px;
+            background-color: #0000ee;
+            display: none;
+        }
+
+        .show2 {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div show2"></div>
+<!--在css中先找到.show1再找到.div,div的优先级高-->
+<div class="div show1"></div>
+<!--在css中先找到.div再找到.show2,show2的优先级高-->
+
+</body>
+</html>

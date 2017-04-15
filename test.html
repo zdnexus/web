@@ -4,45 +4,49 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .a {
-            width: 500px;
-            height: 500px;
-            background-color: #00bcd4;
-
-        }
-
         .b {
             width: 100px;
             height: 100px;
+            margin: 10px;
             background-color: #0000ee;
-            position: absolute;
-            left: 50%;
-            top: 50%;
+            float: left;
         }
     </style>
 </head>
 <body>
 
-<!--<div id="div1" class="b a" style="background-color: #0000ee"></div>-->
+<div class="b" onclick="console.log(32231)"></div>
 
-<div class="a">
-    <div class="b"></div>
-</div>
+<div class="b" onclick="click(312)"></div>
+
+<div class="b"></div>
+
 
 </body>
 <script>
-    var a = 1;
+    setTimeout(function () {
+        console.log(1);
+    }, 0);
+
     function f1() {
-        console.log(a);
+        console.log(2);
+        setTimeout(function () {
+            console.log(3);
+        }, 0);
     }
 
     function f2() {
-        var a = 2;
-        f1();
+        console.log(4);
+        setTimeout(function () {
+            console.log(5);
+        }, 0);
     }
 
+    setTimeout(function () {
+        console.log(6);
+    }, 0);
+
+    f1();
     f2();
-
-
 </script>
 </html>

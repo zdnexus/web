@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+</head>
+<body>
+
+<input type="tel" id="ipt1" value="1">
+<input type="text" id="ipt2" value="1">
+<input type="number" id="ipt3" value="1">
+
+<button id="btn">1</button>
+
+<select id="select">
+    <option value="1">111</option>
+    <option value="2" selected="selected">222</option>
+    <option value="3">333</option>
+</select>
+
+<input type="text" id="ipt4" value="1">
+
+</body>
+<script>
+    console.log(typeof $("#ipt1").val());// string
+    console.log(typeof $("#ipt2").val());// string
+    console.log(typeof $("#ipt3").val());// string
+    console.log(typeof $("#btn").val());// string
+    console.log(typeof $("#select option:selected").val());// string
+
+
+    console.log(typeof document.getElementById('ipt4').value);// number
+    let num = 2;
+    console.log(typeof num);
+    document.getElementById('ipt4').value = num;
+    console.log(typeof document.getElementById('ipt4').value);// string
+</script>
+</html>

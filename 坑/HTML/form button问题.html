@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        form {
+            height: 100px;
+        }
+
+        .button {
+            color: #fff;
+            background-color: #0000ee;
+        }
+    </style>
+</head>
+<body>
+
+<form action="https://www.baidu.com" method="post" role="form">
+
+    <input type="submit" value="提交1">
+    <!--提交form-->
+
+    <input type="submit" value="提交2" onclick="clickDefault(event)">
+    <!--不会提交form-->
+
+    <input type="button" value="提交3">
+    <!--不会提交form-->
+
+    <button id="btn4">提交4</button>
+    <!--提交form-->
+
+    <button id="btn5">提交5</button>
+    <!--不会提交form-->
+
+    <button id="btn6">提交6</button>
+    <!--不会提交form-->
+
+    <span class="button" type="submit">提交7</span>
+    <!--不会提交form-->
+
+</form>
+
+<form method="post" role="form" onsubmit="return false;">
+
+    <input type="submit" value="提交1">
+    <!--直接在onsubmit中return false阻止默认事件-->
+
+</form>
+
+<form method="post" role="form" onsubmit="clickDefault(event)">
+
+    <input type="submit" value="提交2">
+    <!--通过函数阻止点击事件的默认事件-->
+
+</form>
+
+
+<form action="https://www.baidu.com" method="post" role="form">
+    <input type="text" required="required" style="display: none;">
+    <button type="submit">提交1</button>
+</form>
+
+</body>
+<script>
+    function clickDefault(e) {
+        e.preventDefault();
+    }
+
+    document.getElementById('btn5').onclick = clickDefault;
+
+
+    document.getElementById('btn6').addEventListener('click', clickDefault, false);
+</script>
+</html>
