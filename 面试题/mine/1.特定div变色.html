@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            float: left;
+        }
+
+        .div1 {
+            background-color: blue;
+        }
+
+        .div2 {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div2"></div>
+<div class="div2"></div>
+<div class="div3"></div>
+<div class="div1"></div>
+
+</body>
+<script>
+    function getDomStyle(dom, style) {
+        if (window.getComputedStyle) {
+            return getComputedStyle(dom, null)[style];
+        }
+        else if (dom.currentStyle) {
+            return dom.currentStyle[style];
+        }
+    }
+
+
+    var aDiv = document.getElementsByTagName('div');
+
+    for (var i = 0; i < aDiv.length; ++i) {
+        var domStyle = getDomStyle(aDiv[i], 'backgroundColor');
+        if (domStyle === 'rgb(255, 0, 0)' || domStyle === 'red') {
+            aDiv[i].style.backgroundColor = 'green';
+        }
+    }
+</script>
+</html>
