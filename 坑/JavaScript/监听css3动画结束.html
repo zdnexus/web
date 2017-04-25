@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        @-webkit-keyframes animation {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background-color: firebrick;
+            position: absolute;
+            left: 30%;
+            top: 20%;
+        }
+
+        #div1:hover {
+            /*-webkit-animation: animation 3s forwards;*/
+            -webkit-animation: animation 3s linear 0s infinite normal both;
+        }
+
+        #div2 {
+            width: 200px;
+            height: 200px;
+            background-color: green;
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            -webkit-transition: all 3s;
+        }
+
+        #div2:hover {
+            transform: rotate(315deg);
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+<div id="div2"></div>
+
+</body>
+<script>
+    var dom1 = document.getElementById('div1');
+    dom1.addEventListener('webkitAnimationStart', function(){ //动画开始时事件
+        console.log(1);//动画开始时，控制台输出1
+    }, false);
+    dom1.addEventListener('webkitAnimationIteration', function(){ //动画重复运动时的事件
+        console.log(2);//第一遍动作完成时，控制台输出2
+    }, false);
+    dom1.addEventListener('webkitAnimationEnd', function(){ //动画重复运动时的事件
+        console.log(3);//第一遍动作完成时，控制台输出3
+    }, false);
+    
+    var dom2 = document.getElementById('div2');
+    dom2.addEventListener('webkitTransitionStart', function(){ //动画开始时事件
+        console.log(1);//动画开始时，控制台输出1
+    }, false);
+    dom2.addEventListener('webkitTransitionIteration', function(){ //动画重复运动时的事件
+        console.log(2);//第一遍动作完成时，控制台输出2
+    }, false);
+    dom2.addEventListener('webkitTransitionEnd', function(){ //动画重复运动时的事件
+        console.log(3);//第一遍动作完成时，控制台输出3
+    }, false);
+</script>
+</html>

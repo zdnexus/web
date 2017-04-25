@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 300px;
+            height: 300px;
+            background-color: #0ac2d2;
+        }
+
+        .div2 {
+            width: 300px;
+            height: 300px;
+            background-color: #0000ee;
+        }
+
+        ul li {
+            width: 300px;
+            height: 300px;
+            background-color: #00b800;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+
+<div class="div2"></div>
+<div class="div2"></div>
+
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+</body>
+<script src="jquery.js"></script>
+<script>
+    $('#div1').css('backgroundColor', 'black');
+    console.log($('#div1'))
+//    new $('.div2').css('backgroundColor', 'red');
+//    new $('li').css('backgroundColor', 'green');
+</script>
+</html>
