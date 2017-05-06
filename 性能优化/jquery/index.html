@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<script>
+    // jquery
+    // 1160ms
+//    function addDivToBody() {
+//        $('<div></div>').css({
+//            width: '300px',
+//            height: '300px',
+//            backgroundColor: 'red'
+//        }).appendTo($('body'));
+//    }
+
+    // jquery cache
+    // 457.22ms
+//    var dom = $('<div></div>').css({
+//        width: '300px',
+//        height: '300px',
+//        backgroundColor: 'red'
+//    });
+//    var body = $('body');
+//    function addDivToBody() {
+//        dom.clone().appendTo(body);
+//    }
+
+    // JavaScript
+    // 389.21ms
+//    function addDivToBody() {
+//        var dom = document.createElement('div');
+//        dom.style.width = '300px';
+//        dom.style.height = '300px';
+//        dom.style.backgroundColor = 'red';
+//        document.getElementsByTagName('body')[0].appendChild(dom);
+//    }
+
+    // JavaScript cache
+    // 88.20ms
+//    var dom = document.createElement('div');
+//    dom.style.width = '300px';
+//    dom.style.height = '300px';
+//    dom.style.backgroundColor = 'red';
+//    var body = document.getElementsByTagName('body')[0];
+//    function addDivToBody() {
+//        body.appendChild(dom.cloneNode(true));
+//    }
+
+    for (var i = 0; i < 10000; ++i) {
+        addDivToBody();
+    }
+</script>
+</html>

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/12/24 0024.
  */
-
+'use strict';
 
 // console.log(a);//ReferenceError: a is not defined
 
@@ -9,7 +9,6 @@ var b;
 console.log(b);//undefined
 console.log(typeof b);//undefined
 // console.log(b.x);//TypeError: Cannot read property 'x' of undefined
-
 
 var c = undefined;
 console.log(c);//undefined

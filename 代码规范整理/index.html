@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="book">
+    <div class="book-mark">
+        <ul class="book-mark-list">
+            <li>
+                <a href="javascript:void(0)" data-url="common.html" id="aaa">
+                    1.基本原则
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    2.HTML
+                </a>
+                <ul class="book-mark-nesting-list">
+                    <li>
+                        <a href="javascript:void(0)" data-url="htmlNorm.html">
+                            2.1.HTML规范
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-url="htmlDanger.html">
+                            2.2.HTML陷阱
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            2.3.HTML性能优化
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    3.CSS规范
+                </a>
+                <ul class="book-mark-nesting-list">
+                    <li>
+                        <a href="javascript:void(0)" data-url="cssNorm.html">
+                            3.1.CSS规范
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-url="cssDanger.html">
+                            3.2.CSS陷阱
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            3.3.CSS性能优化
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a href="javascript:void(0)">
+                    4.JavaScript
+                </a>
+                <ul class="book-mark-nesting-list">
+                    <li>
+                        <a href="javascript:void(0)" data-url="javascriptNorm.html">
+                            4.1.JavaScript规范
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" data-url="javascriptDanger.html">
+                            4.2.JavaScript陷阱
+                        </a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)">
+                            4.3.JavaScript性能优化
+                        </a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="book-cont">
+        <iframe id="toUrl"></iframe>
+    </div>
+</div>
+
+</body>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script>
+    $(function () {
+        var $bookMarkClick = $('.book-mark a');
+
+        $bookMarkClick.click(function () {
+            var url = $(this).data('url');
+
+            if (url) {
+                $('#toUrl').attr('src', url);
+                $bookMarkClick.removeClass('click');
+                $(this).addClass('click');
+            }
+        });
+
+        $('.book-mark a:eq(0)').trigger('click');
+    })
+</script>
+</html>

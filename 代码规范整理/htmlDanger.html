@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<dl>
+    <dt>
+    <h2>HTML陷阱</h2>
+    </dt>
+    <dd>
+        <ol>
+            <li>
+                <p>form表单里注意(没有type的button标签)和(type='submit'的input/button标签)拥有默认事件,点击会跳转到action地址或者没有地址时页面刷新</p>
+                <h5>在form表单中有多个按钮的时候要注意设置其的默认事件</h5>
+                <pre><code>
+<span class="h5-comment">&lt;!-- Good --&gt;</span>
+&lt;<span class="h5-title">form</span> <span class="h5-attribute">action</span>=<span
+                        class="h5-value">"www.pingan.com"</span> <span class="h5-attribute">method</span>=<span
+                        class="h5-value">"post"</span>&gt;
+  &lt;<span class="h5-title">input</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"button"</span>/&gt;
+  &lt;<span class="h5-title">button</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"button"</span>&gt;&lt;/<span class="h5-title">button</span>&gt;
+&lt;/<span class="h5-title">form</span>&gt;
+
+<span class="h5-comment">&lt;!-- Not Good --&gt;</span>
+&lt;<span class="h5-title">form</span> <span class="h5-attribute">action</span>=<span
+                        class="h5-value">"www.pingan.com"</span> <span class="h5-attribute">method</span>=<span
+                        class="h5-value">"post"</span>&gt;
+  &lt;<span class="h5-title">input</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"submit"</span>/&gt; <span class="h5-comment">/*点击会跳转或者刷新页面*/</span>
+  &lt;<span class="h5-title">button</span>&gt;&lt;/<span class="h5-title">button</span>&gt; <span class="h5-comment">/*点击会跳转或者刷新页面*/</span>
+  &lt;<span class="h5-title">button</span> <span class="h5-attribute">type</span>=<span
+                        class="h5-value">"submit"</span>&gt;&lt;/<span class="h5-title">button</span>&gt; <span
+                        class="h5-comment">/*点击会跳转或者刷新页面*/</span>
+&lt;/<span class="h5-title">form</span>&gt;
+                </code></pre>
+            </li>
+            <li>
+                <p>form表单中required和display:none不要放在一起,必填标签隐藏导致无法提交表单</p>
+                <pre><code>
+<span class="h5-comment">&lt;!-- Not Good --&gt;</span>
+&lt;<span class="h5-title">form</span> <span class="h5-attribute">action</span>=<span
+                        class="h5-value">"www.pingan.com"</span> <span class="h5-attribute">method</span>=<span
+                        class="h5-value">"post"</span>&gt;
+  &lt;<span class="h5-title">input</span> <span class="h5-attribute">type</span>=<span class="h5-value">"submit"</span> <span
+                        class="h5-attribute">required</span>=<span class="h5-value">"required"</span> <span
+                        class="h5-attribute">style</span>=<span class="h5-value">"display:none;"</span>/&gt;
+&lt;/<span class="h5-title">form</span>&gt;
+                </code></pre>
+            </li>
+        </ol>
+    </dd>
+</dl>
+
+</body>
+</html>

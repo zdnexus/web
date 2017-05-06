@@ -37,4 +37,3 @@
     // aP.insertAdjacentHTML('afterend', '<span style="color:blue">I\'m Span</span>');
 }
 
-
