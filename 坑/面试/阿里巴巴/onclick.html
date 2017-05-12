@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            float: left;
+        }
+
+        .a {
+            background-color: #0D0D0D;
+        }
+
+        .b {
+            background-color: #2aabd2;
+        }
+
+        .c {
+            background-color: #00b800;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" class="a" onclick="doSomething()"></div>
+<div id="div2" class="b"></div>
+<div id="div3" class="c"></div>
+
+</body>
+<script>
+    function doSomething() {
+        console.log(event);
+        console.log(this);
+    }
+
+    document.getElementById('div2').onclick = doSomething;
+    document.getElementById('div3').onclick = function () {
+        doSomething();
+    };
+</script>
+</html>

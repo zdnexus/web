@@ -2,7 +2,6 @@
  * Created by Administrator on 2017/3/4 0004.
  */
 'use strict';
-// map 如何在 ES6 中使用？
 
 // const new_array = arr.map(callback[，thisArg])
 // callback
@@ -14,20 +13,20 @@
 //      array
 //          callback 的第三个参数，map 方法被调用的数组。
 // thisArg
-// 可选的。执行 callback 函数时 使用的this 值。
+//      可选的。执行 callback 函数时 使用的this 值。
 // 返回值
-// 一个新数组，每个元素都是回调函数的结果。
+//      一个新数组，每个元素都是回调函数的结果。
 
 {
     let numbers = [1, 5, 10, 15];
-    numbers.map(function (val, idx, arr) {
+    numbers.map(function (val, index, arr) {
         console.log('val:', val);
-        console.log('idx:', idx);
+        console.log('index:', index);
         console.log('arr:', arr);
         // 如果省略了 thisArg 参数，或者赋值为 null 或 undefined，则 this 指向全局对象。
-        console.log(this);  // no strict -> Window
+        console.log(this);  // 'no strict' -> Window
     });
-    numbers.map(function (val, idx, arr) {
+    numbers.map(function (val, index, arr) {
         // 如果 thisArg 参数有值，则每次 callback 函数被调用的时候，this 都会指向 thisArg 参数上的这个对象。
         console.log(this);  // [1, 5, 10, 15]
     }, numbers);
@@ -40,8 +39,8 @@
     let roots = numbers.map(function (val) {
         return val * 2;
     });
-    console.log(roots);     // [2, 10, 20, 30]
     console.log(numbers);   // [1, 5, 10, 15]
+    console.log(roots);     // [2, 10, 20, 30]
 
     // callback 函数只会在有值的索引上被调用；那些从来没被赋过值或者使用 delete 删除的索引则不会被调用。
     numbers = [1, 5, 10, 15];
@@ -49,31 +48,31 @@
     roots = numbers.map(function (val) {
         return val * 2;
     });
-    console.log(roots);             // [2, 10, 20, 30, 10:40]
-    console.log(roots.length);      // 11
     console.log(numbers);           // [1, 5, 10, 15，10:20]
     console.log(numbers.length);    // 11
+    console.log(roots);             // [2, 10, 20, 30, 10:40]
+    console.log(roots.length);      // 11
 }
 
 {
     // map 不修改调用它的原数组本身（当然可以在 callback 执行时改变原数组）。
     let numbers = [1, 5, 10, 15];
-    numbers.map(function (val, idx, arr) {
-        arr[idx] = val * 2;
+    numbers.map(function (val, index, arr) {
+        arr[index] = val * 2;
     });
     console.log(numbers);   // [2, 10, 20, 30]
 
     numbers = [1, 5, 10, 15];
-    numbers.map(function (val, idx, arr) {
-        this[idx] = val * 2;
+    numbers.map(function (val, index, arr) {
+        this[index] = val * 2;
     }, numbers);
     console.log(numbers);   // [2, 10, 20, 30]
 
     // 使用 map 方法相加2个数组
     numbers = [1, 5, 10, 15];
     let numbers2 = [2, 7, 12, 17];
-    let numbers3 = numbers.map(function (val, idx, arr) {
-        return val + this[idx];
+    let numbers3 = numbers.map(function (val, index, arr) {
+        return val + this[index];
     }, numbers2);
     console.log(numbers3);   // [3, 12, 22, 32]
 }
@@ -82,7 +81,7 @@
     // 使用 map 方法处理数组时，数组元素的范围是在 callback 方法第一次调用之前就已经确定了。
     // 在 map 方法执行的过程中：原数组中新增加的元素将不会被 callback 访问到。
     let numbers = [1, 5, 10, 15];
-    let roots = numbers.map(function (val, idx, arr) {
+    let roots = numbers.map(function (val, index, arr) {
         arr.push(val * 2);
         return val * 2;
     });
@@ -93,7 +92,7 @@
 {
     // 若已经存在的元素被改变或删除了，则它们的传递到 callback 的值是 map 方法遍历到它们的那一时刻的值；而被删除的元素将不会被访问到。
     let numbers = [1, 5, 10, 15, 20];
-    let roots = numbers.map(function (val, idx, arr) {
+    let roots = numbers.map(function (val, index, arr) {
         arr.pop();
         return val * 2;
     });
