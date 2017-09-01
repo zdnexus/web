@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="Observer.js"></script>
+    <script src="Watcher.js"></script>
+    <script src="Compile.js"></script>
+    <script src="Mvvm.js"></script>
+</head>
+<body>
+
+<div id="mvvm-app">
+    <input type="text" v-model="word">
+    <p>{{word}}</p>
+    <p>{{word2}}</p>
+    <button v-on:click="sayHi">change model</button>
+</div>
+
+</body>
+<script>
+    var vm = new MVVM({
+        el: '#mvvm-app',
+        data: {
+            word: 'Hello World!',
+            word2:'sb',
+        },
+        methods: {
+            sayHi: function() {
+                this.word = 'Hi, everybody!';
+//                this.word2 = 'sbsb';
+            }
+        }
+    });
+    console.log(vm);
+</script>
+</html>

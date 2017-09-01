@@ -16,50 +16,62 @@
 </head>
 <body>
 
-<form action="https://www.baidu.com" method="post" role="form">
 
-    <input type="submit" value="提交1">
-    <!--提交form-->
+<form action="https://www.baidu.com" method="get" role="form" >
+    <input type="text" name="username">
 
-    <input type="submit" value="提交2" onclick="clickDefault(event)">
-    <!--不会提交form-->
+    <input type="text" name="password">
 
-    <input type="button" value="提交3">
-    <!--不会提交form-->
-
-    <button id="btn4">提交4</button>
-    <!--提交form-->
-
-    <button id="btn5">提交5</button>
-    <!--不会提交form-->
-
-    <button id="btn6">提交6</button>
-    <!--不会提交form-->
-
-    <span class="button" type="submit">提交7</span>
-    <!--不会提交form-->
-
+    <input type="submit" value="提交">
 </form>
 
-<form method="post" role="form" onsubmit="return false;">
+<!--<form action="https://www.baidu.com" method="get" role="form">-->
 
-    <input type="submit" value="提交1">
-    <!--直接在onsubmit中return false阻止默认事件-->
+    <!--<input type="text" name="username">-->
+    <!--<input type="text" name="password">-->
 
-</form>
+    <!--<input type="submit" value="提交1">-->
+    <!--&lt;!&ndash;提交form&ndash;&gt;-->
 
-<form method="post" role="form" onsubmit="clickDefault(event)">
+    <!--<input type="submit" value="提交2" onclick="clickDefault(event)">-->
+    <!--&lt;!&ndash;不会提交form&ndash;&gt;-->
 
-    <input type="submit" value="提交2">
-    <!--通过函数阻止点击事件的默认事件-->
+    <!--<input type="button" value="提交3">-->
+    <!--&lt;!&ndash;不会提交form&ndash;&gt;-->
 
-</form>
+    <!--<button id="btn4">提交4</button>-->
+    <!--&lt;!&ndash;提交form&ndash;&gt;-->
+
+    <!--<button id="btn5">提交5</button>-->
+    <!--&lt;!&ndash;不会提交form&ndash;&gt;-->
+
+    <!--<button id="btn6">提交6</button>-->
+    <!--&lt;!&ndash;不会提交form&ndash;&gt;-->
+
+    <!--<span class="button" type="submit">提交7</span>-->
+    <!--&lt;!&ndash;不会提交form&ndash;&gt;-->
+
+<!--</form>-->
+
+<!--<form method="post" role="form" onsubmit="return false;">-->
+
+    <!--<input type="submit" value="提交1">-->
+    <!--&lt;!&ndash;直接在onsubmit中return false阻止默认事件&ndash;&gt;-->
+
+<!--</form>-->
+
+<!--<form method="post" role="form" onsubmit="clickDefault(event)">-->
+
+    <!--<input type="submit" value="提交2">-->
+    <!--&lt;!&ndash;通过函数阻止点击事件的默认事件&ndash;&gt;-->
+
+<!--</form>-->
 
 
-<form action="https://www.baidu.com" method="post" role="form">
-    <input type="text" required="required" style="display: none;">
-    <button type="submit">提交1</button>
-</form>
+<!--<form action="https://www.baidu.com" method="post" role="form">-->
+    <!--<input type="text" required="required" style="display: none;">-->
+    <!--<button type="submit">提交1</button>-->
+<!--</form>-->
 
 </body>
 <script>

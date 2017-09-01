@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        setTimeout(function () {
+            console.log('setTimeout');
+        }, 0);
+    </script>
+    <script async="async" src="async.js"></script>
+    <script defer="defer" src="defer.js"></script>
+    <script>
+        window.onload = function () {
+            console.log('onload');
+        }
+    </script>
+</head>
+<body>
+
+</body>
+<script>
+    console.log('script');
+</script>
+</html>
