@@ -19,7 +19,7 @@ var p1 = new Person();
 var p2 = new Person();
 p1.showMsg();    // 我的名字叫Stone，今年28岁，工作是Software Engineer
 p2.showMsg();    // 我的名字叫Stone，今年28岁，工作是Software Engineer
-console.log(p1.showMsg === p2.showMsg);
+console.log(p1.showMsg == p2.showMsg);
 
 // 问题：call和apply无法调用 prototype 属性和方法。
 // 在另一个对象的作用域中call调用：
@@ -34,4 +34,4 @@ Person.apply(p4);
 console.log(p4.name); // undefined
 console.log(p4.showMsg); // undefined
 
-console.log(p3.showMsg === p4.showMsg); // true -> undefined === undefined
+console.log(p3.showMsg == p4.showMsg); // true -> undefined === undefined
