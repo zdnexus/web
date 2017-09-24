@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background-color: #00b800;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    var body = document.body;
+    var div = document.createElement('div');
+    div.className = 'a';
+    var num = 1000;
+    for (var i = 0; i < num; ++i) {
+        document.body.appendChild(div.cloneNode());
+    }
+</script>
+<script>
+
+</script>
+</html>

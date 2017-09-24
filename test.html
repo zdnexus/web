@@ -24,29 +24,35 @@
 
 </body>
 <script>
+    console.log(1);
+
     setTimeout(function () {
-        console.log(1);
+        console.log(2);
     }, 0);
 
     function f1() {
-        console.log(2);
+        console.log(3);
         setTimeout(function () {
-            console.log(3);
+            console.log(4);
         }, 0);
     }
 
     function f2() {
-        console.log(4);
+        console.log(5);
         setTimeout(function () {
-            console.log(5);
+            console.log(6);
         }, 0);
     }
 
     setTimeout(function () {
-        console.log(6);
+        console.log(7);
     }, 0);
+
+    console.log(8);
 
     f1();
     f2();
+
+    // 1 8 3 5 2 7 4 6
 </script>
 </html>
