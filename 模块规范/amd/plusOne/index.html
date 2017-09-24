@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../require.js"></script>
+    <script>
+        // 防止js加载阻塞页面渲染
+        // 使用程序调用的方式加载js，防出现如下丑陋的场景
+//        require(['./num', './func'], () => {
+//            let x = a * a;
+//            console.log(func(x));
+//        });
+
+
+        require.config({
+            paths: {
+                'num': './num',
+                'func': './func'
+            }
+        });
+        require(['num', 'func'], (num, func) => {
+            let x = num * num;
+            console.log(func.plusOne(x));
+            console.log(func.subOne(x));
+        });
+    </script>
+</head>
+<body>
+
+<p>RequireJS</p>
+
+</body>
+</html>

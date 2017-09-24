@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .code {
+            background-color: #eee;
+        }
+    </style>
+</head>
+<body>
+
+<h2>javascript对象（上篇）</h2>
+<pre class="code">
+    <code>
+        var a = 1;
+        console.log(typeof a);// 'number'
+
+        var b = '1';
+        console.log(typeof b);// 'string'
+
+        var c = true;
+        console.log(typeof c);// 'boolean'
+
+        var d = null;
+        console.log(typeof d);// 'object'
+
+        var e = undefined;
+        console.log(typeof e);// 'undefined'
+    </code>
+</pre>
+
+<h2>函数对象</h2>
+<p>
+    typeof是用来判断变量类型<br/>
+    instancaof是用来检测这个实例是不是由这个类所创建，换言之，就是检测这个实例对象是不是这个类new出来的。<br/>
+    constructor是每一个实例对象都拥有的属性，而这个属性也相当于是一个指针，它指向于创建当前对象的对象。<br/>
+</p>
+<p>
+    从下面的代码可以看出，在javascript中函数即是对象。
+</p>
+<pre class="code">
+    <code>
+        var o = new Object();
+        console.log(typeof o);// 'object'
+        console.log(o instanceof Object);// true
+        console.log(o.constructor === Object);// true
+        console.log(o instanceof Function);// false
+        console.log(o.constructor === Function);// false
+
+        var f = new Function();
+        console.log(typeof f);// 'function'
+        console.log(f instanceof Function);// true
+        console.log(f.constructor === Function);// true
+        console.log(f instanceof Object);// true
+        console.log(f.constructor === Object);// false
+
+        console.log(Function instanceof Object);// true
+        console.log(Function.constructor === Object);// false
+        console.log(Function instanceof Function);// true
+        console.log(Function.constructor === Function);// true
+    </code>
+</pre>
+
+<p>
+    javascript对象可以任意自定义属性和方法，没有c++和java中的class的约束。
+</p>
+<pre class="code">
+    <code>
+        var o = {
+            name:'nexus', // 定义一个属性
+            showMsg:function(){ // 定义一个方法
+                console.log('my name is ' + this.name);
+            }
+        };
+        console.log(o.name);// 'nexus'
+        o.showMsg();// 'my name is nexus'
+    </code>
+</pre>
+<p>
+    例子中新建了一个对象o，其中o对象有属性name和方法showMsg。<br/>
+    o.name就是'neuxs'。<br/>
+    o.showMsg()就是运行o的showMsg函数，其中调用showMsg函数的宿主是o，所以此时的this是o，this.name也就是'nexus'，打印'my name is nexus'。
+</p>
+
+<h2>构造函数</h2>
+<p>
+    例子中定义了一个函数，返回一个对象，其中包括属性和方法，属性name和age通过行参自定义。
+</p>
+<pre class="code">
+    <code>
+        function Person(name,age){
+            var o = new Object();
+            o.name = name;
+            o.age = age;
+            o.showMsg = function(){
+                console.log(this.name + ':' + this.age);
+            };
+            return o;
+        }
+        var p = Person('nexus',18);
+        console.log(p.name);// 'nexus'
+        console.log(p.age);// 18
+        p.showMsg();// 'nexus : 18'
+    </code>
+</pre>
+<p>
+    函数还可以作为构造函数使用，像上面所述的 Object 和 Array 原生构造函数一样，在运行时会自动出现在执行环境中:
+</p>
+<pre class="code">
+    <code>
+        function Person(name,age){
+            this.name = name;
+            this.age = age;
+            this.showMsg = function(){
+                console.log(this.name + ':' + this.age);
+            };
+        }
+        var p = new Person('nexus',18);
+        console.log(p.name);// 'nexus'
+        console.log(p.age);// 18
+        console.log(p.showMsg());// 'nexus : 18'
+    </code>
+</pre>
+<p>
+    要创建 Person 的新实例，必须使用 new 操作符。
+</p>
+<ol>
+    <li>创建一个新对象，</li>
+    <li>将构造函数的作用域赋给新对象（因此 this 就指向了这个新对象），</li>
+    <li>执行构造函数中的代码（为这个新对象添加属性和方法），</li>
+    <li>返回新对象。</li>
+</ol>
+<pre class="code">
+    <code>
+        // 作为普通函数调用，添加到 window
+        Person('nexus',18);
+        console.log(window.name);// 'nexus'
+        console.log(window.age);// 18
+        window.showMsg();// 'nexus : 18'
+
+        // 当作构造函数使用，新建一个对象p
+        var p = new Person('nexus', 18);
+        console.log(p.name);// 'nexus'
+        console.log(p.age);// 18
+        p.showMsg();// 'nexus : 18'
+
+        // 在另一个对象的作用域中调用
+        var o = {};
+        Person.call(o,'nexus',18);
+        console.log(o.name);// 'nexus'
+        console.log(o.age);// 18
+        o.showMsg(); // 'nexus : 18'
+    </code>
+</pre>
+<p>
+    构造函数虽然简洁明了，但是存在缺点：
+</p>
+<pre class="code">
+    <code>
+        var p1 = new Person('nexus',18);
+        var p2 = new Person('nexus',18);
+        console.log(p1.name == p2.name);// true
+        console.log(p1.age == p2.age);// true
+        console.log(p1.showMsg == p2.showMsg);// false
+    </code>
+</pre>
+<p>
+    我们可以发现，当每次建立一个新对象的时候，每个 Person 实例都包含一个不同的 showMsg() 方法，即使它们的内容相同，也需要另外开辟内存来保存。<br/>
+    创建两个完成同样任务的 showMsg 方法没有必要，这个时候就需要使用prototype。
+</p>
+
+<h2>prototype 原型</h2>
+<p>
+    我们创建的每个函数都有一个 prototype（原型）属性。使用原型的好处是可以让所有对象实例共享它所包含的属性和方法。换句话说，不必在构造函数中定义对象实例的信息，而是可以将这些信息直接添加到原型中。
+</p>
+<pre class="code">
+    <code>
+        function Person(){}
+        Person.prototype.name = 'nexus';
+        Person.prototype.age = 18;
+        Person.prototype.showMsg = function(){
+            console.log(this.name + ':' + this.age);
+        };
+
+        var p1 = new Person();
+        p1.showMsg();// 'neuxs : 18'
+
+        var p2 = new Person();
+        p2.showMsg();// 'neuxs : 18'
+
+        console.log(p1.showMsg == p2.showMsg);// true
+    </code>
+</pre>
+<p>
+    showMsg() 方法和所有属性直接添加到了 Person 的 prototype
+    属性中，构造函数变成了空函数。即使如此，也仍然可以通过调用构造函数来创建新对象，而且新对象还会具有相同的属性和方法。但与前面的例子不同的是，新对象的这些属性和方法是由所有实例共享的。换句话说，p1 和 p2
+    访问的都是同一组属性和同一个 showMsg() 函数。
+</p>
+
+<pre class="code">
+    <code>
+        function Person(){}
+        Person.prototype.name = 'nexus';
+        Person.prototype.age = 18;
+        Person.prototype.showMsg = function(){
+            console.log(this.name + ':' + this.age);
+        };
+
+        var p1 = new Person();
+        console.log(p1.name);// 'nexus'，来自原型
+        p1.name = "noa";
+        console.log(p1.name);// 'noa'，来自实例
+        delete p1.name;
+        console.log(p1.name);// 'nexus'，来自原型
+        delete p1.name;
+        console.log(p1.name);// 'nexus'，来自原型，delete不能删除原型属性
+    </code>
+</pre>
+<p>
+    当访问 p1.name 时，需要读取它的值，因此就会在这个实例上搜索一个名为 name 的属性。这个属性确实存在，于是就返回它的值而不必再搜索原型了
+</p>
+<p>
+    使用 delete 操作符删除了 p1.name，之前它保存的 "noa" 值屏蔽了同名的原型属性。把它删除以后，就恢复了对原型中 name 属性的连接。
+</p>
+<p>
+    从代码中看出 delete 操作符只能删除对象的实例name属性，无法删除原型的 name 属性。
+</p>
+
+<pre class="code">
+    <code>
+        function Person(){}
+        Person.prototype.name = 'nexus';
+        Person.prototype.age = 18;
+        Person.prototype.showMsg = function(){
+            console.log(this.name + ':' + this.age);
+        };
+
+        var p = new Person();
+        console.log(p instanceof Object);       // true
+        console.log(p.constructor === Object);  // false
+        console.log(p instanceof Person);       // true
+        console.log(p.constructor === Person);  // true
+    </code>
+</pre>
+<p>
+    重写整个原型对象 Person.prototype
+</p>
+<pre class="code">
+    <code>
+        function Person(){}
+        Person.prototype = {
+            name : 'nexus',
+            age : 18,
+            showMsg : function () {
+                console.log(this.name + ':' + this.age);
+            }
+        };
+        Person.prototype.name = 'nexus';
+        Person.prototype.age = 18;
+        Person.prototype.showMsg = function(){
+            console.log(this.name + ':' + this.age);
+        };
+
+        var p = new Person();
+        console.log(p instanceof Object);       // true
+        console.log(p.constructor === Object);  // true
+        console.log(p instanceof Person);       // true
+        console.log(p.constructor === Person);  // false
+    </code>
+</pre>
+<p>
+    Person.prototype 重新设置为一个新对象。实例 p.constructor 属性不再指向 Person 了，而是指向 Object 构造函数。<br/>
+    如果 constructor 的值真的很重要，可以像下面设置。
+</p>
+<pre class="code">
+    <code>
+        function Person(){}
+        Person.prototype = {
+            constructor : Person,
+            name : 'nexus',
+            age : 18,
+            showMsg : function () {
+                console.log(this.name + ':' + this.age);
+            }
+        };
+        Person.prototype.name = 'nexus';
+        Person.prototype.age = 18;
+        Person.prototype.showMsg = function(){
+            console.log(this.name + ':' + this.age);
+        };
+
+        var p = new Person();
+        console.log(p instanceof Object);       // true
+        console.log(p.constructor === Object);  // false
+        console.log(p instanceof Person);       // true
+        console.log(p.constructor === Person);  // true
+    </code>
+</pre>
+
+<h2>动态性原型</h2>
+<p>
+    我们对原型对象所做的任何修改都能够立即反映出来:
+</p>
+<pre class="code">
+    <code>
+        function Person(){}
+        var p = new Person();
+
+        Person.prototype.sayHi = function(){
+            console.log('hi');
+        };
+
+        p.sayHi();   // 'hi'
+    </code>
+</pre>
+<p>
+    调用 p.sayHi() 时，首先会在实例中搜索名为 sayHi 的属性，在没找到的情况下，会继续搜索原型。因为实例与原型之间的连接只不过是一个指针，而非一个副本
+</p>
+<p>
+    如果是重写整个原型对象，那么情况就不一样了。<br/>
+    通过 p.name 没有发生改变可以得出结论：调用构造函数时会为实例添加一个指向最初原型的 Prototype 指针，而把原型修改为另外一个对象就等于切断了构造函数与最初原型之间的联系。
+</p>
+<pre class="code">
+    <code>
+        function Person(){}
+
+        var p = new Person();
+
+        Person.prototype.name = 'nexus';
+
+        Person.prototype = {
+            constructor: Person,
+            name:'noa',
+            sayHi : function () {
+                console.log('hi');
+            }
+        };
+
+        console.log(p.name);// 'nexus'
+        p.sayName();// Uncaught TypeError: p.sayName is not a function
+    </code>
+</pre>
+
+<h2>原生对象的原型</h2>
+<p>
+    我们同样可以给原生对象添加方法，这里展示一下如何实现一个Array.prototype.map函数的原型方法。
+</p>
+<pre class="code">
+    <code>
+if (!Array.prototype.map) {
+    Array.prototype.map = function (callback, thisArg) {
+
+        // 调用宿主是 null 或者 undefined，则抛出 TypeError 异常
+        if (this == null) {
+            throw new TypeError('Array.prototype.map called on null or undefined');
+        }
+
+        // 如果 callback 不是函数,则抛出 TypeError 异常
+        if (typeof callback !== 'function') {
+            throw new TypeError(callback + ' is not a function');
+        }
+
+        // 将 O 赋值为调用 map 方法的数组
+        var O = Object(this);
+
+        // 将 len 赋值为数组 O 的长度
+        var len = O.length >>> 0;
+
+        // 如果参数 thisArg 有值,则将 T 赋值为 thisArg ，否则T为 undefined
+        var T;
+        if (thisArg) {
+            T = thisArg;
+        }
+
+        // 创建新数组 A，长度为原数组 O 长度 len
+        var A = new Array(len);
+
+        // 将 k 赋值为0，遍历开头
+        var k = 0;
+
+        // 当 k < len 时,执行循环
+        while (k < len) {
+
+            var kValue, mappedValue;
+
+            // 遍历 O，k 为原数组索引
+            // 那些从来没被赋过值或者使用 delete 删除的索引则不会被调用。
+            if (k in O) {
+
+                // kValue 为索引 k 对应的值
+                kValue = O[k];
+
+                // 执行callback，this 指向 T，参数有三个，分别是 kValue:值，k :索引，O :原数组
+                mappedValue = callback.call(T, kValue, k, O);
+
+                // 返回值添加到新数组A中.
+                A[k] = mappedValue;
+            }
+
+            // k自增1
+            k++;
+        }
+
+        // 返回新数组A
+        return A;
+    };
+}
+    </code>
+</pre>
+
+<h2>构造函数和原型结合</h2>
+<p>
+    构造函数用于定义实例属性，而原型用于定义方法和共享的属性。
+</p>
+<pre class="code">
+    <code>
+        function Person(name, age){
+            this.name = name;
+            this.age = age;
+            this.friends = ['a', 'b'];
+        }
+
+        Person.prototype = {
+            constructor : Person,
+            sayName : function(){
+                console.log(this.name);
+            }
+        }
+
+        var p1 = new Person('nexus', 18);
+        var p2 = new Person('noa', 19);
+
+        p1.friends.push('c');
+        console.log(p1.friends);// ['a','b','c']
+        console.log(p2.friends);// ['a','b']
+        console.log(p1.friends === p2.friends);// false
+        console.log(p1.sayName === p2.sayName);// true
+    </code>
+</pre>
+
+</body>
+</html>

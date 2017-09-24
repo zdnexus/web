@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../require.js"></script>
+    <script>
+        // 防止js加载阻塞页面渲染
+        // 使用程序调用的方式加载js，防出现如下丑陋的场景
+        require(['./func'],()=>{
+            alert('load func finished');
+        });
+    </script>
+</head>
+<body>
+
+<p>RequireJS</p>
+
+</body>
+</html>

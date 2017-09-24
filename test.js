@@ -3,3 +3,20 @@
  */
 
 console.log(a);
+function Person() {
+}
+
+var p = new Person();
+
+Person.prototype.name = 'nexus';
+
+Person.prototype = {
+    // constructor: Person,
+    name: 'noa',
+    sayHi: function () {
+        console.log('hi');
+    }
+};
+
+console.log(p.name);
+// p.sayName();
