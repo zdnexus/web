@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 100%;
+            height: 300px;
+            line-height: 300px;
+            color: white;
+            background: red;
+            text-align: center;
+            position: relative;
+        }
+
+        #div1:before{
+            content: "";
+            width: 45%;
+            height: 1px;
+            background: white;
+            position: absolute;
+            top: 150px;
+            left: 0;
+        }
+
+        #div1:after{
+            content: "";
+            width: 45%;
+            height: 1px;
+            background: white;
+            position: absolute;
+            top: 150px;
+            right: 0;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    我是sb
+</div>
+
+</body>
+</html>

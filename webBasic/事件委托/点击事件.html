@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1">
+    111
+</div>
+
+</body>
+<script>
+    document.body.addEventListener('click', function () {
+        alert('body');
+    }, false);
+
+    var oDiv = document.getElementById('div1');
+//    oDiv.onclick = function () {
+//        alert('1');
+//    };
+//    oDiv.onclick = function () {
+//        alert('2');
+//    };
+    oDiv.addEventListener('click', function () {
+        alert(3);
+    }, false);
+    oDiv.addEventListener('click', function () {
+        alert(4);
+    }, false);
+</script>
+</html>

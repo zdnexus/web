@@ -1,0 +1,72 @@
+<!--汉字下拉菜单注意加   white-space:nowrap; 强制不换行-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .div {
+            width: 300px;
+            height: 300px;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .ball-running {
+            animation: run-around 4s infinite;
+        }
+
+        @keyframes run-around {
+            0% {
+                top: 0;
+                left: 0;
+            }
+            25% {
+                top: 0;
+                left: 300px;
+            }
+            50% {
+                top: 300px;
+                left: 300px;
+            }
+            75% {
+                top: 300px;
+                left: 0;
+            }
+            100% {
+                top: 0;
+                left: 0;
+            }
+        }
+
+        .ball-running2 {
+            animation: run-around2 4s infinite;
+        }
+
+        @keyframes run-around2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            25% {
+                transform: translate(0px, 300px);
+            }
+            50% {
+                transform: translate(300px, 300px);
+            }
+            75% {
+                transform: translate(300px, 0);
+            }
+            100% {
+                transform: translate(0, 0);
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!--<div class="div ball-running" style="background: red"></div>-->
+<div class="div ball-running2" style="background: black"></div>
+
+</body>
+</html>

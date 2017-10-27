@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #res {
+            width: 500px;
+            height: 500px;
+            border: 1px solid red;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<div id="res"></div>
+<button id="btn1">加载数据</button>
+
+</body>
+<script type="text/javascript">
+
+    function loadXMLDoc(url) {
+        var xmlhttp = null;
+        if (window.XMLHttpRequest) {// code for all new browsers
+            xmlhttp = new XMLHttpRequest();
+        }
+        else if (window.ActiveXObject) {// code for IE5 and IE6
+            xmlhttp = new ActiveXObject('Microsoft.XMLHTTP');
+        }
+        if (xmlhttp != null) {
+            xmlhttp.onreadystatechange = function () {
+                state_Change(xmlhttp);
+            };
+            xmlhttp.open('GET', url, true);
+            xmlhttp.send(null);
+        }
+        else {
+            alert('Your browser does not support XMLHTTP.');
+        }
+    }
+
+    function state_Change(xmlhttp) {
+        console.log(xmlhttp);
+        // 4 = 'loaded'
+        if (xmlhttp.readyState == 4) {
+            // 200 = OK
+            if (xmlhttp.status == 200) {
+                document.getElementById('res').innerHTML = xmlhttp.responseText;
+            }
+            else {
+                alert('Problem retrieving XML data');
+            }
+        }
+    }
+
+    document.getElementById('btn1').onclick = function () {
+        loadXMLDoc('/code/web/webBasic/XMLHttpRequest/load.html');
+    }
+</script>
+</html>

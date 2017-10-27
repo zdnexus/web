@@ -5,7 +5,7 @@
 // 在 JS 文件里和块状里用var声明的变量在全局有效
 
 // 即脚本开始运行时，var变量已经存在了，但是没有值，所以会输出undefined。
-// console.log('文件作用域：let a =', a);     // ReferenceError: a is not defined
+// console.log('文件作用域：let a =', a);        // ReferenceError: a is not defined
 console.log('文件作用域：var b =', b);        // undefined,变量提升
 {
     let a = 1;
@@ -13,13 +13,14 @@ console.log('文件作用域：var b =', b);        // undefined,变量提升
     console.log('块级作用域：let a =', a);    // 1
     console.log('块级作用域：var b =', b);    // 2
 }
-// console.log('文件作用域：let a =', a);     // ReferenceError: a is not defined
+// console.log('文件作用域：let a =', a);        // ReferenceError: a is not defined
 console.log('文件作用域：var b =', b);        // 2
 
 // 循环函数作用域
 let arr = [];
 for (var i = 0; i < 3; i++) {
     arr[i] = function () {
+        console.log(i);
         return i;
     };
 }
