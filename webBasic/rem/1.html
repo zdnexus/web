@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size: 50px;">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+
+        #view {
+            width: 100%;
+            height: 100%;
+        }
+
+        #div1 {
+            width: 1rem;
+            height: 1rem;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+<div id="view">
+    <div id="div1"></div>
+</div>
+
+</body>
+<script src="setDpr.js"></script>
+<script>
+    alert(document.body.clientWidth)
+    alert(document.body.clientHeight)
+</script>
+</html>
