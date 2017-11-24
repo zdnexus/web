@@ -24,35 +24,73 @@
 
 </body>
 <script>
-    console.log(1);
+    //    console.log(1);
+    //
+    //    setTimeout(function () {
+    //        console.log(2);
+    //    }, 0);
+    //
+    //    function f1() {
+    //        console.log(3);
+    //        setTimeout(function () {
+    //            console.log(4);
+    //        }, 0);
+    //    }
+    //
+    //    function f2() {
+    //        console.log(5);
+    //        setTimeout(function () {
+    //            console.log(6);
+    //        }, 0);
+    //    }
+    //
+    //    setTimeout(function () {
+    //        console.log(7);
+    //    }, 0);
 
-    setTimeout(function () {
-        console.log(2);
-    }, 0);
-
-    function f1() {
-        console.log(3);
-        setTimeout(function () {
-            console.log(4);
-        }, 0);
-    }
-
-    function f2() {
-        console.log(5);
-        setTimeout(function () {
-            console.log(6);
-        }, 0);
-    }
-
-    setTimeout(function () {
-        console.log(7);
-    }, 0);
-
-    console.log(8);
-
-    f1();
-    f2();
 
     // 1 8 3 5 2 7 4 6
+
+
+    var timeStart = Date.now();
+    var timeEnd = Date.parse(new Date('2017-11-06 23:59:59'));
+    var a = $('.state-btn')[3];
+    var b = $('.state-btn')[4];
+    setTimeout(function () {
+        a.click();
+        b.click();
+
+        setInterval(function () {
+            a.click();
+            b.click();
+        }, 500);
+    }, timeEnd - timeStart);
+
+
+    var timeStart = Date.now();
+    var timeEnd = Date.parse(new Date('2017-11-12 23:59:59'));
+    var leftTime = timeEnd - timeStart;
+    var a = $('.state-16')[0];
+    console.log('还有 ' + leftTime / 1000 + ' s');
+    setTimeout(function () {
+        a.click();
+
+        var t = setInterval(function () {
+            a.click();
+        }, 250);
+    }, leftTime);
+
+
+    var timeStart = Date.now();
+    var timeEnd = Date.parse(new Date('2017-11-13 00:00:00'));
+    var leftTime = timeEnd - timeStart;
+    var a = $('.pic_errorPlace')[0];
+    console.log('还有 ' + leftTime / 1000 + ' s');
+    setTimeout(function () {
+        a.click();
+        var t = setInterval(function () {
+            a.click();
+        }, 600);
+    }, leftTime);
 </script>
 </html>
