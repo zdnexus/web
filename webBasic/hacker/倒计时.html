@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    //    var xhr = new XMLHttpRequest();
+    //    xhr.open('get', 'testServer.txt', true);
+    //    xhr.onreadystatechange = function () {
+    //        if (xhr.readyState == 3) {
+    //            var header = xhr.getAllResponseHeaders();
+    //            var fwq = Date.parse(new Date(xhr.getResponseHeader('Date')));
+    //            var now = Date.parse(new Date());
+    //            console.log('当前服务器的时间是' + fwq);
+    //            console.log('当前客户端的时间是' + fwq);
+    //        }
+    //    };
+    //    xhr.send(null);
+
+
+    var start = setInterval(function () {
+        var time = Date.parse(new Date());
+        if (time % 1000 === 0) {
+            clearInterval(start);
+            console.log(time);
+            setInterval(function () {
+
+            },1000);
+
+
+            setInterval(function () {
+                $('.pic_errorPlace')[0].click();
+            }, 510);
+        }
+    }, 1);
+
+
+    var timestart = Date.parse(new Date());
+    var timeend = Date.parse(new Date("2017-11-03 14:16:00"));
+    console.log((timeend - timestart) / 1000);
+    setInterval(function () {
+        $('.pic_errorPlace')[0].click();
+
+        setInterval(function () {
+            $('.pic_errorPlace')[0].click();
+        }, 550);
+    }, timeend - timestart);
+
+</script>
+</html>

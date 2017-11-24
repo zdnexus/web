@@ -19,7 +19,6 @@
 
 </body>
 <script type="text/javascript">
-
     function loadXMLDoc(url) {
         var xmlhttp = null;
         if (window.XMLHttpRequest) {// code for all new browsers
@@ -41,7 +40,6 @@
     }
 
     function state_Change(xmlhttp) {
-        console.log(xmlhttp);
         // 4 = 'loaded'
         if (xmlhttp.readyState == 4) {
             // 200 = OK
@@ -54,8 +52,59 @@
         }
     }
 
-    document.getElementById('btn1').onclick = function () {
-        loadXMLDoc('/code/web/webBasic/XMLHttpRequest/load.html');
+    function fetchDemo(url) {
+        fetch(url, {
+            method: 'GET',
+            headers: {'Accept': 'application/json', 'Content-Type': 'application/json',}
+        }).then(json)
+            .then(function (response) {
+                console.log(response);
+                response.json().then(function (obj) {
+                    // 这样数据就转换成json格式的了
+                    console.log(obj);
+                });
+//                return response.json();
+            }).catch(function (err) {
+            console.log(err);
+        });
     }
+
+    function ajax(type, url, param, onsucess) {
+        var xhr;
+        if (XMLHttpRequest) {
+            xhr = new XMLHttpRequest();
+        } else {
+            xhr = ActiveXObject('XMLHttpRequest');
+        }
+
+        if (type == 'Get' || type == 'get') {
+            xhr.open('Get', url, true);
+        } else {
+            xhr.open('Post', url, true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        }
+        xhr.send(param);
+
+
+        xhr.onreadystatechange = function (data) {
+            if (xhr.readyState == 4) {
+                if (xhr.status == 200) {
+                    onsucess(xhr);
+                }
+            }
+        };
+    }
+
+    document.getElementById('btn1').onclick = function () {
+        var url = '/code/web/webBasic/XMLHttpRequest/load.html';
+
+//        loadXMLDoc(url);
+        fetchDemo(url);
+//        ajax('get', url, {}, function (res) {
+//            document.getElementById('res').innerHTML = res.responseText;
+//        });
+    }
+
+
 </script>
 </html>

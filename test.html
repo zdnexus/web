@@ -74,6 +74,12 @@
     console.log('还有 ' + leftTime / 1000 + ' s');
     setTimeout(function () {
         a.click();
+        setInterval(function () {
+            $('.exchange')[0].click();
+            setTimeout(function () {
+                $('.pay_beans')[0].click();
+            })
+        }, 100);
 
         var t = setInterval(function () {
             a.click();
@@ -92,5 +98,19 @@
             a.click();
         }, 600);
     }, leftTime);
+    // 1 8 3 5 2 7 4 6
+
+
+    var timeStart = Date.now();
+    var timeEnd = Date.parse(new Date('2017-11-10 13:59:59'));
+    console.log(timeEnd - timeStart);
+    var a = $('.state-16')[0];
+    setTimeout(function () {
+        a.click();
+
+        setInterval(function () {
+            a.click();
+        }, 250);
+    }, timeEnd - timeStart);
 </script>
 </html>
