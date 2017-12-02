@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #view {
+            min-height: 100%;
+        }
+
+        .div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background: red;
+            transition: all 1s ease;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div"></div>
+
+</body>
+<script>
+    var doc = document;
+    var body = doc.body;
+    var dom = doc.getElementsByClassName('div')[0];
+    var fr = doc.createDocumentFragment();
+    for (var i = 0; i < 5; i++) {
+        var newDom = dom.cloneNode(false);
+        fr.appendChild(newDom);
+    }
+    body.appendChild(fr);
+</script>
+<script>
+    var view = document.getElementById('view');
+    window.addEventListener('scroll', function () {
+        var docE = document.documentElement;
+//        var docE = document.body;
+        console.log(docE.offsetHeight - docE.clientHeight - docE.scrollTop);
+    }, false);
+</script>
+</html>

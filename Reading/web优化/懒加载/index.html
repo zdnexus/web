@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .div {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            background: red;
+            transition: all 1s ease;
+        }
+
+        .black {
+            background: black;
+        }
+    </style>
+</head>
+<body>
+
+<div class="div"></div>
+
+</body>
+<script>
+    var doc = document;
+    var body = doc.body;
+    var dom = doc.getElementsByClassName('div')[0];
+    var fr = doc.createDocumentFragment();
+    for (var i = 0; i < 1000; i++) {
+        var newDom = dom.cloneNode(false);
+        fr.appendChild(newDom);
+    }
+    body.appendChild(fr);
+</script>
+<script>
+    function lazyload() {
+        var adiv = doc.getElementsByClassName('div');
+        var seeHeight = doc.documentElement.clientHeight; //可见区域高度
+        var scrollTop = doc.documentElement.scrollTop || document.body.scrollTop; //滚动条距离顶部高度
+        for (var i = 0, l = adiv.length; i < l; i++) {
+            var div = adiv[i];
+            if (div.offsetTop < seeHeight + scrollTop) {
+                div.className = 'div black';
+            }
+        }
+    }
+
+    lazyload();
+    window.onscroll = lazyload;
+</script>
+</html>

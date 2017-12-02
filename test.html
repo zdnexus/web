@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-size: 200px">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
     <style>
         .b {
             width: 100px;
@@ -11,68 +12,77 @@
             background-color: #0000ee;
             float: left;
         }
+
+        #p1 {
+            width: 1rem;
+            height: 1rem;
+            background: red;
+        }
     </style>
 </head>
 <body>
 
-<div class="b" onclick="console.log(32231)"></div>
+<!--<div class="b" onclick="console.log(32231)"></div>-->
 
-<div class="b" onclick="click(312)"></div>
+<!--<div class="b" onclick="click(312)"></div>-->
 
-<div class="b"></div>
+<!--<div class="b"></div>-->
+
+
+<div id="p1">32131232131</div>
 
 
 </body>
 <script>
-    console.log(1);
-
-    setTimeout(function () {
-        console.log(2);
-    }, 0);
-
-    function f1() {
-        console.log(3);
-        setTimeout(function () {
-            console.log(4);
-        }, 0);
-    }
-
-    function f2() {
-        console.log(5);
-        setTimeout(function () {
-            console.log(6);
-        }, 0);
-    }
-
-    setInterval(function () {
-        $('.exchange')[0].click();
-        setTimeout(function () {
-            $('.pay_beans')[0].click();
-        })
-    }, 100);
-
-    setTimeout(function () {
-
-    },)
-
-    console.log(8);
-
-    f1();
-    f2();
-
-    // 1 8 3 5 2 7 4 6
-
-
-    var timeStart = Date.now();
-    var timeEnd = Date.parse(new Date('2017-11-10 13:59:59'));
-    console.log(timeEnd - timeStart);
-    var a = $('.state-16')[0];
-    setTimeout(function () {
-        a.click();
-
-        setInterval(function () {
-            a.click();
-        }, 250);
-    }, timeEnd - timeStart);
+    //    console.log(1);
+    //
+    //    setTimeout(function () {
+    //        console.log(2);
+    //    }, 0);
+    //
+    //    function f1() {
+    //        console.log(3);
+    //        setTimeout(function () {
+    //            console.log(4);
+    //        }, 0);
+    //    }
+    //
+    //    function f2() {
+    //        console.log(5);
+    //        setTimeout(function () {
+    //            console.log(6);
+    //        }, 0);
+    //    }
+    //
+    //    setInterval(function () {
+    //        $('.exchange')[0].click();
+    //        setTimeout(function () {
+    //            $('.pay_beans')[0].click();
+    //        })
+    //    }, 100);
+    //
+    //    setTimeout(function () {
+    //
+    //    },)
+    //
+    //    console.log(8);
+    //
+    //    f1();
+    //    f2();
+    //
+    //    // 1 8 3 5 2 7 4 6
+    //
+    //
+    //    var timeStart = Date.now();
+    //    var timeEnd = Date.parse(new Date('2017-11-10 13:59:59'));
+    //    console.log(timeEnd - timeStart);
+    //    var a = $('.state-16')[0];
+    //    setTimeout(function () {
+    //        a.click();
+    //
+    //        setInterval(function () {
+    //            a.click();
+    //        }, 250);
+    //    }, timeEnd - timeStart);
 </script>
 </html>

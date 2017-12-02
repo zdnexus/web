@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <style>
-        .a {
-            width: 200px;
-            height: 200px;
-            margin: 10px;
-            background-color: #00b800;
+        body {
+            font-size: 1em;
+            height: 1000px;
         }
     </style>
 </head>
 <body>
 
+<div id="div1">
+    132131
+</div>
+
+<p style="font-size: 1em">
+    132131
+</p>
+<p style="font-size: 16px;">
+    132131
+</p>
+
 </body>
 <script>
     var body = document.body;
-    var div = document.createElement('div');
-    div.className = 'a';
-    var num = 1000;
-    for (var i = 0; i < num; ++i) {
-        document.body.appendChild(div.cloneNode());
-    }
-</script>
-<script>
+    window.addEventListener('scroll', function () {
 
+    }, false);
 </script>
 </html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--当前Html碰到script标签的时候会停止环境中单线程上处理的事情（页面下载和渲染），
+    因为不知道JavaScript是否会给html增删改查内容，
+    必须等到脚本执行完成，然后再继续解析和渲染页面。
+    所以要把script标签放在body标签后面-->
+
+<!--<script>-->
+    <!--alert(document.getElementById('p1').innerHTML);-->
+<!--</script>-->
+
+<p id="p1">
+    123
+    <script>
+        alert(document.getElementById('p1').innerHTML);
+    </script>
+    456
+</p>
+
+<!--<script>-->
+    <!--alert(document.getElementById('p1').innerHTML);-->
+<!--</script>-->
+
+
+</body>
+</html>

@@ -3,8 +3,8 @@
  */
 'use strict';
 
-// 凡是使用 function 关键字或 Function 构造函数创建的对象都是函数对象。
-// 而且，只有函数对象才拥有 prototype （原型）属性。
+// 凡是使用function关键字或Function构造函数创建的对象都是函数对象。
+// 而且，只有函数对象才拥有prototype（原型）属性。
 
 // f1(0); // Error：调用出错，f1 变量提升后是 undefined。
 var f1 = function (index) {
@@ -22,7 +22,6 @@ function f3(index) {
 }
 f3(1); // 4
 // 笔记：f1 是在代码执行到那一行的时候才会有定义，f3 会在代码执行之前提前加载到作用域中。
-
 
 // 函数即对象：在 JavaScript 里，函数即对象，程序可以随意操控它们。
 // 1.把函数赋值给变量：
@@ -51,4 +50,4 @@ function Person(name) {
 }
 var me = new Person('Stone');
 console.log(me.name);   // Stone
-me.showName();          // 我的名字是 Stone
+me.showName();          // 我的名字是Stone

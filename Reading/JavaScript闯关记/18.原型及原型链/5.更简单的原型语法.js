@@ -79,5 +79,7 @@ Object.defineProperty(Person.prototype, 'constructor', {
 });
 
 var p3 = new Person();
+console.log(p3 instanceof Object);      // true
+console.log(p3 instanceof Person);      // true
 console.log(p3.constructor === Object); // false
 console.log(p3.constructor === Person); // true
