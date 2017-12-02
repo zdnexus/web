@@ -8,7 +8,7 @@
             var oTxt = document.getElementById("txt1");
             var oBtn = document.getElementById("btn1");
             oBtn.onclick = function () {
-                var re = /^\w+@[0-9a-z]+\.+[a-z]$/i;//^为开头，$为结尾     验证一定要加^和$
+                var re = /^\w+@[0-9a-z]+\.[a-z]+$/i;//^为开头，$为结尾     验证一定要加^和$
 
                 if (re.test(oTxt.value)) {
                     alert("合法");

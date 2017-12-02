@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{
+            width: 300px;
+            height: 300px;
+            line-height: 300px;
+            text-align: center;
+            color: white;
+            background-color: red;
+            font-size: 100px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1" onclick="f1()"></div>
+
+</body>
+<script>
+    a = 1;
+    console.log(delete window.a);
+
+    function f1() {
+        console.log(a);
+        document.getElementById('div1').innerHTML = a;
+    }
+</script>
+</html>

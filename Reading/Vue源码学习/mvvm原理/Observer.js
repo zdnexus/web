@@ -13,7 +13,6 @@ function Dep() {
 Dep.target = null;
 
 Dep.prototype = {
-
     addSub: function(sub) {
         this.subs.push(sub);
     },
@@ -42,7 +41,6 @@ function Observer(data) {
 }
 
 Observer.prototype = {
-    
     walk: function(data) {
         var me = this;
         Object.keys(data).forEach(function(key) {

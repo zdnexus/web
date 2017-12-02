@@ -59,7 +59,7 @@
         },
         methods: {
             clickDiv(index){
-                this.clickStatusArr = this.clickStatusArr.map( ()=> {
+                this.clickStatusArr = this.clickStatusArr.map(function () {
                     return false;
                 });
                 this.clickStatusArr[index] = true;
