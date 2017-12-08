@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<input type="text" id="ipt1">
+
+<div id="div1"></div>
+
+</body>
+<script>
+    var obj = {};
+    Object.defineProperty(obj, 'value', {
+        configurable: true,
+        enumerable: true,
+        get: function () {
+            console.log('get方法被调用了。');
+        },
+        set: function (newValue) {
+            console.log('set方法被调用了，newValue = ' + newValue);
+            document.getElementById('div1').innerText = newValue;
+        }
+    });
+
+    document.getElementById('ipt1').addEventListener('input', function (e) {
+        var value = e.target.value;
+        console.log(value);
+        value = value.replace(/[^\d]/gi, '');
+        console.log(value);
+        obj.value = value;
+    }, false);
+</script>
+</html>
