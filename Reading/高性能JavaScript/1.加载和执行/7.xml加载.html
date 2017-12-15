@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'js/one.js', true);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            if (xhr.status === 200) {
+                var script = document.createElement('script');
+                script.type = 'text/javascript';
+                script.src = xhr.responseText;
+                script.onload = function () {
+                    console.log('script' + i + ' loaded!');
+                };
+                document.head.appendChild(script);
+            }
+        }
+    };
+</script>
+</html>

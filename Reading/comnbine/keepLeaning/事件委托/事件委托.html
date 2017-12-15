@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        #myDiv div{
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background-color: #00a8c6;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+
+<div id="myDiv">
+    <div class="a"></div>
+    <div class="b"></div>
+    <div class="c"></div>
+</div>
+
+</body>
+<script>
+    document.getElementById('myDiv').addEventListener('click',function(e) {
+        // e.target是被点击的元素
+        if(e.target && e.target.nodeName.toLowerCase() == 'div') {
+            // 获得CSS类名
+            let classes = e.target.className.split(' ');
+            // 搜索匹配!
+            if(classes) {
+                for(let i = 0; i < classes.length; i++) {
+                    if(classes[i] == 'a') {
+                        console.log('Anchor element clicked!');
+                    }
+                }
+            }
+
+        }
+    });
+</script>
+</html>

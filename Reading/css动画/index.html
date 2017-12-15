@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 500px;
+            height: 200px;
+            background: red;
+            position: relative;
+        }
+
+        @keyframes aaa {
+            0% {
+                left: 0;
+            }
+
+            50% {
+                left: 100px;
+            }
+
+            100% {
+                left: 200px;
+            }
+        }
+
+        #div2 {
+            width: 100px;
+            height: 100px;
+            background: silver;
+            transform: translate3d(0, 100px, 0);
+            /*position: absolute;*/
+            /*left: 0;*/
+            /*top: 100px;*/
+            /*animation: aaa 5s ease-out 0s 1 alternate;*/
+            transition: all 2s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+
+<ul id="ul1">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+</ul>
+<div id="div1">
+    <div id="div2" style="background: black"></div>
+</div>
+
+</body>
+<script>
+    let li = document.querySelectorAll('#ul1 li');
+    dom = document.getElementById('div2');
+    console.log(dom);
+    for (let i = 0; i < li.length; i++) {
+        li[i].onclick = function () {
+//            dom.style.left = 100 * i + 'px';
+            dom.style.transform = 'translate3d(' + 100 * i + 'px, 100px, 0)';
+        };
+    }
+</script>
+</html>

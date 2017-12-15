@@ -28,7 +28,7 @@ var func = function () {
 };
 var f = func.before(function () {
     console.log(arguments[0]);
-});
+}).afer();
 f(arr);
 
 
