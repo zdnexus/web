@@ -3,8 +3,7 @@
  */
 'use strict';
 
-// 命令模式
-// 闭包改写
+// 执行者
 var Div = {
     element: document.getElementById('div1'),
     changeBlue: function () {
@@ -18,22 +17,19 @@ var Div = {
     }
 };
 
+// 分离
 var ChangeDivCommand = function (receiver) {
-    var commandOne = function () {
-        receiver.changeBlue();
-    };
-
-    var commandTwo = function () {
-        receiver.changeRed();
-        receiver.changeFontSize50();
-    };
-
-    return {
-        commandOne: commandOne,
-        commandTwo: commandTwo
-    };
+    this.receiver = receiver;
+};
+ChangeDivCommand.prototype.commandOne = function () {
+    this.receiver.changeBlue();
+};
+ChangeDivCommand.prototype.commandTwo = function () {
+    this.receiver.changeRed();
+    this.receiver.changeFontSize50();
 };
 
+// 发起者
 var setCommand = function (command) {
     document.getElementById('btn1').onclick = function () {
         command.commandOne();
@@ -43,4 +39,4 @@ var setCommand = function (command) {
     };
 };
 
-setCommand(ChangeDivCommand(Div));
+setCommand(new ChangeDivCommand(Div));
