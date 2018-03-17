@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="tutorial" width="500" height="500"></canvas>
+
+</body>
+<script>
+    //    fillRect(x, y, width, height)
+    //    绘制一个填充的矩形
+    var canvas = document.getElementById('tutorial');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+
+        ctx.fillStyle = 'rgb(200,0,0)';
+        ctx.fillRect(0, 0, 100, 100);
+
+        ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+        ctx.fillRect(400, 400, 100, 100);
+    }
+</script>
+</html>

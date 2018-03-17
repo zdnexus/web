@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/12/17 0017.
+ * Created by zdnexus on 2017/12/17 0017.
  */
 'use strict';
 
@@ -22,8 +22,13 @@ class Dog extends Animal {
     getId() {
         return this.id;
     }
+
+    getALL() {
+        return this.name + ' ' + this.id;
+    }
 }
 
 var dog = new Dog('sven', 1);
-console.log(dog.getName());
-console.log(dog.getId());
+console.log(dog.getName());// sven
+console.log(dog.getId());// 1
+console.log(dog.getALL());// sven 1

@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2016/12/24 0024.
+ * Created by zdnexus on 2016/12/24 0024.
  */
 
 console.log(parseInt(1e1));

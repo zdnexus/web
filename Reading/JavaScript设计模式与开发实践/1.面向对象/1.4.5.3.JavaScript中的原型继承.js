@@ -1,25 +1,29 @@
 /**
- * Created by Administrator on 2017/12/9 0009.
+ * Created by zdnexus on 2017/12/9 0009.
  */
 'use strict';
 
 var obj = {
-    id: 1
+    name: 'sven'
 };
 var A = function () {
 };
 A.prototype = obj;
 var a = new A();
-console.log(a.id);// 1
-obj.id = 2;
-console.log(a.id);// 2
-
+console.log(a.name);// sven
+obj.name = 'nevermore';
+console.log(a.name);// nevermore
 
 var B = function () {
 };
-B.prototype = new A();
+// 第一种继承
+// B.prototype = new A();
+// 第二种继承
 // B.prototype = A.prototype;
+// 第三种继承
+// B.prototype.__proto__ = A.prototype;
 var b = new B();
-console.log(b.id);// 2
-obj.id = 3;
-console.log(b.id);// 3
+console.log(b.name);// nevermore
+obj.name = 'slake';
+console.log(a.name);// slake
+console.log(b.name);// slake

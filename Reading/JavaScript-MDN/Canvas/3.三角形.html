@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        canvas {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<canvas id="canvas" width="500" height="500"></canvas>
+
+</body>
+<script>
+    //    fillRect(x, y, width, height)
+    //    绘制一个填充的矩形
+    var canvas = document.getElementById('canvas');
+    if (canvas.getContext) {
+        var ctx = canvas.getContext('2d');
+
+//        ctx.beginPath();
+//        ctx.moveTo(75,50);
+//        ctx.lineTo(100,75);
+//        ctx.lineTo(100,25);
+//        ctx.fill();
+
+//        ctx.beginPath();
+//        ctx.moveTo(100,100);
+//        ctx.lineTo(300,100);
+//        ctx.lineTo(200,200);
+//        ctx.fill();
+
+        ctx.beginPath();
+        ctx.moveTo(100, 100);
+        ctx.lineTo(100, 300);
+        ctx.lineTo(200, 200);
+        ctx.fill();
+    }
+</script>
+</html>

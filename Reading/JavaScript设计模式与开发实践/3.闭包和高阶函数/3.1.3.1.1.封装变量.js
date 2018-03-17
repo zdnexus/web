@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/12/10 0010.
+ * Created by zdnexus on 2017/12/10 0010.
  */
 'use strict';
 
@@ -10,7 +10,6 @@ function mult() {
     if (args in cache) {
         return cache[args];
     }
-
     var sum = 1;
     for (var i = 0, l = arguments.length; i < l; i++) {
         sum *= arguments[i];
@@ -18,6 +17,6 @@ function mult() {
     return cache[args] = sum;
 }
 
-// var cache = 1;
-console.log(mult(1, 2, 3));
-console.log(mult(1, 2, 3));
+var cache = 1;
+console.log(mult(1, 2, 3));// 6
+console.log(mult(1, 2, 3));// 6

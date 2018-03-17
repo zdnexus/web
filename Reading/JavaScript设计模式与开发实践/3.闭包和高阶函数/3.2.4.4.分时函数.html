@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2018/1/14 0014.
+     */
+    'use strict';
+
+    var TimeChunk = function (array, fn, count, time) {
+        var timer;
+        var Handle = function () {
+            for (var i = 0; i < Math.min(count || 1, array.length); i++) {
+                fn(array.shift());
+            }
+        };
+
+        return function () {
+            timer = setInterval(function () {
+                if (array.length === 0) {
+                    clearInterval(timer);
+                    timer = null;
+                } else {
+                    Handle();
+                }
+            }, time || 200);
+        };
+    };
+
+    var arr = [];
+    for (var i = 0; i < 1000; i++) {
+        arr.push(i + 1);
+    }
+    var RenderDiv = function () {
+        var doc = document;
+        var body = doc.body;
+        var div = doc.createElement('div');
+        div.style.cssText = 'width:200px;height:200px;margin:10px;background-color:red;';
+        return function () {
+            var d = div.cloneNode(true);
+            d.innerHTML = arguments[0];
+            body.appendChild(d);
+        }
+    };
+    var renderList = TimeChunk(arr, RenderDiv(), 8, 200);
+    renderList();
+</script>
+</html>

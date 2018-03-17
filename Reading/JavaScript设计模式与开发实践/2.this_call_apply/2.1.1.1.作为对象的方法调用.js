@@ -1,16 +1,15 @@
 /**
- * Created by Administrator on 2017/12/17 0017.
+ * Created by zdnexus on 2017/12/17 0017.
  */
 'use strict';
 
 var obj = {
-    id: 1,
-    getId: function () {
-        console.log(this);
+    a: 1,
+    getA: function () {
         console.log(this === obj);
-        console.log(this.id);
-        console.log(this.getId);
+        console.log(this.a);
+        console.log(this.getA);
     }
 };
 
-obj.getId();
+obj.getA();

@@ -1,28 +1,26 @@
 /**
- * Created by Administrator on 2017/12/17 0017.
+ * Created by zdnexus on 2017/12/17 0017.
  */
 'use strict';
 
-function MyObject() {
-    this.id = 1;
+function MyClass() {
+    this.name = 'sven';
 }
-var obj = new MyObject();
-console.log(obj.id);// 1
+var obj = new MyClass();
+console.log(obj.name);// sven
 
-
-function MyObject_2() {
-    this.id = 1;
+function MyClass_2() {
+    this.name = 'sven';
     return {
-        id: 2
+        name: 'anne'
     }
 }
-obj = new MyObject_2();
-console.log(obj.id);// 2
+var obj2 = new MyClass_2();
+console.log(obj2.name);// anne
 
-
-function MyObject_3() {
-    this.id = 1;
-    return 2;
+function MyClass_3() {
+    this.name = 'sven';
+    return 'anne';
 }
-obj = new MyObject_3();
-console.log(obj.id);// 1
+var obj3 = new MyClass_3();
+console.log(obj3.name);// sven

@@ -6,7 +6,7 @@
     <script>
         setTimeout(function () {
             console.log('setTimeout');
-        }, 0);
+        }, 100);
     </script>
     <script async="async" src="./js/async.js"></script>
     <script defer="defer" src="./js/defer.js"></script>
@@ -21,5 +21,11 @@
 </body>
 <script>
     console.log('script');
+
+    for (var i = 0; i < 10000; i++) {
+        var dom = document.createElement('div');
+        dom.innerHTML = 'aaa';
+        document.body.append(dom);
+    }
 </script>
 </html>

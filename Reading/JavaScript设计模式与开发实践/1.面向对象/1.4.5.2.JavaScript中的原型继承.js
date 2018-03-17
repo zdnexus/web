@@ -1,13 +1,13 @@
 /**
- * Created by Administrator on 2017/12/9 0009.
+ * Created by zdnexus on 2017/12/9 0009.
  */
 'use strict';
 
-function Person(id) {
-    id && (this.id = id);
+function Person(name) {
+    this.name = name
 }
-Person.prototype.getId = function () {
-    return this.id;
+Person.prototype.getName = function () {
+    return this.name;
 };
 
 var objectFactory = function () {
@@ -15,9 +15,10 @@ var objectFactory = function () {
         Constructor = [].shift.call(arguments);
     obj.__proto__ = Constructor.prototype;
     var ret = Constructor.apply(obj, arguments);
-
     return typeof ret === 'object' ? ret : obj;
 };
 
-var p = objectFactory(Person, 1);
-console.log(p.id);
+var a = objectFactory(Person, 'sven');
+console.log(a.name);// sven
+console.log(a.getName());// sven
+console.log(Object.getPrototypeOf(a) === Person.prototype);// true

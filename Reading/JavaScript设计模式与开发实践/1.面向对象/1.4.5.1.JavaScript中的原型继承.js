@@ -1,17 +1,16 @@
 /**
- * Created by Administrator on 2017/12/9 0009.
+ * Created by zdnexus on 2017/12/9 0009.
  */
 'use strict';
 
-function Person(id) {
-    id && (this.id = id);
+function Person(name) {
+    this.name = name
 }
-Person.prototype.getId = function () {
-    return this.id;
+Person.prototype.getName = function () {
+    return this.name;
 };
-Person.prototype.id = 1;
-Person.id = 2;
 
-var p = new Person(3);
-p.id = 4;
-console.log(p.id);
+var a = new Person('sven');
+console.log(a.name);// sven
+console.log(a.getName());// sven
+console.log(Object.getPrototypeOf(a) === Person.prototype);// true

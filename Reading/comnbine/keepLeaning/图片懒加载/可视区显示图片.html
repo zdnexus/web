@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            border: none;
+            vertical-align: middle;
+        }
+
+        .div1 {
+            width: 300px;
+            height: 300px;
+            margin: 10px;
+            background: red;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    let num = 100;
+    let body = document.body;
+    let div1 = document.createElement('div');
+
+    div1.className = 'div1';
+    for (let i = 0; i < num; i++) {
+        body.appendChild(div1.cloneNode(true));
+    }
+
+    let arr = document.getElementsByClassName('div1');
+
+    function changeDivColor(arr) {
+        for (let i = 0, len = arr.length; i < len; i++) {
+            if (arr[i].getBoundingClientRect().top < document.documentElement.clientHeight && !arr[i].isLoad) {
+                arr[i].isLoad = true;
+                arr[i].style = 'opacity: 0;';
+                (function (i) {
+                    setTimeout(function () {
+                        arr[i].style = 'background:black;-webkit-transition: 1s;opacity: 1;'
+                    }, 100)
+                })(i);
+            }
+        }
+    }
+
+    window.onscroll = window.onload = function () {
+        changeDivColor(arr);
+    };
+
+
+    //    let aImages = document.images;
+    //
+    //    loadImg(aImages);
+    //
+    //    window.onscroll = function () {
+    //        loadImg(aImages);
+    //    };
+    //
+    //    function loadImg(arr) {
+    //        for (let i = 0, len = arr.length; i < len; i++) {
+    //            if (arr[i].getBoundingClientRect().top < document.documentElement.clientHeight && !arr[i].isLoad) {
+    //                arr[i].isLoad = true;
+    //                arr[i].style.cssText = 'transition: ""; opacity: 0;';
+    //                if (arr[i].dataset) {
+    //                    aftLoadImg(arr[i], arr[i].dataset.original);
+    //                } else {
+    //                    aftLoadImg(arr[i], arr[i].getAttribute('data-original'));
+    //                }
+    //                (function (i) {
+    //                    setTimeout(function () {
+    //                        arr[i].style.cssText = 'transition: 1s; opacity: 1;'
+    //                    }, 16)
+    //                })(i);
+    //            }
+    //        }
+    //    }
+    //    function aftLoadImg(obj, url) {
+    //        let oImg = new Image();
+    //        oImg.onload = function () {
+    //            obj.src = oImg.src;
+    //        }
+    //        oImg.src = url;
+    //    }
+</script>
+</html>

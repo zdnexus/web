@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<button id="execute">点击我执行命令</button>
+<button id="undo">点击我执行命令</button>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2018/1/14 0014.
+     */
+    'use strict';
+
+    var Tv = {
+        open: function () {
+            console.log('打开电视机');
+        },
+        close: function () {
+            console.log('关闭电视机');
+        }
+    };
+
+    var OpenTvCommand = function (receiver) {
+        this.receiver = receiver;
+    };
+    OpenTvCommand.prototype.execute = function () {
+        this.receiver.open();
+    };
+    OpenTvCommand.prototype.undo = function () {
+        this.receiver.close();
+    };
+
+    var SetCommand = function (command) {
+        document.getElementById('execute').onclick = function () {
+            command.execute();
+        };
+        document.getElementById('undo').onclick = function () {
+            command.undo();
+        };
+    };
+
+    SetCommand(new OpenTvCommand(Tv));
+</script>
+</html>

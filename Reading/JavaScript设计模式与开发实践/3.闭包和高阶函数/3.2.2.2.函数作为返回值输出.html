@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2018/1/14 0014.
+     */
+    'use strict';
+
+    var getSingle = function (fn) {
+        var ret;
+        return function () {
+            return ret || (ret = fn.apply(this, arguments));
+        };
+    };
+
+    var gs = getSingle(function () {
+        return document.createElement('script');
+    });
+
+    var gs1 = gs();
+    var gs2 = gs();
+    console.log(gs1 === gs2);
+</script>
+</html>

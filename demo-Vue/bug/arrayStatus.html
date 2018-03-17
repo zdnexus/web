@@ -79,9 +79,11 @@
         },
         methods: {
             clickDiv(index){
+
                 this.clickStatusArr.map(function (val, idx) {
                     this[idx] = (idx === index);
                 }, this.clickStatusArr);
+
                 console.log(this.clickStatusArr);
                 arr2 = JSON.stringify(this.clickStatusArr);
                 console.log(arr1 === arr2);

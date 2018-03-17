@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.3.3/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <p >{{val}}</p>
+    <input type="text" v-model="val">
+</div>
+
+<div id="app2">
+    <p id="p1"></p>
+    <input type="text" id="ipt1">
+</div>
+
+</body>
+<script>
+        new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    val: 1
+                }
+            }
+        })
+</script>
+<script>
+    let obj = {};
+    Object.defineProperty(obj, 'val', {
+        get: function () {
+            console.log('get');
+        },
+        set: function (val) {
+            document.getElementById('p1').innerHTML = val.toString();
+        },
+    });
+
+    let ipt = document.getElementById('ipt1');
+    ipt.addEventListener('input',()=>{
+        obj.val = ipt.value;
+    },false);
+</script>
+</html>

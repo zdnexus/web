@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/12/16 0016.
+ * Created by zdnexus on 2017/12/16 0016.
  */
 'use strict';
 
@@ -48,32 +48,97 @@
 // console.log(f2());
 
 
-var OOO = {
-    id: 1
-};
-function Person() {
-    console.log('!!!')
-    console.log(arguments)
-    this.arr = [].slice.call(arguments);
-    console.log('my id is: ' + this.id);
-    console.log('my arr is: ' + this.arr);
-}
-Person.prototype.bind = function () {
-    var self = this;
-    var N = [].shift.call(arguments);
-    var args = [].slice.call(arguments);
+// var OOO = {
+//     id: 1
+// };
+// function Person() {
+//     console.log('!!!')
+//     console.log(arguments)
+//     this.arr = [].slice.call(arguments);
+//     console.log('my id is: ' + this.id);
+//     console.log('my arr is: ' + this.arr);
+// }
+// Person.prototype.bind = function () {
+//     var self = this;
+//     var N = [].shift.call(arguments);
+//     var args = [].slice.call(arguments);
+//
+//     console.log(self);
+//     console.log(self.apply);
+//     console.log('args',args);
+//     return function () {
+//         console.log([].concat.call(args, [].slice.call(arguments)));
+//         console.log(self);
+//         self.apply(N, [].concat.call(args, [].slice.call(arguments)));
+//     }
+// };
+// var p = new Person();
+// p = p.bind(OOO, 1, 2);
+// // Person(3);
+// // Person(3, 4);
+// p(3, 4, 5);
 
-    console.log(self);
-    console.log(self.apply);
-    console.log('args',args);
+
+// var mult = (function () {
+//     var obj = {
+//         func_1: {
+//             cache: {},
+//             func: function () {
+//                 var sum = 1;
+//                 for (var i = 0, l = arguments.length; i < l; i++) {
+//                     sum += arguments[i];
+//                 }
+//                 return sum;
+//             }
+//         },
+//         func_2: {
+//             cache: {},
+//             func: function () {
+//                 var sum = 1;
+//                 for (var i = 0, l = arguments.length; i < l; i++) {
+//                     sum *= arguments[i];
+//                 }
+//                 return sum;
+//             }
+//         }
+//     };
+//
+//     return function () {
+//         var funcName = Array.prototype.shift.call(arguments);
+//         var args = Array.prototype.join.call(arguments, ',');
+//
+//         if (args in obj[funcName].cache) {
+//             return obj[funcName].cache[args];
+//         }
+//         return obj[funcName].func.apply(null, arguments);
+//     };
+// })();
+//
+// console.log(mult('func_1', 1, 2, 3));
+// console.log(mult('func_1', 1, 2, 3));
+// console.log(mult('func_2', 4, 5, 6));
+// console.log(mult('func_2', 4, 5, 6));
+
+
+var a = function (fn) {
+    var args = [];
     return function () {
-        console.log([].concat.call(args, [].slice.call(arguments)));
-        console.log(self);
-        self.apply(N, [].concat.call(args, [].slice.call(arguments)));
-    }
+        if (arguments.length === 0) {
+            return fn.apply(null, args);
+        } else {
+            Array.prototype.push.apply(args, arguments);
+        }
+    };
 };
-var p = new Person();
-p = p.bind(OOO, 1, 2);
-// Person(3);
-// Person(3, 4);
-p(3, 4, 5);
+var b = function () {
+    var sum = 0;
+    for (var i = 0; i < arguments.length; i++) {
+        sum += arguments[i];
+    }
+    return sum;
+};
+var c = a(b);
+c(1);
+c(2);
+c(3, 4);
+console.log(c());

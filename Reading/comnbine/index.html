@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script async="async" src="stdoutDiv.js"></script>
+</head>
+<body>
+
+<div id="div1"></div>
+
+</body>
+<script>
+    console.log('body onload');
+</script>
+<script>
+    'use strict';
+    function f1() {
+        console.log(this);
+    }
+    f1();
+</script>
+<script>
+    function f1() {
+        console.log(this);
+    }
+    f1();
+</script>
+<script src="strict1.js"></script>
+<script>
+    function f3() {
+        console.log('f3');
+    }
+
+    f3;
+    f3();
+    new f3;
+    new f3();
+</script>
+<script>
+    var f1 = function () {
+        console.log(1);
+    };
+
+    function f1() {
+        console.log(2);
+    }
+
+    f1();
+</script>
+<script>
+    window.onload = function () {
+        console.log('window onload');
+    }
+</script>
+<script>
+    f1();
+    function f1() {
+        console.log('f1');
+    }
+    console.log(a);
+    var a = 1;
+</script>
+<script>
+    console.log(b);
+</script>
+<script>
+    var b = 2;
+</script>
+<script defer="defer" src="f2_stdout.js"></script>
+<script src="f2.js"></script>
+<script defer="defer" src="dataParse.js"></script>
+<script src="setTimeout.js"></script>
+<script src="map.js"></script>
+<script async="async" src="stdoutDiv2.js"></script>
+</html>
