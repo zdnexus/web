@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2017/12/17 0017.
+     */
+    // 'use strict';
+
+    var name = 'globalName';
+    var myObject = {
+        name: 'sven',
+        getName: function () {
+            return this.name;
+        }
+    };
+    var getName = myObject.getName;
+    console.log(getName());
+</script>
+</html>

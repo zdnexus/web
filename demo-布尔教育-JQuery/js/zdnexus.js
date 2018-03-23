@@ -1,9 +1,9 @@
 /**
- * Created by hasee on 2015/10/25.
+ * Created by zdnexus on 2015/10/25.
  */
 
-//×Ô¶¨Òåº¯Êý
-//1.ÓÃjQueryÌí¼Ó2¸öÈ«¾Öº¯Êý
+//ï¿½Ô¶ï¿½ï¿½åº¯ï¿½ï¿½
+//1.ï¿½ï¿½jQueryï¿½ï¿½ï¿½2ï¿½ï¿½È«ï¿½Öºï¿½ï¿½ï¿½
 jQuery.zdAlert = function (str) {
     alert(str);
 };
@@ -12,7 +12,7 @@ jQuery.zdAlert2 = function (str) {
     alert(str + "!!!");
 };
 
-//2.ÓÃextend()·½·¨ºÏ²¢¶à¸öº¯Êý¶ÔÏó
+//2.ï¿½ï¿½extend()ï¿½ï¿½ï¿½ï¿½ï¿½Ï²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 jQuery.extend({
     zdAlert: function (str) {
         alert(str);
@@ -22,7 +22,7 @@ jQuery.extend({
     }
 });
 
-//3.Ê¹ÓÃÃüÃû¿Õ¼ä
+//3.Ê¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Õ¼ï¿½
 jQuery.zd = {
     zdAlert: function (str) {
         alert(str);
@@ -36,18 +36,18 @@ jQuery.zd = {
             "top": (($(window).height() - obj.height()) / 2) + "px",
             "left": (($(window).width() - obj.width()) / 2) + "px"
         });
-        return obj;//·µ»ØÖµ¹©¸øÁ´Ê½²Ù×÷
+        return obj;//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
     }
 };
 
 
-//¡¡(function(){})±íÊ¾Ò»¸öÄäÃûº¯Êý¡£function(arg){...}¶¨ÒåÁËÒ»¸ö²ÎÊýÎªargµÄÄäÃûº¯Êý.
-//  Ê¹ÓÃ(function(arg){...})(param)À´µ÷ÓÃÕâ¸öÄäÃûº¯Êý¡£ÆäÖÐparamÊÇ´«ÈëÕâ¸öÄäÃûº¯ÊýµÄ²ÎÊý¡£
-//table±ä»»ÑÕÉ«²å¼þ
+//ï¿½ï¿½(function(){})ï¿½ï¿½Ê¾Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½function(arg){...}ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Îªargï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½.
+//  Ê¹ï¿½ï¿½(function(arg){...})(param)ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½paramï¿½Ç´ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä²ï¿½ï¿½ï¿½ï¿½ï¿½
+//tableï¿½ä»»ï¿½ï¿½É«ï¿½ï¿½ï¿½
 ;
 (function ($) {
     $.fn.tableChangeColor = function (opations) {
-        //Ä¬ÈÏÅäÖÃ
+        //Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var defaults = {
             eventType_mouseOver: "mouseover",
             eventType_mouseOut: "mouseout",
@@ -56,15 +56,15 @@ jQuery.zd = {
             currentRowClass: "currentRow"
         };
 
-        //ºÏ²¢Ä¬ÈÏÖµºÍ²ÎÊý´øÈëÖµ
-        var opation = $.extend(defaults, opations);//defaultsµÄÊôÐÔÑÓ³¤opationsµÄÊôÐÔ¸²¸Ç
-        //var opation = $.extend(opations, defaults);//opationsµÄÊôÐÔÑÓ³¤defaultsµÄÊôÐÔ¸²¸Ç
+        //ï¿½Ï²ï¿½Ä¬ï¿½ï¿½Öµï¿½Í²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Öµ
+        var opation = $.extend(defaults, opations);//defaultsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½opationsï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½
+        //var opation = $.extend(opations, defaults);//opationsï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó³ï¿½defaultsï¿½ï¿½ï¿½ï¿½ï¿½Ô¸ï¿½ï¿½ï¿½
 
-        //Ö÷²ÎÊý¿ÉÄÜÊÇÊý×é£¬¿ÉÄÜÊÇÒ»¸öÔªËØ
+        //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½é£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½Ôªï¿½ï¿½
         $(this).each(function () {
             $(this).find("tr:even").addClass(opation.evenRowClass).end().find("tr:odd").addClass(opation.oddRowClass);
 
-            //²»ÄÜÖ±½Ó¸³Óè¶¯×÷º¯Êý
+            //ï¿½ï¿½ï¿½ï¿½Ö±ï¿½Ó¸ï¿½ï¿½è¶¯ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             //$(this).find("tr").hover(function () {
             //    $(this).toggleClass(defaults.currentRowClass);
             //});
@@ -75,7 +75,7 @@ jQuery.zd = {
             });
         });
 
-        return $(this);//·µ»ØÖµ¹©¸øÁ´Ê½²Ù×÷
+        return $(this);//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
     }
 })(jQuery);
 
@@ -96,12 +96,12 @@ jQuery.zd = {
         $(this).each(function () {
             $(this).find(opation.data_li).bind(opation.eventType_click, function () {
                 $(this).addClass(opation.activeLi).siblings().removeClass(opation.activeLi);
-                //parents() ×Ô¶¨ÒåÑ°ÕÒ ÕÒidÎª#tab ÕÒclassÎª.tab ÕÒtagNameÎªdiv
+                //parents() ï¿½Ô¶ï¿½ï¿½ï¿½Ñ°ï¿½ï¿½ ï¿½ï¿½idÎª#tab ï¿½ï¿½classÎª.tab ï¿½ï¿½tagNameÎªdiv
                 $(this).parents(opation.root).find(opation.data_div).eq($(this).index()).addClass(opation.activeDiv).siblings().removeClass(opation.activeDiv);
             });
         });
 
-        return $(this);//·µ»ØÖµ¹©¸øÁ´Ê½²Ù×÷
+        return $(this);//ï¿½ï¿½ï¿½ï¿½Öµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½ï¿½ï¿½ï¿½ï¿½
     }
 })(jQuery);
 
@@ -109,10 +109,10 @@ jQuery.zd = {
 // UlMoving JavaScript Document
 (function ($) {
     $.fn.myScroll = function (options) {
-        //Ä¬ÈÏÅäÖÃ
+        //Ä¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         var defaults = {
-            speed: 40,  //¹ö¶¯ËÙ¶È,ÖµÔ½´óËÙ¶ÈÔ½Âý
-            rowHeight: 24 //Ã¿ÐÐµÄ¸ß¶È
+            speed: 40,  //ï¿½ï¿½ï¿½ï¿½ï¿½Ù¶ï¿½,ÖµÔ½ï¿½ï¿½ï¿½Ù¶ï¿½Ô½ï¿½ï¿½
+            rowHeight: 24 //Ã¿ï¿½ÐµÄ¸ß¶ï¿½
         };
 
         var opts = $.extend({}, defaults, options), intId = [];

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var flag = 0;
+    var all = 0;
+    for (var i = 0; i < 5; i++) {
+        (function (all) {
+            setTimeout(function () {
+                console.log('wai', all);
+                setTimeout(function () {
+                    console.log('nei', all);
+                }, 100);
+            }, all);
+        })(all);
+        all += ((flag === 0) ? 100 : 200);
+        flag = ((flag === 0) ? 1 : 0);
+    }
+    //    setTimeout(function () {
+    //        console.log(1);
+    //        setTimeout(function () {
+    //            console.log(2);
+    //            setTimeout(function () {
+    //                console.log(3);
+    //            }, 100);
+    //        }, 100);
+    //    }, 200);
+</script>
+</html>

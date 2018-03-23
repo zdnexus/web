@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2018/1/20 0020.
+     */
+    'use strict';
+
+    var CreateDiv = function (html) {
+        this.html = html;
+        this.init();
+    };
+    CreateDiv.prototype.init = function () {
+        var div = document.createElement('div');
+        div.innerHTML = this.html;
+        document.body.appendChild(div);
+    };
+
+    var ProxySingleCreateDiv = (function () {
+        var instance;
+        return function (html) {
+            if (!instance) {
+                instance = new CreateDiv(html);
+            }
+            return instance;
+        }
+    })();
+
+    var a = new ProxySingleCreateDiv('sven1');
+    var b = new ProxySingleCreateDiv('sven2');
+
+    console.log(a === b);
+</script>
+</html>
