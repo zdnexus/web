@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/4/29 0029.
+ * Created by zdnexus on 2017/4/29 0029.
  */
 // 粒子总数
 var COUNT = 500;

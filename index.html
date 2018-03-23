@@ -54,7 +54,12 @@
 
 </body>
 <script>
-    var dom = document.getElementById('div1');
-    dom.style.cssText = 'color:#000;background:red;';
+    // var dom = document.getElementById('div1');
+    // dom.style.cssText = 'color:#000;background:red;';
+
+    var arr = [1, 2, 3];
+    arr.map((item,index)=> {
+        console.log(this);
+    }, arr);
 </script>
 </html>

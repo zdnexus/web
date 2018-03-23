@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<!-- saved from url=(0102)http://localhost:63342/code/web/Reading/css%E5%8A%A8%E7%94%BB/kkk.html?_ijt=fp9dhg045ioggu3dsq1oo9f2ml -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Title</title>
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background-color: rebeccapurple;
+        }
+
+        ul li {
+            list-style: none;
+            position: absolute;
+            top: 0;
+            transition: all 1s ease-in-out;
+        }
+
+        #button {
+            position: absolute;
+            top: 550px;
+        }
+
+        #sj {
+            width: 200px;
+            height: 500px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+<body>
+
+<button id="button">增加一个</button>
+
+<ul id="ul">
+    <li style="left: 0px;">
+        <div class="a">0</div>
+    </li>
+    <li style="left: 200px;">
+        <div class="a">1</div>
+    </li>
+    <li style="left: 0px;">
+        <div class="a">2</div>
+    </li>
+</ul>
+
+<div id="sj">
+
+</div>
+
+
+<script>
+    var ul = document.querySelector('#ul');
+    var li = ul.querySelectorAll('li');
+    var arr = [];
+    arr[0] = 0;
+    arr[1] = 200;
+    arr[2] = 400;
+    li[0].style.left = arr[0] + 'px';
+    li[1].style.left = arr[1] + 'px';
+    li[2].style.left = arr[2] + 'px';
+    var dis = 200;
+    // li[0].style.transform = 'translate3d(0,0,0)';
+    // li[1].style.transform = 'translate3d(210px,0,0)';
+    // li[2].style.transform = 'translate3d(420px,0,0)';
+    document.querySelector('#button').onclick = function () {
+        arr[0] -= 200;
+        arr[1] -= 200;
+        arr[2] -= 200;
+        li[0].style.left = arr[0] + 'px';
+        li[1].style.left = arr[1] + 'px';
+        li[2].style.left = arr[2] + 'px';
+        if (arr[2] === 0) {
+            arr[0] += 400;
+            arr[1] += 400;
+            li[0].style.left = arr[0] + 'px';
+            li[1].style.left = arr[1] + 'px';
+        }
+    }
+</script>
+</body></html>
