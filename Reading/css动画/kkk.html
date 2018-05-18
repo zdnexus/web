@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .a {
+            width: 200px;
+            height: 200px;
+            line-height: 200px;
+            text-align: center;
+            color: #fff;
+            background-color: rebeccapurple;
+        }
+
+        ul {
+            overflow: hidden;
+        }
+
+        ul li {
+            list-style: none;
+            position: absolute;
+            top: 0;
+            transition: all 1s ease-in-out;
+        }
+
+        #button {
+            position: absolute;
+            top: 550px;
+        }
+
+        #sj {
+            width: 200px;
+            height: 500px;
+            border: 1px solid #000;
+            position: absolute;
+            left: 0;
+            top: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+
+<button id="button">增加一个</button>
+
+<ul id="ul">
+    <li>
+        <div class="a">0</div>
+    </li>
+    <li>
+        <div class="a" style="background-color: red">1</div>
+    </li>
+    <li>
+        <div class="a" style="background-color: salmon">2</div>
+    </li>
+</ul>
+
+<div id="sj">
+
+</div>
+
+</body>
+<script src="./a.js"></script>
+</html>

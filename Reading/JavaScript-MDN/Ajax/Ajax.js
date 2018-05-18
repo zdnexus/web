@@ -1,5 +1,5 @@
 /**
- * Created by Administrator on 2017/3/19 0019.
+ * Created by zdnexus on 2017/3/19 0019.
  */
 let xhr = new XMLHttpRequest();
 //服务器随你喜欢，你可以用php，也可以用node，只要实现了标准的GET方法即可

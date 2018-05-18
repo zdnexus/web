@@ -98,18 +98,16 @@
 
 
     var timeStart = Date.now();
-    var timeEnd = Date.parse(new Date('2018-04-24 13:59:58'));
+    var timeEnd = Date.parse(new Date('2018-03-20 14:00:00'));
     var leftTime = timeEnd - timeStart;
-    var a = $('.pic_errorPlace')[0];
+    var a = $('.fadein')[1];
     console.log('还有 ' + leftTime / 1000 + ' s');
     setTimeout(function () {
         a.click();
         var t = setInterval(function () {
             a.click();
-        }, 600);
+        }, 550);
     }, leftTime);
-    // 1 8 3 5 2 7 4 6
-    //    console.log(1);
     //
     //    setTimeout(function () {
     //        console.log(2);
@@ -160,4 +158,5 @@
     //        }, 250);
     //    }, timeEnd - timeStart);
 </script>
+<script></script>
 </html>

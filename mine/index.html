@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 300px;
+            height: 300px;
+            background-color: red;
+            transform: translate3d(100px, 100px, 0);
+        }
+
+        #div2 {
+            width: 300px;
+            height: 300px;
+            background-color: saddlebrown;
+            position: relative;
+            left: 100px;
+            top: 100px;
+            transition: all 1s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+<div id="div1"></div>
+<div id="div2"></div>
+
+<!--<button onclick="change('div1')">改变位置div1</button>-->
+<button onclick="change('div2')">改变位置div2</button>
+
+</body>
+<script>
+    function change() {
+        dom.style.transform = 'translate3d(200px, 200px, 0)';
+        console.log(dom.offsetLeft);
+    }
+
+    var dom = document.querySelector('#div2');
+    console.log(dom.offsetLeft);
+</script>
+</html>

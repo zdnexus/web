@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+    </style>
+</head>
+<body>
+
+<input type="text" onfocus="fff()" onblur="bbb()"/>
+
+<button id="btn" onclick="btnDelete()">删除</button>
+
+</body>
+<script>
+    function setStyle() {
+        console.log('xxx');
+        document.getElementById(x).style.background = "yellow"
+    }
+
+
+    var a = 1;
+
+    function fff() {
+        a = 2;
+        console.log('fff', a);
+    }
+
+    function bbb() {
+        a = 3;
+        console.log('bbb', a);
+    }
+
+    function btnDelete() {
+        a = 4;
+        console.log('click', a);
+    }
+</script>
+</html>

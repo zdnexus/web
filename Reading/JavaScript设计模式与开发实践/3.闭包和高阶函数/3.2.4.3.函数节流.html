@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body {
+            height: 10000px;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+    /**
+     * Created by zdnexus on 2018/1/14 0014.
+     */
+    'use strict';
+
+    var throttle = function (fn, interval) {
+        var firstTime = true,
+                timer;
+
+        return function () {
+            var self = this;
+            var args = arguments;
+
+            if (firstTime) {
+                fn.apply(self, args);
+                firstTime = false;
+                return;
+            }
+            if (timer) {
+                return;
+            }
+            timer = setTimeout(function () {
+                clearTimeout(timer);
+                timer = null;
+                fn.apply(self, args);
+            }, interval || 500);
+        }
+    };
+
+
+    window.onscroll = throttle(function () {
+        console.log(1);
+    }, 1000);
+</script>
+</html>

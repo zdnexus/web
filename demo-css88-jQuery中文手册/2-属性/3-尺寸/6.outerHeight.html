@@ -18,12 +18,13 @@
             cursor: default;
         }
     </style>
-    <script src="../js/jquery-1.11.3.min.js"></script>
+    <script src="../../js/jquery-1.11.3.min.js"></script>
     <script>
         $(function () {
             var modHeight = 60;
 
             $("div").one("click", function () {
+                console.log('xxx');
                 $(this).outerHeight(modHeight).addClass("mod");
                 modHeight -= 8;
             });

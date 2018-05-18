@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            line-height: 100px;
+            text-align: center;
+            color: white;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+
+<button id="loginBtn">登录</button>
+
+</body>
+<script>
+    var createLoginLayer = function () {
+        var div = document.createElement('div');
+        div.innerHTML = '我是登录窗口';
+        div.style.display = 'none';
+        document.body.appendChild(div);
+        return div;
+    };
+
+    document.getElementById('loginBtn').onclick = function () {
+        var loginLayer = createLoginLayer();
+        loginLayer.style.display = 'block';
+    }
+</script>
+</html>

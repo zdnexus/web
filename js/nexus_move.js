@@ -1,8 +1,8 @@
 /**
- * Created by Administrator on 2015/8/12.
+ * Created by zdnexus on 2015/8/12.
  */
 
-//·µ»ØobjµÄstyleÀàÐÍ
+//ï¿½ï¿½ï¿½ï¿½objï¿½ï¿½styleï¿½ï¿½ï¿½ï¿½
 function getStyle(obj, name) {
     if (obj.currentStyle) {
         return obj.currentStyle[name];//IE
@@ -12,16 +12,16 @@ function getStyle(obj, name) {
     }
 }
 
-//ÔË¶¯º¯Êý
+//ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½
 function starMove(obj, name, target) {
     clearInterval(obj.timer);
     obj.timer = setInterval(function () {
         var temp = 0;
         if (name == "opacity") {
-            temp = Math.round(parseFloat(getStyle(obj, name)) * 100);//ÓÃparseFloat()´¦ÀíÐ¡Êý,roundËÄÉáÎåÈë,±ÜÃâÐ¡ÊýÎ»
+            temp = Math.round(parseFloat(getStyle(obj, name)) * 100);//ï¿½ï¿½parseFloat()ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½,roundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Î»
         }
         else {
-            temp = parseInt(getStyle(obj, name));//parseInt()´¦ÀíÕûÊý£¬³ýÁËopacity¶¼ÊÇÕûÊý
+            temp = parseInt(getStyle(obj, name));//parseInt()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½opacityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         var speed = (target - temp) / 5;
         speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
@@ -34,22 +34,22 @@ function starMove(obj, name, target) {
                 obj.style.opacity = (temp + speed) / 100;
             }
             else {
-                obj.style[name] = temp + speed + "px";//×¢Òâ¼Ópx
+                obj.style[name] = temp + speed + "px";//×¢ï¿½ï¿½ï¿½px
             }
         }
     }, 30);
 }
 
-//Á´Ê½ÔË¶¯º¯Êý
+//ï¿½ï¿½Ê½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½ï¿½
 function starMove2(obj, name, target, fn) {
     clearInterval(obj.timer);
     obj.timer = setInterval(function () {
         var temp = 0;
         if (name == "opacity") {
-            temp = Math.round(parseFloat(getStyle(obj, name)) * 100);//ÓÃparseFloat()´¦ÀíÐ¡Êý,roundËÄÉáÎåÈë,±ÜÃâÐ¡ÊýÎ»
+            temp = Math.round(parseFloat(getStyle(obj, name)) * 100);//ï¿½ï¿½parseFloat()ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½,roundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Î»
         }
         else {
-            temp = parseInt(getStyle(obj, name));//parseInt()´¦ÀíÕûÊý£¬³ýÁËopacity¶¼ÊÇÕûÊý
+            temp = parseInt(getStyle(obj, name));//parseInt()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½opacityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         var speed = (target - temp) / 5;
         speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
@@ -65,13 +65,13 @@ function starMove2(obj, name, target, fn) {
                 obj.style.opacity = (temp + speed) / 100;
             }
             else {
-                obj.style[name] = temp + speed + "px";//×¢Òâ¼Ópx
+                obj.style[name] = temp + speed + "px";//×¢ï¿½ï¿½ï¿½px
             }
         }
     }, 30);
 }
 
-//jsonÁ´Ê½ÔË¶¯¿ò¼Ü
+//jsonï¿½ï¿½Ê½ï¿½Ë¶ï¿½ï¿½ï¿½ï¿½
 function starMove3(obj, json, fn) {
     clearInterval(obj.timer);
     obj.timer = setInterval(function () {
@@ -79,10 +79,10 @@ function starMove3(obj, json, fn) {
                 for (var attr in json) {
                     var temp = 0;
                     if (attr == "opacity") {
-                        temp = Math.round(parseFloat(getStyle(obj, attr)) * 100);//ÓÃparseFloat()´¦ÀíÐ¡Êý,roundËÄÉáÎåÈë,±ÜÃâÐ¡ÊýÎ»
+                        temp = Math.round(parseFloat(getStyle(obj, attr)) * 100);//ï¿½ï¿½parseFloat()ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½,roundï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½Î»
             }
             else {
-                temp = parseInt(getStyle(obj, attr));//parseInt()´¦ÀíÕûÊý£¬³ýÁËopacity¶¼ÊÇÕûÊý
+                temp = parseInt(getStyle(obj, attr));//parseInt()ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½opacityï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
             var speed = (json[attr] - temp) / 5;
             speed = (speed > 0) ? Math.ceil(speed) : Math.floor(speed);
@@ -95,7 +95,7 @@ function starMove3(obj, json, fn) {
                     obj.style.opacity = (temp + speed) / 100;
                 }
                 else {
-                    obj.style[attr] = temp + speed + "px";//×¢Òâ¼Ópx
+                    obj.style[attr] = temp + speed + "px";//×¢ï¿½ï¿½ï¿½px
                 }
             }
         }
@@ -108,7 +108,7 @@ function starMove3(obj, json, fn) {
     });
 }
 
-//¶¯Ì¬ulÌí¼ÓÄÚÈÝ
+//ï¿½ï¿½Ì¬ulï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function addLi1() {
     var oUl1 = document.getElementById("ul1");
     var oUl2 = document.getElementById("ul2");
@@ -122,12 +122,12 @@ function addLi1() {
     }
     oUl1.childNodes[0].style.zIndex = "1";
     oUl2.innerHTML = oUl2.innerHTML + oUl2.innerHTML;
-    oUl2.style.width = oUl2.childNodes[0].offsetWidth * oUl2.children.length + "px";//¿í¶È³ÅÆð£¬×¢Òâ¼Ópx
+    oUl2.style.width = oUl2.childNodes[0].offsetWidth * oUl2.children.length + "px";//ï¿½ï¿½È³ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½px
     oUl2.childNodes[0].style.opacity = "1";
     oUl2.childNodes[6].style.opacity = "1";
 }
 
-//¾²Ì¬ulÌí¼ÓÄÚÈÝ
+//ï¿½ï¿½Ì¬ulï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function addLi2() {
     var oUl1 = document.getElementById("ul1");
     var oUl2 = document.getElementById("ul2");
@@ -140,11 +140,11 @@ function addLi2() {
         oUl2.appendChild(new_li_2);
     }
     oUl1.childNodes[0].style.zIndex = "1";
-    oUl2.style.width = oUl2.childNodes[0].offsetWidth * oUl2.children.length + "px";//¿í¶È³ÅÆð£¬×¢Òâ¼Ópx
+    oUl2.style.width = oUl2.childNodes[0].offsetWidth * oUl2.children.length + "px";//ï¿½ï¿½È³ï¿½ï¿½ï¿½×¢ï¿½ï¿½ï¿½px
     oUl2.childNodes[0].style.opacity = "1";
 }
 
-//ÒÆ¶¯ul
+//ï¿½Æ¶ï¿½ul
 function ulMove(val, speed) {
     clearInterval(val.timer);
     val.timer = setInterval(function () {
@@ -152,13 +152,13 @@ function ulMove(val, speed) {
             val.style.left = 0;
         }
         else if (speed > 0 && val.offsetLeft > 0) {
-            val.style.left = -val.offsetWidth / 2 + "px";//×¢Òâ¼Ópx
+            val.style.left = -val.offsetWidth / 2 + "px";//×¢ï¿½ï¿½ï¿½px
         }
-        val.style.left = val.offsetLeft + speed + "px";//×¢Òâ¼Ópx
+        val.style.left = val.offsetLeft + speed + "px";//×¢ï¿½ï¿½ï¿½px
     }, 30);
 }
 
-//»ñÈ¡Êó±ê×ø±êÎ»ÖÃ
+//ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
 function getMousePosition(ev) {
     var oEvent = ev || event;
     var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
@@ -172,7 +172,7 @@ function getScrollPosition() {
     return {x: scrollLeft, y: scrollTop};
 }
 
-//ÊÂ¼þ°ó¶¨
+//ï¿½Â¼ï¿½ï¿½ï¿½
 function myAddEvent(obj, ev, fn) {
     if (obj.attachEvent) {
         obj.attachEvent("on" + ev, fn);
@@ -182,17 +182,17 @@ function myAddEvent(obj, ev, fn) {
     }
 }
 
-//JQÏÔÊ¾div
+//JQï¿½ï¿½Ê¾div
 function showDiv(div) {
     $(div).fadeIn();
 }
 
-//JQÒþ²Ødiv
+//JQï¿½ï¿½ï¿½ï¿½div
 function hideDiv(div) {
     $(div).fadeOut();
 }
 
-//ÍÏ×§º¯Êý
+//ï¿½ï¿½×§ï¿½ï¿½ï¿½ï¿½
 function tz(obj) {
     obj.onmousedown = function (ev) {
         var disX = getMousePosition(ev).x - obj.offsetLeft;
@@ -219,11 +219,11 @@ function tz(obj) {
             document.onmousemove = null;
             document.onmouseup = null;
         };
-        return false;//×èÖ¹Ä¬ÈÏÐÐÎª
+        return false;//ï¿½ï¿½Ö¹Ä¬ï¿½ï¿½ï¿½ï¿½Îª
     };
 }
 
-//obj1ÔÚobj2µÄXÖáÍÏ×§
+//obj1ï¿½ï¿½obj2ï¿½ï¿½Xï¿½ï¿½ï¿½ï¿½×§
 function tzX(obj1, obj2) {
     obj1.onmousedown = function (ev) {
         var disX = getMousePosition(ev).x - obj1.offsetLeft;
@@ -241,11 +241,11 @@ function tzX(obj1, obj2) {
             document.onmousemove = null;
             document.onmouseup = null;
         };
-        return false;//×èÖ¹Ä¬ÈÏÐÐÎª
+        return false;//ï¿½ï¿½Ö¹Ä¬ï¿½ï¿½ï¿½ï¿½Îª
     };
 }
 
-//obj1ÔÚobj2µÄYÖáÍÏ×§
+//obj1ï¿½ï¿½obj2ï¿½ï¿½Yï¿½ï¿½ï¿½ï¿½×§
 function tzY(obj1, obj2) {
     obj1.onmousedown = function (ev) {
         var disY = getMousePosition(ev).y - obj1.offsetTop;
@@ -263,7 +263,7 @@ function tzY(obj1, obj2) {
             document.onmousemove = null;
             document.onmouseup = null;
         };
-        return false;//×èÖ¹Ä¬ÈÏÐÐÎª
+        return false;//ï¿½ï¿½Ö¹Ä¬ï¿½ï¿½ï¿½ï¿½Îª
     };
 }
 
@@ -272,18 +272,18 @@ function loadXMLDoc(url, fnSuccess, fnFailed) {
     var xmlhttp = null;
     var txt, x, i;
 
-    //´´½¨ajax¶ÔÏó
+    //ï¿½ï¿½ï¿½ï¿½ajaxï¿½ï¿½ï¿½ï¿½
     if (window.XMLHttpRequest) {
         xmlhttp = new XMLHttpRequest();// code for IE7+, Firefox, Chrome, Opera, Safari
     }
     else {
         xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");// code for IE6, IE5
     }
-    //Á¬½Ó·þÎñÆ÷
+    //ï¿½ï¿½ï¿½Ó·ï¿½ï¿½ï¿½ï¿½ï¿½
     xmlhttp.open("GET", url, true);
-    //·¢ËÍ
+    //ï¿½ï¿½ï¿½ï¿½
     xmlhttp.send();
-    //½ÓÊÜ
+    //ï¿½ï¿½ï¿½ï¿½
 
     /*
      xmlhttp.onreadystatechange = function () {
@@ -294,7 +294,7 @@ function loadXMLDoc(url, fnSuccess, fnFailed) {
      for (i = 0; i < x.length; i++) {
      txt = txt + x[i].childNodes[0].nodeValue + "<br/>";
      }
-     document.getElementById("myDiv").innerHTML = txt;//½«»ñÈ¡µÄÊý¾ÝÏÔÊ¾µ½Ö¸¶¨µÄÎ»ÖÃ
+     document.getElementById("myDiv").innerHTML = txt;//ï¿½ï¿½ï¿½ï¿½È¡ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê¾ï¿½ï¿½Ö¸ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½
      }
      else {
      }
@@ -303,7 +303,7 @@ function loadXMLDoc(url, fnSuccess, fnFailed) {
     xmlhttp.onreadystatechange = function () {
         if (xmlhttp.readyState == 4) {
             if (xmlhttp.status == 200) {
-                fnSuccess(xmlhttp.responseText);//responseTextÎª·µ»ØÊý¾Ý
+                fnSuccess(xmlhttp.responseText);//responseTextÎªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             }
             else {
                 if (fnFailed) {
@@ -314,13 +314,13 @@ function loadXMLDoc(url, fnSuccess, fnFailed) {
     }
 }
 
-//ÍÏ×§º¯ÊýµÄÃæÏò¶ÔÏó
+//ï¿½ï¿½×§ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 function Drag(id) {
     var _this = this;
     this.oDiv = document.getElementById(id);
     this.oDiv.onmousedown = function (ev) {
         _this.fnDown(ev);
-        //×èÖ¹Ä¬ÈÏÊÂ¼þ
+        //ï¿½ï¿½Ö¹Ä¬ï¿½ï¿½ï¿½Â¼ï¿½
         return false;
     };
 }
@@ -349,7 +349,7 @@ Drag.prototype.fnUp = function () {
     document.onmouseup = null;
 };
 
-//ÍÏ×§º¯Êý¼Ì³ÐÊôÐÔ
+//ï¿½ï¿½×§ï¿½ï¿½ï¿½ï¿½ï¿½Ì³ï¿½ï¿½ï¿½ï¿½ï¿½
 function Drag2(id) {
     Drag.call(this, id);
 }
@@ -446,11 +446,11 @@ function checkCookie() {
 }
 
 function getUrlParam(name) {
-    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //???¨¬??????????¡À¨º?????????¨°¡À¨ª???????¨®
-    var r = window.location.search.substr(1).match(reg);  //??????¡À¨º????
+    var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //???ï¿½ï¿½??????????ï¿½ï¿½ï¿½ï¿½?????????ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½???????ï¿½ï¿½
+    var r = window.location.search.substr(1).match(reg);  //??????ï¿½ï¿½ï¿½ï¿½????
     if (r != null)
         return unescape(r[2]);
-    return null; //¡¤?????????
+    return null; //ï¿½ï¿½?????????
 }
 function isCookie() {
     var sUrl = location.href;

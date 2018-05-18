@@ -834,7 +834,7 @@ Hyperion.actions = {
         var moduleId = options.moduleId;
         var pageId = options.pageId;
         var data = options.data || {};
-        Hyperion._call('startModulePage', moduleId, pageId, JSON.stringify(data), callback);
+        Hyperion._call('startModulePage', moduleId, pageId, data, callback);
     }
 };
 
