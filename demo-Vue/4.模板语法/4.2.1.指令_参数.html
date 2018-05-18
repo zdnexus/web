@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.bootcss.com/vue/2.5.16/vue.min.js"></script>
+</head>
+<body>
+
+<div id="app">
+    <a v-bind:href="url" v-on:click="doSomething">百度</a>
+</div>
+
+</body>
+<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+            url: 'https://www.baidu.com',
+        },
+        methods: {
+            doSomething () {
+                alert('马上跳转至百度页面!');
+            }
+        }
+    });
+</script>
+</html>
