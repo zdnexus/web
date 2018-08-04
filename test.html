@@ -78,36 +78,43 @@
 
 
     var timeStart = Date.now();
-    var timeEnd = Date.parse(new Date('2017-11-12 23:59:59'));
+    var timeEnd = Date.parse(new Date('2018-06-18 13:59:59'));
     var leftTime = timeEnd - timeStart;
-    var a = $('.state-16')[0];
+    var a = $('._rm_parent_bg.fadein')[0];
+//    var ts = 0;
     console.log('还有 ' + leftTime / 1000 + ' s');
     setTimeout(function () {
         a.click();
-        setInterval(function () {
-            $('.exchange')[0].click();
-            setTimeout(function () {
-                $('.pay_beans')[0].click();
-            })
+//        ts++
+        var si = setInterval(function () {
+            a.click();
+//            ts++
+//            if (ts === 30) {
+//                clearInterval(si);
+//            }
         }, 100);
-
-        var t = setInterval(function () {
-            a.click();
-        }, 250);
     }, leftTime);
 
 
-    var timeStart = Date.now();
-    var timeEnd = Date.parse(new Date('2017-11-13 00:00:00'));
-    var leftTime = timeEnd - timeStart;
-    var a = $('.pic_errorPlace')[0];
-    console.log('还有 ' + leftTime / 1000 + ' s');
-    setTimeout(function () {
-        a.click();
-        var t = setInterval(function () {
-            a.click();
-        }, 600);
-    }, leftTime);
+    //    var timeStart = Date.now();
+    //    var timeEnd = Date.parse(new Date('2018-06-18 13:59:59'));
+    //    var leftTime = timeEnd - timeStart;
+    //    console.log('还有 ' + leftTime / 1000 + ' s');
+    //    var a = $('.coupon.blue')[0];
+    //    function oneclick() {
+    //        a.click();
+    //        var t = setTimeout(function () {
+    //            var b = $('.pay_beans')[0];
+    //            b.click();
+    //            clearTimeout(t);
+    //        }, 0);
+    //    }
+    //    setTimeout(function () {
+    //        oneclick();
+    //        setInterval(function () {
+    //            oneclick();
+    //        }, 250);
+    //    }, leftTime);
     // 1 8 3 5 2 7 4 6
     //    console.log(1);
     //

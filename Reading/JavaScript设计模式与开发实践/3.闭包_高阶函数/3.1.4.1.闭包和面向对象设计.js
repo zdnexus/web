@@ -6,6 +6,7 @@
 // 闭包普通写法
 var extent = function () {
     var value = 0;
+    
     return {
         call: function () {
             value++;
@@ -13,8 +14,8 @@ var extent = function () {
         }
     }
 };
-
 var et = extent();
+
 et.call();
 et.call();
 et.call();

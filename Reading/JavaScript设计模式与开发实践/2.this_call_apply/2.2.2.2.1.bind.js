@@ -5,6 +5,7 @@
 
 Function.prototype.bind = function (context) {
     var self = this;// 保存原有函数
+
     return function () {
         return self.apply(context, arguments);// 返回改变新this的函数
     };
@@ -13,8 +14,8 @@ Function.prototype.bind = function (context) {
 var obj = {
     name: 'sven'
 };
-var Person = function () {
+var ShowName = function () {
     console.log(this.name);
-    console.log(arguments[0]);
+    console.log(arguments);
 }.bind(obj);
-Person(1);
+ShowName(1);

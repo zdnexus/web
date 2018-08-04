@@ -16,6 +16,7 @@
      */
     'use strict';
 
+    // 接受者
     var Tv = {
         open: function () {
             console.log('打开电视机');
@@ -25,16 +26,19 @@
         }
     };
 
+    // 分离
     var OpenTvCommand = function (receiver) {
-        this.receiver = receiver;
-    };
-    OpenTvCommand.prototype.execute = function () {
-        this.receiver.open();
-    };
-    OpenTvCommand.prototype.undo = function () {
-        this.receiver.close();
+        return {
+            execute: function () {
+                receiver.open();
+            },
+            undo: function () {
+                receiver.close();
+            }
+        }
     };
 
+    // 发起者
     var SetCommand = function (command) {
         document.getElementById('execute').onclick = function () {
             command.execute();
@@ -44,6 +48,6 @@
         };
     };
 
-    SetCommand(new OpenTvCommand(Tv));
+    SetCommand(OpenTvCommand(Tv));
 </script>
 </html>

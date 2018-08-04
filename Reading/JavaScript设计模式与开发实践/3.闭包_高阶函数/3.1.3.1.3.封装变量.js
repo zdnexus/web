@@ -12,17 +12,16 @@ var mult = (function () {
         }
         return sum;
     };
+
     return function () {
         var args = Array.prototype.join.call(arguments, ',');
-        if (args in cache) {
+        if (cache[args]) {
             return cache[args];
         }
-        // Q:
+
         return cache[args] = calculate.apply(null, arguments);
-        // return cache[args] = calculate.call(null, arguments);
     }
 })();
 
-var cache = 1;
 console.log(mult(1, 2, 3));// 6
 console.log(mult(1, 2, 3));// 6

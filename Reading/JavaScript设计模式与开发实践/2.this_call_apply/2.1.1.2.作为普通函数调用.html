@@ -6,6 +6,8 @@
 </head>
 <body>
 
+<button id="btn">button</button>
+
 </body>
 <script>
     /**
@@ -22,5 +24,16 @@
     };
     var getName = myObject.getName;
     console.log(getName());
+
+    var id = 'globalId';
+    document.getElementById('btn').onclick = function () {
+        console.log(this.id);
+        var callback = function () {
+            console.log(this.id);
+        };
+        callback();
+//        callback.call(this);
+//        callback.apply(this);
+    }
 </script>
 </html>

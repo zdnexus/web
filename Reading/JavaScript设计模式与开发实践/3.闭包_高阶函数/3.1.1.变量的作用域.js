@@ -11,9 +11,9 @@ var func1 = function () {
         console.log(a);
         console.log(b);
     };
+
     func2();
-    // ReferenceError: c is not defined
-    console.log(c);
+    console.log(c);// ReferenceError: c is not defined
 };
 
 func1();

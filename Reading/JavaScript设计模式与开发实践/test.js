@@ -120,25 +120,57 @@
 // console.log(mult('func_2', 4, 5, 6));
 
 
-var a = function (fn) {
-    var args = [];
+// var a = function (fn) {
+//     var args = [];
+//     return function () {
+//         if (arguments.length === 0) {
+//             return fn.apply(null, args);
+//         } else {
+//             Array.prototype.push.apply(args, arguments);
+//         }
+//     };
+// };
+// var b = function () {
+//     var sum = 0;
+//     for (var i = 0; i < arguments.length; i++) {
+//         sum += arguments[i];
+//     }
+//     return sum;
+// };
+// var c = a(b);
+// c(1);
+// c(2);
+// c(3, 4);
+// console.log(c());
+
+
+Function.prototype.before = function (beforeFn) {
+    var _self = this;
     return function () {
-        if (arguments.length === 0) {
-            return fn.apply(null, args);
-        } else {
-            Array.prototype.push.apply(args, arguments);
-        }
+        beforeFn.apply(null, arguments);
+        _self.apply(null, arguments);
+        // return _self.apply(null, arguments);
     };
 };
-var b = function () {
-    var sum = 0;
-    for (var i = 0; i < arguments.length; i++) {
-        sum += arguments[i];
-    }
-    return sum;
+Function.prototype.after = function (afterFn) {
+    var _self = this;
+    return function () {
+        var ret = _self.apply(null, arguments);
+        afterFn.apply(null, arguments);
+        return ret;
+    };
 };
-var c = a(b);
-c(1);
-c(2);
-c(3, 4);
-console.log(c());
+
+var func = function () {
+    console.log(2);
+};
+var f =
+    func
+        .before(function () {
+            console.log(1);
+        })
+        // .after(function () {
+        //     console.log(3)
+        // });
+// console.log(f);
+f();
