@@ -1,4 +1,4 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 window.a = 1;
 console.log(a);// 1

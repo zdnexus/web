@@ -13,9 +13,11 @@
 </body>
 <script>
     var obj = {};
-    Object.defineProperty(obj, 'value', {
+    Object.defineProperty(obj, 's', {
         configurable: true,
         enumerable: true,
+        // writable: false,
+        value: '1',
         get: function () {
             console.log('get方法被调用了。');
         },

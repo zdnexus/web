@@ -1,4 +1,4 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 function bar(x = y, y = 2) {
     return [x, y];

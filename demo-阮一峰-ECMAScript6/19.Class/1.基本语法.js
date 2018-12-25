@@ -1,7 +1,7 @@
 /**
  * Created by zdnexus on 2017/4/24 0024.
  */
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 // JavaScript语言的传统方法是通过构造函数，定义并生成新对象。下面是一个例子。
 function Point(x, y) {

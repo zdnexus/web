@@ -7,19 +7,14 @@
 // 更常见的做法是用一个包含所有属性和方法的对象字面量来重写整个原型对象。
 
 function Person(name, age, job) {
-    if (name) {
-        this.name = name;
-    }
-    if (age) {
-        this.age = age;
-    }
-    if (job) {
-        this.job = job;
-    }
+    this.name = name;
+    this.age = age;
+    this.job = job;
     this.showMsg = function () {
         console.log('实例：我的名字叫' + this.name + '，今年' + this.age + '岁，工作是' + this.job);
     }
 }
+
 // 我们将 Person.prototype 设置为等于一个以对象字面量形式创建的新对象。最终结果相同，但有一个例外：constructor 属性不再指向 Person 了。
 // 前面曾经介绍过，每创建一个函数，就会同时创建它的 prototype 对象，这个对象也会自动获得 constructor 属性。
 // 而我们在这里使用的语法，本质上完全重写了默认的 prototype 对象，

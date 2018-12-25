@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    var url = 'http://localhost:63342/Code/web/%E5%9D%91/HTML/%E5%85%B1%E4%BA%AB%E5%80%BC/b.html'
+    var win = window.open(url)
+    // win.postMessage('123', url);
+
+
+    setTimeout(function () {
+        win.postMessage('123', url);
+    }, 500);
+</script>
+</html>

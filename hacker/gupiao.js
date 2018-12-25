@@ -6,7 +6,6 @@
 function js(a, b, c, str) {
     let dis = b - a;
 
-
     console.log(str);
     console.log('本金:' + a * c);
     console.log('涨幅:' + (dis / a * 100).toFixed(3) + '%');
@@ -15,7 +14,4 @@ function js(a, b, c, str) {
     console.log();
 }
 
-js(7.8, 8.5, 500, '东方航空');
-js(10.5, 11.5, 500, '南方航空');
-js(11, 13.2, 500, '中国国航');
-js(28, 35, 300, '海螺水泥');
+js(31, 36, 1600, '海螺水泥');

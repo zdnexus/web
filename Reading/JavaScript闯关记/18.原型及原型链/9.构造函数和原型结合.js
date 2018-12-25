@@ -8,17 +8,12 @@
 
 // 构造函数添加实例属性
 function Person(name, age, job) {
-    if (name) {
-        this.name = name;
-    }
-    if (age) {
-        this.age = age;
-    }
-    if (job) {
-        this.job = job;
-    }
+    this.name = name;
+    this.age = age;
+    this.job = job;
     this.friends = ["ZhangSan", "LiSi"];
 }
+
 // 原型用于定义方法和共享的属性
 Person.prototype = {
     constructor: Person,

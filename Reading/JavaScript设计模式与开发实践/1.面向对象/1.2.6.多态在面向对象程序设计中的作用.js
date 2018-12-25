@@ -16,7 +16,7 @@ var baiduMap = {
 };
 
 var renderMap = function (map) {
-    //Q:map.show instanceof Function / type of map.show === 'function'
+    // type of map.show === 'function'
     if (map.show instanceof Function) {
         map.show();
     }

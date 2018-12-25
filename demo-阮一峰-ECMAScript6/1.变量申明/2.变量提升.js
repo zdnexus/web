@@ -1,4 +1,4 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 console.log(a); // undefined (var变量提升)
 // console.log(b); // ReferenceError: a is not defined (let不支持变量提升)

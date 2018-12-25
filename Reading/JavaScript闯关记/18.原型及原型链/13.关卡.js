@@ -11,6 +11,7 @@
 function Animal(name) {
     this.name = name;
 }
+
 Animal.prototype.eat = function () {
     console.log(this.name + ' is eating something.');
 };
@@ -24,6 +25,7 @@ tiger.__proto__ = Animal.prototype;
 Animal.call(tiger, 'tiger');
 tiger.eat();
 
+
 // 挑战二
 // 1.定义一个构造函数 Bird，它继承自 Animal，它有一个 name 属性，以及一个 fly() 原型方法。
 // 2.fly() 的方法体为：console.log(this.name + ' want to fly higher.')
@@ -32,6 +34,7 @@ tiger.eat();
 function Bird(name) {
     this.name = name;
 }
+
 Bird.prototype = new Animal();
 Bird.prototype.fly = function () {
     console.log(this.name + ' want to fly higher.');
@@ -47,6 +50,7 @@ Bird.call(pigeon, 'pigeon');
 pigeon.eat();
 pigeon.fly();
 
+
 // 挑战三
 // 1.定义一个构造函数 Swallow，它继承自 Bird，它有一个 name 属性，以及一个 nesting() 原型方法。
 // 2.nesting() 的方法体为：console.log(this.name + ' is nesting now.');。
@@ -55,6 +59,7 @@ pigeon.fly();
 function Swallow(name) {
     this.name = name;
 }
+
 Swallow.prototype = new Bird();
 Swallow.prototype.nesting = function () {
     console.log(this.name + ' is nesting now.');
@@ -84,4 +89,3 @@ console.log(yanzi.eat === Animal.prototype.eat);                        // true
 console.log(yanzi.eat === Bird.prototype.__proto__.eat);                // true
 console.log(yanzi.eat === Swallow.prototype.__proto__.__proto__.eat);   // true
 console.log(yanzi.eat === yanzi.__proto__.__proto__.__proto__.eat);     // true
-

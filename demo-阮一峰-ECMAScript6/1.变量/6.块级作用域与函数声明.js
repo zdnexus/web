@@ -1,7 +1,7 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 // ES5严格模式
-// 'use strict';
+// /**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 // if (true) {
 //     function f() {}
 // }
@@ -9,7 +9,7 @@
 
 // ES6引入了块级作用域，明确允许在块级作用域之中声明函数。
 // ES6严格模式
-// 'use strict';
+// /**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 // if (true) {
 //     function f() {}
 // }

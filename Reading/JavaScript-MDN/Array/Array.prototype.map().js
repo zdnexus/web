@@ -70,7 +70,7 @@
     }, numbers);
     console.log(numbers);   // [2, 10, 20, 30]
 
-    // 使用 map 方法相加2个数组
+    // 使用技巧：使用 map 方法相加2个数组
     numbers = [1, 5, 10, 15];
     let numbers2 = [2, 7, 12, 17];
     let numbers3 = numbers.map(function (val, index, arr) {

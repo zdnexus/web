@@ -17,6 +17,7 @@
             {{ todo.text }}
         </li>
     </ol>
+    <button @click="doClick">改变</button>
 </div>
 
 </body>
@@ -36,6 +37,12 @@
                 {text: '学习 Vue'},
                 {text: '整个牛项目'}
             ]
+        },
+        methods: {
+            doClick: function () {
+                let todos = this.todos;
+                todos[0].text = '1';
+            }
         }
     })
 </script>

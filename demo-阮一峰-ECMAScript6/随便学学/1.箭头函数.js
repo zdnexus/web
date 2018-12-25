@@ -1,4 +1,4 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 // ES5规格
 var arr = [1, 21, 33];

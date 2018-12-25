@@ -9,24 +9,28 @@
 function GrandFather() {
     this.value = 'GrandFather';
 }
+
 GrandFather.prototype.getValue = function () {
     return this.value;
 };
+
 var grandFather = new GrandFather();
 console.log(GrandFather.prototype.constructor === GrandFather); // true
 console.log(grandFather.__proto__ === GrandFather.prototype);   // true
 console.log(grandFather.getValue());                            // GrandFather
 
-// Father 继承 GrandFather。
+// Father 继承 GrandFather
 function Father() {
     this.value2 = 'Father';
 }
+
 // 实现的本质是重写原型对象，Father.prototype 被重写，代之以一个新类型的实例。
 Father.prototype = new GrandFather();
 // 新添加原型函数
 Father.prototype.getValue2 = function () {
     return this.value2;
 };
+
 var father = new Father();
 console.log(father.getValue());     // GrandFather
 console.log(father.getValue2());    // Father
@@ -35,12 +39,14 @@ console.log(father.getValue2());    // Father
 function Son() {
     this.value3 = 'Son';
 }
+
 // 实现的本质是重写原型对象，Son.prototype 被重写，代之以一个新类型的实例。
 Son.prototype = new Father();
 // 新添加原型函数
 Son.prototype.getValue3 = function () {
     return this.value3;
 };
+
 var son = new Son();
 console.log(son.getValue());    // GrandFather
 console.log(son.getValue2());   // Father

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.unbeforeunload = function () {
+        alert(111);
+    }
+
+    window.onbeforeunload = function (event) {
+//        return confirm("确定退出吗");
+
+        var a = confirm("确定退出吗");
+        debugger
+        return a;
+    }
+
+    window.onbeforeunload = function () {
+        return '确定要离开吗？'
+    }
+</script>
+</html>

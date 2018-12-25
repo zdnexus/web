@@ -1,4 +1,4 @@
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 const MAX = 5;
 if (true) {

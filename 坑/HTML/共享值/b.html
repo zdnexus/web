@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+    window.addEventListener('message', function (event) {
+        if (event.origin !== 'http://localhost:63342') return;
+        alert(event.data);
+    }, false);
+</script>
+</html>

@@ -26,9 +26,9 @@ var p2 = new Person();
 
 p1.friends.push('WangWu');
 
-console.log(p1.friends);   // ['ZhangSan','LiSi','WangWu']
-console.log(p2.friends);   // ['ZhangSan','LiSi','WangWu']
+console.log(p1.friends); // ['ZhangSan','LiSi','WangWu']
+console.log(p2.friends); // ['ZhangSan','LiSi','WangWu']
 // 由于 friends 数组存在于 Person.prototype 而非 person1 中，
 // 所以刚刚提到的修改也会通过 person2.friends（与 person1.friends 指向同一个数组）反映出来。
 // 共享数组
-console.log(p1.friends === p2.friends);   // true
+console.log(p1.friends === p2.friends); // true

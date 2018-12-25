@@ -3,28 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .div1 {
+            width: 100px;
+            height: 100px;
+            margin: 10px;
+            background: red;
+            float: left;
+            display: none;
+        }
+    </style>
 </head>
 <body>
 
-<ol>
-    <li>Object，Array原生方法</li>
-    <li>instanceof,constructor</li>
-    <li>String,new String</li>
-    <li>浏览器缓存</li>
-    <li>浏览器跨域</li>
-</ol>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
+<div class="div1"></div>
 
 </body>
-<<<<<<< HEAD
 <script>
-    // var dom = document.getElementById('div1');
-    // dom.style.cssText = 'color:#000;background:red;';
-
-    var arr = [1, 2, 3];
-    arr.map((item,index)=> {
-        console.log(this);
-    }, arr);
+    const doms = document.querySelectorAll('.div1');
+    const length = doms.length;
+    for (var i = 0; i < length; i++) {
+        (function (i) {
+            doms[i].onclick = function () {
+                alert(i + 1)
+            }
+        })(i)
+    }
 </script>
-=======
->>>>>>> 55f508ea07c7fdf0f5a24f6fbeeff55ec5beebbc
 </html>

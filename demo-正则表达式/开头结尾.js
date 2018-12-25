@@ -45,6 +45,3 @@ console.log(jso_str);
 
 console.log(str === jso_str);
 
-var s = '[{"content":"产品列表图2","imageUrl":"http://pic0.stg.yztcdn.com:31080//a9/201612/19/03e8af12a5c04793a5301bf608f54528.png","name":"产品列表图1"},{"content":"产品列表图","imageUrl":"http://pic0.stg.yztcdn.com:31080//a9/201612/19/03e8af12a5c04793a5301bf608f54528.png","name":"产品列表图"},{"content":"产品列表图","imageUrl":"http://pic0.stg.yztcdn.com:31080//a9/201612/19/03e8af12a5c04793a5301bf608f54528.png","name":"产品列表图"},{"content":"产品列表图","imageUrl":"http://pic0.stg.yztcdn.com:31080//a9/201612/19/03e8af12a5c04793a5301bf608f54528.png","name":"产品列表图"}]';
-console.log(JSON.parse(s)[0].imageUrl);
-

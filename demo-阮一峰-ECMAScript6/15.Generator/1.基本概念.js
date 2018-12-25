@@ -1,7 +1,7 @@
 /**
  * Created by zdnexus on 2017/4/18 0018.
  */
-'use strict';
+/**  * Created by zdnexus on 17/5/7.  */ 'use strict';
 
 // 形式上，Generator 函数是一个普通函数，但是有两个特征。
 // 一是，function关键字与函数名之间有一个星号；

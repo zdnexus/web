@@ -4,13 +4,13 @@
 'use strict';
 
 function Person(name) {
-    if (name) {
-        this.name = name;
-    }
+    this.name = name;
 }
+
 Person.prototype.sayName = function () {
     console.log('My name is ' + this.name);
 };
+
 var p1 = new Person('nexus');
 p1.sayName(); // My name is nexus
 // 为什么在构造函数的 prototype 中定义了属性和方法，它的实例中就能访问呢？
