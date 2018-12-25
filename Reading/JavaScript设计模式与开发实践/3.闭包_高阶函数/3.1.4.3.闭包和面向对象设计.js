@@ -11,8 +11,8 @@ Extent.prototype.call = function () {
     this.value++;
     console.log(this.value);
 };
-
 var et = new Extent();
+
 et.call();
 et.call();
 et.call();

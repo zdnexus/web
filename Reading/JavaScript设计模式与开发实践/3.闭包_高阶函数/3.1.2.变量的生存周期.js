@@ -14,6 +14,6 @@ for (var i = 0, l = TypeArr.length; i < l; i++) {
     })(TypeArr[i]);
 }
 
-console.log(Type.isNumber(123));
-console.log(Type.isString('123'));
-console.log(Type.isArray([1, 2, 3]));
+console.log(Type.isNumber(123));// true
+console.log(Type.isString('123'));// true
+console.log(Type.isArray([1, 2, 3]));// true

@@ -27,7 +27,9 @@ console.log(b.getName());// sven
 
 var obj = {};
 Array.prototype.push.call(obj, 'first');
-console.log(obj);// { '0': 'first', length: 1 }
+console.log(obj);// { '0':'first', length:1 }
+Array.prototype.push.call(obj, 'second');
+console.log(obj);// { '0':'first', '1':'second', length: 2 }
 
 
 var num = 0;

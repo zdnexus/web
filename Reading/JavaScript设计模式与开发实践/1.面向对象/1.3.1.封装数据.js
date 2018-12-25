@@ -6,6 +6,7 @@
 var myObject = (function () {
     // 私有变量
     var _name = 'sven';
+    
     // 公开方法
     return {
         getName: function () {

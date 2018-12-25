@@ -16,8 +16,8 @@ var baiduMap = {
 };
 
 var renderMap = function (map) {
-    // type of map.show === 'function'
-    if (map.show instanceof Function) {
+    // Q:type of map && map.show === 'function'
+    if (map && map.show instanceof Function) {
         map.show();
     }
 };
