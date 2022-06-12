@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  async function get_data() {
+    try {
+      const url = 'http://localhost:9124/data'
+      const res = await Promise.all(
+          [fetch(`${url}1`), fetch(`${url}2`), fetch(`${url}3`)]
+      )
+      const jsons = res.map(r => r.json())
+      const values = await Promise.all(jsons)
+      const data = values.map(v => v.data)
+
+      return data
+    } catch (e) {
+      console.log(e)
+    }
+  }
+
+  get_data().then(res => {
+    console.log(res)
+  })
+</script>
+</html>

@@ -19,12 +19,16 @@ class Father {
 }
 
 class Son extends Father {
+  static mmd() {
+    console.log('么么哒')
+  }
+  
   constructor(x, y) {
     // super函数调用父类的constructor函数，必须写在this之前。
     super(x, y)
     this.x = x
     this.y = y
-    this.outputName()
+    Son.mmd()
   }
   
   subtract() {
@@ -37,13 +41,15 @@ class Son extends Father {
     super.say()
     console.log('我是儿子')
   }
-  
-  outputName() {
-    console.log('我的姓名是哈哈哈')
-  }
+}
+
+Son.prototype.outputName = function () {
+  console.log('我的姓名是哈哈哈')
 }
 
 let s = new Son(1, 2)
 s.sum()
 s.subtract()
 s.say()
+s.outputName()
+console.log(s instanceof Son)

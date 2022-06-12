@@ -8,8 +8,8 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded())
 // 使用session
 app.use(express_session({
-  secret: 'larryzhong_secret',  // 加签
-  name: 'larryzhong_name',      // 默认sid
+  secret: 'larryzhong_secret',
+  name: 'larryzhong_name',
   cookie: {
     maxAge: 15000
   },
@@ -20,18 +20,16 @@ app.use(express_session({
 const DB = [
   {
     username: 'larryzhong',
-    password: '123456'
+    password: '111111',
   }
 ]
-let login_session
 
 app.get('/', (req, res) => {
   console.log('用户访问了页面')
-  login_session = req.session
-  if (login_session.username) {
+  if (req.session.username) {
     console.log('用户有登录态')
     res.send(
-        `<h1>欢迎回来，${login_session.username}</h1>
+        `<h1>欢迎回来，${req.session.username}</h1>
         <a href="/logout">退出</a>`
     )
   } else {
@@ -45,9 +43,8 @@ app.post('/login', (req, res) => {
   if (DB.some(item => item.username === req.body.username && item.password === req.body.password)) {
     console.log('用户登录成功')
     req.session.username = req.body.username
-    login_session = req.session
     console.log(`用户新的session对象：`)
-    console.log(login_session)
+    console.log(req.session)
     console.log(`当前的唯一会话ID：${req.sessionID}`)
     res.redirect('/')
   } else {

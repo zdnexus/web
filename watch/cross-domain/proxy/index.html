@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+</body>
+<script>
+  // PUT PATCH DELETE -> 浏览器自动转换为OPTIONS
+  fetch(
+      'http://localhost:8080/data',
+      // { method: 'DELETE' }
+  ).then(res => res.json())
+      .then(res => {
+        console.log(res.data)
+      })
+</script>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+    <input type="text" placeholder="请输入用户名"/>
+    <input type="password" placeholder="请输入密码"/><br/>
+    <input type="checkbox" id="checkbox"/>
+    <label for="checkbox" value="true">记住我</label><br/>
+    <input type="submit" value="登录"/>
+</form>
+
+</body>
+<script>
+  const username = document.querySelector('input[type="text"]')
+  const password = document.querySelector('input[type="password"]')
+  const checkbox = document.querySelector('input[type="checkbox"]')
+  const submit = document.querySelector('input[type="submit"]')
+
+  const cookie = {}
+  document.cookie.split('; ').map(c => c.split('=')).forEach(c => {
+    cookie[c[0]] = c[1]
+  })
+  if (document.cookie) {
+    username.value = cookie.username
+    checkbox.checked = true
+  }
+
+
+  submit.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (username.value.trim() !== '' && password.value.trim() !== '' && checkbox.checked) {
+      const key = 'username'
+      const value = username.value.trim()
+      // const value = encodeURIComponent(username.value)
+      const maxDay = 5
+      document.cookie = `${key}=${value}; 'Max-Age'=${maxDay}`
+    }
+  })
+</script>
+</html>
