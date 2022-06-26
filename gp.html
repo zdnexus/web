@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport"
+          content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+    <style>
+        #app {
+            margin-bottom: 30px;
+        }
+
+        #app div {
+            margin-bottom: 10px;
+        }
+
+        #app2 {
+            margin-bottom: 15px;
+        }
+
+        #app3 {
+            margin-bottom: 30px;
+        }
+
+        #app4 {
+            margin-bottom: 15px;
+        }
+
+        #app5 {
+            margin-bottom: 15px;
+        }
+
+        #app6 {
+            margin-bottom: 15px;
+        }
+
+        #app7 {
+            margin-bottom: 15px;
+        }
+    </style>
+    <!--<script src="vue.js"></script>-->
+    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+</head>
+<body>
+
+
+<div id="app">
+    <select v-model="gp_select_key">
+        <option v-for="gp in gpList">{{gp.name}}</option>
+    </select>
+    <div>BuyPrice:{{buyPrice}}</div>
+    <div>BuyNumber:{{buyNumber}}</div>
+    <div>AddPrice:<input type="number" v-model="addPrice"></div>
+    <div>AddNumber:<input type="number" v-model="addNumber"></div>
+    <div>AddTotalPrice:<input type="number" v-model="addTotalPrice"></div>
+    <div>TotalNumber:{{totalNumber}}</div>
+    <div>TotalPrice:{{totalPrice}}</div>
+    <div>EachPrice:{{eachPrice}}</div>
+    <div>TargetPrice:<input type="number" v-model="targetPrice"></div>
+    <div>percentagePrice:{{percentagePrice}}</div>
+    <div>MakeMoney:{{makeMoney}}</div>
+    <div>MakeTotalPrice:{{makeTotalPrice}}</div>
+</div>
+\
+
+<div id="app2">
+    <div>price:<input type="number" v-model="price"></div>
+    <div>targetPrice:<input type="number" v-model="targetPrice"></div>
+    <div>percentage:{{percentage}}%</div>
+</div>
+
+<div id="app3">
+    <div>price:<input type="number" v-model="price"></div>
+    <div>targetPrice:<input type="number" v-model="targetPrice"></div>
+    <div>percentage:{{percentage}}%</div>
+</div>
+
+<div id="app4">
+    <div>price:<input type="number" v-model="price"></div>
+    <div>33.1% targetPrice:{{targetPrice10}}</div>
+    <div>30% targetPrice:{{targetPrice9}}</div>
+    <div>21% targetPrice:{{targetPrice7}}</div>
+    <div>20% targetPrice:{{targetPrice11}}</div>
+    <div>15% targetPrice:{{targetPrice8}}</div>
+    <div>14% targetPrice:{{targetPrice14}}</div>
+    <div>10% targetPrice:{{targetPrice3}}</div>
+    <div>7% targetPrice:{{targetPrice2}}</div>
+    <div>5% targetPrice:{{targetPrice1}}</div>
+    <div>4% targetPrice:{{targetPrice15}}</div>
+    <div>3% targetPrice:{{targetPrice6}}</div>
+    <div>-3% targetPrice:{{targetPrice12}}</div>
+    <div>-4% targetPrice:{{targetPrice16}}</div>
+    <div>-5% targetPrice:{{targetPrice13}}</div>
+    <div>-7% targetPrice:{{targetPrice4}}</div>
+    <div>-10% targetPrice:{{targetPrice5}}</div>
+</div>
+
+<div id="app5">
+    <div>price:<input type="number" v-model="price"></div>
+    <div>33.1% targetPrice:{{targetPrice10}}</div>
+    <div>30% targetPrice:{{targetPrice9}}</div>
+    <div>21% targetPrice:{{targetPrice7}}</div>
+    <div>20% targetPrice:{{targetPrice11}}</div>
+    <div>15% targetPrice:{{targetPrice8}}</div>
+    <div>14% targetPrice:{{targetPrice14}}</div>
+    <div>10% targetPrice:{{targetPrice3}}</div>
+    <div>7% targetPrice:{{targetPrice2}}</div>
+    <div>5% targetPrice:{{targetPrice1}}</div>
+    <div>4% targetPrice:{{targetPrice15}}</div>
+    <div>3% targetPrice:{{targetPrice6}}</div>
+    <div>-3% targetPrice:{{targetPrice12}}</div>
+    <div>-4% targetPrice:{{targetPrice16}}</div>
+    <div>-5% targetPrice:{{targetPrice13}}</div>
+    <div>-7% targetPrice:{{targetPrice4}}</div>
+    <div>-10% targetPrice:{{targetPrice5}}</div>
+</div>
+
+</body>
+<script>
+  // scp index.html appusr@10.32.16.4:/data/www/gp
+  new Vue({
+    el: '#app',
+    data: {
+      gp_select_key: '',
+      strategy_select_key: '',
+      all_mine: '',
+      buyPrice: '',
+      buyNumber: '',
+      addPrice: '',
+      addNumber: '',
+      addTotalPrice: '',
+      totalPrice: '',
+      totalNumber: '',
+      eachPrice: '',
+      targetPrice: '',
+      makeMoney: '',
+      tPrice: '',
+      gpList: [
+        {
+          name: '空港股份',
+          buyPrice: 361.656,
+          buyNumber: 100
+        },
+      ]
+    },
+    created() {
+      this.gp_select_key = this.gpList[ 0 ].name
+    },
+    computed: {
+      makeTotalPrice() {
+        if (this.makeMoney && this.totalPrice) {
+          return (+this.makeMoney + +this.totalPrice).toFixed(3)
+        }
+      },
+      percentagePrice() {
+        if (this.targetPrice && this.eachPrice) {
+          return ((this.targetPrice / this.eachPrice - 1) * 100).toFixed(3) + '%'
+        }
+      }
+    },
+    watch: {
+      gp_select_key: function (val, oldVal) {
+        let search
+        for (let i = 0; i < this.gpList.length; i++) {
+          if (this.gpList[ i ].name === val) {
+            search = this.gpList[ i ]
+            break
+          }
+        }
+        this.eachPrice = this.buyPrice = search.buyPrice
+        this.totalNumber = this.buyNumber = search.buyNumber
+        this.totalPrice = (this.buyPrice * this.buyNumber).toFixed(3)
+        this.makeMoney = this.targetPrice = this.addTotalPrice = this.addNumber = this.addPrice = ''
+        this.tPriceMake = search.tPrice * search.buyNumber
+      },
+      addPrice: function (val, oldVal) {
+        if (val) {
+          if (this.addNumber) {
+            this.addTotalPrice = val * +this.addNumber
+            this.totalNumber = this.buyNumber + +this.addNumber
+            this.totalPrice = (this.buyPrice * this.buyNumber + this.addTotalPrice).toFixed(3)
+            this.eachPrice = (this.totalPrice / this.totalNumber).toFixed(3)
+            if (this.targetPrice) {
+              this.makeMoney = ((+this.targetPrice - this.eachPrice) * this.totalNumber).toFixed(3)
+            }
+          }
+        } else {
+          this.addTotalPrice = ''
+          this.totalNumber = this.buyNumber
+          this.totalPrice = this.buyPrice * this.buyNumber
+          this.eachPrice = this.buyPrice.toFixed(3)
+          if (this.targetPrice) {
+            this.makeMoney = ((this.targetPrice - this.eachPrice) * this.totalNumber).toFixed(3)
+          }
+        }
+      },
+      addNumber: function (val, oldVal) {
+        if (val) {
+          this.totalNumber = +val + this.buyNumber
+          if (this.addPrice) {
+            this.addTotalPrice = val * this.addPrice
+            this.totalPrice = this.buyPrice * this.buyNumber + this.addTotalPrice
+            this.eachPrice = (this.totalPrice / this.totalNumber).toFixed(3)
+            if (this.targetPrice) {
+              this.makeMoney = ((this.targetPrice - this.eachPrice) * this.totalNumber).toFixed(3)
+            }
+          }
+        } else {
+          this.addTotalPrice = ''
+          this.totalNumber = this.buyNumber
+          this.totalPrice = this.buyPrice * this.buyNumber
+          this.eachPrice = this.buyPrice.toFixed(3)
+        }
+      },
+      targetPrice: function (val, oldVal) {
+        if (this.eachPrice && this.totalNumber) {
+          this.makeMoney = ((val - this.eachPrice) * this.totalNumber).toFixed(3)
+        }
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app2',
+    data: {
+      price: '',
+      targetPrice: ''
+    },
+    computed: {
+      percentage() {
+        return (this.targetPrice / this.price - 1) * 100
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app3',
+    data: {
+      price: '',
+      targetPrice: ''
+    },
+    computed: {
+      percentage() {
+        return (this.targetPrice / this.price - 1) * 100
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app4',
+    data: {
+      price: ''
+    },
+    computed: {
+      targetPrice1() {
+        return (this.price * 1.05).toFixed(3)
+      },
+      targetPrice2() {
+        return (this.price * 1.07).toFixed(3)
+      },
+      targetPrice3() {
+        return (this.price * 1.1).toFixed(3)
+      },
+      targetPrice4() {
+        return (this.price * 0.93).toFixed(3)
+      },
+      targetPrice5() {
+        return (this.price * 0.9).toFixed(3)
+      },
+      targetPrice6() {
+        return (this.price * 1.03).toFixed(3)
+      },
+      targetPrice7() {
+        return (this.price * 1.21).toFixed(3)
+      },
+      targetPrice8() {
+        return (this.price * 1.15).toFixed(3)
+      },
+      targetPrice9() {
+        return (this.price * 1.30).toFixed(3)
+      },
+      targetPrice10() {
+        return (this.price * 1.331).toFixed(3)
+      },
+      targetPrice11() {
+        return (this.price * 1.20).toFixed(3)
+      },
+      targetPrice12() {
+        return (this.price * 0.97).toFixed(3)
+      },
+      targetPrice13() {
+        return (this.price * 0.95).toFixed(3)
+      },
+      targetPrice14() {
+        return (this.price * 1.14).toFixed(3)
+      },
+      targetPrice15() {
+        return (this.price * 1.04).toFixed(3)
+      },
+      targetPrice16() {
+        return (this.price * 0.96).toFixed(3)
+      }
+    }
+  })
+
+  new Vue({
+    el: '#app5',
+    data: {
+      price: ''
+    },
+    computed: {
+      targetPrice1() {
+        return (this.price * 1.05).toFixed(3)
+      },
+      targetPrice2() {
+        return (this.price * 1.07).toFixed(3)
+      },
+      targetPrice3() {
+        return (this.price * 1.1).toFixed(3)
+      },
+      targetPrice4() {
+        return (this.price * 0.93).toFixed(3)
+      },
+      targetPrice5() {
+        return (this.price * 0.9).toFixed(3)
+      },
+      targetPrice6() {
+        return (this.price * 1.03).toFixed(3)
+      },
+      targetPrice7() {
+        return (this.price * 1.21).toFixed(3)
+      },
+      targetPrice8() {
+        return (this.price * 1.15).toFixed(3)
+      },
+      targetPrice9() {
+        return (this.price * 1.30).toFixed(3)
+      },
+      targetPrice10() {
+        return (this.price * 1.331).toFixed(3)
+      },
+      targetPrice11() {
+        return (this.price * 1.20).toFixed(3)
+      },
+      targetPrice12() {
+        return (this.price * 0.97).toFixed(3)
+      },
+      targetPrice13() {
+        return (this.price * 0.95).toFixed(3)
+      },
+      targetPrice14() {
+        return (this.price * 1.14).toFixed(3)
+      },
+      targetPrice15() {
+        return (this.price * 1.04).toFixed(3)
+      },
+      targetPrice16() {
+        return (this.price * 0.96).toFixed(3)
+      }
+    }
+  })
+</script>
+<script>
+  for (let i = 0; i < document.getElementsByClassName('follow__control'), length; i++) {
+    if (document.getElementsByClassName('follow__control')[ i ].className.split(' ').length === 1) {
+      (function () {
+        setTimeout(() => {
+          document.getElementsByClassName('follow__control')[ i ].click()
+        }, i * 100)
+      })(i)
+    }
+  }
+</script>
+</html>
