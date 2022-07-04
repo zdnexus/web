@@ -14,7 +14,7 @@ class Father {
   }
   
   say() {
-    console.log('我是爸爸')
+    console.log('我是父类')
   }
 }
 
@@ -39,17 +39,17 @@ class Son extends Father {
   say() {
     // super函数访问父类的普通函数。
     super.say()
-    console.log('我是儿子')
+    console.log('我是子类')
   }
 }
 
-Son.prototype.outputName = function () {
-  console.log('我的姓名是哈哈哈')
+Son.prototype.outputName = function (name) {
+  console.log('子类的姓名是' + name)
 }
 
-let s = new Son(1, 2)
+const s = new Son(1, 2)
 s.sum()
 s.subtract()
 s.say()
-s.outputName()
+s.outputName('哈哈哈')
 console.log(s instanceof Son)
