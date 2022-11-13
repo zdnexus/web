@@ -9,36 +9,27 @@ Star.prototype.age = '19'
 Star.prototype.sing = function (songTitle) {
   console.log(this.name + '，' + this.age + '岁，唱歌：' + songTitle)
 }
-Star.prototype.movie = function (movieTitle) {
-  console.log(this.name + '，' + this.age + '岁，演戏：' + movieTitle)
-}
 
 console.log(Star.name)
 console.log(Star.age)
 console.log(Star.sing)
-console.log(Star.movie)
 
 let ldh = new Star('刘德华', 18)
 ldh.sing('冰雨')
-ldh.movie('无间道')
 console.log(ldh.name)
 console.log(ldh.age)
 console.log(ldh.sing)
 console.log(ldh.sing === Star.prototype.sing)
-console.log(ldh.movie)
-console.log(ldh.movie === Star.prototype.movie)
 console.log(ldh instanceof Star)
 console.log(ldh.constructor === Star)
 
 let zxy = new Star()
 zxy.sing('李香兰')
-zxy.movie('东邪西毒')
 
 Star.name = '黎明'
 Star.prototype.age = '20'
 let lm = new Star()
 lm.sing('我爱黎明')
-lm.movie('堕落天使')
 
 // 构造函数原型对象=对象原型__proto__
 console.log(Star.prototype)
@@ -56,9 +47,6 @@ Star.prototype = {
   constructor: Star,
   sing: function (songTitle) {
     console.log(this.name + '，' + this.age + '岁，唱歌：' + songTitle)
-  },
-  movie: function (movieTitle) {
-    console.log(this.name + '，' + this.age + '岁，电影：' + movieTitle)
   }
 }
 
