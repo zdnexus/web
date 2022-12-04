@@ -32,7 +32,7 @@ const HookTest = () => {
   }, [x])
   
   return (
-    <div className="hookTest">
+    <div className='hook-test'>
       <button onClick={changeX}>点我+1</button>
       {
         isOdd ? <p>x是<Count data={x}/></p> : null
