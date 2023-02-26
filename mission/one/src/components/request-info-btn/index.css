@@ -1,0 +1,13 @@
+.request-info-btn {
+  width: 192px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(2px);
+  font-size: 18px;
+  color: #FFF;
+}

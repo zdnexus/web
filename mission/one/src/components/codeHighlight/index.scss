@@ -1,0 +1,23 @@
+pre {
+  code.hljs {
+    width: 600px;
+    height: 324px;
+    margin: 32px 0 0 740px;
+    background: rgba(81, 127, 192, 0.2);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+    display: block;
+    padding: 22px 66px;
+    font-size: 16px;
+    color: #abb2bf;
+    background: #282c34;
+
+    @include ipad {
+      width: 280px;
+      height: 178px;
+      border-radius: 4px;
+      backdrop-filter: blur(4.666666666666667px);
+      margin: 20px auto 60px;
+    }
+  }
+}
