@@ -11,13 +11,5 @@ pre {
     font-size: 16px;
     color: #abb2bf;
     background: #282c34;
-
-    @include ipad {
-      width: 280px;
-      height: 178px;
-      border-radius: 4px;
-      backdrop-filter: blur(4.666666666666667px);
-      margin: 20px auto 60px;
-    }
   }
 }

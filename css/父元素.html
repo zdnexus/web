@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <style>
+    .d1 {
+      width: 100px;
+      height: 100px;
+      background: black;
+    }
+
+    .p1 {
+      color: black;
+    }
+
+    /*.d1:hover .p1 {*/
+    /*color: red;*/
+    /*}*/
+
+
+    .p1:hover ~ .d1 {
+      background-color: #fff;
+    }
+
+  </style>
+</head>
+<body>
+
+
+<div class="d1">
+  <p class="p1">123</p>
+</div>
+
+</body>
+</html>
