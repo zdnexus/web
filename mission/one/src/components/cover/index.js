@@ -14,11 +14,11 @@ const Navigation = ({ click, setClick }) => (
           setClick(false)
         }}>Solutions</a>
       </li>
-      <li>
-        <a href="#c3" onClick={() => {
-          setClick(false)
-        }}>About Us</a>
-      </li>
+      {/*<li>*/}
+        {/*<a href="#c3" onClick={() => {*/}
+          {/*setClick(false)*/}
+        {/*}}>About Us</a>*/}
+      {/*</li>*/}
     </ul>
     <RequestInfoBtn/>
   </div>

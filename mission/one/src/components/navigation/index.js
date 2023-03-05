@@ -40,9 +40,9 @@ const Navigation = ({ click, setClick }) => {
           <li>
             <a href="#c1">Solutions</a>
           </li>
-          <li>
-            <a href="#c3">About Us</a>
-          </li>
+          {/*<li>*/}
+            {/*<a href="#c3">About Us</a>*/}
+          {/*</li>*/}
         </ul>
       </div>
       <RequestInfoBtn/>
