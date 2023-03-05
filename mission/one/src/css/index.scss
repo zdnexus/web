@@ -36,3 +36,7 @@ ul {
     @content;
   }
 }
+
+html [data-lazy] {
+  background-image: none !important;
+}

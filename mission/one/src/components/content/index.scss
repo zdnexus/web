@@ -194,14 +194,10 @@
   #c3 {
     width: 100%;
     height: 900px;
-    //background: url("../../img/板块4背景@2x.png");
+    background: url("../../img/板块4背景@2x.png");
     background-size: 100% 900px;
     overflow: hidden;
     position: relative;
-
-    &.visible {
-      background: url("../../img/板块4背景@2x.png");
-    }
 
     @include mobile {
       height: 898px;
