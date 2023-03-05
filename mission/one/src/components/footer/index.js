@@ -8,7 +8,7 @@ import './index.scss'
 const footer = () => {
   return (
     <footer id='footer'>
-      <div className='logo'/>
+      <img className='logo' src={require('@/img/logo@2x.png')}/>
       <div className='text'>
         <ul>
           <li>

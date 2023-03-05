@@ -31,7 +31,7 @@ module.exports = {
             require('postcss-px-to-viewport')({
               unitToConvert: 'px',    // 需要转换的单位，默认为"px"
               viewportWidth: 1440,    // 设计稿的视窗宽度
-              unitPrecision: 5,       // 单位转换后保留的精度
+              unitPrecision: 3,       // 单位转换后保留的精度
               propList: ['*'],        // 能转化为 vw 的属性列表
               viewportUnit: 'vw',     // 希望使用的视窗单位
               fontViewportUnit: 'vw', // 字体使用的视窗单位
@@ -41,9 +41,9 @@ module.exports = {
               replace: true,          // 是否直接更换属性值，而不添加备用属性
               exclude: undefined,     // 忽略某些文件夹下的文件或特定文件，例如 'node_modules' 下的文件
               include: /\/src\//,     // 如果设置了include，那将只有匹配到的文件才会被转换
-              landscape: false,       // 是否添加根据 landscapeWidth 生成的媒体查询条件
+              landscape: false,        // 是否添加根据 landscapeWidth 生成的媒体查询条件
               landscapeUnit: 'vw',    // 横屏时使用的单位
-              landscapeWidth: 1125,   // 横屏时使用的视窗宽度
+              landscapeWidth: 750,    // 横屏时使用的视窗宽度
             })
           ]
         }
