@@ -7,7 +7,7 @@
   position: relative;
   z-index: 1;
 
-  @include ipad {
+  @include mobile {
     height: 380px;
     background-size: 100% 380px;
   }
@@ -22,7 +22,7 @@
     position: relative;
     z-index: 1;
 
-    @include ipad {
+    @include mobile {
       width: 300px;
       height: 84px;
       font-size: 28px;
@@ -40,7 +40,7 @@
     position: relative;
     z-index: 1;
 
-    @include ipad {
+    @include mobile {
       width: 245px;
       height: 56px;
       font-size: 12px;
@@ -57,11 +57,13 @@
     position: relative;
     z-index: 1;
 
-    @include ipad {
+    @include mobile {
       width: 140px;
       height: 32px;
       border-radius: 16px;
       margin: 20px 0 0 20px;
+      font-size: 14px;
+      line-height: 15px;
     }
   }
 
@@ -73,10 +75,13 @@
     position: absolute;
     top: 0;
     right: 0;
-    transform-origin: right bottom;
-    transition: transform 0.6s ease 0s;
 
-    @include ipad {
+    @include pc {
+      transform-origin: right bottom;
+      transition: transform 0.6s ease 0s;
+    }
+
+    @include mobile {
       width: 300px;
       height: 380px;
       background-size: 300px 380px;
@@ -84,6 +89,8 @@
   }
 
   &:hover .bg {
-    transform: scale(1.05);
+    @include pc {
+      transform: scale(1.05);
+    }
   }
 }

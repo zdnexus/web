@@ -3,8 +3,7 @@
  * Url :
  */
 
-import RequestInfoBtn from '../request-info-btn'
-
+import RequestInfoBtn from '@/components/request-info-btn'
 import './index.scss'
 
 const Banner = () => {

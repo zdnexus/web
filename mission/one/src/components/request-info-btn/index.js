@@ -3,7 +3,7 @@
  * Url :
  */
 
-import './index.css'
+import './index.scss'
 
 const RequestInfoBtn = () => {
   return (

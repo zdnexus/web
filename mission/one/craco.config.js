@@ -4,13 +4,15 @@
  */
 
 const sassResourcesLoader = require('craco-sass-resources-loader')
+const path = require('path')
+const pathResolve = pathUrl => path.join(__dirname, pathUrl)
 
 module.exports = {
-  // webpack: {
-  //   alias: {
-  //     '@': resolve('src'),
-  //   }
-  // },
+  webpack: {
+    alias: {
+      '@': pathResolve('src'),
+    },
+  },
   plugins: [
     {
       plugin: sassResourcesLoader,

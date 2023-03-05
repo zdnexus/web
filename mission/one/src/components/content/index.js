@@ -3,11 +3,11 @@
  * Url :
  */
 
-import RequestInfoBtn from '../request-info-btn'
-import CodeHighlight from '../codeHighlight'
+import React from 'react'
+import RequestInfoBtn from '@/components/request-info-btn'
+import CodeHighlight from '@/components/codeHighlight'
 
 import './index.scss'
-
 
 const Content = () => {
   return (

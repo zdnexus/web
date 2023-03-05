@@ -25,8 +25,14 @@ ul {
   list-style: none;
 }
 
-@mixin ipad {
+@mixin mobile {
   @media screen and (max-width: 767px) {
+    @content;
+  }
+}
+
+@mixin pc {
+  @media screen and (min-width: 768px) {
     @content;
   }
 }

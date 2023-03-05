@@ -3,13 +3,13 @@
  * Url :
  */
 
+import RequestInfoBtn from '@/components/request-info-btn'
 import './index.scss'
-import RequestInfoBtn from '../request-info-btn'
 
 const Navigation = ({ click, setClick }) => {
   return (
     <nav id='navigation' style={{ position: click ? 'fixed' : 'absolute' }}>
-      <div className='logo'/>
+      <img className='logo' src={require('@/img/logo@2x.png')}/>
       <div className='text'>
         <label onClick={() => setClick(!click)}>
           {

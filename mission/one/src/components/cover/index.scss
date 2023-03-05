@@ -1,8 +1,8 @@
 #cover {
-  @include ipad {
+  @include mobile {
     width: 100%;
     height: 100%;
-    background: url("../../img/板块2背景@2x.png");
+    background-image: linear-gradient(135deg, #184352 0%, #101313 100%);
     background-size: cover;
     position: fixed;
     top: 0;
