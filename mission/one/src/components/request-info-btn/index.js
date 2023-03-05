@@ -7,9 +7,10 @@ import './index.scss'
 
 const RequestInfoBtn = () => {
   return (
-    <div className='request-info-btn'>
+    <a className='request-info-btn'
+       href='mailto:contact@autonomouscapital.co?subject=Request Information'>
       Request Info
-    </div>
+    </a>
   )
 }
 
