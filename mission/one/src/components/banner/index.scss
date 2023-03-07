@@ -23,10 +23,11 @@
     z-index: 1;
 
     @include mobile {
-      width: 330px;
+      width: 300px;
       height: 84px;
       font-size: 28px;
       line-height: 28px;
+      margin: 100px 0 0 20px;
     }
   }
 
@@ -63,7 +64,6 @@
       border-radius: 16px;
       margin: 20px 0 0 20px;
       font-size: 14px;
-      line-height: 15px;
     }
   }
 

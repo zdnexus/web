@@ -56,7 +56,7 @@
         height: 24px;
         font-size: 24px;
         line-height: 24px;
-        margin: 48px auto 0;
+        margin: 38px 0 0 20px;
       }
     }
 
@@ -73,7 +73,7 @@
         height: 42px;
         font-size: 12px;
         line-height: 14px;
-        margin: 20px auto 0;
+        margin: 20px 0 0 20px;
       }
     }
 
@@ -90,7 +90,7 @@
         height: 28px;
         font-size: 12px;
         line-height: 14px;
-        margin: 12px auto 0;
+        margin: 12px 0 0 20px;
       }
     }
   }
@@ -152,7 +152,7 @@
         height: 24px;
         font-size: 24px;
         line-height: 24px;
-        margin: 60px auto 0;
+        margin: 60px 0 0 20px;
       }
     }
 
@@ -169,7 +169,7 @@
         height: 20px;
         font-size: 16px;
         line-height: 20px;
-        margin: 20px auto 0;
+        margin: 20px 0 0 20px;
       }
     }
 
@@ -185,8 +185,8 @@
         width: 280px;
         height: 28px;
         font-size: 12px;
-        line-height: 28px;
-        margin: 12px auto 0;
+        line-height: 14px;
+        margin: 12px 0 0 20px;
       }
     }
   }
@@ -248,7 +248,7 @@
         height: 24px;
         font-size: 24px;
         line-height: 24px;
-        margin: 76px auto 0;
+        margin: 60px 0 0 20px;
       }
     }
 
@@ -265,7 +265,7 @@
         height: 40px;
         font-size: 16px;
         line-height: 20px;
-        margin: 12px auto 0;
+        margin: 20px 0 0 20px;
       }
     }
 
@@ -282,7 +282,7 @@
         height: 42px;
         font-size: 12px;
         line-height: 14px;
-        margin: 12px auto 0;
+        margin: 12px 0 0 20px;
       }
     }
 
@@ -299,7 +299,7 @@
         height: 42px;
         font-size: 12px;
         line-height: 14px;
-        margin: 12px auto 0;
+        margin: 12px 0 0 20px;
       }
     }
 
@@ -334,10 +334,10 @@
     .p1 {
       width: 846px;
       height: 108px;
-      margin: 126px auto 32px;
+      margin: 126px auto 0;
       font-size: 54px;
       color: #101313;
-      line-height: 59px;
+      line-height: 54px;
       text-align: center;
       transform-origin: bottom center;
       transition: transform 0.6s ease 0s;
@@ -359,7 +359,7 @@
       width: 940px;
       height: 24px;
       font-size: 24px;
-      margin: 0 auto;
+      margin: 32px auto 0;
       color: rgba(16, 19, 19, 0.8);
       line-height: 24px;
       text-align: center;
@@ -392,7 +392,7 @@
       border-radius: 22px;
       border: 1px solid #101313;
       backdrop-filter: blur(2px);
-      margin: 60px auto;
+      margin: 60px auto 0;
 
       @include mobile {
         width: 140px;

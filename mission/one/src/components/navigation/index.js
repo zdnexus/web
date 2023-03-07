@@ -16,22 +16,22 @@ const Navigation = ({ click, setClick }) => {
             click ?
               <svg width="18" height="18" viewBox="0 0 18 18">
                 <polyline fill="none" stroke="currentColor"
-                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="2 3, 16 15">
+                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="1 1, 17 17">
                 </polyline>
                 <polyline fill="none" stroke="currentColor"
-                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="2 15, 16 3">
+                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="17 1, 1 17">
                 </polyline>
               </svg>
               :
               <svg id="open" width="18" height="18" viewBox="0 0 18 18">
                 <polyline fill="none" stroke="currentColor"
-                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="2 1, 16 1">
+                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="1 1, 17 1">
                 </polyline>
                 <polyline fill="none" stroke="currentColor"
-                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="2 6, 16 6">
+                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="1 9, 17 9">
                 </polyline>
                 <polyline fill="none" stroke="currentColor"
-                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="2 11, 16 11">
+                          strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" points="1 17, 17 17">
                 </polyline>
               </svg>
           }
