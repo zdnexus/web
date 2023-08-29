@@ -120,7 +120,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
@@ -164,10 +164,12 @@
 </template>
 
 <script>
-  import { cooperateWarehouseList, createCooperateWarehouse, updateCooperateWarehouse, deleteCooperateWarehouse } from '@/api/car'
+  import Pagination from '@/components/Pagination'
+  import { ParameterWarehouseList, createParameterWarehouse, updateParameterWarehouse, deleteParameterWarehouse } from '@/api/car'
   import { WAREHOUSE_TYPE_LIST, WAREHOUSE_TYPE_LIST_OBJ } from '@/constant/car'
 
   export default {
+    components: { Pagination },
     data() {
       return {
         WAREHOUSE_TYPE_LIST,
@@ -177,9 +179,9 @@
         total: 0,
         listLoading: true,
         listQuery: {
-          page: 1,
-          limit: 20,
           name: undefined,
+          pageNum: 1,
+          pageSize: 20,
         },
         ids: [],
         dialogFormVisible: false,
@@ -212,14 +214,14 @@
     methods: {
       getList() {
         this.listLoading = true
-        cooperateWarehouseList(this.listQuery).then(res => {
+        ParameterWarehouseList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
         })
       },
       handleFilter() {
-        this.listQuery.page = 1
+        this.listQuery.pageNum = 1
         this.getList()
       },
       handleSelectionChange(rows) {
@@ -236,7 +238,7 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateWarehouse : updateCooperateWarehouse
+        const fun = this.dialogStatus === 'create' ? createParameterWarehouse : updateParameterWarehouse
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             fun(this.temp).then(() => {
@@ -252,7 +254,7 @@
         })
       },
       deleteData(ids) {
-        deleteCooperateWarehouse(ids).then(() => {
+        deleteParameterWarehouse(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',

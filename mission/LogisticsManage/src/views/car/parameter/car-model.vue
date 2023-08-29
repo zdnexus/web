@@ -44,7 +44,7 @@
 
       <el-table-column label="车型品牌" prop="name" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.name }}</span>
+          <span>{{ car_bard_list_obj[row.brandId] }}</span>
         </template>
       </el-table-column>
 
@@ -97,12 +97,14 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="车型品牌" prop="name">
-          <el-input v-model="temp.name"/>
+        <el-form-item label="车型品牌" prop="brandId">
+          <el-select v-model="temp.brandId" class="filter-item" placeholder="">
+            <el-option v-for="item in car_bard_list" :key="item.value" :label="item.label" :value="item"/>
+          </el-select>
         </el-form-item>
 
         <el-form-item label="车型型号" prop="name">
@@ -123,18 +125,23 @@
 </template>
 
 <script>
-  import { cooperateCarModelList, createCooperateCarModel, updateCooperateCarModel, deleteCooperateCarModel } from '@/api/car'
+  import { listToObj } from '@/utils'
+  import Pagination from '@/components/Pagination'
+  import { parameterCarBrandList, parameterCarModelList, createParameterCarModel, updateParameterCarModel, deleteParameterCarModel } from '@/api/car'
 
   export default {
+    components: { Pagination },
     data() {
       return {
         tableKey: 0,
         list: null,
+        car_bard_list: null,
+        car_bard_list_obj: null,
         total: 0,
         listLoading: true,
         listQuery: {
-          page: 1,
-          limit: 20,
+          pageNum: 1,
+          pageSize: 20,
           name: undefined,
         },
         ids: [],
@@ -145,29 +152,39 @@
         },
         dialogStatus: '',
         temp: {
-          name: undefined,
-          type: undefined,
-          abroadAddress: undefined,
+          brandId: undefined,
+          name: undefined
         },
         rules: {
-          name: [{ required: true, message: '请输入车型品牌', trigger: 'blur' }]
-        }
+          brandId: [{ required: true, message: '请选择车型品牌', trigger: 'blur' }],
+          name: [{ required: true, message: '请输入车型型号', trigger: 'blur' }]
+        },
       }
     },
     created() {
       this.getList()
+      parameterCarBrandList({
+        pageNum: 1,
+        pageSize: 99999,
+      }).then(res => {
+        this.car_bard_list = res.data.list.map(item => ({
+          label: item.name,
+          value: item.id,
+        }))
+        this.car_bard_list_obj = listToObj(this.car_bard_list)
+      })
     },
     methods: {
       getList() {
         this.listLoading = true
-        cooperateCarModelList(this.listQuery).then(res => {
+        parameterCarModelList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
         })
       },
       handleFilter() {
-        this.listQuery.page = 1
+        this.listQuery.pageNum = 1
         this.getList()
       },
       handleSelectionChange(rows) {
@@ -181,9 +198,13 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateCarModel : updateCooperateCarModel
+        const fun = this.dialogStatus === 'create' ? createParameterCarModel : updateParameterCarModel
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
+            const brandId = this.temp.brandId.value
+            const brandName = this.temp.brandId.label
+            this.temp.brandId = brandId
+            this.temp.brandName = brandName
             fun(this.temp).then(() => {
               this.dialogFormVisible = false
               this.handleFilter()
@@ -197,7 +218,7 @@
         })
       },
       deleteData(ids) {
-        deleteCooperateCarModel(ids).then(() => {
+        deleteParameterCarModel(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',

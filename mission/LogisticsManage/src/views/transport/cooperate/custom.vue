@@ -156,8 +156,8 @@
         listLoading: true,
         downloadLoading: false,
         listQuery: {
-          page: 1,
-          limit: 20,
+          pageNum: 1,
+          pageSize: 20,
           abroadAddress: undefined,
           createTime: undefined,
           delFlag: undefined,

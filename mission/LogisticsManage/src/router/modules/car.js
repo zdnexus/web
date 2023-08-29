@@ -68,26 +68,31 @@ export default {
     },
     {
       path: '/car/cost',
+      name: '费用核算',
       meta: { title: '费用核算', icon: 'edit' },
       component: () => import('@/views/car/cost'),
     },
     {
       path: '/car/cooperate',
+      name: '合作方管理',
       meta: { title: '合作方管理', icon: 'edit' },
       component: () => import('@/views/link'),
       children: [
         {
           path: '/car/cooperate/custom',
+          name: '客户信息管理',
           component: () => import('@/views/car/cooperate/custom'),
           meta: { title: '客户信息管理', icon: 'edit' }
         },
         {
           path: '/car/cooperate/domestic',
+          name: '境内送车司机信息管理',
           component: () => import('@/views/car/cooperate/domestic'),
           meta: { title: '境内送车司机信息管理', icon: 'edit' }
         },
         {
           path: '/car/cooperate/abroad',
+          name: '境外车队信息管理',
           component: () => import('@/views/car/cooperate/abroad'),
           meta: { title: '境外车队信息管理', icon: 'edit' }
         },

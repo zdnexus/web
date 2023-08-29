@@ -3,13 +3,7 @@
  * Url :
  */
 
-function listToObj(list) {
-  const o = {}
-  list.forEach(l => {
-    o[l.value] = l.label
-  })
-  return o
-}
+import { listToObj } from '@/utils'
 
 export const SERVE_TYPE_LIST = [
   {

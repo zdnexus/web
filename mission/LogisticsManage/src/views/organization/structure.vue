@@ -184,8 +184,8 @@
         total: 0,
         listLoading: true,
         listQuery: {
-          page: 1,
-          limit: 20,
+          pageNum: 1,
+          pageSize: 20,
           importance: undefined,
           title: undefined,
           type: undefined,

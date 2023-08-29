@@ -83,8 +83,8 @@ export default {
       total: null,
       listLoading: true,
       listQuery: {
-        page: 1,
-        limit: 10
+        pageNum: 1,
+        pageSize: 10
       },
       sortable: null,
       oldList: [],

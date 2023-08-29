@@ -355,3 +355,11 @@ export function removeClass(ele, cls) {
     ele.className = ele.className.replace(reg, ' ')
   }
 }
+
+export function listToObj(list) {
+  const o = {}
+  list.forEach(l => {
+    o[l.value] = l.label
+  })
+  return o
+}

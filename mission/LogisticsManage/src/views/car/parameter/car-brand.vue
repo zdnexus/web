@@ -91,7 +91,7 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
@@ -113,9 +113,11 @@
 </template>
 
 <script>
-  import { cooperateCarBrandList, createCooperateCarBrand, updateCooperateCarBrand, deleteCooperateCarBrand } from '@/api/car'
+  import Pagination from '@/components/Pagination'
+  import { parameterCarBrandList, createParameterCarBrand, updateParameterCarBrand, deleteParameterCarBrand } from '@/api/car'
 
   export default {
+    components: { Pagination },
     data() {
       return {
         tableKey: 0,
@@ -123,8 +125,8 @@
         total: 0,
         listLoading: true,
         listQuery: {
-          page: 1,
-          limit: 20,
+          pageNum: 1,
+          pageSize: 20,
           name: undefined,
         },
         ids: [],
@@ -148,14 +150,14 @@
     methods: {
       getList() {
         this.listLoading = true
-        cooperateCarBrandList(this.listQuery).then(res => {
+        parameterCarBrandList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
         })
       },
       handleFilter() {
-        this.listQuery.page = 1
+        this.listQuery.pageNum = 1
         this.getList()
       },
       handleSelectionChange(rows) {
@@ -167,7 +169,7 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateCarBrand : updateCooperateCarBrand
+        const fun = this.dialogStatus === 'create' ? createParameterCarBrand : updateParameterCarBrand
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             fun(this.temp).then(() => {
@@ -183,7 +185,7 @@
         })
       },
       deleteData(ids) {
-        deleteCooperateCarBrand(ids).then(() => {
+        deleteParameterCarBrand(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',
