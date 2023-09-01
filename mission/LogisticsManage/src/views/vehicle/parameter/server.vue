@@ -1,14 +1,14 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入车型品牌" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" placeholder="输入服务项名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
 
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
-        添加车型品牌
+        添加服务项
       </el-button>
 
       <el-popconfirm
@@ -42,18 +42,23 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="车型品牌" prop="name" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ car_bard_list_obj[row.brandId] }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="车型型号" prop="name" align="center" width="100">
+      <el-table-column label="服务项" prop="name" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
+      <el-table-column label="类型" prop="type" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ SERVE_TYPE_LIST_OBJ[row.type] }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="境外目的地" prop="abroadAddress" align="center" width="150">
+        <template slot-scope="{row}">
+          <span>{{ row.abroadAddress }}</span>
+        </template>
+      </el-table-column>
 
       <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
       <!--<template slot-scope="{row}">-->
@@ -101,14 +106,18 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="车型品牌" prop="brandId">
-          <el-select v-model="temp.brandId" class="filter-item" placeholder="">
-            <el-option v-for="item in car_bard_list" :key="item.value" :label="item.label" :value="item"/>
+        <el-form-item label="服务项名称" prop="name">
+          <el-input v-model="temp.name"/>
+        </el-form-item>
+
+        <el-form-item label="服务类型" prop="type">
+          <el-select v-model="temp.type" class="filter-item" placeholder="">
+            <el-option v-for="item in SERVE_TYPE_LIST" :key="item.value" :label="item.label" :value="item.value"/>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="车型型号" prop="name">
-          <el-input v-model="temp.name"/>
+        <el-form-item label="境外目的地" prop="abroadAddress">
+          <el-input v-model="temp.abroadAddress"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -125,24 +134,24 @@
 </template>
 
 <script>
-  import { listToObj } from '@/utils'
   import Pagination from '@/components/Pagination'
-  import { parameterCarBrandList, parameterCarModelList, createParameterCarModel, updateParameterCarModel, deleteParameterCarModel } from '@/api/car'
+  import { parameterCustomList, createParameterCustom, updateParameterCustom, deleteParameterCustom } from '@/api/vehicle/parameter/server'
+  import { SERVE_TYPE_LIST, SERVE_TYPE_LIST_OBJ } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        SERVE_TYPE_LIST,
+        SERVE_TYPE_LIST_OBJ,
         tableKey: 0,
         list: null,
-        car_bard_list: null,
-        car_bard_list_obj: null,
         total: 0,
         listLoading: true,
         listQuery: {
+          name: undefined,
           pageNum: 1,
           pageSize: 20,
-          name: undefined,
         },
         ids: [],
         dialogFormVisible: false,
@@ -152,32 +161,24 @@
         },
         dialogStatus: '',
         temp: {
-          brandId: undefined,
-          name: undefined
+          name: undefined,
+          type: undefined,
+          abroadAddress: undefined,
         },
         rules: {
-          brandId: [{ required: true, message: '请选择车型品牌', trigger: 'blur' }],
-          name: [{ required: true, message: '请输入车型型号', trigger: 'blur' }]
-        },
+          name: [{ required: true, message: '请输入服务项名称', trigger: 'blur' }],
+          type: [{ required: true, message: '请选择服务类型', trigger: 'change' }],
+          abroadAddress: [{ required: true, message: '请输入境外目的地', trigger: 'blur' }]
+        }
       }
     },
     created() {
       this.getList()
-      parameterCarBrandList({
-        pageNum: 1,
-        pageSize: 99999,
-      }).then(res => {
-        this.car_bard_list = res.data.list.map(item => ({
-          label: item.name,
-          value: item.id,
-        }))
-        this.car_bard_list_obj = listToObj(this.car_bard_list)
-      })
     },
     methods: {
       getList() {
         this.listLoading = true
-        parameterCarModelList(this.listQuery).then(res => {
+        parameterCustomList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
@@ -198,13 +199,9 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createParameterCarModel : updateParameterCarModel
+        const fun = this.dialogStatus === 'create' ? createParameterCustom : updateParameterCustom
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            const brandId = this.temp.brandId.value
-            const brandName = this.temp.brandId.label
-            this.temp.brandId = brandId
-            this.temp.brandName = brandName
             fun(this.temp).then(() => {
               this.dialogFormVisible = false
               this.handleFilter()
@@ -218,7 +215,7 @@
         })
       },
       deleteData(ids) {
-        deleteParameterCarModel(ids).then(() => {
+        deleteParameterCustom(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',

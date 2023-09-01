@@ -12,7 +12,7 @@ import chartsRouter from './modules/charts'
 import tableRouter from './modules/table'
 import nestedRouter from './modules/nested'
 import mission from './modules/mission'
-import car from './modules/car'
+import vehicle from './modules/vehicle'
 import transport from './modules/transport'
 import warehouse from './modules/warehouse'
 import finance from './modules/finance'
@@ -91,7 +91,7 @@ export const constantRoutes = [
     ]
   },
   mission,
-  car,
+  vehicle,
   transport,
   warehouse,
   finance,

@@ -42,38 +42,49 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="钥匙位置" prop="name" align="center" width="100">
+      <el-table-column label="车架号" prop="vin" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.vin }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="钥匙数量" prop="nums" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.nums }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="钥匙位置" prop="keysPosition" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
+      <el-table-column label="存放图片" prop="photoUrl" align="center" width="120">
+        <template slot-scope="{row}">
+          <img width="100" height="100" :src="row.photoUrl"/>
+        </template>
+      </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
+      <el-table-column label="创建用户" prop="userName" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.userName }}</span>
+        </template>
+      </el-table-column>
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="150">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="150">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
             更新
@@ -95,9 +106,22 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="钥匙位置" prop="name">
-          <el-input v-model="temp.name"/>
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="temp.vin"/>
         </el-form-item>
+
+        <el-form-item label="钥匙数量" prop="nums">
+          <el-input v-model="temp.nums"/>
+        </el-form-item>
+
+        <el-form-item label="钥匙位置" prop="keysPosition">
+          <el-input v-model="temp.keysPosition"/>
+        </el-form-item>
+
+        <el-form-item label="存放图片" prop="photoUrl">
+          <Upload v-model="temp.photoUrl" />
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -114,10 +138,11 @@
 
 <script>
   import Pagination from '@/components/Pagination'
-  import { cooperateCarBrandList, createCooperateCarBrand, updateCooperateCarBrand, deleteCooperateCarBrand } from '@/api/car'
+  import Upload from '@/components/Upload/SingleImage'
+  import { parameterkeysPositionList, createParameterkeysPosition, updateParameterkeysPosition, deleteParameterkeysPosition } from '@/api/vehicle/parameter/keysPosition'
 
   export default {
-    components: { Pagination },
+    components: { Pagination, Upload },
     data() {
       return {
         tableKey: 0,
@@ -137,10 +162,16 @@
         },
         dialogStatus: '',
         temp: {
-          name: undefined,
+          vin: undefined,
+          nums: undefined,
+          keysPosition: undefined,
+          photoUrl: undefined,
         },
         rules: {
-          name: [{ required: true, message: '请输入钥匙位置', trigger: 'blur' }]
+          vin: [{ required: true, message: '请输入车架号', trigger: 'blur' }],
+          nums: [{ required: true, message: '请输入钥匙数量', trigger: 'blur' }],
+          keysPosition: [{ required: true, message: '请输入钥匙位置', trigger: 'blur' }],
+          photoUrl: [{ required: true, message: '请上传存放图片', trigger: 'blur' }]
         }
       }
     },
@@ -150,7 +181,7 @@
     methods: {
       getList() {
         this.listLoading = true
-        cooperateCarBrandList(this.listQuery).then(res => {
+        parameterkeysPositionList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
@@ -166,10 +197,13 @@
       resetTemp() {
         this.temp = {
           name: undefined,
+          vin: undefined,
+          keysPosition: undefined,
+          photoUrl: undefined,
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateCarBrand : updateCooperateCarBrand
+        const fun = this.dialogStatus === 'create' ? createParameterkeysPosition : updateParameterkeysPosition
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             fun(this.temp).then(() => {
@@ -185,7 +219,7 @@
         })
       },
       deleteData(ids) {
-        deleteCooperateCarBrand(ids).then(() => {
+        deleteParameterkeysPosition(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',

@@ -92,9 +92,9 @@ export default {
           meta: { title: '客户信息管理', icon: 'edit' }
         },
         {
-          path: '/transport/cooperate/china-car',
+          path: '/transport/cooperate/china-vehicle',
           name: '中方车辆信息管理',
-          component: () => import('@/views/transport/cooperate/china-car'),
+          component: () => import('@/views/transport/cooperate/china-vehicle'),
           meta: { title: '中方车辆信息管理', icon: 'edit' }
         },
         {
@@ -110,9 +110,9 @@ export default {
           meta: { title: '装卸队信息管理', icon: 'edit' }
         },
         {
-          path: '/transport/cooperate/abroad-car',
+          path: '/transport/cooperate/abroad-vehicle',
           name: '境外车辆信息管理',
-          component: () => import('@/views/transport/cooperate/abroad-car'),
+          component: () => import('@/views/transport/cooperate/abroad-vehicle'),
           meta: { title: '境外车辆信息管理', icon: 'edit' }
         },
         {

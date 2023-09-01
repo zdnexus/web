@@ -1,14 +1,14 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="请输入客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.teamName" placeholder="请输入境外车队名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
 
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
-        添加客户
+        添加境外车队信息
       </el-button>
 
       <el-popconfirm
@@ -42,37 +42,31 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="客户姓名" prop="name" align="center" width="100">
+      <el-table-column label="运输队名称" prop="teamName" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.teamName }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="运输队人数" prop="total" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.total }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="运输队长名称" prop="name" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="客户电话" prop="mobile" align="center" width="100">
+      <el-table-column label="运输队长电话" prop="mobile" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.mobile }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="邮箱" prop="mail" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.mail }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="公司名称" prop="company" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.company }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="国家" prop="country" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.country }}</span>
-        </template>
-      </el-table-column>
-
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
@@ -84,7 +78,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.updateBy }}</span>-->
       <!--</template>-->
@@ -96,7 +90,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
             更新
@@ -118,62 +112,20 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="客户姓名" prop="name">
+        <el-form-item label="运输队名称" prop="teamName">
+          <el-input v-model="temp.teamName"/>
+        </el-form-item>
+
+        <el-form-item label="运输队人数" prop="total">
+          <el-input v-model="temp.total"/>
+        </el-form-item>
+
+        <el-form-item label="运输队长名称" prop="name">
           <el-input v-model="temp.name"/>
         </el-form-item>
 
-        <el-form-item label="联系电话" prop="mobile">
+        <el-form-item label="运输队长电话" prop="mobile">
           <el-input v-model="temp.mobile"/>
-        </el-form-item>
-
-        <el-form-item v-if="temp.password" label="客户密码" prop="password">
-          <el-input v-model="temp.password"/>
-        </el-form-item>
-
-        <el-form-item label="邮箱" prop="mail">
-          <el-input v-model="temp.mail"/>
-        </el-form-item>
-
-        <el-form-item label="国家" prop="country">
-          <el-input v-model="temp.country"/>
-        </el-form-item>
-
-        <el-form-item label="地区" prop="area">
-          <el-input v-model="temp.area"/>
-        </el-form-item>
-
-        <el-form-item label="地址" prop="address">
-          <el-input v-model="temp.address"/>
-        </el-form-item>
-
-        <el-form-item label="银行账号" prop="bankAccount">
-          <el-input v-model="temp.bankAccount"/>
-        </el-form-item>
-
-        <el-form-item label="开户行" prop="bank">
-          <el-input v-model="temp.bank"/>
-        </el-form-item>
-
-        <el-form-item label="税号" prop="dutyParagraph">
-          <el-input v-model="temp.dutyParagraph"/>
-        </el-form-item>
-
-        <el-form-item label="付款条件" prop="paymentTerms">
-          <el-input v-model="temp.paymentTerms"/>
-        </el-form-item>
-
-        <el-form-item label="贸易方式" prop="tradeMode">
-          <el-input v-model="temp.tradeMode"/>
-        </el-form-item>
-
-        <el-form-item label="结算周期" prop="settlementCycle">
-          <el-input v-model="temp.settlementCycle"/>
-        </el-form-item>
-
-        <el-form-item label="分配经理" prop="pmId">
-          <el-select v-model="temp.pmId" class="filter-item" placeholder="">
-            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item"/>
-          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -191,7 +143,7 @@
 
 <script>
   import Pagination from '@/components/Pagination'
-  import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/car'
+  import { cooperateAbrodList, createCooperateAbrod, updateCooperateAbrod, deleteCooperateAbrod } from '@/api/vehicle/cooperate/abroad'
   import { organizationList } from '@/api/organization'
 
   export default {
@@ -204,7 +156,7 @@
         total: 0,
         listLoading: true,
         listQuery: {
-          name: undefined,
+          teamName: undefined,
           pageNum: 1,
           pageSize: 20,
         },
@@ -216,36 +168,16 @@
         },
         dialogStatus: '',
         temp: {
+          teamName: undefined,
+          total: undefined,
           name: undefined,
-          mobile: undefined,
-          password: undefined,
-          mail: undefined,
-          country: undefined,
-          area: undefined,
-          address: undefined,
-          bankAccount: undefined,
-          bank: undefined,
-          dutyParagraph: undefined,
-          paymentTerms: undefined,
-          tradeMode: undefined,
-          settlementCycle: undefined,
-          pmId: undefined,
+          mobile: undefined
         },
         rules: {
-          name: [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
-          mobile: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
-          password: [{ required: true, message: '请输入客户密码', trigger: 'blur' }],
-          mail: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
-          country: [{ required: true, message: '请输入国家', trigger: 'blur' }],
-          area: [{ required: true, message: '请输入地区', trigger: 'blur' }],
-          address: [{ required: true, message: '请输入地址', trigger: 'blur' }],
-          bankAccount: [{ required: true, message: '请输入银行账号', trigger: 'blur' }],
-          bank: [{ required: true, message: '请输入开户行', trigger: 'blur' }],
-          dutyParagraph: [{ required: true, message: '请输入税号', trigger: 'blur' }],
-          paymentTerms: [{ required: true, message: '请输入付款条件', trigger: 'blur' }],
-          tradeMode: [{ required: true, message: '请输入贸易方式', trigger: 'blur' }],
-          settlementCycle: [{ required: true, message: '请输入结算周期', trigger: 'blur' }],
-          pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }],
+          teamName: [{ required: true, message: '请输入运输队名称', trigger: 'blur' }],
+          total: [{ required: true, message: '请输入运输队人数', trigger: 'blur' }],
+          name: [{ required: true, message: '请输入运输队长名称', trigger: 'blur' }],
+          mobile: [{ required: true, message: '请输入运输队长电话', trigger: 'blur' }],
         }
       }
     },
@@ -261,7 +193,7 @@
     methods: {
       getList() {
         this.listLoading = true
-        cooperateCustomList(this.listQuery).then(res => {
+        cooperateAbrodList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
@@ -275,30 +207,17 @@
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {
-        const code = 'st' + (parseInt(Math.random() * 1000000) + 1000000)
         this.temp = {
+          teamName: undefined,
+          total: undefined,
           name: undefined,
-          mobile: undefined,
-          password: code.substring(0, 8),
-          mail: undefined,
-          country: undefined,
-          area: undefined,
-          address: undefined,
-          bankAccount: undefined,
-          bank: undefined,
-          dutyParagraph: undefined,
-          paymentTerms: undefined,
-          tradeMode: undefined,
-          settlementCycle: undefined,
-          pmId: undefined,
+          mobile: undefined
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateCustom : updateCooperateCustom
+        const fun = this.dialogStatus === 'create' ? createCooperateAbrod : updateCooperateAbrod
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            this.temp.pmName = this.temp.pmId.label
-            this.temp.pmId = this.temp.pmId.value
             fun(this.temp).then(() => {
               this.dialogFormVisible = false
               this.handleFilter()
@@ -312,7 +231,7 @@
         })
       },
       deleteData(ids) {
-        deleteCooperateCustom(ids).then(() => {
+        deleteCooperateAbrod(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',
@@ -325,7 +244,7 @@
         switch (type) {
           case 'create':
           case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row, pmId: { label: row.pmName, value: row.pmId } }
+            type === 'create' ? this.resetTemp() : this.temp = { ...row }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
@@ -337,7 +256,7 @@
             this.deleteData(row)
             break
         }
-      }
+      },
     }
   }
 </script>
