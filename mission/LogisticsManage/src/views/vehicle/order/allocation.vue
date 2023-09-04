@@ -408,7 +408,7 @@
               this.handleFilter()
               this.$notify({
                 type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
+                title: this.dialogStatus === 'create' ? '新增成功' : '分配成功',
                 duration: 2000
               })
             })
