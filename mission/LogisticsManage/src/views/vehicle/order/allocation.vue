@@ -1,28 +1,21 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.title" placeholder="Title" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
-      <el-select v-model="listQuery.importance" placeholder="Imp" clearable style="width: 90px" class="filter-item">
-        <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-      </el-select>
-      <el-select v-model="listQuery.type" placeholder="Type" clearable class="filter-item" style="width: 130px">
-        <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name+'('+item.key+')'" :value="item.key" />
-      </el-select>
-      <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
-        <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
-      </el-select>
-      <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-        Search
+      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="车架号" @keyup.enter.native="handleFilter"></el-input>
+
+      <el-button type="primary" icon="el-icon-search" class="filter-item" style="margin-left: 10px" @click="handleFilter">
+        查询
       </el-button>
-      <el-button class="filter-item" style="margin-left: 10px;" type="primary" icon="el-icon-edit" @click="handleCreate">
-        Add
+
+      <el-button type="primary" icon="el-icon-edit" class="filter-item" style="margin-left: 10px" @click="handleRow('create')">
+        添加订单
       </el-button>
-      <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
-        Export
-      </el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-        reviewer
-      </el-checkbox>
+
+      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
+        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+          批量删除
+        </el-button>
+      </el-popconfirm>
     </div>
 
     <el-table
@@ -33,341 +26,404 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @sort-change="sortChange"
+      @selection-change="handleSelectionChange"
     >
-      <el-table-column label="订单号" prop="id" sortable="custom" align="center" width="80" :class-name="getSortClass('id')">
+      <el-table-column
+        type="selection"
+        width="55">
+      </el-table-column>
+
+      <el-table-column label="id" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="车架号" width="150px" align="center">
+      <el-table-column label="车架号" prop="vin" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+          <span>{{ row.vin }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="事务" min-width="150px">
+      <el-table-column label="车辆类型" prop="vehicleType" align="center" width="100">
         <template slot-scope="{row}">
-          <span class="link-type" @click="handleUpdate(row)">{{ row.title }}</span>
-          <el-tag>{{ row.type | typeFilter }}</el-tag>
+          <span>{{ row.vehicleType }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="任务名称" width="110px" align="center">
+      <el-table-column label="客户姓名" prop="clientName" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.author }}</span>
+          <span>{{ row.clientName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column v-if="showReviewer" label="任务状态" width="110px" align="center">
+      <el-table-column label="供应商" prop="supplierName" align="center" width="100">
         <template slot-scope="{row}">
-          <span style="color:red;">{{ row.reviewer }}</span>
+          <span>{{ row.supplierName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="项目经理" width="80px">
+      <el-table-column label="服务项" prop="serviceName" align="center" width="100">
         <template slot-scope="{row}">
-          <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
+          <span>{{ row.serviceName }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="任务人" align="center" width="95">
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<template slot-scope="{row}">-->
+      <!--<span>{{ row.createBy }}</span>-->
+      <!--</template>-->
+      <!--</el-table-column>-->
+
+      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
         <template slot-scope="{row}">
-          <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
-          <span v-else>0</span>
+          <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<template slot-scope="{row}">-->
+      <!--<span>{{ row.updateBy }}</span>-->
+      <!--</template>-->
+      <!--</el-table-column>-->
 
-      <el-table-column label="Actions" align="center" width="230" class-name="small-padding fixed-width">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.updateTime }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
-          <el-button type="primary" size="mini" @click="handleUpdate(row)">
-            处理
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
+            分配
           </el-button>
-          <el-button size="mini" type="success" @click="handleModifyStatus(row,'published')">
-            驳回
-          </el-button>
+
+          <el-popconfirm
+            title="确认要删除吗？"
+            @onConfirm="handleRow('delete',row)"
+          >
+            <el-button size="mini" type="danger" slot="reference">
+              删除
+            </el-button>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="70px" style="width: 400px; margin-left:50px;">
-        <el-form-item label="Type" prop="type">
-          <el-select v-model="temp.type" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
+    <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === 'update'"/>
+        </el-form-item>
+
+        <el-form-item label="发货车型" prop="vehicleType">
+          <el-select v-model="temp.vehicleType" class="filter-item">
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Date" prop="timestamp">
-          <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
-        </el-form-item>
-        <el-form-item label="Title" prop="title">
-          <el-input v-model="temp.title" />
-        </el-form-item>
-        <el-form-item label="Status">
-          <el-select v-model="temp.status" class="filter-item" placeholder="Please select">
-            <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
+
+        <el-form-item label="客户" prop="client">
+          <el-select v-model="temp.client" class="filter-item">
+            <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
         </el-form-item>
-        <el-form-item label="Imp">
-          <el-rate v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
+
+        <el-form-item label="供应商" prop="supplierName">
+          <el-input v-model="temp.supplierName"/>
         </el-form-item>
-        <el-form-item label="Remark">
-          <el-input v-model="temp.remark" :autosize="{ minRows: 2, maxRows: 4}" type="textarea" placeholder="Please input" />
+
+        <el-form-item label="服务项" prop="service">
+          <el-select v-model="temp.service" class="filter-item">
+            <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"/>
+          </el-select>
         </el-form-item>
+
+        <el-tree
+          ref="dataTree"
+          :data="TREE_DATA"
+          :default-expand-all="true"
+          show-checkbox
+          node-key="id"
+          :default-expanded-keys="[2, 3]"
+          :default-checked-keys="[5]"
+          :props="defaultTreeProps"
+          :render-content="renderContent"
+          @check="handleNodeClick">
+        </el-tree>
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
-          Cancel
+          取消
         </el-button>
-        <el-button type="primary" @click="dialogStatus==='create'?createData():updateData()">
-          Confirm
+
+        <el-button type="primary" @click="handleData">
+          确认
         </el-button>
       </div>
-    </el-dialog>
-
-    <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
-        <el-table-column prop="key" label="Channel" />
-        <el-table-column prop="pv" label="Pv" />
-      </el-table>
-      <span slot="footer" class="dialog-footer">
-        <el-button type="primary" @click="dialogPvVisible = false">Confirm</el-button>
-      </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-  import { fetchList, fetchPv, createArticle, updateArticle } from '@/api/article'
-  import waves from '@/directive/waves' // waves directive
-  import { parseTime } from '@/utils'
-  import Pagination from '@/components/Pagination' // secondary package based on el-pagination
-
-  const calendarTypeOptions = [
-    { key: 'CN', display_name: 'China' },
-    { key: 'US', display_name: 'USA' },
-    { key: 'JP', display_name: 'Japan' },
-    { key: 'EU', display_name: 'Eurozone' }
-  ]
-
-  // arr to obj, such as { CN : "China", US : "USA" }
-  const calendarTypeKeyValue = calendarTypeOptions.reduce((acc, cur) => {
-    acc[cur.key] = cur.display_name
-    return acc
-  }, {})
+  import Pagination from '@/components/Pagination'
+  import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
+  import { cooperateCustomList } from '@/api/vehicle/cooperate/custom'
+  import { parameterServiceList } from '@/api/vehicle/parameter/server'
+  import {
+    vehicleOrderList,
+    createVehicleOrder,
+    // updateVehicleOrder,
+    deleteVehicleOrder,
+    // exportVehicleOrder
+    orderSmallLinkItemList,
+    orderAllocationList,
+    allocateOrder,
+  } from '@/api/vehicle/order'
+  import { TEXT_MAP, TREE_DATA } from '@/constant/vehicle'
 
   export default {
-    name: 'ComplexTable',
     components: { Pagination },
-    directives: { waves },
-    filters: {
-      statusFilter(status) {
-        const statusMap = {
-          published: 'success',
-          draft: 'info',
-          deleted: 'danger'
-        }
-        return statusMap[status]
-      },
-      typeFilter(type) {
-        return calendarTypeKeyValue[type]
-      }
-    },
     data() {
       return {
+        TEXT_MAP,
+        TREE_DATA,
+        defaultTreeProps: {
+          children: 'children',
+          label: 'label',
+          value: 'value'
+        },
         tableKey: 0,
         list: null,
+        vehicleTypeList: null,
+        clientList: null,
+        serviceList: null,
+        allocationList: null,
         total: 0,
         listLoading: true,
         listQuery: {
           pageNum: 1,
           pageSize: 20,
-          importance: undefined,
-          title: undefined,
-          type: undefined,
-          sort: '+id'
+          vin: undefined
         },
-        importanceOptions: [1, 2, 3],
-        calendarTypeOptions,
-        sortOptions: [{ label: 'ID Ascending', key: '+id' }, { label: 'ID Descending', key: '-id' }],
-        statusOptions: ['published', 'draft', 'deleted'],
-        showReviewer: false,
-        temp: {
-          id: undefined,
-          importance: 1,
-          remark: '',
-          timestamp: new Date(),
-          title: '',
-          type: '',
-          status: 'published'
-        },
+        ids: [],
         dialogFormVisible: false,
         dialogStatus: '',
-        textMap: {
-          update: 'Edit',
-          create: 'Create'
+        temp: {
+          vin: undefined,
+          vehicleType: undefined,
+          client: undefined,
+          supplierName: undefined,
+          service: undefined,
+          orderSmallLinkItem: undefined,
+          orderBaseInfo: undefined,
         },
-        dialogPvVisible: false,
-        pvData: [],
         rules: {
-          type: [{ required: true, message: 'type is required', trigger: 'change' }],
-          timestamp: [{ type: 'date', required: true, message: 'timestamp is required', trigger: 'change' }],
-          title: [{ required: true, message: 'title is required', trigger: 'blur' }]
+          vin: [{ required: true, message: '请输入车架号', trigger: 'change' }],
+          vehicleType: [{ required: true, message: '请选择发货车型', trigger: 'change' }],
+          client: [{ required: true, message: '请选择客户', trigger: 'change' }],
+          supplierName: [{ required: true, message: '请输入供应商', trigger: 'change' }],
+          service: [{ required: true, message: '请选择服务项', trigger: 'change' }],
+          orderSmallLinkItem: [{ required: true, message: '请选择任务', trigger: 'change' }],
+          orderBaseInfo: [{ required: true, message: '请选择分配人员', trigger: 'change' }],
         },
-        downloadLoading: false
+        // test: {
+        //   a: undefined
+        // }
       }
     },
     created() {
       this.getList()
     },
     methods: {
+      handleSelectionChange(rows) {
+        this.ids = rows.map(row => row.id)
+      },
       getList() {
         this.listLoading = true
-        fetchList(this.listQuery).then(response => {
-          this.list = response.data.items
-          this.total = response.data.total
-
-          // Just to simulate the time of the request
-          setTimeout(() => {
-            this.listLoading = false
-          }, 1.5 * 1000)
+        vehicleOrderList(this.listQuery).then(res => {
+          this.list = res.data.list
+          this.total = res.data.total
+          this.listLoading = false
+        })
+        parameterVehicleTypeList().then(res => {
+          this.vehicleTypeList = res.data.list.map(item => ({
+            label: item.typeName,
+            value: item.typeName
+          }))
+        })
+        cooperateCustomList().then(res => {
+          this.clientList = res.data.list.map(item => ({
+            label: item.name,
+            value: item.userId
+          }))
+        })
+        parameterServiceList().then(res => {
+          this.serviceList = res.data.list.map(item => ({
+            label: item.name,
+            value: item.id
+          }))
         })
       },
       handleFilter() {
-        this.listQuery.page = 1
+        this.listQuery.pageNum = 1
         this.getList()
-      },
-      handleModifyStatus(row, status) {
-        this.$message({
-          message: '操作Success',
-          type: 'success'
-        })
-        row.status = status
-      },
-      sortChange(data) {
-        const { prop, order } = data
-        if (prop === 'id') {
-          this.sortByID(order)
-        }
-      },
-      sortByID(order) {
-        if (order === 'ascending') {
-          this.listQuery.sort = '+id'
-        } else {
-          this.listQuery.sort = '-id'
-        }
-        this.handleFilter()
       },
       resetTemp() {
         this.temp = {
-          id: undefined,
-          importance: 1,
-          remark: '',
-          timestamp: new Date(),
-          title: '',
-          status: 'published',
-          type: ''
+          vin: undefined,
+          vehicleType: undefined,
+          client: undefined,
+          supplierName: undefined,
+          service: undefined,
+          orderSmallLinkItem: undefined,
+          orderBaseInfo: undefined
         }
       },
-      handleCreate() {
-        this.resetTemp()
-        this.dialogStatus = 'create'
-        this.dialogFormVisible = true
-        this.$nextTick(() => {
-          this.$refs['dataForm'].clearValidate()
-        })
-      },
-      createData() {
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
-            this.temp.author = 'vue-element-admin'
-            createArticle(this.temp).then(() => {
-              this.list.unshift(this.temp)
-              this.dialogFormVisible = false
-              this.$notify({
-                title: 'Success',
-                message: 'Created Successfully',
-                type: 'success',
-                duration: 2000
-              })
-            })
-          }
-        })
-      },
-      handleUpdate(row) {
-        this.temp = Object.assign({}, row) // copy obj
-        this.temp.timestamp = new Date(this.temp.timestamp)
-        this.dialogStatus = 'update'
-        this.dialogFormVisible = true
-        this.$nextTick(() => {
-          this.$refs['dataForm'].clearValidate()
-        })
-      },
-      updateData() {
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            const tempData = Object.assign({}, this.temp)
-            tempData.timestamp = +new Date(tempData.timestamp) // change Thu Nov 30 2017 16:41:05 GMT+0800 (CST) to 1512031311464
-            updateArticle(tempData).then(() => {
-              const index = this.list.findIndex(v => v.id === this.temp.id)
-              this.list.splice(index, 1, this.temp)
-              this.dialogFormVisible = false
-              this.$notify({
-                title: 'Success',
-                message: 'Update Successfully',
-                type: 'success',
-                duration: 2000
-              })
-            })
-          }
-        })
-      },
-      handleDelete(row, index) {
-        this.$notify({
-          title: 'Success',
-          message: 'Delete Successfully',
-          type: 'success',
-          duration: 2000
-        })
-        this.list.splice(index, 1)
-      },
-      handleFetchPv(pv) {
-        fetchPv(pv).then(response => {
-          this.pvData = response.data.pvData
-          this.dialogPvVisible = true
-        })
-      },
-      handleDownload() {
-        this.downloadLoading = true
-        import('@/vendor/Export2Excel').then(excel => {
-          const tHeader = ['timestamp', 'title', 'type', 'importance', 'status']
-          const filterVal = ['timestamp', 'title', 'type', 'importance', 'status']
-          const data = this.formatJson(filterVal)
-          excel.export_json_to_excel({
-            header: tHeader,
-            data,
-            filename: 'table-list'
+      handleNodeClick(node, tree) {
+        if (tree.checkedNodes.length > 0) {
+          this.temp.orderSmallLinkItem = {}
+          tree.checkedNodes.forEach(n => {
+            if (!n.children) {
+              this.temp.orderSmallLinkItem[n.value] = '0'
+            }
           })
-          this.downloadLoading = false
+          TREE_DATA.forEach(t1 => {
+            t1.children.forEach(t2 => {
+              if (this.temp.orderSmallLinkItem[t2.value] !== '0') {
+                this.temp.orderSmallLinkItem[t2.value] = '1'
+              }
+            })
+          })
+        }
+      },
+      renderContent(h, { node, data, store }) {
+        if (this.dialogStatus === 'update' && this.allocationList && this.temp.orderBaseInfo) {
+          const options = this.allocationList[node.data.options] || []
+          return (
+            <span class="custom-tree-node">
+              <span>{node.label}</span>
+              {
+                options.length > 0
+                  ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]} className="filter-item" style="margin-left:30px">
+                    {
+                      options.map(item => (
+                        <el-option key={item.id} label={item.name} value={item}></el-option>
+                      ))
+                    }
+                  </el-select> : null
+              }
+            </span>
+          )
+        } else {
+          return (
+            <span class="custom-tree-node">
+              <span>{node.label}</span>
+            </span>
+          )
+        }
+        // return (
+        //   <span className="custom-tree-node">
+        //       <span>{node.label}</span>
+        //     {
+        //       this.dialogStatus === 'update' && (this.allocationList[node.data.options] || []).length > 0
+        //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
+        //           {
+        //             options.map(item => (
+        //               <el-option key={item.id} label={item.name} value={item.id}></el-option>
+        //             ))
+        //           }
+        //         </el-select> : null
+        //     }
+        //     </span>
+        // )
+      },
+      handleRow(type, row) {
+        this.dialogStatus = type
+        switch (type) {
+          case 'create':
+            this.resetTemp()
+            this.dialogFormVisible = true
+            this.$nextTick(() => {
+              this.$refs['dataForm'].clearValidate()
+              this.$refs['dataTree'].setCheckedKeys([])
+            })
+            break
+          case 'update':
+            orderSmallLinkItemList({
+              vin: row.vin
+            }).then(res => {
+              this.temp = {
+                ...res.data,
+                client: { label: res.data.clientName, value: res.data.clientId },
+                service: { label: res.data.serviceName, value: res.data.serviceId }
+              }
+              orderAllocationList().then(res => {
+                this.allocationList = res.data.user
+                const nodes = []
+                this.temp.orderBaseInfo = {}
+                TREE_DATA.forEach(t1 => {
+                  t1.children.forEach(t2 => {
+                    if (t2.options) {
+                      this.temp.orderBaseInfo[t2.value] = undefined
+                      if (this.temp.orderSmallLinkItem[t2.value] === '0') {
+                        nodes.push(t2.id)
+                      }
+                    }
+                  })
+                })
+                this.dialogFormVisible = true
+                this.$nextTick(() => {
+                  this.$refs['dataForm'].clearValidate()
+                  this.$refs['dataTree'].setCheckedKeys(nodes)
+                })
+              })
+            })
+            break
+          case 'delete':
+            row = row ? [row.id] : this.ids
+            this.deleteData(row)
+            break
+        }
+      },
+      handleData() {
+        const fun = this.dialogStatus === 'create' ? createVehicleOrder : allocateOrder
+        this.$refs['dataForm'].validate((valid) => {
+          if (valid) {
+            const temp = this.temp
+            temp.clientName = temp.client.label
+            temp.clientId = temp.client.value
+            temp.serviceName = temp.service.label
+            temp.serviceId = temp.service.value
+            Object.keys(temp.orderBaseInfo).forEach(key => {
+              if (temp.orderBaseInfo[key]) {
+                temp.orderBaseInfo[`${key}Name`] = temp.orderBaseInfo[key].name
+                temp.orderBaseInfo[`${key}Id`] = temp.orderBaseInfo[key].id
+              }
+            })
+            fun(temp).then(() => {
+              this.dialogFormVisible = false
+              this.handleFilter()
+              this.$notify({
+                type: 'success',
+                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
+                duration: 2000
+              })
+            })
+          }
         })
       },
-      formatJson(filterVal) {
-        return this.list.map(v => filterVal.map(j => {
-          if (j === 'timestamp') {
-            return parseTime(v[j])
-          } else {
-            return v[j]
-          }
-        }))
-      },
-      getSortClass: function(key) {
-        const sort = this.listQuery.sort
-        return sort === `+${key}` ? 'ascending' : 'descending'
+      deleteData(ids) {
+        deleteVehicleOrder(ids).then(() => {
+          this.handleFilter()
+          this.$notify({
+            type: 'success',
+            message: '删除成功',
+            duration: 2000
+          })
+        })
       }
     }
   }

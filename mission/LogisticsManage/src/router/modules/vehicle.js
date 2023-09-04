@@ -117,23 +117,29 @@ export default {
           meta: { title: '仓库管理', icon: 'edit' }
         },
         {
-          path: '/vehicle/parameter/vehicle-brand',
-          name: '车型品牌管理',
-          component: () => import('@/views/vehicle/parameter/vehicle-brand'),
-          meta: { title: '车型品牌管理', icon: 'edit' }
-        },
-        {
           path: '/vehicle/parameter/keysPosition',
           name: '钥匙位置管理',
           component: () => import('@/views/vehicle/parameter/keysPosition'),
           meta: { title: '钥匙位置管理', icon: 'edit' }
         },
         {
+          path: '/vehicle/parameter/vehicle-type',
+          name: '车辆类型管理',
+          component: () => import('@/views/vehicle/parameter/vehicle-type'),
+          meta: { title: '车辆类型管理', icon: 'edit' }
+        },
+        {
+          path: '/vehicle/parameter/vehicle-brand',
+          name: '车辆品牌管理',
+          component: () => import('@/views/vehicle/parameter/vehicle-brand'),
+          meta: { title: '车辆品牌管理', icon: 'edit' }
+        },
+        {
           path: '/vehicle/parameter/vehicle-model',
           name: '车辆型号管理',
           component: () => import('@/views/vehicle/parameter/vehicle-model'),
           meta: { title: '车辆型号管理', icon: 'edit' }
-        },
+        }
       ]
     },
     {

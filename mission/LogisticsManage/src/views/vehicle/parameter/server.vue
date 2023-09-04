@@ -15,7 +15,7 @@
         title="确认要删除吗？"
         @onConfirm="handleRow('delete')"
       >
-        <el-button class="filter-item" type="danger" slot="reference" style="margin-left: 10px">
+        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
@@ -135,7 +135,7 @@
 
 <script>
   import Pagination from '@/components/Pagination'
-  import { parameterCustomList, createParameterCustom, updateParameterCustom, deleteParameterCustom } from '@/api/vehicle/parameter/server'
+  import { parameterServiceList, createParameterService, updateParameterService, deleteParameterService } from '@/api/vehicle/parameter/server'
   import { SERVE_TYPE_LIST, SERVE_TYPE_LIST_OBJ } from '@/constant/vehicle'
 
   export default {
@@ -178,7 +178,7 @@
     methods: {
       getList() {
         this.listLoading = true
-        parameterCustomList(this.listQuery).then(res => {
+        parameterServiceList(this.listQuery).then(res => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
@@ -199,7 +199,7 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createParameterCustom : updateParameterCustom
+        const fun = this.dialogStatus === 'create' ? createParameterService : updateParameterService
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
             fun(this.temp).then(() => {
@@ -215,7 +215,7 @@
         })
       },
       deleteData(ids) {
-        deleteParameterCustom(ids).then(() => {
+        deleteParameterService(ids).then(() => {
           this.handleFilter()
           this.$notify({
             type: 'success',

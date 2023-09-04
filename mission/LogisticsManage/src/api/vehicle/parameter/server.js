@@ -4,7 +4,7 @@
  */
 import request from '@/utils/request'
 
-export function parameterCustomList(data) {
+export function parameterServiceList(data) {
   return request({
     url: '/vehicle/serviceItems/list',
     method: 'get',
@@ -12,7 +12,7 @@ export function parameterCustomList(data) {
   })
 }
 
-export function createParameterCustom(data) {
+export function createParameterService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'post',
@@ -20,7 +20,7 @@ export function createParameterCustom(data) {
   })
 }
 
-export function updateParameterCustom(data) {
+export function updateParameterService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'put',
@@ -28,14 +28,14 @@ export function updateParameterCustom(data) {
   })
 }
 
-export function deleteParameterCustom(data) {
+export function deleteParameterService(data) {
   return request({
     url: `/vehicle/serviceItems/${data}`,
     method: 'delete',
   })
 }
 
-export function exportParameterCustom(data) {
+export function exportParameterService(data) {
   return request({
     url: `/vehicle/serviceItems/export`,
     method: 'get',

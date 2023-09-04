@@ -1,21 +1,21 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入车型品牌" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" placeholder="输入车辆品牌" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
 
       <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
-        添加车型品牌
+        添加车辆品牌
       </el-button>
 
       <el-popconfirm
         title="确认要删除吗？"
         @onConfirm="handleRow('delete')"
       >
-        <el-button class="filter-item" type="danger" slot="reference" style="margin-left: 10px">
+        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
@@ -42,7 +42,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="车型品牌" prop="name" align="center" width="100">
+      <el-table-column label="车辆品牌" prop="name" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
         </template>
@@ -95,7 +95,7 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="车型品牌" prop="name">
+        <el-form-item label="车辆品牌" prop="name">
           <el-input v-model="temp.name"/>
         </el-form-item>
       </el-form>
@@ -140,7 +140,7 @@
           name: undefined,
         },
         rules: {
-          name: [{ required: true, message: '请输入车型品牌', trigger: 'blur' }]
+          name: [{ required: true, message: '请输入车辆品牌', trigger: 'blur' }]
         }
       }
     },

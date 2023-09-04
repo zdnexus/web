@@ -15,7 +15,7 @@
         title="确认要删除吗？"
         @onConfirm="handleRow('delete')"
       >
-        <el-button class="filter-item" type="danger" slot="reference" style="margin-left: 10px">
+        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
