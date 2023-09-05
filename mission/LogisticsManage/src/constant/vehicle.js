@@ -120,6 +120,7 @@ export const TREE_DATA = [
       {
         id: 18,
         label: '预录单上传',
+        value: 'recordUpld',
         options: ''
       },
       {

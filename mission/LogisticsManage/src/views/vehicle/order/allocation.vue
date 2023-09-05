@@ -95,7 +95,7 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
+          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.status === '1'" @click="handleRow('update',row)">
             分配
           </el-button>
 
@@ -226,12 +226,9 @@
           client: [{ required: true, message: '请选择客户', trigger: 'change' }],
           supplierName: [{ required: true, message: '请输入供应商', trigger: 'change' }],
           service: [{ required: true, message: '请选择服务项', trigger: 'change' }],
-          orderSmallLinkItem: [{ required: true, message: '请选择任务', trigger: 'change' }],
-          orderBaseInfo: [{ required: true, message: '请选择分配人员', trigger: 'change' }],
-        },
-        // test: {
-        //   a: undefined
-        // }
+          // orderSmallLinkItem: [{ required: true, message: '请选择任务', trigger: 'change' }],
+          // orderBaseInfo: [{ required: true, message: '请选择分配人员', trigger: 'change' }],
+        }
       }
     },
     created() {
@@ -307,10 +304,20 @@
               <span>{node.label}</span>
               {
                 options.length > 0
-                  ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]} className="filter-item" style="margin-left:30px">
+                  ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]}
+                               className="filter-item"
+                               style="margin-left:30px"
+                               placeholder=""
+                               onChange={(value) => {
+                                 const orderBaseInfo = { ...this.temp.orderBaseInfo }
+                                 orderBaseInfo[node.data.value] = value
+                                 orderBaseInfo[`${node.data.value}Name`] = value.name
+                                 orderBaseInfo[`${node.data.value}Id`] = value.id
+                                 this.$set(this.temp, 'orderBaseInfo', orderBaseInfo)
+                               }}>
                     {
                       options.map(item => (
-                        <el-option key={item.id} label={item.name} value={item}></el-option>
+                        <el-option key={item.name} label={item.name} value={item}></el-option>
                       ))
                     }
                   </el-select> : null
@@ -346,6 +353,7 @@
           case 'create':
             this.resetTemp()
             this.dialogFormVisible = true
+
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
               this.$refs['dataTree'].setCheckedKeys([])
@@ -358,23 +366,24 @@
               this.temp = {
                 ...res.data,
                 client: { label: res.data.clientName, value: res.data.clientId },
-                service: { label: res.data.serviceName, value: res.data.serviceId }
+                service: { label: res.data.serviceName, value: res.data.serviceId },
+                orderBaseInfo: {}
               }
+              const nodes = []
+              TREE_DATA.forEach(t1 => {
+                t1.children.forEach(t2 => {
+                  if (t2.options) {
+                    this.temp.orderBaseInfo[t2.value] = ''
+                    if (this.temp.orderSmallLinkItem[t2.value] === '0') {
+                      nodes.push(t2.id)
+                    }
+                  }
+                })
+              })
               orderAllocationList().then(res => {
                 this.allocationList = res.data.user
-                const nodes = []
-                this.temp.orderBaseInfo = {}
-                TREE_DATA.forEach(t1 => {
-                  t1.children.forEach(t2 => {
-                    if (t2.options) {
-                      this.temp.orderBaseInfo[t2.value] = undefined
-                      if (this.temp.orderSmallLinkItem[t2.value] === '0') {
-                        nodes.push(t2.id)
-                      }
-                    }
-                  })
-                })
                 this.dialogFormVisible = true
+
                 this.$nextTick(() => {
                   this.$refs['dataForm'].clearValidate()
                   this.$refs['dataTree'].setCheckedKeys(nodes)
@@ -397,12 +406,6 @@
             temp.clientId = temp.client.value
             temp.serviceName = temp.service.label
             temp.serviceId = temp.service.value
-            Object.keys(temp.orderBaseInfo).forEach(key => {
-              if (temp.orderBaseInfo[key]) {
-                temp.orderBaseInfo[`${key}Name`] = temp.orderBaseInfo[key].name
-                temp.orderBaseInfo[`${key}Id`] = temp.orderBaseInfo[key].id
-              }
-            })
             fun(temp).then(() => {
               this.dialogFormVisible = false
               this.handleFilter()
