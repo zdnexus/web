@@ -168,7 +168,7 @@
           photoUrl: undefined,
         },
         rules: {
-          vin: [{ required: true, message: '请输入车架号', trigger: 'blur' }],
+          vin: [{ required: true, message: '输入车架号', trigger: 'blur' }],
           nums: [{ required: true, message: '请输入钥匙数量', trigger: 'blur' }],
           keysPosition: [{ required: true, message: '请输入钥匙位置', trigger: 'blur' }],
           photoUrl: [{ required: true, message: '请上传存放图片', trigger: 'blur' }]
@@ -212,7 +212,7 @@
               this.$notify({
                 type: 'success',
                 title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-                duration: 2000
+                duration: 3000
               })
             })
           }
@@ -224,7 +224,7 @@
           this.$notify({
             type: 'success',
             message: '删除成功',
-            duration: 2000
+            duration: 3000
           })
         })
       },

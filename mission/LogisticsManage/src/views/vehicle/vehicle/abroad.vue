@@ -138,14 +138,13 @@
   import Pagination from '@/components/Pagination'
   import Upload from '@/components/Upload/SingleImage'
   import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
-  import { TEXT_MAP, DAMAGE_TYPE_LIST, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant/vehicle'
+  import { TEXT_MAP, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant/vehicle'
 
   export default {
     components: { Pagination, Upload },
     data() {
       return {
         TEXT_MAP,
-        DAMAGE_TYPE_LIST,
         DAMAGE_TYPE_LIST_OBJ,
         tableKey: 0,
         list: null,

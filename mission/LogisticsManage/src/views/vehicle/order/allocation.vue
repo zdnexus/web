@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="车架号" @keyup.enter.native="handleFilter"></el-input>
+      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
 
       <el-button type="primary" icon="el-icon-search" class="filter-item" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -69,6 +69,18 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="状态" prop="orderStatus" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ ORDER_EXAMINE_STATUS_OBJ[row.orderStatus] }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="备注" prop="remark" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.remark }}</span>
+        </template>
+      </el-table-column>
+
       <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
@@ -81,12 +93,6 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
       <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
@@ -95,7 +101,7 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.status === '1'" @click="handleRow('update',row)">
+          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.orderStatus === '1'" @click="handleRow('allocate',row)">
             分配
           </el-button>
 
@@ -116,7 +122,7 @@
     <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === 'update'"/>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === 'allocate'"/>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
@@ -180,9 +186,10 @@
     // exportVehicleOrder
     orderSmallLinkItemList,
     orderAllocationList,
+    addDmNumberTask,
     allocateOrder,
   } from '@/api/vehicle/order'
-  import { TEXT_MAP, TREE_DATA } from '@/constant/vehicle'
+  import { TEXT_MAP, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
@@ -190,6 +197,7 @@
       return {
         TEXT_MAP,
         TREE_DATA,
+        ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {
           children: 'children',
           label: 'label',
@@ -206,6 +214,7 @@
         listQuery: {
           pageNum: 1,
           pageSize: 20,
+          status: 0,
           vin: undefined
         },
         ids: [],
@@ -221,13 +230,11 @@
           orderBaseInfo: undefined,
         },
         rules: {
-          vin: [{ required: true, message: '请输入车架号', trigger: 'change' }],
+          vin: [{ required: true, message: '输入车架号', trigger: 'change' }],
           vehicleType: [{ required: true, message: '请选择发货车型', trigger: 'change' }],
           client: [{ required: true, message: '请选择客户', trigger: 'change' }],
           supplierName: [{ required: true, message: '请输入供应商', trigger: 'change' }],
-          service: [{ required: true, message: '请选择服务项', trigger: 'change' }],
-          // orderSmallLinkItem: [{ required: true, message: '请选择任务', trigger: 'change' }],
-          // orderBaseInfo: [{ required: true, message: '请选择分配人员', trigger: 'change' }],
+          service: [{ required: true, message: '请选择服务项', trigger: 'change' }]
         }
       }
     },
@@ -282,6 +289,7 @@
       handleNodeClick(node, tree) {
         if (tree.checkedNodes.length > 0) {
           this.temp.orderSmallLinkItem = {}
+          this.temp.orderBaseInfo = {}
           tree.checkedNodes.forEach(n => {
             if (!n.children) {
               this.temp.orderSmallLinkItem[n.value] = '0'
@@ -297,7 +305,7 @@
         }
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === 'update' && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === 'allocate' && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class="custom-tree-node">
@@ -309,10 +317,19 @@
                                style="margin-left:30px"
                                placeholder=""
                                onChange={(value) => {
+                                 // 每个环节同类型的select选择同时赋值
                                  const orderBaseInfo = { ...this.temp.orderBaseInfo }
-                                 orderBaseInfo[node.data.value] = value
-                                 orderBaseInfo[`${node.data.value}Name`] = value.name
-                                 orderBaseInfo[`${node.data.value}Id`] = value.id
+                                 TREE_DATA.forEach(t1 => {
+                                   if (t1.children.filter(child => child.value === node.data.value).length > 0) {
+                                     t1.children.forEach(t2 => {
+                                       if (t2.options === node.data.options) {
+                                         orderBaseInfo[t2.value] = value
+                                         orderBaseInfo[`${t2.value}Name`] = value.name
+                                         orderBaseInfo[`${t2.value}Id`] = value.id
+                                       }
+                                     })
+                                   }
+                                 })
                                  this.$set(this.temp, 'orderBaseInfo', orderBaseInfo)
                                }}>
                     {
@@ -335,7 +352,7 @@
         //   <span className="custom-tree-node">
         //       <span>{node.label}</span>
         //     {
-        //       this.dialogStatus === 'update' && (this.allocationList[node.data.options] || []).length > 0
+        //       this.dialogStatus === 'allocate' && (this.allocationList[node.data.options] || []).length > 0
         //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
         //           {
         //             options.map(item => (
@@ -359,20 +376,21 @@
               this.$refs['dataTree'].setCheckedKeys([])
             })
             break
-          case 'update':
+          case 'allocate':
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {
               this.temp = {
-                ...res.data,
-                client: { label: res.data.clientName, value: res.data.clientId },
-                service: { label: res.data.serviceName, value: res.data.serviceId },
-                orderBaseInfo: {}
+                ...row,
+                client: { label: row.clientName, value: row.clientId },
+                service: { label: row.serviceName, value: row.serviceId },
+                orderSmallLinkItem: res.data.orderSmallLinkItem || {},
+                orderBaseInfo: {},
               }
               const nodes = []
               TREE_DATA.forEach(t1 => {
                 t1.children.forEach(t2 => {
-                  if (t2.options) {
+                  if (t2.label && t2.value) {
                     this.temp.orderBaseInfo[t2.value] = ''
                     if (this.temp.orderSmallLinkItem[t2.value] === '0') {
                       nodes.push(t2.id)
@@ -398,23 +416,69 @@
         }
       },
       handleData() {
-        const fun = this.dialogStatus === 'create' ? createVehicleOrder : allocateOrder
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            const temp = this.temp
-            temp.clientName = temp.client.label
-            temp.clientId = temp.client.value
-            temp.serviceName = temp.service.label
-            temp.serviceId = temp.service.value
-            fun(temp).then(() => {
-              this.dialogFormVisible = false
-              this.handleFilter()
-              this.$notify({
-                type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '分配成功',
-                duration: 2000
+            if (this.dialogStatus === 'allocate') {
+              let flag = false
+              Object.keys(this.temp.orderSmallLinkItem).forEach((key) => {
+                if (this.temp.orderSmallLinkItem[key] === '0' && !this.temp.orderBaseInfo[`${key}Name`] && !this.temp.orderBaseInfo[`${key}Id`]) {
+                  TREE_DATA.forEach(t1 => {
+                    t1.children.forEach(t2 => {
+                      if (t2.value === key) {
+                        flag = true
+                        this.$message({
+                          showClose: true,
+                          message: `请选择${t2.label}`,
+                          type: 'warning'
+                        })
+                      }
+                    })
+                  })
+                }
               })
-            })
+              if (flag) {
+                return null
+              }
+            }
+            const temp = this.temp
+            if (this.dialogStatus === 'create' ||
+              (this.dialogStatus === 'allocate' && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
+              const fun = this.dialogStatus === 'create' ? createVehicleOrder : allocateOrder
+              temp.clientName = temp.client.label
+              temp.clientId = temp.client.value
+              temp.serviceName = temp.service.label
+              temp.serviceId = temp.service.value
+              fun(temp).then(() => {
+                this.dialogFormVisible = false
+                this.handleFilter()
+                this.$notify({
+                  type: 'success',
+                  title: this.dialogStatus === 'create' ? '新增成功' : '分配成功',
+                  duration: 3000
+                })
+              })
+            } else {
+              this.$confirm('该客户车辆库存数量达到预警值，需要上级审批 是否发起审批流程', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+              }).then(() => {
+                addDmNumberTask({
+                  orderId: temp.id,
+                  vin: temp.vin
+                }).then((res) => {
+                  if (res) {
+                    this.dialogFormVisible = false
+                    this.handleFilter()
+                    this.$notify({
+                      type: 'success',
+                      title: '请等待上级审核',
+                      duration: 3000
+                    })
+                  }
+                })
+              })
+            }
           }
         })
       },
@@ -424,7 +488,7 @@
           this.$notify({
             type: 'success',
             message: '删除成功',
-            duration: 2000
+            duration: 3000
           })
         })
       }

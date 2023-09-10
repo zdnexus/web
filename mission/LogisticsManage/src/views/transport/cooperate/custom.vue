@@ -265,7 +265,7 @@
                 title: 'Success',
                 message: 'Created Successfully',
                 type: 'success',
-                duration: 2000
+                duration: 3000
               })
             })
           }
@@ -293,7 +293,7 @@
                 title: 'Success',
                 message: 'Update Successfully',
                 type: 'success',
-                duration: 2000
+                duration: 3000
               })
             })
           }
@@ -304,7 +304,7 @@
           title: 'Success',
           message: 'Delete Successfully',
           type: 'success',
-          duration: 2000
+          duration: 3000
         })
         this.list.splice(index, 1)
       },

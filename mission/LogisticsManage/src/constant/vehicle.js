@@ -8,7 +8,8 @@ import { listToObj } from '@/utils'
 export const TEXT_MAP = {
   create: '新增',
   update: '更新',
-  view: '查看'
+  view: '查看',
+  allocate: '分配'
 }
 
 export const TREE_DATA = [
@@ -262,3 +263,72 @@ export const VEHICLE_PHOTO_OBJ = {
   'demage': '受损照片',
   'video': '车辆视频',
 }
+
+export const VEHICLE_INFO_OBJ = {
+  'vin': '车架号',
+  'clientName': '客户',
+  'warehouseName': '存放仓库',
+  'isDamage': '是否有损',
+  'type': '类型',
+  'branding': '品牌',
+  'vehicleModel': '型号',
+  'vehicleColor': '颜色',
+  'vehicleKey': '钥匙数量',
+  'deliverName': '送车人',
+  'deliverMobile': '送车人电话',
+}
+
+export const ORDER_EXAMINE_STATUS = [
+  {
+    label: '待检测',
+    value: '0'
+  },
+  {
+    label: '审核中',
+    value: '1'
+  },
+  {
+    label: '通过',
+    value: '2'
+  },
+  {
+    label: '被驳回',
+    value: '3'
+  },
+]
+
+export const ORDER_EXAMINE_STATUS_OBJ = listToObj(ORDER_EXAMINE_STATUS)
+
+export const NODE_LIST = [
+  {
+    label: '无这个环节',
+    value: '0'
+  },
+  {
+    label: '未开始',
+    value: '1'
+  },
+  {
+    label: '进行中',
+    value: '2'
+  },
+  {
+    label: '已完成',
+    value: '3'
+  }
+]
+
+export const NODE_LIST_OBJ = listToObj(NODE_LIST)
+
+export const ORDER_STATUS = [
+  {
+    label: '未完成',
+    value: '0'
+  },
+  {
+    label: '已完成',
+    value: '1'
+  },
+]
+
+export const ORDER_STATUS_OBJ = listToObj(ORDER_STATUS)

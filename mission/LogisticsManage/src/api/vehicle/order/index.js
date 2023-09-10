@@ -58,9 +58,25 @@ export function orderAllocationList(data) {
   })
 }
 
+export function addDmNumberTask(data) {
+  return request({
+    url: '/vehicle/upcomingTask/addDmNumberTask',
+    method: 'post',
+    data,
+  })
+}
+
 export function allocateOrder(data) {
   return request({
     url: '/vehicle/upcomingTask/bindRole',
+    method: 'post',
+    data,
+  })
+}
+
+export function orderBigLinklnfo(data) {
+  return request({
+    url: '/vehicle/order/bigLinkInfo',
     method: 'post',
     data,
   })

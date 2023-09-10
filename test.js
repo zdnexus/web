@@ -82,8 +82,11 @@
 const L1 = [1, 2]
 console.log(L1.includes(1))
 console.log(L1.includes(2))
+
 const L2 = [{ a: 1 }, { b: 2 }]
 console.log(L2.includes({ a: 1 }))
 console.log(L2.includes({ b: 2 }))
+console.log(L2.filter(item => item.a === 1))
+
 
 

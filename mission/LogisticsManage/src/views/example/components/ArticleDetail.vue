@@ -213,7 +213,7 @@ export default {
             title: '成功',
             message: '发布文章成功',
             type: 'success',
-            duration: 2000
+            duration: 3000
           })
           this.postForm.status = 'published'
           this.loading = false
