@@ -19,21 +19,25 @@ export default {
       children: [
         {
           path: '/vehicle/order/allocation',
+          name: '待分配订单',
           component: () => import('@/views/vehicle/order/allocation'),
           meta: { title: '待分配订单', icon: 'edit' }
         },
         {
           path: '/vehicle/order/incomplete',
+          name: '未完成订单',
           component: () => import('@/views/vehicle/order/incomplete'),
           meta: { title: '未完成订单', icon: 'edit' }
         },
         {
           path: '/vehicle/order/complete',
+          name: '已完成订单',
           component: () => import('@/views/vehicle/order/complete'),
           meta: { title: '已完成订单', icon: 'edit' }
         },
         {
           path: '/vehicle/order/expire',
+          name: '已失效订单',
           component: () => import('@/views/vehicle/order/expire'),
           meta: { title: '已失效订单', icon: 'edit' }
         }
@@ -46,21 +50,25 @@ export default {
       children: [
         {
           path: '/vehicle/vehicle/toBeStored',
+          name: '待入库车辆',
           component: () => import('@/views/vehicle/vehicle/toBeStored'),
           meta: { title: '待入库车辆', icon: 'edit' }
         },
         {
           path: '/vehicle/vehicle/inventory',
+          name: '库存车辆',
           component: () => import('@/views/vehicle/vehicle/inventory'),
           meta: { title: '库存车辆', icon: 'edit' }
         },
         {
           path: '/vehicle/vehicle/abroad',
+          name: '已出境车辆',
           component: () => import('@/views/vehicle/vehicle/abroad'),
           meta: { title: '已出境车辆', icon: 'edit' }
         },
         {
           path: '/vehicle/vehicle/damage',
+          name: '有损车辆',
           component: () => import('@/views/vehicle/vehicle/damage'),
           meta: { title: '有损车辆', icon: 'edit' }
         }

@@ -32,7 +32,7 @@ export const TREE_DATA = [
         id: 3,
         label: '入库核验',
         value: 'swInWarehouse',
-        options: 'ncrWmanger'
+        options: 'bwhWmanger'
       },
       {
         id: 4,
@@ -62,7 +62,7 @@ export const TREE_DATA = [
         id: 8,
         label: '出库确认',
         value: 'swOutConfirm',
-        options: 'ncrWmanger'
+        options: 'bwhWmanger'
       }
     ],
   },
@@ -80,19 +80,19 @@ export const TREE_DATA = [
         id: 11,
         label: '车辆入库',
         value: 'storage',
-        options: 'ncrWmanger'
+        options: 'fieldStaff'
       },
       {
         id: 12,
         label: '整备车辆',
         value: 'trim',
-        options: 'bwhWmanger'
+        options: 'ncrWmanger'
       },
       {
         id: 13,
         label: '出库核验',
         value: 'outWarehouse',
-        options: 'ncrWmanger'
+        options: 'fieldStaff'
       },
       {
         id: 14,
@@ -152,7 +152,7 @@ export const TREE_DATA = [
         id: 23,
         label: '司机送车',
         value: 'drive',
-        options: 'ncrWmanger'
+        options: 'driver'
       }
     ],
   },
@@ -164,13 +164,13 @@ export const TREE_DATA = [
         id: 25,
         label: '车辆出境',
         value: 'leaveCountry',
-        options: 'ncrWmanger'
+        options: 'driver'
       },
       {
         id: 26,
         label: '车辆交接',
         value: 'handover',
-        options: 'ncrWmanger'
+        options: 'driver'
       }
     ],
   },
