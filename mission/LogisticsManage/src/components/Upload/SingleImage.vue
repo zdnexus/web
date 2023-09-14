@@ -1,14 +1,15 @@
 <template>
   <div class="upload-container">
     <el-upload
-      :data="dataObj"
-      :multiple="false"
+      v-show="imageUrl.length===0"
+      action="https://upload-z2.qiniup.com"
       :show-file-list="false"
+      :data="addFormUpload"
+      :multiple="false"
       :on-change="handleChange"
-      :on-success="handleImageSuccess"
+      :on-success="handleSuccess"
       class="image-uploader"
       drag
-      action="https://httpbin.org/post"
     >
       <i class="el-icon-upload"/>
       <div class="el-upload__text">
@@ -41,7 +42,12 @@
     data() {
       return {
         tempUrl: '',
-        dataObj: { token: '', key: '' }
+        dataObj: { token: '', key: '' },
+        addFormUpload: {
+          key: '',
+          token: '',
+          domainUrl: ''
+        },
       }
     },
     computed: {
@@ -60,37 +66,66 @@
         this.emitInput(this.tempUrl)
       },
       handleChange(file) {
-        const _self = this
-        return new Promise((resolve, reject) => {
-          getToken().then(res => {
-            // _self._data.dataObj.token = token
-            // _self._data.dataObj.key = key
-            // this.tempUrl = response.data.qiniu_url
-            if (file.response.files.file) {
-              debugger
-              axios({
-                method: 'post',
-                url: 'https://upload-z2.qiniup.com',
-                headers: {
-                  'Content-Type': 'multipart/form-data'
-                },
-                data: {
-                  token: res.data.token,
-                  key: res.data.key,
-                  domain: res.data.domain,
-                  file: file.response.files.file
-                }
-              }).then(res => {
-                debugger
+        getToken().then(res => {
+          if (res && res.h) {
+            this.$Message.error('上传出错')
+            return false
+          } else {
+            let obj = {}
+            obj.token = res.data.token
+            obj.key = res.data.key
+            obj.domain = res.data.domain
+            this.addFormUpload = obj
+            const isRightType = (file.raw.type === 'image/jpeg') || (file.raw.type === 'image/png') || (file.raw.type === 'image/gif')
+            const isLt2M = file.raw.size / 1024 / 1024 < 2
+            if (!isRightType) {
+              this.$Notice.warning({
+                title: '文件格式出错',
+                desc: '文件格式应为 jpg or png or gif.'
               })
             }
-            resolve(true)
-          }).catch(err => {
-            console.log(err)
-            reject(false)
-          })
+            if (!isLt2M) {
+              this.$Notice.warning({
+                title: '文件过大',
+                desc: '文件  ' + file.raw.name + ' 超过2M.'
+              })
+            }
+            let obj1 = this.addFormUpload
+            obj1.key += '.' + file.raw.type.split('/')[1]
+            this.addFormUpload = obj1
+            return isRightType && isLt2M
+          }
         })
+
+      },
+      handleSuccess(res, file) {
+        this.value = this.addFormUpload.domain + '/' + res.key
+        this.emitInput(this.value)
       }
+      // handleChange(file) {
+      //   return new Promise((resolve, reject) => {
+      //     getToken().then(res => {
+      //       if (file.response && file.response.files.file) {
+      //         const formData = new FormData()
+      //         formData.append('token', res.data.token)
+      //         formData.append('key', res.data.key)
+      //         formData.append('domain', res.data.domain)
+      //         formData.append('file', file.response.files.file)
+      //         axios.post('https://upload-z2.qiniup.com', formData, {
+      //           headers: {
+      //             'Content-Type': 'multipart/form-data'
+      //           }
+      //         }).then(res2 => {
+      //           this.value = `${res.data.domain}/${res2.data.key}`
+      //         })
+      //       }
+      //       resolve(true)
+      //     }).catch(err => {
+      //       console.log(err)
+      //       reject(false)
+      //     })
+      //   })
+      // }
     }
   }
 </script>

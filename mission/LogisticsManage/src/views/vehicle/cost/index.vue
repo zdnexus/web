@@ -6,16 +6,6 @@
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
-
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
-        添加订单费用
-      </el-button>
-
-      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
-          批量删除
-        </el-button>
-      </el-popconfirm>
     </div>
 
     <el-table
@@ -45,57 +35,132 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="合计成本" prop="costTotalFree" align="center" width="100">
+      <el-table-column label="成本合计" prop="costTotalFee" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.costTotalFree }}</span>
+          <span>{{ row.costTotalFee }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="实际仓储费用" prop="strageFree" align="center" width="100">
+      <el-table-column label="应收合计" prop="quotationTotalFee" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.strageFree }}</span>
+          <span>{{ row.quotationTotalFee }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="整备费用" prop="trimFree" align="center" width="100">
+      <el-table-column label="报价" align="center">
+        <el-table-column label="报价" prop="quotationFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.quotationFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="美金" prop="usdFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.usdFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="汇率" prop="exchangeRate" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.exchangeRate }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="接车验车" align="center">
+        <el-table-column label="验车费（应收）" prop="inspecteIncomeFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.inspecteIncomeFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="非监管仓" align="center">
+        <el-table-column label="仓储费（成本）" prop="ncrFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.ncrFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="整备费用（应收）" prop="trimFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.trimFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="监管仓" align="center">
+        <el-table-column label="仓储费（成本）" prop="bwhFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.bwhFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="整备费用（应收）" prop="trimFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.trimFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="报关环节" align="center">
+        <el-table-column label="报关费用（成本）" prop="declarationFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.declarationFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="司机燃车费用" align="center">
+        <el-table-column label="送车费（成本）" prop="driverFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.driverFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="差旅费（成本）" prop="travelFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.travelFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="境外费用" align="center">
+        <el-table-column label="成本" prop="abroadFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.abroadFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="应收" prop="abroadIncomeFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.abroadIncomeFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="其他费用" align="center">
+        <el-table-column label="成本" prop="otherFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.otherFee }}</span>
+          </template>
+        </el-table-column>
+        <el-table-column label="应收" prop="otherIncomeFee" align="center" width="100">
+          <template slot-scope="{row}">
+            <span>{{ row.otherIncomeFee }}</span>
+          </template>
+        </el-table-column>
+      </el-table-column>
+
+      <el-table-column label="利润合计" prop="profitFee" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.trimFree }}</span>
+          <span>{{ row.profitFee }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="境外费用" prop="abroadFree" align="center" width="100">
+      <el-table-column label="审核状态" prop="auditStatus" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.abroadFree }}</span>
+          <span>{{ ORDER_EXAMINE_STATUS_OBJ[row.auditStatus] }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="报价费用" prop="quotationFree" align="center" width="100">-->
-        <!--<template slot-scope="{row}">-->
-          <!--<span>{{ row.quotationFree }}</span>-->
-        <!--</template>-->
-      <!--</el-table-column>-->
-
-      <el-table-column label="监管仓仓储费用" prop="bwhFree" align="center" width="100">
+      <el-table-column label="审核备注" prop="remark" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.bwhFree }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="非监管仓仓储费用" prop="ncrFree" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.ncrFree }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="送车费用" prop="driverFree" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.driverFree }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="其他费用" prop="otherFree" align="center" width="100">
-        <template slot-scope="{row}">
-          <span>{{ row.otherFree }}</span>
+          <span>{{ row.remark }}</span>
         </template>
       </el-table-column>
 
@@ -123,21 +188,23 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="300">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="400">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
-            更新
+            录入费用
           </el-button>
 
           <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
-            费用明细
+            费用详情
           </el-button>
 
-          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow('delete',row)">
-            <el-button size="mini" type="danger" slot="reference">
-              删除
-            </el-button>
-          </el-popconfirm>
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
+            申请开票
+          </el-button>
+
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
+            申请付款
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -146,37 +213,74 @@
 
     <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <el-form-item label="车架号" prop="vin">
+        <el-form-item label="报价" prop="vin">
           <el-input v-model="temp.vin"/>
         </el-form-item>
 
-        <el-form-item label="实际仓储费用" prop="strageFree">
+        <el-form-item label="美元" prop="strageFree">
           <el-input v-model="temp.strageFree"/>
         </el-form-item>
 
-        <el-form-item label="整备费用" prop="trimFree">
+        <el-form-item label="汇率" prop="trimFree">
           <el-input v-model="temp.trimFree"/>
-        </el-form-item>
-
-        <el-form-item label="境外费用" prop="abroadFree">
-          <el-input v-model="temp.abroadFree"/>
-        </el-form-item>
-
-        <el-form-item label="监管仓仓储费用" prop="bwhFree">
-          <el-input v-model="temp.bwhFree"/>
         </el-form-item>
 
         <el-form-item label="非监管仓仓储费用" prop="ncrFree">
           <el-input v-model="temp.ncrFree"/>
         </el-form-item>
 
-        <el-form-item label="送车费用" prop="driverFree">
-          <el-input v-model="temp.driverFree"/>
+        <el-form-item label="非监管仓基本费用" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
         </el-form-item>
 
-        <el-form-item label="其他费用" prop="otherFree">
-          <el-input v-model="temp.otherFree"/>
+        <el-form-item label="非监管仓基本天数" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
         </el-form-item>
+
+        <el-form-item label="非监管仓超期天数" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="监管仓仓储费用" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="监管仓基本费用" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="监管仓基本天数" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="监管仓超期天数" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="报关费" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="送车费" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="差旅费" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="验车费" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="整备费" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
+        <el-form-item label="监管仓超期天数" prop="ncrFree">
+          <el-input v-model="temp.ncrFree"/>
+        </el-form-item>
+
       </el-form>
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
@@ -193,6 +297,7 @@
 
 <script>
   import Pagination from '@/components/Pagination'
+  import Upload from '@/components/Upload/SingleImage'
   import {
     orderFeeList,
     createOrderFee,
@@ -200,11 +305,13 @@
     viewOrderFee,
     deleteOrderFee
   } from '@/api/vehicle/cost/index'
+  import { ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
 
   export default {
-    components: { Pagination },
+    components: { Pagination, Upload },
     data() {
       return {
+        ORDER_EXAMINE_STATUS_OBJ,
         tableKey: 0,
         list: null,
         total: 0,

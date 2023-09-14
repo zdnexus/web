@@ -26,6 +26,42 @@ export const TREE_DATA = [
     ],
   },
   {
+    label: '非监管仓',
+    id: 9,
+    children: [
+      {
+        id: 10,
+        label: '入库核验',
+        value: 'inWarehouse',
+        options: 'ncrWmanger'
+      },
+      {
+        id: 11,
+        label: '车辆入库',
+        value: 'storage',
+        options: 'fieldStaff'
+      },
+      {
+        id: 12,
+        label: '整备车辆',
+        value: 'trim',
+        options: 'ncrWmanger'
+      },
+      {
+        id: 13,
+        label: '出库核验',
+        value: 'outWarehouse',
+        options: 'fieldStaff'
+      },
+      {
+        id: 14,
+        label: '出库确认',
+        value: 'outConfirm',
+        options: 'ncrWmanger'
+      },
+    ],
+  },
+  {
     label: '监管仓',
     children: [
       {
@@ -64,42 +100,6 @@ export const TREE_DATA = [
         value: 'swOutConfirm',
         options: 'bwhWmanger'
       }
-    ],
-  },
-  {
-    label: '非监管仓',
-    id: 9,
-    children: [
-      {
-        id: 10,
-        label: '入库核验',
-        value: 'inWarehouse',
-        options: 'ncrWmanger'
-      },
-      {
-        id: 11,
-        label: '车辆入库',
-        value: 'storage',
-        options: 'fieldStaff'
-      },
-      {
-        id: 12,
-        label: '整备车辆',
-        value: 'trim',
-        options: 'ncrWmanger'
-      },
-      {
-        id: 13,
-        label: '出库核验',
-        value: 'outWarehouse',
-        options: 'fieldStaff'
-      },
-      {
-        id: 14,
-        label: '出库确认',
-        value: 'outConfirm',
-        options: 'ncrWmanger'
-      },
     ],
   },
   {
@@ -280,7 +280,7 @@ export const VEHICLE_INFO_OBJ = {
 
 export const ORDER_EXAMINE_STATUS = [
   {
-    label: '待检测',
+    label: '待审核',
     value: '0'
   },
   {
@@ -288,7 +288,7 @@ export const ORDER_EXAMINE_STATUS = [
     value: '1'
   },
   {
-    label: '通过',
+    label: '已通过',
     value: '2'
   },
   {
