@@ -332,3 +332,16 @@ export const ORDER_STATUS = [
 ]
 
 export const ORDER_STATUS_OBJ = listToObj(ORDER_STATUS)
+
+export const FREE_STATUS = [
+  {
+    label: '成本',
+    value: 'cost'
+  },
+  {
+    label: '应收',
+    value: 'income'
+  },
+]
+
+export const FREE_STATUS_OBJ = listToObj(FREE_STATUS)

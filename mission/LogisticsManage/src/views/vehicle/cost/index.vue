@@ -53,9 +53,9 @@
             <span>{{ row.quotationFee }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="美金" prop="usdFee" align="center" width="100">
+        <el-table-column label="美金" prop="trimFee" align="center" width="100">
           <template slot-scope="{row}">
-            <span>{{ row.usdFee }}</span>
+            <span>{{ row.trimFee }}</span>
           </template>
         </el-table-column>
         <el-table-column label="汇率" prop="exchangeRate" align="center" width="100">
@@ -217,71 +217,275 @@
           <el-input v-model="temp.vin"/>
         </el-form-item>
 
-        <el-form-item label="美元" prop="strageFree">
-          <el-input v-model="temp.strageFree"/>
+        <el-form-item label="美元" prop="usdFee">
+          <el-input v-model="temp.usdFee"/>
         </el-form-item>
 
-        <el-form-item label="汇率" prop="trimFree">
-          <el-input v-model="temp.trimFree"/>
+        <el-form-item label="汇率" prop="exchangeRate">
+          <el-input v-model="temp.exchangeRate"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓仓储费用" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="非监管仓仓储费用凭证" prop="ncrBillVoucher">
+          <Upload v-model="temp.ncrBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓基本费用" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="非监管仓仓储费用" prop="ncrFee">
+          <el-input v-model="temp.ncrFee"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓基本天数" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="非监管仓基本费用" prop="ncrBasePrice">
+          <el-input v-model="temp.ncrBasePrice"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓超期天数" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="非监管仓基本天数" prop="ncrBaseDay">
+          <el-input v-model="temp.ncrBaseDay"/>
         </el-form-item>
 
-        <el-form-item label="监管仓仓储费用" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="非监管仓超期天数" prop="ncrOverduePrice">
+          <el-input v-model="temp.ncrOverduePrice"/>
         </el-form-item>
 
-        <el-form-item label="监管仓基本费用" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="监管仓仓储费用凭证" prop="bwhBillVoucher">
+          <Upload v-model="temp.bwhBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="监管仓基本天数" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="监管仓仓储费用" prop="bwhFee">
+          <el-input v-model="temp.bwhFee"/>
         </el-form-item>
 
-        <el-form-item label="监管仓超期天数" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="监管仓基本费用" prop="bwhBasePrice">
+          <el-input v-model="temp.bwhBasePrice"/>
         </el-form-item>
 
-        <el-form-item label="报关费" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="监管仓基本天数" prop="bwhBaseDay">
+          <el-input v-model="temp.bwhBaseDay"/>
         </el-form-item>
 
-        <el-form-item label="送车费" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="监管仓超期天数" prop="bwhOverduePrice">
+          <el-input v-model="temp.bwhOverduePrice"/>
         </el-form-item>
 
-        <el-form-item label="差旅费" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="报关费凭证" prop="declarationBillVoucher">
+          <Upload v-model="temp.declarationBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="验车费" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="报关费" prop="declarationFee">
+          <el-input v-model="temp.declarationFee"/>
         </el-form-item>
 
-        <el-form-item label="整备费" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="送车费凭证" prop="driverBillVoucher">
+          <Upload v-model="temp.driverBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="监管仓超期天数" prop="ncrFree">
-          <el-input v-model="temp.ncrFree"/>
+        <el-form-item label="送车费" prop="driverFee">
+          <el-input v-model="temp.driverFee"/>
         </el-form-item>
 
+        <el-form-item label="验车费凭证" prop="inspectebwhBillVoucher">
+          <Upload v-model="temp.inspectebwhBillVoucher"/>
+        </el-form-item>
+
+        <el-form-item label="验车费" prop="inspecteIncomeFee">
+          <el-input v-model="temp.inspecteIncomeFee"/>
+        </el-form-item>
+
+        <el-form-item label="整备费凭证" prop="trimBillVoucher">
+          <Upload v-model="temp.trimBillVoucher"/>
+        </el-form-item>
+
+        <el-form-item label="整备费" prop="trimFee">
+          <el-input v-model="temp.trimFee"/>
+        </el-form-item>
+
+        <div>
+          <h2>境外费用列表</h2>
+
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="abroadTemp.name"/>
+          </el-form-item>
+
+          <el-form-item label="金额" prop="free">
+            <el-input v-model="abroadTemp.free"/>
+          </el-form-item>
+
+          <el-form-item label="发票" prop="photoUrl">
+            <Upload v-model="abroadTemp.photoUrl"/>
+          </el-form-item>
+
+          <el-form-item label="成本或应收" prop="freeType">
+            <el-select v-model="abroadTemp.freeType" class="filter-item" placeholder="">
+              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-button type="primary" @click="enterExpensesAbroad">
+            录入费用
+          </el-button>
+
+          <el-table
+            :key="tableKey+1"
+            v-loading="listLoading"
+            :data="temp.vehicleAbroadFreeList"
+            border
+            fit
+            highlight-current-row
+            style="width: 100%"
+          >
+            <el-table-column label="姓名" prop="name" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.name }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="金额" prop="free" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.free }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="发票" prop="photoUrl" align="center" width="125">
+              <template slot-scope="{row}">
+                <img width="100" :src="row.photoUrl"/>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="成本或应收" prop="freeType" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ FREE_STATUS_OBJ[row.freeType] }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+
+        <div>
+          <h2>其他费用列表</h2>
+
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="otherTemp.name"/>
+          </el-form-item>
+
+          <el-form-item label="金额" prop="free">
+            <el-input v-model="otherTemp.free"/>
+          </el-form-item>
+
+          <el-form-item label="发票" prop="photoUrl">
+            <Upload v-model="otherTemp.photoUrl"/>
+          </el-form-item>
+
+          <el-form-item label="成本或应收" prop="freeType">
+            <el-select v-model="otherTemp.freeType" class="filter-item" placeholder="">
+              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-button type="primary" @click="enterExpensesOther">
+            录入费用
+          </el-button>
+
+          <el-table
+            :key="tableKey+1"
+            v-loading="listLoading"
+            :data="temp.vehicleOtherFeeList"
+            border
+            fit
+            highlight-current-row
+            style="width: 100%"
+          >
+            <el-table-column label="姓名" prop="name" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.name }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="金额" prop="free" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.free }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="发票" prop="photoUrl" align="center" width="125">
+              <template slot-scope="{row}">
+                <img width="100" :src="row.photoUrl"/>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="成本或应收" prop="freeType" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ FREE_STATUS_OBJ[row.freeType] }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+
+        <div>
+          <h2>差旅费用列表</h2>
+
+          <el-form-item label="姓名" prop="name">
+            <el-input v-model="travelTemp.name"/>
+          </el-form-item>
+
+          <el-form-item label="金额" prop="free">
+            <el-input v-model="travelTemp.free"/>
+          </el-form-item>
+
+          <el-form-item label="发票" prop="photoUrl">
+            <Upload v-model="travelTemp.photoUrl"/>
+          </el-form-item>
+
+          <el-form-item label="成本或应收" prop="freeType">
+            <el-select v-model="travelTemp.freeType" class="filter-item" placeholder="">
+              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+            </el-select>
+          </el-form-item>
+
+          <el-button type="primary" @click="enterExpensesTravel">
+            录入费用
+          </el-button>
+
+          <el-table
+            :key="tableKey+1"
+            v-loading="listLoading"
+            :data="temp.vehicleTravelFreeList"
+            border
+            fit
+            highlight-current-row
+            style="width: 100%"
+          >
+            <el-table-column label="姓名" prop="name" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.name }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="金额" prop="free" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ row.free }}</span>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="发票" prop="photoUrl" align="center" width="125">
+              <template slot-scope="{row}">
+                <img width="100" :src="row.photoUrl"/>
+              </template>
+            </el-table-column>
+
+            <el-table-column label="成本或应收" prop="freeType" align="center" width="125">
+              <template slot-scope="{row}">
+                <span>{{ FREE_STATUS_OBJ[row.freeType] }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
+
+        <el-form-item label="成本合计" prop="costTotalFee">
+          <el-input v-model="temp.costTotalFee"/>
+        </el-form-item>
+
+        <el-form-item label="应收合计" prop="quotationTotalFee">
+          <el-input v-model="temp.quotationTotalFee"/>
+        </el-form-item>
       </el-form>
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
           取消
@@ -305,13 +509,19 @@
     viewOrderFee,
     deleteOrderFee
   } from '@/api/vehicle/cost/index'
-  import { ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
+  import {
+    ORDER_EXAMINE_STATUS_OBJ,
+    FREE_STATUS,
+    FREE_STATUS_OBJ
+  } from '@/constant/vehicle'
 
   export default {
     components: { Pagination, Upload },
     data() {
       return {
         ORDER_EXAMINE_STATUS_OBJ,
+        FREE_STATUS,
+        FREE_STATUS_OBJ,
         tableKey: 0,
         list: null,
         total: 0,
@@ -329,19 +539,62 @@
         },
         dialogStatus: '',
         temp: {
+          vin: undefined,
+          usdFee: undefined,
+          exchangeRate: undefined,
+          ncrFee: undefined,
+          ncrBasePrice: undefined,
+          ncrBaseDay: undefined,
+          ncrOverduePrice: undefined,
+          bwhFee: undefined,
+          bwhBasePrice: undefined,
+          bwhBaseDay: undefined,
+          declarationFee: undefined,
+          driverFee: undefined,
+          inspecteIncomeFee: undefined,
+          trimFee: undefined,
+          vehicleAbroadFreeList: [],
+          vehicleOtherFeeList: [],
+          vehicleTravelFreeList: [],
+          costTotalFee: undefined,
+          quotationTotalFee: undefined
+        },
+        abroadTemp: {
           name: undefined,
-          type: undefined,
-          abroadAddress: undefined,
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
+        },
+        otherTemp: {
+          name: undefined,
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
+        },
+        travelTemp: {
+          name: undefined,
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
         },
         rules: {
           vin: [{ required: true, message: '请输入车架号', trigger: 'blur' }],
-          strageFree: [{ required: true, message: '请输入实际仓储费用', trigger: 'blur' }],
-          trimFree: [{ required: true, message: '请输入整备费用', trigger: 'blur' }],
-          abroadFree: [{ required: true, message: '请输入境外费用', trigger: 'blur' }],
-          bwhFree: [{ required: true, message: '请输入监管仓仓储费用', trigger: 'blur' }],
-          ncrFree: [{ required: true, message: '请输入非监管仓仓储费用', trigger: 'blur' }],
-          driverFree: [{ required: true, message: '请输入送车费用', trigger: 'blur' }],
-          otherFree: [{ required: true, message: '请输入其他费用', trigger: 'blur' }]
+          usdFee: [{ required: true, message: '请输入美元', trigger: 'blur' }],
+          exchangeRate: [{ required: true, message: '请输入汇率', trigger: 'blur' }],
+          ncrFee: [{ required: true, message: '请输入非监管仓仓储费用', trigger: 'blur' }],
+          ncrBasePrice: [{ required: true, message: '请输入非监管仓基本费用', trigger: 'blur' }],
+          ncrBaseDay: [{ required: true, message: '请输入非监管仓基本天数', trigger: 'blur' }],
+          ncrOverduePrice: [{ required: true, message: '请输入非监管仓超期天数', trigger: 'blur' }],
+          bwhFee: [{ required: true, message: '请输入监管仓仓储费用', trigger: 'blur' }],
+          bwhBasePrice: [{ required: true, message: '请输入监管仓基本费用', trigger: 'blur' }],
+          bwhBaseDay: [{ required: true, message: '请输入监管仓基本天数', trigger: 'blur' }],
+          bwhOverduePrice: [{ required: true, message: '请输入监管仓超期天数', trigger: 'blur' }],
+          declarationFee: [{ required: true, message: '请输入报关费', trigger: 'blur' }],
+          driverFee: [{ required: true, message: '请输入送车费', trigger: 'blur' }],
+          inspecteIncomeFee: [{ required: true, message: '请输入验车费', trigger: 'blur' }],
+          trimFee: [{ required: true, message: '请输入整备费', trigger: 'blur' }],
+          costTotalFee: [{ required: true, message: '请输入成本合计', trigger: 'blur' }],
+          quotationTotalFee: [{ required: true, message: '请输入应收合计', trigger: 'blur' }],
         }
       }
     },
@@ -366,9 +619,49 @@
       },
       resetTemp() {
         this.temp = {
+          vin: undefined,
+          usdFee: undefined,
+          exchangeRate: undefined,
+          ncrFee: undefined,
+          ncrBasePrice: undefined,
+          ncrBaseDay: undefined,
+          ncrOverduePrice: undefined,
+          bwhFee: undefined,
+          bwhBasePrice: undefined,
+          bwhBaseDay: undefined,
+          declarationFee: undefined,
+          driverFee: undefined,
+          inspecteIncomeFee: undefined,
+          trimFee: undefined,
+          vehicleAbroadFreeList: [],
+          vehicleOtherFeeList: [],
+          vehicleTravelFreeList: [],
+          costTotalFee: undefined,
+          quotationTotalFee: undefined
+        }
+      },
+      resetAbroadTemp() {
+        this.abroadTemp = {
           name: undefined,
-          type: undefined,
-          abroadAddress: undefined
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
+        }
+      },
+      resetOtherTemp() {
+        this.otherTemp = {
+          name: undefined,
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
+        }
+      },
+      resetTravelTemp() {
+        this.travelTemp = {
+          name: undefined,
+          free: undefined,
+          photoUrl: undefined,
+          freeType: undefined
         }
       },
       handleData() {
@@ -397,17 +690,25 @@
           })
         })
       },
-      viewData(ids) {
-        viewOrderFee(ids).then((res) => {
-          debugger
-        })
-      },
       handleRow(type, row) {
+        this.dialogStatus = type
         switch (type) {
           case 'create':
+            this.resetTemp()
+            this.dialogFormVisible = true
+            this.$nextTick(() => {
+              this.$refs['dataForm'].clearValidate()
+            })
+            break
           case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row }
-            this.dialogStatus = type
+            viewOrderFee([row.id]).then((res) => {
+              this.temp = {
+                ...res.data,
+                vehicleAddAbroadFreeList: [],
+                vehicleAddOtherFeeList: [],
+                vehicleAddTravelFreeList: []
+              }
+            })
             this.dialogFormVisible = true
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
@@ -417,10 +718,40 @@
             row = row ? [row.id] : this.ids
             this.deleteData(row)
             break
-          case 'view':
-            this.viewData([row.id])
-            break
         }
+      },
+      enterExpensesAbroad() {
+        const o = {
+          name: this.abroadTemp.name,
+          free: this.abroadTemp.free,
+          photoUrl: this.abroadTemp.photoUrl,
+          freeType: this.abroadTemp.freeType
+        }
+        this.temp.vehicleAbroadFreeList.push(o)
+        this.temp.vehicleAddAbroadFreeList.push(o)
+        this.resetAbroadTemp()
+      },
+      enterExpensesOther() {
+        const o = {
+          name: this.otherTemp.name,
+          free: this.otherTemp.free,
+          photoUrl: this.otherTemp.photoUrl,
+          freeType: this.otherTemp.freeType
+        }
+        this.temp.vehicleOtherFeeList.push(o)
+        this.temp.vehicleAddOtherFeeList.push(o)
+        this.resetOtherTemp()
+      },
+      enterExpensesTravel() {
+        const o = {
+          name: this.travelTemp.name,
+          free: this.travelTemp.free,
+          photoUrl: this.travelTemp.photoUrl,
+          freeType: this.travelTemp.freeType
+        }
+        this.temp.vehicleTravelFreeList.push(o)
+        this.temp.vehicleAddTravelFreeList.push(o)
+        this.resetTravelTemp()
       }
     }
   }
