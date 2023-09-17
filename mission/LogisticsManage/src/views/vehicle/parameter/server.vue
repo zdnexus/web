@@ -87,7 +87,7 @@
     <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="服务项名称" prop="name">
           <el-input v-model="temp.name"/>
         </el-form-item>
@@ -124,6 +124,7 @@
     updateParameterService
   } from '@/api/vehicle/parameter/server'
   import {
+    PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
     TEMP_TYPE_CREATE,
@@ -153,7 +154,7 @@
         tableKey: 0,
         list: undefined,
         ids: [],
-        total: undefined,
+        total: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {

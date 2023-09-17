@@ -169,7 +169,7 @@
   import Pagination from '@/components/Pagination'
   import { cooperateDomesticList, createCooperateDomestic, updateCooperateDomestic, deleteCooperateDomestic } from '@/api/vehicle/cooperate/domestic'
   import { organizationList } from '@/api/organization'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

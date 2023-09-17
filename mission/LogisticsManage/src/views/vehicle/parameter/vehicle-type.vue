@@ -117,7 +117,7 @@
 <script>
   import Pagination from '@/components/Pagination'
   import { parameterVehicleTypeList, createParameterVehicleType, updateParameterVehicleType, deleteParameterVehicleType } from '@/api/vehicle/parameter/vehicle-type'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

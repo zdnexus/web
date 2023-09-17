@@ -1,41 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入仓库名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入仓库名称" @keyup.enter.native="handleFilter"/>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
-        添加仓库
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+        添加仓库名称
       </el-button>
 
-      <el-popconfirm
-        title="确认要删除吗？"
-        style="margin-left: 10px"
-        @onConfirm="handleRow('delete')"
-      >
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
+        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleIdChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55">
-      </el-table-column>
+    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"></el-table-column>
 
       <el-table-column label="id" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -103,16 +87,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
           </el-button>
 
-          <el-popconfirm
-            title="确认要删除吗？"
-            @onConfirm="handleRow('delete',row)"
-          >
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow('delete',row)">
             <el-button size="mini" type="danger" slot="reference">
               删除
             </el-button>
@@ -121,10 +102,10 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="150px" style="width: 550px">
         <el-form-item label="仓库名称" prop="name">
           <el-input v-model="temp.name"/>
         </el-form-item>
@@ -166,36 +147,56 @@
 
 <script>
   import Pagination from '@/components/Pagination'
-  import { ParameterWarehouseList, createParameterWarehouse, updateParameterWarehouse, deleteParameterWarehouse } from '@/api/vehicle/parameter/warehouse'
-  import { WAREHOUSE_TYPE_LIST, WAREHOUSE_TYPE_LIST_OBJ } from '@/constant/vehicle'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import {
+    ParameterWarehouseList,
+    createParameterWarehouse,
+    deleteParameterWarehouse,
+    updateParameterWarehouse
+  } from '@/api/vehicle/parameter/warehouse'
+  import {
+    PAGE_TOTAL,
+    PAGE_NUM,
+    PAGE_SIZE,
+    TEMP_TYPE_CREATE,
+    TEMP_TYPE_DELETE,
+    TEMP_TYPE_UPDATE,
+    TEMP_TYPE,
+    WAREHOUSE_TYPE_LIST,
+    WAREHOUSE_TYPE_LIST_OBJ
+  } from '@/constant'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        PAGE_TOTAL,
+        PAGE_NUM,
+        PAGE_SIZE,
+        TEMP_TYPE_CREATE,
+        TEMP_TYPE_DELETE,
+        TEMP_TYPE_UPDATE,
         TEMP_TYPE,
         WAREHOUSE_TYPE_LIST,
         WAREHOUSE_TYPE_LIST_OBJ,
-        tableKey: 0,
-        list: null,
-        total: 0,
-        listLoading: true,
         listQuery: {
           name: undefined,
-          pageNum: 1,
-          pageSize: 20,
+          pageNum: PAGE_NUM,
+          pageSize: PAGE_SIZE,
         },
+        listLoading: false,
+        tableKey: 0,
+        list: undefined,
         ids: [],
+        total: PAGE_TOTAL,
         dialogFormVisible: false,
-        dialogStatus: '',
+        dialogStatus: undefined,
         temp: {
           name: undefined,
           type: undefined,
           address: undefined,
           basePrice: undefined,
           baseDay: undefined,
-          overduePrice: undefined,
+          overduePrice: undefined
         },
         rules: {
           name: [{ required: true, message: '请输入仓库名称', trigger: 'blur' }],
@@ -213,14 +214,14 @@
     methods: {
       getList() {
         this.listLoading = true
-        ParameterWarehouseList(this.listQuery).then(res => {
+        ParameterWarehouseList(this.listQuery).then((res) => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
         })
       },
       handleFilter() {
-        this.listQuery.pageNum = 1
+        this.listQuery.pageNum = PAGE_NUM
         this.getList()
       },
       handleIdChange(rows) {
@@ -236,49 +237,43 @@
           overduePrice: undefined,
         }
       },
-      handleData() {
-        const fun = this.dialogStatus === 'create' ? createParameterWarehouse : updateParameterWarehouse
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            fun(this.temp).then(() => {
-              this.dialogFormVisible = false
-              this.handleFilter()
-              this.$notify({
-                type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-                duration: 3000
-              })
-            })
-          }
-        })
-      },
-      deleteData(ids) {
-        deleteParameterWarehouse(ids).then(() => {
-          this.handleFilter()
-          this.$notify({
-            type: 'success',
-            message: '删除成功',
-            duration: 3000
-          })
-        })
-      },
       handleRow(type, row) {
         switch (type) {
-          case 'create':
-          case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row }
+          case TEMP_TYPE_CREATE:
+          case TEMP_TYPE_UPDATE:
+            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
             })
             break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
+          case TEMP_TYPE_DELETE:
+            if (!row && !this.ids.length) {
+              this.$checkTable()
+            } else {
+              const ids = row ? [row.id] : this.ids
+              deleteParameterWarehouse(ids).then(() => {
+                this.$deleteTempNotify()
+                this.handleFilter()
+              })
+            }
             break
         }
       },
+      handleData() {
+        const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
+        const fun = isCreateTemp ? createParameterWarehouse : updateParameterWarehouse
+        this.$refs['dataForm'].validate((valid) => {
+          if (valid) {
+            fun(this.temp).then(() => {
+              isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
+              this.dialogFormVisible = false
+              this.handleFilter()
+            })
+          }
+        })
+      }
     }
   }
 </script>

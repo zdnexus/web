@@ -135,7 +135,7 @@
 <script>
   import Pagination from '@/components/Pagination'
   import { upcomingTaskList, createUpcomingTask, updateUpcomingTask, deleteUpcomingTask } from '@/api/mission/allocation'
-  import { TEMP_TYPE, TASK_STATUS_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE, TASK_STATUS_OBJ } from '@/constant'
 
   export default {
     components: { Pagination },

@@ -132,7 +132,7 @@
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
     ORDER_STATUS_OBJ,
-  } from '@/constant/vehicle'
+  } from '@/constant'
 
   export default {
     components: { Pagination },

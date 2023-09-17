@@ -154,7 +154,7 @@
     addDmNumberTask,
     allocateOrder,
   } from '@/api/vehicle/order'
-  import { TEMP_TYPE, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant'
 
   export default {
     components: { Pagination },

@@ -145,7 +145,7 @@
   import Pagination from '@/components/Pagination'
   import { cooperateAbrodList, createCooperateAbrod, updateCooperateAbrod, deleteCooperateAbrod } from '@/api/vehicle/cooperate/abroad'
   import { organizationList } from '@/api/organization'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

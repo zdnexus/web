@@ -113,7 +113,7 @@
 
 <script>
   import { cooperateCustomList } from '@/api/vehicle/cooperate/custom'
-  import { SERVE_TYPE_LIST } from '@/constant/vehicle'
+  import { SERVE_TYPE_LIST } from '@/constant'
   import waves from '@/directive/waves' // waves directive
   import { parseTime } from '@/utils'
   import Pagination from '@/components/Pagination' // secondary package based on el-pagination

@@ -193,7 +193,7 @@
   import Pagination from '@/components/Pagination'
   import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/vehicle/cooperate/custom'
   import { organizationList } from '@/api/organization'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

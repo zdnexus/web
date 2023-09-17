@@ -181,10 +181,6 @@ aside {
     vertical-align: middle;
     margin-bottom: 10px;
   }
-
-  button + button, button + span {
-    margin-left: 10px;
-  }
 }
 
 //refine vue-multiselect plugin
@@ -194,4 +190,8 @@ aside {
 
 .multiselect--active {
   z-index: 1000 !important;
+}
+
+button + button, button + span {
+  margin-left: 10px;
 }

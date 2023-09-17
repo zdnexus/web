@@ -138,7 +138,7 @@
   import Pagination from '@/components/Pagination'
   import Upload from '@/components/Upload/SingleImage'
   import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
-  import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
 
   export default {
     components: { Pagination, Upload },

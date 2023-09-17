@@ -102,7 +102,7 @@
 <script>
   import Pagination from '@/components/Pagination'
   import { parameterCarBrandList, createParameterCarBrand, updateParameterCarBrand, deleteParameterCarBrand } from '@/api/vehicle/parameter/vehicle-brand'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

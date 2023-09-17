@@ -194,7 +194,7 @@
     TREE_DATA,
     ORDER_EXAMINE_STATUS_AUDITING,
     ORDER_EXAMINE_STATUS_OBJ
-  } from '@/constant/vehicle'
+  } from '@/constant'
 
   export default {
     components: { Pagination },

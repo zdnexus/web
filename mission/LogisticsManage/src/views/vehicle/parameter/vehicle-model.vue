@@ -117,7 +117,7 @@
   import Pagination from '@/components/Pagination'
   import { parameterCarBrandList } from '@/api/vehicle/parameter/vehicle-brand'
   import { parameterCarModelList, createParameterCarModel, updateParameterCarModel, deleteParameterCarModel } from '@/api/vehicle/parameter/vehicle-model'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant'
 
   export default {
     components: { Pagination },

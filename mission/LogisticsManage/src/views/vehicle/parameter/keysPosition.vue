@@ -1,17 +1,17 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入钥匙位置" @keyup.enter.native="handleFilter"></el-input>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入钥匙位置" @keyup.enter.native="handleFilter"/>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow('create')">
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
         添加钥匙位置
       </el-button>
 
-      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
+      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
         <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
@@ -19,10 +19,7 @@
     </div>
 
     <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
-    <el-table-column
-        type="selection"
-        width="55">
-      </el-table-column>
+      <el-table-column type="selection" width="55"></el-table-column>
 
       <el-table-column label="id" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -107,7 +104,7 @@
         </el-form-item>
 
         <el-form-item label="存放图片" prop="photoUrl">
-          <Upload v-model="temp.photoUrl" />
+          <Upload v-model="temp.photoUrl"/>
         </el-form-item>
 
       </el-form>
@@ -127,8 +124,15 @@
 <script>
   import Pagination from '@/components/Pagination'
   import Upload from '@/components/Upload/SingleImage'
-  import { parameterkeysPositionList, createParameterkeysPosition, updateParameterkeysPosition, deleteParameterkeysPosition } from '@/api/vehicle/parameter/keysPosition'
-  import { TEMP_TYPE } from '@/constant/vehicle'
+  import {
+    parameterkeysPositionList,
+    createParameterkeysPosition,
+    deleteParameterkeysPosition,
+    updateParameterkeysPosition
+  } from '@/api/vehicle/parameter/keysPosition'
+  import {
+    TEMP_TYPE
+  } from '@/constant'
 
   export default {
     components: { Pagination, Upload },

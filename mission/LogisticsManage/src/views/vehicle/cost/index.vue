@@ -565,7 +565,7 @@
     ORDER_EXAMINE_STATUS_OBJ,
     FREE_STATUS,
     FREE_STATUS_OBJ
-  } from '@/constant/vehicle'
+  } from '@/constant'
 
   export default {
     components: { Pagination, Upload },
