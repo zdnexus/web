@@ -87,7 +87,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
