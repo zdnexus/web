@@ -1,37 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入钥匙位置" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入钥匙位置" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" class="filter-item" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow('create')">
         添加钥匙位置
       </el-button>
 
-      <el-popconfirm
-        title="确认要删除吗？"
-        @onConfirm="handleRow('delete')"
-      >
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
+        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleSelectionChange"
-    >
-      <el-table-column
+    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+    <el-table-column
         type="selection"
         width="55">
       </el-table-column>
@@ -104,7 +92,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="车架号" prop="vin">
           <el-input v-model="temp.vin"/>
@@ -140,26 +128,24 @@
   import Pagination from '@/components/Pagination'
   import Upload from '@/components/Upload/SingleImage'
   import { parameterkeysPositionList, createParameterkeysPosition, updateParameterkeysPosition, deleteParameterkeysPosition } from '@/api/vehicle/parameter/keysPosition'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination, Upload },
     data() {
       return {
-        tableKey: 0,
-        list: null,
-        total: 0,
-        listLoading: true,
+        TEMP_TYPE,
         listQuery: {
           pageNum: 1,
           pageSize: 20,
           name: undefined,
         },
+        tableKey: 0,
         ids: [],
+        total: 0,
+        listLoading: true,
+        list: null,
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           vin: undefined,
@@ -191,7 +177,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {

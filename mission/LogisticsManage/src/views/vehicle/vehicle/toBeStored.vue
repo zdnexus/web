@@ -113,7 +113,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <div class="block" v-for="img in temp.photoList" :key="img.label">
           <span class="demonstration">{{ img.label }}</span>
@@ -138,13 +138,13 @@
   import Pagination from '@/components/Pagination'
   import Upload from '@/components/Upload/SingleImage'
   import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
-  import { TEXT_MAP, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant/vehicle'
 
   export default {
     components: { Pagination, Upload },
     data() {
       return {
-        TEXT_MAP,
+        TEMP_TYPE,
         DAMAGE_TYPE_LIST_OBJ,
         tableKey: 0,
         list: null,

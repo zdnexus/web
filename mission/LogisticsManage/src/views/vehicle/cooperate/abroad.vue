@@ -29,7 +29,7 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -110,7 +110,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="运输队名称" prop="teamName">
           <el-input v-model="temp.teamName"/>
@@ -145,11 +145,13 @@
   import Pagination from '@/components/Pagination'
   import { cooperateAbrodList, createCooperateAbrod, updateCooperateAbrod, deleteCooperateAbrod } from '@/api/vehicle/cooperate/abroad'
   import { organizationList } from '@/api/organization'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE,
         tableKey: 0,
         list: null,
         pmList: null,
@@ -162,10 +164,6 @@
         },
         ids: [],
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           teamName: undefined,
@@ -203,7 +201,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {

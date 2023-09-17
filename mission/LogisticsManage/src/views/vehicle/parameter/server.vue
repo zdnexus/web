@@ -1,40 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入服务项名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入服务项" @keyup.enter.native="handleFilter"/>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
         添加服务项
       </el-button>
 
-      <el-popconfirm
-        title="确认要删除吗？"
-        @onConfirm="handleRow('delete')"
-      >
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
+        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleSelectionChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55">
-      </el-table-column>
+    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"></el-table-column>
 
       <el-table-column label="id" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -54,31 +39,31 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="境外目的地" prop="abroadAddress" align="center" width="150">
+      <el-table-column label="境外目的地" prop="abroadAddress" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.abroadAddress }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="150">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.updateBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="150">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -86,14 +71,11 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
           </el-button>
 
-          <el-popconfirm
-            title="确认要删除吗？"
-            @onConfirm="handleRow('delete',row)"
-          >
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
             <el-button size="mini" type="danger" slot="reference">
               删除
             </el-button>
@@ -102,10 +84,10 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px">
         <el-form-item label="服务项名称" prop="name">
           <el-input v-model="temp.name"/>
         </el-form-item>
@@ -135,35 +117,49 @@
 
 <script>
   import Pagination from '@/components/Pagination'
-  import { parameterServiceList, createParameterService, updateParameterService, deleteParameterService } from '@/api/vehicle/parameter/server'
-  import { SERVE_TYPE_LIST, SERVE_TYPE_LIST_OBJ } from '@/constant/vehicle'
+  import {
+    parameterServiceList,
+    createParameterService,
+    deleteParameterService,
+    updateParameterService
+  } from '@/api/vehicle/parameter/server'
+  import {
+    PAGE_NUM,
+    PAGE_SIZE,
+    TEMP_TYPE_CREATE,
+    TEMP_TYPE_DELETE,
+    TEMP_TYPE_UPDATE,
+    TEMP_TYPE,
+    SERVE_TYPE_LIST,
+    SERVE_TYPE_LIST_OBJ
+  } from '@/constant'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE_CREATE,
+        TEMP_TYPE_DELETE,
+        TEMP_TYPE_UPDATE,
+        TEMP_TYPE,
         SERVE_TYPE_LIST,
         SERVE_TYPE_LIST_OBJ,
-        tableKey: 0,
-        list: null,
-        total: 0,
-        listLoading: true,
         listQuery: {
           name: undefined,
-          pageNum: 1,
-          pageSize: 20,
+          pageNum: PAGE_NUM,
+          pageSize: PAGE_SIZE,
         },
+        listLoading: false,
+        tableKey: 0,
+        list: undefined,
         ids: [],
+        total: undefined,
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
-        dialogStatus: '',
+        dialogStatus: undefined,
         temp: {
           name: undefined,
           type: undefined,
-          abroadAddress: undefined,
+          abroadAddress: undefined
         },
         rules: {
           name: [{ required: true, message: '请输入服务项名称', trigger: 'blur' }],
@@ -178,17 +174,17 @@
     methods: {
       getList() {
         this.listLoading = true
-        parameterServiceList(this.listQuery).then(res => {
+        parameterServiceList(this.listQuery).then((res) => {
           this.list = res.data.list
           this.total = res.data.total
           this.listLoading = false
         })
       },
       handleFilter() {
-        this.listQuery.pageNum = 1
+        this.listQuery.pageNum = PAGE_NUM
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {
@@ -198,49 +194,43 @@
           abroadAddress: undefined
         }
       },
-      handleData() {
-        const fun = this.dialogStatus === 'create' ? createParameterService : updateParameterService
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            fun(this.temp).then(() => {
-              this.dialogFormVisible = false
-              this.handleFilter()
-              this.$notify({
-                type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-                duration: 3000
-              })
-            })
-          }
-        })
-      },
-      deleteData(ids) {
-        deleteParameterService(ids).then(() => {
-          this.handleFilter()
-          this.$notify({
-            type: 'success',
-            message: '删除成功',
-            duration: 3000
-          })
-        })
-      },
       handleRow(type, row) {
         switch (type) {
-          case 'create':
-          case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row }
+          case TEMP_TYPE_CREATE:
+          case TEMP_TYPE_UPDATE:
+            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
             })
             break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
+          case TEMP_TYPE_DELETE:
+            if (!row && !this.ids.length) {
+              this.$checkTable()
+            } else {
+              const ids = row ? [row.id] : this.ids
+              deleteParameterService(ids).then(() => {
+                this.$deleteTempNotify()
+                this.handleFilter()
+              })
+            }
             break
         }
       },
+      handleData() {
+        const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
+        const fun = isCreateTemp ? createParameterService : updateParameterService
+        this.$refs['dataForm'].validate((valid) => {
+          if (valid) {
+            fun(this.temp).then(() => {
+              isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
+              this.dialogFormVisible = false
+              this.handleFilter()
+            })
+          }
+        })
+      }
     }
   }
 </script>

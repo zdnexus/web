@@ -1,37 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="输入车辆品牌" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入车辆品牌" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" class="filter-item" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleRow('create')">
+      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow('create')">
         添加车辆品牌
       </el-button>
 
-      <el-popconfirm
-        title="确认要删除吗？"
-        @onConfirm="handleRow('delete')"
-      >
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
+        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="tableKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleSelectionChange"
-    >
-      <el-table-column
+    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+    <el-table-column
         type="selection"
         width="55">
       </el-table-column>
@@ -55,25 +43,25 @@
       </el-table-column>
 
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="150">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.updateBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="150">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -99,7 +87,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="车辆品牌" prop="brandId">
           <el-select v-model="temp.brandId" class="filter-item" placeholder="">
@@ -127,30 +115,28 @@
 <script>
   import { listToObj } from '@/utils'
   import Pagination from '@/components/Pagination'
-  import { parameterCarBrandList} from '@/api/vehicle/parameter/vehicle-brand'
+  import { parameterCarBrandList } from '@/api/vehicle/parameter/vehicle-brand'
   import { parameterCarModelList, createParameterCarModel, updateParameterCarModel, deleteParameterCarModel } from '@/api/vehicle/parameter/vehicle-model'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
-        tableKey: 0,
-        list: null,
+        TEMP_TYPE,
         car_bard_list: null,
         car_bard_list_obj: null,
-        total: 0,
-        listLoading: true,
         listQuery: {
           pageNum: 1,
           pageSize: 20,
           name: undefined,
         },
+        tableKey: 0,
         ids: [],
+        total: 0,
+        listLoading: true,
+        list: null,
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           brandId: undefined,
@@ -188,7 +174,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {

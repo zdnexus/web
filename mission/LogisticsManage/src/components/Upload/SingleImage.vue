@@ -147,7 +147,6 @@
       position: relative;
       border: 1px dashed #d9d9d9;
       float: left;
-      margin-left: 50px;
       .image-preview-wrapper {
         position: relative;
         width: 100%;

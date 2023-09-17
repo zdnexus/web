@@ -65,7 +65,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
@@ -94,7 +94,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;" :disabled="true">
         <el-form-item label="车架号" prop="vin">
           <el-input v-model="temp.vin"/>
@@ -154,13 +154,13 @@
     addDmNumberTask,
     allocateOrder,
   } from '@/api/vehicle/order'
-  import { TEXT_MAP, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
-        TEXT_MAP,
+        TEMP_TYPE,
         TREE_DATA,
         ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {

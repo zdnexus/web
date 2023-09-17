@@ -15,7 +15,7 @@
       border
       fit
       highlight-current-row
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column type="selection" align="center" />
       <el-table-column align="center" label="Id" width="95">
@@ -73,7 +73,7 @@ export default {
         this.listLoading = false
       })
     },
-    handleSelectionChange(val) {
+    handleIdChange(val) {
       this.multipleSelection = val
     },
     handleDownload() {

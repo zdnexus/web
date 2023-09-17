@@ -5,6 +5,7 @@
 @import './sidebar.scss';
 @import './btn.scss';
 @import './add.scss';
+@import './element-variables.scss';
 
 body {
   height: 100%;
@@ -179,6 +180,10 @@ aside {
     display: inline-block;
     vertical-align: middle;
     margin-bottom: 10px;
+  }
+
+  button + button, button + span {
+    margin-left: 10px;
   }
 }
 

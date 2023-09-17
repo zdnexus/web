@@ -29,7 +29,7 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -72,7 +72,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
@@ -84,7 +84,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.updateBy }}</span>-->
       <!--</template>-->
@@ -116,7 +116,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="客户姓名" prop="name">
           <el-input v-model="temp.name"/>
@@ -193,11 +193,13 @@
   import Pagination from '@/components/Pagination'
   import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/vehicle/cooperate/custom'
   import { organizationList } from '@/api/organization'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE,
         tableKey: 0,
         list: null,
         pmList: null,
@@ -210,10 +212,6 @@
         },
         ids: [],
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           name: undefined,
@@ -271,7 +269,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {

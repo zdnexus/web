@@ -79,7 +79,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="temp" label-position="left" label-width="100px" style="width: 600px; margin-left:10px;">
         <div class="block" v-if="temp.baseInfoList">
           <h2>车辆基本信息</h2>
@@ -126,7 +126,7 @@
   import Pagination from '@/components/Pagination'
   import { vehicleOrderList, orderBigLinklnfo } from '@/api/vehicle/order'
   import {
-    TEXT_MAP,
+    TEMP_TYPE,
     TREE_DATA,
     NODE_LIST_OBJ,
     VEHICLE_INFO_OBJ,
@@ -138,7 +138,7 @@
     components: { Pagination },
     data() {
       return {
-        TEXT_MAP,
+        TEMP_TYPE,
         NODE_LIST_OBJ,
         tableKey: 0,
         list: null,

@@ -13,6 +13,7 @@
 
       <el-popconfirm
         title="确认要删除吗？"
+        style="margin-left: 10px"
         @onConfirm="handleRow('delete')"
       >
         <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
@@ -29,7 +30,7 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -122,7 +123,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="仓库名称" prop="name">
           <el-input v-model="temp.name"/>
@@ -167,11 +168,13 @@
   import Pagination from '@/components/Pagination'
   import { ParameterWarehouseList, createParameterWarehouse, updateParameterWarehouse, deleteParameterWarehouse } from '@/api/vehicle/parameter/warehouse'
   import { WAREHOUSE_TYPE_LIST, WAREHOUSE_TYPE_LIST_OBJ } from '@/constant/vehicle'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE,
         WAREHOUSE_TYPE_LIST,
         WAREHOUSE_TYPE_LIST_OBJ,
         tableKey: 0,
@@ -185,10 +188,6 @@
         },
         ids: [],
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           name: undefined,
@@ -224,7 +223,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {

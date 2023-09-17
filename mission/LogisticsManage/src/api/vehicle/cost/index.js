@@ -30,13 +30,6 @@ export function updateOrderFee(data) {
   })
 }
 
-export function viewOrderFee(data) {
-  return request({
-    url: `/vehicle/orderFee/${data}`,
-    method: 'get'
-  })
-}
-
 export function deleteOrderFee(data) {
   return request({
     url: `/vehicle/orderFee/${data}`,
@@ -44,9 +37,24 @@ export function deleteOrderFee(data) {
   })
 }
 
+export function viewOrderFee(data) {
+  return request({
+    url: `/vehicle/orderFee/${data}`,
+    method: 'get'
+  })
+}
+
 export function exportOrderFee(data) {
   return request({
     url: `/vehicle/orderFee/export`,
     method: 'get'
+  })
+}
+
+export function auditOrderFee(data) {
+  return request({
+    url: `/vehicle/orderFee/orderFeeAudit`,
+    method: 'post',
+    data
   })
 }

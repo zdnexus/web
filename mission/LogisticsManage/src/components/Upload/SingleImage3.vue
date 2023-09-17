@@ -101,7 +101,7 @@ export default {
     position: relative;
     border: 1px dashed #d9d9d9;
     float: left;
-    margin-left: 50px;
+    margin-left: 20px;
     .image-preview-wrapper {
       position: relative;
       width: 100%;

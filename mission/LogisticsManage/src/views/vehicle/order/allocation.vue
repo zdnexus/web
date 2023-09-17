@@ -26,7 +26,7 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -81,7 +81,7 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
@@ -101,7 +101,7 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.orderStatus === '1'" @click="handleRow('allocate',row)">
+          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow('allocate',row)">
             分配
           </el-button>
 
@@ -119,7 +119,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEXT_MAP[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="车架号" prop="vin">
           <el-input v-model="temp.vin" :disabled="this.dialogStatus === 'allocate'"/>
@@ -189,14 +189,20 @@
     addDmNumberTask,
     allocateOrder,
   } from '@/api/vehicle/order'
-  import { TEXT_MAP, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant/vehicle'
+  import {
+    TEMP_TYPE,
+    TREE_DATA,
+    ORDER_EXAMINE_STATUS_AUDITING,
+    ORDER_EXAMINE_STATUS_OBJ
+  } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
-        TEXT_MAP,
+        TEMP_TYPE,
         TREE_DATA,
+        ORDER_EXAMINE_STATUS_AUDITING,
         ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {
           children: 'children',
@@ -242,7 +248,7 @@
       this.getList()
     },
     methods: {
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       getList() {

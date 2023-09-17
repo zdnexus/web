@@ -16,7 +16,7 @@
       fit
       highlight-current-row
       style="width: 100%"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -188,31 +188,67 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="400">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="500">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('update',row)">
+          <el-button size="mini"
+                     type="primary"
+                     style="margin-right: 10px"
+                     :disabled="row.auditStatus === ORDER_EXAMINE_STATUS_AUDITING || row.auditStatus === ORDER_EXAMINE_STATUS_PASSED"
+                     @click="handleRow('update',row)">
             录入费用
           </el-button>
 
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
+          <el-button size="mini"
+                     type="primary"
+                     style="margin-right: 10px"
+                     @click="handleRow('view',row)">
             费用详情
           </el-button>
 
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
-            申请开票
-          </el-button>
+          <el-popconfirm
+            title="请确认发起审核？"
+            style="margin-left: 10px"
+            @onConfirm="handleRow('audit',row)"
+          >
+            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus === ORDER_EXAMINE_STATUS_AUDITING || row.auditStatus === ORDER_EXAMINE_STATUS_PASSED">
+              发起审核
+            </el-button>
+          </el-popconfirm>
 
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
-            申请付款
-          </el-button>
+          <el-popconfirm
+            title="请确认发起申请付款？"
+            style="margin-left: 10px"
+            @onConfirm="handleRow('delete',row)"
+          >
+            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus !== ORDER_EXAMINE_STATUS_PASSED">
+              申请付款
+            </el-button>
+          </el-popconfirm>
+
+          <el-popconfirm
+            title="请确认发起申请开票？"
+            style="margin-left: 10px"
+            @onConfirm="handleRow('delete',row)"
+          >
+            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus !== ORDER_EXAMINE_STATUS_PASSED">
+              申请开票
+            </el-button>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+      <el-form ref="dataForm"
+               :rules="rules"
+               :model="temp"
+               label-position="left"
+               label-width="200px"
+               style="width: 600px"
+               :disabled="viewData"
+      >
         <el-form-item label="报价" prop="vin">
           <el-input v-model="temp.vin"/>
         </el-form-item>
@@ -300,27 +336,31 @@
         <div>
           <h2>境外费用列表</h2>
 
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="abroadTemp.name"/>
-          </el-form-item>
+          <div v-if="!viewData">
+            <el-form-item label="姓名" prop="name">
+              <el-input v-model="abroadTemp.name"/>
+            </el-form-item>
 
-          <el-form-item label="金额" prop="free">
-            <el-input v-model="abroadTemp.free"/>
-          </el-form-item>
+            <el-form-item label="金额" prop="free">
+              <el-input v-model="abroadTemp.free"/>
+            </el-form-item>
 
-          <el-form-item label="发票" prop="photoUrl">
-            <Upload v-model="abroadTemp.photoUrl"/>
-          </el-form-item>
+            <el-form-item label="发票" prop="photoUrl">
+              <Upload v-model="abroadTemp.photoUrl"/>
+            </el-form-item>
 
-          <el-form-item label="成本或应收" prop="freeType">
-            <el-select v-model="abroadTemp.freeType" class="filter-item" placeholder="">
-              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </el-form-item>
+            <el-form-item label="成本或应收" prop="freeType">
+              <el-select v-model="abroadTemp.freeType" class="filter-item" placeholder="">
+                <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </el-form-item>
+            <el-form-item label="" prop="">
+              <el-button type="primary" @click="enterExpensesAbroad">
+                录入费用
+              </el-button>
+            </el-form-item>
 
-          <el-button type="primary" @click="enterExpensesAbroad">
-            录入费用
-          </el-button>
+          </div>
 
           <el-table
             :key="tableKey+1"
@@ -360,27 +400,31 @@
         <div>
           <h2>其他费用列表</h2>
 
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="otherTemp.name"/>
-          </el-form-item>
+          <div v-if="!viewData">
+            <el-form-item label="姓名" prop="name">
+              <el-input v-model="otherTemp.name"/>
+            </el-form-item>
 
-          <el-form-item label="金额" prop="free">
-            <el-input v-model="otherTemp.free"/>
-          </el-form-item>
+            <el-form-item label="金额" prop="free">
+              <el-input v-model="otherTemp.free"/>
+            </el-form-item>
 
-          <el-form-item label="发票" prop="photoUrl">
-            <Upload v-model="otherTemp.photoUrl"/>
-          </el-form-item>
+            <el-form-item label="发票" prop="photoUrl">
+              <Upload v-model="otherTemp.photoUrl"/>
+            </el-form-item>
 
-          <el-form-item label="成本或应收" prop="freeType">
-            <el-select v-model="otherTemp.freeType" class="filter-item" placeholder="">
-              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </el-form-item>
+            <el-form-item label="成本或应收" prop="freeType">
+              <el-select v-model="otherTemp.freeType" class="filter-item" placeholder="">
+                <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </el-form-item>
 
-          <el-button type="primary" @click="enterExpensesOther">
-            录入费用
-          </el-button>
+            <el-form-item label="" prop="">
+              <el-button type="primary" @click="enterExpensesOther">
+                录入费用
+              </el-button>
+            </el-form-item>
+          </div>
 
           <el-table
             :key="tableKey+1"
@@ -420,27 +464,31 @@
         <div>
           <h2>差旅费用列表</h2>
 
-          <el-form-item label="姓名" prop="name">
-            <el-input v-model="travelTemp.name"/>
-          </el-form-item>
+          <div v-if="!viewData">
+            <el-form-item label="姓名" prop="name">
+              <el-input v-model="travelTemp.name"/>
+            </el-form-item>
 
-          <el-form-item label="金额" prop="free">
-            <el-input v-model="travelTemp.free"/>
-          </el-form-item>
+            <el-form-item label="金额" prop="free">
+              <el-input v-model="travelTemp.free"/>
+            </el-form-item>
 
-          <el-form-item label="发票" prop="photoUrl">
-            <Upload v-model="travelTemp.photoUrl"/>
-          </el-form-item>
+            <el-form-item label="发票" prop="photoUrl">
+              <Upload v-model="travelTemp.photoUrl"/>
+            </el-form-item>
 
-          <el-form-item label="成本或应收" prop="freeType">
-            <el-select v-model="travelTemp.freeType" class="filter-item" placeholder="">
-              <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
-            </el-select>
-          </el-form-item>
+            <el-form-item label="成本或应收" prop="freeType">
+              <el-select v-model="travelTemp.freeType" class="filter-item" placeholder="">
+                <el-option v-for="item in FREE_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+              </el-select>
+            </el-form-item>
 
-          <el-button type="primary" @click="enterExpensesTravel">
-            录入费用
-          </el-button>
+            <el-form-item label="" prop="">
+              <el-button type="primary" @click="enterExpensesTravel">
+                录入费用
+              </el-button>
+            </el-form-item>
+          </div>
 
           <el-table
             :key="tableKey+1"
@@ -506,10 +554,14 @@
     orderFeeList,
     createOrderFee,
     updateOrderFee,
+    // deleteOrderFee,
     viewOrderFee,
-    deleteOrderFee
+    auditOrderFee
   } from '@/api/vehicle/cost/index'
   import {
+    TEMP_TYPE,
+    ORDER_EXAMINE_STATUS_AUDITING,
+    ORDER_EXAMINE_STATUS_PASSED,
     ORDER_EXAMINE_STATUS_OBJ,
     FREE_STATUS,
     FREE_STATUS_OBJ
@@ -519,6 +571,9 @@
     components: { Pagination, Upload },
     data() {
       return {
+        TEMP_TYPE,
+        ORDER_EXAMINE_STATUS_AUDITING,
+        ORDER_EXAMINE_STATUS_PASSED,
         ORDER_EXAMINE_STATUS_OBJ,
         FREE_STATUS,
         FREE_STATUS_OBJ,
@@ -533,10 +588,6 @@
         },
         ids: [],
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           vin: undefined,
@@ -598,6 +649,11 @@
         }
       }
     },
+    computed: {
+      viewData() {
+        return this.dialogStatus === 'view'
+      }
+    },
     created() {
       this.getList()
     },
@@ -614,7 +670,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {
@@ -680,16 +736,6 @@
           }
         })
       },
-      deleteData(ids) {
-        deleteOrderFee(ids).then(() => {
-          this.handleFilter()
-          this.$notify({
-            type: 'success',
-            message: '删除成功',
-            duration: 3000
-          })
-        })
-      },
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
@@ -701,6 +747,7 @@
             })
             break
           case 'update':
+          case 'view':
             viewOrderFee([row.id]).then((res) => {
               this.temp = {
                 ...res.data,
@@ -714,9 +761,17 @@
               this.$refs['dataForm'].clearValidate()
             })
             break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
+          case 'audit':
+            auditOrderFee({ id: row.id }).then((res) => {
+              if (res) {
+                this.$notify({
+                  type: 'success',
+                  title: '已提交审核',
+                  duration: 3000
+                })
+                this.handleFilter()
+              }
+            })
             break
         }
       },

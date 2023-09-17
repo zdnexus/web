@@ -20,18 +20,18 @@ export function createParameterService(data) {
   })
 }
 
+export function deleteParameterService(data) {
+  return request({
+    url: `/vehicle/serviceItems/${data}`,
+    method: 'delete',
+  })
+}
+
 export function updateParameterService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'put',
     data,
-  })
-}
-
-export function deleteParameterService(data) {
-  return request({
-    url: `/vehicle/serviceItems/${data}`,
-    method: 'delete',
   })
 }
 

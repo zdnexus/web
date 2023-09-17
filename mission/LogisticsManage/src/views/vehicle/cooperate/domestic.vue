@@ -29,7 +29,7 @@
       fit
       highlight-current-row
       style="width: 100%;"
-      @selection-change="handleSelectionChange"
+      @selection-change="handleIdChange"
     >
       <el-table-column
         type="selection"
@@ -54,43 +54,43 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="驾照类型" prop="driverType" align="center" width="150">
+      <el-table-column label="驾照类型" prop="driverType" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.driverType }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="驾照编号" prop="driverNumber" align="center" width="150">
+      <el-table-column label="驾照编号" prop="driverNumber" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.driverNumber }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="微信号" prop="wechatSignal" align="center" width="150">
+      <el-table-column label="微信号" prop="wechatSignal" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.wechatSignal }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="150">-->
+      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.createBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="150">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="150">-->
+      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
       <!--<template slot-scope="{row}">-->
       <!--<span>{{ row.updateBy }}</span>-->
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="150">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -116,7 +116,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="司机名称" prop="name">
           <el-input v-model="temp.name"/>
@@ -169,11 +169,13 @@
   import Pagination from '@/components/Pagination'
   import { cooperateDomesticList, createCooperateDomestic, updateCooperateDomestic, deleteCooperateDomestic } from '@/api/vehicle/cooperate/domestic'
   import { organizationList } from '@/api/organization'
+  import { TEMP_TYPE } from '@/constant/vehicle'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE,
         tableKey: 0,
         list: null,
         pmList: null,
@@ -186,10 +188,6 @@
         },
         ids: [],
         dialogFormVisible: false,
-        textMap: {
-          create: '新增',
-          update: '更新'
-        },
         dialogStatus: '',
         temp: {
           name: undefined,
@@ -235,7 +233,7 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleSelectionChange(rows) {
+      handleIdChange(rows) {
         this.ids = rows.map(row => row.id)
       },
       resetTemp() {
