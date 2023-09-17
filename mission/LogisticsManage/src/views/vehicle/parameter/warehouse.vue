@@ -89,11 +89,11 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow(TEMP_TYPE_UPDATE,row)">
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
           </el-button>
 
-          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow('delete',row)">
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
             <el-button size="mini" type="danger" slot="reference">
               删除
             </el-button>
@@ -169,9 +169,6 @@
     components: { Pagination },
     data() {
       return {
-        PAGE_TOTAL,
-        PAGE_NUM,
-        PAGE_SIZE,
         TEMP_TYPE_CREATE,
         TEMP_TYPE_DELETE,
         TEMP_TYPE_UPDATE,
