@@ -150,10 +150,7 @@
     },
     created() {
       this.getList()
-      parameterCarBrandList({
-        pageNum: 1,
-        pageSize: 99999,
-      }).then(res => {
+      parameterCarBrandList().then(res => {
         this.car_bard_list = res.data.list.map(item => ({
           label: item.name,
           value: item.id,

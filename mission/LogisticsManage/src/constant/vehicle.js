@@ -42,8 +42,8 @@ export const VEHICLE_PHOTO_OBJ = {
   'boardData': '随车资料',
   'trunk': '后备箱',
   'vehicleKeys': '随车钥匙',
-  'demage': '受损照片',
   'video': '车辆视频',
+  'demage': '受损照片'
 }
 
 export const VEHICLE_INFO_OBJ = {

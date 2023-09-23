@@ -3,6 +3,16 @@
  * Url :
  */
 
+export const DECLARE_UPLOAD = 'declareUpld'
+
+export const DECLARE_CHECK = 'declareCheck'
+
+export const RECORD_UPLOAD = 'recordUpld'
+
+export const RECORD_CHECK = 'recordCheck'
+
+export const CUSTOM_CAR = 'customCar'
+
 export const TREE_DATA = [
   {
     label: '接车验车',
@@ -100,25 +110,25 @@ export const TREE_DATA = [
       {
         id: 16,
         label: '报关资料上传',
-        value: 'declareUpld',
+        value: DECLARE_UPLOAD,
         options: 'basedStaff'
       },
       {
         id: 17,
         label: '报关资料审核',
-        value: 'declareCheck',
+        value: DECLARE_CHECK,
         options: 'basedStaff'
       },
       {
         id: 18,
         label: '预录单上传',
-        value: 'recordUpld',
+        value: RECORD_UPLOAD,
         options: ''
       },
       {
         id: 19,
         label: '预录单审核',
-        value: 'recordCheck',
+        value: RECORD_CHECK,
         options: 'servicer'
       },
       {
@@ -130,7 +140,7 @@ export const TREE_DATA = [
       {
         id: 21,
         label: '报关',
-        value: 'customCar',
+        value: CUSTOM_CAR,
         options: ''
       }
     ],

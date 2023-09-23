@@ -12,10 +12,16 @@ export const TEMP_TYPE_VIEW = 'view'
 
 export const TEMP_TYPE_ALLOCATE = 'allocate'
 
+export const TEMP_TYPE_HANDLE = 'handle'
+
+export const TEMP_TYPE_UPLOAD = 'upload'
+
 export const TEMP_TYPE = {
   [TEMP_TYPE_CREATE]: '添加',
   [TEMP_TYPE_DELETE]: '删除',
   [TEMP_TYPE_UPDATE]: '更新',
   [TEMP_TYPE_VIEW]: '查看',
-  [TEMP_TYPE_ALLOCATE]: '分配'
+  [TEMP_TYPE_ALLOCATE]: '分配',
+  [TEMP_TYPE_HANDLE]: '处理',
+  [TEMP_TYPE_UPLOAD]: '上传',
 }

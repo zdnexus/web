@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="输入服务项" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="请输入服务项" @keyup.enter.native="handleFilter"/>
 
       <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
         查询
@@ -69,7 +69,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
@@ -148,7 +148,7 @@
         listQuery: {
           name: undefined,
           pageNum: PAGE_NUM,
-          pageSize: PAGE_SIZE,
+          pageSize: PAGE_SIZE
         },
         listLoading: false,
         tableKey: 0,

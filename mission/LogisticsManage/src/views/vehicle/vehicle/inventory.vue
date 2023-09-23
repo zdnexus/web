@@ -127,7 +127,7 @@
             style="width: 100px; height: 100px"
             :src="img2"
           ></el-image>
-          <video v-else width="300" height="300" :src="img.url" autoplay="autoplay" loop="loop"></video>
+          <video v-else width="300" height="300" :src="img.url" controls/></video>
         </div>
       </el-form>
     </el-dialog>

@@ -1,13 +1,18 @@
 <template>
   <div class="upload-container">
     <el-upload
-      v-show="imageUrl.length===0"
+      v-if="multiple || (!multiple && imageUrl.length === 0)"
       action="https://upload-z2.qiniup.com"
-      :show-file-list="false"
+      :show-file-list="multiple"
+      :file-list="fileList"
+      list-type="picture"
       :data="addFormUpload"
       :multiple="false"
+      :disabled="disabled"
+      :before-upload="beforeUpload"
       :on-change="handleChange"
       :on-success="handleSuccess"
+      :on-remove="handleRemove"
       class="image-uploader"
       drag
     >
@@ -16,9 +21,9 @@
         将文件拖到此处，或<em>点击上传</em>
       </div>
     </el-upload>
-    <div v-show="imageUrl.length>1" class="image-preview">
+    <div v-if="!multiple && imageUrl.length > 1" class="image-preview">
       <div class="image-preview-wrapper">
-        <img :src="imageUrl+'?imageView2/1/w/200/h/200'">
+        <img :src="imageUrl+'?imageView'">
         <div class="image-preview-action">
           <i class="el-icon-delete" @click="rmImage"/>
         </div>
@@ -28,7 +33,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import { getToken } from '@/api/qiniu'
 
   export default {
@@ -37,17 +41,25 @@
       value: {
         type: String,
         default: ''
+      },
+      multiple: {
+        type: Boolean,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
     },
     data() {
       return {
-        tempUrl: '',
-        dataObj: { token: '', key: '' },
         addFormUpload: {
+          name: '',
           key: '',
           token: '',
           domainUrl: ''
         },
+        fileList: []
       }
     },
     computed: {
@@ -55,77 +67,73 @@
         return this.value
       }
     },
+    created() {
+      if (this.multiple) {
+        this.fileList = this.value.split(',').map((url) => ({
+          name: '',
+          url
+        }))
+      }
+    },
+    mounted() {
+      getToken().then(res => {
+        this.addFormUpload.token = res.data.token
+        this.addFormUpload.key = res.data.key
+        this.addFormUpload.domain = res.data.domain
+      })
+    },
     methods: {
       rmImage() {
-        this.emitInput('')
+        if (!this.disabled) {
+          this.emitInput('')
+        }
       },
       emitInput(val) {
         this.$emit('input', val)
       },
-      handleImageSuccess() {
-        this.emitInput(this.tempUrl)
+      beforeUpload(file) {
+        const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png') || (file.type === 'image/gif')
+        const isLt2M = file.size / 1024 / 1024 < 2
+        if (!isRightType) {
+          this.$Notice.warning({
+            title: '文件格式出错',
+            desc: '文件格式应为 jpg or png or gif.'
+          })
+        }
+        if (!isLt2M) {
+          this.$Notice.warning({
+            title: '文件过大',
+            desc: '文件  ' + file.name + ' 超过2M.'
+          })
+        }
+        return isRightType && isLt2M
       },
       handleChange(file) {
-        getToken().then(res => {
-          if (res && res.h) {
-            this.$Message.error('上传出错')
-            return false
+        if (file.status === 'success' && file.percentage === 100) {
+          this.addFormUpload.key += '.' + file.raw.type.split('/')[1]
+          if (this.multiple) {
+            this.fileList.push({
+              name: file.name,
+              url: this.value
+            })
+            this.emitInput(this.fileList.map(file => file.url).join(','))
           } else {
-            let obj = {}
-            obj.token = res.data.token
-            obj.key = res.data.key
-            obj.domain = res.data.domain
-            this.addFormUpload = obj
-            const isRightType = (file.raw.type === 'image/jpeg') || (file.raw.type === 'image/png') || (file.raw.type === 'image/gif')
-            const isLt2M = file.raw.size / 1024 / 1024 < 2
-            if (!isRightType) {
-              this.$Notice.warning({
-                title: '文件格式出错',
-                desc: '文件格式应为 jpg or png or gif.'
-              })
-            }
-            if (!isLt2M) {
-              this.$Notice.warning({
-                title: '文件过大',
-                desc: '文件  ' + file.raw.name + ' 超过2M.'
-              })
-            }
-            let obj1 = this.addFormUpload
-            obj1.key += '.' + file.raw.type.split('/')[1]
-            this.addFormUpload = obj1
-            return isRightType && isLt2M
+            this.emitInput(this.value)
           }
-        })
-
+          this.$uploadImageNotify()
+        }
       },
-      handleSuccess(res, file) {
-        this.value = this.addFormUpload.domain + '/' + res.key
-        this.emitInput(this.value)
+      handleRemove(file) {
+        if (this.multiple && this.disabled) {
+          const index = this.fileList.map(file => file.url).indexOf(file.url)
+          this.fileList.splice(index, 1)
+          this.emitInput(this.fileList.map(file => file.url).join(','))
+        }
+      },
+      handleSuccess(res) {
+        const url = this.addFormUpload.domain + '/' + res.key
+        this.value = url
       }
-      // handleChange(file) {
-      //   return new Promise((resolve, reject) => {
-      //     getToken().then(res => {
-      //       if (file.response && file.response.files.file) {
-      //         const formData = new FormData()
-      //         formData.append('token', res.data.token)
-      //         formData.append('key', res.data.key)
-      //         formData.append('domain', res.data.domain)
-      //         formData.append('file', file.response.files.file)
-      //         axios.post('https://upload-z2.qiniup.com', formData, {
-      //           headers: {
-      //             'Content-Type': 'multipart/form-data'
-      //           }
-      //         }).then(res2 => {
-      //           this.value = `${res.data.domain}/${res2.data.key}`
-      //         })
-      //       }
-      //       resolve(true)
-      //     }).catch(err => {
-      //       console.log(err)
-      //       reject(false)
-      //     })
-      //   })
-      // }
     }
   }
 </script>

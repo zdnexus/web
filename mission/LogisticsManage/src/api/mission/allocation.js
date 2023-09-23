@@ -13,32 +13,40 @@ export function upcomingTaskList(data) {
   })
 }
 
-export function createUpcomingTask(data) {
-  return request({
-    url: '/vehicle/upcomingTask',
-    method: 'post',
-    data,
-  })
-}
-
-export function updateUpcomingTask(data) {
-  return request({
-    url: '/vehicle/upcomingTask',
-    method: 'put',
-    data,
-  })
-}
-
-export function deleteUpcomingTask(data) {
-  return request({
-    url: `/vehicle/upcomingTask/${data}`,
-    method: 'delete',
-  })
-}
-
 export function exportUpcomingTask(data) {
   return request({
     url: `/vehicle/upcomingTask/export`,
     method: 'get',
+  })
+}
+
+export function getVehicleDeclare(vin) {
+  return request({
+    url: `/vehicle/declare/${vin}`,
+    method: 'get',
+  })
+}
+
+export function uploadVehicleDeclare(data) {
+  return request({
+    url: `/vehicle/declare/declareUpld`,
+    method: 'post',
+    data
+  })
+}
+
+export function uploadVehicleRecord(data) {
+  return request({
+    url: `/vehicle/declare/recordUpld`,
+    method: 'post',
+    data
+  })
+}
+
+export function uploadCustomCar(data) {
+  return request({
+    url: `/vehicle/declare/customCarUpld`,
+    method: 'post',
+    data
   })
 }

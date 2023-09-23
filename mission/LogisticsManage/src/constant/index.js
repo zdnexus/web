@@ -14,3 +14,5 @@ export * from './tree_data'
 export * from './parameter/server'
 
 export * from './vehicle'
+
+export * from './misson/allocation'
