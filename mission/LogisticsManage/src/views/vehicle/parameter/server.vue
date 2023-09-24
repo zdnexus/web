@@ -1,39 +1,39 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="请输入服务项" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" style="width: 200px" placeholder="输入服务项" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
+      <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+      <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
         添加服务项
       </el-button>
 
       <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
-        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
+        <el-button type="danger" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
       <el-table-column type="selection" width="55"></el-table-column>
 
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="服务项" prop="name" align="center" width="100">
+      <el-table-column label="服务项" prop="name" align="center" width="200">
         <template slot-scope="{row}">
           <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="类型" prop="type" align="center" width="100">
+      <el-table-column label="服务类型" prop="type" align="center" width="200">
         <template slot-scope="{row}">
           <span>{{ SERVE_TYPE_LIST_OBJ[row.type] }}</span>
         </template>
@@ -45,31 +45,19 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
-      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
@@ -84,24 +72,25 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="服务项名称" prop="name">
-          <el-input v-model="temp.name"/>
+          <el-input v-model="temp.name"></el-input>
         </el-form-item>
 
         <el-form-item label="服务类型" prop="type">
-          <el-select v-model="temp.type" class="filter-item" placeholder="">
-            <el-option v-for="item in SERVE_TYPE_LIST" :key="item.value" :label="item.label" :value="item.value"/>
+          <el-select v-model="temp.type" placeholder="">
+            <el-option v-for="item in SERVE_TYPE_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="境外目的地" prop="abroadAddress">
-          <el-input v-model="temp.abroadAddress"/>
+          <el-input v-model="temp.abroadAddress"></el-input>
         </el-form-item>
       </el-form>
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
           取消
@@ -151,10 +140,10 @@
           pageSize: PAGE_SIZE
         },
         listLoading: false,
-        tableKey: 0,
+        listKey: 0,
         list: undefined,
         ids: [],
-        total: PAGE_TOTAL,
+        listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {
@@ -163,13 +152,13 @@
           abroadAddress: undefined
         },
         rules: {
-          name: [{ required: true, message: '请输入服务项名称', trigger: 'blur' }],
-          type: [{ required: true, message: '请选择服务类型', trigger: 'change' }],
-          abroadAddress: [{ required: true, message: '请输入境外目的地', trigger: 'blur' }]
+          name: [{ required: true, message: '输入服务项名称', trigger: 'blur' }],
+          type: [{ required: true, message: '选择服务类型', trigger: 'change' }],
+          abroadAddress: [{ required: true, message: '输入境外目的地', trigger: 'blur' }]
         }
       }
     },
-    created() {
+    mounted() {
       this.getList()
     },
     methods: {
@@ -177,7 +166,7 @@
         this.listLoading = true
         parameterServiceList(this.listQuery).then((res) => {
           this.list = res.data.list
-          this.total = res.data.total
+          this.listTotal = res.data.total
           this.listLoading = false
         })
       },
@@ -221,10 +210,10 @@
       },
       handleData() {
         const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
-        const fun = isCreateTemp ? createParameterService : updateParameterService
+        const handleFun = isCreateTemp ? createParameterService : updateParameterService
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            fun(this.temp).then(() => {
+            handleFun(this.temp).then(() => {
               isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
               this.dialogFormVisible = false
               this.handleFilter()

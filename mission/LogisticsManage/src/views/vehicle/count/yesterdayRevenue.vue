@@ -20,13 +20,13 @@
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         Export
       </el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
+      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="listKey=listKey+1">
         reviewer
       </el-checkbox>
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
@@ -130,7 +130,7 @@
     </el-dialog>
 
     <el-dialog :visible.sync="dialogPvVisible" title="Reading statistics">
-      <el-table :data="pvData" border fit highlight-current-row style="width: 100%">
+      <el-table :data="pvData" border fit highlight-current-row>
         <el-table-column prop="key" label="Channel" />
         <el-table-column prop="pv" label="Pv" />
       </el-table>
@@ -179,7 +179,7 @@
     },
     data() {
       return {
-        tableKey: 0,
+        listKey: 0,
         list: null,
         total: 0,
         listLoading: true,

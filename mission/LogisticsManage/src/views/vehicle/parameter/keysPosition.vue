@@ -1,27 +1,27 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" class="filter-item" style="width: 200px" placeholder="请输入钥匙位置" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" style="width: 200px" placeholder="输入钥匙位置" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
+      <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+      <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
         添加钥匙位置
       </el-button>
 
       <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
-        <el-button type="danger" class="filter-item" icon="el-icon-delete" slot="reference">
+        <el-button type="danger" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table v-loading="listLoading" :key="tableKey" :data="list" border fit highlight-current-row style="width: 100%" @selection-change="handleIdChange">
+    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
       <el-table-column type="selection" width="55"></el-table-column>
 
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
@@ -57,13 +57,13 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -84,27 +84,27 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin"/>
+          <el-input v-model="temp.vin"></el-input>
         </el-form-item>
 
         <el-form-item label="钥匙数量" prop="nums">
-          <el-input v-model="temp.nums"/>
+          <el-input v-model="temp.nums"></el-input>
         </el-form-item>
 
         <el-form-item label="钥匙位置" prop="keysPosition">
-          <el-input v-model="temp.keysPosition"/>
+          <el-input v-model="temp.keysPosition"></el-input>
         </el-form-item>
 
         <el-form-item label="存放图片" prop="photoUrl">
-          <Upload v-model="temp.photoUrl"/>
+          <Upload v-model="temp.photoUrl"></Upload>
         </el-form-item>
-
       </el-form>
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
           取消
@@ -148,13 +148,13 @@
         listQuery: {
           name: undefined,
           pageNum: PAGE_NUM,
-          pageSize: PAGE_SIZE,
+          pageSize: PAGE_SIZE
         },
         listLoading: false,
-        tableKey: 0,
+        listKey: 0,
         list: undefined,
         ids: [],
-        total: PAGE_TOTAL,
+        listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {
@@ -164,22 +164,22 @@
           photoUrl: undefined
         },
         rules: {
-          vin: [{ required: true, message: '请输入车架号', trigger: 'blur' }],
-          nums: [{ required: true, message: '请输入钥匙数量', trigger: 'blur' }],
-          keysPosition: [{ required: true, message: '请输入钥匙位置', trigger: 'blur' }],
-          photoUrl: [{ required: true, message: '请上传存放图片', trigger: 'blur' }]
+          vin: [{ required: true, message: '输入车架号', trigger: 'blur' }],
+          nums: [{ required: true, message: '输入钥匙数量', trigger: 'blur' }],
+          keysPosition: [{ required: true, message: '输入钥匙位置', trigger: 'blur' }],
+          photoUrl: [{ required: true, message: '上传存放图片', trigger: 'blur' }]
         }
       }
     },
-    created() {
+    mounted() {
       this.getList()
     },
     methods: {
       getList() {
         this.listLoading = true
-        parameterkeysPositionList(this.listQuery).then(res => {
+        parameterkeysPositionList(this.listQuery).then((res) => {
           this.list = res.data.list
-          this.total = res.data.total
+          this.listTotal = res.data.total
           this.listLoading = false
         })
       },
@@ -195,52 +195,46 @@
           name: undefined,
           vin: undefined,
           keysPosition: undefined,
-          photoUrl: undefined,
+          photoUrl: undefined
         }
-      },
-      handleData() {
-        const fun = this.dialogStatus === 'create' ? createParameterkeysPosition : updateParameterkeysPosition
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            fun(this.temp).then(() => {
-              this.dialogFormVisible = false
-              this.handleFilter()
-              this.$notify({
-                type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-                duration: 3000
-              })
-            })
-          }
-        })
-      },
-      deleteData(ids) {
-        deleteParameterkeysPosition(ids).then(() => {
-          this.handleFilter()
-          this.$notify({
-            type: 'success',
-            message: '删除成功',
-            duration: 3000
-          })
-        })
       },
       handleRow(type, row) {
         switch (type) {
-          case 'create':
-          case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row }
+          case TEMP_TYPE_CREATE:
+          case TEMP_TYPE_UPDATE:
+            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
             })
             break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
+          case TEMP_TYPE_DELETE:
+            if (!row && !this.ids.length) {
+              this.$checkTable()
+            } else {
+              const ids = row ? [row.id] : this.ids
+              deleteParameterkeysPosition(ids).then(() => {
+                this.$deleteTempNotify()
+                this.handleFilter()
+              })
+            }
             break
         }
       },
+      handleData() {
+        const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
+        const handleFun = isCreateTemp ? createParameterkeysPosition : updateParameterkeysPosition
+        this.$refs['dataForm'].validate((valid) => {
+          if (valid) {
+            handleFun(this.temp).then(() => {
+              isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
+              this.dialogFormVisible = false
+              this.handleFilter()
+            })
+          }
+        })
+      }
     }
   }
 </script>

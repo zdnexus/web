@@ -9,13 +9,13 @@
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
       fit
       highlight-current-row
-      style="width: 100%"
+
       @selection-change="handleIdChange"
     >
       <el-table-column
@@ -23,7 +23,7 @@
         width="55">
       </el-table-column>
 
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
@@ -170,7 +170,7 @@
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
@@ -182,7 +182,7 @@
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -363,13 +363,13 @@
           </div>
 
           <el-table
-            :key="tableKey+1"
+            :key="listKey+1"
             v-loading="listLoading"
             :data="temp.vehicleAbroadFreeList"
             border
             fit
             highlight-current-row
-            style="width: 100%"
+
           >
             <el-table-column label="姓名" prop="name" align="center" width="125">
               <template slot-scope="{row}">
@@ -427,13 +427,13 @@
           </div>
 
           <el-table
-            :key="tableKey+1"
+            :key="listKey+1"
             v-loading="listLoading"
             :data="temp.vehicleOtherFeeList"
             border
             fit
             highlight-current-row
-            style="width: 100%"
+
           >
             <el-table-column label="姓名" prop="name" align="center" width="125">
               <template slot-scope="{row}">
@@ -491,13 +491,13 @@
           </div>
 
           <el-table
-            :key="tableKey+1"
+            :key="listKey+1"
             v-loading="listLoading"
             :data="temp.vehicleTravelFreeList"
             border
             fit
             highlight-current-row
-            style="width: 100%"
+
           >
             <el-table-column label="姓名" prop="name" align="center" width="125">
               <template slot-scope="{row}">
@@ -577,7 +577,7 @@
         ORDER_EXAMINE_STATUS_OBJ,
         FREE_STATUS,
         FREE_STATUS_OBJ,
-        tableKey: 0,
+        listKey: 0,
         list: null,
         total: 0,
         listLoading: true,

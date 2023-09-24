@@ -20,13 +20,13 @@
       <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
         Export
       </el-button>
-      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
+      <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="listKey=listKey+1">
         reviewer
       </el-checkbox>
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
@@ -179,7 +179,7 @@
     },
     data() {
       return {
-        tableKey: 0,
+        listKey: 0,
         list: null,
         total: 0,
         listLoading: true,

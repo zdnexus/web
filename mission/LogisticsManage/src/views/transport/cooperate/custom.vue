@@ -13,7 +13,7 @@
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
@@ -21,7 +21,7 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
@@ -150,7 +150,7 @@
     },
     data() {
       return {
-        tableKey: 0,
+        listKey: 0,
         list: null,
         total: 0,
         listLoading: true,

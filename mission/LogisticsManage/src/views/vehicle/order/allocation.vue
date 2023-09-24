@@ -19,7 +19,7 @@
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
@@ -33,7 +33,7 @@
         width="55">
       </el-table-column>
 
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
@@ -87,13 +87,13 @@
       <!--</template>-->
       <!--</el-table-column>-->
 
-      <el-table-column label="创建时间" prop="createTime" align="center" width="100">
+      <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="100">
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.updateTime }}</span>
         </template>
@@ -209,7 +209,7 @@
           label: 'label',
           value: 'value'
         },
-        tableKey: 0,
+        listKey: 0,
         list: null,
         vehicleTypeList: null,
         clientList: null,

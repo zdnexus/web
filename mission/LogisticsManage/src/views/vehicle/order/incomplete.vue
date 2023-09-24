@@ -9,7 +9,7 @@
     </div>
 
     <el-table
-      :key="tableKey"
+      :key="listKey"
       v-loading="listLoading"
       :data="list"
       border
@@ -17,7 +17,7 @@
       highlight-current-row
       style="width: 100%;"
     >
-      <el-table-column label="id" prop="id" align="center" width="100">
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
         </template>
@@ -108,7 +108,7 @@
 
         <div class="block" v-if="temp.updateList">
           <h2>操作记录</h2>
-          <el-table :data="temp.updateList" style="width: 100%">
+          <el-table :data="temp.updateList">
             <el-table-column prop="vin" label="车架号"></el-table-column>
             <el-table-column prop="bigLink" label="环节名称"></el-table-column>
             <el-table-column prop="smallLink" label="任务名称"></el-table-column>
@@ -140,7 +140,7 @@
       return {
         TEMP_TYPE,
         NODE_LIST_OBJ,
-        tableKey: 0,
+        listKey: 0,
         list: null,
         total: 0,
         listLoading: true,
