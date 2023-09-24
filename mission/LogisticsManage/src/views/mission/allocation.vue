@@ -1,14 +1,14 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="输入车架号名称" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号名称" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button type="primary" class="filter-item" icon="el-icon-search" @click="handleFilter">
+      <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
     </div>
 
-    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row style="width: 100%">
+    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row>
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -51,23 +51,11 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
       <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
-
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
 
       <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
@@ -84,11 +72,11 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
 
     <HandleDialog v-model="dialogFormVisible"
                   :dialogStatus="dialogStatus"
-                  :vehicleInfo="vehicleInfo"/>
+                  :vehicleInfo="vehicleInfo"></HandleDialog>
   </div>
 </template>
 
@@ -125,7 +113,7 @@
         listKey: 0,
         list: undefined,
         ids: [],
-        total: PAGE_TOTAL,
+        listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         vehicleInfo: null
@@ -139,7 +127,7 @@
         this.listLoading = true
         upcomingTaskList(this.listQuery).then((res) => {
           this.list = res.data.list
-          this.total = res.data.total
+          this.listTotal = res.data.total
           this.listLoading = false
         })
       },
@@ -151,7 +139,7 @@
         this.dialogStatus = type
         switch (type) {
           case TEMP_TYPE_ALLOCATE:
-            getVehicleDeclare(row.vin).then(res => {
+            getVehicleDeclare(row.vin).then((res) => {
               this.vehicleInfo = {
                 row,
                 vehicleBaseInfo: res.data.vehicleBaseInfo,
