@@ -63,10 +63,14 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
+      <el-table-column label="操作" align="center" class-name="small-padding" width="220">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_ALLOCATE,row)">
-            处理
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_MAKE_PLAN,row)">
+            {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
+          </el-button>
+
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_MISSION_DETAILS,row)">
+            {{ TEMP_TYPE[TEMP_MISSION_DETAILS] }}
           </el-button>
         </template>
       </el-table-column>
@@ -77,32 +81,44 @@
     <HandleDialog v-model="dialogFormVisible"
                   :dialogStatus="dialogStatus"
                   :vehicleInfo="vehicleInfo"></HandleDialog>
+    <Link :linkFormVisible="linkFormVisible"
+          :linkData="linkData"></Link>
   </div>
 </template>
 
 <script>
   import HandleDialog from './handle-dialog.vue'
   import Pagination from '@/components/Pagination'
+  import Link from '@/components/Link'
   import {
     upcomingTaskList,
-    getVehicleDeclare
+    getVehicleDeclare,
+    bigLinkInfo
   } from '@/api/mission/allocation'
   import {
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
-    TEMP_TYPE_ALLOCATE,
+    TEMP_MAKE_PLAN,
+    TEMP_MISSION_DETAILS,
     TEMP_TYPE,
     TASK_STATUS_OBJ
   } from '@/constant'
 
   export default {
-    components: { Pagination, HandleDialog },
+    components: {
+      Pagination,
+      HandleDialog,
+      Link
+    },
     data() {
       return {
-        TEMP_TYPE_ALLOCATE,
+        TEMP_MAKE_PLAN,
+        TEMP_MISSION_DETAILS,
         TEMP_TYPE,
         TASK_STATUS_OBJ,
+        linkFormVisible: false,
+        linkData: null,
         listQuery: {
           vin: undefined,
           taskStatus: 0,
@@ -138,7 +154,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case TEMP_TYPE_ALLOCATE:
+          case TEMP_MAKE_PLAN:
             getVehicleDeclare(row.vin).then((res) => {
               this.vehicleInfo = {
                 row,
@@ -148,6 +164,16 @@
               }
             })
             this.dialogFormVisible = true
+            break
+          case TEMP_MISSION_DETAILS:
+            bigLinkInfo({
+              bigLinKey: row.bigLink,
+              orderId: row.orderId,
+              vin: row.vin,
+            }).then((res) => {
+              this.linkData = res.data
+              this.linkFormVisible = true
+            })
             break
         }
       }

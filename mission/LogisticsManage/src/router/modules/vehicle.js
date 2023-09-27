@@ -151,23 +151,23 @@ export default {
       ]
     },
     {
-      path: '/vehicle/count',
+      path: '/vehicle/statistics',
       meta: { title: '统计报表', icon: 'edit' },
       component: () => import('@/views/link'),
       children: [
         {
-          path: '/vehicle/count/warehouse',
-          component: () => import('@/views/vehicle/count/warehouse'),
+          path: '/vehicle/statistics/warehouse',
+          component: () => import('@/views/vehicle/statistics/warehouse'),
           meta: { title: '仓库库存统计报表', icon: 'edit' }
         },
         {
-          path: '/vehicle/count/yesterdayRevenue',
-          component: () => import('@/views/vehicle/count/yesterdayRevenue'),
+          path: '/vehicle/statistics/yesterdayRevenue',
+          component: () => import('@/views/vehicle/statistics/yesterdayRevenue'),
           meta: { title: '昨日营收统计', icon: 'edit' }
         },
         {
-          path: '/vehicle/count/monthRevenue',
-          component: () => import('@/views/vehicle/count/monthRevenue'),
+          path: '/vehicle/statistics/monthRevenue',
+          component: () => import('@/views/vehicle/statistics/monthRevenue'),
           meta: { title: '月度营收统计', icon: 'edit' }
         },
       ]

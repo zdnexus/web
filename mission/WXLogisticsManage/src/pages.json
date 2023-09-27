@@ -6,16 +6,16 @@
 		}
 	},
 	"pages": [
-//		{
-//			"path": "pages/index/index",
-//			"style": {
-//				"navigationBarTitleText": "uni-app"
-//			}
-//		},
 		{
 			"path": "pages/mission/index",
 			"style": {
 				"navigationBarTitleText": "代办任务管理"
+			}
+		},
+		{
+			"path": "pages/link/index",
+			"style": {
+				"navigationBarTitleText": "信息登记"
 			}
 		}
 	],

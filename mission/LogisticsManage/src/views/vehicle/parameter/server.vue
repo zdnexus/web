@@ -60,12 +60,12 @@
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
-            更新
+            {{ TEMP_TYPE[TEMP_TYPE_UPDATE] }}
           </el-button>
 
           <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
             <el-button size="mini" type="danger" slot="reference">
-              删除
+              {{ TEMP_TYPE[TEMP_TYPE_DELETE] }}
             </el-button>
           </el-popconfirm>
         </template>

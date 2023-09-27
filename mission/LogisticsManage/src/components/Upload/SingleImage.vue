@@ -23,7 +23,7 @@
     </el-upload>
     <div v-if="!multiple && imageUrl.length > 1" class="image-preview">
       <div class="image-preview-wrapper">
-        <img :src="imageUrl+'?imageView'">
+        <img :src="imageUrl+'?imageView2/w/100/h/100'">
         <div class="image-preview-action">
           <i class="el-icon-delete" @click="rmImage"/>
         </div>

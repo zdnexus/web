@@ -1,10 +1,8 @@
 <template>
   <view class="content">
-    <view class="operate">
-      <uni-easyinput v-model="temp.vin" class="input" placeholder="车架号" @input="onKeyInput"></uni-easyinput>
-      <uni-data-select v-model="temp.link" class="select" :localdata="selectData" placeholder="环节" @change="change"></uni-data-select>
-      <button class="uni-button" size="mini" type="primary">搜索</button>
-    </view>
+    <uni-easyinput v-model="temp.vin" class="input" placeholder="车架号" @input="onKeyInput"></uni-easyinput>
+    <uni-data-select v-model="temp.link" class="select" :localdata="selectData" placeholder="环节" @change="change"></uni-data-select>
+    <button class="button" type="primary" size="mini">搜索</button>
     <uni-table class="table" border stripe :loading="tableLoading" emptyText="暂无更多数据">
       <uni-tr>
         <uni-th width="100">车架号</uni-th>
@@ -18,7 +16,7 @@
         <uni-td>{{ item.smallLinkConvert }}</uni-td>
         <uni-td>
           <view class="uni-group">
-            <button class="uni-button" size="mini" type="primary">审批</button>
+            <button class="uni-button" size="mini" type="primary" @click="toLink(item.vin)">审批</button>
           </view>
         </uni-td>
       </uni-tr>
@@ -66,6 +64,11 @@
       },
       change(event) {
 
+      },
+      toLink(vin) {
+        wx.navigateTo({
+          url: `../link/index?vin=${vin}`
+        })
       }
     },
   }
@@ -78,19 +81,9 @@
     align-items: center;
     justify-content: center;
 
-    .operate {
+    .input, .select, .button, .table {
       width: 100%;
-      display: flex;
-      margin-bottom: 10px;
-
-      .select, .uni-easyinput {
-        flex: 1;
-        margin: 5px;
-      }
-
-      .uni-button {
-        margin: 5px;
-      }
+      margin: 5px;
     }
 
     .table {

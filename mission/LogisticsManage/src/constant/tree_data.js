@@ -84,6 +84,12 @@ export const TREE_DATA = [
         options: 'fieldStaff'
       },
       {
+        id: 20,
+        label: '施封',
+        value: 'seal',
+        options: 'fieldStaff'
+      },
+      {
         id: 6,
         label: '运通刷卡',
         value: 'card',
@@ -130,12 +136,6 @@ export const TREE_DATA = [
         label: '预录单审核',
         value: RECORD_CHECK,
         options: 'servicer'
-      },
-      {
-        id: 20,
-        label: '施封',
-        value: 'seal',
-        options: 'fieldStaff'
       },
       {
         id: 21,

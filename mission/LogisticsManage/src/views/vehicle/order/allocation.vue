@@ -1,37 +1,25 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
+      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-button type="primary" icon="el-icon-search" class="filter-item" style="margin-left: 10px" @click="handleFilter">
+      <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
-      <el-button type="primary" icon="el-icon-edit" class="filter-item" style="margin-left: 10px" @click="handleRow('create')">
-        添加订单
+      <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+        添加服务项
       </el-button>
 
-      <el-popconfirm title="确认要删除吗？" style="margin-left: 10px" @onConfirm="handleRow('delete')">
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
+        <el-button type="danger" icon="el-icon-delete" slot="reference">
           批量删除
         </el-button>
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="listKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleIdChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55">
-      </el-table-column>
+    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"></el-table-column>
 
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -81,12 +69,6 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
       <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
@@ -101,38 +83,35 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow('allocate',row)">
-            分配
+          <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(TEMP_MAKE_PLAN,row)">
+            {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
           </el-button>
 
-          <el-popconfirm
-            title="确认要删除吗？"
-            @onConfirm="handleRow('delete',row)"
-          >
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
             <el-button size="mini" type="danger" slot="reference">
-              删除
+              {{ TEMP_TYPE[TEMP_TYPE_DELETE] }}
             </el-button>
           </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === 'allocate'"/>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === TEMP_MAKE_PLAN"/>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
-          <el-select v-model="temp.vehicleType" class="filter-item">
+          <el-select v-model="temp.vehicleType">
             <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"/>
           </el-select>
         </el-form-item>
 
         <el-form-item label="客户" prop="client">
-          <el-select v-model="temp.client" class="filter-item">
+          <el-select v-model="temp.client">
             <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
         </el-form-item>
@@ -142,22 +121,21 @@
         </el-form-item>
 
         <el-form-item label="服务项" prop="service">
-          <el-select v-model="temp.service" class="filter-item">
+          <el-select v-model="temp.service">
             <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
         </el-form-item>
 
-        <el-tree
-          ref="dataTree"
-          :data="TREE_DATA"
-          :default-expand-all="true"
-          show-checkbox
-          node-key="id"
-          :default-expanded-keys="[2, 3]"
-          :default-checked-keys="[5]"
-          :props="defaultTreeProps"
-          :render-content="renderContent"
-          @check="handleNodeClick">
+        <el-tree ref="dataTree"
+                 :data="TREE_DATA"
+                 :default-expand-all="true"
+                 show-checkbox
+                 node-key="id"
+                 :default-expanded-keys="[2, 3]"
+                 :default-checked-keys="[5]"
+                 :props="defaultTreeProps"
+                 :render-content="renderContent"
+                 @check="handleNodeClick">
         </el-tree>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -190,6 +168,12 @@
     allocateOrder,
   } from '@/api/vehicle/order'
   import {
+    PAGE_TOTAL,
+    PAGE_NUM,
+    PAGE_SIZE,
+    TEMP_TYPE_CREATE,
+    TEMP_TYPE_DELETE,
+    TEMP_MAKE_PLAN,
     TEMP_TYPE,
     TREE_DATA,
     ORDER_EXAMINE_STATUS_AUDITING,
@@ -200,6 +184,9 @@
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE_CREATE,
+        TEMP_TYPE_DELETE,
+        TEMP_MAKE_PLAN,
         TEMP_TYPE,
         TREE_DATA,
         ORDER_EXAMINE_STATUS_AUDITING,
@@ -209,23 +196,23 @@
           label: 'label',
           value: 'value'
         },
-        listKey: 0,
-        list: null,
         vehicleTypeList: null,
         clientList: null,
         serviceList: null,
         allocationList: null,
-        total: 0,
-        listLoading: true,
         listQuery: {
-          pageNum: 1,
-          pageSize: 20,
           status: 0,
-          vin: undefined
+          vin: undefined,
+          pageNum: PAGE_NUM,
+          pageSize: PAGE_SIZE
         },
+        listLoading: false,
+        listKey: 0,
+        list: undefined,
         ids: [],
+        listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
-        dialogStatus: '',
+        dialogStatus: undefined,
         temp: {
           vin: undefined,
           vehicleType: undefined,
@@ -233,7 +220,7 @@
           supplierName: undefined,
           service: undefined,
           orderSmallLinkItem: undefined,
-          orderBaseInfo: undefined,
+          orderBaseInfo: undefined
         },
         rules: {
           vin: [{ required: true, message: '输入车架号', trigger: 'change' }],
@@ -244,13 +231,10 @@
         }
       }
     },
-    created() {
+    mounted() {
       this.getList()
     },
     methods: {
-      handleIdChange(rows) {
-        this.ids = rows.map(row => row.id)
-      },
       getList() {
         this.listLoading = true
         vehicleOrderList(this.listQuery).then(res => {
@@ -278,8 +262,11 @@
         })
       },
       handleFilter() {
-        this.listQuery.pageNum = 1
+        this.listQuery.pageNum = PAGE_NUM
         this.getList()
+      },
+      handleIdChange(rows) {
+        this.ids = rows.map(row => row.id)
       },
       resetTemp() {
         this.temp = {
@@ -311,7 +298,7 @@
         }
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === 'allocate' && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === TEMP_MAKE_PLAN && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class="custom-tree-node">
@@ -319,7 +306,6 @@
               {
                 options.length > 0
                   ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]}
-                               className="filter-item"
                                style="margin-left:30px"
                                placeholder=""
                                onChange={(value) => {
@@ -328,7 +314,7 @@
                                  TREE_DATA.forEach(t1 => {
                                    if (t1.children.filter(child => child.value === node.data.value).length > 0) {
                                      t1.children.forEach(t2 => {
-                                       if (t2.options === node.data.options) {
+                                       if (this.temp.orderSmallLinkItem[t2.value] === '0' && t2.options === node.data.options) {
                                          orderBaseInfo[t2.value] = value
                                          orderBaseInfo[`${t2.value}Name`] = value.name
                                          orderBaseInfo[`${t2.value}Id`] = value.id
@@ -358,7 +344,7 @@
         //   <span className="custom-tree-node">
         //       <span>{node.label}</span>
         //     {
-        //       this.dialogStatus === 'allocate' && (this.allocationList[node.data.options] || []).length > 0
+        //       this.dialogStatus === TEMP_MAKE_PLAN && (this.allocationList[node.data.options] || []).length > 0
         //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
         //           {
         //             options.map(item => (
@@ -373,7 +359,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case 'create':
+          case TEMP_TYPE_CREATE:
             this.resetTemp()
             this.dialogFormVisible = true
 
@@ -382,7 +368,7 @@
               this.$refs['dataTree'].setCheckedKeys([])
             })
             break
-          case 'allocate':
+          case TEMP_MAKE_PLAN:
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {
@@ -415,7 +401,7 @@
               })
             })
             break
-          case 'delete':
+          case TEMP_TYPE_DELETE:
             row = row ? [row.id] : this.ids
             this.deleteData(row)
             break
@@ -424,7 +410,7 @@
       handleData() {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            if (this.dialogStatus === 'allocate') {
+            if (this.dialogStatus === TEMP_MAKE_PLAN) {
               let flag = false
               Object.keys(this.temp.orderSmallLinkItem).forEach((key) => {
                 if (this.temp.orderSmallLinkItem[key] === '0' && !this.temp.orderBaseInfo[`${key}Name`] && !this.temp.orderBaseInfo[`${key}Id`]) {
@@ -447,9 +433,9 @@
               }
             }
             const temp = this.temp
-            if (this.dialogStatus === 'create' ||
-              (this.dialogStatus === 'allocate' && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
-              const fun = this.dialogStatus === 'create' ? createVehicleOrder : allocateOrder
+            if (this.dialogStatus === TEMP_TYPE_CREATE ||
+              (this.dialogStatus === TEMP_MAKE_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
+              const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value
               temp.serviceName = temp.service.label
@@ -459,7 +445,7 @@
                 this.handleFilter()
                 this.$notify({
                   type: 'success',
-                  title: this.dialogStatus === 'create' ? '新增成功' : '分配成功',
+                  title: this.dialogStatus === TEMP_TYPE_CREATE ? '新增成功' : '分配成功',
                   duration: 3000
                 })
               })
