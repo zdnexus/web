@@ -65,10 +65,6 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding">
         <template slot-scope="{row,$index}">
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_MAKE_PLAN,row)">
-            {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
-          </el-button>
-
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_HANDLE,row)">
             {{ TEMP_TYPE[TEMP_TYPE_HANDLE] }}
           </el-button>
