@@ -75,6 +75,14 @@
           <a @click="reqDetail(row,'oec')">{{ NODE_LIST_OBJ[row.oec] }}</a>
         </template>
       </el-table-column>
+
+      <el-table-column label="操作" align="center" class-name="small-padding">
+        <template slot-scope="{row,$index}">
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_MAKE_PLAN,row)">
+            {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
+          </el-button>
+        </template>
+      </el-table-column>
     </el-table>
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
@@ -126,6 +134,7 @@
   import Pagination from '@/components/Pagination'
   import { vehicleOrderList, orderBigLinklnfo } from '@/api/vehicle/order'
   import {
+    TEMP_MAKE_PLAN,
     TEMP_TYPE,
     TREE_DATA,
     NODE_LIST_OBJ,
@@ -138,6 +147,7 @@
     components: { Pagination },
     data() {
       return {
+        TEMP_MAKE_PLAN,
         TEMP_TYPE,
         NODE_LIST_OBJ,
         listKey: 0,

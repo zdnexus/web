@@ -63,14 +63,14 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding" width="220">
+      <el-table-column label="操作" align="center" class-name="small-padding">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_MAKE_PLAN,row)">
             {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
           </el-button>
 
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_MISSION_DETAILS,row)">
-            {{ TEMP_TYPE[TEMP_MISSION_DETAILS] }}
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_HANDLE,row)">
+            {{ TEMP_TYPE[TEMP_TYPE_HANDLE] }}
           </el-button>
         </template>
       </el-table-column>
@@ -81,8 +81,9 @@
     <HandleDialog v-model="dialogFormVisible"
                   :dialogStatus="dialogStatus"
                   :vehicleInfo="vehicleInfo"></HandleDialog>
-    <Link :linkFormVisible="linkFormVisible"
-          :linkData="linkData"></Link>
+
+    <!--<Link :linkFormVisible="linkFormVisible"-->
+          <!--:linkData="linkData"></Link>-->
   </div>
 </template>
 
@@ -99,7 +100,7 @@
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
-    TEMP_MAKE_PLAN,
+    TEMP_TYPE_HANDLE,
     TEMP_MISSION_DETAILS,
     TEMP_TYPE,
     TASK_STATUS_OBJ
@@ -113,7 +114,7 @@
     },
     data() {
       return {
-        TEMP_MAKE_PLAN,
+        TEMP_TYPE_HANDLE,
         TEMP_MISSION_DETAILS,
         TEMP_TYPE,
         TASK_STATUS_OBJ,
@@ -154,7 +155,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case TEMP_MAKE_PLAN:
+          case TEMP_TYPE_HANDLE:
             getVehicleDeclare(row.vin).then((res) => {
               this.vehicleInfo = {
                 row,

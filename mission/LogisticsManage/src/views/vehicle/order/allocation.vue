@@ -8,7 +8,7 @@
       </el-button>
 
       <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
-        添加服务项
+        添加订单
       </el-button>
 
       <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
@@ -66,18 +66,6 @@
       <el-table-column label="备注" prop="remark" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.remark }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="创建时间" prop="createTime" align="center" width="90">
-        <template slot-scope="{row}">
-          <span>{{ row.createTime }}</span>
-        </template>
-      </el-table-column>
-
-      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
-        <template slot-scope="{row}">
-          <span>{{ row.updateTime }}</span>
         </template>
       </el-table-column>
 
