@@ -68,6 +68,10 @@
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_HANDLE,row)">
             {{ TEMP_TYPE[TEMP_TYPE_HANDLE] }}
           </el-button>
+
+          <el-button size="mini" type="primary" @click="handleRow(TEMP_MISSION_DETAILS,row)">
+            {{ TEMP_TYPE[TEMP_MISSION_DETAILS] }}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -78,8 +82,8 @@
                   :dialogStatus="dialogStatus"
                   :vehicleInfo="vehicleInfo"></HandleDialog>
 
-    <!--<Link :linkFormVisible="linkFormVisible"-->
-          <!--:linkData="linkData"></Link>-->
+    <Link :visible="linkFormVisible"
+          :data="linkData"></Link>
   </div>
 </template>
 

@@ -1,62 +1,62 @@
 <template>
-  <el-dialog :visible.sync="linkFormVisible">
-    <BaseInfo :component="baseInfoComponents"
-              :baseInfoData="baseInfoData"
+  <el-dialog :visible.sync="visible">
+    <BaseInfo :component="baseComponents"
+              :data="data"
               :disabled="disabled"></BaseInfo>
-    <OperateList :list="baseInfoOperateList"></OperateList>
+    <OperateList :data="data && data.vehicleUpcomingTaskList"></OperateList>
   </el-dialog>
 </template>
 
 <script>
-  import BaseInfo from './baseInfo'
-  import OperateList from './operateList'
-  import { vehicleInfo, vehiclePhoto } from '@/constant/pageCompoent'
+import BaseInfo from "./baseInfo";
+import OperateList from "./operateList";
+import { vehicleInfo, vehiclePhoto } from "@/constant/pageCompoent";
 
-  export default {
-    name: 'linkBaseInfo',
-    components: {
-      BaseInfo,
-      OperateList
+export default {
+  name: "link",
+  components: {
+    BaseInfo,
+    OperateList
+  },
+  props: {
+    visible: {
+      type: Boolean,
+      default: false
     },
-    props: {
-      linkFormVisible: {
-        type: Boolean,
-        default: false
-      },
-      disabled: {
-        type: Boolean,
-        default: false
-      },
-      linkData: {
-        type: Object,
-        default: null
+    disabled: {
+      type: Boolean,
+      default: false
+    },
+    data: {
+      type: Object,
+      default: null
+    }
+  },
+  data() {
+    return {
+      baseComponents: [],
+      baseInfoData: null,
+      baseInfoOperateList: null,
+      temp: {}
+    };
+  },
+  created() {
+    this.baseComponents = this.baseComponents.concat(vehicleInfo, vehiclePhoto);
+  },
+  watch: {
+    data(newValue, preValue) {
+      if (newValue !== preValue && newValue) {
+        // this.baseInfoData = newValue
+        // this.baseInfoOperateList = newValue.vehicleUpcomingTaskList
       }
-    },
-    data() {
-      return {
-        baseInfoComponents: [],
-        baseInfoData: null,
-        baseInfoOperateList: null,
-        temp: {}
-      }
-    },
-    created() {
-      this.baseInfoComponents = this.baseInfoComponents.concat(vehicleInfo, vehiclePhoto)
-    },
-    watch: {
-      linkData(newValue, preValue) {
-        if (newValue !== preValue && newValue) {
-          this.baseInfoData = { ...newValue }
-          this.baseInfoOperateList = newValue.vehicleUpcomingTaskList
-        }
-      },
     }
   }
+};
 </script>
 
 <style lang="scss" scoped>
-  .link-baseInfo {
+.link-baseInfo {
 
-  }
+}
 </style>
 
