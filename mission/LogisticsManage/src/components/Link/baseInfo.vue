@@ -1,55 +1,43 @@
 <template>
   <div class="link-baseInfo">
     <h1>基本信息</h1>
-    <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
+    <el-form ref="dataForm" :rules="rules" :model="formData" label-position="left" label-width="100px" style="width: 500px">
       <el-form-item v-for="item in component" :label="item.label" :prop="item.value">
-        <el-input v-if="item.type === 'input'" v-model="data[item.value]" :disabled="disabled"></el-input>
-        <image v-if="item.type === 'image'" :src="data[item.value]" width="150" height="150"></image>
+        <el-input v-if="item.type === 'input'" v-model="formData[item.value]" :disabled="disabled"></el-input>
+        <img v-if="item.type === 'image'" :src="formData[item.value]" width="150" height="150"/>
       </el-form-item>
     </el-form>
   </div>
 </template>
 
 <script>
-export default {
-  name: "baseInfo",
-  props: {
-    component: {
-      type: Array,
-      default: []
+  export default {
+    name: 'baseInfo',
+    props: {
+      component: {
+        type: Array,
+        default: []
+      },
+      formData: {
+        type: Object,
+        default: null
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      }
     },
-    data: {
-      type: Object,
-      default: null
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      temp: {},
-      rules: {}
-    };
-  },
-  watch: {
-    data(newValue, preValue) {
-      debugger
-      if (newValue !== preValue && newValue) {
-        this.component.forEach((key) => {
-          this.temp[key.value] = this.data[key.value];
-          this.rules[key.value] = [{ required: true, message: "输入" + key.label, trigger: "blur" }];
-        });
+    data() {
+      return {
+        rules: {}
       }
     }
   }
-};
 </script>
 
 <style lang="scss" scoped>
-.link-baseInfo {
+  .link-baseInfo {
 
-}
+  }
 </style>
 

@@ -1,7 +1,6 @@
-<template>
-  <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="value">
-    <el-form v-if="vehicleInfo"
-             ref="dataForm"
+<template v-if="vehicleInfo">
+  <el-dialog :title="vehicleInfo.row.smallLinkConvert" :visible.sync="value">
+    <el-form ref="dataForm"
              :rules="rules"
              :model="vehicleInfo"
              :disabled="disabled"

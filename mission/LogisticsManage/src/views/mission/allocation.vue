@@ -68,10 +68,6 @@
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_HANDLE,row)">
             {{ TEMP_TYPE[TEMP_TYPE_HANDLE] }}
           </el-button>
-
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_MISSION_DETAILS,row)">
-            {{ TEMP_TYPE[TEMP_MISSION_DETAILS] }}
-          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -81,27 +77,21 @@
     <HandleDialog v-model="dialogFormVisible"
                   :dialogStatus="dialogStatus"
                   :vehicleInfo="vehicleInfo"></HandleDialog>
-
-    <Link :visible="linkFormVisible"
-          :data="linkData"></Link>
   </div>
 </template>
 
 <script>
   import HandleDialog from './handle-dialog.vue'
   import Pagination from '@/components/Pagination'
-  import Link from '@/components/Link'
   import {
     upcomingTaskList,
-    getVehicleDeclare,
-    bigLinkInfo
+    getVehicleDeclare
   } from '@/api/mission/allocation'
   import {
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
     TEMP_TYPE_HANDLE,
-    TEMP_MISSION_DETAILS,
     TEMP_TYPE,
     TASK_STATUS_OBJ
   } from '@/constant'
@@ -109,17 +99,13 @@
   export default {
     components: {
       Pagination,
-      HandleDialog,
-      Link
+      HandleDialog
     },
     data() {
       return {
         TEMP_TYPE_HANDLE,
-        TEMP_MISSION_DETAILS,
         TEMP_TYPE,
         TASK_STATUS_OBJ,
-        linkFormVisible: false,
-        linkData: null,
         listQuery: {
           vin: undefined,
           taskStatus: 0,
@@ -166,23 +152,13 @@
             })
             this.dialogFormVisible = true
             break
-          case TEMP_MISSION_DETAILS:
-            bigLinkInfo({
-              bigLinKey: row.bigLink,
-              orderId: row.orderId,
-              vin: row.vin,
-            }).then((res) => {
-              this.linkData = res.data
-              this.linkFormVisible = true
-            })
-            break
         }
       }
     },
     watch: {
       dialogFormVisible: {
         handler(newVal, oldVal) {
-          if (newVal !== oldVal && newVal === false) {
+          if (newVal !== oldVal && !!newVal) {
             this.handleFilter()
           }
         }

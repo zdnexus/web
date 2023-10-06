@@ -6,15 +6,15 @@ const LabelChangeValue = {
   // vehicleInfo
   '车架号': 'vin',
   '客户': 'clientName',
-  '存放仓库': 'warehouseName',
+  '仓库名称': 'warehouseName',
   '是否有损': 'isDamage',
   '车辆类型': 'type',
-  '车辆品牌': 'brand',
-  '车辆型号': 'model',
-  '车辆颜色': 'color',
-  '钥匙数量': 'nums',
-  '送人车': 'name',
-  '送人电话': 'phone',
+  '车辆品牌': 'branding',
+  '车辆型号': 'vehicleModel',
+  '车辆颜色': 'vehicleColor',
+  '钥匙数量': 'vehicleKey',
+  '送车人': 'deliverName',
+  '送车人电话': 'deliverMobile',
   // vehiclePhoto
   '左前': 'frontLeft',
   '左侧': 'vehicleLefttion',
@@ -27,7 +27,17 @@ const LabelChangeValue = {
   '后备箱': 'trunk',
   '随车钥匙': 'vehicleKeys',
   '车辆视频': 'video',
-  '受损照片': 'demage'
+  '受损照片': 'demage',
+  // ncrInfo
+  '是否在库':'warehouseName',
+  '入库时间':'inboundTime',
+  '出库时间':'outboundTime',
+  '入库校验':'inboundCheck',
+  '出库校验':'outboundCheck',
+  '整备费用':'trimFree',
+  '入库照片':'inboundPhoto',
+  '整备照片':'trimUrl',
+  '整备票据':'freeUrl',
 }
 
 export const vehicleInfo = [
@@ -42,8 +52,8 @@ export const vehicleInfo = [
     type: 'input'
   },
   {
-    label: '存放仓库',
-    value: LabelChangeValue['存放仓库'],
+    label: '仓库名称',
+    value: LabelChangeValue['仓库名称'],
     type: 'input'
   },
   {
@@ -78,8 +88,13 @@ export const vehicleInfo = [
     type: 'input'
   },
   {
-    label: '送人车',
-    value: LabelChangeValue['送人车'],
+    label: '送车人',
+    value: LabelChangeValue['送车人'],
+    type: 'input'
+  },
+  {
+    label: '送车人电话',
+    value: LabelChangeValue['送车人电话'],
     type: 'input'
   },
 ]
@@ -138,6 +153,67 @@ export const vehiclePhoto = [
   {
     label: '受损照片',
     value: LabelChangeValue['受损照片'],
+    type: 'image'
+  }
+]
+
+export const ncrInfo = [
+  {
+    label: '车架号',
+    value: LabelChangeValue['车架号'],
+    type: 'input'
+  },
+  {
+    label: '仓库名称',
+    value: LabelChangeValue['仓库名称'],
+    type: 'input'
+  },
+  {
+    label: '是否在库',
+    value: LabelChangeValue['仓库名称'],
+    type: 'input'
+  },
+  {
+    label: '入库时间',
+    value: LabelChangeValue['入库时间'],
+    type: 'input'
+  },
+  {
+    label: '出库时间',
+    value: LabelChangeValue['出库时间'],
+    type: 'input'
+  },
+  {
+    label: '入库校验',
+    value: LabelChangeValue['入库校验'],
+    type: 'input'
+  },
+  {
+    label: '出库校验',
+    value: LabelChangeValue['出库校验'],
+    type: 'input'
+  },
+  {
+    label: '整备费用',
+    value: LabelChangeValue['仓库名称'],
+    type: 'input'
+  },
+]
+
+export const ncrPhoto = [
+  {
+    label: '入库照片',
+    value: LabelChangeValue['入库照片'],
+    type: 'image'
+  },
+  {
+    label: '整备照片',
+    value: LabelChangeValue['整备照片'],
+    type: 'image'
+  },
+  {
+    label: '整备票据',
+    value: LabelChangeValue['整备票据'],
     type: 'image'
   }
 ]

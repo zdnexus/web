@@ -1,62 +1,78 @@
 <template>
-  <el-dialog :visible.sync="visible">
+  <el-dialog v-if="formData" :title="formData.bigLinKeyLabel" :visible.sync="visible">
     <BaseInfo :component="baseComponents"
-              :data="data"
+              :formData="baseInfoData"
               :disabled="disabled"></BaseInfo>
-    <OperateList :data="data && data.vehicleUpcomingTaskList"></OperateList>
+    <OperateList :list="formData.vehicleUpcomingTaskList"></OperateList>
   </el-dialog>
 </template>
 
 <script>
-import BaseInfo from "./baseInfo";
-import OperateList from "./operateList";
-import { vehicleInfo, vehiclePhoto } from "@/constant/pageCompoent";
+  import {
+    DAMAGE_TYPE_LIST_OBJ
+  } from '@/constant'
+  // import { vehicleInfo, vehiclePhoto } from '@/constant/pageCompoent'
+  import BaseInfo from './baseInfo'
+  import OperateList from './operateList'
 
-export default {
-  name: "link",
-  components: {
-    BaseInfo,
-    OperateList
-  },
-  props: {
-    visible: {
-      type: Boolean,
-      default: false
+  export default {
+    name: 'link',
+    components: {
+      BaseInfo,
+      OperateList
     },
-    disabled: {
-      type: Boolean,
-      default: false
+    props: {
+      visible: {
+        type: Boolean,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
+      },
+      baseComponents: {
+        type: Object,
+        default: () => null
+      },
+      formData: {
+        type: Object,
+        default: () => null
+      }
     },
-    data: {
-      type: Object,
-      default: null
-    }
-  },
-  data() {
-    return {
-      baseComponents: [],
-      baseInfoData: null,
-      baseInfoOperateList: null,
-      temp: {}
-    };
-  },
-  created() {
-    this.baseComponents = this.baseComponents.concat(vehicleInfo, vehiclePhoto);
-  },
-  watch: {
-    data(newValue, preValue) {
-      if (newValue !== preValue && newValue) {
-        // this.baseInfoData = newValue
-        // this.baseInfoOperateList = newValue.vehicleUpcomingTaskList
+    data() {
+      return {
+        // baseComponents: [],
+        baseInfoData: null,
+        baseInfoOperateList: null,
+        temp: {}
+      }
+    },
+    created() {
+    },
+    watch: {
+      formData(newValue, preValue) {
+        if (newValue !== preValue && newValue) {
+          const baseInfoData = {}
+          this.baseComponents.forEach((key) => {
+            if (key.key) {
+              switch (key.key) {
+                case 'DAMAGE_TYPE_LIST_OBJ':
+                  baseInfoData[key.value] = DAMAGE_TYPE_LIST_OBJ[this.formData[key.value]]
+              }
+            } else {
+              baseInfoData[key.value] = this.formData[key.value]
+            }
+          })
+          this.baseInfoData = baseInfoData
+        }
       }
     }
   }
-};
 </script>
 
 <style lang="scss" scoped>
-.link-baseInfo {
+  .link-baseInfo {
 
-}
+  }
 </style>
 

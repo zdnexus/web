@@ -1,7 +1,7 @@
 <template>
   <div class="link-operateList">
     <h1>操作记录</h1>
-    <el-table :key="listKey" :data="data" border fit highlight-current-row>
+    <el-table :key="listKey" :data="list" border fit highlight-current-row>
       <el-table-column label="车架号" prop="vin" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.vin }}</span>
@@ -47,9 +47,9 @@
   export default {
     name: 'operateList',
     props: {
-      data: {
+      list: {
         type: Array,
-        default: []
+        default: () => []
       }
     },
     data() {

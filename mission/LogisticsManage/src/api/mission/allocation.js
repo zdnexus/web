@@ -50,11 +50,3 @@ export function uploadCustomCar(data) {
     data
   })
 }
-
-export function bigLinkInfo(data) {
-  return request({
-    url: `/vehicle/order/bigLinkInfo`,
-    method: 'post',
-    data
-  })
-}

@@ -3,6 +3,8 @@
  * Url :
  */
 
+import { listToObj } from '@/utils'
+
 export const DECLARE_UPLOAD = 'declareUpld'
 
 export const DECLARE_CHECK = 'declareCheck'
@@ -194,3 +196,16 @@ export const TREE_DATA = [
     ],
   },
 ]
+
+export const TREE_DATA_BIG_NODE = [
+  {
+    label: '接车验车',
+    value: 'inspection'
+  },
+  {
+    label: '非监管仓',
+    value: 'ncr'
+  }
+]
+
+export const TREE_DATA_BIG_NODE_OBJ = listToObj(TREE_DATA_BIG_NODE)

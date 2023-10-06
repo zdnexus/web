@@ -79,63 +79,35 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm" :model="temp" label-position="left" label-width="100px" style="width: 600px; margin-left:10px;">
-        <div class="block" v-if="temp.baseInfoList">
-          <h2>车辆基本信息</h2>
-          <el-form-item v-for="input in temp.baseInfoList" :label="input.label" :key="input.label">
-            <el-input :value="input.value" style="width: 200px" class="filter-item" disabled="true"></el-input>
-          </el-form-item>
-        </div>
-
-        <div class="block" v-if="temp.photoList">
-          <h2>车辆图片</h2>
-          <div v-for="img in temp.photoList" :key="img.label">
-            <span class="demonstration">{{ img.label }}</span>
-            <el-image
-              v-if="img.type ==='image'"
-              style="width: 100px; height: 100px"
-              :src="img.url"></el-image>
-            <el-image
-              v-else-if="img.type ==='demage'"
-              v-for="img2 in img.url.split(',')"
-              style="width: 100px; height: 100px"
-              :src="img2"
-            ></el-image>
-            <video v-else width="300" height="300" :src="img.url" controls/></video>
-          </div>
-        </div>
-
-        <div class="block" v-if="temp.updateList">
-          <h2>操作记录</h2>
-          <el-table :data="temp.updateList">
-            <el-table-column prop="vin" label="车架号"></el-table-column>
-            <el-table-column prop="bigLink" label="环节名称"></el-table-column>
-            <el-table-column prop="smallLink" label="任务名称"></el-table-column>
-            <el-table-column prop="userName" label="任务人"></el-table-column>
-            <el-table-column prop="taskStatus" label="是否完成"></el-table-column>
-            <el-table-column prop="updateTime" label="完成时间"></el-table-column>
-          </el-table>
-        </div>
-      </el-form>
-    </el-dialog>
+    <Link :visible="linkFormVisible"
+          :disabled="true"
+          :baseComponents="baseComponents"
+          :formData="linkData"></Link>
   </div>
 </template>
 
 <script>
   import Pagination from '@/components/Pagination'
+  import Link from '@/components/Link'
   import { vehicleOrderList, orderBigLinklnfo } from '@/api/vehicle/order'
   import {
     TEMP_TYPE,
     TREE_DATA,
+    TREE_DATA_BIG_NODE_OBJ,
     NODE_LIST_OBJ,
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
     ORDER_STATUS_OBJ,
   } from '@/constant'
+  import {
+    vehicleInfo,
+    vehiclePhoto,
+    ncrInfo,
+    ncrPhoto
+  } from '@/constant/pageCompoent'
 
   export default {
-    components: { Pagination },
+    components: { Pagination, Link },
     data() {
       return {
         TEMP_TYPE,
@@ -153,6 +125,9 @@
         dialogFormVisible: false,
         dialogStatus: '',
         temp: {},
+        linkFormVisible: false,
+        baseComponents: [],
+        linkData: null
       }
     },
     created() {
@@ -171,74 +146,42 @@
         this.listQuery.pageNum = 1
         this.getList()
       },
-      handleRow(type, row) {
-        this.dialogStatus = type
-        switch (type) {
-          case 'view':
-            orderBigLinklnfo({
-              vin: row.vin,
-              orderid: row.id
-            }).then(res => {
-
-            })
-            break
-        }
-      },
       reqDetail(row, bigLinKey) {
         orderBigLinklnfo({
           vin: row.vin,
           orderId: row.id,
           bigLinKey,
         }).then(res => {
-          this.temp = {}
-          if (res.data.vehicleBaseInfo) {
-            this.temp.baseInfoList = []
-            const vehicleBaseInfo = res.data.vehicleBaseInfo
-            Object.keys(vehicleBaseInfo).forEach((key) => {
-              if (VEHICLE_INFO_OBJ[key] && vehicleBaseInfo[key]) {
-                this.temp.baseInfoList.push({
-                  label: VEHICLE_INFO_OBJ[key],
-                  value: vehicleBaseInfo[key]
-                })
+          switch (bigLinKey) {
+            case 'inspection':
+              this.baseComponents = [].concat(vehicleInfo, vehiclePhoto)
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data.vehicleBaseInfo,
+                ...res.data.vehiclePhoto,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
               }
-            })
-          }
-          if (res.data.vehiclePhoto) {
-            this.temp.photoList = []
-            const vehiclePhoto = res.data.vehiclePhoto
-            Object.keys(vehiclePhoto).forEach((key) => {
-              if (VEHICLE_PHOTO_OBJ[key] && vehiclePhoto[key]) {
-                this.temp.photoList.push({
-                  label: VEHICLE_PHOTO_OBJ[key],
-                  url: vehiclePhoto[key],
-                  type: key === 'video' || key === 'demage' ? key : 'image'
-                })
+              break
+            case 'ncr':
+              this.baseComponents = [].concat(ncrInfo, ncrPhoto)
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data.ncrBigLinkBaseInfoItem,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
               }
-            })
-          }
-          if (res.data.vehicleUpcomingTaskList.length > 0) {
-            let bigLink
-            let smallLink
-            this.temp.updateList = res.data.vehicleUpcomingTaskList.map((item) => {
-              TREE_DATA.forEach((t1) => {
-                t1.children.forEach((t2) => {
-                  if (t2.value === item.smallLink) {
-                    bigLink = t1.label
-                    smallLink = t2.label
-                  }
-                })
-              })
-              return {
-                vin: item.vin,
-                bigLink,
-                smallLink,
-                taskStatus: ORDER_STATUS_OBJ[item.taskStatus],
-                userName: item.userName,
-                updateTime: item.updateTime
+              break
+            case 'declaration':
+              this.baseComponents = [].concat(ncrInfo, ncrPhoto)
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
               }
-            })
           }
-          this.dialogFormVisible = true
+          this.linkFormVisible = true
         })
       }
     }
