@@ -1,6 +1,6 @@
 <template>
   <div class="link-operateList">
-    <h1>操作记录</h1>
+    <h3>操作记录</h3>
     <el-table :key="listKey" :data="list" border fit highlight-current-row>
       <el-table-column label="车架号" prop="vin" align="center" width="100">
         <template slot-scope="{row}">

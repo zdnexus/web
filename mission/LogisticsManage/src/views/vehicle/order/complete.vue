@@ -89,21 +89,27 @@
 <script>
   import Pagination from '@/components/Pagination'
   import Link from '@/components/Link'
-  import { vehicleOrderList, orderBigLinklnfo } from '@/api/vehicle/order'
+  import {
+    vehicleOrderList,
+    orderBigLinklnfo
+  } from '@/api/vehicle/order'
   import {
     TEMP_TYPE,
     TREE_DATA,
-    TREE_DATA_BIG_NODE_OBJ,
     NODE_LIST_OBJ,
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
     ORDER_STATUS_OBJ,
   } from '@/constant'
   import {
-    vehicleInfo,
-    vehiclePhoto,
-    ncrInfo,
-    ncrPhoto
+    TREE_DATA_BIG_NODE_OBJ,
+    INSPECTION,
+    NCR,
+    DECLARATION,
+    BWH,
+    EDV,
+    ED,
+    OEC
   } from '@/constant/pageCompoent'
 
   export default {
@@ -154,7 +160,7 @@
         }).then(res => {
           switch (bigLinKey) {
             case 'inspection':
-              this.baseComponents = [].concat(vehicleInfo, vehiclePhoto)
+              this.baseComponents = INSPECTION
               this.linkData = {
                 bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
                 ...row,
@@ -164,7 +170,7 @@
               }
               break
             case 'ncr':
-              this.baseComponents = [].concat(ncrInfo, ncrPhoto)
+              this.baseComponents = NCR
               this.linkData = {
                 bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
                 ...row,
@@ -173,13 +179,51 @@
               }
               break
             case 'declaration':
-              this.baseComponents = [].concat(ncrInfo, ncrPhoto)
+              this.baseComponents = DECLARATION
               this.linkData = {
                 bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
                 ...row,
                 ...res.data,
                 vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
               }
+              break
+            case 'bwh':
+              this.baseComponents = BWH
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data.ncrBigLinkBaseInfoItem,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+              }
+              break
+            case 'edv':
+              this.baseComponents = EDV
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+              }
+              break
+            case 'ed':
+              this.baseComponents = ED
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+              }
+              break
+            case 'oec':
+              this.baseComponents = OEC
+              this.linkData = {
+                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+                ...row,
+                ...res.data,
+                vehicleTrackRecordList: res.data.vehicleTrackRecordList,
+                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+              }
+              break
           }
           this.linkFormVisible = true
         })
