@@ -427,7 +427,7 @@
           </div>
 
           <el-table
-            :key="listKey+1"
+            :key="listKey+2"
             v-loading="listLoading"
             :data="temp.vehicleOtherFeeList"
             border
@@ -491,7 +491,7 @@
           </div>
 
           <el-table
-            :key="listKey+1"
+            :key="listKey+3"
             v-loading="listLoading"
             :data="temp.vehicleTravelFreeList"
             border

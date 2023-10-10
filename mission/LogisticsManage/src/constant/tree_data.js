@@ -12,6 +12,12 @@ export const RECORD_CHECK = 'recordCheck'
 
 export const CUSTOM_CAR = 'customCar'
 
+export const DMFA = 'dmFa'
+
+export const FMFA = 'fmFa'
+
+export const CMFA = 'cmFa'
+
 export const TREE_DATA = [
   {
     label: '接车验车',

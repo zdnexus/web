@@ -24,7 +24,7 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="客户名" prop="clientName" align="center" width="100">
+      <el-table-column label="客户姓名" prop="clientName" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.clientName }}</span>
         </template>

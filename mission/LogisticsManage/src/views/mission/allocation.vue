@@ -88,12 +88,18 @@
     getVehicleDeclare
   } from '@/api/mission/allocation'
   import {
+    viewOrderFeeDeatail,
+  } from '@/api/vehicle/cost/index'
+  import {
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
     TEMP_TYPE_HANDLE,
     TEMP_TYPE,
-    TASK_STATUS_OBJ
+    TASK_STATUS_OBJ,
+    DMFA,
+    FMFA,
+    CMFA,
   } from '@/constant'
 
   export default {
@@ -142,14 +148,28 @@
         this.dialogStatus = type
         switch (type) {
           case TEMP_TYPE_HANDLE:
-            getVehicleDeclare(row.vin).then((res) => {
-              this.vehicleInfo = {
-                row,
-                vehicleBaseInfo: res.data.vehicleBaseInfo,
-                vehiclePhoto: res.data.vehiclePhoto,
-                vehicleDeclare: res.data.vehicleDeclare,
-              }
-            })
+            switch (row.smallLink) {
+              case DMFA:
+              case FMFA:
+              case CMFA:
+                viewOrderFeeDeatail([row.orderId]).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              default:
+                getVehicleDeclare(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    vehicleBaseInfo: res.data.vehicleBaseInfo,
+                    vehiclePhoto: res.data.vehiclePhoto,
+                    vehicleDeclare: res.data.vehicleDeclare,
+                  }
+                })
+                break
+            }
             this.dialogFormVisible = true
             break
         }
@@ -158,6 +178,7 @@
     watch: {
       dialogFormVisible: {
         handler(newVal, oldVal) {
+          debugger
           if (newVal !== oldVal && !!newVal) {
             this.handleFilter()
           }

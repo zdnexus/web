@@ -58,3 +58,10 @@ export function auditOrderFee(data) {
     data
   })
 }
+
+export function viewOrderFeeDeatail(data) {
+  return request({
+    url: `/vehicle/orderFee/orderDetail/${data}`,
+    method: 'get'
+  })
+}

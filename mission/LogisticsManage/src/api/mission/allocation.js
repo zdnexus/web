@@ -50,3 +50,27 @@ export function uploadCustomCar(data) {
     data
   })
 }
+
+export function addDmFaTask(data) {
+  return request({
+    url: `/vehicle/upcomingTask/addDmFaTask`,
+    method: 'post',
+    data
+  })
+}
+
+export function addFmFaTask(data) {
+  return request({
+    url: `/vehicle/upcomingTask/addFmFaTask`,
+    method: 'post',
+    data
+  })
+}
+
+export function addCmFaTask(data) {
+  return request({
+    url: `/vehicle/upcomingTask/addCmFaTask`,
+    method: 'post',
+    data
+  })
+}
