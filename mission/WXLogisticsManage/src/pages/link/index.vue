@@ -23,16 +23,34 @@
                            v-model="temp[item.value]"
                            :localdata="item.options"></uni-data-checkbox>
 
-        <uni-file-picker v-if="item.type === 'checkbox' && temp[item.value] === 1"
+        <uni-file-picker v-if="item.value2 && item.type === 'checkbox' && temp[item.value] === '1'"
                          v-model="temp[item.value2]"
                          fileMediatype="image"
                          limit="10"
                          :auto-upload="false"
                          @select="($event)=>handleSelect($event,item.value)"
                          @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
+
+        <view v-else-if="item.type === 'table'">
+          <uni-table class="table" border stripe emptyText="暂无更多数据">
+            <uni-tr>
+              <uni-th width="120">车架号</uni-th>
+              <uni-th width="120">到达点</uni-th>
+              <uni-th width="120">更新时间</uni-th>
+            </uni-tr>
+            <uni-tr v-for="(item2, index) in temp[item.value]" :key="index">
+              <uni-td>{{item2.vin}}</uni-td>
+              <uni-td>{{item2.trackPlace}}</uni-td>
+              <uni-td>{{item2.updateTime}}</uni-td>
+            </uni-tr>
+          </uni-table>
+          <uni-section title="到达点" type="line">
+            <uni-easyinput v-model="temp.trackPlace"></uni-easyinput>
+          </uni-section>
+        </view>
       </uni-section>
       <view v-else class="buttons">
-        <button v-for="item2 in item.array" class="button" @click="postData(item2.func)">{{item2.label}}</button>
+        <button v-for="item3 in item.array" class="button" @click="postData(item3.func)">{{item3.label}}</button>
       </view>
     </view>
   </view>
@@ -41,12 +59,35 @@
 <script>
   import {
     getToken,
-    getVehicleInfo
+    getVehicleInfo,
+    inWarehouseInfo,
+    cardInfo,
+    trimInfo,
+    sealInfo,
+    driveInfo,
+    outboundInfo,
+    handoverInfo,
+    trackRecordInfo,
+    arriveInfo,
   } from '../../api/index'
   import {
+    INSPECTION,
+    INWAREHOUSE,
+    STORAGE,
+    CARD,
+    OUTWAREHOUSE,
+    OUTCONFIRM,
+    TRIM,
+    SWTRIM,
+    SEAL,
+    DRIVE,
+    LEAVECOUNTRY,
+    HANDOVER,
+    TRACK,
+    ARRIVE,
     PAGE
   } from '../../constant/index'
-
+  
   export default {
     data() {
       return {
@@ -60,7 +101,9 @@
         //     radius: '2px'
         //   }
         // },
-        temp: {},
+        temp: {
+          trackPlace: ''
+        },
         list: null,
         urls: {}
       }
@@ -69,20 +112,74 @@
       this.temp.vin = options.vin
       this.temp.smallLink = options.smallLink
       this.temp.smallLinkConvert = options.smallLinkConvert
-      this.getData(this.temp)
+      this.temp.taskId = options.taskId
+      this.getData()
     },
     methods: {
-      getData(temp) {
-        const vin = temp.vin
-        const smallLink = temp.smallLink
+      getData() {
+        const vin = this.temp.vin
+        const smallLink = this.temp.smallLink
         const pageList = PAGE[smallLink] || []
         this.list = pageList.map((item) => {
           this.temp[item.value] = item.type === 'upload-image' || item.type === 'upload-video' ? [] : ''
           return item
         })
-        getVehicleInfo({ vin }).then(res => {
-          Object.keys(res.data).map((key) => {
-            this.temp[key] = res.data[key]
+        let func
+        switch (this.temp.smallLink) {
+          case INSPECTION:
+          case INWAREHOUSE:
+          case OUTWAREHOUSE:
+          case OUTCONFIRM:
+            func = getVehicleInfo
+            break
+          case STORAGE:
+            func = inWarehouseInfo
+            break
+          case CARD:
+            func = cardInfo
+            break
+          case TRIM:
+          case SWTRIM:
+            func = trimInfo
+            break
+          case SEAL:
+            func = sealInfo
+            break
+          case DRIVE:
+            func = driveInfo
+            break
+          case LEAVECOUNTRY:
+            func = outboundInfo
+            break
+          case HANDOVER:
+            func = handoverInfo
+            break
+          case TRACK:
+            func = trackRecordInfo
+            break
+          case ARRIVE:
+            func = arriveInfo
+            break
+        }
+        func({ vin, smallLink }).then((res) => {
+          const data = {
+            ...res.data,
+            ...res.data.vehiclePhoto
+          }
+          Object.keys(data).map((key) => {
+            const flag = String(data[key]).indexOf('http') === 0
+            if (flag) {
+              this.temp[key] = []
+              data[key].split(',').forEach((url) => {
+                this.temp[key].push({
+                  url,
+                  name: ''
+                })
+              })
+              this.urls[key] = data[key]
+            } else {
+              this.temp[key] = data[key]
+            }
           })
         })
       },
@@ -98,7 +195,7 @@
       },
       async uploadImg(tempFilePaths, formData, key) {
         if (!tempFilePaths.length) return
-
+        
         tempFilePaths.map(async () => {
           const path = tempFilePaths.pop()
           const res = await uni.uploadFile({
@@ -108,19 +205,19 @@
             formData: formData
           })
           const url = formData.domain + '/' + JSON.parse(res.data).key
-          this.urls[key] = url
           this.temp[key].push({
             url,
             name: ''
           })
+          this.urls[key] = this.temp[key].map(item => item.url).join(',')
         })
       },
       async handleDelete(err, key) {
-        this.urls[key] = ''
         this.temp[key] = []
+        this.urls[key] = ''
       },
       postData(func) {
-        const data = {
+        let data = {
           ...this.temp,
           ...this.urls,
           vehiclePhoto: {
@@ -129,14 +226,25 @@
         }
         func(data).then((res) => {
           uni.showToast({
-            title: '提交成功',
+            title: res.msg,
             duration: 3000
           })
-          setTimeout(() => {
-            wx.navigateTo({
-              url: '../mission/index'
-            })
-          }, 3000)
+          switch (this.temp.smallLink) {
+            case TRACK:
+              const vin = this.temp.vin
+              const smallLink = this.temp.smallLink
+              trackRecordInfo({ vin, smallLink }).then((res) => {
+                this.temp = {
+                  ...this.temp,
+                  ...res.data
+                }
+              })
+              break
+            default:
+              setTimeout(() => {
+                wx.navigateBack()
+              }, 3000)
+          }
         })
       }
     },

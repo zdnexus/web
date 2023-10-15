@@ -13,7 +13,22 @@ const request = (url, method, data) => {
         'content-type': 'application/json'
       },
       success(res) {
-        resolve(res.data)
+        if (res.statusCode === 200 && res.data.code === 200) {
+          resolve(res.data)
+        } else {
+          uni.showToast({
+            title: res.data.msg,
+            icon: 'none',
+            duration: 3000
+          })
+        }
+      },
+      fail(res) {
+        uni.showToast({
+          title: res.msg,
+          icon: 'none',
+          duration: 3000
+        })
       }
     })
   })

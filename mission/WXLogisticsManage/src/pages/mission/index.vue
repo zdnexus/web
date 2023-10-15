@@ -1,8 +1,10 @@
 <template>
   <view class="content">
-    <uni-easyinput v-model="temp.vin" class="input" placeholder="车架号" @input="onKeyInput"></uni-easyinput>
+    <view class="user-input">
+      <uni-easyinput v-model="temp.vin" class="input" placeholder="车架号" @input="onKeyInput"></uni-easyinput>
 
-    <uni-data-select v-model="temp.link" class="select" :localdata="selectData" placeholder="环节" @change="change"></uni-data-select>
+      <uni-data-select v-model="temp.link" class="select" :localdata="selectData" placeholder="环节" @change="change"></uni-data-select>
+    </view>
 
     <button class="button" type="primary" size="mini">搜索</button>
 
@@ -70,7 +72,7 @@
       },
       toLink(row) {
         wx.navigateTo({
-          url: `../link/index?vin=${row.vin}&smallLink=${row.smallLink}&smallLinkConvert=${row.smallLinkConvert}`
+          url: `../link/index?vin=${row.vin}&smallLink=${row.smallLink}&smallLinkConvert=${row.smallLinkConvert}&taskId=${row.id}`
         })
       }
     },
@@ -84,12 +86,15 @@
     align-items: center;
     justify-content: center;
 
+    .user-input {
+      width: 100%;
+      padding: 5px 10px;
+      box-sizing: border-box;
+    }
+
     .input, .select, .button, .table {
       width: 100%;
       margin: 5px;
-    }
-
-    .table {
     }
   }
 </style>
