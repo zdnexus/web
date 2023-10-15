@@ -4,3 +4,5 @@
  */
  
 export * from './treeData'
+
+export * from './page'

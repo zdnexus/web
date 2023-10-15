@@ -65,3 +65,19 @@ export function viewOrderFeeDeatail(data) {
     method: 'get'
   })
 }
+
+export function paymentVehiclePayment(data) {
+  return request({
+    url: `/common/payment/vehiclePayment`,
+    method: 'post',
+    data
+  })
+}
+
+export function invoicingVehicleInvoice(data) {
+  return request({
+    url: `/common/invoicing/vehicleInvoice`,
+    method: 'post',
+    data
+  })
+}

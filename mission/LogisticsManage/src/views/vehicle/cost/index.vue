@@ -3,21 +3,12 @@
     <div class="filter-container">
       <el-input v-model="listQuery.vin" placeholder="输入车架号" style="width: 200px" class="filter-item" @keyup.enter.native="handleFilter"/>
 
-      <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
+      <el-button class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
     </div>
 
-    <el-table
-      :key="listKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-
-      @selection-change="handleIdChange"
-    >
+    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
       <el-table-column
         type="selection"
         width="55">
@@ -164,23 +155,23 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
+      <el-table-column label="付款状态" prop="payStatus" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ ORDER_EXAMINE_STATUS_OBJ[row.payStatus] }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="开票状态" prop="invoiceStatus" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ ORDER_EXAMINE_STATUS_OBJ[row.invoiceStatus] }}</span>
+        </template>
+      </el-table-column>
 
       <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
-
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
 
       <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
@@ -193,44 +184,32 @@
           <el-button size="mini"
                      type="primary"
                      style="margin-right: 10px"
-                     :disabled="row.auditStatus === ORDER_EXAMINE_STATUS_AUDITING || row.auditStatus === ORDER_EXAMINE_STATUS_PASSED"
+                     :disabled="[ORDER_EXAMINE_STATUS_AUDITING,ORDER_EXAMINE_STATUS_PASSED].includes(row.auditStatus)"
                      @click="handleRow('update',row)">
             录入费用
           </el-button>
 
-          <el-button size="mini"
-                     type="primary"
-                     style="margin-right: 10px"
-                     @click="handleRow('view',row)">
+          <el-button size="mini" type="primary" @click="handleRow('view',row)">
             费用详情
           </el-button>
 
-          <el-popconfirm
-            title="请确认发起审核？"
-            style="margin-left: 10px"
-            @onConfirm="handleRow('audit',row)"
-          >
-            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus === ORDER_EXAMINE_STATUS_AUDITING || row.auditStatus === ORDER_EXAMINE_STATUS_PASSED">
+          <el-popconfirm title="请确认发起审核？" @onConfirm="handleRow('audit',row)">
+            <el-button size="mini" type="primary" slot="reference"
+                       :disabled="[ORDER_EXAMINE_STATUS_AUDITING,ORDER_EXAMINE_STATUS_PASSED].includes(row.auditStatus)">
               发起审核
             </el-button>
           </el-popconfirm>
 
-          <el-popconfirm
-            title="请确认发起申请付款？"
-            style="margin-left: 10px"
-            @onConfirm="handleRow('delete',row)"
-          >
-            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus !== ORDER_EXAMINE_STATUS_PASSED">
+          <el-popconfirm title="请确认发起申请付款？" @onConfirm="handleRow('pay',row)">
+            <el-button size="mini" type="primary" slot="reference"
+                       :disabled="[ORDER_EXAMINE_STATUS_AUDITING,ORDER_EXAMINE_STATUS_PASSED].includes(row.payStatus)">
               申请付款
             </el-button>
           </el-popconfirm>
 
-          <el-popconfirm
-            title="请确认发起申请开票？"
-            style="margin-left: 10px"
-            @onConfirm="handleRow('delete',row)"
-          >
-            <el-button size="mini" type="primary" slot="reference" :disabled="row.auditStatus !== ORDER_EXAMINE_STATUS_PASSED">
+          <el-popconfirm title="请确认发起申请开票？" @onConfirm="handleRow('invoice',row)">
+            <el-button size="mini" type="primary" slot="reference"
+                       :disabled="[ORDER_EXAMINE_STATUS_AUDITING,ORDER_EXAMINE_STATUS_PASSED].includes(row.invoiceStatus)">
               申请开票
             </el-button>
           </el-popconfirm>
@@ -238,17 +217,10 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
-      <el-form ref="dataForm"
-               :rules="rules"
-               :model="temp"
-               label-position="left"
-               label-width="200px"
-               style="width: 600px"
-               :disabled="viewData"
-      >
+      <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="200px" style="width: 600px" :disabled="viewData">
         <el-form-item label="报价" prop="vin">
           <el-input v-model="temp.vin"/>
         </el-form-item>
@@ -556,7 +528,9 @@
     updateOrderFee,
     // deleteOrderFee,
     viewOrderFee,
-    auditOrderFee
+    auditOrderFee,
+    paymentVehiclePayment,
+    invoicingVehicleInvoice
   } from '@/api/vehicle/cost/index'
   import {
     TEMP_TYPE,
@@ -738,6 +712,7 @@
       },
       handleRow(type, row) {
         this.dialogStatus = type
+        let reqData = null
         switch (type) {
           case 'create':
             this.resetTemp()
@@ -748,7 +723,8 @@
             break
           case 'update':
           case 'view':
-            viewOrderFee([row.id]).then((res) => {
+            reqData = [row.id]
+            viewOrderFee(reqData).then((res) => {
               this.temp = {
                 ...res.data,
                 vehicleAddAbroadFreeList: [],
@@ -762,15 +738,44 @@
             })
             break
           case 'audit':
-            auditOrderFee({ id: row.id }).then((res) => {
-              if (res) {
-                this.$notify({
-                  type: 'success',
-                  title: '已提交审核',
-                  duration: 3000
-                })
-                this.handleFilter()
-              }
+            reqData = { id: row.id }
+            auditOrderFee(reqData).then((res) => {
+              this.$notify({
+                type: 'success',
+                title: '已提交审核',
+                duration: 3000
+              })
+              this.handleFilter()
+            })
+            break
+          case 'pay':
+            reqData = {
+              orderId: row.orderId,
+              id: row.id,
+              vin: row.vin
+            }
+            paymentVehiclePayment(reqData).then((res) => {
+              this.$notify({
+                type: 'success',
+                title: '已提交付款',
+                duration: 3000
+              })
+              this.handleFilter()
+            })
+            break
+          case 'invoice':
+            reqData = {
+              orderId: row.orderId,
+              id: row.id,
+              vin: row.vin
+            }
+            invoicingVehicleInvoice(reqData).then((res) => {
+              this.$notify({
+                type: 'success',
+                title: '已提交开票',
+                duration: 3000
+              })
+              this.handleFilter()
             })
             break
         }

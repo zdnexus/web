@@ -74,3 +74,56 @@ export function addCmFaTask(data) {
     data
   })
 }
+
+export function vehiclesNumberInfo(data) {
+  return request({
+    url: `/vehicle/upcomingTask/vehiclesNumberInfo/${data}`,
+    method: 'get'
+  })
+}
+
+export function addCmNumberTask(data) {
+  return request({
+    url: `/vehicle/upcomingTask/addCmNumberTask`,
+    method: 'post',
+    data
+  })
+}
+
+export function passNumberTask(data) {
+  return request({
+    url: `/vehicle/upcomingTask/passNumberTask`,
+    method: 'post',
+    data
+  })
+}
+
+export function trackRecordInfo(data) {
+  return request({
+    url: `/vehicle/upcomingTask/trackRecordInfo/${data}`,
+    method: 'get'
+  })
+}
+
+export function trackRecord(data) {
+  return request({
+    url: `/vehicle/trackRecord`,
+    method: 'post',
+    data
+  })
+}
+
+export function arriveInfo(data) {
+  return request({
+    url: `/vehicle/upcomingTask/arriveInfo/${data}`,
+    method: 'get'
+  })
+}
+
+export function arrive(data) {
+  return request({
+    url: `/vehicle/upcomingTask/arrive`,
+    method: 'post',
+    data
+  })
+}

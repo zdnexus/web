@@ -1,28 +1,28 @@
 {
-	"easycom": {
-		"autoscan": true,
-		"custom": {
-			"^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
-		}
-	},
-	"pages": [
-		{
-			"path": "pages/mission/index",
-			"style": {
-				"navigationBarTitleText": "代办任务管理"
-			}
-		},
-		{
-			"path": "pages/link/index",
-			"style": {
-				"navigationBarTitleText": "信息登记"
-			}
-		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
-	}
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  },
+  "pages": [
+    {
+      "path": "pages/mission/index",
+      "style": {
+        "navigationBarTitleText": "待办任务列表"
+      }
+    },
+    {
+      "path": "pages/link/index",
+      "style": {
+        "navigationBarTitleText": "待办任务环节"
+      }
+    }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "uni-app",
+    "navigationBarBackgroundColor": "#F8F8F8",
+    "backgroundColor": "#F8F8F8"
+  }
 }

@@ -81,7 +81,7 @@ Vue.prototype.$handleTempNotify = () => {
 Vue.prototype.$approveTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_APPROVE]}成功`,
+    title: `发起${TEMP_TYPE[TEMP_TYPE_APPROVE]}成功`,
     duration: DURATION
   })
 }

@@ -85,10 +85,13 @@
   import Pagination from '@/components/Pagination'
   import {
     upcomingTaskList,
-    getVehicleDeclare
+    getVehicleDeclare,
+    vehiclesNumberInfo,
+    trackRecordInfo,
+    arriveInfo
   } from '@/api/mission/allocation'
   import {
-    viewOrderFeeDeatail,
+    viewOrderFeeDeatail
   } from '@/api/vehicle/cost/index'
   import {
     PAGE_TOTAL,
@@ -100,6 +103,10 @@
     DMFA,
     FMFA,
     CMFA,
+    DM_NUMS_WARN,
+    CM_NUMS_WARN,
+    TRACK,
+    ARRIVE,
   } from '@/constant'
 
   export default {
@@ -159,6 +166,31 @@
                   }
                 })
                 break
+              case DM_NUMS_WARN:
+              case CM_NUMS_WARN:
+                vehiclesNumberInfo([row.orderId]).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              case TRACK:
+                trackRecordInfo(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              case ARRIVE:
+                arriveInfo(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
               default:
                 getVehicleDeclare(row.vin).then((res) => {
                   this.vehicleInfo = {
@@ -178,7 +210,6 @@
     watch: {
       dialogFormVisible: {
         handler(newVal, oldVal) {
-          debugger
           if (newVal !== oldVal && !!newVal) {
             this.handleFilter()
           }

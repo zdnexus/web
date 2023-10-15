@@ -1,1 +1,120 @@
-{}
+{
+  "vin": "test0001",
+  "type": "轿车",
+  "branding": "奔驰",
+  "vehicleModel": "E300",
+  "frontLeft": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/69f97cf2967c4189a9efa1ff1f25c697",
+      "name": ""
+    }
+  ],
+  "vehicleLefttion": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/68e9776566b248e4a61167a645a82cde",
+      "name": ""
+    }
+  ],
+  "frontRight": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/54e954af35de44c0a3e0fdbc6a5b6e13",
+      "name": ""
+    }
+  ],
+  "vehicleRighttion": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/8edd7a66dbc64cd08f0107b9eddf83bc",
+      "name": ""
+    }
+  ],
+  "rear": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/0a2c4b65551a4697be385bd547d044a9",
+      "name": ""
+    }
+  ],
+  "dashboard": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/538b16b419eb4b30a07a4aaa78b45008",
+      "name": ""
+    }
+  ],
+  "trunk": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/e469a0bcfd4f47a0807f5ea628a2d4cb",
+      "name": ""
+    }
+  ],
+  "vehicleKeys": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/f9188f7edd404cc9acfa573fc787b0ac",
+      "name": ""
+    }
+  ],
+  "accessories": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/065183e267ac4e9eaf530b3ddb23a43f",
+      "name": ""
+    }
+  ],
+  "boardData": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/4f9329151b2a466691e912c2b15dc8ea",
+      "name": ""
+    }
+  ],
+  "video": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/05607cd1ce7247529b7268f8acd393fc",
+      "name": ""
+    }
+  ],
+  "isDemage": 0,
+  "remark": "没有问题",
+  "inspectionFee": "123",
+  "inspectionBvoucher": [
+    {
+      "url": "http://s1j7mauo2.hn-bkt.clouddn.com/9fb4d0d8a6bc49528ca9babdfc7fe262",
+      "name": ""
+    }
+  ],
+  "createBy": null,
+  "createTime": "2023-09-07 17:57:19",
+  "updateBy": null,
+  "updateTime": "2023-10-14 16:56:46",
+  "id": 62,
+  "videoUrl": null,
+  "clientId": 200,
+  "clientName": "腾讯贸易A公司",
+  "vehicleColor": "红色",
+  "vehicleKey": "3把",
+  "carAccessories": "随车配件：一个随车资料、3把钥匙",
+  "storageLocation": "接车地址：罗泊湖",
+  "deliverName": "张三司机",
+  "deliverMobile": "13595658",
+  "isDamage": "0",
+  "delFlag": "0",
+  "arriveTime": "2023-09-07",
+  "vehicleStatus": "1",
+  "warehouseName": "监管仓",
+  "warehouseId": 9,
+  "declareStatus": "1",
+  "isGo": false,
+  "isAbroad": "0",
+  "isCard": "1",
+  "isBwh": "1",
+  "vehiclePhoto": {
+    "frontLeft": "http://s1j7mauo2.hn-bkt.clouddn.com/69f97cf2967c4189a9efa1ff1f25c697",
+    "vehicleLefttion": "http://s1j7mauo2.hn-bkt.clouddn.com/68e9776566b248e4a61167a645a82cde",
+    "frontRight": "http://s1j7mauo2.hn-bkt.clouddn.com/54e954af35de44c0a3e0fdbc6a5b6e13",
+    "vehicleRighttion": "http://s1j7mauo2.hn-bkt.clouddn.com/8edd7a66dbc64cd08f0107b9eddf83bc",
+    "rear": "http://s1j7mauo2.hn-bkt.clouddn.com/0a2c4b65551a4697be385bd547d044a9",
+    "dashboard": "http://s1j7mauo2.hn-bkt.clouddn.com/538b16b419eb4b30a07a4aaa78b45008",
+    "trunk": "http://s1j7mauo2.hn-bkt.clouddn.com/e469a0bcfd4f47a0807f5ea628a2d4cb",
+    "vehicleKeys": "http://s1j7mauo2.hn-bkt.clouddn.com/f9188f7edd404cc9acfa573fc787b0ac",
+    "accessories": "http://s1j7mauo2.hn-bkt.clouddn.com/065183e267ac4e9eaf530b3ddb23a43f",
+    "boardData": "http://s1j7mauo2.hn-bkt.clouddn.com/4f9329151b2a466691e912c2b15dc8ea",
+    "video": "http://s1j7mauo2.hn-bkt.clouddn.com/05607cd1ce7247529b7268f8acd393fc",
+    "inspectionBvoucher": "http://s1j7mauo2.hn-bkt.clouddn.com/9fb4d0d8a6bc49528ca9babdfc7fe262"
+  }
+}

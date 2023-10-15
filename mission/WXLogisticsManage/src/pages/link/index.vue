@@ -1,45 +1,38 @@
 <template>
   <view class="content">
+    <uni-section :title="temp.smallLinkConvert" type="circle" titleFontSize="20px"></uni-section>
     <view class="user-input" v-for="item in list">
-      <view v-if="item.label" class="label">{{item.label}}</view>
-      <view v-for="child in item.children">
-        <uni-section v-if="child.type !== 'buttons'"
-                     :title="child.label"
-                     type="line"
-                     class="line">
-          <uni-file-picker v-if="child.type === 'upload-image' || child.type === 'upload-video'"
-                           v-model="temp[child.value]"
-                           limit="1"
-                           :fileMediatype="child.type === 'upload-image' ? 'image':'video'"
-                           :image-styles="imageStyles"
-                           @select="select"
-                           @progress="progress"
-                           @success="success"
-                           @fail="fail"
-          ></uni-file-picker>
-          <uni-data-checkbox v-if="child.type === 'checkbox'"
-                             v-model="temp[child.value]"
-                             :localdata="child.options"></uni-data-checkbox>
-          <uni-file-picker v-if="child.type === 'checkbox' && temp[child.value] === 1"
-                           v-model="temp[child.value2]"
-                           limit="1"
-                           fileMediatype="image"
-                           :image-styles="imageStyles"
-                           @select="select"
-                           @progress="progress"
-                           @success="success"
-                           @fail="fail"
-          ></uni-file-picker>
-          <uni-easyinput v-if="child.type === 'input'"
-                         v-model="temp[child.value]"></uni-easyinput>
-        </uni-section>
-        <view v-if="child.type === 'buttons'"
-              class="buttons">
-          <view v-for="button in child.options"
-                class="button">
-            <button>{{button.label}}</button>
-          </view>
-        </view>
+      <uni-section v-if="item.type !== 'buttons'" :title="item.label" type="line">
+        <uni-file-picker v-if="item.type === 'upload-image' || item.type === 'upload-video'"
+                         v-model="temp[item.value]"
+                         :fileMediatype="item.type === 'upload-image' ? 'image':'video'"
+                         :limit="item.limit ? item.limit: 1"
+                         mode="grid"
+                         :auto-upload="false"
+                         @select="($event)=>handleSelect($event,item.value)"
+                         @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
+
+        <uni-data-checkbox v-else-if="item.type === 'checkbox'"
+                           v-model="temp[item.value]"
+                           :localdata="item.options"></uni-data-checkbox>
+
+        <uni-easyinput v-else-if="item.type === 'input'"
+                       v-model="temp[item.value]"></uni-easyinput>
+
+        <uni-data-checkbox v-else-if="item.type === 'checkbox'"
+                           v-model="temp[item.value]"
+                           :localdata="item.options"></uni-data-checkbox>
+
+        <uni-file-picker v-if="item.type === 'checkbox' && temp[item.value] === 1"
+                         v-model="temp[item.value2]"
+                         fileMediatype="image"
+                         limit="10"
+                         :auto-upload="false"
+                         @select="($event)=>handleSelect($event,item.value)"
+                         @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
+      </uni-section>
+      <view v-else class="buttons">
+        <button v-for="item2 in item.array" class="button" @click="postData(item2.func)">{{item2.label}}</button>
       </view>
     </view>
   </view>
@@ -47,66 +40,45 @@
 
 <script>
   import {
-    PAGE,
-    VEHICLE_INFO,
-    VEHICLE_PHOTO,
-    VEHICLE_OTHER1
-  } from '../../constant/index'
-  import {
     getToken,
     getVehicleInfo
   } from '../../api/index'
+  import {
+    PAGE
+  } from '../../constant/index'
 
   export default {
     data() {
       return {
-        VEHICLE_PHOTO,
-        imageStyles: {
-          width: 60,
-          height: 60,
-          border: {
-            color: '#eee',
-            width: 2,
-            style: 'solid',
-            radius: '2px'
-          }
-        },
-        addFormUpload: {},
+        // imageStyles: {
+        //   width: 60,
+        //   height: 60,
+        //   border: {
+        //     color: '#eee',
+        //     width: 2,
+        //     style: 'solid',
+        //     radius: '2px'
+        //   }
+        // },
         temp: {},
         list: null,
-        vin: ''
+        urls: {}
       }
     },
     onLoad(options) {
-      this.getData(options.vin)
       this.temp.vin = options.vin
+      this.temp.smallLink = options.smallLink
+      this.temp.smallLinkConvert = options.smallLinkConvert
+      this.getData(this.temp)
     },
     methods: {
-      getData(vin) {
-        const data = 'inspection'
-        const pageList = PAGE[data]
-        this.list = pageList.map((page) => {
-          let obj = null
-          switch (page) {
-            case 'VEHICLE_INFO':
-              obj = VEHICLE_INFO({ label: '接车环节' })
-              obj.children.forEach((child) => {
-                this.temp[child.value] = ''
-              })
-              return obj
-            case 'VEHICLE_PHOTO':
-              obj = VEHICLE_PHOTO({ label: '车辆图片' })
-              obj.children.forEach((child) => {
-                this.temp[child.value] = ''
-              })
-              return obj
-            case 'VEHICLE_OTHER1':
-              obj = VEHICLE_OTHER1()
-              obj.children.forEach((child) => {
-                this.temp[child.value] = ''
-              })
-              return obj
-          }
+      getData(temp) {
+        const vin = temp.vin
+        const smallLink = temp.smallLink
+        const pageList = PAGE[smallLink] || []
+        this.list = pageList.map((item) => {
+          this.temp[item.value] = item.type === 'upload-image' || item.type === 'upload-video' ? [] : ''
+          return item
         })
         getVehicleInfo({ vin }).then(res => {
           Object.keys(res.data).map((key) => {
@@ -114,27 +86,57 @@
           })
         })
       },
-      select(e) {
-        console.log('progress')
-        getToken().then(res => {
-          // this.addFormUpload.token = res.data.token
-          // this.addFormUpload.key = res.data.key
-          // this.addFormUpload.domain = res.data.domain
-          const imgUrl = e.tempFilePaths[0]
+      async handleSelect(data, key) {
+        getToken().then(async (res) => {
           const formData = {
             token: res.data.token,
             key: res.data.key,
             domain: res.data.domain
           }
-          wx.request({
+          await this.uploadImg(data.tempFilePaths, formData, key)
+        })
+      },
+      async uploadImg(tempFilePaths, formData, key) {
+        if (!tempFilePaths.length) return
+
+        tempFilePaths.map(async () => {
+          const path = tempFilePaths.pop()
+          const res = await uni.uploadFile({
             url: 'https://upload-z2.qiniup.com',
-            filePath: imgUrl,
-            data: JSON.stringify(formData),
-            method: 'POST',
-            success: (res) => {
-              debugger
-            }
+            filePath: path,
+            name: 'file',
+            formData: formData
           })
+          const url = formData.domain + '/' + JSON.parse(res.data).key
+          this.urls[key] = url
+          this.temp[key].push({
+            url,
+            name: ''
+          })
+        })
+      },
+      async handleDelete(err, key) {
+        this.urls[key] = ''
+        this.temp[key] = []
+      },
+      postData(func) {
+        const data = {
+          ...this.temp,
+          ...this.urls,
+          vehiclePhoto: {
+            ...this.urls
+          }
+        }
+        func(data).then((res) => {
+          uni.showToast({
+            title: '提交成功',
+            duration: 3000
+          })
+          setTimeout(() => {
+            wx.navigateTo({
+              url: '../mission/index'
+            })
+          }, 3000)
         })
       }
     },
@@ -147,8 +149,11 @@
 
     .user-input {
       width: 100%;
-      padding-left: 10px;
-      margin-bottom: 30px;
+      padding: 0 5px;
+
+      &:last-of-type {
+        padding: 0;
+      }
     }
 
     .label {
@@ -162,8 +167,14 @@
       display: flex;
 
       .button {
-        width: 142px;
-        margin-left: 20px;
+        flex: 1;
+        width: 140px;
+        margin-left: 10px;
+
+        &:last-of-type {
+          color: #fff;
+          background-color: #46a6ff;
+        }
       }
     }
   }

@@ -18,6 +18,12 @@ export const FMFA = 'fmFa'
 
 export const CMFA = 'cmFa'
 
+export const DM_NUMS_WARN = 'dmNumsWarn'
+
+export const TRACK = 'track'
+
+export const ARRIVE = 'arrive'
+
 export const TREE_DATA = [
   {
     label: '接车验车',
