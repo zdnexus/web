@@ -78,7 +78,7 @@ export default {
       path: '/vehicle/cost',
       name: '费用核算',
       meta: { title: '费用核算', icon: 'edit' },
-      component: () => import('@/views/vehicle/cost'),
+      component: () => import('@/views/vehicle/cost')
     },
     {
       path: '/vehicle/cooperate',
@@ -103,7 +103,7 @@ export default {
           name: '境外车队信息管理',
           component: () => import('@/views/vehicle/cooperate/abroad'),
           meta: { title: '境外车队信息管理', icon: 'edit' }
-        },
+        }
       ]
     },
     {
@@ -169,8 +169,8 @@ export default {
           path: '/vehicle/statistics/monthRevenue',
           component: () => import('@/views/vehicle/statistics/monthRevenue'),
           meta: { title: '月度营收统计', icon: 'edit' }
-        },
+        }
       ]
-    },
+    }
   ]
 }

@@ -33,6 +33,6 @@ export default {
       path: '/organization/user',
       component: () => import('@/views/organization/user'),
       meta: { title: '用户管理', icon: 'edit' }
-    },
+    }
   ]
 }

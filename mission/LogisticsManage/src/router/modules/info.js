@@ -28,6 +28,6 @@ export default {
       path: '/info/pay-way',
       component: () => import('@/views/info/pay-way'),
       meta: { title: '支付方式', icon: 'edit' }
-    },
+    }
   ]
 }

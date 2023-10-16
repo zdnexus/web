@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.teamName" placeholder="请输入境外车队名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.teamName" placeholder="请输入境外车队名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -15,7 +15,7 @@
         title="确认要删除吗？"
         @onConfirm="handleRow('delete')"
       >
-        <el-button type="danger" icon="el-icon-delete" class="filter-item" slot="reference">
+        <el-button slot="reference" type="danger" icon="el-icon-delete" class="filter-item">
           批量删除
         </el-button>
       </el-popconfirm>
@@ -33,8 +33,8 @@
     >
       <el-table-column
         type="selection"
-        width="55">
-      </el-table-column>
+        width="55"
+      />
 
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -100,7 +100,7 @@
             title="确认要删除吗？"
             @onConfirm="handleRow('delete',row)"
           >
-            <el-button size="mini" type="danger" slot="reference">
+            <el-button slot="reference" size="mini" type="danger">
               删除
             </el-button>
           </el-popconfirm>
@@ -108,24 +108,24 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="运输队名称" prop="teamName">
-          <el-input v-model="temp.teamName"/>
+          <el-input v-model="temp.teamName" />
         </el-form-item>
 
         <el-form-item label="运输队人数" prop="total">
-          <el-input v-model="temp.total"/>
+          <el-input v-model="temp.total" />
         </el-form-item>
 
         <el-form-item label="运输队长名称" prop="name">
-          <el-input v-model="temp.name"/>
+          <el-input v-model="temp.name" />
         </el-form-item>
 
         <el-form-item label="运输队长电话" prop="mobile">
-          <el-input v-model="temp.mobile"/>
+          <el-input v-model="temp.mobile" />
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -142,119 +142,119 @@
 </template>
 
 <script>
-  import Pagination from '@/components/Pagination'
-  import { cooperateAbrodList, createCooperateAbrod, updateCooperateAbrod, deleteCooperateAbrod } from '@/api/vehicle/cooperate/abroad'
-  import { organizationList } from '@/api/organization'
-  import { TEMP_TYPE } from '@/constant'
+import Pagination from '@/components/Pagination'
+import { cooperateAbrodList, createCooperateAbrod, updateCooperateAbrod, deleteCooperateAbrod } from '@/api/vehicle/cooperate/abroad'
+import { organizationList } from '@/api/organization'
+import { TEMP_TYPE } from '@/constant'
 
-  export default {
-    components: { Pagination },
-    data() {
-      return {
-        TEMP_TYPE,
-        listKey: 0,
-        list: null,
-        pmList: null,
-        total: 0,
-        listLoading: true,
-        listQuery: {
-          teamName: undefined,
-          pageNum: 1,
-          pageSize: 20,
-        },
-        ids: [],
-        dialogFormVisible: false,
-        dialogStatus: '',
-        temp: {
-          teamName: undefined,
-          total: undefined,
-          name: undefined,
-          mobile: undefined
-        },
-        rules: {
-          teamName: [{ required: true, message: '请输入运输队名称', trigger: 'blur' }],
-          total: [{ required: true, message: '请输入运输队人数', trigger: 'blur' }],
-          name: [{ required: true, message: '请输入运输队长名称', trigger: 'blur' }],
-          mobile: [{ required: true, message: '请输入运输队长电话', trigger: 'blur' }],
-        }
+export default {
+  components: { Pagination },
+  data() {
+    return {
+      TEMP_TYPE,
+      listKey: 0,
+      list: null,
+      pmList: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        teamName: undefined,
+        pageNum: 1,
+        pageSize: 20
+      },
+      ids: [],
+      dialogFormVisible: false,
+      dialogStatus: '',
+      temp: {
+        teamName: undefined,
+        total: undefined,
+        name: undefined,
+        mobile: undefined
+      },
+      rules: {
+        teamName: [{ required: true, message: '请输入运输队名称', trigger: 'blur' }],
+        total: [{ required: true, message: '请输入运输队人数', trigger: 'blur' }],
+        name: [{ required: true, message: '请输入运输队长名称', trigger: 'blur' }],
+        mobile: [{ required: true, message: '请输入运输队长电话', trigger: 'blur' }]
       }
-    },
-    created() {
-      this.getList()
-      organizationList({ roleKeySet: 'pmanager' }).then(res => {
-        this.pmList = res.data.list.map(item => ({
-          label: item.userName,
-          value: item.userId
-        }))
+    }
+  },
+  created() {
+    this.getList()
+    organizationList({ roleKeySet: 'pmanager' }).then(res => {
+      this.pmList = res.data.list.map(item => ({
+        label: item.userName,
+        value: item.userId
+      }))
+    })
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      cooperateAbrodList(this.listQuery).then(res => {
+        this.list = res.data.list
+        this.total = res.data.total
+        this.listLoading = false
       })
     },
-    methods: {
-      getList() {
-        this.listLoading = true
-        cooperateAbrodList(this.listQuery).then(res => {
-          this.list = res.data.list
-          this.total = res.data.total
-          this.listLoading = false
-        })
-      },
-      handleFilter() {
-        this.listQuery.pageNum = 1
-        this.getList()
-      },
-      handleIdChange(rows) {
-        this.ids = rows.map(row => row.id)
-      },
-      resetTemp() {
-        this.temp = {
-          teamName: undefined,
-          total: undefined,
-          name: undefined,
-          mobile: undefined
-        }
-      },
-      handleData() {
-        const fun = this.dialogStatus === 'create' ? createCooperateAbrod : updateCooperateAbrod
-        this.$refs['dataForm'].validate((valid) => {
-          if (valid) {
-            fun(this.temp).then(() => {
-              this.dialogFormVisible = false
-              this.handleFilter()
-              this.$notify({
-                type: 'success',
-                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-                duration: 3000
-              })
+    handleFilter() {
+      this.listQuery.pageNum = 1
+      this.getList()
+    },
+    handleIdChange(rows) {
+      this.ids = rows.map(row => row.id)
+    },
+    resetTemp() {
+      this.temp = {
+        teamName: undefined,
+        total: undefined,
+        name: undefined,
+        mobile: undefined
+      }
+    },
+    handleData() {
+      const fun = this.dialogStatus === 'create' ? createCooperateAbrod : updateCooperateAbrod
+      this.$refs['dataForm'].validate((valid) => {
+        if (valid) {
+          fun(this.temp).then(() => {
+            this.dialogFormVisible = false
+            this.handleFilter()
+            this.$notify({
+              type: 'success',
+              title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
+              duration: 3000
             })
-          }
-        })
-      },
-      deleteData(ids) {
-        deleteCooperateAbrod(ids).then(() => {
-          this.handleFilter()
-          this.$notify({
-            type: 'success',
-            message: '删除成功',
-            duration: 3000
           })
-        })
-      },
-      handleRow(type, row) {
-        switch (type) {
-          case 'create':
-          case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row }
-            this.dialogStatus = type
-            this.dialogFormVisible = true
-            this.$nextTick(() => {
-              this.$refs['dataForm'].clearValidate()
-            })
-            break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
-            break
         }
-      },
+      })
+    },
+    deleteData(ids) {
+      deleteCooperateAbrod(ids).then(() => {
+        this.handleFilter()
+        this.$notify({
+          type: 'success',
+          message: '删除成功',
+          duration: 3000
+        })
+      })
+    },
+    handleRow(type, row) {
+      switch (type) {
+        case 'create':
+        case 'update':
+          type === 'create' ? this.resetTemp() : this.temp = { ...row }
+          this.dialogStatus = type
+          this.dialogFormVisible = true
+          this.$nextTick(() => {
+            this.$refs['dataForm'].clearValidate()
+          })
+          break
+        case 'delete':
+          row = row ? [row.id] : this.ids
+          this.deleteData(row)
+          break
+      }
     }
   }
+}
 </script>

@@ -16,14 +16,14 @@ export function createParameterService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'post',
-    data,
+    data
   })
 }
 
 export function deleteParameterService(data) {
   return request({
     url: `/vehicle/serviceItems/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
@@ -31,13 +31,13 @@ export function updateParameterService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function exportParameterService(data) {
   return request({
     url: `/vehicle/serviceItems/export`,
-    method: 'get',
+    method: 'get'
   })
 }

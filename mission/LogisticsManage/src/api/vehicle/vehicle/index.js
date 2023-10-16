@@ -16,7 +16,7 @@ export function getVehiclePhoto(data) {
   return request({
     url: '/vehicle/vehiclePhoto/info',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -24,7 +24,7 @@ export function createVehicletoBeStored(data) {
   return request({
     url: '/vehicle/vehicleInfo',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -32,20 +32,20 @@ export function updateVehicletoBeStored(data) {
   return request({
     url: '/vehicle/vehicleInfo',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteVehicletoBeStored(data) {
   return request({
     url: `/vehicle/vehicleInfo/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportVehicletoBeStored(data) {
   return request({
     url: `/vehicle/vehicleInfo/export`,
-    method: 'get',
+    method: 'get'
   })
-} 
+}

@@ -469,7 +469,7 @@ export const ED = [
     label: '车辆返库时的存放照片',
     value: ChangeValue['车辆返库时的存放照片'],
     type: 'image'
-  },
+  }
 ]
 
 export const OEC = [

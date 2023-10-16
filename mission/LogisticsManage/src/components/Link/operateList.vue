@@ -42,23 +42,23 @@
 </template>
 
 <script>
-  import { TASK_STATUS_OBJ } from '@/constant'
+import { TASK_STATUS_OBJ } from '@/constant'
 
-  export default {
-    name: 'operateList',
-    props: {
-      list: {
-        type: Array,
-        default: () => []
-      }
-    },
-    data() {
-      return {
-        TASK_STATUS_OBJ,
-        listKey: 0
-      }
+export default {
+  name: 'OperateList',
+  props: {
+    list: {
+      type: Array,
+      default: () => []
+    }
+  },
+  data() {
+    return {
+      TASK_STATUS_OBJ,
+      listKey: 0
     }
   }
+}
 </script>
 
 <style lang="scss" scoped>

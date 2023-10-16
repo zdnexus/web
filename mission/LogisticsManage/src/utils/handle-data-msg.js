@@ -15,7 +15,7 @@ import {
   TEMP_TYPE_APPROVE,
   SUCCESS,
   WARNING,
-  DURATION,
+  DURATION
 } from '@/constant'
 
 Vue.prototype.$msgNotify = (message) => {

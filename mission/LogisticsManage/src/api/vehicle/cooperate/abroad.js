@@ -4,7 +4,6 @@
  */
 import request from '@/utils/request'
 
-
 // vehicle/cooperate/abroad
 export function cooperateAbrodList(data) {
   return request({
@@ -18,7 +17,7 @@ export function createCooperateAbrod(data) {
   return request({
     url: '/vehicle/overseasFleet',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -26,20 +25,20 @@ export function updateCooperateAbrod(data) {
   return request({
     url: '/vehicle/overseasFleet',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteCooperateAbrod(data) {
   return request({
     url: `/vehicle/overseasFleet/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportCooperateAbrod(data) {
   return request({
     url: `/vehicle/overseasFleet/export`,
-    method: 'get',
+    method: 'get'
   })
 }

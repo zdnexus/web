@@ -17,7 +17,7 @@ export function createParameterWarehouse(data) {
   return request({
     url: '/vehicle/warehouse',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -25,20 +25,20 @@ export function updateParameterWarehouse(data) {
   return request({
     url: '/vehicle/warehouse',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteParameterWarehouse(data) {
   return request({
     url: `/vehicle/warehouse/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportParameterWarehouse(data) {
   return request({
     url: `/vehicle/warehouse/export`,
-    method: 'get',
+    method: 'get'
   })
 }

@@ -13,7 +13,7 @@ export function createParameterCarModel(data) {
   return request({
     url: '/vehicle/vehicleModel',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -21,20 +21,20 @@ export function updateParameterCarModel(data) {
   return request({
     url: '/vehicle/vehicleModel',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteParameterCarModel(data) {
   return request({
     url: `/vehicle/vehicleModel/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportParameterCarModel(data) {
   return request({
     url: `/vehicle/vehicleModel/export`,
-    method: 'get',
+    method: 'get'
   })
 }

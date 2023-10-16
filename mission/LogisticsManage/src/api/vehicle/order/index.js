@@ -16,7 +16,7 @@ export function createVehicleOrder(data) {
   return request({
     url: '/vehicle/order',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -24,21 +24,21 @@ export function updateVehicleOrder(data) {
   return request({
     url: '/vehicle/order',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteVehicleOrder(data) {
   return request({
     url: `/vehicle/order/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportVehicleOrder(data) {
   return request({
     url: `/vehicle/order/export`,
-    method: 'get',
+    method: 'get'
   })
 }
 
@@ -46,7 +46,7 @@ export function orderSmallLinkItemList(data) {
   return request({
     url: '/vehicle/serviceRecord/info',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -54,7 +54,7 @@ export function orderAllocationList(data) {
   return request({
     url: '/vehicle/order/orderAllocation',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -62,7 +62,7 @@ export function addDmNumberTask(data) {
   return request({
     url: '/vehicle/upcomingTask/addDmNumberTask',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -70,7 +70,7 @@ export function allocateOrder(data) {
   return request({
     url: '/vehicle/upcomingTask/bindRole',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -78,6 +78,6 @@ export function orderBigLinklnfo(data) {
   return request({
     url: '/vehicle/order/bigLinkInfo',
     method: 'post',
-    data,
+    data
   })
 }

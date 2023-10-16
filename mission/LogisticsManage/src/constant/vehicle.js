@@ -57,7 +57,7 @@ export const VEHICLE_INFO_OBJ = {
   'vehicleColor': '颜色',
   'vehicleKey': '钥匙数量',
   'deliverName': '送车人',
-  'deliverMobile': '送车人电话',
+  'deliverMobile': '送车人电话'
 }
 
 export const ORDER_EXAMINE_STATUS_AUDIT = '0'
@@ -84,7 +84,7 @@ export const ORDER_EXAMINE_STATUS = [
   {
     label: '被驳回',
     value: ORDER_EXAMINE_STATUS_REJECTED
-  },
+  }
 ]
 
 export const ORDER_EXAMINE_STATUS_OBJ = listToObj(ORDER_EXAMINE_STATUS)
@@ -118,7 +118,7 @@ export const ORDER_STATUS = [
   {
     label: '已完成',
     value: '1'
-  },
+  }
 ]
 
 export const ORDER_STATUS_OBJ = listToObj(ORDER_STATUS)
@@ -131,7 +131,7 @@ export const FREE_STATUS = [
   {
     label: '应收',
     value: 'income'
-  },
+  }
 ]
 
 export const FREE_STATUS_OBJ = listToObj(FREE_STATUS)
@@ -144,7 +144,7 @@ export const TASK_STATUS = [
   {
     label: '已完成',
     value: '1'
-  },
+  }
 ]
 
 export const TASK_STATUS_OBJ = listToObj(TASK_STATUS)

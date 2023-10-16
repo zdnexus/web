@@ -1,14 +1,14 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号名称" @keyup.enter.native="handleFilter"></el-input>
+      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号名称" @keyup.enter.native="handleFilter" />
 
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
     </div>
 
-    <el-table v-loading="listLoading" :key="listKey" :data="list" border fit highlight-current-row>
+    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row>
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -72,96 +72,98 @@
       </el-table-column>
     </el-table>
 
-    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
-    <HandleDialog v-model="dialogFormVisible"
-                  :dialogStatus="dialogStatus"
-                  :vehicleInfo="vehicleInfo"
-                  :disabled="true"></HandleDialog>
+    <HandleDialog
+      v-model="dialogFormVisible"
+      :dialog-status="dialogStatus"
+      :vehicle-info="vehicleInfo"
+      :disabled="true"
+    />
   </div>
 </template>
 
 <script>
-  import HandleDialog from './handle-dialog.vue'
-  import Pagination from '@/components/Pagination'
-  import {
-    upcomingTaskList,
-    getVehicleDeclare,
-    uploadVehicleDeclare
-  } from '@/api/mission/allocation'
-  import {
-    PAGE_TOTAL,
-    PAGE_NUM,
-    PAGE_SIZE,
-    TEMP_TYPE_VIEW,
-    TEMP_TYPE,
-    TASK_STATUS_OBJ
-  } from '@/constant'
+import HandleDialog from './handle-dialog.vue'
+import Pagination from '@/components/Pagination'
+import {
+  upcomingTaskList,
+  getVehicleDeclare,
+  uploadVehicleDeclare
+} from '@/api/mission/allocation'
+import {
+  PAGE_TOTAL,
+  PAGE_NUM,
+  PAGE_SIZE,
+  TEMP_TYPE_VIEW,
+  TEMP_TYPE,
+  TASK_STATUS_OBJ
+} from '@/constant'
 
-  export default {
-    components: { Pagination, HandleDialog },
-    data() {
-      return {
-        TEMP_TYPE_VIEW,
-        TEMP_TYPE,
-        TASK_STATUS_OBJ,
-        listQuery: {
-          vin: undefined,
-          taskStatus: 1,
-          pageNum: PAGE_NUM,
-          pageSize: PAGE_SIZE
-        },
-        listLoading: false,
-        listKey: 0,
-        list: undefined,
-        ids: [],
-        listTotal: PAGE_TOTAL,
-        dialogFormVisible: false,
-        dialogStatus: undefined,
-        vehicleInfo: null
-      }
-    },
-    mounted() {
-      this.getList()
-    },
-    methods: {
-      getList() {
-        this.listLoading = true
-        upcomingTaskList(this.listQuery).then((res) => {
-          this.list = res.data.list
-          this.listTotal = res.data.total
-          this.listLoading = false
-        })
+export default {
+  components: { Pagination, HandleDialog },
+  data() {
+    return {
+      TEMP_TYPE_VIEW,
+      TEMP_TYPE,
+      TASK_STATUS_OBJ,
+      listQuery: {
+        vin: undefined,
+        taskStatus: 1,
+        pageNum: PAGE_NUM,
+        pageSize: PAGE_SIZE
       },
-      handleFilter() {
-        this.listQuery.pageNum = PAGE_NUM
-        this.getList()
-      },
-      handleRow(type, row) {
-        this.dialogStatus = type
-        switch (type) {
-          case TEMP_TYPE_VIEW:
-            getVehicleDeclare(row.vin).then(res => {
-              this.vehicleInfo = {
-                row,
-                vehicleBaseInfo: res.data.vehicleBaseInfo,
-                vehiclePhoto: res.data.vehiclePhoto,
-                vehicleDeclare: res.data.vehicleDeclare,
-              }
-            })
-            this.dialogFormVisible = true
-            break
-        }
-      }
-    },
-    watch: {
-      dialogFormVisible: {
-        handler(newVal, oldVal) {
-          if (newVal !== oldVal && newVal === false) {
-            this.handleFilter()
-          }
+      listLoading: false,
+      listKey: 0,
+      list: undefined,
+      ids: [],
+      listTotal: PAGE_TOTAL,
+      dialogFormVisible: false,
+      dialogStatus: undefined,
+      vehicleInfo: null
+    }
+  },
+  watch: {
+    dialogFormVisible: {
+      handler(newVal, oldVal) {
+        if (newVal !== oldVal && newVal === false) {
+          this.handleFilter()
         }
       }
     }
+  },
+  mounted() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      upcomingTaskList(this.listQuery).then((res) => {
+        this.list = res.data.list
+        this.listTotal = res.data.total
+        this.listLoading = false
+      })
+    },
+    handleFilter() {
+      this.listQuery.pageNum = PAGE_NUM
+      this.getList()
+    },
+    handleRow(type, row) {
+      this.dialogStatus = type
+      switch (type) {
+        case TEMP_TYPE_VIEW:
+          getVehicleDeclare(row.vin).then(res => {
+            this.vehicleInfo = {
+              row,
+              vehicleBaseInfo: res.data.vehicleBaseInfo,
+              vehiclePhoto: res.data.vehiclePhoto,
+              vehicleDeclare: res.data.vehicleDeclare
+            }
+          })
+          this.dialogFormVisible = true
+          break
+      }
+    }
   }
+}
 </script>

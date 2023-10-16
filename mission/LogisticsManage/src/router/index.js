@@ -97,7 +97,7 @@ export const constantRoutes = [
   warehouse,
   finance,
   info,
-  organization,
+  organization
   // {
   //   path: '/documentation',
   //   component: Layout,
@@ -397,7 +397,7 @@ export const asyncRoutes = [
   //     }
   //   ]
   // },
-  
+
   // 404 page must be placed at the end !!!
   {
     path: '*',

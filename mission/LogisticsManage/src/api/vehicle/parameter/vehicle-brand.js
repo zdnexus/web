@@ -17,7 +17,7 @@ export function createParameterCarBrand(data) {
   return request({
     url: '/vehicle/branding',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -25,20 +25,20 @@ export function updateParameterCarBrand(data) {
   return request({
     url: '/vehicle/branding',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteParameterCarBrand(data) {
   return request({
     url: `/vehicle/branding/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportParameterCarBrand(data) {
   return request({
     url: `/vehicle/branding/export`,
-    method: 'get',
+    method: 'get'
   })
 }

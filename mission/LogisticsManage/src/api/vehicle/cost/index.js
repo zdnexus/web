@@ -4,7 +4,6 @@
  */
 import request from '@/utils/request'
 
-
 // vehicle/cost
 export function orderFeeList(data) {
   return request({
@@ -18,7 +17,7 @@ export function createOrderFee(data) {
   return request({
     url: '/vehicle/orderFee',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -26,7 +25,7 @@ export function updateOrderFee(data) {
   return request({
     url: '/vehicle/orderFee',
     method: 'put',
-    data,
+    data
   })
 }
 

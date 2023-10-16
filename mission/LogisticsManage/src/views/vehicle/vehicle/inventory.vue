@@ -1,8 +1,8 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" placeholder="车架号" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
-      <el-input v-model="listQuery.clientName" placeholder="客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.vin" placeholder="车架号" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.clientName" placeholder="客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -111,23 +111,24 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
-        <div class="block" v-for="img in temp.photoList" :key="img.label">
+        <div v-for="img in temp.photoList" :key="img.label" class="block">
           <span class="demonstration">{{ img.label }}</span>
           <el-image
             v-if="img.type ==='image'"
             style="width: 100px; height: 100px"
-            :src="img.url"></el-image>
+            :src="img.url"
+          />
           <el-image
-            v-else-if="img.type ==='demage'"
             v-for="img2 in img.url.split(',')"
+            v-else-if="img.type ==='demage'"
             style="width: 100px; height: 100px"
             :src="img2"
-          ></el-image>
-          <video v-else width="300" height="300" :src="img.url" controls/></video>
+          />
+          <video v-else width="300" height="300" :src="img.url" controls /></video>
         </div>
       </el-form>
     </el-dialog>
@@ -135,86 +136,86 @@
 </template>
 
 <script>
-  import Pagination from '@/components/Pagination'
-  import Upload from '@/components/Upload/SingleImage'
-  import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
-  import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
+import Pagination from '@/components/Pagination'
+import Upload from '@/components/Upload/SingleImage'
+import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
+import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
 
-  export default {
-    components: { Pagination, Upload },
-    data() {
-      return {
-        TEMP_TYPE,
-        DAMAGE_TYPE_LIST_OBJ,
-        listKey: 0,
-        list: null,
-        photoList: null,
-        total: 0,
-        listLoading: true,
-        listQuery: {
-          pageNum: 1,
-          pageSize: 20,
-          vin: undefined,
-          clientName: undefined,
-          vehicleStatus: 1,
-        },
-        ids: [],
-        dialogFormVisible: false,
-        dialogStatus: '',
-        temp: {
-          photoList: null
-        },
-        rules: {}
-      }
+export default {
+  components: { Pagination, Upload },
+  data() {
+    return {
+      TEMP_TYPE,
+      DAMAGE_TYPE_LIST_OBJ,
+      listKey: 0,
+      list: null,
+      photoList: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        pageNum: 1,
+        pageSize: 20,
+        vin: undefined,
+        clientName: undefined,
+        vehicleStatus: 1
+      },
+      ids: [],
+      dialogFormVisible: false,
+      dialogStatus: '',
+      temp: {
+        photoList: null
+      },
+      rules: {}
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      vehicleList(this.listQuery).then(res => {
+        this.list = res.data.list
+        this.total = res.data.total
+        this.listLoading = false
+      })
     },
-    created() {
+    handleFilter() {
+      this.listQuery.pageNum = 1
       this.getList()
     },
-    methods: {
-      getList() {
-        this.listLoading = true
-        vehicleList(this.listQuery).then(res => {
-          this.list = res.data.list
-          this.total = res.data.total
-          this.listLoading = false
-        })
-      },
-      handleFilter() {
-        this.listQuery.pageNum = 1
-        this.getList()
-      },
-      viewDetail(vin) {
-        getVehiclePhoto({
-          vin
-        }).then(res => {
-          this.temp.photoList = []
-          Object.keys(res.data).forEach(key => {
-            if (VEHICLE_PHOTO_OBJ[key] && res.data[key]) {
-              this.temp.photoList.push({
-                label: VEHICLE_PHOTO_OBJ[key],
-                url: res.data[key],
-                type: key === 'video' || key === 'demage' ? key : 'image'
-              })
-            }
-          })
-        })
-      },
-      handleRow(type, row) {
-        switch (type) {
-          case 'view':
-            this.dialogStatus = type
-            this.dialogFormVisible = true
-            this.viewDetail(row.vin)
-            this.$nextTick(() => {
-              this.$refs['dataForm'].clearValidate()
+    viewDetail(vin) {
+      getVehiclePhoto({
+        vin
+      }).then(res => {
+        this.temp.photoList = []
+        Object.keys(res.data).forEach(key => {
+          if (VEHICLE_PHOTO_OBJ[key] && res.data[key]) {
+            this.temp.photoList.push({
+              label: VEHICLE_PHOTO_OBJ[key],
+              url: res.data[key],
+              type: key === 'video' || key === 'demage' ? key : 'image'
             })
-            break
-          case 'delete':
-            row = row ? [row.id] : this.ids
-            this.deleteData(row)
-            break
-        }
-      },
+          }
+        })
+      })
+    },
+    handleRow(type, row) {
+      switch (type) {
+        case 'view':
+          this.dialogStatus = type
+          this.dialogFormVisible = true
+          this.viewDetail(row.vin)
+          this.$nextTick(() => {
+            this.$refs['dataForm'].clearValidate()
+          })
+          break
+        case 'delete':
+          row = row ? [row.id] : this.ids
+          this.deleteData(row)
+          break
+      }
     }
   }
+}
 </script>

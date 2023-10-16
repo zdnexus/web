@@ -23,6 +23,6 @@ export default {
       path: '/warehouse/warehouse',
       component: () => import('@/views/warehouse/warehouse'),
       meta: { title: '仓库管理', icon: 'edit' }
-    },
+    }
   ]
 }

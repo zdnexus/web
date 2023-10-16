@@ -35,7 +35,7 @@ export const TREE_DATA = [
         value: 'inspection',
         options: 'fieldStaff'
       }
-    ],
+    ]
   },
   {
     label: '非监管仓',
@@ -70,8 +70,8 @@ export const TREE_DATA = [
         label: '出库确认',
         value: 'outConfirm',
         options: 'ncrWmanger'
-      },
-    ],
+      }
+    ]
   },
   {
     label: '监管仓',
@@ -118,7 +118,7 @@ export const TREE_DATA = [
         value: 'swOutConfirm',
         options: 'bwhWmanger'
       }
-    ],
+    ]
   },
   {
     label: '报关环节',
@@ -154,7 +154,7 @@ export const TREE_DATA = [
         value: CUSTOM_CAR,
         options: ''
       }
-    ],
+    ]
   },
   {
     label: '司机送车',
@@ -166,7 +166,7 @@ export const TREE_DATA = [
         value: 'drive',
         options: 'driver'
       }
-    ],
+    ]
   },
   {
     label: '出境环节',
@@ -184,7 +184,7 @@ export const TREE_DATA = [
         value: 'handover',
         options: 'driver'
       }
-    ],
+    ]
   },
   {
     label: '境外环节',
@@ -202,6 +202,6 @@ export const TREE_DATA = [
         value: 'track',
         options: 'servicer'
       }
-    ],
-  },
+    ]
+  }
 ]

@@ -16,7 +16,7 @@ export function createParameterkeysPosition(data) {
   return request({
     url: '/vehicle/keysPosition',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -24,20 +24,20 @@ export function updateParameterkeysPosition(data) {
   return request({
     url: '/vehicle/keysPosition',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteParameterkeysPosition(data) {
   return request({
     url: `/vehicle/keysPosition/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportParameterkeysPosition(data) {
   return request({
     url: `/vehicle/keysPosition/export`,
-    method: 'get',
+    method: 'get'
   })
 }

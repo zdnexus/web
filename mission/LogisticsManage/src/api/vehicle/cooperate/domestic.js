@@ -17,7 +17,7 @@ export function createCooperateDomestic(data) {
   return request({
     url: '/vehicle/demesticFleet',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -25,20 +25,20 @@ export function updateCooperateDomestic(data) {
   return request({
     url: '/vehicle/demesticFleet',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteCooperateDomestic(data) {
   return request({
     url: `/vehicle/demesticFleet/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportCooperateDomestic(data) {
   return request({
     url: `/vehicle/demesticFleet/export`,
-    method: 'get',
+    method: 'get'
   })
 }

@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
+      <el-input v-model="listQuery.vin" class="filter-item" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter" />
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -77,157 +77,159 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
-    <Link :visible="linkFormVisible"
-          :disabled="true"
-          :baseComponents="baseComponents"
-          :formData="linkData"></Link>
+    <Link
+      :visible="linkFormVisible"
+      :disabled="true"
+      :base-components="baseComponents"
+      :form-data="linkData"
+    />
   </div>
 </template>
 
 <script>
-  import Pagination from '@/components/Pagination'
-  import Link from '@/components/Link'
-  import {
-    vehicleOrderList,
-    orderBigLinklnfo
-  } from '@/api/vehicle/order'
-  import {
-    TEMP_TYPE,
-    TREE_DATA,
-    NODE_LIST_OBJ,
-    VEHICLE_INFO_OBJ,
-    VEHICLE_PHOTO_OBJ,
-    ORDER_STATUS_OBJ,
-  } from '@/constant'
-  import {
-    TREE_DATA_BIG_NODE_OBJ,
-    INSPECTION,
-    NCR,
-    DECLARATION,
-    BWH,
-    EDV,
-    ED,
-    OEC
-  } from '@/constant/pageCompoent'
+import Pagination from '@/components/Pagination'
+import Link from '@/components/Link'
+import {
+  vehicleOrderList,
+  orderBigLinklnfo
+} from '@/api/vehicle/order'
+import {
+  TEMP_TYPE,
+  TREE_DATA,
+  NODE_LIST_OBJ,
+  VEHICLE_INFO_OBJ,
+  VEHICLE_PHOTO_OBJ,
+  ORDER_STATUS_OBJ
+} from '@/constant'
+import {
+  TREE_DATA_BIG_NODE_OBJ,
+  INSPECTION,
+  NCR,
+  DECLARATION,
+  BWH,
+  EDV,
+  ED,
+  OEC
+} from '@/constant/pageCompoent'
 
-  export default {
-    components: { Pagination, Link },
-    data() {
-      return {
-        TEMP_TYPE,
-        NODE_LIST_OBJ,
-        listKey: 0,
-        list: null,
-        total: 0,
-        listLoading: true,
-        listQuery: {
-          pageNum: 1,
-          pageSize: 20,
-          status: 2,
-          vin: undefined
-        },
-        dialogFormVisible: false,
-        dialogStatus: '',
-        temp: {},
-        linkFormVisible: false,
-        baseComponents: [],
-        linkData: null
-      }
+export default {
+  components: { Pagination, Link },
+  data() {
+    return {
+      TEMP_TYPE,
+      NODE_LIST_OBJ,
+      listKey: 0,
+      list: null,
+      total: 0,
+      listLoading: true,
+      listQuery: {
+        pageNum: 1,
+        pageSize: 20,
+        status: 2,
+        vin: undefined
+      },
+      dialogFormVisible: false,
+      dialogStatus: '',
+      temp: {},
+      linkFormVisible: false,
+      baseComponents: [],
+      linkData: null
+    }
+  },
+  created() {
+    this.getList()
+  },
+  methods: {
+    getList() {
+      this.listLoading = true
+      vehicleOrderList(this.listQuery).then(res => {
+        this.list = res.data.list
+        this.total = res.data.total
+        this.listLoading = false
+      })
     },
-    created() {
+    handleFilter() {
+      this.listQuery.pageNum = 1
       this.getList()
     },
-    methods: {
-      getList() {
-        this.listLoading = true
-        vehicleOrderList(this.listQuery).then(res => {
-          this.list = res.data.list
-          this.total = res.data.total
-          this.listLoading = false
-        })
-      },
-      handleFilter() {
-        this.listQuery.pageNum = 1
-        this.getList()
-      },
-      reqDetail(row, bigLinKey) {
-        orderBigLinklnfo({
-          vin: row.vin,
-          orderId: row.id,
-          bigLinKey,
-        }).then(res => {
-          switch (bigLinKey) {
-            case 'inspection':
-              this.baseComponents = INSPECTION
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data.vehicleBaseInfo,
-                ...res.data.vehiclePhoto,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'ncr':
-              this.baseComponents = NCR
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data.ncrBigLinkBaseInfoItem,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'declaration':
-              this.baseComponents = DECLARATION
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'bwh':
-              this.baseComponents = BWH
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data.ncrBigLinkBaseInfoItem,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'edv':
-              this.baseComponents = EDV
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'ed':
-              this.baseComponents = ED
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-            case 'oec':
-              this.baseComponents = OEC
-              this.linkData = {
-                bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
-                ...row,
-                ...res.data,
-                vehicleTrackRecordList: res.data.vehicleTrackRecordList,
-                vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
-              }
-              break
-          }
-          this.linkFormVisible = true
-        })
-      }
+    reqDetail(row, bigLinKey) {
+      orderBigLinklnfo({
+        vin: row.vin,
+        orderId: row.id,
+        bigLinKey
+      }).then(res => {
+        switch (bigLinKey) {
+          case 'inspection':
+            this.baseComponents = INSPECTION
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data.vehicleBaseInfo,
+              ...res.data.vehiclePhoto,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'ncr':
+            this.baseComponents = NCR
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data.ncrBigLinkBaseInfoItem,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'declaration':
+            this.baseComponents = DECLARATION
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'bwh':
+            this.baseComponents = BWH
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data.ncrBigLinkBaseInfoItem,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'edv':
+            this.baseComponents = EDV
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'ed':
+            this.baseComponents = ED
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+          case 'oec':
+            this.baseComponents = OEC
+            this.linkData = {
+              bigLinKeyLabel: TREE_DATA_BIG_NODE_OBJ[bigLinKey],
+              ...row,
+              ...res.data,
+              vehicleTrackRecordList: res.data.vehicleTrackRecordList,
+              vehicleUpcomingTaskList: res.data.vehicleUpcomingTaskList
+            }
+            break
+        }
+        this.linkFormVisible = true
+      })
     }
   }
+}
 </script>

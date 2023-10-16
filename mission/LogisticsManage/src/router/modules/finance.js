@@ -28,6 +28,6 @@ export default {
       path: '/finance/form',
       component: () => import('@/views/finance/form'),
       meta: { title: '财务报表', icon: 'edit' }
-    },
+    }
   ]
 }

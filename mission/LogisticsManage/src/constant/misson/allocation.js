@@ -16,7 +16,7 @@ export const CHECK_STATUS = [
   {
     label: '驳回',
     value: CHECK_STATUS_REJECT
-  },
+  }
 ]
 
 export const CHECK_STATUS_OBJ = listToObj(CHECK_STATUS)

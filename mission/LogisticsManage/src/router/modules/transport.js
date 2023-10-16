@@ -77,7 +77,7 @@ export default {
       path: '/transport/cost',
       name: '费用核算',
       meta: { title: '费用核算', icon: 'edit' },
-      component: () => import('@/views/transport/cost'),
+      component: () => import('@/views/transport/cost')
     },
     {
       path: '/transport/cooperate',
@@ -160,8 +160,8 @@ export default {
           name: '月度营收统计',
           component: () => import('@/views/transport/count/monthRevenue'),
           meta: { title: '月度营收统计', icon: 'edit' }
-        },
+        }
       ]
-    },
+    }
   ]
 }

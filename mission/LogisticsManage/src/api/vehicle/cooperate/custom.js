@@ -17,7 +17,7 @@ export function createCooperateCustom(data) {
   return request({
     url: '/vehicle/client',
     method: 'post',
-    data,
+    data
   })
 }
 
@@ -25,20 +25,20 @@ export function updateCooperateCustom(data) {
   return request({
     url: '/vehicle/client',
     method: 'put',
-    data,
+    data
   })
 }
 
 export function deleteCooperateCustom(data) {
   return request({
     url: `/vehicle/client/${data}`,
-    method: 'delete',
+    method: 'delete'
   })
 }
 
 export function exportCooperateCustom(data) {
   return request({
     url: `/vehicle/client/export`,
-    method: 'get',
+    method: 'get'
   })
 }

@@ -16,14 +16,14 @@ export function upcomingTaskList(data) {
 export function exportUpcomingTask(data) {
   return request({
     url: `/vehicle/upcomingTask/export`,
-    method: 'get',
+    method: 'get'
   })
 }
 
 export function getVehicleDeclare(vin) {
   return request({
     url: `/vehicle/declare/${vin}`,
-    method: 'get',
+    method: 'get'
   })
 }
 
