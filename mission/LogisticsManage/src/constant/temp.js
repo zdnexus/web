@@ -14,6 +14,8 @@ export const TEMP_TYPE_HANDLE = 'handle'
 
 export const TEMP_TYPE_APPROVE = 'approve'
 
+export const TEMP_TYPE_EXPIRE = 'expire'
+
 export const TEMP_TYPE_UPLOAD = 'upload'
 
 export const TEMP_MAKE_PLAN = 'make_plan'
@@ -27,6 +29,7 @@ export const TEMP_TYPE = {
   [TEMP_TYPE_VIEW]: '查看',
   [TEMP_TYPE_HANDLE]: '处理',
   [TEMP_TYPE_APPROVE]: '审批',
+  [TEMP_TYPE_EXPIRE]: '定为失效订单',
   [TEMP_TYPE_UPLOAD]: '上传',
   [TEMP_MAKE_PLAN]: '制定计划',
   [TEMP_MISSION_DETAILS]: '任务详情'

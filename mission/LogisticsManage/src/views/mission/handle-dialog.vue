@@ -498,7 +498,7 @@
       },
       vehicleInfo: {
         type: Object,
-        default: null
+        default: {}
       }
     },
     components: { Upload },

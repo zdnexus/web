@@ -11,9 +11,9 @@
         添加订单
       </el-button>
 
-      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
+      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE)">
         <el-button type="danger" icon="el-icon-delete" slot="reference">
-          批量删除
+          批量设置失效订单
         </el-button>
       </el-popconfirm>
     </div>
@@ -69,15 +69,15 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="220">
         <template slot-scope="{row,$index}">
           <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(TEMP_MAKE_PLAN,row)">
             {{ TEMP_TYPE[TEMP_MAKE_PLAN] }}
           </el-button>
 
-          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
+          <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE,row)">
             <el-button size="mini" type="danger" slot="reference">
-              {{ TEMP_TYPE[TEMP_TYPE_DELETE] }}
+              {{ TEMP_TYPE[TEMP_TYPE_EXPIRE] }}
             </el-button>
           </el-popconfirm>
         </template>
@@ -126,6 +126,7 @@
                  @check="handleNodeClick">
         </el-tree>
       </el-form>
+
       <div slot="footer" class="dialog-footer">
         <el-button @click="dialogFormVisible = false">
           取消
@@ -160,7 +161,7 @@
     PAGE_NUM,
     PAGE_SIZE,
     TEMP_TYPE_CREATE,
-    TEMP_TYPE_DELETE,
+    TEMP_TYPE_EXPIRE,
     TEMP_MAKE_PLAN,
     TEMP_TYPE,
     TREE_DATA,
@@ -173,7 +174,7 @@
     data() {
       return {
         TEMP_TYPE_CREATE,
-        TEMP_TYPE_DELETE,
+        TEMP_TYPE_EXPIRE,
         TEMP_MAKE_PLAN,
         TEMP_TYPE,
         TREE_DATA,
@@ -389,7 +390,7 @@
               })
             })
             break
-          case TEMP_TYPE_DELETE:
+          case TEMP_TYPE_EXPIRE:
             row = row ? [row.id] : this.ids
             this.deleteData(row)
             break
