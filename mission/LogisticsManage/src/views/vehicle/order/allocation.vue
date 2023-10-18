@@ -393,7 +393,14 @@ export default {
           break
         case TEMP_TYPE_EXPIRE:
           row = row ? [row.id] : this.ids
-          this.deleteData(row)
+          deleteVehicleOrder(row).then(() => {
+            this.handleFilter()
+            this.$notify({
+              type: 'success',
+              message: '删除成功',
+              duration: 3000
+            })
+          })
           break
       }
     },
@@ -462,16 +469,6 @@ export default {
             })
           }
         }
-      })
-    },
-    deleteData(ids) {
-      deleteVehicleOrder(ids).then(() => {
-        this.handleFilter()
-        this.$notify({
-          type: 'success',
-          message: '删除成功',
-          duration: 3000
-        })
       })
     }
   }

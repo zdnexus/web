@@ -56,7 +56,7 @@ export default {
     },
     baseComponents: {
       type: Object,
-      default: () => null
+      default: () => []
     },
     formData: {
       type: Object,
@@ -65,7 +65,6 @@ export default {
   },
   data() {
     return {
-      // baseComponents: [],
       baseInfoData: null,
       baseInfoOperateList: null,
       temp: {}

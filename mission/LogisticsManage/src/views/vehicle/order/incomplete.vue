@@ -6,9 +6,17 @@
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
+
+      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE)">
+        <el-button slot="reference" type="danger" icon="el-icon-delete">
+          批量设置失效订单
+        </el-button>
+      </el-popconfirm>
     </div>
 
-    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%">
+    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55" />
+
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.id }}</span>
@@ -29,42 +37,42 @@
 
       <el-table-column label="接车验车" prop="inspection" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'inspection')">{{ NODE_LIST_OBJ[row.inspection] }}</a>
+          <a @click="reqLink(row,'inspection')">{{ NODE_LIST_OBJ[row.inspection] }}</a>
         </template>
       </el-table-column>
 
       <el-table-column label="非监管仓" prop="ncr" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'ncr')">{{ NODE_LIST_OBJ[row.ncr] }}</a>
+          <a @click="reqLink(row,'ncr')">{{ NODE_LIST_OBJ[row.ncr] }}</a>
         </template>
       </el-table-column>
       <el-table-column label="报关" prop="declaration" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'declaration')">{{ NODE_LIST_OBJ[row.declaration] }}</a>
+          <a @click="reqLink(row,'declaration')">{{ NODE_LIST_OBJ[row.declaration] }}</a>
         </template>
       </el-table-column>
 
       <el-table-column label="监管仓" prop="bwh" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'bwh')">{{ NODE_LIST_OBJ[row.bwh] }}</a>
+          <a @click="reqLink(row,'bwh')">{{ NODE_LIST_OBJ[row.bwh] }}</a>
         </template>
       </el-table-column>
 
       <el-table-column label="司机送车" prop="edv" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'edv')">{{ NODE_LIST_OBJ[row.edv] }}</a>
+          <a @click="reqLink(row,'edv')">{{ NODE_LIST_OBJ[row.edv] }}</a>
         </template>
       </el-table-column>
 
       <el-table-column label="出境" prop="ed" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'ed')">{{ NODE_LIST_OBJ[row.ed] }}</a>
+          <a @click="reqLink(row,'ed')">{{ NODE_LIST_OBJ[row.ed] }}</a>
         </template>
       </el-table-column>
 
       <el-table-column label="境外" prop="oec" align="center" width="100">
         <template slot-scope="{row}">
-          <a @click="reqDetail(row,'oec')">{{ NODE_LIST_OBJ[row.oec] }}</a>
+          <a @click="reqLink(row,'oec')">{{ NODE_LIST_OBJ[row.oec] }}</a>
         </template>
       </el-table-column>
 
@@ -126,8 +134,6 @@
           :default-expand-all="true"
           show-checkbox
           node-key="id"
-          :default-expanded-keys="[2, 3]"
-          :default-checked-keys="[5]"
           :props="defaultTreeProps"
           :render-content="renderContent"
           @check="handleNodeClick"
@@ -155,6 +161,7 @@ import { cooperateCustomList } from '@/api/vehicle/cooperate/custom'
 import { parameterServiceList } from '@/api/vehicle/parameter/server'
 import {
   vehicleOrderList,
+  deleteVehicleOrder,
   orderBigLinklnfo,
   orderSmallLinkItemList,
   orderAllocationList,
@@ -199,8 +206,13 @@ export default {
         label: 'label',
         value: 'value'
       },
+      vehicleTypeList: null,
+      clientList: null,
+      serviceList: null,
+      allocationList: null,
       listKey: 0,
       list: null,
+      ids: [],
       total: 0,
       listLoading: true,
       listQuery: {
@@ -212,6 +224,7 @@ export default {
       dialogFormVisible: false,
       dialogStatus: '',
       temp: {},
+      disabledTemp: {},
       rules: {
         vin: [{ required: true, message: '输入车架号', trigger: 'change' }],
         vehicleType: [{ required: true, message: '请选择发货车型', trigger: 'change' }],
@@ -258,7 +271,10 @@ export default {
       this.listQuery.pageNum = 1
       this.getList()
     },
-    reqDetail(row, bigLinKey) {
+    handleIdChange(rows) {
+      this.ids = rows.map(row => row.id)
+    },
+    reqLink(row, bigLinKey) {
       orderBigLinklnfo({
         vin: row.vin,
         orderId: row.id,
@@ -343,6 +359,7 @@ export default {
             {
               options.length > 0
                 ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]}
+                             disabled={this.disabledTemp[node.data.value]}
                   style='margin-left:30px'
                   placeholder=''
                   onChange={(value) => {
@@ -379,21 +396,27 @@ export default {
       }
     },
     handleNodeClick(node, tree) {
-      if (tree.checkedNodes.length > 0) {
-        this.temp.orderSmallLinkItem = {}
-        this.temp.orderBaseInfo = {}
-        tree.checkedNodes.forEach(n => {
-          if (!n.children) {
-            this.temp.orderSmallLinkItem[n.value] = '0'
+      if (tree.checkedNodes.length === 0) return
+      tree.checkedNodes.forEach(n => {
+        if (!n.children) {
+          this.temp.orderSmallLinkItem[n.value] = '0'
+        }
+      })
+      TREE_DATA.forEach(t1 => {
+        t1.children.forEach(t2 => {
+          if (this.temp.orderSmallLinkItem[t2.value] !== '0') {
+            this.temp.orderSmallLinkItem[t2.value] = '1'
           }
         })
-        TREE_DATA.forEach(t1 => {
-          t1.children.forEach(t2 => {
-            if (this.temp.orderSmallLinkItem[t2.value] !== '0') {
-              this.temp.orderSmallLinkItem[t2.value] = '1'
-            }
-          })
-        })
+      })
+      const find = tree.checkedNodes.map(item=>item.id).includes(node.id)
+      if (!find) {
+        this.temp.orderSmallLinkItem[node.value] = '1'
+        const orderBaseInfo = {...this.temp.orderBaseInfo}
+        delete orderBaseInfo[node.value]
+        delete orderBaseInfo[`${node.value}Name`]
+        delete orderBaseInfo[`${node.value}Id`]
+        this.$set(this.temp, 'orderBaseInfo', orderBaseInfo)
       }
     },
     handleRow(type, row) {
@@ -407,15 +430,16 @@ export default {
               ...row,
               client: { label: row.clientName, value: row.clientId },
               service: { label: row.serviceName, value: row.serviceId },
-              orderSmallLinkItem: res.data.orderSmallLinkItem || {},
-              orderBaseInfo: {}
+              orderSmallLinkItem: res.data.orderSmallLinkItem,
+              orderBaseInfo: res.data.orderBaseInfo
             }
             const nodes = []
             TREE_DATA.forEach(t1 => {
               t1.children.forEach(t2 => {
                 if (t2.label && t2.value) {
-                  this.temp.orderBaseInfo[t2.value] = ''
                   if (this.temp.orderSmallLinkItem[t2.value] === '0') {
+                    t2.disabled = true
+                    this.disabledTemp[t2.value] = true
                     nodes.push(t2.id)
                   }
                 }
@@ -429,6 +453,17 @@ export default {
                 this.$refs['dataForm'].clearValidate()
                 this.$refs['dataTree'].setCheckedKeys(nodes)
               })
+            })
+          })
+          break
+        case TEMP_TYPE_EXPIRE:
+          row = row ? [row.id] : this.ids
+          deleteVehicleOrder(row).then(() => {
+            this.handleFilter()
+            this.$notify({
+              type: 'success',
+              message: '删除成功',
+              duration: 3000
             })
           })
           break

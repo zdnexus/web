@@ -40,11 +40,11 @@ export default {
   props: {
     component: {
       type: Array,
-      default: []
+      default: () => []
     },
     formData: {
       type: Object,
-      default: null
+      default: () => {}
     },
     disabled: {
       type: Boolean,

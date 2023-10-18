@@ -25,9 +25,9 @@ export default {
         },
         {
           path: '/vehicle/order/incomplete',
-          name: '未完成订单',
+          name: '进行中订单',
           component: () => import('@/views/vehicle/order/incomplete'),
-          meta: { title: '未完成订单', icon: 'edit' }
+          meta: { title: '进行中订单', icon: 'edit' }
         },
         {
           path: '/vehicle/order/complete',
