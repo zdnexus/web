@@ -16,6 +16,7 @@ export const CUSTOM_CAR = 'customCar'
 export const TREE_DATA = [
   {
     label: '接车验车',
+    value: 'inspection',
     id: 1,
     children: [
       {
@@ -28,6 +29,7 @@ export const TREE_DATA = [
   },
   {
     label: '非监管仓',
+    value: 'ncr',
     id: 9,
     children: [
       {
@@ -64,6 +66,7 @@ export const TREE_DATA = [
   },
   {
     label: '监管仓',
+    value: 'bwh',
     children: [
       {
         id: 3,
@@ -105,6 +108,7 @@ export const TREE_DATA = [
   },
   {
     label: '报关环节',
+    value: 'declare',
     id: 15,
     children: [
       {
@@ -147,6 +151,7 @@ export const TREE_DATA = [
   },
   {
     label: '司机送车',
+    value: 'edv',
     id: 22,
     children: [
       {
@@ -159,6 +164,7 @@ export const TREE_DATA = [
   },
   {
     label: '出境环节',
+    value: 'ed',
     id: 24,
     children: [
       {
@@ -177,6 +183,7 @@ export const TREE_DATA = [
   },
   {
     label: '境外环节',
+    value: 'oec',
     id: 27,
     children: [
       {

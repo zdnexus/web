@@ -44,7 +44,7 @@
           bigLink: '',
           pageNum: 1,
           pageSize: 10,
-          taskStatus: 0
+          taskStatus: 1
         },
         selectData: [],
         tableData: [],

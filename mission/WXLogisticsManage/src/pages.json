@@ -7,15 +7,39 @@
   },
   "pages": [
     {
+      "path": "pages/login/index",
+      "style": {
+        "navigationBarTitleText": "账号登录"
+      }
+    },
+    {
+      "path": "pages/home/index",
+      "style": {
+        "navigationBarTitleText": "首页"
+      }
+    },
+    {
       "path": "pages/mission/index",
       "style": {
-        "navigationBarTitleText": "待办任务列表"
+        "navigationBarTitleText": "待办任务"
+      }
+    },
+    {
+      "path": "pages/mission-complete/index",
+      "style": {
+        "navigationBarTitleText": "已完成任务"
       }
     },
     {
       "path": "pages/link/index",
       "style": {
         "navigationBarTitleText": "待办任务环节"
+      }
+    },
+    {
+      "path": "pages/mine/index",
+      "style": {
+        "navigationBarTitleText": "我的"
       }
     }
   ],
@@ -24,5 +48,37 @@
     "navigationBarTitleText": "uni-app",
     "navigationBarBackgroundColor": "#F8F8F8",
     "backgroundColor": "#F8F8F8"
+  },
+  "tabBar": {
+    "color": "#5F5F5F",
+    "selectedColor": "#07c160",
+    "borderStyle": "black",
+    "backgroundColor": "#F7F7F7",
+    "list": [
+      {
+        "text": "首页",
+        "pagePath": "pages/home/index",
+        "selectedIconPath": "assets/home.5955847b.png",
+        "iconPath": "assets/home.5955847b.png"
+      },
+      {
+        "text": "待办任务",
+        "pagePath": "pages/mission/index",
+        "selectedIconPath": "assets/list.0370a664.png",
+        "iconPath": "assets/list.0370a664.png"
+      },
+      {
+        "text": "已完成任务",
+        "pagePath": "pages/mission-complete/index",
+        "selectedIconPath": "assets/complate.38f96e02.png",
+        "iconPath": "assets/complate.38f96e02.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/index",
+        "selectedIconPath": "assets/user.2f425882.png",
+        "iconPath": "assets/user.2f425882.png"
+      }
+    ]
   }
 }

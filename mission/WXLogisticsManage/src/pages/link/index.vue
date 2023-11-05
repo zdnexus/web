@@ -2,11 +2,14 @@
   <view class="content">
     <uni-section :title="temp.smallLinkConvert" type="circle" titleFontSize="20px"></uni-section>
     <view class="user-input" v-for="item in list">
-      <uni-section v-if="item.type !== 'buttons'" :title="item.label" type="line">
-        <uni-file-picker v-if="item.type === 'upload-image' || item.type === 'upload-video'"
+      <uni-section v-if="item.type !== 'buttons' && (!item.visible || (item.visible && temp[item.visible] === item.visibleValue))"
+                   :title="item.label"
+                   type="line">
+        <uni-file-picker v-if="['upload-image', 'upload-video'].includes(item.type)"
                          v-model="temp[item.value]"
-                         :fileMediatype="item.type === 'upload-image' ? 'image':'video'"
-                         :limit="item.limit ? item.limit: 1"
+                         :disabled="isDisabled(item.value)"
+                         :file-mediatype="item.type === 'upload-image' ? 'image':'video'"
+                         :limit="item.limit || 1"
                          mode="grid"
                          :auto-upload="false"
                          @select="($event)=>handleSelect($event,item.value)"
@@ -14,22 +17,17 @@
 
         <uni-data-checkbox v-else-if="item.type === 'checkbox'"
                            v-model="temp[item.value]"
+                           :disabled="isDisabled(item.value)"
                            :localdata="item.options"></uni-data-checkbox>
 
         <uni-easyinput v-else-if="item.type === 'input'"
-                       v-model="temp[item.value]"></uni-easyinput>
+                       v-model="temp[item.value]"
+                       :disabled="isDisabled(item.value)"></uni-easyinput>
 
         <uni-data-checkbox v-else-if="item.type === 'checkbox'"
                            v-model="temp[item.value]"
+                           :disabled="isDisabled(item.value)"
                            :localdata="item.options"></uni-data-checkbox>
-
-        <uni-file-picker v-if="item.value2 && item.type === 'checkbox' && temp[item.value] === '1'"
-                         v-model="temp[item.value2]"
-                         fileMediatype="image"
-                         limit="10"
-                         :auto-upload="false"
-                         @select="($event)=>handleSelect($event,item.value)"
-                         @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
 
         <view v-else-if="item.type === 'table'">
           <uni-table class="table" border stripe emptyText="暂无更多数据">
@@ -45,11 +43,21 @@
             </uni-tr>
           </uni-table>
           <uni-section title="到达点" type="line">
-            <uni-easyinput v-model="temp.trackPlace"></uni-easyinput>
+            <uni-easyinput v-model="temp.trackPlace"
+                           :disabled="isDisabled(item.value)"></uni-easyinput>
           </uni-section>
         </view>
+
+        <!--<uni-file-picker v-if="item.value2 && item.type === 'checkbox' && temp[item.value] === '0'"-->
+        <!--v-model="temp[item.value2]"-->
+        <!--fileMediatype="image"-->
+        <!--limit="10"-->
+        <!--:auto-upload="false"-->
+        <!--@select="($event)=>handleSelect($event,item.value)"-->
+        <!--@delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>-->
       </uni-section>
-      <view v-else class="buttons">
+
+      <view v-else-if="item.type === 'buttons' && this.temp.taskStatus === '0'" class="buttons">
         <button v-for="item3 in item.array" class="button" @click="postData(item3.func)">{{item3.label}}</button>
       </view>
     </view>
@@ -69,14 +77,21 @@
     handoverInfo,
     trackRecordInfo,
     arriveInfo,
+    checkRecordInfo,
+    dealInWarehouseInfo,
+    dealOutWarehouseInfo,
   } from '../../api/index'
   import {
     INSPECTION,
     INWAREHOUSE,
+    SWINWAREHOUSE,
     STORAGE,
+    SWSTORAGE,
     CARD,
     OUTWAREHOUSE,
+    SWOUTWAREHOUSE,
     OUTCONFIRM,
+    SWOUTCONFIRM,
     TRIM,
     SWTRIM,
     SEAL,
@@ -85,6 +100,11 @@
     HANDOVER,
     TRACK,
     ARRIVE,
+    RECORDCHECK,
+    DEALINWAREHOUSE,
+    DEALSWINWAREHOUSE,
+    DEALOUTWAREHOUSE,
+    DEALSWOUTWAREHOUSE,
     PAGE
   } from '../../constant/index'
   
@@ -113,26 +133,42 @@
       this.temp.smallLink = options.smallLink
       this.temp.smallLinkConvert = options.smallLinkConvert
       this.temp.taskId = options.taskId
+      this.temp.taskStatus = options.taskStatus
       this.getData()
+    },
+    computed: {
+      isDisabled() {
+        return (value) => {
+          if (this.temp.taskStatus === '1') return true
+          else if ([RECORDCHECK, DEALINWAREHOUSE].includes(this.temp.smallLink) && ['recordCheck', 'remark', 'rejectRemark', 'reviewRemark'].includes(value)) return false
+          else if ([RECORDCHECK, DEALINWAREHOUSE].includes(this.temp.smallLink)) return true
+          else return false
+        }
+      }
     },
     methods: {
       getData() {
         const vin = this.temp.vin
         const smallLink = this.temp.smallLink
+        const taskId = this.temp.taskId
         const pageList = PAGE[smallLink] || []
         this.list = pageList.map((item) => {
-          this.temp[item.value] = item.type === 'upload-image' || item.type === 'upload-video' ? [] : ''
+          this.temp[item.value] = ['upload-image', 'upload-video'].includes(item.type) ? [] : ''
           return item
         })
         let func
         switch (this.temp.smallLink) {
           case INSPECTION:
           case INWAREHOUSE:
+          case SWINWAREHOUSE:
           case OUTWAREHOUSE:
+          case SWOUTWAREHOUSE:
           case OUTCONFIRM:
+          case SWOUTCONFIRM:
             func = getVehicleInfo
             break
           case STORAGE:
+          case SWSTORAGE:
             func = inWarehouseInfo
             break
           case CARD:
@@ -160,22 +196,38 @@
           case ARRIVE:
             func = arriveInfo
             break
+          case RECORDCHECK:
+            func = checkRecordInfo
+            break
+          case DEALINWAREHOUSE:
+          case DEALSWINWAREHOUSE:
+            func = dealInWarehouseInfo
+            break
+          case DEALOUTWAREHOUSE:
+          case DEALSWOUTWAREHOUSE:
+            func = dealOutWarehouseInfo
+            break
         }
-        func({ vin, smallLink }).then((res) => {
+        func({ vin, smallLink, taskId }).then((res) => {
           const data = {
             ...res.data,
-            ...res.data.vehiclePhoto
+            ...res.data.vehicleBaseInfo,
+            ...res.data.vehiclePhoto,
+            ...res.data.vehicleDeclare
           }
           Object.keys(data).map((key) => {
-            const flag = String(data[key]).indexOf('http') === 0
-            if (flag) {
+            if (['upload-image', 'upload-video'].includes(pageList.find(item => item.value === key)?.type)) {
               this.temp[key] = []
-              data[key].split(',').forEach((url) => {
-                this.temp[key].push({
-                  url,
-                  name: ''
+              if (data[key]) {
+                data[key].split(',').forEach((url) => {
+                  if (url) {
+                    this.temp[key].push({
+                      name: '',
+                      url
+                    })
+                  }
                 })
-              })
+              }
               this.urls[key] = data[key]
             } else {
               this.temp[key] = data[key]
@@ -190,24 +242,25 @@
             key: res.data.key,
             domain: res.data.domain
           }
-          await this.uploadImg(data.tempFilePaths, formData, key)
+          await this.uploadImg(data, formData, key)
         })
       },
-      async uploadImg(tempFilePaths, formData, key) {
-        if (!tempFilePaths.length) return
-        
-        tempFilePaths.map(async () => {
-          const path = tempFilePaths.pop()
+      async uploadImg(data, formData, key) {
+        if (!data.tempFilePaths.length) return
+
+        data.tempFilePaths.map(async () => {
+          const path = data.tempFilePaths.pop()
           const res = await uni.uploadFile({
             url: 'https://upload-z2.qiniup.com',
             filePath: path,
             name: 'file',
             formData: formData
           })
+          const name = data.tempFiles[0].cloudPath
           const url = formData.domain + '/' + JSON.parse(res.data).key
           this.temp[key].push({
-            url,
-            name: ''
+            name,
+            url
           })
           this.urls[key] = this.temp[key].map(item => item.url).join(',')
         })
@@ -220,7 +273,14 @@
         let data = {
           ...this.temp,
           ...this.urls,
+          vehicleBaseInfo: {
+            ...this.temp,
+            ...this.urls
+          },
           vehiclePhoto: {
+            ...this.urls
+          },
+          vehicleDeclare: {
             ...this.urls
           }
         }

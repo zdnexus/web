@@ -4,13 +4,15 @@
  */
 
 const request = (url, method, data) => {
+  const app = getApp()
   return new Promise((resolve, reject) => {
     wx.request({
       url: 'https://390u45d994.zicp.fun' + url,
       method,
       data,
       header: {
-        'content-type': 'application/json'
+        'content-type': 'application/json',
+        'Authorization': app.globalData.token || ''
       },
       success(res) {
         if (res.statusCode === 200 && res.data.code === 200) {

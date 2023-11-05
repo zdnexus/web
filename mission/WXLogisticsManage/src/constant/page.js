@@ -17,23 +17,34 @@ import {
   handover,
   trackRecord,
   abroad,
+  recordUpld,
+  checkInWareHouseReq,
+  checkOutWareHouseReq,
 } from '../api/index'
 
 // 接车验车
 export const INSPECTION = 'inspection'
-// 入库核验
+// 监管仓-入库核验
 export const INWAREHOUSE = 'inWarehouse'
-// 车辆入库
+// 非监管仓-入库核验
+export const SWINWAREHOUSE = 'swInWarehouse'
+// 监管仓-车辆入库
 export const STORAGE = 'storage'
+// 非监管仓-车辆入库
+export const SWSTORAGE = 'swStorage'
 // 车辆刷卡
 export const CARD = 'card'
-// 出库校验
+// 监管仓-出库校验
 export const OUTWAREHOUSE = 'outWarehouse'
-// 出库确认
+// 非监管仓-出库校验
+export const SWOUTWAREHOUSE = 'swOutWarehouse'
+// 监管仓-出库确认
 export const OUTCONFIRM = 'outConfirm'
-// 整备车辆-监管仓
+// 非监管仓-出库确认
+export const SWOUTCONFIRM = 'swOutConfirm'
+// 监管仓-整备车辆
 export const TRIM = 'trim'
-// 整备车辆-非监管仓
+// 非监管仓-整备车辆
 export const SWTRIM = 'swTrim'
 
 export const SEAL = 'seal'
@@ -47,6 +58,16 @@ export const HANDOVER = 'handover'
 export const TRACK = 'track'
 // 确认到达
 export const ARRIVE = 'arrive'
+//
+export const RECORDCHECK = 'recordCheck'
+
+export const DEALINWAREHOUSE = 'dealInWarehouse'
+
+export const DEALSWINWAREHOUSE = 'dealSwInWarehouse'
+
+export const DEALOUTWAREHOUSE = 'dealOutWarehouse'
+
+export const DEALSWOUTWAREHOUSE = 'dealSwOutWarehouse'
 
 
 const VEHICLE_INFO = [
@@ -124,20 +145,27 @@ const VEHICLE_PHOTO = [
     type: 'upload-image'
   },
   {
-    label: '车辆是否受损',
+    label: '是否受损',
     value: 'isDamage',
-    value2: 'damage',
     type: 'checkbox',
     options: [
       {
         text: '有损',
-        value: '1'
+        value: '0'
       },
       {
         text: '正常',
-        value: '0'
+        value: '1'
       }
     ]
+  },
+  {
+    label: '受损图片',
+    value: 'damage',
+    type: 'upload-image',
+    limit: 10,
+    visible: 'isDamage',
+    visibleValue: '0',
   },
   {
     label: '车辆视频',
@@ -274,7 +302,8 @@ const TRIM_FOOTER = [
   {
     label: '油电整备图',
     value: 'trimUrl',
-    type: 'upload-image'
+    type: 'upload-image',
+    limit: 2
   },
   {
     label: '票据照片',
@@ -285,7 +314,7 @@ const TRIM_FOOTER = [
     type: 'buttons',
     array: [
       {
-        label: '出库确认',
+        label: '整备完成',
         func: trim
       }
     ]
@@ -372,19 +401,40 @@ const DRIVE_FOOTER = [
 
 const LEAVECOUNTRY_FOOTER = [
   {
+    label: '车辆是否出境',
+    value: 'isAbroad',
+    type: 'checkbox',
+    options: [
+      {
+        text: '返库确认',
+        value: '1'
+      },
+      {
+        text: '出境确认',
+        value: '0'
+      }
+    ]
+  },
+  {
     label: '现场照片',
     value: 'livePhotos',
-    type: 'upload-image'
+    type: 'upload-image',
+    visible: 'isAbroad',
+    visibleValue: '1',
   },
   {
     label: '出境失败原因',
     value: 'reason',
-    type: 'input'
+    type: 'input',
+    visible: 'isAbroad',
+    visibleValue: '1',
   },
   {
     label: '选择返库类型',
     value: 'returnType',
     type: 'checkbox',
+    visible: 'isAbroad',
+    visibleValue: '1',
     options: [
       {
         text: '已交资料',
@@ -403,7 +453,9 @@ const LEAVECOUNTRY_FOOTER = [
   {
     label: '库房停放照片',
     value: 'returnPhoto',
-    type: 'upload-image'
+    type: 'upload-image',
+    visible: 'isAbroad',
+    visibleValue: '1',
   },
   {
     type: 'buttons',
@@ -420,7 +472,8 @@ const HANDOVER_FOOTER = [
   {
     label: '交接单与人车同框照片',
     value: 'handoverUrl',
-    type: 'upload-image'
+    type: 'upload-image',
+    limit: 2
   },
   {
     type: 'buttons',
@@ -467,14 +520,121 @@ const ARRIVE_FOOTER = [
   }
 ]
 
+const RECORDCHECK_FOOTER = [
+  {
+    label: '报关资料',
+    value: 'declareUrl',
+    type: 'upload-image',
+    limit: 10
+  },
+  {
+    label: '审核',
+    value: 'recordCheck',
+    type: 'checkbox',
+    options: [
+      {
+        text: '通过',
+        value: 'pass'
+      },
+      {
+        text: '驳回',
+        value: 'reject'
+      }
+    ]
+  },
+  {
+    label: '备注',
+    value: 'remark',
+    type: 'input',
+    visible: 'recordCheck',
+    visibleValue: 'reject',
+  },
+  {
+    type: 'buttons',
+    array: [
+      {
+        label: '提交',
+        func: recordUpld
+      }
+    ]
+  }
+]
+
+const DEALINWAREHOUSE_FOOTER = [
+  {
+    label: '验车费用',
+    value: 'inspectionFee',
+    type: 'input'
+  },
+  {
+    label: '验车票据',
+    value: 'inspectionBvoucher',
+    type: 'upload-image'
+  },
+  {
+    label: '拒绝入库备注信息',
+    value: 'rejectRemark',
+    type: 'input',
+  },
+  {
+    label: '批准入库备注信息',
+    value: 'reviewRemark',
+    type: 'input',
+  },
+  {
+    type: 'buttons',
+    array: [
+      {
+        label: '允许入库',
+        func: checkInWareHouseReq
+      }
+    ]
+  }
+]
+
+const DEALOUTWAREHOUSE_FOOTER = [
+  {
+    label: '验车费用',
+    value: 'inspectionFee',
+    type: 'input'
+  },
+  {
+    label: '验车票据',
+    value: 'inspectionBvoucher',
+    type: 'upload-image'
+  },
+  {
+    label: '拒绝入库备注信息',
+    value: 'rejectRemark',
+    type: 'input',
+  },
+  {
+    label: '批准入库备注信息',
+    value: 'reviewRemark',
+    type: 'input',
+  },
+  {
+    type: 'buttons',
+    array: [
+      {
+        label: '允许出库',
+        func: checkOutWareHouseReq
+      }
+    ]
+  }
+]
 
 export const PAGE = {
   [INSPECTION]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INSPECTION_FOOTER),
   [INWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
+  [SWINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
   [STORAGE]: [].concat(VEHICLE_INFO, STORAGE_FOOTER),
+  [SWSTORAGE]: [].concat(VEHICLE_INFO, STORAGE_FOOTER),
   [CARD]: [].concat(VEHICLE_INFO, CARD_FOOTER),
   [OUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
+  [SWOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
   [OUTCONFIRM]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
+  [SWOUTCONFIRM]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
   [TRIM]: [].concat(VEHICLE_INFO, TRIM_FOOTER),
   [SWTRIM]: [].concat(VEHICLE_INFO, TRIM_FOOTER),
   [SEAL]: [].concat(VEHICLE_INFO, SEAL_FOOTER),
@@ -483,4 +643,9 @@ export const PAGE = {
   [HANDOVER]: [].concat(VEHICLE_INFO, HANDOVER_FOOTER),
   [TRACK]: [].concat(VEHICLE_INFO, TRACK_FOOTER),
   [ARRIVE]: [].concat(VEHICLE_INFO, ARRIVE_FOOTER),
+  [RECORDCHECK]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, RECORDCHECK_FOOTER),
+  [DEALINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
+  [DEALSWINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
+  [DEALOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
+  [DEALSWOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
 }

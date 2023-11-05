@@ -5,7 +5,17 @@
 
 import request from './request'
 
-export const upcomingTaskList = (data) => request('/vehicle/upcomingTask/list?taskStatus=0', 'GET', data)
+export const login = (data) => request('/login', 'POST', data)
+
+export const vehicleHalfYear = (data) => request('/vehicle/monthOrder/vehicleHalfYear', 'GET', data)
+
+export const orderNum = (data) => request('/vehicle/orderFee/orderNum', 'POST', data)
+
+export const userInfo = (data) => request('/getInfo', 'GET', data)
+
+export const updatePwd = (data) => request('/system/user/profile/updatePwd', 'POST', data)
+
+export const upcomingTaskList = (data) => request('/vehicle/upcomingTask/list', 'GET', data)
 
 export const getToken = () => request('/public/qiniu/upload/token', 'POST')
 
@@ -56,3 +66,15 @@ export const trackRecord = (data) => request('/vehicle/trackRecord', 'POST', dat
 export const arriveInfo = (data) => request('/vehicle/upcomingTask/arriveInfo', 'POST', data)
 
 export const abroad = (data) => request('/vehicle/abroad', 'POST', data)
+
+export const checkRecordInfo = (data) => request('/vehicle/declare/checkRecordInfo', 'POST', data)
+
+export const recordUpld = (data) => request('/vehicle/declare/recordUpld', 'POST', data)
+
+export const dealInWarehouseInfo = (data) => request('/vehicle/upcomingTask/dealInWarehouseInfo', 'POST', data)
+
+export const checkInWareHouseReq = (data) => request('/vehicle/upcomingTask/checkInWareHouseReq', 'POST', data)
+
+export const dealOutWarehouseInfo = (data) => request('/vehicle/upcomingTask/dealOutWarehouseInfo', 'POST', data)
+
+export const checkOutWareHouseReq = (data) => request('/vehicle/upcomingTask/checkOutWareHouseReq', 'POST', data)
