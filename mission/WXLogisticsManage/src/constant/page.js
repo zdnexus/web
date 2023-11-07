@@ -3,23 +3,38 @@
  * Url :
  */
 import {
+  getVehicleInfo,
   finishInspection,
   updateInWarehouse,
   rejectStorage,
+  inWarehouseInfo,
   storagePhoto,
+  cardInfo,
   creditCard,
   outWarehouse,
   rejectOutWarehouse,
   outConfirm,
+  trimInfo,
   trim,
+  sealInfo,
   sealUpld,
+  driveInfo,
+  outboundInfo,
   outbound,
+  handoverInfo,
   handover,
+  trackRecordInfo,
   trackRecord,
+  arriveInfo,
   abroad,
+  checkRecordInfo,
   recordUpld,
+  dealInWarehouseInfo,
   checkInWareHouseReq,
+  dealOutWarehouseInfo,
   checkOutWareHouseReq,
+  rejectDriveInfo,
+  checkRejectDriveInfo,
 } from '../api/index'
 
 // 接车验车
@@ -68,6 +83,8 @@ export const DEALSWINWAREHOUSE = 'dealSwInWarehouse'
 export const DEALOUTWAREHOUSE = 'dealOutWarehouse'
 
 export const DEALSWOUTWAREHOUSE = 'dealSwOutWarehouse'
+
+export const DEALDRIVE = 'dealDrive'
 
 
 const VEHICLE_INFO = [
@@ -624,28 +641,102 @@ const DEALOUTWAREHOUSE_FOOTER = [
   }
 ]
 
+const DEALDRIVE_FOOTER = [
+  {
+    label: '车辆检查核验',
+    value: 'vehicleStatus',
+    type: 'checkbox',
+    options: [
+      {
+        text: '通过',
+        value: 'pass'
+      },
+      {
+        text: '驳回',
+        value: 'reject'
+      }
+    ]
+  },
+  {
+    label: '随车资料',
+    value: 'boardData',
+    type: 'upload-image'
+  },
+  {
+    label: '人车同框照片',
+    value: 'driverUrl',
+    type: 'upload-image'
+  },
+  {
+    label: '油电整备图',
+    value: 'trimUrl',
+    type: 'upload-image',
+    limit: 2
+  },
+  {
+    label: '车辆整备核验',
+    value: 'trimCheck',
+    type: 'checkbox',
+    options: [
+      {
+        text: '通过',
+        value: 'pass'
+      },
+      {
+        text: '驳回',
+        value: 'reject'
+      }
+    ]
+  },
+  {
+    label: '送车费',
+    value: 'driverFree',
+    type: 'input',
+  },
+  {
+    label: '拒绝入库备注信息',
+    value: 'rejectRemark',
+    type: 'input',
+  },
+  {
+    label: '批准入库备注信息',
+    value: 'reviewRemark',
+    type: 'input',
+  },
+  {
+    type: 'buttons',
+    array: [
+      {
+        label: '允许出车',
+        func: checkRejectDriveInfo
+      }
+    ]
+  }
+]
+
 export const PAGE = {
-  [INSPECTION]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INSPECTION_FOOTER),
-  [INWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
-  [SWINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
-  [STORAGE]: [].concat(VEHICLE_INFO, STORAGE_FOOTER),
-  [SWSTORAGE]: [].concat(VEHICLE_INFO, STORAGE_FOOTER),
-  [CARD]: [].concat(VEHICLE_INFO, CARD_FOOTER),
-  [OUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
-  [SWOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
-  [OUTCONFIRM]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
-  [SWOUTCONFIRM]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
-  [TRIM]: [].concat(VEHICLE_INFO, TRIM_FOOTER),
-  [SWTRIM]: [].concat(VEHICLE_INFO, TRIM_FOOTER),
-  [SEAL]: [].concat(VEHICLE_INFO, SEAL_FOOTER),
-  [DRIVE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DRIVE_FOOTER),
-  [LEAVECOUNTRY]: [].concat(VEHICLE_INFO, LEAVECOUNTRY_FOOTER),
-  [HANDOVER]: [].concat(VEHICLE_INFO, HANDOVER_FOOTER),
-  [TRACK]: [].concat(VEHICLE_INFO, TRACK_FOOTER),
-  [ARRIVE]: [].concat(VEHICLE_INFO, ARRIVE_FOOTER),
-  [RECORDCHECK]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, RECORDCHECK_FOOTER),
-  [DEALINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
-  [DEALSWINWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
-  [DEALOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
-  [DEALSWOUTWAREHOUSE]: [].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
+  [INSPECTION]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, INSPECTION_FOOTER),
+  [INWAREHOUSE]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
+  [SWINWAREHOUSE]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, INWAREHOUSE_FOOTER),
+  [STORAGE]: [{ 'API': inWarehouseInfo }].concat(VEHICLE_INFO, STORAGE_FOOTER),
+  [SWSTORAGE]: [{ 'API': inWarehouseInfo }].concat(VEHICLE_INFO, STORAGE_FOOTER),
+  [CARD]: [{ 'API': cardInfo }].concat(VEHICLE_INFO, CARD_FOOTER),
+  [OUTWAREHOUSE]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
+  [SWOUTWAREHOUSE]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTWAREHOUSE_FOOTER),
+  [OUTCONFIRM]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
+  [SWOUTCONFIRM]: [{ 'API': getVehicleInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, OUTCONFIRM_FOOTER),
+  [TRIM]: [{ 'API': trimInfo }].concat(VEHICLE_INFO, TRIM_FOOTER),
+  [SWTRIM]: [{ 'API': trimInfo }].concat(VEHICLE_INFO, TRIM_FOOTER),
+  [SEAL]: [{ 'API': sealInfo }].concat(VEHICLE_INFO, SEAL_FOOTER),
+  [DRIVE]: [{ 'API': driveInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DRIVE_FOOTER),
+  [LEAVECOUNTRY]: [{ 'API': outboundInfo }].concat(VEHICLE_INFO, LEAVECOUNTRY_FOOTER),
+  [HANDOVER]: [{ 'API': handoverInfo }].concat(VEHICLE_INFO, HANDOVER_FOOTER),
+  [TRACK]: [{ 'API': trackRecordInfo }].concat(VEHICLE_INFO, TRACK_FOOTER),
+  [ARRIVE]: [{ 'API': arriveInfo }].concat(VEHICLE_INFO, ARRIVE_FOOTER),
+  [RECORDCHECK]: [{ 'API': checkRecordInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, RECORDCHECK_FOOTER),
+  [DEALINWAREHOUSE]: [{ 'API': dealInWarehouseInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
+  [DEALSWINWAREHOUSE]: [{ 'API': dealInWarehouseInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALINWAREHOUSE_FOOTER),
+  [DEALOUTWAREHOUSE]: [{ 'API': dealOutWarehouseInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
+  [DEALSWOUTWAREHOUSE]: [{ 'API': dealOutWarehouseInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALOUTWAREHOUSE_FOOTER),
+  [DEALDRIVE]: [{ 'API': rejectDriveInfo }].concat(VEHICLE_INFO, VEHICLE_PHOTO, DEALDRIVE_FOOTER),
 }

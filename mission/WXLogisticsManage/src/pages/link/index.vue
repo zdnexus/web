@@ -67,44 +67,14 @@
 <script>
   import {
     getToken,
-    getVehicleInfo,
-    inWarehouseInfo,
-    cardInfo,
-    trimInfo,
-    sealInfo,
-    driveInfo,
-    outboundInfo,
-    handoverInfo,
     trackRecordInfo,
-    arriveInfo,
-    checkRecordInfo,
-    dealInWarehouseInfo,
-    dealOutWarehouseInfo,
   } from '../../api/index'
   import {
-    INSPECTION,
-    INWAREHOUSE,
-    SWINWAREHOUSE,
-    STORAGE,
-    SWSTORAGE,
-    CARD,
-    OUTWAREHOUSE,
-    SWOUTWAREHOUSE,
-    OUTCONFIRM,
-    SWOUTCONFIRM,
-    TRIM,
-    SWTRIM,
-    SEAL,
     DRIVE,
-    LEAVECOUNTRY,
-    HANDOVER,
     TRACK,
-    ARRIVE,
     RECORDCHECK,
     DEALINWAREHOUSE,
-    DEALSWINWAREHOUSE,
-    DEALOUTWAREHOUSE,
-    DEALSWOUTWAREHOUSE,
+    DEALDRIVE,
     PAGE
   } from '../../constant/index'
   
@@ -140,74 +110,27 @@
       isDisabled() {
         return (value) => {
           if (this.temp.taskStatus === '1') return true
-          else if ([RECORDCHECK, DEALINWAREHOUSE].includes(this.temp.smallLink) && ['recordCheck', 'remark', 'rejectRemark', 'reviewRemark'].includes(value)) return false
-          else if ([RECORDCHECK, DEALINWAREHOUSE].includes(this.temp.smallLink)) return true
-          else return false
+          else if ([DRIVE, RECORDCHECK, DEALINWAREHOUSE, DEALDRIVE].includes(this.temp.smallLink)) {
+            return !['recordCheck', 'remark', 'rejectRemark', 'reviewRemark'].includes(value)
+          }
+          return false
         }
       }
     },
     methods: {
       getData() {
-        const vin = this.temp.vin
-        const smallLink = this.temp.smallLink
-        const taskId = this.temp.taskId
-        const pageList = PAGE[smallLink] || []
-        this.list = pageList.map((item) => {
-          this.temp[item.value] = ['upload-image', 'upload-video'].includes(item.type) ? [] : ''
-          return item
-        })
+        const { vin, smallLink, taskId } = this.temp
         let func
-        switch (this.temp.smallLink) {
-          case INSPECTION:
-          case INWAREHOUSE:
-          case SWINWAREHOUSE:
-          case OUTWAREHOUSE:
-          case SWOUTWAREHOUSE:
-          case OUTCONFIRM:
-          case SWOUTCONFIRM:
-            func = getVehicleInfo
-            break
-          case STORAGE:
-          case SWSTORAGE:
-            func = inWarehouseInfo
-            break
-          case CARD:
-            func = cardInfo
-            break
-          case TRIM:
-          case SWTRIM:
-            func = trimInfo
-            break
-          case SEAL:
-            func = sealInfo
-            break
-          case DRIVE:
-            func = driveInfo
-            break
-          case LEAVECOUNTRY:
-            func = outboundInfo
-            break
-          case HANDOVER:
-            func = handoverInfo
-            break
-          case TRACK:
-            func = trackRecordInfo
-            break
-          case ARRIVE:
-            func = arriveInfo
-            break
-          case RECORDCHECK:
-            func = checkRecordInfo
-            break
-          case DEALINWAREHOUSE:
-          case DEALSWINWAREHOUSE:
-            func = dealInWarehouseInfo
-            break
-          case DEALOUTWAREHOUSE:
-          case DEALSWOUTWAREHOUSE:
-            func = dealOutWarehouseInfo
-            break
-        }
+        const pageList = PAGE[smallLink] || []
+        this.list = pageList.filter((item) => {
+          if (item.API) {
+            func = item.API
+            return false
+          } else {
+            this.temp[item.value] = ['upload-image', 'upload-video'].includes(item.type) ? [] : ''
+            return true
+          }
+        })
         func({ vin, smallLink, taskId }).then((res) => {
           const data = {
             ...res.data,

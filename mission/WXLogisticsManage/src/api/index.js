@@ -78,3 +78,7 @@ export const checkInWareHouseReq = (data) => request('/vehicle/upcomingTask/chec
 export const dealOutWarehouseInfo = (data) => request('/vehicle/upcomingTask/dealOutWarehouseInfo', 'POST', data)
 
 export const checkOutWareHouseReq = (data) => request('/vehicle/upcomingTask/checkOutWareHouseReq', 'POST', data)
+
+export const rejectDriveInfo = (data) => request('/vehicle/upcomingTask/rejectDriveInfo', 'POST', data)
+
+export const checkRejectDriveInfo = (data) => request('/vehicle/upcomingTask/checkRejectDriveInfo', 'POST', data)
