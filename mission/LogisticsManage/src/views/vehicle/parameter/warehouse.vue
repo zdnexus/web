@@ -13,7 +13,7 @@
 
       <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
         <el-button slot="reference" type="danger" icon="el-icon-delete">
-          批量删除
+          删除
         </el-button>
       </el-popconfirm>
     </div>
@@ -76,7 +76,7 @@
       </el-table-column>
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
             更新
           </el-button>

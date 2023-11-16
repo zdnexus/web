@@ -22,7 +22,7 @@
         <uni-td>{{item.smallLinkConvert}}</uni-td>
         <uni-td>
           <view class="uni-group">
-            <button class="uni-button" size="mini" type="primary" @click="toLink(item)">审批</button>
+            <button class="uni-button" size="mini" type="primary" @click="toLink(item)">查看</button>
           </view>
         </uni-td>
       </uni-tr>

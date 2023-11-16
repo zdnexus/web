@@ -3,6 +3,8 @@
  * Url :
  */
 
+export * from './data'
+
 export * from './temp'
 
 export * from './msg'

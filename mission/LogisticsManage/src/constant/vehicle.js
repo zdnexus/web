@@ -91,7 +91,7 @@ export const ORDER_EXAMINE_STATUS_OBJ = listToObj(ORDER_EXAMINE_STATUS)
 
 export const NODE_LIST = [
   {
-    label: '无这个环节',
+    label: '-',
     value: '0'
   },
   {

@@ -20,6 +20,8 @@ export const CMFA = 'cmFa'
 
 export const DM_NUMS_WARN = 'dmNumsWarn'
 
+export const CM_NUMS_WARN = 'cmNumsWarn'
+
 export const TRACK = 'track'
 
 export const ARRIVE = 'arrive'

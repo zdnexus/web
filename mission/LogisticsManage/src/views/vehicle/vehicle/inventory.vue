@@ -103,7 +103,7 @@
       </el-table-column>
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
-        <template slot-scope="{row,$index}">
+        <template slot-scope="{row}">
           <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
             查看详情
           </el-button>

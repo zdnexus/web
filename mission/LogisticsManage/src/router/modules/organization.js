@@ -15,9 +15,9 @@ export default {
   },
   children: [
     {
-      path: '/organization/station',
-      component: () => import('@/views/organization/station'),
-      meta: { title: '岗位管理', icon: 'edit' }
+      path: '/organization/user',
+      component: () => import('@/views/organization/user'),
+      meta: { title: '用户管理', icon: 'edit' }
     },
     {
       path: '/organization/department',
@@ -25,14 +25,14 @@ export default {
       meta: { title: '部门管理', icon: 'edit' }
     },
     {
+      path: '/organization/post',
+      component: () => import('@/views/organization/post'),
+      meta: { title: '岗位管理', icon: 'edit' }
+    },
+    {
       path: '/organization/structure',
       component: () => import('@/views/organization/structure'),
       meta: { title: '组织架构图', icon: 'edit' }
-    },
-    {
-      path: '/organization/user',
-      component: () => import('@/views/organization/user'),
-      meta: { title: '用户管理', icon: 'edit' }
     }
   ]
 }

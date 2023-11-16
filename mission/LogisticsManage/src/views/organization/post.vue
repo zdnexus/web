@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.deptName" style="width: 200px;margin-right: 10px" placeholder="部门名称" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.postName" style="width: 200px;margin-right: 10px" placeholder="岗位名称" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-select v-model="listQuery.status" placeholder="部门状态" style="width: 200px;margin-right: 10px">
+      <el-select v-model="listQuery.status" placeholder="岗位状态" style="width: 200px;margin-right: 10px">
         <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
 
@@ -17,15 +17,21 @@
     </div>
 
     <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
-      <el-table-column label="ID" prop="deptId" align="center" width="100">
+      <el-table-column label="ID" prop="postId" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.deptId }}</span>
+          <span>{{ row.postId }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="部门名称" prop="deptName" align="center" width="100">
+      <el-table-column label="岗位名称" prop="postName" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.deptName }}</span>
+          <span>{{ row.postName }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="岗位编码" prop="postCode" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.postCode }}</span>
         </template>
       </el-table-column>
 
@@ -61,37 +67,18 @@
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
 
-        <el-form-item label="上级部门" prop="parentId">
-          <el-cascader v-model="temp.parentId"
-                       :props="defaultProps"
-                       :options="deptList"
-                       clearable="true"
-                       style="width: 100%"
-                       ref="cascader"
-                       placeholder=""
-                       @change="handleChange"></el-cascader>
+        <el-form-item label="岗位名称" prop="postName">
+          <el-input v-model="temp.postName"></el-input>
         </el-form-item>
 
-        <el-form-item label="部门名称" prop="deptName">
-          <el-input v-model="temp.deptName"></el-input>
+        <el-form-item label="岗位编码" prop="postCode">
+          <el-input v-model="temp.postCode"></el-input>
         </el-form-item>
 
         <el-form-item label="状态" prop="status">
           <el-select v-model="temp.status" placeholder="">
             <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
-        </el-form-item>
-
-        <el-form-item label="负责人" prop="leader">
-          <el-input v-model="temp.leader"></el-input>
-        </el-form-item>
-
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="temp.email"></el-input>
-        </el-form-item>
-
-        <el-form-item label="电话号码" prop="phonenumber">
-          <el-input v-model="temp.phonenumber"></el-input>
         </el-form-item>
 
         <el-form-item label="备注" prop="remark">
@@ -115,11 +102,11 @@
 <script>
   import Pagination from '@/components/Pagination'
   import {
-    getDeptList,
-    createDept,
-    updateDept,
-    deleteDept,
-  } from '@/api/organization/dept'
+    getPostList,
+    createPost,
+    updatePost,
+    deletePost,
+  } from '@/api/organization/post'
   import {
     PAGE_TOTAL,
     PAGE_NUM,
@@ -131,7 +118,6 @@
     ACCOUNT_STATUS_LIST,
     ACCOUNT_STATUS_OBJ
   } from '@/constant'
-  import { handleList } from './funs'
 
   export default {
     components: { Pagination },
@@ -143,9 +129,8 @@
         TEMP_TYPE_UPDATE,
         ACCOUNT_STATUS_LIST,
         ACCOUNT_STATUS_OBJ,
-        userList: null,
         listQuery: {
-          deptName: undefined,
+          postName: undefined,
           status: undefined,
           pageNum: PAGE_NUM,
           pageSize: PAGE_SIZE
@@ -153,25 +138,22 @@
         listLoading: false,
         listKey: 0,
         list: undefined,
-        deptList: undefined,
         listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {
-          parentId: undefined,
-          deptName: undefined,
-          leader: undefined,
-          email: undefined,
-          phonenumber: undefined,
-          status: undefined
+          postName: undefined,
+          postCode: undefined,
+          status: undefined,
+          remark: undefined
         },
         defaultProps: {
           emitPath: false,
           checkStrictly: true
         },
         rules: {
-          parentId: [{ required: true, message: '请选择上级部门', trigger: 'change' }],
-          deptName: [{ required: true, message: '请选择输入部门名称', trigger: 'blur' }],
+          postName: [{ required: true, message: '请选择岗位名称', trigger: 'blur' }],
+          postCode: [{ required: true, message: '请选择岗位编码', trigger: 'blur' }],
           status: [{ required: true, message: '请选择状态', trigger: 'change' }]
         }
       }
@@ -182,11 +164,10 @@
     methods: {
       getList() {
         this.listLoading = true
-        getDeptList(this.listQuery).then((res) => {
+        getPostList(this.listQuery).then((res) => {
           this.list = res.data.list
           this.listTotal = res.data.total
           this.listLoading = false
-          this.deptList = handleList(res.data.list)
         })
       },
       handleFilter() {
@@ -195,8 +176,10 @@
       },
       resetTemp() {
         this.temp = {
-          deptId: undefined,
-          status: undefined
+          postName: undefined,
+          postCode: undefined,
+          status: undefined,
+          remark: undefined
         }
       },
       handleRow(type, row) {
@@ -211,8 +194,8 @@
             })
             break
           case TEMP_TYPE_DELETE:
-            const ids = [row.deptId]
-            deleteDept(ids).then(() => {
+            const ids = [row.postId]
+            deletePost(ids).then(() => {
               this.$deleteTempNotify()
               this.handleFilter()
             })
@@ -223,10 +206,10 @@
       },
       handleData() {
         const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
-        const handleFun = isCreateTemp ? createDept : updateDept
+        const handleFun = isCreateTemp ? createPost : updatePost
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            this.temp.parentName = this.$refs["cascader"].getCheckedNodes()[0].label
+            this.temp.postSort = 0
             handleFun(this.temp).then(() => {
               isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
               this.dialogFormVisible = false
