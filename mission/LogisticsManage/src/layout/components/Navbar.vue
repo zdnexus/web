@@ -53,6 +53,7 @@ import ErrorLog from '@/components/ErrorLog'
 import Screenfull from '@/components/Screenfull'
 import SizeSelect from '@/components/SizeSelect'
 import Search from '@/components/HeaderSearch'
+import { removeToken } from '@/utils/auth'
 
 export default {
   components: {
@@ -75,8 +76,10 @@ export default {
       this.$store.dispatch('app/toggleSideBar')
     },
     async logout() {
-      await this.$store.dispatch('user/logout')
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+      // await this.$store.dispatch('user/logout')
+      removeToken()
+      window.location.hash = '#/login'
+      // this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }
 }

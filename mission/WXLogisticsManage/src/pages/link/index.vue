@@ -5,15 +5,20 @@
       <uni-section v-if="item.type !== 'buttons' && (!item.visible || (item.visible && temp[item.visible] === item.visibleValue))"
                    :title="item.label"
                    type="line">
-        <uni-file-picker v-if="['upload-image', 'upload-video'].includes(item.type)"
-                         v-model="temp[item.value]"
-                         :disabled="isDisabled(item.value)"
-                         :file-mediatype="item.type === 'upload-image' ? 'image':'video'"
-                         :limit="item.limit || 1"
-                         mode="grid"
-                         :auto-upload="false"
-                         @select="($event)=>handleSelect($event,item.value)"
-                         @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
+        <view v-if="['upload-image', 'upload-video'].includes(item.type)">
+          <uni-file-picker v-model="temp[item.value]"
+                           :disabled="isDisabled(item.value)"
+                           :file-mediatype="item.type === 'upload-image' ? 'image':'video'"
+                           :limit="item.limit || 1"
+                           mode="grid"
+                           :auto-upload="false"
+                           @select="($event)=>handleSelect($event,item.value)"
+                           @delete="($event)=>handleDelete($event,item.value)"></uni-file-picker>
+
+          <video v-if="item.type === 'upload-video' && urls[item.value]"
+                 :src="urls[item.value]"
+                 controls></video>
+        </view>
 
         <uni-data-checkbox v-else-if="item.type === 'checkbox'"
                            v-model="temp[item.value]"
@@ -145,7 +150,7 @@
                 data[key].split(',').forEach((url) => {
                   if (url) {
                     this.temp[key].push({
-                      name: '',
+                      name: 'video.mp4',
                       url
                     })
                   }
@@ -188,9 +193,16 @@
           this.urls[key] = this.temp[key].map(item => item.url).join(',')
         })
       },
-      async handleDelete(err, key) {
-        this.temp[key] = []
-        this.urls[key] = ''
+      async handleDelete(data, key) {
+        // if (this.temp.taskStatus === '1') return false
+        // else if ([DRIVE, RECORDCHECK, DEALINWAREHOUSE, DEALDRIVE].includes(this.temp.smallLink)) {
+        //   if (['recordCheck', 'remark', 'rejectRemark', 'reviewRemark'].includes(key)) {
+        //     this.temp[key] = []
+        //     this.urls[key] = ''
+        //   }
+        // }
+        // this.temp[key] = []
+        // this.urls[key] = ''
       },
       postData(func) {
         let data = {

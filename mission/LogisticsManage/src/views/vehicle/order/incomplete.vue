@@ -93,12 +93,10 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <Link
-      :visible="linkFormVisible"
-      :disabled="true"
-      :base-components="baseComponents"
-      :form-data="linkData"
-    />
+    <Link :visible="linkFormVisible"
+          :disabled="true"
+          :base-components="baseComponents"
+          :form-data="linkData"></Link>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
@@ -128,15 +126,14 @@
           </el-select>
         </el-form-item>
 
-        <el-tree
-          ref="dataTree"
-          :data="TREE_DATA"
-          :default-expand-all="true"
-          show-checkbox
-          node-key="id"
-          :props="defaultTreeProps"
-          :render-content="renderContent"
-          @check="handleNodeClick"
+        <el-tree ref="dataTree"
+                 :data="TREE_DATA"
+                 :default-expand-all="true"
+                 show-checkbox
+                 node-key="id"
+                 :props="defaultTreeProps"
+                 :render-content="renderContent"
+                 @check="handleNodeClick"
         />
       </el-form>
 
@@ -360,6 +357,7 @@
                 options.length > 0
                   ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]}
                                disabled={this.disabledTemp[node.data.value]}
+                               value-key='id'
                                style='margin-left:30px'
                                placeholder=''
                                onChange={(value) => {
@@ -438,7 +436,6 @@
                 t1.children.forEach(t2 => {
                   if (t2.label && t2.value) {
                     if (this.temp.orderSmallLinkItem[t2.value] === '0') {
-                      t2.disabled = true
                       this.disabledTemp[t2.value] = true
                       nodes.push(t2.id)
                     }

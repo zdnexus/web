@@ -8,9 +8,13 @@
 
     <uni-section class="mb-10" title="角色" :sub-title="userInfo.user.roleKeySetName"></uni-section>
 
-    <button v-if="!isEditPassword" class="button-g" type="primary" size="mini" @click="isEditPassword = true">修改密码</button>
+    <view v-if="!isEditPassword">
+      <button class="button-g" type="primary" size="mini" @click="isEditPassword = true">修改密码</button>
 
-    <view v-if="isEditPassword">
+      <button class="button-g" type="primary" size="mini" @click="loginOut">退出账号</button>
+    </view>
+
+    <view v-else>
       <uni-section title="旧密码" type="line">
         <uni-easyinput v-model="temp.oldPassword" class="input" type="password" placeholder="请输入新密码" @input="($event)=>userInput('oldPassword',$event)"></uni-easyinput>
       </uni-section>
@@ -62,6 +66,13 @@
       userInput(key, val) {
         this.temp[key] = val
       },
+      loginOut() {
+        const app = getApp()
+        app.globalData.token = ''
+        wx.navigateTo({
+          url: `../login/index`
+        })
+      },
       updatePassword() {
         if (this.temp.newPassword !== this.temp.newPassword2) {
           uni.showToast({
@@ -86,11 +97,7 @@
             newPassword2: ''
           }
           setTimeout(() => {
-            const app = getApp()
-            app.globalData.token = ''
-            wx.navigateTo({
-              url: `../login/index`
-            })
+            this.loginOut()
           }, 3000)
         })
       }

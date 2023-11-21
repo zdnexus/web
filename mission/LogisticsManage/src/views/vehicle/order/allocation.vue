@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
 
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
@@ -89,28 +89,28 @@
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === TEMP_MAKE_INITIAL_PLAN"/>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === TEMP_MAKE_INITIAL_PLAN"></el-input>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
           <el-select v-model="temp.vehicleType">
-            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"/>
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="客户" prop="client">
           <el-select v-model="temp.client">
-            <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"/>
+            <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="供应商" prop="supplierName">
-          <el-input v-model="temp.supplierName"/>
+          <el-input v-model="temp.supplierName"></el-input>
         </el-form-item>
 
         <el-form-item label="服务项" prop="service">
           <el-select v-model="temp.service">
-            <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"/>
+            <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
@@ -231,6 +231,8 @@
           this.total = res.data.total
           this.listLoading = false
         })
+      },
+      getData() {
         parameterVehicleTypeList().then(res => {
           this.vehicleTypeList = res.data.list.map(item => ({
             label: item.typeName,
@@ -271,7 +273,6 @@
       handleNodeClick(node, tree) {
         if (tree.checkedNodes.length > 0) {
           this.temp.orderSmallLinkItem = {}
-          this.temp.orderBaseInfo = {}
           tree.checkedNodes.forEach(n => {
             if (!n.children) {
               this.temp.orderSmallLinkItem[n.value] = '0'
@@ -295,6 +296,7 @@
               {
                 options.length > 0
                   ? <el-select v-model={this.temp.orderBaseInfo[node.data.value]}
+                               value-key='id'
                                style='margin-left:30px'
                                placeholder=''
                                onChange={(value) => {
@@ -345,19 +347,20 @@
         //     </span>
         // )
       },
-      handleRow(type, row) {
+      async handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
           case TEMP_TYPE_CREATE:
+            await this.getData()
             this.resetTemp()
             this.dialogFormVisible = true
-
             this.$nextTick(() => {
               this.$refs['dataForm'].clearValidate()
               this.$refs['dataTree'].setCheckedKeys([])
             })
             break
           case TEMP_MAKE_INITIAL_PLAN:
+            await this.getData()
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {

@@ -58,6 +58,9 @@
     onLoad() {
       this.getData()
     },
+    onShow() {
+      this.getData()
+    },
     methods: {
       getData() {
         this.tableLoading = true

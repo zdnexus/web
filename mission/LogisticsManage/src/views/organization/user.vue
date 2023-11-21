@@ -105,7 +105,7 @@
         </el-form-item>
 
         <el-form-item label="用户密码" prop="password" v-if="dialogStatus === TEMP_TYPE_CREATE">
-          <el-input v-model="temp.password" type="password"></el-input>
+          <el-input v-model="temp.password"></el-input>
         </el-form-item>
 
         <el-form-item label="用户昵称" prop="nickName">
