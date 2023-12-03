@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.deptName" style="width: 200px;margin-right: 10px" placeholder="部门名称" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.roleName" style="width: 200px;margin-right: 10px" placeholder="岗位名称" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-select v-model="listQuery.status" placeholder="部门状态" style="width: 200px;margin-right: 10px">
+      <el-select v-model="listQuery.status" placeholder="岗位状态" style="width: 200px;margin-right: 10px">
         <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
       </el-select>
 
@@ -17,15 +17,21 @@
     </div>
 
     <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row>
-      <el-table-column label="ID" prop="deptId" align="center" width="100">
+      <el-table-column label="ID" prop="roleId" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.deptId }}</span>
+          <span>{{ row.roleId }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="部门名称" prop="deptName" align="center" width="100">
+      <el-table-column label="角色名称" prop="roleName" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.deptName }}</span>
+          <span>{{ row.roleName }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="角色编码" prop="roleKey" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.roleKey }}</span>
         </template>
       </el-table-column>
 
@@ -61,37 +67,27 @@
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
 
-        <el-form-item label="上级部门" prop="parentId">
-          <el-cascader v-model="temp.parentId"
-                       :props="defaultProps"
-                       :options="deptList"
-                       clearable="true"
-                       style="width: 100%"
-                       ref="cascader"
-                       placeholder=""
-                       @change="handleChange"></el-cascader>
+        <el-form-item label="角色名称" prop="roleName">
+          <el-input v-model="temp.roleName"></el-input>
         </el-form-item>
 
-        <el-form-item label="部门名称" prop="deptName">
-          <el-input v-model="temp.deptName"></el-input>
+        <el-form-item label="角色编码" prop="roleKey">
+          <el-input v-model="temp.roleKey"></el-input>
+        </el-form-item>
+
+        <el-form-item label="权限" prop="menuIds">
+          <el-tree ref="dataTree"
+                   node-key="id"
+                   :data="menuList"
+                   :props="menuIdsDefaultProps"
+                   show-checkbox
+                   @check="handleNodeRoleClick"></el-tree>
         </el-form-item>
 
         <el-form-item label="状态" prop="status">
           <el-select v-model="temp.status" placeholder="">
             <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
-        </el-form-item>
-
-        <el-form-item label="负责人" prop="leader">
-          <el-input v-model="temp.leader"></el-input>
-        </el-form-item>
-
-        <el-form-item label="邮箱" prop="email">
-          <el-input v-model="temp.email"></el-input>
-        </el-form-item>
-
-        <el-form-item label="电话号码" prop="phonenumber">
-          <el-input v-model="temp.phonenumber"></el-input>
         </el-form-item>
 
         <el-form-item label="备注" prop="remark">
@@ -115,11 +111,15 @@
 <script>
   import Pagination from '@/components/Pagination'
   import {
-    getDeptList,
-    createDept,
-    updateDept,
-    deleteDept,
-  } from '@/api/organization/dept'
+    getRoleList,
+    createRole,
+    updateRole,
+    deleteRole,
+  } from '@/api/organization/role'
+  import {
+    getMenuList,
+    roleMenuTreeselect
+  } from '@/api/organization/menu'
   import {
     PAGE_TOTAL,
     PAGE_NUM,
@@ -129,7 +129,8 @@
     TEMP_TYPE_DELETE,
     TEMP_TYPE_UPDATE,
     ACCOUNT_STATUS_LIST,
-    ACCOUNT_STATUS_OBJ
+    ACCOUNT_STATUS_OBJ,
+    ROLE_LIST
   } from '@/constant'
   import { handleDeptList } from './funs'
 
@@ -143,9 +144,8 @@
         TEMP_TYPE_UPDATE,
         ACCOUNT_STATUS_LIST,
         ACCOUNT_STATUS_OBJ,
-        userList: null,
         listQuery: {
-          deptName: undefined,
+          roleName: undefined,
           status: undefined,
           pageNum: PAGE_NUM,
           pageSize: PAGE_SIZE
@@ -153,25 +153,25 @@
         listLoading: false,
         listKey: 0,
         list: undefined,
-        deptList: undefined,
+        menuList: undefined,
         listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {
-          parentId: undefined,
-          deptName: undefined,
-          leader: undefined,
-          email: undefined,
-          phonenumber: undefined,
-          status: undefined
+          roleName: undefined,
+          roleKey: undefined,
+          menuIds: undefined,
+          status: undefined,
+          remark: undefined
         },
-        defaultProps: {
-          emitPath: false,
-          checkStrictly: true
+        menuIdsDefaultProps: {
+          children: 'children',
+          label: 'label'
         },
         rules: {
-          parentId: [{ required: true, message: '请选择上级部门', trigger: 'change' }],
-          deptName: [{ required: true, message: '请选择输入部门名称', trigger: 'blur' }],
+          roleName: [{ required: true, message: '请选择岗位名称', trigger: 'blur' }],
+          roleKey: [{ required: true, message: '请选择岗位编码', trigger: 'blur' }],
+          menuIds: [{ required: true, message: '请选择权限', trigger: 'blur' }],
           status: [{ required: true, message: '请选择状态', trigger: 'change' }]
         }
       }
@@ -182,11 +182,15 @@
     methods: {
       getList() {
         this.listLoading = true
-        getDeptList(this.listQuery).then((res) => {
+        getRoleList(this.listQuery).then((res) => {
           this.list = res.data.list
           this.listTotal = res.data.total
           this.listLoading = false
-          this.deptList = handleDeptList(res.data.list)
+        })
+      },
+      getData() {
+        getMenuList().then((res) => {
+          this.menuList = handleDeptList(res.data.list, 'menuName', 'menuId')
         })
       },
       handleFilter() {
@@ -195,38 +199,59 @@
       },
       resetTemp() {
         this.temp = {
-          deptId: undefined,
-          status: undefined
+          roleName: undefined,
+          roleKey: undefined,
+          menuIds: undefined,
+          status: undefined,
+          remark: undefined
         }
       },
-      handleRow(type, row) {
+      async handleRow(type, row) {
         switch (type) {
           case TEMP_TYPE_CREATE:
           case TEMP_TYPE_UPDATE:
-            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row, }
+            await this.getData()
             this.dialogStatus = type
             this.dialogFormVisible = true
-            this.$nextTick(() => {
-              this.$refs.dataForm.clearValidate()
-            })
+            if (this.$isCreateTemp(type)) {
+              this.resetTemp()
+              this.$nextTick(() => {
+                this.$refs.dataForm.clearValidate()
+                this.$refs.dataTree.setCheckedKeys([])
+              })
+            } else {
+              roleMenuTreeselect(row.roleId).then((res) => {
+                const menuIds = res.checkedKeys
+                this.temp = {
+                  ...row,
+                  menuIds
+                }
+                this.$nextTick(() => {
+                  this.$refs.dataForm.clearValidate()
+                  debugger
+                  this.$refs.dataTree.setCheckedKeys(menuIds)
+                })
+              })
+            }
             break
           case TEMP_TYPE_DELETE:
-            const ids = [row.deptId]
-            deleteDept(ids).then(() => {
+            const ids = [row.roleId]
+            deleteRole(ids).then(() => {
               this.$deleteTempNotify()
               this.handleFilter()
             })
             break
         }
       },
-      handleChange() {
+      handleNodeRoleClick(node, data) {
+        const menuIds = data.checkedNodes.map((item) => item.value)
+        this.temp.menuIds = menuIds
       },
       handleData() {
         const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
-        const handleFun = isCreateTemp ? createDept : updateDept
+        const handleFun = isCreateTemp ? createRole : updateRole
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            this.temp.parentName = this.$refs["cascader"].getCheckedNodes()[0].label
             handleFun(this.temp).then(() => {
               isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
               this.dialogFormVisible = false

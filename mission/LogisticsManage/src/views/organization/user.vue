@@ -1,9 +1,9 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.userName" style="width: 200px;margin-right: 10px" placeholder="用户名称" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.userName" style="width: 200px;margin-right: 10px" placeholder="用户名称" @keyup.enter.native="handleFilter"></el-input>
 
-      <el-input v-model="listQuery.phonenumber" style="width: 200px;margin-right: 10px" placeholder="手机号码" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.phonenumber" style="width: 200px;margin-right: 10px" placeholder="手机号码" @keyup.enter.native="handleFilter"></el-input>
 
       <el-select v-model="listQuery.status" placeholder="用户状态" style="width: 200px;margin-right: 10px">
         <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
@@ -16,21 +16,16 @@
       <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
         添加
       </el-button>
-
-      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
-        <el-button slot="reference" type="danger" icon="el-icon-delete">
-          删除
-        </el-button>
-      </el-popconfirm>
     </div>
 
     <div style="display:flex">
-      <el-tree :data="deptList" :props="defaultProps" style="width:auto;min-width:150px;margin-right: 10px" @node-click="handleNodeClick"></el-tree>
+      <el-tree :data="deptList"
+               :props="deptListTreeProps"
+               style="width:auto;min-width:150px;margin-right: 10px"
+               @node-click="handleNodeClick"></el-tree>
 
       <div style="flex: 1;overflow: scroll">
-        <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
-          <el-table-column type="selection" width="55"/>
-
+        <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row>
           <el-table-column label="ID" prop="userId" align="center" width="100">
             <template slot-scope="{row}">
               <span>{{ row.userId }}</span>
@@ -57,13 +52,19 @@
 
           <el-table-column label="部门" prop="deptName" align="center" width="100">
             <template slot-scope="{row}">
-              <span>{{ row.dept && row.dept.deptName || '' }}</span>
+              <span>{{ row.dept.deptName }}</span>
             </template>
           </el-table-column>
 
           <el-table-column label="岗位" prop="postName" align="center" width="100">
             <template slot-scope="{row}">
               <span>{{ row.postName }}</span>
+            </template>
+          </el-table-column>
+
+          <el-table-column label="角色" prop="roleName" align="center" width="100">
+            <template slot-scope="{row}">
+              <span>{{ row.roleName }}</span>
             </template>
           </el-table-column>
 
@@ -127,14 +128,25 @@
         </el-form-item>
 
         <el-form-item label="部门" prop="deptId">
-          <el-select v-model="temp.deptId" placeholder="">
-            <el-option v-for="item in deptList" :key="item.value" :label="item.label" :value="item"></el-option>
-          </el-select>
+          <el-cascader v-model="temp.deptId"
+                       :options="deptList"
+                       :props="deptListCascaderProps"
+                       clearable
+                       style="width: 100%"
+                       ref="cascader"
+                       placeholder=""
+                       @change="handleDeptChange"></el-cascader>
         </el-form-item>
 
         <el-form-item label="岗位" prop="postCode">
           <el-select v-model="temp.postCode" placeholder="">
             <el-option v-for="item in postList" :key="item.value" :label="item.label" :value="item"></el-option>
+          </el-select>
+        </el-form-item>
+
+        <el-form-item label="角色" prop="roleKey">
+          <el-select v-model="temp.roleKey" placeholder="">
+            <el-option v-for="item in roleList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
@@ -166,6 +178,7 @@
   import Pagination from '@/components/Pagination'
   import {
     getUserList,
+    getUser,
     createUser,
     updateUser,
     deleteUser
@@ -177,6 +190,9 @@
     getPostList,
   } from '@/api/organization/post'
   import {
+    getRoleList,
+  } from '@/api/organization/role'
+  import {
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
@@ -186,9 +202,9 @@
     TEMP_TYPE_UPDATE,
     SEX_LIST,
     ACCOUNT_STATUS_LIST,
-    ACCOUNT_STATUS_OBJ
+    ACCOUNT_STATUS_OBJ,
   } from '@/constant'
-  import { handleList } from './funs'
+  import { handleDeptList } from './funs'
 
   export default {
     components: { Pagination },
@@ -209,16 +225,21 @@
           pageNum: PAGE_NUM,
           pageSize: PAGE_SIZE
         },
-        defaultProps: {
+        deptListTreeProps: {
           children: 'children',
           label: 'label'
+        },
+        deptListCascaderProps: {
+          emitPath: false
         },
         listLoading: false,
         listKey: 0,
         list: undefined,
+        posts: undefined,
+        roles: undefined,
         deptList: undefined,
         postList: undefined,
-        ids: [],
+        roleList: undefined,
         listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
@@ -231,6 +252,7 @@
           sex: undefined,
           deptId: undefined,
           postCode: undefined,
+          roleKey: undefined,
           status: undefined,
           remark: undefined
         },
@@ -240,10 +262,11 @@
           nickName: [{ required: true, message: '请输入用户昵称', trigger: 'blur' }],
           phonenumber: [{ required: true, message: '请输入用户密码', trigger: 'blur' }],
           email: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
-          sex: [{ required: true, message: '请选择性别', trigger: 'blur' }],
-          deptId: [{ required: true, message: '请选择部门', trigger: 'blur' }],
-          postCode: [{ required: true, message: '请选择职位', trigger: 'blur' }],
-          status: [{ required: true, message: '请选择状态', trigger: 'blur' }]
+          sex: [{ required: true, message: '请选择性别', trigger: 'change' }],
+          deptId: [{ required: true, message: '请选择部门', trigger: 'change' }],
+          postCode: [{ required: true, message: '请选择岗位', trigger: 'change' }],
+          roleKey: [{ required: true, message: '请选择角色', trigger: 'change' }],
+          status: [{ required: true, message: '请选择状态', trigger: 'change' }]
         }
       }
     },
@@ -258,13 +281,23 @@
           this.listTotal = res.data.total
           this.listLoading = false
         })
+        getUser().then((res) => {
+          this.posts = res.posts
+          this.roles = res.roles
+        })
         getDeptList().then((res) => {
-          this.deptList = handleList(res.data.list)
+          this.deptList = handleDeptList(res.data.list)
         })
         getPostList().then((res) => {
           this.postList = res.data.list.map((item) => ({
             label: item.postName,
             value: item.postCode
+          }))
+        })
+        getRoleList().then((res) => {
+          this.roleList = res.data.list.map((item) => ({
+            label: item.roleName,
+            value: item.roleKey
           }))
         })
       },
@@ -281,8 +314,8 @@
           this.listLoading = false
         })
       },
-      handleIdChange(rows) {
-        this.ids = rows.map(row => row.userId)
+      handleDeptChange() {
+
       },
       resetTemp() {
         this.temp = {
@@ -293,7 +326,8 @@
           email: undefined,
           sex: undefined,
           deptId: undefined,
-          postCode: undefined,
+          postId: undefined,
+          roleKey: undefined,
           status: undefined,
           remark: undefined
         }
@@ -304,41 +338,41 @@
           case TEMP_TYPE_UPDATE:
             this.$isCreateTemp(type) ? this.resetTemp() : this.temp = {
               ...row,
-              deptId: { label: row.dept.deptName, value: row.dept.deptId },
-              postCode: { label: row.postName, value: row.postCode }
+              deptId: row.dept.deptId,
+              postCode: { label: row.postName, value: row.postCode },
+              roleKey: { label: row.roleName, value: row.roleKey }
             }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
-              this.$refs['dataForm'].clearValidate()
+              this.$refs.dataForm.clearValidate()
             })
             break
           case TEMP_TYPE_DELETE:
-            if (!row && !this.ids.length) {
-              this.$checkTable()
-            } else {
-              const ids = row ? [row.userId] : this.ids
-              deleteUser(ids).then(() => {
-                this.$deleteTempNotify()
-                this.handleFilter()
-              })
-            }
+            const ids = [row.userId]
+            deleteUser(ids).then(() => {
+              this.$deleteTempNotify()
+              this.handleFilter()
+            })
             break
         }
       },
       handleData() {
         const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
         const handleFun = isCreateTemp ? createUser : updateUser
-        this.$refs['dataForm'].validate((valid) => {
+        this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            const deptName = this.temp.deptId.label
-            const deptId = this.temp.deptId.value
-            this.temp.deptName = deptName
-            this.temp.deptId = deptId
-            const postName = this.temp.postCode.label
-            const postCode = this.temp.postCode.value
-            this.temp.postName = postName
-            this.temp.postCode = postCode
+            this.temp.deptName = this.$refs['cascader'].getCheckedNodes()[0].label
+            const postCodeLabel = this.temp.postCode.label
+            const postCodeValue = this.temp.postCode.value
+            this.temp.postName = postCodeLabel
+            this.temp.postCode = postCodeValue
+            const roleKeyLabel = this.temp.roleKey.label
+            const roleKeyValue = this.temp.roleKey.value
+            this.temp.roleName = roleKeyLabel
+            this.temp.roleKey = roleKeyValue
+            this.temp.postIds = [this.posts.find((item) => item.postCode === this.temp.postCode).postId]
+            this.temp.roleIds = [this.roles.find((item) => item.roleKey === this.temp.roleKey).roleId]
             handleFun(this.temp).then(() => {
               isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
               this.dialogFormVisible = false

@@ -214,7 +214,7 @@ export default {
     },
     handleData() {
       const fun = this.dialogStatus === 'create' ? createCooperateAbrod : updateCooperateAbrod
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           fun(this.temp).then(() => {
             this.dialogFormVisible = false
@@ -246,7 +246,7 @@ export default {
           this.dialogStatus = type
           this.dialogFormVisible = true
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case 'delete':

@@ -4,7 +4,7 @@
  */
 import request from '@/utils/request'
 
-export function parameterServiceList(data) {
+export function serviceList(data) {
   return request({
     url: '/vehicle/serviceItems/list',
     method: 'get',
@@ -12,7 +12,7 @@ export function parameterServiceList(data) {
   })
 }
 
-export function createParameterService(data) {
+export function createService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'post',
@@ -20,14 +20,14 @@ export function createParameterService(data) {
   })
 }
 
-export function deleteParameterService(data) {
+export function deleteService(data) {
   return request({
     url: `/vehicle/serviceItems/${data}`,
     method: 'delete'
   })
 }
 
-export function updateParameterService(data) {
+export function updateService(data) {
   return request({
     url: '/vehicle/serviceItems',
     method: 'put',
@@ -35,7 +35,7 @@ export function updateParameterService(data) {
   })
 }
 
-export function exportParameterService(data) {
+export function exportService(data) {
   return request({
     url: `/vehicle/serviceItems/export`,
     method: 'get'

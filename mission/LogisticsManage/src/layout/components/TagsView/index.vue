@@ -110,19 +110,19 @@ export default {
       return false
     },
     moveToCurrentTag() {
-      const tags = this.$refs.tag
-      this.$nextTick(() => {
-        for (const tag of tags) {
-          if (tag.to.path === this.$route.path) {
-            this.$refs.scrollPane.moveToTarget(tag)
-            // when query is different then update
-            if (tag.to.fullPath !== this.$route.fullPath) {
-              this.$store.dispatch('tagsView/updateVisitedView', this.$route)
-            }
-            break
-          }
-        }
-      })
+      // const tags = this.$refs.tag
+      // this.$nextTick(() => {
+      //   for (const tag of tags) {
+      //     if (tag.to.path === this.$route.path) {
+      //       this.$refs.scrollPane.moveToTarget(tag)
+      //       // when query is different then update
+      //       if (tag.to.fullPath !== this.$route.fullPath) {
+      //         this.$store.dispatch('tagsView/updateVisitedView', this.$route)
+      //       }
+      //       break
+      //     }
+      //   }
+      // })
     },
     refreshSelectedTag(view) {
       this.$store.dispatch('tagsView/delCachedView', view).then(() => {

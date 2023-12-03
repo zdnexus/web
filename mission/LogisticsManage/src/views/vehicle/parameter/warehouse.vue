@@ -231,7 +231,7 @@ export default {
           this.dialogStatus = type
           this.dialogFormVisible = true
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case TEMP_TYPE_DELETE:
@@ -250,7 +250,7 @@ export default {
     handleData() {
       const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
       const handleFun = isCreateTemp ? createParameterWarehouse : updateParameterWarehouse
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           handleFun(this.temp).then(() => {
             isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()

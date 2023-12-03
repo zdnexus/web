@@ -559,7 +559,7 @@ export default {
   },
   methods: {
     handleData(vehicleInfo) {
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           switch (vehicleInfo.smallLink) {
             case DECLARE_UPLOAD:

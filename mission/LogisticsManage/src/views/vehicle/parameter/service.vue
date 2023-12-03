@@ -1,43 +1,47 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.postName" style="width: 200px;margin-right: 10px" placeholder="岗位名称" @keyup.enter.native="handleFilter"></el-input>
-
-      <el-select v-model="listQuery.status" placeholder="岗位状态" style="width: 200px;margin-right: 10px">
-        <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
-      </el-select>
+      <el-input v-model="listQuery.name" style="width: 200px" placeholder="输入服务项" @keyup.enter.native="handleFilter"></el-input>
 
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
       </el-button>
 
       <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
-        添加
+        添加服务项
       </el-button>
+
+      <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE)">
+        <el-button slot="reference" type="danger" icon="el-icon-delete">
+          删除
+        </el-button>
+      </el-popconfirm>
     </div>
 
-    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row>
-      <el-table-column label="ID" prop="postId" align="center" width="100">
+    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"></el-table-column>
+
+      <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ row.postId }}</span>
+          <span>{{ row.id }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="岗位名称" prop="postName" align="center" width="100">
+      <el-table-column label="服务项" prop="name" align="center" width="200">
         <template slot-scope="{row}">
-          <span>{{ row.postName }}</span>
+          <span>{{ row.name }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="岗位编码" prop="postCode" align="center" width="100">
+      <el-table-column label="服务类型" prop="type" align="center" width="200">
         <template slot-scope="{row}">
-          <span>{{ row.postCode }}</span>
+          <span>{{ SERVE_TYPE_LIST_OBJ[row.type] }}</span>
         </template>
       </el-table-column>
 
-      <el-table-column label="状态" prop="status" align="center" width="100">
+      <el-table-column label="境外目的地" prop="abroadAddress" align="center" width="100">
         <template slot-scope="{row}">
-          <span>{{ ACCOUNT_STATUS_OBJ[row.status] }}</span>
+          <span>{{ row.abroadAddress }}</span>
         </template>
       </el-table-column>
 
@@ -47,42 +51,43 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
+        <template slot-scope="{row}">
+          <span>{{ row.updateTime }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
           <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
-            更新
+            {{ TEMP_TYPE[TEMP_TYPE_UPDATE] }}
           </el-button>
 
           <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
             <el-button slot="reference" size="mini" type="danger">
-              删除
+              {{ TEMP_TYPE[TEMP_TYPE_DELETE] }}
             </el-button>
           </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
 
-    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"></Pagination>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
-
-        <el-form-item label="岗位名称" prop="postName">
-          <el-input v-model="temp.postName"></el-input>
+        <el-form-item label="服务项名称" prop="name">
+          <el-input v-model="temp.name"></el-input>
         </el-form-item>
 
-        <el-form-item label="岗位编码" prop="postCode">
-          <el-input v-model="temp.postCode"></el-input>
-        </el-form-item>
-
-        <el-form-item label="状态" prop="status">
-          <el-select v-model="temp.status" placeholder="">
-            <el-option v-for="item in ACCOUNT_STATUS_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
+        <el-form-item label="服务类型" prop="type">
+          <el-select v-model="temp.type" placeholder="">
+            <el-option v-for="item in SERVE_TYPE_LIST" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="备注" prop="remark">
-          <el-input v-model="temp.remark"></el-input>
+        <el-form-item label="境外目的地" prop="abroadAddress">
+          <el-input v-model="temp.abroadAddress"></el-input>
         </el-form-item>
       </el-form>
 
@@ -102,11 +107,11 @@
 <script>
   import Pagination from '@/components/Pagination'
   import {
-    getPostList,
-    createPost,
-    updatePost,
-    deletePost,
-  } from '@/api/organization/post'
+    serviceList,
+    createService,
+    deleteService,
+    updateService
+  } from '@/api/vehicle/parameter/service'
   import {
     PAGE_TOTAL,
     PAGE_NUM,
@@ -115,46 +120,41 @@
     TEMP_TYPE_CREATE,
     TEMP_TYPE_DELETE,
     TEMP_TYPE_UPDATE,
-    ACCOUNT_STATUS_LIST,
-    ACCOUNT_STATUS_OBJ
+    SERVE_TYPE_LIST,
+    SERVE_TYPE_LIST_OBJ
   } from '@/constant'
 
   export default {
     components: { Pagination },
     data() {
       return {
-        TEMP_TYPE,
         TEMP_TYPE_CREATE,
         TEMP_TYPE_DELETE,
         TEMP_TYPE_UPDATE,
-        ACCOUNT_STATUS_LIST,
-        ACCOUNT_STATUS_OBJ,
+        TEMP_TYPE,
+        SERVE_TYPE_LIST,
+        SERVE_TYPE_LIST_OBJ,
         listQuery: {
-          postName: undefined,
-          status: undefined,
+          name: undefined,
           pageNum: PAGE_NUM,
           pageSize: PAGE_SIZE
         },
         listLoading: false,
         listKey: 0,
         list: undefined,
+        ids: [],
         listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
         dialogStatus: undefined,
         temp: {
-          postName: undefined,
-          postCode: undefined,
-          status: undefined,
-          remark: undefined
-        },
-        defaultProps: {
-          emitPath: false,
-          checkStrictly: true
+          name: undefined,
+          type: undefined,
+          abroadAddress: undefined
         },
         rules: {
-          postName: [{ required: true, message: '请选择岗位名称', trigger: 'blur' }],
-          postCode: [{ required: true, message: '请选择岗位编码', trigger: 'blur' }],
-          status: [{ required: true, message: '请选择状态', trigger: 'change' }]
+          name: [{ required: true, message: '请输入服务项名称', trigger: 'blur' }],
+          type: [{ required: true, message: '请选择服务类型', trigger: 'change' }],
+          abroadAddress: [{ required: true, message: '请输入境外目的地', trigger: 'blur' }]
         }
       }
     },
@@ -164,7 +164,7 @@
     methods: {
       getList() {
         this.listLoading = true
-        getPostList(this.listQuery).then((res) => {
+        serviceList(this.listQuery).then((res) => {
           this.list = res.data.list
           this.listTotal = res.data.total
           this.listLoading = false
@@ -174,19 +174,21 @@
         this.listQuery.pageNum = PAGE_NUM
         this.getList()
       },
+      handleIdChange(rows) {
+        this.ids = rows.map(row => row.id)
+      },
       resetTemp() {
         this.temp = {
-          postName: undefined,
-          postCode: undefined,
-          status: undefined,
-          remark: undefined
+          name: undefined,
+          type: undefined,
+          abroadAddress: undefined
         }
       },
       handleRow(type, row) {
         switch (type) {
           case TEMP_TYPE_CREATE:
           case TEMP_TYPE_UPDATE:
-            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row, }
+            this.$isCreateTemp(type) ? this.resetTemp() : this.temp = { ...row }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {
@@ -194,22 +196,23 @@
             })
             break
           case TEMP_TYPE_DELETE:
-            const ids = [row.postId]
-            deletePost(ids).then(() => {
-              this.$deleteTempNotify()
-              this.handleFilter()
-            })
+            if (!row && !this.ids.length) {
+              this.$checkTable()
+            } else {
+              const ids = row ? [row.id] : this.ids
+              deleteService(ids).then(() => {
+                this.$deleteTempNotify()
+                this.handleFilter()
+              })
+            }
             break
         }
       },
-      handleChange() {
-      },
       handleData() {
         const isCreateTemp = this.$isCreateTemp(this.dialogStatus)
-        const handleFun = isCreateTemp ? createPost : updatePost
+        const handleFun = isCreateTemp ? createService : updateService
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            this.temp.postSort = 0
             handleFun(this.temp).then(() => {
               isCreateTemp ? this.$createTempNotify() : this.$updateTempNotify()
               this.dialogFormVisible = false

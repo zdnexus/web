@@ -119,8 +119,8 @@
                  :default-expand-all="true"
                  show-checkbox
                  node-key="id"
-                 :default-expanded-keys="[2, 3]"
-                 :default-checked-keys="[5]"
+                 :default-expanded-keys="[]"
+                 :default-checked-keys="[]"
                  :props="defaultTreeProps"
                  :render-content="renderContent"
                  @check="handleNodeClick"
@@ -144,7 +144,7 @@
   import Pagination from '@/components/Pagination'
   import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
   import { cooperateCustomList } from '@/api/vehicle/cooperate/custom'
-  import { parameterServiceList } from '@/api/vehicle/parameter/server'
+  import { serviceList } from '@/api/vehicle/parameter/service'
   import {
     vehicleOrderList,
     createVehicleOrder,
@@ -182,8 +182,7 @@
         ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {
           children: 'children',
-          label: 'label',
-          value: 'value'
+          label: 'label'
         },
         vehicleTypeList: null,
         clientList: null,
@@ -245,7 +244,7 @@
             value: item.userId
           }))
         })
-        parameterServiceList().then(res => {
+        serviceList().then(res => {
           this.serviceList = res.data.list.map(item => ({
             label: item.name,
             value: item.id
@@ -355,8 +354,8 @@
             this.resetTemp()
             this.dialogFormVisible = true
             this.$nextTick(() => {
-              this.$refs['dataForm'].clearValidate()
-              this.$refs['dataTree'].setCheckedKeys([])
+              this.$refs.dataForm.clearValidate()
+              this.$refs.dataTree.setCheckedKeys([])
             })
             break
           case TEMP_MAKE_INITIAL_PLAN:
@@ -387,8 +386,8 @@
                 this.dialogFormVisible = true
 
                 this.$nextTick(() => {
-                  this.$refs['dataForm'].clearValidate()
-                  this.$refs['dataTree'].setCheckedKeys(nodes)
+                  this.$refs.dataForm.clearValidate()
+                  this.$refs.dataTree.setCheckedKeys(nodes)
                 })
               })
             })
@@ -407,7 +406,7 @@
         }
       },
       handleData() {
-        this.$refs['dataForm'].validate((valid) => {
+        this.$refs.dataForm.validate((valid) => {
           if (valid) {
             if (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN) {
               let flag = false

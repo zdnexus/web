@@ -4,10 +4,17 @@
  */
 import request from '@/utils/request'
 
-// organization/user
 export function getUserList(data) {
   return request({
     url: '/system/user/list',
+    method: 'get',
+    params: data
+  })
+}
+
+export function getUser(data) {
+  return request({
+    url: '/system/user/',
     method: 'get',
     params: data
   })

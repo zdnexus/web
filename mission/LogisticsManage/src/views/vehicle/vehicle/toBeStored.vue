@@ -208,7 +208,7 @@ export default {
           this.dialogFormVisible = true
           this.viewDetail(row.vin)
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case 'delete':

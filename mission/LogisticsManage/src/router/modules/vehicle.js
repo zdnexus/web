@@ -113,9 +113,9 @@ export default {
       component: () => import('@/views/link'),
       children: [
         {
-          path: '/vehicle/parameter/server',
+          path: '/vehicle/parameter/service',
           name: '服务项管理',
-          component: () => import('@/views/vehicle/parameter/server'),
+          component: () => import('@/views/vehicle/parameter/service'),
           meta: { title: '服务项管理', icon: 'edit' }
         },
         {

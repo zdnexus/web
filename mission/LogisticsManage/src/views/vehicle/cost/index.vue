@@ -707,7 +707,7 @@ export default {
     },
     handleData() {
       const fun = this.dialogStatus === 'create' ? createOrderFee : updateOrderFee
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           fun(this.temp).then(() => {
             this.dialogFormVisible = false
@@ -729,7 +729,7 @@ export default {
           this.resetTemp()
           this.dialogFormVisible = true
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case 'update':
@@ -745,7 +745,7 @@ export default {
           })
           this.dialogFormVisible = true
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case 'audit':

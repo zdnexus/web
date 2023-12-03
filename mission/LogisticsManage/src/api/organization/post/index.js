@@ -4,7 +4,6 @@
  */
 import request from '@/utils/request'
 
-// organization/post
 export function getPostList(data) {
   return request({
     url: '/system/post/list',

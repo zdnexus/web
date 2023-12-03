@@ -25,6 +25,11 @@ export default {
       meta: { title: '部门管理', icon: 'edit' }
     },
     {
+      path: '/organization/role',
+      component: () => import('@/views/organization/role'),
+      meta: { title: '角色管理', icon: 'edit' }
+    },
+    {
       path: '/organization/post',
       component: () => import('@/views/organization/post'),
       meta: { title: '岗位管理', icon: 'edit' }

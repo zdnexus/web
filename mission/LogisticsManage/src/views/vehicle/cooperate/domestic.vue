@@ -251,7 +251,7 @@ export default {
     },
     handleData() {
       const fun = this.dialogStatus === 'create' ? createCooperateDomestic : updateCooperateDomestic
-      this.$refs['dataForm'].validate((valid) => {
+      this.$refs.dataForm.validate((valid) => {
         if (valid) {
           this.temp.pmName = this.temp.pmId.label
           this.temp.pmId = this.temp.pmId.value
@@ -285,7 +285,7 @@ export default {
           this.dialogStatus = type
           this.dialogFormVisible = true
           this.$nextTick(() => {
-            this.$refs['dataForm'].clearValidate()
+            this.$refs.dataForm.clearValidate()
           })
           break
         case 'delete':

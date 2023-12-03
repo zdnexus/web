@@ -12,7 +12,7 @@ export default {
   meta: {
     title: '任务管理',
     icon: 'list',
-    roles: ['admin'] // you can set roles in root nav
+    roles: ['admin']
   },
   children: [
     {

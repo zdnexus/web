@@ -4,7 +4,6 @@
  */
 import request from '@/utils/request'
 
-// organization/dept
 export function getDeptList(data) {
   return request({
     url: '/system/dept/list',

@@ -155,7 +155,7 @@
   import Link from '@/components/Link'
   import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
   import { cooperateCustomList } from '@/api/vehicle/cooperate/custom'
-  import { parameterServiceList } from '@/api/vehicle/parameter/server'
+  import { serviceList } from '@/api/vehicle/parameter/service'
   import {
     vehicleOrderList,
     deleteVehicleOrder,
@@ -257,7 +257,7 @@
             value: item.userId
           }))
         })
-        parameterServiceList().then(res => {
+        serviceList().then(res => {
           this.serviceList = res.data.list.map(item => ({
             label: item.name,
             value: item.id
@@ -447,8 +447,8 @@
                 this.dialogFormVisible = true
 
                 this.$nextTick(() => {
-                  this.$refs['dataForm'].clearValidate()
-                  this.$refs['dataTree'].setCheckedKeys(nodes)
+                  this.$refs.dataForm.clearValidate()
+                  this.$refs.dataTree.setCheckedKeys(nodes)
                 })
               })
             })
@@ -467,7 +467,7 @@
         }
       },
       handleData() {
-        this.$refs['dataForm'].validate((valid) => {
+        this.$refs.dataForm.validate((valid) => {
           if (valid) {
             if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN) {
               let flag = false
