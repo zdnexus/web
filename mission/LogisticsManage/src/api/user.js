@@ -15,9 +15,9 @@ export function getInfo() {
   })
 }
 
-export function logout() {
+export function getRouters() {
   return request({
-    url: '/vue-element-admin/user/logout',
-    method: 'post'
+    url: '/getRouters',
+    method: 'get'
   })
 }

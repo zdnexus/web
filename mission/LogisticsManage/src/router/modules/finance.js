@@ -10,8 +10,7 @@ export default {
   component: Layout,
   meta: {
     title: '财务管理',
-    icon: 'list',
-    roles: ['admin'] // you can set roles in root nav
+    icon: 'list'
   },
   children: [
     {

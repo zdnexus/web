@@ -228,7 +228,6 @@
                 }
                 this.$nextTick(() => {
                   this.$refs.dataForm.clearValidate()
-                  debugger
                   this.$refs.dataTree.setCheckedKeys(menuIds)
                 })
               })

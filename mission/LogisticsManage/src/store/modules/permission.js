@@ -18,19 +18,42 @@ function hasPermission(roles, route) {
  * @param routes asyncRoutes
  * @param roles
  */
-export function filterAsyncRoutes(routes, roles) {
-  const res = []
-
-  routes.forEach(route => {
-    const tmp = { ...route }
-    if (hasPermission(roles, tmp)) {
-      if (tmp.children) {
-        tmp.children = filterAsyncRoutes(tmp.children, roles)
+export function filterAsyncRoutes(roles) {
+  const n = roles.find(item => item.meta.title === '控制台') ? 6 : 5
+  const res = constantRoutes.splice(0, n)
+  
+  roles.forEach(role => {
+    constantRoutes.forEach(route => {
+      if (role.meta.title === route.meta?.title) {
+        const o = {
+          ...route,
+          children: []
+        }
+        role.children && role.children.forEach(role1 => {
+          route.children.forEach(route1 => {
+            if (role1.meta.title === route1.meta.title) {
+              const o1 = {
+                ...route1,
+                children: []
+              }
+              role1.children && role1.children.forEach(role2 => {
+                route1?.children.forEach(route2 => {
+                  if (role2.meta.title === route2.meta.title) {
+                    o1.children.push({
+                      ...route2
+                    })
+                  }
+                })
+              })
+              o.children.push(o1)
+            }
+          })
+        })
+        res.push(o)
       }
-      res.push(tmp)
-    }
+    })
   })
-
+  
   return res
 }
 
@@ -42,19 +65,14 @@ const state = {
 const mutations = {
   SET_ROUTES: (state, routes) => {
     state.addRoutes = routes
-    state.routes = constantRoutes.concat(routes)
+    state.routes = routes
   }
 }
 
 const actions = {
   generateRoutes({ commit }, roles) {
     return new Promise(resolve => {
-      let accessedRoutes
-      if (roles.includes('admin')) {
-        accessedRoutes = asyncRoutes || []
-      } else {
-        accessedRoutes = filterAsyncRoutes(asyncRoutes, roles)
-      }
+      let accessedRoutes = filterAsyncRoutes(roles)
       commit('SET_ROUTES', accessedRoutes)
       resolve(accessedRoutes)
     })

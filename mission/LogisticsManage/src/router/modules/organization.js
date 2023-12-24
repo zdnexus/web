@@ -8,11 +8,7 @@ import Layout from '@/layout'
 export default {
   path: '/organization',
   component: Layout,
-  meta: {
-    title: '组织管理',
-    icon: 'list',
-    roles: ['admin'] // you can set roles in root nav
-  },
+  meta: { title: '组织管理', icon: 'list' },
   children: [
     {
       path: '/organization/user',

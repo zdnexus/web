@@ -8,11 +8,7 @@ import Layout from '@/layout'
 export default {
   path: '/warehouse',
   component: Layout,
-  meta: {
-    title: '仓库管理',
-    icon: 'list',
-    roles: ['admin'] // you can set roles in root nav
-  },
+  meta: { title: '仓库管理', icon: 'list' },
   children: [
     {
       path: '/warehouse/map',
