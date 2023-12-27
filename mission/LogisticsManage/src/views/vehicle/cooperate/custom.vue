@@ -130,6 +130,12 @@
           <el-input v-model="temp.password" />
         </el-form-item>
 
+        <el-form-item label="分配经理" prop="pmId">
+          <el-select v-model="temp.pmId" class="filter-item" placeholder="">
+            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item" />
+          </el-select>
+        </el-form-item>
+
         <el-form-item label="邮箱" prop="mail">
           <el-input v-model="temp.mail" />
         </el-form-item>
@@ -168,12 +174,6 @@
 
         <el-form-item label="结算周期" prop="settlementCycle">
           <el-input v-model="temp.settlementCycle" />
-        </el-form-item>
-
-        <el-form-item label="分配经理" prop="pmId">
-          <el-select v-model="temp.pmId" class="filter-item" placeholder="">
-            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item" />
-          </el-select>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -233,16 +233,6 @@ export default {
         name: [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
         mobile: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
         password: [{ required: true, message: '请输入客户密码', trigger: 'blur' }],
-        mail: [{ required: true, message: '请输入邮箱', trigger: 'blur' }],
-        country: [{ required: true, message: '请输入国家', trigger: 'blur' }],
-        area: [{ required: true, message: '请输入地区', trigger: 'blur' }],
-        address: [{ required: true, message: '请输入地址', trigger: 'blur' }],
-        bankAccount: [{ required: true, message: '请输入银行账号', trigger: 'blur' }],
-        bank: [{ required: true, message: '请输入开户行', trigger: 'blur' }],
-        dutyParagraph: [{ required: true, message: '请输入税号', trigger: 'blur' }],
-        paymentTerms: [{ required: true, message: '请输入付款条件', trigger: 'blur' }],
-        tradeMode: [{ required: true, message: '请输入贸易方式', trigger: 'blur' }],
-        settlementCycle: [{ required: true, message: '请输入结算周期', trigger: 'blur' }],
         pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
       }
     }
@@ -251,7 +241,7 @@ export default {
     this.getList()
     organizationList({ roleKeySet: 'pmanager' }).then(res => {
       this.pmList = res.data.list.map(item => ({
-        label: item.userName,
+        label: item.nickName,
         value: item.userId
       }))
     })

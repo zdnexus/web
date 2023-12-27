@@ -183,7 +183,7 @@ export default {
     this.getList()
     organizationList({ roleKeySet: 'pmanager' }).then(res => {
       this.pmList = res.data.list.map(item => ({
-        label: item.userName,
+        label: item.nickName,
         value: item.userId
       }))
     })

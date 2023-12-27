@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="请输入司机姓名" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.name" placeholder="请输入司机姓名" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -21,20 +21,8 @@
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="listKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleIdChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55"
-      />
+    <el-table :key="listKey" v-loading="listLoading" :data="list" border fit highlight-current-row style="width: 100%;" @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"></el-table-column>
 
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -114,41 +102,41 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="司机名称" prop="name">
-          <el-input v-model="temp.name" />
+          <el-input v-model="temp.name"/>
         </el-form-item>
 
         <el-form-item label="司机电话" prop="mobile">
-          <el-input v-model="temp.mobile" />
+          <el-input v-model="temp.mobile"/>
         </el-form-item>
 
         <el-form-item v-if="temp.password" label="司机密码" prop="password">
-          <el-input v-model="temp.password" />
+          <el-input v-model="temp.password"/>
         </el-form-item>
 
         <el-form-item label="身份证号" prop="passportNo">
-          <el-input v-model="temp.passportNo" />
+          <el-input v-model="temp.passportNo"/>
         </el-form-item>
 
         <el-form-item label="驾照类型" prop="driverType">
-          <el-input v-model="temp.driverType" />
+          <el-input v-model="temp.driverType"/>
         </el-form-item>
 
         <el-form-item label="驾照编号" prop="driverNumber">
-          <el-input v-model="temp.driverNumber" />
+          <el-input v-model="temp.driverNumber"/>
         </el-form-item>
 
         <el-form-item label="微信号" prop="wechatSignal">
-          <el-input v-model="temp.wechatSignal" />
+          <el-input v-model="temp.wechatSignal"/>
         </el-form-item>
 
         <el-form-item label="分配经理" prop="pmId">
           <el-select v-model="temp.pmId" class="filter-item" placeholder="">
-            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item" />
+            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
       </el-form>
@@ -166,134 +154,135 @@
 </template>
 
 <script>
-import Pagination from '@/components/Pagination'
-import { cooperateDomesticList, createCooperateDomestic, updateCooperateDomestic, deleteCooperateDomestic } from '@/api/vehicle/cooperate/domestic'
-import { organizationList } from '@/api/organization'
-import { TEMP_TYPE } from '@/constant'
+  import Pagination from '@/components/Pagination'
+  import { cooperateDomesticList, createCooperateDomestic, updateCooperateDomestic, deleteCooperateDomestic } from '@/api/vehicle/cooperate/domestic'
+  import { organizationList } from '@/api/organization'
+  import { TEMP_TYPE } from '@/constant'
 
-export default {
-  components: { Pagination },
-  data() {
-    return {
-      TEMP_TYPE,
-      listKey: 0,
-      list: null,
-      pmList: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        name: undefined,
-        pageNum: 1,
-        pageSize: 20
-      },
-      ids: [],
-      dialogFormVisible: false,
-      dialogStatus: '',
-      temp: {
-        name: undefined,
-        mobile: undefined,
-        password: undefined,
-        passportNo: undefined,
-        driverType: undefined,
-        driverNumber: undefined,
-        wechatSignal: undefined,
-        pmId: undefined
-      },
-      rules: {
-        name: [{ required: true, message: '请输入司机名称', trigger: 'blur' }],
-        mobile: [{ required: true, message: '请输入手机号码', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入司机密码', trigger: 'blur' }],
-        passportNo: [{ required: true, message: '请输入身份证号', trigger: 'blur' }],
-        driverType: [{ required: true, message: '请输入驾照类型', trigger: 'blur' }],
-        driverNumber: [{ required: true, message: '请输入驾照编号', trigger: 'blur' }],
-        wechatSignal: [{ required: true, message: '请输入微信号', trigger: 'blur' }],
-        pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
-      }
-    }
-  },
-  created() {
-    this.getList()
-    organizationList({ roleKeySet: 'pmanager' }).then(res => {
-      this.pmList = res.data.list.map(item => ({
-        label: item.userName,
-        value: item.userId
-      }))
-    })
-  },
-  methods: {
-    getList() {
-      this.listLoading = true
-      cooperateDomesticList(this.listQuery).then(res => {
-        this.list = res.data.list
-        this.total = res.data.total
-        this.listLoading = false
-      })
-    },
-    handleFilter() {
-      this.listQuery.pageNum = 1
-      this.getList()
-    },
-    handleIdChange(rows) {
-      this.ids = rows.map(row => row.id)
-    },
-    resetTemp() {
-      const code = 'st' + (parseInt(Math.random() * 1000000) + 1000000)
-      this.temp = {
-        name: undefined,
-        mobile: undefined,
-        password: code.substring(0, 8),
-        passportNo: undefined,
-        driverType: undefined,
-        driverNumber: undefined,
-        wechatSignal: undefined,
-        pmId: undefined
-      }
-    },
-    handleData() {
-      const fun = this.dialogStatus === 'create' ? createCooperateDomestic : updateCooperateDomestic
-      this.$refs.dataForm.validate((valid) => {
-        if (valid) {
-          this.temp.pmName = this.temp.pmId.label
-          this.temp.pmId = this.temp.pmId.value
-          fun(this.temp).then(() => {
-            this.dialogFormVisible = false
-            this.handleFilter()
-            this.$notify({
-              type: 'success',
-              title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-              duration: 3000
-            })
-          })
+  export default {
+    components: { Pagination },
+    data() {
+      return {
+        TEMP_TYPE,
+        listKey: 0,
+        list: null,
+        pmList: null,
+        total: 0,
+        listLoading: true,
+        listQuery: {
+          name: undefined,
+          pageNum: 1,
+          pageSize: 20
+        },
+        ids: [],
+        dialogFormVisible: false,
+        dialogStatus: '',
+        temp: {
+          name: undefined,
+          mobile: undefined,
+          password: undefined,
+          passportNo: undefined,
+          driverType: undefined,
+          driverNumber: undefined,
+          wechatSignal: undefined,
+          pmId: undefined
+        },
+        rules: {
+          name: [{ required: true, message: '请输入司机名称', trigger: 'blur' }],
+          mobile: [{ required: true, message: '请输入手机号码', trigger: 'blur' }],
+          password: [{ required: true, message: '请输入司机密码', trigger: 'blur' }],
+          passportNo: [{ required: true, message: '请输入身份证号', trigger: 'blur' }],
+          driverType: [{ required: true, message: '请输入驾照类型', trigger: 'blur' }],
+          driverNumber: [{ required: true, message: '请输入驾照编号', trigger: 'blur' }],
+          wechatSignal: [{ required: true, message: '请输入微信号', trigger: 'blur' }],
+          pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
         }
+      }
+    },
+    created() {
+      this.getList()
+      organizationList({ roleKeySet: 'pmanager' }).then(res => {
+        this.pmList = res.data.list.map(item => ({
+          label: item.nickName,
+          value: item.userId
+        }))
+        debugger
       })
     },
-    deleteData(ids) {
-      deleteCooperateDomestic(ids).then(() => {
-        this.handleFilter()
-        this.$notify({
-          type: 'success',
-          message: '删除成功',
-          duration: 3000
+    methods: {
+      getList() {
+        this.listLoading = true
+        cooperateDomesticList(this.listQuery).then(res => {
+          this.list = res.data.list
+          this.total = res.data.total
+          this.listLoading = false
         })
-      })
-    },
-    handleRow(type, row) {
-      switch (type) {
-        case 'create':
-        case 'update':
-          type === 'create' ? this.resetTemp() : this.temp = { ...row, pmId: { label: row.pmName, value: row.pmId }}
-          this.dialogStatus = type
-          this.dialogFormVisible = true
-          this.$nextTick(() => {
-            this.$refs.dataForm.clearValidate()
+      },
+      handleFilter() {
+        this.listQuery.pageNum = 1
+        this.getList()
+      },
+      handleIdChange(rows) {
+        this.ids = rows.map(row => row.id)
+      },
+      resetTemp() {
+        const code = 'st' + (parseInt(Math.random() * 1000000) + 1000000)
+        this.temp = {
+          name: undefined,
+          mobile: undefined,
+          password: code.substring(0, 8),
+          passportNo: undefined,
+          driverType: undefined,
+          driverNumber: undefined,
+          wechatSignal: undefined,
+          pmId: undefined
+        }
+      },
+      handleData() {
+        const fun = this.dialogStatus === 'create' ? createCooperateDomestic : updateCooperateDomestic
+        this.$refs.dataForm.validate((valid) => {
+          if (valid) {
+            this.temp.pmName = this.temp.pmId.label
+            this.temp.pmId = this.temp.pmId.value
+            fun(this.temp).then(() => {
+              this.dialogFormVisible = false
+              this.handleFilter()
+              this.$notify({
+                type: 'success',
+                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
+                duration: 3000
+              })
+            })
+          }
+        })
+      },
+      deleteData(ids) {
+        deleteCooperateDomestic(ids).then(() => {
+          this.handleFilter()
+          this.$notify({
+            type: 'success',
+            message: '删除成功',
+            duration: 3000
           })
-          break
-        case 'delete':
-          row = row ? [row.id] : this.ids
-          this.deleteData(row)
-          break
+        })
+      },
+      handleRow(type, row) {
+        switch (type) {
+          case 'create':
+          case 'update':
+            type === 'create' ? this.resetTemp() : this.temp = { ...row, pmId: { label: row.pmName, value: row.pmId } }
+            this.dialogStatus = type
+            this.dialogFormVisible = true
+            this.$nextTick(() => {
+              this.$refs.dataForm.clearValidate()
+            })
+            break
+          case 'delete':
+            row = row ? [row.id] : this.ids
+            this.deleteData(row)
+            break
+        }
       }
     }
   }
-}
 </script>
