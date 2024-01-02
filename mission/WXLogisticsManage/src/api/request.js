@@ -7,7 +7,7 @@ const request = (url, method, data) => {
   const app = getApp()
   return new Promise((resolve, reject) => {
     wx.request({
-      url: 'https://390u45d994.zicp.fun' + url,
+      url: 'https://www.horgosstkj.com/api' + url,
       method,
       data,
       header: {

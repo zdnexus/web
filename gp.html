@@ -1,123 +1,115 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <meta name="viewport"
-          content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
-    <style>
-        #app {
-            margin-bottom: 30px;
-        }
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <meta name="viewport"
+        content="width=device-width, height=device-height, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+  <style>
+    #app {
+      margin-bottom: 30px;
+    }
 
-        #app div {
-            margin-bottom: 10px;
-        }
+    #app div {
+      margin-bottom: 10px;
+    }
 
-        #app2 {
-            margin-bottom: 15px;
-        }
+    #app2 {
+      margin-bottom: 15px;
+    }
 
-        #app3 {
-            margin-bottom: 30px;
-        }
+    #app3 {
+      margin-bottom: 30px;
+    }
 
-        #app4 {
-            margin-bottom: 15px;
-        }
+    #app4 {
+      margin-bottom: 15px;
+    }
 
-        #app5 {
-            margin-bottom: 15px;
-        }
-
-        #app6 {
-            margin-bottom: 15px;
-        }
-
-        #app7 {
-            margin-bottom: 15px;
-        }
-    </style>
-    <script src="https://cdn.bootcss.com/vue/2.6.11/vue.min.js"></script>
+    #app5 {
+      margin-bottom: 15px;
+    }
+  </style>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
 <body>
 
-
 <div id="app">
-    <select v-model="gp_select_key">
-        <option v-for="gp in gpList">{{gp.name}}</option>
-    </select>
-    <div>BuyPrice:{{buyPrice}}</div>
-    <div>BuyNumber:{{buyNumber}}</div>
-    <div>AddPrice:<input type="number" v-model="addPrice"></div>
-    <div>AddNumber:<input type="number" v-model="addNumber"></div>
-    <div>AddTotalPrice:<input type="number" v-model="addTotalPrice"></div>
-    <div>TotalNumber:{{totalNumber}}</div>
-    <div>TotalPrice:{{totalPrice}}</div>
-    <div>EachPrice:{{eachPrice}}</div>
-    <div>TargetPrice:<input type="number" v-model="targetPrice"></div>
-    <div>percentagePrice:{{percentagePrice}}</div>
-    <div>MakeMoney:{{makeMoney}}</div>
-    <div>MakeTotalPrice:{{makeTotalPrice}}</div>
+  <select v-model="gp_select_key">
+    <option v-for="gp in gpList">{{gp.name}}</option>
+  </select>
+  <div>BuyPrice:{{buyPrice}}</div>
+  <div>BuyNumber:{{buyNumber}}</div>
+  <div>AddPrice:<input type="number" v-model="addPrice"></div>
+  <div>AddNumber:<input type="number" v-model="addNumber"></div>
+  <div>AddTotalPrice:<input type="number" v-model="addTotalPrice"></div>
+  <div>TotalNumber:{{totalNumber}}</div>
+  <div>TotalPrice:{{totalPrice}}</div>
+  <div>EachPrice:{{eachPrice}}</div>
+  <div>TargetPrice:<input type="number" v-model="targetPrice"></div>
+  <div>percentagePrice:{{percentagePrice}}</div>
+  <div>MakeMoney:{{makeMoney}}</div>
+  <div>MakeTotalPrice:{{makeTotalPrice}}</div>
+  <p v-for="(target,index) in targetList">
+    {{index+1}}.{{target}}:{{makeTotalPrice * Math.pow(1.2, index + 1)}}
+  </p>
 </div>
-\
+
 
 <div id="app2">
-    <div>price:<input type="number" v-model="price"></div>
-    <div>targetPrice:<input type="number" v-model="targetPrice"></div>
-    <div>percentage:{{percentage}}%</div>
+  <div>price:<input type="number" v-model="price"></div>
+  <div>targetPrice:<input type="number" v-model="targetPrice"></div>
+  <div>percentage:{{percentage}}%</div>
 </div>
 
 <div id="app3">
-    <div>price:<input type="number" v-model="price"></div>
-    <div>targetPrice:<input type="number" v-model="targetPrice"></div>
-    <div>percentage:{{percentage}}%</div>
+  <div>price:<input type="number" v-model="price"></div>
+  <div>targetPrice:<input type="number" v-model="targetPrice"></div>
+  <div>percentage:{{percentage}}%</div>
 </div>
 
 <div id="app4">
-    <div>price:<input type="number" v-model="price"></div>
-    <div>33.1% targetPrice:{{targetPrice10}}</div>
-    <div>30% targetPrice:{{targetPrice9}}</div>
-    <div>21% targetPrice:{{targetPrice7}}</div>
-    <div>20% targetPrice:{{targetPrice11}}</div>
-    <div>15% targetPrice:{{targetPrice8}}</div>
-    <div>14% targetPrice:{{targetPrice14}}</div>
-    <div>10% targetPrice:{{targetPrice3}}</div>
-    <div>7% targetPrice:{{targetPrice2}}</div>
-    <div>5% targetPrice:{{targetPrice1}}</div>
-    <div>4% targetPrice:{{targetPrice15}}</div>
-    <div>3% targetPrice:{{targetPrice6}}</div>
-    <div>-3% targetPrice:{{targetPrice12}}</div>
-    <div>-4% targetPrice:{{targetPrice16}}</div>
-    <div>-5% targetPrice:{{targetPrice13}}</div>
-    <div>-7% targetPrice:{{targetPrice4}}</div>
-    <div>-10% targetPrice:{{targetPrice5}}</div>
+  <div>price:<input type="number" v-model="price"></div>
+  <div>33.1% targetPrice:{{targetPrice10}}</div>
+  <div>30% targetPrice:{{targetPrice9}}</div>
+  <div>21% targetPrice:{{targetPrice7}}</div>
+  <div>20% targetPrice:{{targetPrice11}}</div>
+  <div>15% targetPrice:{{targetPrice8}}</div>
+  <div>14% targetPrice:{{targetPrice14}}</div>
+  <div>10% targetPrice:{{targetPrice3}}</div>
+  <div>7% targetPrice:{{targetPrice2}}</div>
+  <div>5% targetPrice:{{targetPrice1}}</div>
+  <div>4% targetPrice:{{targetPrice15}}</div>
+  <div>3% targetPrice:{{targetPrice6}}</div>
+  <div>-3% targetPrice:{{targetPrice12}}</div>
+  <div>-4% targetPrice:{{targetPrice16}}</div>
+  <div>-5% targetPrice:{{targetPrice13}}</div>
+  <div>-7% targetPrice:{{targetPrice4}}</div>
+  <div>-10% targetPrice:{{targetPrice5}}</div>
 </div>
 
 <div id="app5">
-    <div>price:<input type="number" v-model="price"></div>
-    <div>33.1% targetPrice:{{targetPrice10}}</div>
-    <div>30% targetPrice:{{targetPrice9}}</div>
-    <div>21% targetPrice:{{targetPrice7}}</div>
-    <div>20% targetPrice:{{targetPrice11}}</div>
-    <div>15% targetPrice:{{targetPrice8}}</div>
-    <div>14% targetPrice:{{targetPrice14}}</div>
-    <div>10% targetPrice:{{targetPrice3}}</div>
-    <div>7% targetPrice:{{targetPrice2}}</div>
-    <div>5% targetPrice:{{targetPrice1}}</div>
-    <div>4% targetPrice:{{targetPrice15}}</div>
-    <div>3% targetPrice:{{targetPrice6}}</div>
-    <div>-3% targetPrice:{{targetPrice12}}</div>
-    <div>-4% targetPrice:{{targetPrice16}}</div>
-    <div>-5% targetPrice:{{targetPrice13}}</div>
-    <div>-7% targetPrice:{{targetPrice4}}</div>
-    <div>-10% targetPrice:{{targetPrice5}}</div>
+  <div>price:<input type="number" v-model="price"></div>
+  <div>33.1% targetPrice:{{targetPrice10}}</div>
+  <div>30% targetPrice:{{targetPrice9}}</div>
+  <div>21% targetPrice:{{targetPrice7}}</div>
+  <div>20% targetPrice:{{targetPrice11}}</div>
+  <div>15% targetPrice:{{targetPrice8}}</div>
+  <div>14% targetPrice:{{targetPrice14}}</div>
+  <div>10% targetPrice:{{targetPrice3}}</div>
+  <div>7% targetPrice:{{targetPrice2}}</div>
+  <div>5% targetPrice:{{targetPrice1}}</div>
+  <div>4% targetPrice:{{targetPrice15}}</div>
+  <div>3% targetPrice:{{targetPrice6}}</div>
+  <div>-3% targetPrice:{{targetPrice12}}</div>
+  <div>-4% targetPrice:{{targetPrice16}}</div>
+  <div>-5% targetPrice:{{targetPrice13}}</div>
+  <div>-7% targetPrice:{{targetPrice4}}</div>
+  <div>-10% targetPrice:{{targetPrice5}}</div>
 </div>
 
 </body>
 <script>
-  // scp index.html appusr@10.32.16.4:/data/www/gp
   new Vue({
     el: '#app',
     data: {
@@ -138,13 +130,31 @@
       gpList: [
         {
           name: '创意信息',
-          buyPrice: 21.15,
-          buyNumber: 5600
-        },
+          buyPrice: 14.90,
+          buyNumber: 21700
+        }
+      ],
+      targetList: [
+        '华民股份',
+        '中科信息',
+        '博雅生物',
+        '中文在线',
+        '方正科技',
+        '铜牛信息',
+        '空港股份',
+        '初灵信息',
+        '康达新材',
+        '星微股份',
+        '首都在线',
+        '中能电气',
+        '华体科技',
+        '北汽蓝谷',
+        '恒辉安防',
+        '沃森生物',
       ]
     },
     created() {
-      this.gp_select_key = this.gpList[ 0 ].name
+      this.gp_select_key = this.gpList[0].name
     },
     computed: {
       makeTotalPrice() {
@@ -162,8 +172,8 @@
       gp_select_key: function (val, oldVal) {
         let search
         for (let i = 0; i < this.gpList.length; i++) {
-          if (this.gpList[ i ].name === val) {
-            search = this.gpList[ i ]
+          if (this.gpList[i].name === val) {
+            search = this.gpList[i]
             break
           }
         }
@@ -359,16 +369,5 @@
       }
     }
   })
-</script>
-<script>
-  for (let i = 0; i < document.getElementsByClassName('follow__control'), length; i++) {
-    if (document.getElementsByClassName('follow__control')[ i ].className.split(' ').length === 1) {
-      (function () {
-        setTimeout(() => {
-          document.getElementsByClassName('follow__control')[ i ].click()
-        }, i * 100)
-      })(i)
-    }
-  }
 </script>
 </html>
