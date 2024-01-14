@@ -166,7 +166,9 @@
     TEMP_TYPE,
     TREE_DATA,
     ORDER_EXAMINE_STATUS_AUDITING,
-    ORDER_EXAMINE_STATUS_OBJ
+    ORDER_EXAMINE_STATUS_OBJ,
+    OUT_CONFIRM,
+    SW_OUT_CONFIRM
   } from '@/constant'
 
   export default {
@@ -432,7 +434,7 @@
             }
             const temp = this.temp
             if (this.dialogStatus === TEMP_TYPE_CREATE ||
-              (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
+              (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (temp.orderBaseInfo[OUT_CONFIRM] || temp.orderBaseInfo[SW_OUT_CONFIRM]) && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
               const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value

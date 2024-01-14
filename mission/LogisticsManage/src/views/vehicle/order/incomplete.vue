@@ -173,7 +173,9 @@
     NODE_LIST_OBJ,
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
-    ORDER_STATUS_OBJ
+    ORDER_STATUS_OBJ,
+    OUT_CONFIRM,
+    SW_OUT_CONFIRM
   } from '@/constant'
   import {
     TREE_DATA_BIG_NODE_OBJ,
@@ -492,7 +494,7 @@
               }
             }
             const temp = this.temp
-            if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2'))) {
+            if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN && (temp.orderBaseInfo[OUT_CONFIRM] || temp.orderBaseInfo[SW_OUT_CONFIRM]) && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2'))) {
               const fun = allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value

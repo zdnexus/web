@@ -26,6 +26,10 @@ export const TRACK = 'track'
 
 export const ARRIVE = 'arrive'
 
+export const OUT_CONFIRM = 'outConfirm'
+
+export const SW_OUT_CONFIRM = 'swOutConfirm'
+
 export const TREE_DATA = [
   {
     label: '接车验车',
@@ -70,7 +74,7 @@ export const TREE_DATA = [
       {
         id: 14,
         label: '出库确认',
-        value: 'outConfirm',
+        value: OUT_CONFIRM,
         options: 'ncrWmanger'
       }
     ]
@@ -117,7 +121,7 @@ export const TREE_DATA = [
       {
         id: 8,
         label: '出库确认',
-        value: 'swOutConfirm',
+        value: SW_OUT_CONFIRM,
         options: 'bwhWmanger'
       }
     ]

@@ -206,7 +206,6 @@
           label: item.nickName,
           value: item.userId
         }))
-        debugger
       })
     },
     methods: {
