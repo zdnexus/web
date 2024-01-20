@@ -434,7 +434,7 @@
             }
             const temp = this.temp
             if (this.dialogStatus === TEMP_TYPE_CREATE ||
-              (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (temp.orderBaseInfo[OUT_CONFIRM] || temp.orderBaseInfo[SW_OUT_CONFIRM]) && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
+              (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
               const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value
@@ -449,7 +449,7 @@
                   duration: 3000
                 })
               })
-            } else {
+            } else if (temp.orderBaseInfo[OUT_CONFIRM] || temp.orderBaseInfo[SW_OUT_CONFIRM]) {
               this.$confirm('该客户车辆库存数量达到预警值，需要上级审批 是否发起审批流程', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',
@@ -468,6 +468,21 @@
                       duration: 3000
                     })
                   }
+                })
+              })
+            } else {
+              const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
+              temp.clientName = temp.client.label
+              temp.clientId = temp.client.value
+              temp.serviceName = temp.service.label
+              temp.serviceId = temp.service.value
+              fun(temp).then(() => {
+                this.dialogFormVisible = false
+                this.handleFilter()
+                this.$notify({
+                  type: 'success',
+                  title: this.dialogStatus === TEMP_TYPE_CREATE ? '新增成功' : '分配成功',
+                  duration: 3000
                 })
               })
             }

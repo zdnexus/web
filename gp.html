@@ -50,7 +50,7 @@
   <div>percentagePrice:{{percentagePrice}}</div>
   <div>MakeMoney:{{makeMoney}}</div>
   <div>MakeTotalPrice:{{makeTotalPrice}}</div>
-  <p v-for="(target,index) in targetList">
+  <p v-for="(target,index) in myList">
     {{index+1}}.{{target}}:{{makeTotalPrice * Math.pow(1.2, index + 1)}}
   </p>
 </div>
@@ -128,21 +128,20 @@
       makeMoney: '',
       tPrice: '',
       gpList: [
+        // {
+        //   name: '创意信息',
+        //   buyPrice: 14.07,
+        //   buyNumber: 37200
+        // },
         {
-          name: '创意信息',
-          buyPrice: 14.07,
-          buyNumber: 37200
+          name: '华体科技',
+          buyPrice: 19.4,
+          buyNumber: 26900
         }
-      ],
-      targetList: [
-        '中科信息',
-        '中文在线',
-        '华民股份',
-        '方正科技',
-        '博雅生物',
       ],
       myList: [
         '华民股份',
+        '创意信息',
         '中科信息',
         '博雅生物',
         '中文在线',
@@ -156,7 +155,6 @@
         '首都在线',
         '中能电气',
         //
-        '华体科技',
         '北汽蓝谷',
         '恒辉安防',
         '沃森生物',
