@@ -272,21 +272,27 @@
         }
       },
       handleNodeClick(node, tree) {
-        if (tree.checkedNodes.length > 0) {
-          this.temp.orderSmallLinkItem = {}
-          tree.checkedNodes.forEach(n => {
-            if (!n.children) {
-              this.temp.orderSmallLinkItem[n.value] = '0'
+        const orderSmallLinkItem = {}
+        const orderBaseInfo = {...this.temp.orderBaseInfo}
+        tree.checkedNodes.forEach(n => {
+          if (!n.children) {
+            orderSmallLinkItem[n.value] = '0'
+          }
+        })
+        TREE_DATA.forEach(t1 => {
+          t1.children.forEach(t2 => {
+            if (orderSmallLinkItem[t2.value] !== '0') {
+              orderSmallLinkItem[t2.value] = '1'
+              if (orderBaseInfo[t2.value]) {
+                orderBaseInfo[t2.value] = ''
+                delete orderBaseInfo[`${t2.value}Name`]
+                delete orderBaseInfo[`${t2.value}Id`]
+              }
             }
           })
-          TREE_DATA.forEach(t1 => {
-            t1.children.forEach(t2 => {
-              if (this.temp.orderSmallLinkItem[t2.value] !== '0') {
-                this.temp.orderSmallLinkItem[t2.value] = '1'
-              }
-            })
-          })
-        }
+        })
+        this.$set(this.temp, 'orderSmallLinkItem', orderSmallLinkItem)
+        this.$set(this.temp, 'orderBaseInfo', orderBaseInfo)
       },
       renderContent(h, { node, data, store }) {
         if (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && this.allocationList && this.temp.orderBaseInfo) {
@@ -449,7 +455,7 @@
                   duration: 3000
                 })
               })
-            } else if (temp.orderBaseInfo[OUT_CONFIRM] || temp.orderBaseInfo[SW_OUT_CONFIRM]) {
+            } else if ((temp.orderBaseInfo[OUT_CONFIRM] && !(temp.orderBaseInfo['swInWarehouse'] || temp.orderBaseInfo['swStorage'] || temp.orderBaseInfo['swTrim'] || temp.orderBaseInfo['seal'] || temp.orderBaseInfo['card'] || temp.orderBaseInfo['swOutWarehouse'] || temp.orderBaseInfo[SW_OUT_CONFIRM])) || temp.orderBaseInfo[SW_OUT_CONFIRM]) {
               this.$confirm('该客户车辆库存数量达到预警值，需要上级审批 是否发起审批流程', '提示', {
                 confirmButtonText: '确定',
                 cancelButtonText: '取消',

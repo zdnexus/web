@@ -22,6 +22,8 @@ export const TEMP_MAKE_INITIAL_PLAN = 'make_plan'
 
 export const TEMP_MAKE_FOLLOW_PLAN = 'make_follow_plan'
 
+export const TEMP_TYPE_RESTORE = 'restore'
+
 export const TEMP_MISSION_DETAILS = 'mission_details'
 
 export const TEMP_TYPE = {
@@ -35,5 +37,6 @@ export const TEMP_TYPE = {
   [TEMP_TYPE_UPLOAD]: '上传',
   [TEMP_MAKE_INITIAL_PLAN]: '制定初始计划',
   [TEMP_MAKE_FOLLOW_PLAN]: '制定后续计划',
-  [TEMP_MISSION_DETAILS]: '任务详情'
+  [TEMP_MISSION_DETAILS]: '任务详情',
+  [TEMP_TYPE_RESTORE]: '恢复'
 }

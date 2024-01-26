@@ -13,6 +13,7 @@ import {
   TEMP_TYPE_UPLOAD,
   TEMP_TYPE_HANDLE,
   TEMP_TYPE_APPROVE,
+  TEMP_TYPE_RESTORE,
   SUCCESS,
   WARNING,
   DURATION
@@ -82,6 +83,14 @@ Vue.prototype.$approveTempNotify = () => {
   Notification({
     type: SUCCESS,
     title: `发起${TEMP_TYPE[TEMP_TYPE_APPROVE]}成功`,
+    duration: DURATION
+  })
+}
+
+Vue.prototype.$restoreTempNotify = () => {
+  Notification({
+    type: SUCCESS,
+    title: `${TEMP_TYPE[TEMP_TYPE_RESTORE]}成功`,
     duration: DURATION
   })
 }

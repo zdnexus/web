@@ -519,7 +519,7 @@
       },
       vehicleInfo: {
         type: Object,
-        default: {}
+        default: () => ({})
       }
     },
     data() {

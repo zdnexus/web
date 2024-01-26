@@ -81,3 +81,10 @@ export function orderBigLinklnfo(data) {
     data
   })
 }
+
+export function orderRestore(data) {
+  return request({
+    url: `/vehicle/order/restore/${data}`,
+    method: 'post',
+  })
+}

@@ -85,9 +85,15 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow('view',row)">
-            查看
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow(TEMP_TYPE_VIEW,row)">
+            {{TEMP_TYPE[TEMP_TYPE_VIEW]}}
           </el-button>
+
+          <el-popconfirm title="确认要恢复吗？" @onConfirm="handleRow(TEMP_TYPE_RESTORE,row)">
+            <el-button slot="reference" size="mini" type="danger">
+              {{TEMP_TYPE[TEMP_TYPE_RESTORE]}}
+            </el-button>
+          </el-popconfirm>
         </template>
       </el-table-column>
     </el-table>
@@ -152,14 +158,23 @@
     orderSmallLinkItemList,
     orderAllocationList,
     addDmNumberTask,
-    allocateOrder
+    allocateOrder,
+    orderRestore
   } from '@/api/vehicle/order'
-  import { TEMP_TYPE, TREE_DATA, ORDER_EXAMINE_STATUS_OBJ } from '@/constant'
+  import {
+    TEMP_TYPE_VIEW,
+    TEMP_TYPE_RESTORE,
+    TEMP_TYPE,
+    TREE_DATA,
+    ORDER_EXAMINE_STATUS_OBJ
+  } from '@/constant'
 
   export default {
     components: { Pagination },
     data() {
       return {
+        TEMP_TYPE_VIEW,
+        TEMP_TYPE_RESTORE,
         TEMP_TYPE,
         TREE_DATA,
         ORDER_EXAMINE_STATUS_OBJ,
@@ -241,7 +256,7 @@
         }
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === 'view' && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === TEMP_TYPE_VIEW && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class='custom-tree-node'>
@@ -288,7 +303,7 @@
         //   <span className="custom-tree-node">
         //       <span>{node.label}</span>
         //     {
-        //       this.dialogStatus === 'view' && (this.allocationList[node.data.options] || []).length > 0
+        //       this.dialogStatus === TEMP_TYPE_VIEW && (this.allocationList[node.data.options] || []).length > 0
         //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
         //           {
         //             options.map(item => (
@@ -303,7 +318,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case 'view':
+          case TEMP_TYPE_VIEW:
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {
@@ -334,6 +349,12 @@
                   this.$refs.dataTree.setCheckedKeys(nodes)
                 })
               })
+            })
+            break
+          case TEMP_TYPE_RESTORE:
+            orderRestore([row.id]).then(() => {
+              this.$restoreTempNotify()
+              this.handleFilter()
             })
             break
         }
