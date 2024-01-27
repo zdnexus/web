@@ -233,7 +233,7 @@
 
     <pagination v-show="total > 0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="200px" style="width: 600px" :disabled="viewData">
         <el-form-item label="报价" prop="vin">
           <el-input v-model="temp.vin" />
@@ -544,7 +544,7 @@ import {
   invoicingVehicleInvoice
 } from '@/api/vehicle/cost/index'
 import {
-  TEMP_TYPE,
+  OPERATE_TYPE,
   ORDER_EXAMINE_STATUS_AUDITING,
   ORDER_EXAMINE_STATUS_PASSED,
   ORDER_EXAMINE_STATUS_OBJ,
@@ -556,7 +556,7 @@ export default {
   components: { Pagination, Upload },
   data() {
     return {
-      TEMP_TYPE,
+      OPERATE_TYPE,
       ORDER_EXAMINE_STATUS_AUDITING,
       ORDER_EXAMINE_STATUS_PASSED,
       ORDER_EXAMINE_STATUS_OBJ,

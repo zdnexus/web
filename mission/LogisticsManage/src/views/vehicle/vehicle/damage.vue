@@ -113,7 +113,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <div v-for="img in temp.photoList" :key="img.label" class="block">
           <span class="demonstration">{{ img.label }}</span>
@@ -139,13 +139,13 @@
 import Pagination from '@/components/Pagination'
 import Upload from '@/components/Upload/SingleImage'
 import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
-import { TEMP_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
+import { OPERATE_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
 
 export default {
   components: { Pagination, Upload },
   data() {
     return {
-      TEMP_TYPE,
+      OPERATE_TYPE,
       DAMAGE_TYPE_LIST_OBJ,
       listKey: 0,
       list: null,

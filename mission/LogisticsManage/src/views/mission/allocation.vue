@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号名称" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.vin" style="width: 200px" placeholder="输入车架号" @keyup.enter.native="handleFilter"></el-input>
 
       <el-button type="primary" icon="el-icon-search" @click="handleFilter">
         查询
@@ -63,160 +63,156 @@
         </template>
       </el-table-column>
 
-      <el-table-column label="操作" align="center" class-name="small-padding">
+      <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_HANDLE,row)">
-            {{ TEMP_TYPE[TEMP_TYPE_HANDLE] }}
+          <el-button v-if="missionShowHandle(row.smallLink)" size="mini" type="primary" @click="handleRow(OPERATE_HANDLE,row)">
+            {{ OPERATE_TYPE[OPERATE_HANDLE] }}
           </el-button>
         </template>
       </el-table-column>
     </el-table>
 
-    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
+    <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getData"/>
 
-    <HandleDialog
-      v-model="dialogFormVisible"
-      :dialog-status="dialogStatus"
-      :vehicle-info="vehicleInfo"
-    />
+    <HandleDialog v-model="dialogFormVisible"
+                  :vehicle-info="vehicleInfo"/>
   </div>
 </template>
 
 <script>
-import HandleDialog from './handle-dialog.vue'
-import Pagination from '@/components/Pagination'
-import {
-  upcomingTaskList,
-  getVehicleDeclare,
-  vehiclesNumberInfo,
-  trackRecordInfo,
-  arriveInfo
-} from '@/api/mission/allocation'
-import {
-  viewOrderFeeDeatail
-} from '@/api/vehicle/cost/index'
-import {
-  PAGE_TOTAL,
-  PAGE_NUM,
-  PAGE_SIZE,
-  TEMP_TYPE_HANDLE,
-  TEMP_TYPE,
-  TASK_STATUS_OBJ,
-  DMFA,
-  FMFA,
-  CMFA,
-  DM_NUMS_WARN,
-  CM_NUMS_WARN,
-  TRACK,
-  ARRIVE
-} from '@/constant'
+  import Pagination from '@/components/Pagination'
+  import {
+    upcomingTaskList,
+    getVehicleDeclare,
+    vehiclesNumberInfo,
+    trackRecordInfo,
+    arriveInfo
+  } from '@/api/mission/allocation'
+  import {
+    viewOrderFeeDeatail
+  } from '@/api/vehicle/cost/index'
+  import {
+    PAGE_TOTAL,
+    PAGE_NUM,
+    PAGE_SIZE,
+    OPERATE_TYPE,
+    OPERATE_HANDLE,
+    TASK_STATUS_OBJ,
+    DMFA,
+    FMFA,
+    CMFA,
+    DM_NUMS_WARN,
+    CM_NUMS_WARN,
+    TRACK,
+    ARRIVE
+  } from '@/constant'
+  import { missionShowHandle } from '@/utils/filterData'
+  import HandleDialog from './handle-dialog.vue'
 
-export default {
-  components: {
-    Pagination,
-    HandleDialog
-  },
-  data() {
-    return {
-      TEMP_TYPE_HANDLE,
-      TEMP_TYPE,
-      TASK_STATUS_OBJ,
-      listQuery: {
-        vin: undefined,
-        taskStatus: 0,
-        pageNum: PAGE_NUM,
-        pageSize: PAGE_SIZE
-      },
-      listLoading: false,
-      listKey: 0,
-      list: undefined,
-      ids: [],
-      listTotal: PAGE_TOTAL,
-      dialogFormVisible: false,
-      dialogStatus: undefined,
-      vehicleInfo: null
-    }
-  },
-  watch: {
-    dialogFormVisible: {
-      handler(newVal, oldVal) {
-        if (newVal !== oldVal && !!newVal) {
+  export default {
+    components: {
+      Pagination,
+      HandleDialog
+    },
+    data() {
+      return {
+        OPERATE_TYPE,
+        OPERATE_HANDLE,
+        TASK_STATUS_OBJ,
+        listQuery: {
+          vin: undefined,
+          taskStatus: 0,
+          pageNum: PAGE_NUM,
+          pageSize: PAGE_SIZE
+        },
+        listLoading: false,
+        listKey: 0,
+        list: undefined,
+        listTotal: PAGE_TOTAL,
+        dialogFormVisible: false,
+        dialogStatus: undefined,
+        vehicleInfo: undefined
+      }
+    },
+    watch: {
+      dialogFormVisible(newVal, oldVal) {
+        if (!newVal && newVal !== oldVal) {
           this.handleFilter()
         }
       }
-    }
-  },
-  mounted() {
-    this.getList()
-  },
-  methods: {
-    getList() {
-      this.listLoading = true
-      upcomingTaskList(this.listQuery).then((res) => {
-        this.list = res.data.list
-        this.listTotal = res.data.total
-        this.listLoading = false
-      })
     },
-    handleFilter() {
-      this.listQuery.pageNum = PAGE_NUM
-      this.getList()
+    mounted() {
+      this.getData()
     },
-    handleRow(type, row) {
-      this.dialogStatus = type
-      switch (type) {
-        case TEMP_TYPE_HANDLE:
-          switch (row.smallLink) {
-            case DMFA:
-            case FMFA:
-            case CMFA:
-              viewOrderFeeDeatail([row.orderId]).then((res) => {
-                this.vehicleInfo = {
-                  ...row,
-                  ...res.data
-                }
-              })
-              break
-            case DM_NUMS_WARN:
-            case CM_NUMS_WARN:
-              vehiclesNumberInfo([row.orderId]).then((res) => {
-                this.vehicleInfo = {
-                  ...row,
-                  ...res.data
-                }
-              })
-              break
-            case TRACK:
-              trackRecordInfo(row.vin).then((res) => {
-                this.vehicleInfo = {
-                  ...row,
-                  ...res.data
-                }
-              })
-              break
-            case ARRIVE:
-              arriveInfo(row.vin).then((res) => {
-                this.vehicleInfo = {
-                  ...row,
-                  ...res.data
-                }
-              })
-              break
-            default:
-              getVehicleDeclare(row.vin).then((res) => {
-                this.vehicleInfo = {
-                  ...row,
-                  vehicleBaseInfo: res.data.vehicleBaseInfo,
-                  vehiclePhoto: res.data.vehiclePhoto,
-                  vehicleDeclare: res.data.vehicleDeclare
-                }
-              })
-              break
-          }
-          this.dialogFormVisible = true
-          break
+    methods: {
+      missionShowHandle,
+      getData() {
+        this.listLoading = true
+        upcomingTaskList(this.listQuery).then((res) => {
+          this.list = res.data.list
+          this.listTotal = res.data.total
+          this.listLoading = false
+        })
+      },
+      handleFilter() {
+        this.listQuery.pageNum = PAGE_NUM
+        this.getData()
+      },
+      handleRow(type, row) {
+        this.dialogStatus = type
+        switch (type) {
+          case OPERATE_HANDLE:
+            switch (row.smallLink) {
+              case DMFA:
+              case FMFA:
+              case CMFA:
+                viewOrderFeeDeatail([row.orderId]).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              case DM_NUMS_WARN:
+              case CM_NUMS_WARN:
+                vehiclesNumberInfo([row.orderId]).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              case TRACK:
+                trackRecordInfo(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              case ARRIVE:
+                arriveInfo(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    ...res.data
+                  }
+                })
+                break
+              default:
+                getVehicleDeclare(row.vin).then((res) => {
+                  this.vehicleInfo = {
+                    ...row,
+                    vehicleBaseInfo: res.data.vehicleBaseInfo,
+                    vehiclePhoto: res.data.vehiclePhoto,
+                    vehicleDeclare: res.data.vehicleDeclare
+                  }
+                })
+                break
+            }
+            this.dialogFormVisible = true
+            break
+        }
       }
     }
   }
-}
 </script>

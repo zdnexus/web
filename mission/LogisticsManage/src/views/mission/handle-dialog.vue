@@ -1,56 +1,54 @@
 <template>
-  <el-dialog :title="vehicleInfo && vehicleInfo.smallLinkConvert" :visible.sync="value">
+  <el-dialog :title="vehicleInfo.smallLinkConvert" :visible.sync="value">
     <div v-if="isDeclareUpload">
       <el-form ref="dataForm" :rules="rules" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
-        <el-form-item label="车架号" prop="vehicleBaseInfo.vin">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.vin" :disabled="true"></el-input>
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
         </el-form-item>
 
-        <el-form-item label="类型" prop="vehicleBaseInfo.type">
-          <el-select v-model="vehicleInfo.vehicleBaseInfo.type" class="filter-item" :disabled="true">
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="vehicleInfo.type" class="filter-item" :disabled="true">
             <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="是否有损" prop="vehicleBaseInfo.isDamage">
-          <el-input v-model="DAMAGE_TYPE_LIST_OBJ[vehicleInfo.vehicleBaseInfo.isDamage]" :disabled="true"/>
+        <el-form-item label="是否有损" prop="isDamage">
+          <el-input v-model="DAMAGE_TYPE_LIST_OBJ[vehicleInfo.isDamage]" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="品牌" prop="vehicleBaseInfo.branding">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.branding" :disabled="true"/>
+        <el-form-item label="品牌" prop="branding">
+          <el-input v-model="vehicleInfo.branding" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="型号" prop="vehicleBaseInfo.vehicleModel">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.vehicleModel" :disabled="true"/>
+        <el-form-item label="型号" prop="vehicleModel">
+          <el-input v-model="vehicleInfo.vehicleModel" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="颜色" prop="vehicleBaseInfo.vehicleColor">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.vehicleColor" :disabled="true"/>
+        <el-form-item label="颜色" prop="vehicleColor">
+          <el-input v-model="vehicleInfo.vehicleColor" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="钥匙数量" prop="vehicleBaseInfo.vehicleKey">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.vehicleKey" :disabled="true"/>
+        <el-form-item label="钥匙数量" prop="vehicleKey">
+          <el-input v-model="vehicleInfo.vehicleKey" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="随车配件" prop="vehicleBaseInfo.carAccessories">
-          <el-input v-model="vehicleInfo.vehicleBaseInfo.carAccessories" :disabled="true"/>
+        <el-form-item label="随车配件" prop="carAccessories">
+          <el-input v-model="vehicleInfo.carAccessories" :disabled="true"/>
         </el-form-item>
 
         <h2>车辆图片</h2>
 
         <el-form-item v-for="(value,key) in VEHICLE_PHOTO_OBJ" :label="value" :prop="key">
-          <video v-if="key === 'video'" width="300" height="300" :src="vehicleInfo.vehiclePhoto[key]" controls/>
-          <el-image
-            v-for="img2 in vehicleInfo.vehiclePhoto.demage.split(',')"
-            v-else-if="key ==='demage'"
-            style="width: 100px; height: 100px;margin-right: 10px"
-            :src="img2"
-          />
-          <el-image
-            v-else
-            style="width: 100px; height: 100px"
-            :src="vehicleInfo.vehiclePhoto[key]"
-          />
+          <video v-if="key === 'video'" width="300" height="300" :src="vehicleInfo.vehiclePhoto[key]" controls></video>
+          <el-image v-for="img2 in vehicleInfo.vehiclePhoto.demage.split(',')"
+                    v-else-if="key ==='demage'"
+                    style="width: 100px; height: 100px;margin-right: 10px"
+                    :src="img2"
+          ></el-image>
+          <el-image v-else
+                    style="width: 100px; height: 100px"
+                    :src="vehicleInfo.vehiclePhoto[key]"
+          ></el-image>
         </el-form-item>
 
         <el-form-item label="上传报关资料" prop="vehicleDeclare.declareUrl">
@@ -111,7 +109,7 @@
         </div>
       </el-form>
 
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer" v-if="!disabled">
         <el-button @click="value = false">取消</el-button>
 
         <el-button type="primary" @click="handleData(vehicleInfo)">确认</el-button>
@@ -120,109 +118,109 @@
 
     <div v-if="isFA">
       <el-form ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
-        <el-form-item label="车架号" prop="vehicleBaseInfo.vin">
+        <el-form-item label="车架号" prop="vin">
           <el-input v-model="vehicleInfo.vin" :disabled="true"/>
         </el-form-item>
 
-        <el-form-item label="类型" prop="vehicleBaseInfo.type">
-          <el-select v-model="vehicleInfo.type" class="filter-item" :disabled="true">
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
             <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
-        <el-form-item label="客户姓名" prop="vehicleBaseInfo.clientName">
+        <el-form-item label="客户姓名" prop="clientName">
           <el-input v-model="vehicleInfo.clientName"/>
         </el-form-item>
 
-        <el-form-item label="电话" prop="vehicleBaseInfo.mobile">
+        <el-form-item label="电话" prop="mobile">
           <el-input v-model="vehicleInfo.mobile"/>
         </el-form-item>
 
-        <el-form-item label="公司" prop="vehicleBaseInfo.company">
+        <el-form-item label="公司" prop="company">
           <el-input v-model="vehicleInfo.company"/>
         </el-form-item>
 
-        <el-form-item label="报价" prop="vehicleBaseInfo.quotationFee">
+        <el-form-item label="报价" prop="quotationFee">
           <el-input v-model="vehicleInfo.quotationFee"/>
         </el-form-item>
 
-        <el-form-item label="美元" prop="vehicleBaseInfo.usdFee">
+        <el-form-item label="美元" prop="usdFee">
           <el-input v-model="vehicleInfo.usdFee"/>
         </el-form-item>
 
-        <el-form-item label="汇率" prop="vehicleBaseInfo.exchangeRate">
+        <el-form-item label="汇率" prop="exchangeRate">
           <el-input v-model="vehicleInfo.exchangeRate"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓仓储费用凭证" prop="vehicleBaseInfo.ncrBillVoucher">
+        <el-form-item label="非监管仓仓储费用凭证" prop="ncrBillVoucher">
           <Upload v-model="vehicleInfo.ncrBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓仓储费用" prop="vehicleBaseInfo.ncrFee">
+        <el-form-item label="非监管仓仓储费用" prop="ncrFee">
           <el-input v-model="vehicleInfo.ncrFee"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓基本费用" prop="vehicleBaseInfo.ncrBasePrice">
+        <el-form-item label="非监管仓基本费用" prop="ncrBasePrice">
           <el-input v-model="vehicleInfo.ncrBasePrice"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓基本天数" prop="vehicleBaseInfo.ncrBaseDay">
+        <el-form-item label="非监管仓基本天数" prop="ncrBaseDay">
           <el-input v-model="vehicleInfo.ncrBaseDay"/>
         </el-form-item>
 
-        <el-form-item label="非监管仓超期天数" prop="vehicleBaseInfo.ncrOverduePrice">
+        <el-form-item label="非监管仓超期天数" prop="ncrOverduePrice">
           <el-input v-model="vehicleInfo.ncrOverduePrice"/>
         </el-form-item>
 
-        <el-form-item label="监管仓仓储费用凭证" prop="vehicleBaseInfo.bwhBillVoucher">
+        <el-form-item label="监管仓仓储费用凭证" prop="bwhBillVoucher">
           <Upload v-model="vehicleInfo.bwhBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="监管仓仓储费用" prop="vehicleBaseInfo.bwhFee">
+        <el-form-item label="监管仓仓储费用" prop="bwhFee">
           <el-input v-model="vehicleInfo.bwhFee"/>
         </el-form-item>
 
-        <el-form-item label="监管仓基本费用" prop="vehicleBaseInfo.bwhBasePrice">
+        <el-form-item label="监管仓基本费用" prop="bwhBasePrice">
           <el-input v-model="vehicleInfo.bwhBasePrice"/>
         </el-form-item>
 
-        <el-form-item label="监管仓基本天数" prop="vehicleBaseInfo.bwhBaseDay">
+        <el-form-item label="监管仓基本天数" prop="bwhBaseDay">
           <el-input v-model="vehicleInfo.bwhBaseDay"/>
         </el-form-item>
 
-        <el-form-item label="监管仓超期天数" prop="vehicleBaseInfo.bwhOverduePrice">
+        <el-form-item label="监管仓超期天数" prop="bwhOverduePrice">
           <el-input v-model="vehicleInfo.bwhOverduePrice"/>
         </el-form-item>
 
-        <el-form-item label="报关费凭证" prop="vehicleBaseInfo.declarationBillVoucher">
+        <el-form-item label="报关费凭证" prop="declarationBillVoucher">
           <Upload v-model="vehicleInfo.declarationBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="报关费" prop="vehicleBaseInfo.declarationFee">
+        <el-form-item label="报关费" prop="declarationFee">
           <el-input v-model="vehicleInfo.declarationFee"/>
         </el-form-item>
 
-        <el-form-item label="送车费凭证" prop="vehicleBaseInfo.driverBillVoucher">
+        <el-form-item label="送车费凭证" prop="driverBillVoucher">
           <Upload v-model="vehicleInfo.driverBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="送车费" prop="vehicleBaseInfo.driverFee">
+        <el-form-item label="送车费" prop="driverFee">
           <el-input v-model="vehicleInfo.driverFee"/>
         </el-form-item>
 
-        <el-form-item label="验车费凭证" prop="vehicleBaseInfo.inspectebwhBillVoucher">
+        <el-form-item label="验车费凭证" prop="inspectebwhBillVoucher">
           <Upload v-model="vehicleInfo.inspectebwhBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="验车费" prop="vehicleBaseInfo.inspecteIncomeFee">
+        <el-form-item label="验车费" prop="inspecteIncomeFee">
           <el-input v-model="vehicleInfo.inspecteIncomeFee"/>
         </el-form-item>
 
-        <el-form-item label="整备费凭证" prop="vehicleBaseInfo.trimBillVoucher">
+        <el-form-item label="整备费凭证" prop="trimBillVoucher">
           <Upload v-model="vehicleInfo.trimBillVoucher"/>
         </el-form-item>
 
-        <el-form-item label="整备费" prop="vehicleBaseInfo.trimFee">
+        <el-form-item label="整备费" prop="trimFee">
           <el-input v-model="vehicleInfo.trimFee"/>
         </el-form-item>
 
@@ -333,31 +331,32 @@
         </el-form-item>
       </el-form>
 
-      <div slot="footer" class="dialog-footer">
+      <div slot="footer" class="dialog-footer" v-if="!disabled">
         <el-button type="primary" @click="handleData(vehicleInfo)">同意</el-button>
       </div>
     </div>
 
-    <el-form v-if="isNUMS_WARN" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
-      <el-form-item label="车架号" prop="vehicleBaseInfo.vin">
+    <el-form v-if="isNumsWarn" ref="dataForm" :rules="rules.isNumsWarn" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px"
+             style="width: 550px">
+      <el-form-item label="车架号" prop="vin">
         <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
       </el-form-item>
 
-      <el-form-item label="类型" prop="vehicleBaseInfo.type">
-        <el-select v-model="vehicleInfo.type" class="filter-item">
+      <el-form-item label="类型" prop="vehicleType">
+        <el-select v-model="vehicleInfo.vehicleType" class="filter-item">
           <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
 
-      <el-form-item label="客户姓名" prop="vehicleBaseInfo.clientName">
+      <el-form-item label="客户姓名" prop="clientName">
         <el-input v-model="vehicleInfo.clientName"></el-input>
       </el-form-item>
 
-      <el-form-item label="电话" prop="vehicleBaseInfo.mobile">
+      <el-form-item label="电话" prop="mobile">
         <el-input v-model="vehicleInfo.mobile"></el-input>
       </el-form-item>
 
-      <el-form-item label="公司" prop="vehicleBaseInfo.company">
+      <el-form-item label="公司" prop="company">
         <el-input v-model="vehicleInfo.company"></el-input>
       </el-form-item>
 
@@ -372,17 +371,17 @@
       </el-form-item>
     </el-form>
 
-    <div v-if="isNUMS_WARN" slot="footer" class="dialog-footer">
+    <div v-if="isNumsWarn && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">同意</el-button>
     </div>
 
-    <el-form v-if="isTRACK" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="100px" style="width: 500px">
+    <el-form v-if="isTrack" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="100px" style="width: 500px">
       <el-form-item label="车架号" prop="vin">
         <el-input v-model="vehicleInfo.vin" :disabled="true"/>
       </el-form-item>
 
-      <el-form-item label="类型" prop="vehicleBaseInfo.type">
-        <el-select v-model="vehicleInfo.type" class="filter-item" :disabled="true">
+      <el-form-item label="类型" prop="type">
+        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
           <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
@@ -399,7 +398,7 @@
         <el-input v-model="vehicleInfo.company"/>
       </el-form-item>
 
-      <el-form-item label="途径地列表" prop="vehicleInfo.vehicleTrackRecordList">
+      <el-form-item label="途径地列表" prop="vehicleTrackRecordList">
         <el-table :key="listKey" :data="vehicleInfo.vehicleTrackRecordList" border fit highlight-current-row>
           <el-table-column label="车架号" prop="vin" align="center" width="133">
             <template slot-scope="{row}">
@@ -426,43 +425,43 @@
       </el-form-item>
     </el-form>
 
-    <div v-if="isTRACK" slot="footer" class="dialog-footer">
+    <div v-if="isTrack && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">运踪更新</el-button>
     </div>
 
-    <el-form v-if="isARRIVE" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
-      <el-form-item label="车架号" prop="vehicleBaseInfo.vin">
+    <el-form v-if="isArrive" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
+      <el-form-item label="车架号" prop="vin">
         <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
       </el-form-item>
 
-      <el-form-item label="类型" prop="vehicleBaseInfo.type">
-        <el-select v-model="vehicleInfo.type" class="filter-item">
+      <el-form-item label="类型" prop="type">
+        <el-select v-model="vehicleInfo.vehicleType" class="filter-item">
           <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
 
-      <el-form-item label="客户姓名" prop="vehicleBaseInfo.clientName">
+      <el-form-item label="客户姓名" prop="clientName">
         <el-input v-model="vehicleInfo.clientName"></el-input>
       </el-form-item>
 
-      <el-form-item label="电话" prop="vehicleBaseInfo.mobile">
+      <el-form-item label="电话" prop="mobile">
         <el-input v-model="vehicleInfo.mobile"></el-input>
       </el-form-item>
 
-      <el-form-item label="公司" prop="vehicleBaseInfo.company">
+      <el-form-item label="公司" prop="company">
         <el-input v-model="vehicleInfo.company"></el-input>
       </el-form-item>
     </el-form>
 
-    <div v-if="isARRIVE" slot="footer" class="dialog-footer">
+    <div v-if="isArrive && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">确认到达</el-button>
     </div>
   </el-dialog>
 </template>
 
 <script>
-  import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
   import Upload from '@/components/Upload/SingleImage'
+  import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
   import {
     uploadVehicleDeclare,
     uploadVehicleRecord,
@@ -478,8 +477,8 @@
     arrive
   } from '@/api/mission/allocation'
   import {
-    TEMP_TYPE,
-    TEMP_TYPE_UPDATE,
+    OPERATE_TYPE,
+    OPERATE_UPDATE,
     DAMAGE_TYPE_LIST_OBJ,
     VEHICLE_PHOTO_OBJ,
     TASK_STATUS_OBJ,
@@ -513,10 +512,6 @@
         type: Boolean,
         default: false
       },
-      dialogStatus: {
-        type: String,
-        default: ''
-      },
       vehicleInfo: {
         type: Object,
         default: () => ({})
@@ -526,9 +521,9 @@
       return {
         DAMAGE_TYPE_LIST_OBJ,
         VEHICLE_PHOTO_OBJ,
-        TEMP_TYPE,
-        CHECK_STATUS_REJECT,
+        OPERATE_TYPE,
         CHECK_STATUS,
+        CHECK_STATUS_REJECT,
         FREE_STATUS_OBJ,
         listKey: 0,
         vehicleTypeList: [],
@@ -536,7 +531,26 @@
           'vehicleDeclare.declareUrl': [{ required: true, message: '请上传报关资料', trigger: 'blur' }],
           'vehicleDeclare.declareCheck': [{ required: true, message: '请审批报关审核', trigger: 'blur' }],
           'vehicleDeclare.recordUrl': [{ required: true, message: '请上传预录单资料', trigger: 'blur' }],
-          'vehicleDeclare.recordCheck': [{ required: true, message: '请审批预录单', trigger: 'blur' }]
+          'vehicleDeclare.recordCheck': [{ required: true, message: '请审批预录单', trigger: 'blur' }],
+          isNumsWarn: {
+            'vin': [{ required: true, message: '请输入车架号', trigger: 'blur' }],
+            'vehicleType': [{ required: true, message: '请选择车辆类型', trigger: 'change' }],
+            'clientName': [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
+            'mobile': [{ required: true, message: '请输入电话', trigger: 'blur' }],
+            'company': [{ required: true, message: '请输入公司名称', trigger: 'blur' }],
+            'result': [{ required: true, message: '请选择出库', trigger: 'change' }],
+            'remark': [{ required: true, message: '请输入驳回备注', trigger: 'blur' }],
+          }
+        }
+      }
+    },
+    watch: {
+      value: function (newVal, oldVal) {
+        if (newVal && newVal !== oldVal) {
+          this.getData()
+        } else if (!newVal && newVal !== oldVal) {
+          this.$emit('input', false)
+          this.$refs.dataForm.clearValidate()
         }
       }
     },
@@ -559,25 +573,25 @@
       isFA() {
         return [DMFA, FMFA, CMFA].includes(this.vehicleInfo.smallLink)
       },
-      isNUMS_WARN() {
+      isNumsWarn() {
         return [DM_NUMS_WARN, CM_NUMS_WARN].includes(this.vehicleInfo.smallLink)
       },
-      isTRACK() {
+      isTrack() {
         return [TRACK].includes(this.vehicleInfo.smallLink)
       },
-      isARRIVE() {
+      isArrive() {
         return [ARRIVE].includes(this.vehicleInfo.smallLink)
       }
     },
-    mounted() {
-      parameterVehicleTypeList().then(res => {
-        this.vehicleTypeList = res.data.list.map(item => ({
-          label: item.typeName,
-          value: item.typeName
-        }))
-      })
-    },
     methods: {
+      getData() {
+        parameterVehicleTypeList().then(res => {
+          this.vehicleTypeList = res.data.list.map(item => ({
+            label: item.typeName,
+            value: item.typeName
+          }))
+        })
+      },
       handleData(vehicleInfo) {
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
@@ -598,8 +612,7 @@
                 }
                 uploadVehicleDeclare(data).then((res) => {
                   this.$handleTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -619,8 +632,7 @@
                 }
                 uploadVehicleRecord(data).then((res) => {
                   this.$handleTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -639,8 +651,7 @@
                 }
                 uploadCustomCar(data).then((res) => {
                   this.$handleTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -654,8 +665,7 @@
                 }
                 addDmFaTask(data).then((res) => {
                   this.$approveTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -669,8 +679,7 @@
                 }
                 addFmFaTask(data).then((res) => {
                   this.$approveTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -684,8 +693,7 @@
                 }
                 addCmFaTask(data).then((res) => {
                   this.$approveTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -699,8 +707,7 @@
                 }
                 addCmNumberTask(data).then((res) => {
                   this.$approveTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -714,8 +721,7 @@
                 }
                 passNumberTask(data).then((res) => {
                   this.$approveTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break
@@ -742,8 +748,7 @@
                 }
                 arrive(data).then((res) => {
                   this.$updateTempNotify()
-                  this.value = false
-                  this.emitInput(false)
+                  this.$emit('input', false)
                 })
               }
                 break

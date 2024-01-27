@@ -96,7 +96,7 @@ import {
   orderBigLinklnfo
 } from '@/api/vehicle/order'
 import {
-  TEMP_TYPE,
+  OPERATE_TYPE,
   TREE_DATA,
   NODE_LIST_OBJ,
   VEHICLE_INFO_OBJ,
@@ -118,7 +118,7 @@ export default {
   components: { Pagination, Link },
   data() {
     return {
-      TEMP_TYPE,
+      OPERATE_TYPE,
       NODE_LIST_OBJ,
       listKey: 0,
       list: null,

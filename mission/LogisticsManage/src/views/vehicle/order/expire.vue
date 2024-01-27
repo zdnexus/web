@@ -85,13 +85,13 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="200">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow(TEMP_TYPE_VIEW,row)">
-            {{TEMP_TYPE[TEMP_TYPE_VIEW]}}
+          <el-button size="mini" type="primary" style="margin-right: 10px" @click="handleRow(OPERATE_VIEW,row)">
+            {{OPERATE_TYPE[OPERATE_VIEW]}}
           </el-button>
 
-          <el-popconfirm title="确认要恢复吗？" @onConfirm="handleRow(TEMP_TYPE_RESTORE,row)">
+          <el-popconfirm title="确认要恢复吗？" @onConfirm="handleRow(OPERATE_RESTORE,row)">
             <el-button slot="reference" size="mini" type="danger">
-              {{TEMP_TYPE[TEMP_TYPE_RESTORE]}}
+              {{OPERATE_TYPE[OPERATE_RESTORE]}}
             </el-button>
           </el-popconfirm>
         </template>
@@ -100,7 +100,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;" :disabled="true">
         <el-form-item label="车架号" prop="vin">
           <el-input v-model="temp.vin"/>
@@ -162,9 +162,9 @@
     orderRestore
   } from '@/api/vehicle/order'
   import {
-    TEMP_TYPE_VIEW,
-    TEMP_TYPE_RESTORE,
-    TEMP_TYPE,
+    OPERATE_VIEW,
+    OPERATE_RESTORE,
+    OPERATE_TYPE,
     TREE_DATA,
     ORDER_EXAMINE_STATUS_OBJ
   } from '@/constant'
@@ -173,9 +173,9 @@
     components: { Pagination },
     data() {
       return {
-        TEMP_TYPE_VIEW,
-        TEMP_TYPE_RESTORE,
-        TEMP_TYPE,
+        OPERATE_VIEW,
+        OPERATE_RESTORE,
+        OPERATE_TYPE,
         TREE_DATA,
         ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {
@@ -256,7 +256,7 @@
         }
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === TEMP_TYPE_VIEW && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === OPERATE_VIEW && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class='custom-tree-node'>
@@ -303,7 +303,7 @@
         //   <span className="custom-tree-node">
         //       <span>{node.label}</span>
         //     {
-        //       this.dialogStatus === TEMP_TYPE_VIEW && (this.allocationList[node.data.options] || []).length > 0
+        //       this.dialogStatus === OPERATE_VIEW && (this.allocationList[node.data.options] || []).length > 0
         //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
         //           {
         //             options.map(item => (
@@ -318,7 +318,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case TEMP_TYPE_VIEW:
+          case OPERATE_VIEW:
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {
@@ -351,7 +351,7 @@
               })
             })
             break
-          case TEMP_TYPE_RESTORE:
+          case OPERATE_RESTORE:
             orderRestore([row.id]).then(() => {
               this.$restoreTempNotify()
               this.handleFilter()

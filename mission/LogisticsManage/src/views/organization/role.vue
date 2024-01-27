@@ -11,7 +11,7 @@
         查询
       </el-button>
 
-      <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+      <el-button type="primary" icon="el-icon-edit" @click="handleRow(OPERATE_CREATE)">
         添加
       </el-button>
     </div>
@@ -49,11 +49,11 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" @click="handleRow(TEMP_TYPE_UPDATE,row)">
+          <el-button size="mini" type="primary" @click="handleRow(OPERATE_UPDATE,row)">
             更新
           </el-button>
 
-          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(TEMP_TYPE_DELETE,row)">
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow(OPERATE_DELETE,row)">
             <el-button slot="reference" size="mini" type="danger">
               删除
             </el-button>
@@ -64,7 +64,7 @@
 
     <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
 
         <el-form-item label="角色名称" prop="roleName">
@@ -124,10 +124,10 @@
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
-    TEMP_TYPE,
-    TEMP_TYPE_CREATE,
-    TEMP_TYPE_DELETE,
-    TEMP_TYPE_UPDATE,
+    OPERATE_TYPE,
+    OPERATE_CREATE,
+    OPERATE_DELETE,
+    OPERATE_UPDATE,
     ACCOUNT_STATUS_LIST,
     ACCOUNT_STATUS_OBJ,
     ROLE_LIST
@@ -138,10 +138,10 @@
     components: { Pagination },
     data() {
       return {
-        TEMP_TYPE,
-        TEMP_TYPE_CREATE,
-        TEMP_TYPE_DELETE,
-        TEMP_TYPE_UPDATE,
+        OPERATE_TYPE,
+        OPERATE_CREATE,
+        OPERATE_DELETE,
+        OPERATE_UPDATE,
         ACCOUNT_STATUS_LIST,
         ACCOUNT_STATUS_OBJ,
         listQuery: {
@@ -208,8 +208,8 @@
       },
       async handleRow(type, row) {
         switch (type) {
-          case TEMP_TYPE_CREATE:
-          case TEMP_TYPE_UPDATE:
+          case OPERATE_CREATE:
+          case OPERATE_UPDATE:
             await this.getData()
             this.dialogStatus = type
             this.dialogFormVisible = true
@@ -233,7 +233,7 @@
               })
             }
             break
-          case TEMP_TYPE_DELETE:
+          case OPERATE_DELETE:
             const ids = [row.roleId]
             deleteRole(ids).then(() => {
               this.$deleteTempNotify()

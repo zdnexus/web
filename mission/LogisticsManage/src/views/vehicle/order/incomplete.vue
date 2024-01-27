@@ -7,7 +7,7 @@
         查询
       </el-button>
 
-      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE)">
+      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(OPERATE_EXPIRE)">
         <el-button slot="reference" type="danger" icon="el-icon-delete">
           批量定为失效订单
         </el-button>
@@ -78,13 +78,13 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="250">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(TEMP_MAKE_FOLLOW_PLAN,row)">
-            {{ TEMP_TYPE[TEMP_MAKE_FOLLOW_PLAN] }}
+          <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(OPERATE_MAKE_FOLLOW_PLAN,row)">
+            {{ OPERATE_TYPE[OPERATE_MAKE_FOLLOW_PLAN] }}
           </el-button>
 
-          <el-popconfirm title="确认要定为失效名单吗？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE,row)">
+          <el-popconfirm title="确认要定为失效名单吗？" @onConfirm="handleRow(OPERATE_EXPIRE,row)">
             <el-button slot="reference" size="mini" type="danger">
-              {{ TEMP_TYPE[TEMP_TYPE_EXPIRE] }}
+              {{ OPERATE_TYPE[OPERATE_EXPIRE] }}
             </el-button>
           </el-popconfirm>
         </template>
@@ -98,10 +98,10 @@
           :base-components="baseComponents"
           :form-data="linkData"></Link>
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN"/>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN"/>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
@@ -167,9 +167,9 @@
   } from '@/api/vehicle/order'
   import {
     TREE_DATA,
-    TEMP_TYPE,
-    TEMP_MAKE_FOLLOW_PLAN,
-    TEMP_TYPE_EXPIRE,
+    OPERATE_TYPE,
+    OPERATE_MAKE_FOLLOW_PLAN,
+    OPERATE_EXPIRE,
     NODE_LIST_OBJ,
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
@@ -196,9 +196,9 @@
     data() {
       return {
         TREE_DATA,
-        TEMP_TYPE,
-        TEMP_MAKE_FOLLOW_PLAN,
-        TEMP_TYPE_EXPIRE,
+        OPERATE_TYPE,
+        OPERATE_MAKE_FOLLOW_PLAN,
+        OPERATE_EXPIRE,
         NODE_LIST_OBJ,
         defaultTreeProps: {
           children: 'children',
@@ -350,7 +350,7 @@
         })
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class='custom-tree-node'>
@@ -423,7 +423,7 @@
       handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case TEMP_MAKE_FOLLOW_PLAN:
+          case OPERATE_MAKE_FOLLOW_PLAN:
             orderSmallLinkItemList({
               vin: row.vin
             }).then(res => {
@@ -456,7 +456,7 @@
               })
             })
             break
-          case TEMP_TYPE_EXPIRE:
+          case OPERATE_EXPIRE:
             row = row ? [row.id] : this.ids
             deleteVehicleOrder(row).then(() => {
               this.handleFilter()
@@ -472,7 +472,7 @@
       handleData() {
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN) {
+            if (this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN) {
               let flag = false
               Object.keys(this.temp.orderSmallLinkItem).forEach((key) => {
                 if (this.temp.orderSmallLinkItem[key] === '0' && !this.temp.orderBaseInfo[`${key}Name`] && !this.temp.orderBaseInfo[`${key}Id`]) {
@@ -495,7 +495,7 @@
               }
             }
             const temp = this.temp
-            if (this.dialogStatus === TEMP_MAKE_FOLLOW_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2'))) {
+            if (this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2'))) {
               const fun = allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value

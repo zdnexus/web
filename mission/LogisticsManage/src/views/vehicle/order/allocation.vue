@@ -7,11 +7,11 @@
         查询
       </el-button>
 
-      <el-button type="primary" icon="el-icon-edit" @click="handleRow(TEMP_TYPE_CREATE)">
+      <el-button type="primary" icon="el-icon-edit" @click="handleRow(OPERATE_CREATE)">
         添加订单
       </el-button>
 
-      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE)">
+      <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(OPERATE_EXPIRE)">
         <el-button slot="reference" type="danger" icon="el-icon-delete">
           批量定为失效订单
         </el-button>
@@ -71,13 +71,13 @@
 
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="250">
         <template slot-scope="{row}">
-          <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(TEMP_MAKE_INITIAL_PLAN,row)">
-            {{ TEMP_TYPE[TEMP_MAKE_INITIAL_PLAN] }}
+          <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(OPERATE_MAKE_INITIAL_PLAN,row)">
+            {{ OPERATE_TYPE[OPERATE_MAKE_INITIAL_PLAN] }}
           </el-button>
 
-          <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(TEMP_TYPE_EXPIRE,row)">
+          <el-popconfirm title="确认设置失效订单？" @onConfirm="handleRow(OPERATE_EXPIRE,row)">
             <el-button slot="reference" size="mini" type="danger">
-              {{ TEMP_TYPE[TEMP_TYPE_EXPIRE] }}
+              {{ OPERATE_TYPE[OPERATE_EXPIRE] }}
             </el-button>
           </el-popconfirm>
         </template>
@@ -86,10 +86,10 @@
 
     <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === TEMP_MAKE_INITIAL_PLAN"></el-input>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === OPERATE_MAKE_INITIAL_PLAN"></el-input>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
@@ -160,10 +160,10 @@
     PAGE_TOTAL,
     PAGE_NUM,
     PAGE_SIZE,
-    TEMP_TYPE_CREATE,
-    TEMP_TYPE_EXPIRE,
-    TEMP_MAKE_INITIAL_PLAN,
-    TEMP_TYPE,
+    OPERATE_CREATE,
+    OPERATE_EXPIRE,
+    OPERATE_MAKE_INITIAL_PLAN,
+    OPERATE_TYPE,
     TREE_DATA,
     ORDER_EXAMINE_STATUS_AUDITING,
     ORDER_EXAMINE_STATUS_OBJ,
@@ -175,10 +175,10 @@
     components: { Pagination },
     data() {
       return {
-        TEMP_TYPE_CREATE,
-        TEMP_TYPE_EXPIRE,
-        TEMP_MAKE_INITIAL_PLAN,
-        TEMP_TYPE,
+        OPERATE_CREATE,
+        OPERATE_EXPIRE,
+        OPERATE_MAKE_INITIAL_PLAN,
+        OPERATE_TYPE,
         TREE_DATA,
         ORDER_EXAMINE_STATUS_AUDITING,
         ORDER_EXAMINE_STATUS_OBJ,
@@ -295,7 +295,7 @@
         this.$set(this.temp, 'orderBaseInfo', orderBaseInfo)
       },
       renderContent(h, { node, data, store }) {
-        if (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && this.allocationList && this.temp.orderBaseInfo) {
+        if (this.dialogStatus === OPERATE_MAKE_INITIAL_PLAN && this.allocationList && this.temp.orderBaseInfo) {
           const options = this.allocationList[node.data.options] || []
           return (
             <span class='custom-tree-node'>
@@ -342,7 +342,7 @@
         //   <span className="custom-tree-node">
         //       <span>{node.label}</span>
         //     {
-        //       this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (this.allocationList[node.data.options] || []).length > 0
+        //       this.dialogStatus === OPERATE_MAKE_INITIAL_PLAN && (this.allocationList[node.data.options] || []).length > 0
         //         ? <el-select v-model={this.temp.service} className="filter-item" style="margin-left:30px">
         //           {
         //             options.map(item => (
@@ -357,7 +357,7 @@
       async handleRow(type, row) {
         this.dialogStatus = type
         switch (type) {
-          case TEMP_TYPE_CREATE:
+          case OPERATE_CREATE:
             await this.getData()
             this.resetTemp()
             this.dialogFormVisible = true
@@ -366,7 +366,7 @@
               this.$refs.dataTree.setCheckedKeys([])
             })
             break
-          case TEMP_MAKE_INITIAL_PLAN:
+          case OPERATE_MAKE_INITIAL_PLAN:
             await this.getData()
             orderSmallLinkItemList({
               vin: row.vin
@@ -400,7 +400,7 @@
               })
             })
             break
-          case TEMP_TYPE_EXPIRE:
+          case OPERATE_EXPIRE:
             row = row ? [row.id] : this.ids
             deleteVehicleOrder(row).then(() => {
               this.handleFilter()
@@ -416,7 +416,7 @@
       handleData() {
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            if (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN) {
+            if (this.dialogStatus === OPERATE_MAKE_INITIAL_PLAN) {
               let flag = false
               Object.keys(this.temp.orderSmallLinkItem).forEach((key) => {
                 if (this.temp.orderSmallLinkItem[key] === '0' && !this.temp.orderBaseInfo[`${key}Name`] && !this.temp.orderBaseInfo[`${key}Id`]) {
@@ -439,9 +439,9 @@
               }
             }
             const temp = this.temp
-            if (this.dialogStatus === TEMP_TYPE_CREATE ||
-              (this.dialogStatus === TEMP_MAKE_INITIAL_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
-              const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
+            if (this.dialogStatus === OPERATE_CREATE ||
+              (this.dialogStatus === OPERATE_MAKE_INITIAL_PLAN && (temp.vehiclesNumber > 3 || (temp.vehiclesNumber <= 3 && temp.orderStatus === '2')))) {
+              const fun = this.dialogStatus === OPERATE_CREATE ? createVehicleOrder : allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value
               temp.serviceName = temp.service.label
@@ -451,7 +451,7 @@
                 this.handleFilter()
                 this.$notify({
                   type: 'success',
-                  title: this.dialogStatus === TEMP_TYPE_CREATE ? '新增成功' : '分配成功',
+                  title: this.dialogStatus === OPERATE_CREATE ? '新增成功' : '分配成功',
                   duration: 3000
                 })
               })
@@ -477,7 +477,7 @@
                 })
               })
             } else {
-              const fun = this.dialogStatus === TEMP_TYPE_CREATE ? createVehicleOrder : allocateOrder
+              const fun = this.dialogStatus === OPERATE_CREATE ? createVehicleOrder : allocateOrder
               temp.clientName = temp.client.label
               temp.clientId = temp.client.value
               temp.serviceName = temp.service.label
@@ -487,7 +487,7 @@
                 this.handleFilter()
                 this.$notify({
                   type: 'success',
-                  title: this.dialogStatus === TEMP_TYPE_CREATE ? '新增成功' : '分配成功',
+                  title: this.dialogStatus === OPERATE_CREATE ? '新增成功' : '分配成功',
                   duration: 3000
                 })
               })

@@ -116,7 +116,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
 
-    <el-dialog :title="TEMP_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
+    <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="客户姓名" prop="name">
           <el-input v-model="temp.name" />
@@ -193,13 +193,13 @@
 import Pagination from '@/components/Pagination'
 import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/vehicle/cooperate/custom'
 import { organizationList } from '@/api/organization'
-import { TEMP_TYPE } from '@/constant'
+import { OPERATE_TYPE } from '@/constant'
 
 export default {
   components: { Pagination },
   data() {
     return {
-      TEMP_TYPE,
+      OPERATE_TYPE,
       listKey: 0,
       list: null,
       pmList: null,

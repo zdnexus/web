@@ -6,14 +6,14 @@ import Vue from 'vue'
 import { Message, Notification } from 'element-ui'
 
 import {
-  TEMP_TYPE,
-  TEMP_TYPE_CREATE,
-  TEMP_TYPE_DELETE,
-  TEMP_TYPE_UPDATE,
-  TEMP_TYPE_UPLOAD,
-  TEMP_TYPE_HANDLE,
-  TEMP_TYPE_APPROVE,
-  TEMP_TYPE_RESTORE,
+  OPERATE_TYPE,
+  OPERATE_CREATE,
+  OPERATE_DELETE,
+  OPERATE_UPDATE,
+  OPERATE_UPLOAD,
+  OPERATE_HANDLE,
+  OPERATE_APPROVE,
+  OPERATE_RESTORE,
   SUCCESS,
   WARNING,
   DURATION
@@ -38,19 +38,19 @@ Vue.prototype.$checkTable = () => {
 Vue.prototype.$uploadImageNotify = () => {
   Message({
     type: SUCCESS,
-    message: `${TEMP_TYPE[TEMP_TYPE_UPLOAD]}图片成功`,
+    message: `${OPERATE_TYPE[OPERATE_UPLOAD]}图片成功`,
     duration: DURATION
   })
 }
 
 Vue.prototype.$isCreateTemp = (type) => {
-  return type === TEMP_TYPE_CREATE
+  return type === OPERATE_CREATE
 }
 
 Vue.prototype.$createTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_CREATE]}成功`,
+    title: `${OPERATE_TYPE[OPERATE_CREATE]}成功`,
     duration: DURATION
   })
 }
@@ -58,7 +58,7 @@ Vue.prototype.$createTempNotify = () => {
 Vue.prototype.$deleteTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_DELETE]}成功`,
+    title: `${OPERATE_TYPE[OPERATE_DELETE]}成功`,
     duration: DURATION
   })
 }
@@ -66,7 +66,7 @@ Vue.prototype.$deleteTempNotify = () => {
 Vue.prototype.$updateTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_UPDATE]}成功`,
+    title: `${OPERATE_TYPE[OPERATE_UPDATE]}成功`,
     duration: DURATION
   })
 }
@@ -74,7 +74,7 @@ Vue.prototype.$updateTempNotify = () => {
 Vue.prototype.$handleTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_HANDLE]}成功`,
+    title: `${OPERATE_TYPE[OPERATE_HANDLE]}成功`,
     duration: DURATION
   })
 }
@@ -82,7 +82,7 @@ Vue.prototype.$handleTempNotify = () => {
 Vue.prototype.$approveTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `发起${TEMP_TYPE[TEMP_TYPE_APPROVE]}成功`,
+    title: `发起${OPERATE_TYPE[OPERATE_APPROVE]}成功`,
     duration: DURATION
   })
 }
@@ -90,7 +90,7 @@ Vue.prototype.$approveTempNotify = () => {
 Vue.prototype.$restoreTempNotify = () => {
   Notification({
     type: SUCCESS,
-    title: `${TEMP_TYPE[TEMP_TYPE_RESTORE]}成功`,
+    title: `${OPERATE_TYPE[OPERATE_RESTORE]}成功`,
     duration: DURATION
   })
 }
