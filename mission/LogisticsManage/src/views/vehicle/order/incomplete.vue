@@ -478,7 +478,7 @@
                 if (this.temp.orderSmallLinkItem[key] === '0' && !this.temp.orderBaseInfo[`${key}Name`] && !this.temp.orderBaseInfo[`${key}Id`]) {
                   TREE_DATA.forEach(t1 => {
                     t1.children.forEach(t2 => {
-                      if (t2.value === key) {
+                      if (t2.value === key && t2.options) {
                         flag = true
                         this.$message({
                           showClose: true,
