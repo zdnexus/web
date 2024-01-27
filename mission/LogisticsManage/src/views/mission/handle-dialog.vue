@@ -550,6 +550,7 @@
           this.getData()
         } else if (!newVal && newVal !== oldVal) {
           this.$emit('input', false)
+          this.$emit('notRequest', true)
           this.$refs.dataForm.clearValidate()
         }
       }
