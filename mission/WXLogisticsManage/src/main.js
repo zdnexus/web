@@ -8,6 +8,7 @@ import home from './img/home.png'
 import complate from './img/complate.png'
 import list from './img/list.png'
 import user from './img/user.png'
+import login from './img/login.jpeg'
 
 export function createApp() {
   const app = createSSRApp(App)

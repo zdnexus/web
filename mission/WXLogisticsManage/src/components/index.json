@@ -1,5 +1,0 @@
-{
-  "usingComponents": {
-    "ec-canvas": "./echarts/echarts.min.js"
-  }
-}

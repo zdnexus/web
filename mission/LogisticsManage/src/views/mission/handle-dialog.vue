@@ -13,27 +13,27 @@
         </el-form-item>
 
         <el-form-item label="是否有损" prop="isDamage">
-          <el-input v-model="DAMAGE_TYPE_LIST_OBJ[vehicleInfo.isDamage]" :disabled="true"/>
+          <el-input v-model="DAMAGE_TYPE_LIST_OBJ[vehicleInfo.isDamage]" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="品牌" prop="branding">
-          <el-input v-model="vehicleInfo.branding" :disabled="true"/>
+          <el-input v-model="vehicleInfo.branding" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="型号" prop="vehicleModel">
-          <el-input v-model="vehicleInfo.vehicleModel" :disabled="true"/>
+          <el-input v-model="vehicleInfo.vehicleModel" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="颜色" prop="vehicleColor">
-          <el-input v-model="vehicleInfo.vehicleColor" :disabled="true"/>
+          <el-input v-model="vehicleInfo.vehicleColor" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="钥匙数量" prop="vehicleKey">
-          <el-input v-model="vehicleInfo.vehicleKey" :disabled="true"/>
+          <el-input v-model="vehicleInfo.vehicleKey" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="随车配件" prop="carAccessories">
-          <el-input v-model="vehicleInfo.carAccessories" :disabled="true"/>
+          <el-input v-model="vehicleInfo.carAccessories" :disabled="true"></el-input>
         </el-form-item>
 
         <h2>车辆图片</h2>
@@ -119,7 +119,7 @@
     <div v-if="isFA">
       <el-form ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="vehicleInfo.vin" :disabled="true"/>
+          <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="类型" prop="type">
@@ -129,27 +129,27 @@
         </el-form-item>
 
         <el-form-item label="客户姓名" prop="clientName">
-          <el-input v-model="vehicleInfo.clientName"/>
+          <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="电话" prop="mobile">
-          <el-input v-model="vehicleInfo.mobile"/>
+          <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="公司" prop="company">
-          <el-input v-model="vehicleInfo.company"/>
+          <el-input v-model="vehicleInfo.company":disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="报价" prop="quotationFee">
-          <el-input v-model="vehicleInfo.quotationFee"/>
+          <el-input v-model="vehicleInfo.quotationFee"></el-input>
         </el-form-item>
 
         <el-form-item label="美元" prop="usdFee">
-          <el-input v-model="vehicleInfo.usdFee"/>
+          <el-input v-model="vehicleInfo.usdFee"></el-input>
         </el-form-item>
 
         <el-form-item label="汇率" prop="exchangeRate">
-          <el-input v-model="vehicleInfo.exchangeRate"/>
+          <el-input v-model="vehicleInfo.exchangeRate"></el-input>
         </el-form-item>
 
         <el-form-item label="非监管仓仓储费用凭证" prop="ncrBillVoucher">
@@ -157,15 +157,15 @@
         </el-form-item>
 
         <el-form-item label="非监管仓仓储费用" prop="ncrFee">
-          <el-input v-model="vehicleInfo.ncrFee"/>
+          <el-input v-model="vehicleInfo.ncrFee"></el-input>
         </el-form-item>
 
         <el-form-item label="非监管仓基本费用" prop="ncrBasePrice">
-          <el-input v-model="vehicleInfo.ncrBasePrice"/>
+          <el-input v-model="vehicleInfo.ncrBasePrice"></el-input>
         </el-form-item>
 
         <el-form-item label="非监管仓基本天数" prop="ncrBaseDay">
-          <el-input v-model="vehicleInfo.ncrBaseDay"/>
+          <el-input v-model="vehicleInfo.ncrBaseDay"></el-input>
         </el-form-item>
 
         <el-form-item label="非监管仓超期天数" prop="ncrOverduePrice">
@@ -343,21 +343,21 @@
       </el-form-item>
 
       <el-form-item label="类型" prop="vehicleType">
-        <el-select v-model="vehicleInfo.vehicleType" class="filter-item">
+        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
           <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName"></el-input>
+        <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile"></el-input>
+        <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company"></el-input>
+        <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="出库" prop="result">
@@ -387,15 +387,15 @@
       </el-form-item>
 
       <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName"/>
+        <el-input v-model="vehicleInfo.clientName" :disabled="true"/>
       </el-form-item>
 
       <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile"/>
+        <el-input v-model="vehicleInfo.mobile" :disabled="true"/>
       </el-form-item>
 
       <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company"/>
+        <el-input v-model="vehicleInfo.company" :disabled="true"/>
       </el-form-item>
 
       <el-form-item label="途径地列表" prop="vehicleTrackRecordList">
@@ -435,21 +435,21 @@
       </el-form-item>
 
       <el-form-item label="类型" prop="type">
-        <el-select v-model="vehicleInfo.vehicleType" class="filter-item">
+        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
           <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName"></el-input>
+        <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile"></el-input>
+        <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
       </el-form-item>
 
       <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company"></el-input>
+        <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
       </el-form-item>
     </el-form>
 
@@ -738,6 +738,7 @@
                       ...vehicleInfo,
                       ...res.data
                     }
+                    this.$emit('input', false)
                     this.$updateTempNotify()
                   })
                 })

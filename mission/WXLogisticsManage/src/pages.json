@@ -33,7 +33,7 @@
     {
       "path": "pages/link/index",
       "style": {
-        "navigationBarTitleText": "待办任务环节"
+        "navigationBarTitleText": "任务详情"
       }
     },
     {

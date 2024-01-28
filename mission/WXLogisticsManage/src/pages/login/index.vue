@@ -1,6 +1,8 @@
 <template>
   <view class="content">
-    <text class="uni-h6">速通科技</text>
+    <image src="https://pic.616pic.com/ys_bnew_img/00/11/35/GTrEbdgLSB.jpg" mode="aspectFit"></image>
+
+    <uni-title type="h1" title="速通科技"></uni-title>
 
     <uni-section title="账号" type="line">
       <uni-easyinput v-model="temp.username" class="input" placeholder="请输入账号" @input="($event)=>userInput('username',$event)"></uni-easyinput>
@@ -15,7 +17,7 @@
 </template>
 
 <script>
-  import { login } from '../../api/index'
+  import { login } from '@/api/index'
 
   export default {
     data() {
@@ -39,9 +41,25 @@
         this.temp[key] = val
       },
       userLogin() {
+        const { username, password } = this.temp
+        if (username === '') {
+          uni.showToast({
+            icon: 'none',
+            title: '请输入账号',
+            duration: 3000
+          })
+          return
+        } else if (password === '') {
+          uni.showToast({
+            icon: 'none',
+            title: '请输入密码',
+            duration: 3000
+          })
+          return
+        }
         login({
-          username: this.temp.username,
-          password: this.temp.password
+          username,
+          password
         }).then(res => {
           uni.showToast({
             title: '登录成功',
@@ -68,7 +86,7 @@
     align-items: center;
     justify-content: center;
 
-    .uni-h6 {
+    .title {
       margin: 20px 0;
     }
 
@@ -78,6 +96,8 @@
     }
 
     .button {
+      background-color: #007aff;
+      color: #fff;
       margin-top: 24px;
     }
   }

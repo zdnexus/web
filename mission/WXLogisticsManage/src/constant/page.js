@@ -35,7 +35,7 @@ import {
   checkOutWareHouseReq,
   rejectDriveInfo,
   checkRejectDriveInfo,
-} from '../api/index'
+} from '@/api/index'
 
 // 接车验车
 export const INSPECTION = 'inspection'

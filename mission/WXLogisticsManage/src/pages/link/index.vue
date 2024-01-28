@@ -73,7 +73,7 @@
   import {
     getToken,
     trackRecordInfo,
-  } from '../../api/index'
+  } from '@/api/index'
   import {
     DRIVE,
     TRACK,

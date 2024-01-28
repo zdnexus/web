@@ -3,16 +3,19 @@
  * Url :
  */
 
-const request = (url, method, data) => {
-  const app = getApp()
-  return new Promise((resolve, reject) => {
+import { DOMAIN, getToken } from '@/constant'
+
+const request = (url = '', method = 'GET', data = {}) => {
+  const token = getToken()
+  
+  return new Promise((resolve) => {
     wx.request({
-      url: 'https://www.horgosstkj.com/api' + url,
+      url: `${DOMAIN}${url}`,
       method,
       data,
       header: {
         'content-type': 'application/json',
-        'Authorization': app.globalData.token || ''
+        'Authorization': token
       },
       success(res) {
         if (res.statusCode === 200 && res.data.code === 200) {

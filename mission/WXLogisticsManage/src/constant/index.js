@@ -6,3 +6,5 @@
 export * from './treeData'
 
 export * from './page'
+
+export * from './config'

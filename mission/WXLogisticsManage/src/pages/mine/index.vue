@@ -8,13 +8,13 @@
 
     <uni-section class="mb-10" title="角色" :sub-title="userInfo.user.roleKeySetName"></uni-section>
 
-    <view v-if="!isEditPassword">
-      <button class="button-g" type="primary" size="mini" @click="isEditPassword = true">修改密码</button>
+    <view class="button-group">
+      <button v-if="!isEditPassword"  class="button-g" type="primary" size="mini" @click="isEditPassword = true">修改密码</button>
 
       <button class="button-g" type="primary" size="mini" @click="loginOut">退出账号</button>
     </view>
 
-    <view v-else>
+    <view v-if="isEditPassword">
       <uni-section title="旧密码" type="line">
         <uni-easyinput v-model="temp.oldPassword" class="input" type="password" placeholder="请输入新密码" @input="($event)=>userInput('oldPassword',$event)"></uni-easyinput>
       </uni-section>
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-  import { userInfo, updatePwd } from '../../api/index'
+  import { userInfo, updatePwd } from '@/api/index'
   
   export default {
     data() {
@@ -51,7 +51,7 @@
         }
       }
     },
-    onTabItemTap(e) {
+    onTabItemTap() {
       this.getData()
     },
     onLoad() {
@@ -74,7 +74,29 @@
         })
       },
       updatePassword() {
-        if (this.temp.newPassword !== this.temp.newPassword2) {
+        const { oldPassword, newPassword, newPassword2 } = this.temp
+        if (oldPassword === '') {
+          uni.showToast({
+            icon: 'none',
+            title: '请输入旧密码',
+            duration: 3000
+          })
+          return
+        } else if (newPassword === '') {
+          uni.showToast({
+            icon: 'none',
+            title: '请输入新密码',
+            duration: 3000
+          })
+          return
+        } else if (newPassword2 === '') {
+          uni.showToast({
+            icon: 'none',
+            title: '请输入确认密码',
+            duration: 3000
+          })
+          return
+        } else if (newPassword !== newPassword2) {
           uni.showToast({
             icon: 'none',
             title: '新密码和确认密码不同',
@@ -83,8 +105,8 @@
           return
         }
         updatePwd({
-          oldPassword: this.temp.oldPassword,
-          newPassword: this.temp.newPassword,
+          oldPassword,
+          newPassword,
         }).then(res => {
           uni.showToast({
             title: '修改密码成功',
@@ -109,23 +131,34 @@
   .content {
     width: 100%;
     min-height: 100vh;
+    position: relative;
 
     .input {
       width: 200px;
     }
 
-    .button-g {
+    .button-group {
       width: 100%;
-      height: 30px;
-      margin: 24px 0;
-      background-color: #d0d0d0;
-      color: #000;
+      position: fixed;
+      bottom: 0;
+      padding: 5px 10px;
+      box-sizing: border-box;
+
+      .button-g {
+        width: 100%;
+        height: 30px;
+        margin-top: 12px;
+        background-color: #d0d0d0;
+        color: #000;
+      }
     }
 
     .button {
       width: 100%;
       height: 30px;
       margin: 24px 0;
+      background-color: #007aff;
+      color: #fff;
     }
   }
 </style>

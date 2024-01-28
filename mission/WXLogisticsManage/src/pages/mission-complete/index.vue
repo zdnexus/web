@@ -10,10 +10,10 @@
 
     <uni-table class="table" border stripe :loading="tableLoading" emptyText="暂无更多数据">
       <uni-tr>
-        <uni-th width="75">车架号</uni-th>
-        <uni-th width="75">事务</uni-th>
-        <uni-th width="75">任务名称</uni-th>
-        <uni-th width="75">操作</uni-th>
+        <uni-th width="90">车架号</uni-th>
+        <uni-th width="90">事务</uni-th>
+        <uni-th width="90">任务名称</uni-th>
+        <uni-th width="90">操作</uni-th>
       </uni-tr>
 
       <uni-tr v-for="(item, index) in tableData" :key="index">
@@ -21,8 +21,8 @@
         <uni-td>{{item.bigLinkConvert}}</uni-td>
         <uni-td>{{item.smallLinkConvert}}</uni-td>
         <uni-td>
-          <view class="uni-group">
-            <button class="uni-button" size="mini" type="primary" @click="toLink(item)">查看</button>
+          <view class="button-group">
+            <button class="button" type="primary" size="mini" @click="toLink(item)">处理</button>
           </view>
         </uni-td>
       </uni-tr>
@@ -33,8 +33,8 @@
 </template>
 
 <script>
-  import { upcomingTaskList } from '../../api/index'
-  import { TREE_DATA } from '../../constant/index'
+  import { upcomingTaskList } from '@/api/index'
+  import { TREE_DATA } from '@/constant/index'
   
   export default {
     data() {
@@ -122,6 +122,11 @@
 
     .pagination {
       margin: 10px 0;
+    }
+
+    .button {
+      background-color: #007aff;
+      color: #fff;
     }
   }
 </style>
