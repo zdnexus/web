@@ -134,8 +134,8 @@
           <el-input v-model="temp.wechatSignal"/>
         </el-form-item>
 
-        <el-form-item label="分配经理" prop="pmId">
-          <el-select v-model="temp.pmId" class="filter-item" placeholder="">
+        <el-form-item label="分配经理" prop="pm">
+          <el-select v-model="temp.pm" class="filter-item" placeholder="">
             <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
@@ -185,7 +185,7 @@
           driverType: undefined,
           driverNumber: undefined,
           wechatSignal: undefined,
-          pmId: undefined
+          pm: undefined
         },
         rules: {
           name: [{ required: true, message: '请输入司机名称', trigger: 'blur' }],
@@ -195,7 +195,7 @@
           driverType: [{ required: true, message: '请输入驾照类型', trigger: 'blur' }],
           driverNumber: [{ required: true, message: '请输入驾照编号', trigger: 'blur' }],
           wechatSignal: [{ required: true, message: '请输入微信号', trigger: 'blur' }],
-          pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
+          pm: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
         }
       }
     },
@@ -234,15 +234,16 @@
           driverType: undefined,
           driverNumber: undefined,
           wechatSignal: undefined,
-          pmId: undefined
+          pm: undefined
         }
       },
       handleData() {
         const fun = this.dialogStatus === 'create' ? createCooperateDomestic : updateCooperateDomestic
         this.$refs.dataForm.validate((valid) => {
           if (valid) {
-            this.temp.pmName = this.temp.pmId.label
-            this.temp.pmId = this.temp.pmId.value
+            const { label, value } = this.temp.pm
+            this.temp.pmName = label
+            this.temp.pmId = value
             fun(this.temp).then(() => {
               this.dialogFormVisible = false
               this.handleFilter()
@@ -269,7 +270,7 @@
         switch (type) {
           case 'create':
           case 'update':
-            type === 'create' ? this.resetTemp() : this.temp = { ...row, pmId: { label: row.pmName, value: row.pmId } }
+            type === 'create' ? this.resetTemp() : this.temp = { ...row, pm: { label: row.pmName, value: row.pmId } }
             this.dialogStatus = type
             this.dialogFormVisible = true
             this.$nextTick(() => {

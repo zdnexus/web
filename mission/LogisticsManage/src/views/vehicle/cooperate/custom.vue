@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="请输入客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />
+      <el-input v-model="listQuery.name" placeholder="请输入客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -114,66 +114,66 @@
       </el-table-column>
     </el-table>
 
-    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList" />
+    <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
     <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px; margin-left:10px;">
         <el-form-item label="客户姓名" prop="name">
-          <el-input v-model="temp.name" />
+          <el-input v-model="temp.name"/>
         </el-form-item>
 
         <el-form-item label="联系电话" prop="mobile">
-          <el-input v-model="temp.mobile" />
+          <el-input v-model="temp.mobile"/>
         </el-form-item>
 
         <el-form-item v-if="temp.password" label="客户密码" prop="password">
-          <el-input v-model="temp.password" />
+          <el-input v-model="temp.password"/>
         </el-form-item>
 
-        <el-form-item label="分配经理" prop="pmId">
-          <el-select v-model="temp.pmId" class="filter-item" placeholder="">
-            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item" />
+        <el-form-item label="分配经理" prop="pm">
+          <el-select v-model="temp.pm" class="filter-item" placeholder="">
+            <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
         </el-form-item>
 
         <el-form-item label="邮箱" prop="mail">
-          <el-input v-model="temp.mail" />
+          <el-input v-model="temp.mail"/>
         </el-form-item>
 
         <el-form-item label="国家" prop="country">
-          <el-input v-model="temp.country" />
+          <el-input v-model="temp.country"/>
         </el-form-item>
 
         <el-form-item label="地区" prop="area">
-          <el-input v-model="temp.area" />
+          <el-input v-model="temp.area"/>
         </el-form-item>
 
         <el-form-item label="地址" prop="address">
-          <el-input v-model="temp.address" />
+          <el-input v-model="temp.address"/>
         </el-form-item>
 
         <el-form-item label="银行账号" prop="bankAccount">
-          <el-input v-model="temp.bankAccount" />
+          <el-input v-model="temp.bankAccount"/>
         </el-form-item>
 
         <el-form-item label="开户行" prop="bank">
-          <el-input v-model="temp.bank" />
+          <el-input v-model="temp.bank"/>
         </el-form-item>
 
         <el-form-item label="税号" prop="dutyParagraph">
-          <el-input v-model="temp.dutyParagraph" />
+          <el-input v-model="temp.dutyParagraph"/>
         </el-form-item>
 
         <el-form-item label="付款条件" prop="paymentTerms">
-          <el-input v-model="temp.paymentTerms" />
+          <el-input v-model="temp.paymentTerms"/>
         </el-form-item>
 
         <el-form-item label="贸易方式" prop="tradeMode">
-          <el-input v-model="temp.tradeMode" />
+          <el-input v-model="temp.tradeMode"/>
         </el-form-item>
 
         <el-form-item label="结算周期" prop="settlementCycle">
-          <el-input v-model="temp.settlementCycle" />
+          <el-input v-model="temp.settlementCycle"/>
         </el-form-item>
       </el-form>
       <div slot="footer" class="dialog-footer">
@@ -190,142 +190,143 @@
 </template>
 
 <script>
-import Pagination from '@/components/Pagination'
-import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/vehicle/cooperate/custom'
-import { organizationList } from '@/api/organization'
-import { OPERATE_TYPE } from '@/constant'
+  import Pagination from '@/components/Pagination'
+  import { cooperateCustomList, createCooperateCustom, updateCooperateCustom, deleteCooperateCustom } from '@/api/vehicle/cooperate/custom'
+  import { organizationList } from '@/api/organization'
+  import { OPERATE_TYPE } from '@/constant'
 
-export default {
-  components: { Pagination },
-  data() {
-    return {
-      OPERATE_TYPE,
-      listKey: 0,
-      list: null,
-      pmList: null,
-      total: 0,
-      listLoading: true,
-      listQuery: {
-        name: undefined,
-        pageNum: 1,
-        pageSize: 20
-      },
-      ids: [],
-      dialogFormVisible: false,
-      dialogStatus: '',
-      temp: {
-        name: undefined,
-        mobile: undefined,
-        password: undefined,
-        mail: undefined,
-        country: undefined,
-        area: undefined,
-        address: undefined,
-        bankAccount: undefined,
-        bank: undefined,
-        dutyParagraph: undefined,
-        paymentTerms: undefined,
-        tradeMode: undefined,
-        settlementCycle: undefined,
-        pmId: undefined
-      },
-      rules: {
-        name: [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
-        mobile: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
-        password: [{ required: true, message: '请输入客户密码', trigger: 'blur' }],
-        pmId: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
-      }
-    }
-  },
-  created() {
-    this.getList()
-    organizationList({ roleKeySet: 'pmanager' }).then(res => {
-      this.pmList = res.data.list.map(item => ({
-        label: item.nickName,
-        value: item.userId
-      }))
-    })
-  },
-  methods: {
-    getList() {
-      this.listLoading = true
-      cooperateCustomList(this.listQuery).then(res => {
-        this.list = res.data.list
-        this.total = res.data.total
-        this.listLoading = false
-      })
-    },
-    handleFilter() {
-      this.listQuery.pageNum = 1
-      this.getList()
-    },
-    handleIdChange(rows) {
-      this.ids = rows.map(row => row.id)
-    },
-    resetTemp() {
-      const code = 'st' + (parseInt(Math.random() * 1000000) + 1000000)
-      this.temp = {
-        name: undefined,
-        mobile: undefined,
-        password: code.substring(0, 8),
-        mail: undefined,
-        country: undefined,
-        area: undefined,
-        address: undefined,
-        bankAccount: undefined,
-        bank: undefined,
-        dutyParagraph: undefined,
-        paymentTerms: undefined,
-        tradeMode: undefined,
-        settlementCycle: undefined,
-        pmId: undefined
-      }
-    },
-    handleData() {
-      const fun = this.dialogStatus === 'create' ? createCooperateCustom : updateCooperateCustom
-      this.$refs.dataForm.validate((valid) => {
-        if (valid) {
-          this.temp.pmName = this.temp.pmId.label
-          this.temp.pmId = this.temp.pmId.value
-          fun(this.temp).then(() => {
-            this.dialogFormVisible = false
-            this.handleFilter()
-            this.$notify({
-              type: 'success',
-              title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
-              duration: 3000
-            })
-          })
+  export default {
+    components: { Pagination },
+    data() {
+      return {
+        OPERATE_TYPE,
+        listKey: 0,
+        list: null,
+        pmList: null,
+        total: 0,
+        listLoading: true,
+        listQuery: {
+          name: undefined,
+          pageNum: 1,
+          pageSize: 20
+        },
+        ids: [],
+        dialogFormVisible: false,
+        dialogStatus: '',
+        temp: {
+          name: undefined,
+          mobile: undefined,
+          password: undefined,
+          mail: undefined,
+          country: undefined,
+          area: undefined,
+          address: undefined,
+          bankAccount: undefined,
+          bank: undefined,
+          dutyParagraph: undefined,
+          paymentTerms: undefined,
+          tradeMode: undefined,
+          settlementCycle: undefined,
+          pm: undefined
+        },
+        rules: {
+          name: [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
+          mobile: [{ required: true, message: '请输入联系电话', trigger: 'blur' }],
+          password: [{ required: true, message: '请输入客户密码', trigger: 'blur' }],
+          pm: [{ required: true, message: '请选择分配经理', trigger: 'change' }]
         }
+      }
+    },
+    created() {
+      this.getList()
+      organizationList({ roleKeySet: 'pmanager' }).then(res => {
+        this.pmList = res.data.list.map(item => ({
+          label: item.nickName,
+          value: item.userId
+        }))
       })
     },
-    deleteData(ids) {
-      deleteCooperateCustom(ids).then(() => {
-        this.handleFilter()
-        this.$notify({
-          type: 'success',
-          message: '删除成功',
-          duration: 3000
+    methods: {
+      getList() {
+        this.listLoading = true
+        cooperateCustomList(this.listQuery).then(res => {
+          this.list = res.data.list
+          this.total = res.data.total
+          this.listLoading = false
         })
-      })
-    },
-    handleRow(type, row) {
-      switch (type) {
-        case 'create':
-        case 'update':
-          type === 'create' ? this.resetTemp() : this.temp = { ...row, pmId: { label: row.pmName, value: row.pmId }}
-          this.dialogStatus = type
-          this.dialogFormVisible = true
-          this.$nextTick(() => {
-            this.$refs.dataForm.clearValidate()
+      },
+      handleFilter() {
+        this.listQuery.pageNum = 1
+        this.getList()
+      },
+      handleIdChange(rows) {
+        this.ids = rows.map(row => row.id)
+      },
+      resetTemp() {
+        const code = 'st' + (parseInt(Math.random() * 1000000) + 1000000)
+        this.temp = {
+          name: undefined,
+          mobile: undefined,
+          password: code.substring(0, 8),
+          mail: undefined,
+          country: undefined,
+          area: undefined,
+          address: undefined,
+          bankAccount: undefined,
+          bank: undefined,
+          dutyParagraph: undefined,
+          paymentTerms: undefined,
+          tradeMode: undefined,
+          settlementCycle: undefined,
+          pm: undefined
+        }
+      },
+      handleData() {
+        const fun = this.dialogStatus === 'create' ? createCooperateCustom : updateCooperateCustom
+        this.$refs.dataForm.validate((valid) => {
+          if (valid) {
+            const { label, value } = this.temp.pm
+            this.temp.pmName = label
+            this.temp.pmId = value
+            fun(this.temp).then(() => {
+              this.dialogFormVisible = false
+              this.handleFilter()
+              this.$notify({
+                type: 'success',
+                title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
+                duration: 3000
+              })
+            })
+          }
+        })
+      },
+      deleteData(ids) {
+        deleteCooperateCustom(ids).then(() => {
+          this.handleFilter()
+          this.$notify({
+            type: 'success',
+            message: '删除成功',
+            duration: 3000
           })
-          break
-        case 'delete':
-          row = row ? [row.id] : this.ids
-          this.deleteData(row)
-          break
+        })
+      },
+      handleRow(type, row) {
+        switch (type) {
+          case 'create':
+          case 'update':
+            type === 'create' ? this.resetTemp() : this.temp = { ...row, pm: { label: row.pmName, value: row.pmId } }
+            this.dialogStatus = type
+            this.dialogFormVisible = true
+            this.$nextTick(() => {
+              this.$refs.dataForm.clearValidate()
+            })
+            break
+          case 'delete':
+            row = row ? [row.id] : this.ids
+            this.deleteData(row)
+            break
+        }
       }
     }
   }
-}
 </script>
