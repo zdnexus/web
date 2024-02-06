@@ -99,7 +99,7 @@
         </el-form-item>
 
         <el-form-item label="客户" prop="client">
-          <el-select v-model="temp.client">
+          <el-select v-model="temp.client" filterable>
             <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>

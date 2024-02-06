@@ -1,7 +1,7 @@
 <template>
   <div class="app-container">
     <div class="filter-container">
-      <el-input v-model="listQuery.name" placeholder="请输入客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"/>
+      <el-input v-model="listQuery.name" placeholder="请输入客户名称" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter"></el-input>
 
       <el-button class="filter-item" type="primary" icon="el-icon-search" style="margin-left: 10px" @click="handleFilter">
         查询
@@ -21,20 +21,15 @@
       </el-popconfirm>
     </div>
 
-    <el-table
-      :key="listKey"
-      v-loading="listLoading"
-      :data="list"
-      border
-      fit
-      highlight-current-row
-      style="width: 100%;"
-      @selection-change="handleIdChange"
-    >
-      <el-table-column
-        type="selection"
-        width="55"
-      />
+    <el-table :key="listKey"
+              v-loading="listLoading"
+              :data="list"
+              border
+              fit
+              highlight-current-row
+              style="width: 100%;"
+              @selection-change="handleIdChange">
+      <el-table-column type="selection" width="55"/>
 
       <el-table-column label="ID" prop="id" align="center" width="100">
         <template slot-scope="{row}">
@@ -51,6 +46,12 @@
       <el-table-column label="客户电话" prop="mobile" align="center" width="100">
         <template slot-scope="{row}">
           <span>{{ row.mobile }}</span>
+        </template>
+      </el-table-column>
+
+      <el-table-column label="公司" prop="company" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ row.company }}</span>
         </template>
       </el-table-column>
 
@@ -72,23 +73,11 @@
         </template>
       </el-table-column>
 
-      <!--<el-table-column label="创建用户" prop="createBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.createBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
-
       <el-table-column label="创建时间" prop="createTime" align="center" width="90">
         <template slot-scope="{row}">
           <span>{{ row.createTime }}</span>
         </template>
       </el-table-column>
-
-      <!--<el-table-column label="更新用户" prop="updateBy" align="center" width="100">-->
-      <!--<template slot-scope="{row}">-->
-      <!--<span>{{ row.updateBy }}</span>-->
-      <!--</template>-->
-      <!--</el-table-column>-->
 
       <el-table-column label="更新时间" prop="updateTime" align="center" width="90">
         <template slot-scope="{row}">
@@ -102,10 +91,7 @@
             更新
           </el-button>
 
-          <el-popconfirm
-            title="确认要删除吗？"
-            @onConfirm="handleRow('delete',row)"
-          >
+          <el-popconfirm title="确认要删除吗？" @onConfirm="handleRow('delete',row)">
             <el-button slot="reference" size="mini" type="danger">
               删除
             </el-button>
@@ -134,6 +120,10 @@
           <el-select v-model="temp.pm" class="filter-item" placeholder="">
             <el-option v-for="item in pmList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
+        </el-form-item>
+
+        <el-form-item label="公司" prop="company">
+          <el-input v-model="temp.company"/>
         </el-form-item>
 
         <el-form-item label="邮箱" prop="mail">
@@ -290,7 +280,7 @@
             this.temp.pmId = value
             fun(this.temp).then(() => {
               this.dialogFormVisible = false
-              this.handleFilter()
+              this.getList()
               this.$notify({
                 type: 'success',
                 title: this.dialogStatus === 'create' ? '新增成功' : '更新成功',
@@ -302,7 +292,7 @@
       },
       deleteData(ids) {
         deleteCooperateCustom(ids).then(() => {
-          this.handleFilter()
+          this.getList()
           this.$notify({
             type: 'success',
             message: '删除成功',

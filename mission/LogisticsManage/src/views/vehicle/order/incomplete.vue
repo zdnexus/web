@@ -76,6 +76,12 @@
         </template>
       </el-table-column>
 
+      <el-table-column label="状态" prop="orderStatus" align="center" width="100">
+        <template slot-scope="{row}">
+          <span>{{ ORDER_EXAMINE_STATUS_OBJ[row.orderStatus] }}</span>
+        </template>
+      </el-table-column>
+
       <el-table-column label="操作" align="center" class-name="small-padding fixed-width" width="250">
         <template slot-scope="{row}">
           <el-button size="mini" type="primary" :disabled="row.orderStatus === ORDER_EXAMINE_STATUS_AUDITING" @click="handleRow(OPERATE_MAKE_FOLLOW_PLAN,row)">
@@ -111,7 +117,7 @@
         </el-form-item>
 
         <el-form-item label="客户" prop="client">
-          <el-select v-model="temp.client">
+          <el-select v-model="temp.client" filterable>
             <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"/>
           </el-select>
         </el-form-item>
@@ -174,6 +180,8 @@
     VEHICLE_INFO_OBJ,
     VEHICLE_PHOTO_OBJ,
     ORDER_STATUS_OBJ,
+    ORDER_EXAMINE_STATUS_AUDITING,
+    ORDER_EXAMINE_STATUS_OBJ,
     OUT_CONFIRM,
     SW_OUT_CONFIRM
   } from '@/constant'
@@ -200,6 +208,8 @@
         OPERATE_MAKE_FOLLOW_PLAN,
         OPERATE_EXPIRE,
         NODE_LIST_OBJ,
+        ORDER_EXAMINE_STATUS_AUDITING,
+        ORDER_EXAMINE_STATUS_OBJ,
         defaultTreeProps: {
           children: 'children',
           label: 'label',
