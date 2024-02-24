@@ -132,7 +132,7 @@
           取消
         </el-button>
 
-        <el-button type="primary" @click="handleData">
+        <el-button type="primary" @click="handleData" v-debounce>
           确认
         </el-button>
       </div>

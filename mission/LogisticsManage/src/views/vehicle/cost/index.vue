@@ -263,7 +263,7 @@
           <el-input v-model="temp.ncrBaseDay" />
         </el-form-item>
 
-        <el-form-item label="非监管仓超期天数" prop="ncrOverduePrice">
+        <el-form-item label="非监管仓超期费用/天" prop="ncrOverduePrice">
           <el-input v-model="temp.ncrOverduePrice" />
         </el-form-item>
 
@@ -283,7 +283,7 @@
           <el-input v-model="temp.bwhBaseDay" />
         </el-form-item>
 
-        <el-form-item label="监管仓超期天数" prop="bwhOverduePrice">
+        <el-form-item label="监管仓超期费用/天" prop="bwhOverduePrice">
           <el-input v-model="temp.bwhOverduePrice" />
         </el-form-item>
 
@@ -616,21 +616,7 @@ export default {
       rules: {
         vin: [{ required: true, message: '请输入车架号', trigger: 'blur' }],
         usdFee: [{ required: true, message: '请输入美元', trigger: 'blur' }],
-        exchangeRate: [{ required: true, message: '请输入汇率', trigger: 'blur' }],
-        ncrFee: [{ required: true, message: '请输入非监管仓仓储费用', trigger: 'blur' }],
-        ncrBasePrice: [{ required: true, message: '请输入非监管仓基本费用', trigger: 'blur' }],
-        ncrBaseDay: [{ required: true, message: '请输入非监管仓基本天数', trigger: 'blur' }],
-        ncrOverduePrice: [{ required: true, message: '请输入非监管仓超期天数', trigger: 'blur' }],
-        bwhFee: [{ required: true, message: '请输入监管仓仓储费用', trigger: 'blur' }],
-        bwhBasePrice: [{ required: true, message: '请输入监管仓基本费用', trigger: 'blur' }],
-        bwhBaseDay: [{ required: true, message: '请输入监管仓基本天数', trigger: 'blur' }],
-        bwhOverduePrice: [{ required: true, message: '请输入监管仓超期天数', trigger: 'blur' }],
-        declarationFee: [{ required: true, message: '请输入报关费', trigger: 'blur' }],
-        driverFee: [{ required: true, message: '请输入送车费', trigger: 'blur' }],
-        inspecteIncomeFee: [{ required: true, message: '请输入验车费', trigger: 'blur' }],
-        trimFee: [{ required: true, message: '请输入整备费', trigger: 'blur' }],
-        costTotalFee: [{ required: true, message: '请输入成本合计', trigger: 'blur' }],
-        quotationTotalFee: [{ required: true, message: '请输入应收合计', trigger: 'blur' }]
+        exchangeRate: [{ required: true, message: '请输入汇率', trigger: 'blur' }]
       }
     }
   },

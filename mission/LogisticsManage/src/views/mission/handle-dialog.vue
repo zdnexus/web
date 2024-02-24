@@ -39,12 +39,14 @@
         <h2>车辆图片</h2>
 
         <el-form-item v-for="(value,key) in VEHICLE_PHOTO_OBJ" :label="value" :prop="key">
-          <video v-if="key === 'video'" width="300" height="300" :src="vehicleInfo.vehiclePhoto[key]" controls></video>
-          <el-image v-for="img2 in vehicleInfo.vehiclePhoto.demage.split(',')"
-                    v-else-if="key ==='demage'"
+          <video v-if="key === 'video'" width="300" height="300" :src="vehicleInfo.vehiclePhoto.video" controls></video>
+
+          <el-image v-else-if="key ==='demage'"
+                    v-for="img2 in vehicleInfo.vehiclePhoto.demage && vehicleInfo.vehiclePhoto.demage.split(',')"
                     style="width: 100px; height: 100px;margin-right: 10px"
                     :src="img2"
           ></el-image>
+
           <el-image v-else
                     style="width: 100px; height: 100px"
                     :src="vehicleInfo.vehiclePhoto[key]"
@@ -137,7 +139,7 @@
         </el-form-item>
 
         <el-form-item label="公司" prop="company">
-          <el-input v-model="vehicleInfo.company":disabled="true"></el-input>
+          <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
         </el-form-item>
 
         <el-form-item label="报价" prop="quotationFee">
@@ -537,7 +539,8 @@
             'vehicleType': [{ required: true, message: '请选择车辆类型', trigger: 'change' }],
             'clientName': [{ required: true, message: '请输入客户姓名', trigger: 'blur' }],
             'mobile': [{ required: true, message: '请输入电话', trigger: 'blur' }],
-            'company': [{ required: true, message: '请输入公司名称', trigger: 'blur' }],
+            // 公司名称非必填
+            // 'company': [{ required: true, message: '请输入公司名称', trigger: 'blur' }],
             'result': [{ required: true, message: '请选择出库', trigger: 'change' }],
             'remark': [{ required: true, message: '请输入驳回备注', trigger: 'blur' }],
           }

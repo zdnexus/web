@@ -16,7 +16,7 @@
       class="image-uploader"
       drag
     >
-      <i class="el-icon-upload" />
+      <i class="el-icon-upload"/>
       <div class="el-upload__text">
         将文件拖到此处，或<em>点击上传</em>
       </div>
@@ -25,7 +25,7 @@
       <div class="image-preview-wrapper">
         <img :src="imageUrl+'?imageView/2/w/200/h/200'">
         <div class="image-preview-action">
-          <i class="el-icon-delete" @click="rmImage" />
+          <i class="el-icon-delete" @click="rmImage"/>
         </div>
       </div>
     </div>
@@ -33,109 +33,109 @@
 </template>
 
 <script>
-import { getToken } from '@/api/qiniu'
+  import { getToken } from '@/api/qiniu'
 
-export default {
-  name: 'SingleImageUpload',
-  props: {
-    value: {
-      type: String,
-      default: ''
-    },
-    multiple: {
-      type: Boolean,
-      default: false
-    },
-    disabled: {
-      type: Boolean,
-      default: false
-    }
-  },
-  data() {
-    return {
-      addFormUpload: {
-        name: '',
-        key: '',
-        token: '',
-        domainUrl: ''
+  export default {
+    name: 'SingleImageUpload',
+    props: {
+      value: {
+        type: String,
+        default: ''
       },
-      fileList: []
-    }
-  },
-  computed: {
-    imageUrl() {
-      return this.value
-    }
-  },
-  created() {
-    if (this.multiple) {
-      this.fileList = this.value.split(',').map((url) => ({
-        name: '',
-        url
-      }))
-    }
-  },
-  mounted() {
-    getToken().then(res => {
-      this.addFormUpload.token = res.data.token
-      this.addFormUpload.key = res.data.key
-      this.addFormUpload.domain = res.data.domain
-    })
-  },
-  methods: {
-    rmImage() {
-      if (!this.disabled) {
-        this.emitInput('')
+      multiple: {
+        type: Boolean,
+        default: false
+      },
+      disabled: {
+        type: Boolean,
+        default: false
       }
     },
-    emitInput(val) {
-      this.$emit('input', val)
-    },
-    beforeUpload(file) {
-      const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png') || (file.type === 'image/gif')
-      const isLt2M = file.size / 1024 / 1024 < 2
-      if (!isRightType) {
-        this.$Notice.warning({
-          title: '文件格式出错',
-          desc: '文件格式应为 jpg or png or gif.'
-        })
+    data() {
+      return {
+        addFormUpload: {
+          name: '',
+          key: '',
+          token: '',
+          domainUrl: ''
+        },
+        fileList: []
       }
-      if (!isLt2M) {
-        this.$Notice.warning({
-          title: '文件过大',
-          desc: '文件  ' + file.name + ' 超过2M.'
-        })
-      }
-      return isRightType && isLt2M
     },
-    handleChange(file) {
-      if (file.status === 'success' && file.percentage === 100) {
-        this.addFormUpload.key += '.' + file.raw.type.split('/')[1]
-        if (this.multiple) {
-          this.fileList.push({
-            name: file.name,
-            url: this.value
-          })
-          this.emitInput(this.fileList.map(file => file.url).join(','))
-        } else {
-          this.emitInput(this.value)
+    computed: {
+      imageUrl() {
+        return this.value
+      }
+    },
+    created() {
+      if (this.multiple && this.value) {
+        this.fileList = this.value.split(',').map((url) => ({
+          name: '',
+          url
+        }))
+      }
+    },
+    mounted() {
+      getToken().then(res => {
+        this.addFormUpload.token = res.data.token
+        this.addFormUpload.key = res.data.key
+        this.addFormUpload.domain = res.data.domain
+      })
+    },
+    methods: {
+      rmImage() {
+        if (!this.disabled) {
+          this.emitInput('')
         }
-        this.$uploadImageNotify()
+      },
+      emitInput(val) {
+        this.$emit('input', val)
+      },
+      beforeUpload(file) {
+        const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png') || (file.type === 'image/gif')
+        const isLt2M = file.size / 1024 / 1024 < 2
+        if (!isRightType) {
+          this.$Notice.warning({
+            title: '文件格式出错',
+            desc: '文件格式应为 jpg or png or gif.'
+          })
+        }
+        if (!isLt2M) {
+          this.$Notice.warning({
+            title: '文件过大',
+            desc: '文件  ' + file.name + ' 超过2M.'
+          })
+        }
+        return isRightType && isLt2M
+      },
+      handleChange(file) {
+        if (file.status === 'success' && file.percentage === 100) {
+          this.addFormUpload.key += '.' + file.raw.type.split('/')[1]
+          if (this.multiple) {
+            this.fileList.push({
+              name: file.name,
+              url: this.value
+            })
+            this.emitInput(this.fileList.map(file => file.url).join(','))
+          } else {
+            this.emitInput(this.value)
+          }
+          this.$uploadImageNotify()
+        }
+      },
+      handleRemove(file) {
+        if (this.multiple && this.disabled) {
+          const index = this.fileList.map(file => file.url).indexOf(file.url)
+          this.fileList.splice(index, 1)
+          this.emitInput(this.fileList.map(file => file.url).join(','))
+        }
+      },
+      handleSuccess(res) {
+        const url = this.addFormUpload.domain + '/' + res.key
+        this.value = url
       }
-    },
-    handleRemove(file) {
-      if (this.multiple && this.disabled) {
-        const index = this.fileList.map(file => file.url).indexOf(file.url)
-        this.fileList.splice(index, 1)
-        this.emitInput(this.fileList.map(file => file.url).join(','))
-      }
-    },
-    handleSuccess(res) {
-      const url = this.addFormUpload.domain + '/' + res.key
-      this.value = url
     }
   }
-}
 </script>
 
 <style lang="scss" scoped>

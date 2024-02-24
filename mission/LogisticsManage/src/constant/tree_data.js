@@ -152,7 +152,7 @@ export const TREE_DATA = [
         id: 19,
         label: '预录单审核',
         value: RECORD_CHECK,
-        options: 'servicer'
+        options: 'basedStaff'
       },
       {
         id: 21,

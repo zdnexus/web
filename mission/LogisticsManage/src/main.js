@@ -27,6 +27,17 @@ Object.keys(filters).forEach(key => {
 
 Vue.config.productionTip = false
 
+Vue.directive('debounce', (el, binding) => {
+  el.addEventListener('click', e => {
+    el.classList.add('is-disabled')
+    el.disabled = true
+    setTimeout(() => {
+      el.disabled = false
+      el.classList.remove('is-disabled')
+    }, binding.value || 3000)
+  })
+})
+
 new Vue({
   el: '#app',
   router,
