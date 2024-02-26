@@ -80,7 +80,11 @@
     RECORDCHECK,
     DEALINWAREHOUSE,
     DEALDRIVE,
-    PAGE
+    PAGE,
+    DRIVE_FOOTER,
+    RECORDCHECK_FOOTER,
+    DEALINWAREHOUSE_FOOTER,
+    DEALDRIVE_FOOTER
   } from '../../constant/index'
   
   export default {
@@ -115,8 +119,12 @@
       isDisabled() {
         return (value) => {
           if (this.temp.taskStatus === '1') return true
-          else if ([DRIVE, RECORDCHECK, DEALINWAREHOUSE, DEALDRIVE].includes(this.temp.smallLink)) {
-            return !['recordCheck', 'remark', 'rejectRemark', 'reviewRemark'].includes(value)
+          else if (this.temp.smallLink) {
+            return (this.temp.smallLink === DRIVE && !DRIVE_FOOTER.map(item => item.value).includes(value) ||
+              this.temp.smallLink === RECORDCHECK && !RECORDCHECK_FOOTER.map(item => item.value).includes(value) ||
+              this.temp.smallLink === DEALINWAREHOUSE && !DEALINWAREHOUSE_FOOTER.map(item => item.value).includes(value) ||
+              this.temp.smallLink === DEALDRIVE && !DEALDRIVE_FOOTER.map(item => item.value).includes(value)
+            )
           }
           return false
         }

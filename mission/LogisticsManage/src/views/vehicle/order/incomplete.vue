@@ -99,7 +99,7 @@
 
     <pagination v-show="total>0" :total="total" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getList"/>
 
-    <Link :visible="linkFormVisible"
+    <Link v-model="linkFormVisible"
           :disabled="true"
           :base-components="baseComponents"
           :form-data="linkData"></Link>
@@ -139,8 +139,7 @@
                  node-key="id"
                  :props="defaultTreeProps"
                  :render-content="renderContent"
-                 @check="handleNodeClick"
-        />
+                 @check="handleNodeClick"></el-tree>
       </el-form>
 
       <div slot="footer" class="dialog-footer">

@@ -82,3 +82,7 @@ export const checkOutWareHouseReq = (data) => request('/vehicle/upcomingTask/che
 export const rejectDriveInfo = (data) => request('/vehicle/upcomingTask/rejectDriveInfo', 'POST', data)
 
 export const checkRejectDriveInfo = (data) => request('/vehicle/upcomingTask/checkRejectDriveInfo', 'POST', data)
+
+export const rejectDrive = (data) => request('/vehicle/upcomingTask/rejectDrive', 'POST', data)
+
+export const drive = (data) => request('/vehicle/upcomingTask/drive', 'POST', data)

@@ -35,6 +35,8 @@ import {
   checkOutWareHouseReq,
   rejectDriveInfo,
   checkRejectDriveInfo,
+  rejectDrive,
+  drive
 } from '@/api/index'
 
 // 接车验车
@@ -159,7 +161,8 @@ const VEHICLE_PHOTO = [
   {
     label: '随车资料',
     value: 'boardData',
-    type: 'upload-image'
+    type: 'upload-image',
+    limit: 10
   },
   {
     label: '是否受损',
@@ -355,7 +358,7 @@ const SEAL_FOOTER = [
   }
 ]
 
-const DRIVE_FOOTER = [
+export const DRIVE_FOOTER = [
   {
     label: '随车照片资料',
     value: 'information',
@@ -406,11 +409,11 @@ const DRIVE_FOOTER = [
     array: [
       {
         label: '拒绝出车',
-        func: rejectOutWarehouse
+        func: rejectDrive
       },
       {
         label: '出车确认',
-        func: outWarehouse
+        func: drive
       }
     ]
   }
@@ -537,7 +540,7 @@ const ARRIVE_FOOTER = [
   }
 ]
 
-const RECORDCHECK_FOOTER = [
+export const RECORDCHECK_FOOTER = [
   {
     label: '报关资料',
     value: 'declareUrl',
@@ -577,7 +580,7 @@ const RECORDCHECK_FOOTER = [
   }
 ]
 
-const DEALINWAREHOUSE_FOOTER = [
+export const DEALINWAREHOUSE_FOOTER = [
   {
     label: '验车费用',
     value: 'inspectionFee',
@@ -641,7 +644,7 @@ const DEALOUTWAREHOUSE_FOOTER = [
   }
 ]
 
-const DEALDRIVE_FOOTER = [
+export const DEALDRIVE_FOOTER = [
   {
     label: '车辆检查核验',
     value: 'vehicleStatus',
@@ -660,7 +663,8 @@ const DEALDRIVE_FOOTER = [
   {
     label: '随车资料',
     value: 'boardData',
-    type: 'upload-image'
+    type: 'upload-image',
+    limit: 10
   },
   {
     label: '人车同框照片',
