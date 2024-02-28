@@ -605,7 +605,7 @@
                 const declareUrl = vehicleInfo.vehicleDeclare.declareUrl
                 const declareCheck = vehicleInfo.vehicleDeclare.declareCheck
                 if (declareCheck === CHECK_STATUS_PASS && !declareUrl) {
-                  this.$msgNotify('请上传报关材料')
+                  this.$warningMsg('请上传报关材料')
                 }
                 const data = {
                   vin: vehicleInfo.vin,
@@ -625,7 +625,7 @@
                 const recordUrl = vehicleInfo.vehicleDeclare.recordUrl
                 const recordCheck = vehicleInfo.vehicleDeclare.recordCheck
                 if (recordCheck === CHECK_STATUS_PASS && !recordUrl) {
-                  this.$msgNotify('请上传预录单材料')
+                  this.$warningMsg('请上传预录单材料')
                 }
                 const data = {
                   vin: vehicleInfo.vin,
@@ -644,7 +644,7 @@
                 const customUrl = vehicleInfo.vehicleDeclare.customUrl
                 const isGo = vehicleInfo.vehicleDeclare.isGo
                 if (isGo && !customUrl) {
-                  this.$msgNotify('请上传报关单材料')
+                  this.$warningMsg('请上传报关单材料')
                 }
                 const data = {
                   vin: vehicleInfo.vin,

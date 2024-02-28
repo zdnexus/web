@@ -19,7 +19,7 @@ import {
   DURATION
 } from '@/constant'
 
-Vue.prototype.$msgNotify = (message) => {
+Vue.prototype.$warningMsg = (message) => {
   Message({
     type: WARNING,
     message,
@@ -27,18 +27,19 @@ Vue.prototype.$msgNotify = (message) => {
   })
 }
 
-Vue.prototype.$checkTable = () => {
+Vue.prototype.$notifyMsg = (message) => {
   Message({
-    type: WARNING,
-    message: '请勾选列表',
+    type: SUCCESS,
+    message,
     duration: DURATION
   })
 }
 
-Vue.prototype.$uploadImageNotify = () => {
+
+Vue.prototype.$checkTable = () => {
   Message({
-    type: SUCCESS,
-    message: `${OPERATE_TYPE[OPERATE_UPLOAD]}图片成功`,
+    type: WARNING,
+    message: '请勾选列表',
     duration: DURATION
   })
 }
