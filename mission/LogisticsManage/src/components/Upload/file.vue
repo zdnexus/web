@@ -5,7 +5,7 @@
       action="https://upload-z2.qiniup.com"
       :show-file-list="multiple"
       :file-list="fileList"
-      list-type="picture"
+      list-type="text"
       :data="addFormUpload"
       :multiple="false"
       :disabled="disabled"
@@ -18,7 +18,7 @@
     >
       <i class="el-icon-upload"/>
       <div class="el-upload__text">
-        将文件拖到此处，或<em>点击上传</em>
+        将非图片文件拖到此处，或<em>点击上传</em>
       </div>
     </el-upload>
     <div v-if="!multiple && imageUrl.length > 1" class="image-preview">
@@ -28,6 +28,11 @@
           <i class="el-icon-delete" @click="rmImage"/>
         </div>
       </div>
+    </div>
+    <div class="box-bottom" v-if="imageUrl">
+      <p>
+        <a :href="imageUrl" download>点击下载文件预览</a>
+      </p>
     </div>
   </div>
 </template>
@@ -92,13 +97,13 @@
         this.$emit('input', val)
       },
       beforeUpload(file) {
-        const isRightType = (file.type === 'image/jpeg') || (file.type === 'image/png') || (file.type === 'image/gif')
+        const isRightType = (file.type !== 'image/jpeg') && (file.type !== 'image/png') || (file.type !== 'image/gif')
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isRightType) {
-          this.$warningMsg.warning('文件格式应为 jpg or png or gif.')
+          this.$warningMsg.warning('文件格式不支持图片')
         }
         if (!isLt2M) {
-          this.$warningMsg.warning('文件' + file.name + '超过2M.')
+          this.$Notice.warning('文件超过2M.')
         }
         return isRightType && isLt2M
       },
@@ -182,6 +187,15 @@
         .image-preview-action {
           opacity: 1;
         }
+      }
+    }
+
+    .box-bottom {
+      width: 100%;
+      float: left;
+
+      a {
+        color: #0a6cd6;
       }
     }
   }
