@@ -39,74 +39,71 @@
         <h2>车辆图片</h2>
 
         <el-form-item v-for="(value,key) in VEHICLE_PHOTO_OBJ" :label="value" :prop="key">
-          <video v-if="key === 'video'" width="300" height="300" :src="vehicleInfo.vehiclePhoto.video" controls></video>
+          <video v-if="key === 'video'" width="400" :src="vehicleInfo.vehiclePhoto.video" controls></video>
 
           <el-image v-else-if="key ==='demage'"
                     v-for="img2 in vehicleInfo.vehiclePhoto.demage && vehicleInfo.vehiclePhoto.demage.split(',')"
-                    style="width: 100px; height: 100px;margin-right: 10px"
+                    style="width:190px;margin-right: 10px"
                     :src="img2"
           ></el-image>
 
           <el-image v-else
-                    style="width: 100px; height: 100px"
                     :src="vehicleInfo.vehiclePhoto[key]"
+                    style="width:400px"
           ></el-image>
         </el-form-item>
 
         <el-form-item label="上传报关资料" prop="vehicleDeclare.declareUrl">
-          <Upload
-            v-model="vehicleInfo.vehicleDeclare.declareUrl"
-            :multiple="true"
-            :disabled="isDeclareCheck"
-          />
+          <Upload v-model="vehicleInfo.vehicleDeclare.declareUrl"
+                  :multiple="true"
+                  :disabled="isDeclareCheck"
+          ></Upload>
         </el-form-item>
 
         <div v-if="isDeclareCheck">
           <el-form-item label="审核报关资料" prop="vehicleDeclare.declareCheck">
             <el-select v-model="vehicleInfo.vehicleDeclare.declareCheck" placeholder="">
-              <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"/>
+              <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </el-form-item>
 
           <el-form-item v-if="vehicleInfo.vehicleDeclare.declareCheck === CHECK_STATUS_REJECT" label="驳回备注" prop="vehicleDeclare.remark">
-            <el-input v-model="vehicleInfo.vehicleDeclare.remark"/>
+            <el-input v-model="vehicleInfo.vehicleDeclare.remark"></el-input>
           </el-form-item>
         </div>
 
         <div v-if="isRecordUpload">
           <el-form-item label="上传预录单" prop="vehicleDeclare.recordUrl">
-            <Upload
-              v-model="vehicleInfo.vehicleDeclare.recordUrl"
-              :multiple="true"
-              :disabled="isRecordCheck"
-            />
+            <Upload v-model="vehicleInfo.vehicleDeclare.recordUrl"
+                    :multiple="true"
+                    :disabled="isRecordCheck"
+            ></Upload>
           </el-form-item>
         </div>
 
         <div v-if="isRecordCheck">
           <el-form-item label="审核预录单" prop="vehicleDeclare.recordCheck">
             <el-select v-model="vehicleInfo.vehicleDeclare.recordCheck" placeholder="">
-              <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"/>
+              <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
             </el-select>
           </el-form-item>
 
           <el-form-item v-if="vehicleInfo.vehicleDeclare.recordCheck === CHECK_STATUS_REJECT" label="驳回备注" prop="vehicleDeclare.remark">
-            <el-input v-model="vehicleInfo.vehicleDeclare.remark"/>
+            <el-input v-model="vehicleInfo.vehicleDeclare.remark"></el-input>
           </el-form-item>
         </div>
 
         <div v-if="isCustomCar">
           <el-form-item label="上传报关单" prop="vehicleDeclare.customUrl">
-            <Upload
-              v-model="vehicleInfo.vehicleDeclare.customUrl"
-              :multiple="true"
-            />
+            <Upload v-model="vehicleInfo.vehicleDeclare.customUrl"
+                    :multiple="true"
+            ></Upload>
           </el-form-item>
         </div>
 
         <div v-if="isCustomCar">
           <el-form-item label="是否放行" prop="vehicleDeclare.isGo">
-            <el-checkbox v-model="vehicleInfo.vehicleDeclare.isGo"/>
+            <el-checkbox v-model="vehicleInfo.vehicleDeclare.isGo"></el-checkbox>
           </el-form-item>
         </div>
       </el-form>
@@ -155,7 +152,7 @@
         </el-form-item>
 
         <el-form-item label="非监管仓仓储费用凭证" prop="ncrBillVoucher">
-          <Upload v-model="vehicleInfo.ncrBillVoucher"/>
+          <Upload v-model="vehicleInfo.ncrBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="非监管仓仓储费用" prop="ncrFee">
@@ -171,59 +168,59 @@
         </el-form-item>
 
         <el-form-item label="非监管仓超期天数" prop="ncrOverduePrice">
-          <el-input v-model="vehicleInfo.ncrOverduePrice"/>
+          <el-input v-model="vehicleInfo.ncrOverduePrice"></el-input>
         </el-form-item>
 
         <el-form-item label="监管仓仓储费用凭证" prop="bwhBillVoucher">
-          <Upload v-model="vehicleInfo.bwhBillVoucher"/>
+          <Upload v-model="vehicleInfo.bwhBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="监管仓仓储费用" prop="bwhFee">
-          <el-input v-model="vehicleInfo.bwhFee"/>
+          <el-input v-model="vehicleInfo.bwhFee"></el-input>
         </el-form-item>
 
         <el-form-item label="监管仓基本费用" prop="bwhBasePrice">
-          <el-input v-model="vehicleInfo.bwhBasePrice"/>
+          <el-input v-model="vehicleInfo.bwhBasePrice"></el-input>
         </el-form-item>
 
         <el-form-item label="监管仓基本天数" prop="bwhBaseDay">
-          <el-input v-model="vehicleInfo.bwhBaseDay"/>
+          <el-input v-model="vehicleInfo.bwhBaseDay"></el-input>
         </el-form-item>
 
         <el-form-item label="监管仓超期天数" prop="bwhOverduePrice">
-          <el-input v-model="vehicleInfo.bwhOverduePrice"/>
+          <el-input v-model="vehicleInfo.bwhOverduePrice"></el-input>
         </el-form-item>
 
         <el-form-item label="报关费凭证" prop="declarationBillVoucher">
-          <Upload v-model="vehicleInfo.declarationBillVoucher"/>
+          <Upload v-model="vehicleInfo.declarationBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="报关费" prop="declarationFee">
-          <el-input v-model="vehicleInfo.declarationFee"/>
+          <el-input v-model="vehicleInfo.declarationFee"></el-input>
         </el-form-item>
 
         <el-form-item label="送车费凭证" prop="driverBillVoucher">
-          <Upload v-model="vehicleInfo.driverBillVoucher"/>
+          <Upload v-model="vehicleInfo.driverBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="送车费" prop="driverFee">
-          <el-input v-model="vehicleInfo.driverFee"/>
+          <el-input v-model="vehicleInfo.driverFee"></el-input>
         </el-form-item>
 
         <el-form-item label="验车费凭证" prop="inspectebwhBillVoucher">
-          <Upload v-model="vehicleInfo.inspectebwhBillVoucher"/>
+          <Upload v-model="vehicleInfo.inspectebwhBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="验车费" prop="inspecteIncomeFee">
-          <el-input v-model="vehicleInfo.inspecteIncomeFee"/>
+          <el-input v-model="vehicleInfo.inspecteIncomeFee"></el-input>
         </el-form-item>
 
         <el-form-item label="整备费凭证" prop="trimBillVoucher">
-          <Upload v-model="vehicleInfo.trimBillVoucher"/>
+          <Upload v-model="vehicleInfo.trimBillVoucher"></Upload>
         </el-form-item>
 
         <el-form-item label="整备费" prop="trimFee">
-          <el-input v-model="vehicleInfo.trimFee"/>
+          <el-input v-model="vehicleInfo.trimFee"></el-input>
         </el-form-item>
 
         <h2>境外费用列表</h2>
@@ -311,25 +308,25 @@
         </el-table>
 
         <el-form-item label="成本合计" prop="costTotalFee" style="margin-top: 20px">
-          <el-input v-model="vehicleInfo.costTotalFee"/>
+          <el-input v-model="vehicleInfo.costTotalFee"></el-input>
         </el-form-item>
 
         <el-form-item label="应收合计" prop="quotationTotalFee">
-          <el-input v-model="vehicleInfo.quotationTotalFee"/>
+          <el-input v-model="vehicleInfo.quotationTotalFee"></el-input>
         </el-form-item>
 
         <el-form-item label="利润合计" prop="costTotalFee">
-          <el-input v-model="vehicleInfo.costTotalFee"/>
+          <el-input v-model="vehicleInfo.costTotalFee"></el-input>
         </el-form-item>
 
         <el-form-item label="审批" prop="result">
           <el-select v-model="vehicleInfo.result" placeholder="">
-            <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"/>
+            <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item v-if="vehicleInfo.result === CHECK_STATUS_REJECT" label="驳回备注" prop="remark">
-          <el-input v-model="vehicleInfo.remark"/>
+          <el-input v-model="vehicleInfo.remark"></el-input>
         </el-form-item>
       </el-form>
 
@@ -338,122 +335,128 @@
       </div>
     </div>
 
-    <el-form v-if="isNumsWarn" ref="dataForm" :rules="rules.isNumsWarn" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px"
-             style="width: 550px">
-      <el-form-item label="车架号" prop="vin">
-        <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
-      </el-form-item>
+    <div v-if="isNumsWarn">
+      <el-form ref="dataForm" :rules="rules.isNumsWarn" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px"
+               style="width: 550px">
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="类型" prop="vehicleType">
-        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
-          <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-form-item>
+        <el-form-item label="类型" prop="vehicleType">
+          <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
-      </el-form-item>
+        <el-form-item label="客户姓名" prop="clientName">
+          <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
-      </el-form-item>
+        <el-form-item label="电话" prop="mobile">
+          <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
-      </el-form-item>
+        <el-form-item label="公司" prop="company">
+          <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="出库" prop="result">
-        <el-select v-model="vehicleInfo.result" placeholder="">
-          <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-form-item>
+        <el-form-item label="出库" prop="result">
+          <el-select v-model="vehicleInfo.result" placeholder="">
+            <el-option v-for="item in CHECK_STATUS" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item v-if="vehicleInfo.result === CHECK_STATUS_REJECT" label="驳回备注" prop="remark">
-        <el-input v-model="vehicleInfo.remark"></el-input>
-      </el-form-item>
-    </el-form>
+        <el-form-item v-if="vehicleInfo.result === CHECK_STATUS_REJECT" label="驳回备注" prop="remark">
+          <el-input v-model="vehicleInfo.remark"></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
 
     <div v-if="isNumsWarn && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">同意</el-button>
     </div>
 
-    <el-form v-if="isTrack" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="100px" style="width: 500px">
-      <el-form-item label="车架号" prop="vin">
-        <el-input v-model="vehicleInfo.vin" :disabled="true"/>
-      </el-form-item>
+    <div v-if="isTrack">
+      <el-form ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="100px" style="width: 500px">
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="类型" prop="type">
-        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
-          <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-form-item>
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName" :disabled="true"/>
-      </el-form-item>
+        <el-form-item label="客户姓名" prop="clientName">
+          <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile" :disabled="true"/>
-      </el-form-item>
+        <el-form-item label="电话" prop="mobile">
+          <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company" :disabled="true"/>
-      </el-form-item>
+        <el-form-item label="公司" prop="company">
+          <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="途径地列表" prop="vehicleTrackRecordList">
-        <el-table :key="listKey" :data="vehicleInfo.vehicleTrackRecordList" border fit highlight-current-row>
-          <el-table-column label="车架号" prop="vin" align="center" width="133">
-            <template slot-scope="{row}">
-              <span>{{ row.vin }}</span>
-            </template>
-          </el-table-column>
+        <el-form-item label="途径地列表" prop="vehicleTrackRecordList">
+          <el-table :key="listKey" :data="vehicleInfo.vehicleTrackRecordList" border fit highlight-current-row>
+            <el-table-column label="车架号" prop="vin" align="center" width="133">
+              <template slot-scope="{row}">
+                <span>{{ row.vin }}</span>
+              </template>
+            </el-table-column>
 
-          <el-table-column label="到达地" prop="trackPlace" align="center" width="133">
-            <template slot-scope="{row}">
-              <span>{{ row.trackPlace }}</span>
-            </template>
-          </el-table-column>
+            <el-table-column label="到达地" prop="trackPlace" align="center" width="133">
+              <template slot-scope="{row}">
+                <span>{{ row.trackPlace }}</span>
+              </template>
+            </el-table-column>
 
-          <el-table-column label="更新时间" prop="updateTime" align="center" width="133">
-            <template slot-scope="{row}">
-              <span>{{ row.updateTime }}</span>
-            </template>
-          </el-table-column>
-        </el-table>
-      </el-form-item>
+            <el-table-column label="更新时间" prop="updateTime" align="center" width="133">
+              <template slot-scope="{row}">
+                <span>{{ row.updateTime }}</span>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-form-item>
 
-      <el-form-item label="途径地" prop="trackPlace">
-        <el-input v-model="vehicleInfo.trackPlace"/>
-      </el-form-item>
-    </el-form>
+        <el-form-item label="途径地" prop="trackPlace">
+          <el-input v-model="vehicleInfo.trackPlace"></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
 
     <div v-if="isTrack && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">运踪更新</el-button>
     </div>
 
-    <el-form v-if="isArrive" ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
-      <el-form-item label="车架号" prop="vin">
-        <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
-      </el-form-item>
+    <div v-if="isArrive">
+      <el-form ref="dataForm" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
+        <el-form-item label="车架号" prop="vin">
+          <el-input v-model="vehicleInfo.vin" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="类型" prop="type">
-        <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
-          <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
-        </el-select>
-      </el-form-item>
+        <el-form-item label="类型" prop="type">
+          <el-select v-model="vehicleInfo.vehicleType" class="filter-item" :disabled="true">
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
+          </el-select>
+        </el-form-item>
 
-      <el-form-item label="客户姓名" prop="clientName">
-        <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
-      </el-form-item>
+        <el-form-item label="客户姓名" prop="clientName">
+          <el-input v-model="vehicleInfo.clientName" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="电话" prop="mobile">
-        <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
-      </el-form-item>
+        <el-form-item label="电话" prop="mobile">
+          <el-input v-model="vehicleInfo.mobile" :disabled="true"></el-input>
+        </el-form-item>
 
-      <el-form-item label="公司" prop="company">
-        <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
-      </el-form-item>
-    </el-form>
+        <el-form-item label="公司" prop="company">
+          <el-input v-model="vehicleInfo.company" :disabled="true"></el-input>
+        </el-form-item>
+      </el-form>
+    </div>
 
     <div v-if="isArrive && !disabled" slot="footer" class="dialog-footer">
       <el-button type="primary" @click="handleData(vehicleInfo)">确认到达</el-button>
@@ -462,7 +465,7 @@
 </template>
 
 <script>
-  import Upload from '@/components/Upload/SingleImage'
+  import Upload from '@/components/Upload'
   import { parameterVehicleTypeList } from '@/api/vehicle/parameter/vehicle-type'
   import {
     uploadVehicleDeclare,

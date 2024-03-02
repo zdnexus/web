@@ -365,8 +365,3 @@ export function listToObj(list) {
   })
   return o
 }
-
-export function isSupportUploadFileType(file) {
-  const typeName = file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase()
-  return ['pdf', 'xlsx', 'xls', 'csv', 'doc', 'docx', 'zip', 'rar'].includes(typeName)
-}

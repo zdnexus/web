@@ -137,7 +137,7 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import Upload from '@/components/Upload/SingleImage'
+import Upload from '@/components/Upload'
 import { vehicleList, getVehiclePhoto } from '@/api/vehicle/vehicle'
 import { OPERATE_TYPE, DAMAGE_TYPE_LIST_OBJ, VEHICLE_PHOTO_OBJ } from '@/constant'
 

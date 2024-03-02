@@ -1,38 +1,30 @@
 <template>
   <div class="upload-container">
-    <el-upload
-      v-if="multiple || (!multiple && imageUrl.length === 0)"
-      action="https://upload-z2.qiniup.com"
-      :show-file-list="multiple"
-      :file-list="fileList"
-      list-type="text"
-      :data="addFormUpload"
-      :multiple="false"
-      :disabled="disabled"
-      :before-upload="beforeUpload"
-      :on-change="handleChange"
-      :on-success="handleSuccess"
-      :on-remove="handleRemove"
-      class="image-uploader"
-      drag
-    >
-      <i class="el-icon-upload"/>
+    <el-upload v-if="multiple || (!multiple && imageUrl.length === 0)"
+               action="https://upload-z2.qiniup.com"
+               :show-file-list="multiple"
+               :file-list="fileList"
+               :data="addFormUpload"
+               :multiple="false"
+               :disabled="disabled"
+               :before-upload="beforeUpload"
+               :on-change="handleChange"
+               :on-success="handleSuccess"
+               :on-remove="handleRemove"
+               class="image-uploader"
+               drag>
+      <i class="el-icon-upload"></i>
       <div class="el-upload__text">
-        将非图片文件拖到此处，或<em>点击上传</em>
+        将文件拖到此处，或<em>点击上传</em>
       </div>
     </el-upload>
     <div v-if="!multiple && imageUrl.length > 1" class="image-preview">
       <div class="image-preview-wrapper">
         <img :src="imageUrl+'?imageView/2/w/200/h/200'">
         <div class="image-preview-action">
-          <i class="el-icon-delete" @click="rmImage"/>
+          <i class="el-icon-delete" @click="handleRemove"></i>
         </div>
       </div>
-    </div>
-    <div class="box-bottom" v-if="imageUrl">
-      <p>
-        <a :href="imageUrl" download>点击下载文件预览</a>
-      </p>
     </div>
   </div>
 </template>
@@ -58,6 +50,7 @@
     },
     data() {
       return {
+        supportFileTypeList: ['jpg', 'jpeg', 'png', 'pdf', 'xlsx', 'xls', 'doc', 'docx', 'zip', 'rar'],
         addFormUpload: {
           name: '',
           key: '',
@@ -75,40 +68,38 @@
     created() {
       if (this.multiple && this.value) {
         this.fileList = this.value.split(',').map((url) => ({
-          name: '',
+          name: url.slice(url.lastIndexOf('/') + 1),
           url
         }))
+        this.$nextTick(() => {
+          this.clickDomOpenUrl()
+        })
       }
     },
-    mounted() {
-      getToken().then(res => {
-        this.addFormUpload.token = res.data.token
-        this.addFormUpload.key = res.data.key
-        this.addFormUpload.domain = res.data.domain
-      })
-    },
     methods: {
-      rmImage() {
-        if (!this.disabled) {
-          this.emitInput('')
-        }
-      },
       emitInput(val) {
         this.$emit('input', val)
       },
-      beforeUpload(file) {
-        const isRightType = (file.type !== 'image/jpeg') && (file.type !== 'image/png') || (file.type !== 'image/gif')
+      async beforeUpload(file) {
+        const fileType = file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase()
+        const isRightType = this.supportFileTypeList.includes(fileType)
         const isLt2M = file.size / 1024 / 1024 < 2
         if (!isRightType) {
-          this.$warningMsg.warning('文件格式不支持图片')
+          this.$warningMsg.warning('文件格式应为' + this.supportFileTypeList.join(','))
+          return false
         }
         if (!isLt2M) {
-          this.$Notice.warning('文件超过2M.')
+          this.$warningMsg.warning('文件' + file.name + '超过2M.')
+          return false
         }
-        return isRightType && isLt2M
+        const res = await getToken()
+        this.addFormUpload.token = res.data.token
+        this.addFormUpload.key = `${res.data.key}.${fileType}`
+        this.addFormUpload.domain = res.data.domain
+        return true
       },
       handleChange(file) {
-        if (file.status === 'success' && file.percentage === 100) {
+        if (file.percentage === 100 && file.status === 'success') {
           this.addFormUpload.key += '.' + file.raw.type.split('/')[1]
           if (this.multiple) {
             this.fileList.push({
@@ -120,6 +111,9 @@
             this.emitInput(this.value)
           }
           this.$notifyMsg('上传文件成功')
+          this.$nextTick(() => {
+            this.clickDomOpenUrl()
+          })
         }
       },
       handleRemove(file) {
@@ -127,11 +121,25 @@
           const index = this.fileList.map(file => file.url).indexOf(file.url)
           this.fileList.splice(index, 1)
           this.emitInput(this.fileList.map(file => file.url).join(','))
+        } else {
+          this.emitInput('')
         }
       },
       handleSuccess(res) {
         const url = this.addFormUpload.domain + '/' + res.key
         this.value = url
+      },
+      clickDomOpenUrl() {
+        const _this = this
+        const doms = document.querySelectorAll('li.is-success .el-upload-list__item-name')
+        doms.forEach((dom, index) => {
+          dom.addEventListener('click', () => {
+            const url = _this.fileList[index].url
+            const type = url.slice(url.lastIndexOf('.') + 1)
+            const openUrl = ['xlsx', 'xls', 'doc', 'docx'].includes(type) ? `https://view.officeapps.live.com/op/view.aspx?src=${encodeURIComponent(url)}` : url
+            window.open(openUrl, '_blank')
+          })
+        })
       }
     }
   }
@@ -187,15 +195,6 @@
         .image-preview-action {
           opacity: 1;
         }
-      }
-    }
-
-    .box-bottom {
-      width: 100%;
-      float: left;
-
-      a {
-        color: #0a6cd6;
       }
     }
   }

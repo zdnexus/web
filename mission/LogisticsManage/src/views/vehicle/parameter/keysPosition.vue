@@ -120,7 +120,7 @@
 
 <script>
 import Pagination from '@/components/Pagination'
-import Upload from '@/components/Upload/SingleImage'
+import Upload from '@/components/Upload'
 import {
   parameterkeysPositionList,
   createParameterkeysPosition,
