@@ -76,7 +76,7 @@
 
     <HandleDialog v-model="dialogFormVisible"
                   :vehicle-info="vehicleInfo"
-                  :disabled="true"/>
+                  @isRequest="isRequest"/>
   </div>
 </template>
 
@@ -135,13 +135,6 @@
         vehicleInfo: undefined
       }
     },
-    watch: {
-      dialogFormVisible(newVal, oldVal) {
-        if (!newVal && newVal !== oldVal) {
-          this.handleFilter()
-        }
-      }
-    },
     mounted() {
       this.getData()
     },
@@ -157,6 +150,9 @@
       },
       handleFilter() {
         this.listQuery.pageNum = PAGE_NUM
+        this.getData()
+      },
+      isRequest() {
         this.getData()
       },
       handleRow(type, row) {
