@@ -6,12 +6,12 @@ import reportWebVitals from './reportWebVitals'
 // import App from './app'
 // import App from './hookTest'
 // import App from './renderCount'
-// import App from './kyleHook/useState'
+import App from './kyleHook/useState'
 // import App from './kyleHook/useEffect'
 // import App from './kyleHook/useRef'
 // import App from './kyleHook/useMemo'
 // import App from './kyleHook/useContext/demo1'
-import App from './kyleHook/useContext/demo2'
+// import App from './kyleHook/useContext/demo2'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(

@@ -107,18 +107,18 @@
     <el-dialog :title="OPERATE_TYPE[dialogStatus]" :visible.sync="dialogFormVisible">
       <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="100px" style="width: 500px">
         <el-form-item label="车架号" prop="vin">
-          <el-input v-model="temp.vin" :disabled="this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN"/>
+          <el-input v-model="temp.vin" :disabled="this.dialogStatus === OPERATE_MAKE_FOLLOW_PLAN"></el-input>
         </el-form-item>
 
         <el-form-item label="发货车型" prop="vehicleType">
           <el-select v-model="temp.vehicleType">
-            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"/>
+            <el-option v-for="item in vehicleTypeList" :key="item.value" :label="item.label" :value="item.value"></el-option>
           </el-select>
         </el-form-item>
 
         <el-form-item label="客户" prop="client">
           <el-select v-model="temp.client" filterable>
-            <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"/>
+            <el-option v-for="item in clientList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
@@ -128,7 +128,7 @@
 
         <el-form-item label="服务项" prop="service">
           <el-select v-model="temp.service">
-            <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"/>
+            <el-option v-for="item in serviceList" :key="item.value" :label="item.label" :value="item"></el-option>
           </el-select>
         </el-form-item>
 
@@ -450,18 +450,19 @@
                     if (this.temp.orderSmallLinkItem[t2.value] === '0') {
                       this.disabledTemp[t2.value] = true
                       nodes.push(t2.id)
+                    } else {
+                      this.disabledTemp[t2.value] = false
                     }
                   }
                 })
               })
               orderAllocationList().then(res => {
                 this.allocationList = res.data.user
-                this.dialogFormVisible = true
-
-                this.$nextTick(() => {
-                  this.$refs.dataForm.clearValidate()
-                  this.$refs.dataTree.setCheckedKeys(nodes)
-                })
+              })
+              this.dialogFormVisible = true
+              this.$nextTick(() => {
+                this.$refs.dataForm.clearValidate()
+                this.$refs.dataTree.setCheckedKeys(nodes)
               })
             })
             break

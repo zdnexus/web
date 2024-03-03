@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 
 const App = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(0)
   
   return (
@@ -14,6 +16,8 @@ const App = () => {
 }
 
 const App2 = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(0)
   
   const plus = () => {
@@ -33,6 +37,8 @@ const App2 = () => {
 }
 
 const App3 = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(0)
   
   const plus = () => {
@@ -52,6 +58,8 @@ const App3 = () => {
 }
 
 const App4 = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(0)
   
   const plus = () => {
@@ -74,6 +82,8 @@ const App4 = () => {
 
 
 const App5 = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(0)
   
   const plus = () => {
@@ -95,6 +105,8 @@ const App5 = () => {
 }
 
 const App6 = () => {
+  console.log('app render')
+  
   const [obj, setObj] = useState({
     count: 0,
     theme: 'blue'
@@ -132,6 +144,8 @@ const countInitial = () => {
   return 0
 }
 const App7 = () => {
+  console.log('app render')
+  
   const [count, setCount] = useState(() => {
     console.log('countInitial')
     return 0
@@ -154,5 +168,6 @@ const App7 = () => {
     </div>
   )
 }
+
 
 export default App
