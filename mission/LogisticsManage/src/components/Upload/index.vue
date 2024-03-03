@@ -83,24 +83,25 @@
       async beforeUpload(file) {
         const fileType = file.name.slice(file.name.lastIndexOf('.') + 1).toLowerCase()
         const isRightType = this.supportFileTypeList.includes(fileType)
-        const isLt2M = file.size / 1024 / 1024 < 2
         if (!isRightType) {
           this.$warningMsg.warning('文件格式应为' + this.supportFileTypeList.join(','))
           return false
         }
+
+        const isLt2M = file.size / 1024 / 1024 < 2
         if (!isLt2M) {
           this.$warningMsg.warning('文件' + file.name + '超过2M.')
           return false
         }
+
         const res = await getToken()
         this.addFormUpload.token = res.data.token
-        this.addFormUpload.key = `${res.data.key}.${fileType}`
+        this.addFormUpload.key = `${file.name}`
         this.addFormUpload.domain = res.data.domain
         return true
       },
       handleChange(file) {
         if (file.percentage === 100 && file.status === 'success') {
-          this.addFormUpload.key += '.' + file.raw.type.split('/')[1]
           if (this.multiple) {
             this.fileList.push({
               name: file.name,

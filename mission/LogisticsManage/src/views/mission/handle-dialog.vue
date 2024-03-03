@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="vehicleInfo.smallLinkConvert" :visible.sync="value">
+  <el-dialog :title="vehicleInfo.smallLinkConvert" :visible.sync="value" :before-close="handleCancel">
     <div v-if="isDeclareUpload">
       <el-form ref="dataForm" :rules="rules" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
         <el-form-item label="车架号" prop="vin">
@@ -109,7 +109,7 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer" v-if="!disabled">
-        <el-button @click="value = false">取消</el-button>
+        <el-button @click="handleCancel">取消</el-button>
 
         <el-button type="primary" @click="handleData(vehicleInfo)">确认</el-button>
       </div>
@@ -554,10 +554,6 @@
       value: function (newVal, oldVal) {
         if (newVal && newVal !== oldVal) {
           this.getData()
-        } else if (!newVal && newVal !== oldVal) {
-          this.$emit('input', false)
-          this.$emit('notRequest', true)
-          this.$refs.dataForm.clearValidate()
         }
       }
     },
@@ -763,6 +759,12 @@
             }
           }
         })
+      },
+      handleCancel() {
+        console.log('handleCancel')
+        this.$emit('input', false)
+        this.$emit('notRequest', true)
+        this.$refs.dataForm.clearValidate()
       }
     }
   }
