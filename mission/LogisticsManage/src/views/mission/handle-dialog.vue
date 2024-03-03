@@ -1,5 +1,5 @@
 <template>
-  <el-dialog :title="vehicleInfo.smallLinkConvert" :visible.sync="value" :before-close="handleCancel">
+  <el-dialog :title="vehicleInfo.smallLinkConvert" :visible.sync="value" @close="handleClose">
     <div v-if="isDeclareUpload">
       <el-form ref="dataForm" :rules="rules" :model="vehicleInfo" :disabled="disabled" label-position="left" label-width="150px" style="width: 550px">
         <el-form-item label="车架号" prop="vin">
@@ -109,7 +109,7 @@
       </el-form>
 
       <div slot="footer" class="dialog-footer" v-if="!disabled">
-        <el-button @click="handleCancel">取消</el-button>
+        <el-button @click="handleClose">取消</el-button>
 
         <el-button type="primary" @click="handleData(vehicleInfo)">确认</el-button>
       </div>
@@ -613,9 +613,9 @@
                   declareUrl,
                   declareCheck
                 }
-                uploadVehicleDeclare(data).then((res) => {
+                uploadVehicleDeclare(data).then(() => {
                   this.$handleTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -633,9 +633,9 @@
                   recordUrl,
                   recordCheck
                 }
-                uploadVehicleRecord(data).then((res) => {
+                uploadVehicleRecord(data).then(() => {
                   this.$handleTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -652,9 +652,9 @@
                   customUrl,
                   isGo
                 }
-                uploadCustomCar(data).then((res) => {
+                uploadCustomCar(data).then(() => {
                   this.$handleTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -666,9 +666,9 @@
                   result: vehicleInfo.result,
                   remark: vehicleInfo.remark
                 }
-                addDmFaTask(data).then((res) => {
+                addDmFaTask(data).then(() => {
                   this.$approveTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -680,9 +680,9 @@
                   result: vehicleInfo.result,
                   remark: vehicleInfo.remark
                 }
-                addFmFaTask(data).then((res) => {
+                addFmFaTask(data).then(() => {
                   this.$approveTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -694,9 +694,9 @@
                   result: vehicleInfo.result,
                   remark: vehicleInfo.remark
                 }
-                addCmFaTask(data).then((res) => {
+                addCmFaTask(data).then(() => {
                   this.$approveTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -708,9 +708,9 @@
                   result: vehicleInfo.result,
                   remark: vehicleInfo.remark
                 }
-                addCmNumberTask(data).then((res) => {
+                addCmNumberTask(data).then(() => {
                   this.$approveTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -722,9 +722,9 @@
                   result: vehicleInfo.result,
                   remark: vehicleInfo.remark
                 }
-                passNumberTask(data).then((res) => {
+                passNumberTask(data).then(() => {
+                  this.handleClose(true)
                   this.$approveTempNotify()
-                  this.$emit('input', false)
                 })
               }
                 break
@@ -734,13 +734,12 @@
                   orderId: vehicleInfo.orderId,
                   trackPlace: vehicleInfo.trackPlace
                 }
-                trackRecord(data).then((res) => {
+                trackRecord(data).then(() => {
                   trackRecordInfo(vehicleInfo.vin).then((res) => {
                     this.vehicleInfo = {
                       ...vehicleInfo,
                       ...res.data
                     }
-                    this.$emit('input', false)
                     this.$updateTempNotify()
                   })
                 })
@@ -750,9 +749,9 @@
                 const data = {
                   taskId: vehicleInfo.id
                 }
-                arrive(data).then((res) => {
+                arrive(data).then(() => {
                   this.$updateTempNotify()
-                  this.$emit('input', false)
+                  this.handleClose(true)
                 })
               }
                 break
@@ -760,11 +759,13 @@
           }
         })
       },
-      handleCancel() {
-        console.log('handleCancel')
+      handleClose(isRequest) {
+        console.log('handleClose', isRequest)
         this.$emit('input', false)
-        this.$emit('notRequest', true)
-        this.$refs.dataForm.clearValidate()
+        if (isRequest) {
+          this.$emit('isRequest')
+          this.$refs.dataForm.clearValidate()
+        }
       }
     }
   }

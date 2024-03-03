@@ -75,8 +75,8 @@
     <Pagination v-show="listTotal > 0" :total="listTotal" :page.sync="listQuery.pageNum" :limit.sync="listQuery.pageSize" @pagination="getData"/>
 
     <HandleDialog v-model="dialogFormVisible"
-                  :notRequest="notRequest"
-                  :vehicle-info="vehicleInfo"/>
+                  :vehicle-info="vehicleInfo"
+                  @isRequest="isRequest"/>
   </div>
 </template>
 
@@ -131,16 +131,8 @@
         list: undefined,
         listTotal: PAGE_TOTAL,
         dialogFormVisible: false,
-        notRequest: false,
         dialogStatus: undefined,
         vehicleInfo: undefined
-      }
-    },
-    watch: {
-      dialogFormVisible(newVal, oldVal) {
-        if (!newVal && newVal !== oldVal && this.notRequest) {
-          this.handleFilter()
-        }
       }
     },
     mounted() {
@@ -158,6 +150,9 @@
       },
       handleFilter() {
         this.listQuery.pageNum = PAGE_NUM
+        this.getData()
+      },
+      isRequest() {
         this.getData()
       },
       handleRow(type, row) {
