@@ -1,4 +1,2 @@
 /.idea
-/node_modules
-/watch/web-dev-simplified/react-hook/node_modules
-/webpack/node_modules
+/node_modules/
