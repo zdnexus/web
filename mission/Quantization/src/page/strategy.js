@@ -6,7 +6,7 @@ import { timestampToString, getDayOfWeek } from '@/utils'
 
 const columns = [
   {
-    title: '代号',
+    title: '代码',
     dataIndex: 'code',
     key: 'code',
     render: (text) => <a href={`https://www.xueqiu.com/S/${text.replace('.', '')}`} target="_blank">{text}</a>,
