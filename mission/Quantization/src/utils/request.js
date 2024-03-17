@@ -1,7 +1,7 @@
 // import { message } from 'antd'
 import axios from 'axios'
 
-import { BaseURL } from '../constant'
+import { BaseURL } from '@/constant'
 
 // const [messageApi] = message.useMessage()
 
@@ -57,9 +57,9 @@ service.interceptors.response.use(
     // }
   },
   error => {
-    console.log('err' + error) // for debug
+    // console.log('err' + error) // for debug
     // messageApi.info(error.msg)
-    return Promise.reject(error)
+    // return Promise.reject(error)
   }
 )
 

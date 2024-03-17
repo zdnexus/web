@@ -9,7 +9,9 @@ const pathResolve = pathUrl => path.join(__dirname, pathUrl)
 module.exports = {
   webpack: {
     configure: (webpackConfig, { env, paths }) => {
-      webpackConfig.output.publicPath = './'
+      if (env === 'production') {
+        webpackConfig.output.publicPath = './'
+      }
       return webpackConfig
     },
     alias: {

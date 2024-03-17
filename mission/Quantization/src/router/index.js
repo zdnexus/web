@@ -3,11 +3,11 @@
  * Url :
  */
 import { createBrowserRouter } from 'react-router-dom'
-import Strategy from '../page/strategy'
+import Strategy from '@/page/strategy'
 
 const router = createBrowserRouter([
   {
-    path: 'strategy',
+    path: '/',
     element: <Strategy/>,
   },
 ])

@@ -1,43 +1,43 @@
 import React, { useState, useEffect } from 'react'
 import { Select, Table } from 'antd'
-import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList } from '../api'
-import { options } from '../constant'
-import { timestampToString, getDayOfWeek } from '../utils'
+import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList } from '@/api'
+import { options } from '@/constant'
+import { timestampToString, getDayOfWeek } from '@/utils'
 
 const columns = [
   {
-    title: 'Code',
+    title: '代号',
     dataIndex: 'code',
     key: 'code',
     render: (text) => <a href={`https://www.xueqiu.com/S/${text.replace('.', '')}`} target="_blank">{text}</a>,
     width: 100
   },
   {
-    title: 'Name',
+    title: '名称',
     dataIndex: 'name',
     key: 'name',
     width: 100
   },
   {
-    title: 'PctChg',
+    title: '涨幅',
     dataIndex: 'pctChg',
     key: 'pctChg',
     width: 100
   },
   {
-    title: 'Close',
+    title: '收盘价',
     dataIndex: 'close',
     key: 'close',
     width: 100
   },
   {
-    title: 'Category',
+    title: '类型',
     dataIndex: 'category',
     key: 'category',
     width: 200
   },
   {
-    title: 'Introduce',
+    title: '介绍',
     dataIndex: 'introduce',
     key: 'introduce',
   }
@@ -66,7 +66,10 @@ const App = () => {
     const reqData = () => {
       tradeDateList().then(res => {
         const dateNow = timestampToString()
-        const data = res.data.filter(item => item <= dateNow).sort((a, b) => (new Date(b) - new Date(a))).map(item => ({ label: `${item} ${getDayOfWeek(item)}`, value: item }))
+        const data = res ? res.data.filter(item => item <= dateNow).sort((a, b) => (new Date(b) - new Date(a))).map(item => ({
+          label: `${item} ${getDayOfWeek(item)}`,
+          value: item
+        })) : []
         setDateList(data)
       })
     }
@@ -94,7 +97,7 @@ const App = () => {
           break
       }
       func(date).then(res => {
-        const data = res.data.map((item, index) => ({
+        const data = res ? res.data.map((item, index) => ({
           key: index,
           code: item.code,
           name: item.name,
@@ -102,7 +105,7 @@ const App = () => {
           close: item.close,
           category: item.category.join('/'),
           introduce: item.introduce
-        }))
+        })) : []
         setTableData(data)
       })
     }
