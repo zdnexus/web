@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Select, Table } from 'antd'
+import { Select, Table, Input } from 'antd'
 import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList } from '@/api'
 import { options } from '@/constant'
 import { timestampToString, getDayOfWeek } from '@/utils'
@@ -47,12 +47,13 @@ const strategyList = [
   'fullUp'
 ]
 
+let cacheList = []
+
 const App = () => {
-  const [tableData, setTableData] = useState()
+  const [tableData, setTableData] = useState([])
   const [strategy, setStrategy] = useState()
   const [dateList, setDateList] = useState([])
   const [date, setDate] = useState()
-  
   
   const handleChangeStrategy = (value) => {
     setStrategy(value)
@@ -60,6 +61,24 @@ const App = () => {
   
   const handleChangeDate = (value) => {
     setDate(value)
+  }
+  
+  const handleChangeName = (e) => {
+    if (e.target.value) {
+      const list = cacheList.filter(item => item.name.indexOf(e.target.value) >= 0)
+      setTableData(list)
+    } else {
+      setTableData(cacheList)
+    }
+  }
+  
+  const handleChangePrice = (e) => {
+    if (e.target.value) {
+      const list = cacheList.filter(item => item.close <= e.target.value)
+      setTableData(list)
+    } else {
+      setTableData(cacheList)
+    }
   }
   
   useEffect(() => {
@@ -106,6 +125,7 @@ const App = () => {
           category: item.category.join('/'),
           introduce: item.introduce
         })) : []
+        cacheList = data
         setTableData(data)
       })
     }
@@ -114,17 +134,19 @@ const App = () => {
   return (
     <>
       <Select
-        placeholder="日期"
+        placeholder="选择日期"
         style={{ width: 200 }}
         onChange={handleChangeDate}
         options={dateList}
       />
       <Select
-        placeholder="策略"
+        placeholder="选择策略"
         style={{ width: 200 }}
         onChange={handleChangeStrategy}
         options={options}
       />
+      <Input style={{ width: 200 }} placeholder="搜索名称" onChange={handleChangeName}/>
+      <Input style={{ width: 200 }} placeholder="搜索低于价格" onChange={handleChangePrice}/>
       {
         strategyList.map(item => (
           <Table key={item} columns={columns} dataSource={tableData}/>
