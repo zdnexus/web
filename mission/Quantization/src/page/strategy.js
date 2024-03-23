@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Select, Table, Input } from 'antd'
-import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList } from '@/api'
+import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList, yth, sjzg, yggf, tcg, stq, kcxx, hczb } from '@/api'
 import { options } from '@/constant'
 import { timestampToString, getDayOfWeek } from '@/utils'
 
@@ -113,6 +113,27 @@ const App = () => {
           break
         case 'fullUpTop':
           func = fullUpTop
+          break
+        case 'yth':
+          func = yth
+          break
+        case 'sjzg':
+          func = sjzg
+          break
+        case 'yggf':
+          func = yggf
+          break
+        case 'tcg':
+          func = tcg
+          break
+        case 'stq':
+          func = stq
+          break
+        case 'kcxx':
+          func = kcxx
+          break
+        case 'hczb':
+          func = hczb
           break
       }
       func(date).then(res => {
