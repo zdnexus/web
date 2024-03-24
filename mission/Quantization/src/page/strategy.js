@@ -174,7 +174,7 @@ const App = () => {
         options={options}
       />
       <Input style={{ width: 200 }} placeholder="搜索名称" onChange={handleChangeName}/>
-      <Input style={{ width: 200 }} placeholder="搜索市值(少于)" onChange={handleChangePrice}/>
+      <Input style={{ width: 200 }} placeholder="搜索流通市值(少于)" onChange={handleChangePrice}/>
       {
         strategyList.map(item => (
           <Table key={item} columns={columns} dataSource={tableData}/>
