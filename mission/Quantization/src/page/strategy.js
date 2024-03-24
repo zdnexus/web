@@ -31,6 +31,12 @@ const columns = [
     width: 100
   },
   {
+    title: '市值',
+    dataIndex: 'marketValue',
+    key: 'marketValue',
+    width: 100
+  },
+  {
     title: '类型',
     dataIndex: 'category',
     key: 'category',
@@ -74,7 +80,7 @@ const App = () => {
   
   const handleChangePrice = (e) => {
     if (e.target.value) {
-      const list = cacheList.filter(item => item.close <= e.target.value)
+      const list = cacheList.filter(item => item.marketValue <= Number(e.target.value))
       setTableData(list)
     } else {
       setTableData(cacheList)
@@ -143,6 +149,7 @@ const App = () => {
           name: item.name,
           pctChg: item.pctChg + '%',
           close: item.close,
+          marketValue: item.marketValue,
           category: item.category.join('/'),
           introduce: item.introduce
         })) : []
@@ -167,7 +174,7 @@ const App = () => {
         options={options}
       />
       <Input style={{ width: 200 }} placeholder="搜索名称" onChange={handleChangeName}/>
-      <Input style={{ width: 200 }} placeholder="搜索低于价格" onChange={handleChangePrice}/>
+      <Input style={{ width: 200 }} placeholder="搜索市值(少于)" onChange={handleChangePrice}/>
       {
         strategyList.map(item => (
           <Table key={item} columns={columns} dataSource={tableData}/>
