@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Select, Table, Input } from 'antd'
-import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList } from '@/api'
+import { fullUp, fullUpOnlyHighest, fullUpOnlyLowest, fullUpRestart, fullUpTop, tradeDateList, yth, sjzg, yggf, tcg, stq, kcxx, hczb } from '@/api'
 import { options } from '@/constant'
 import { timestampToString, getDayOfWeek } from '@/utils'
 
@@ -28,6 +28,12 @@ const columns = [
     title: '收盘价',
     dataIndex: 'close',
     key: 'close',
+    width: 100
+  },
+  {
+    title: '市值',
+    dataIndex: 'marketValue',
+    key: 'marketValue',
     width: 100
   },
   {
@@ -74,7 +80,7 @@ const App = () => {
   
   const handleChangePrice = (e) => {
     if (e.target.value) {
-      const list = cacheList.filter(item => item.close <= e.target.value)
+      const list = cacheList.filter(item => item.marketValue <= Number(e.target.value))
       setTableData(list)
     } else {
       setTableData(cacheList)
@@ -114,6 +120,27 @@ const App = () => {
         case 'fullUpTop':
           func = fullUpTop
           break
+        case 'yth':
+          func = yth
+          break
+        case 'sjzg':
+          func = sjzg
+          break
+        case 'yggf':
+          func = yggf
+          break
+        case 'tcg':
+          func = tcg
+          break
+        case 'stq':
+          func = stq
+          break
+        case 'kcxx':
+          func = kcxx
+          break
+        case 'hczb':
+          func = hczb
+          break
       }
       func(date).then(res => {
         const data = res ? res.data.map((item, index) => ({
@@ -122,6 +149,7 @@ const App = () => {
           name: item.name,
           pctChg: item.pctChg + '%',
           close: item.close,
+          marketValue: item.marketValue,
           category: item.category.join('/'),
           introduce: item.introduce
         })) : []
@@ -146,7 +174,7 @@ const App = () => {
         options={options}
       />
       <Input style={{ width: 200 }} placeholder="搜索名称" onChange={handleChangeName}/>
-      <Input style={{ width: 200 }} placeholder="搜索低于价格" onChange={handleChangePrice}/>
+      <Input style={{ width: 200 }} placeholder="搜索流通市值(少于)" onChange={handleChangePrice}/>
       {
         strategyList.map(item => (
           <Table key={item} columns={columns} dataSource={tableData}/>
