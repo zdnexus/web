@@ -25,6 +25,16 @@
       #app4 {
         margin-bottom: 15px;
       }
+
+      #app5 .div1 {
+        background-color: #0a894a;
+        margin-bottom: 15px;
+      }
+
+      #app5 .div2 {
+        background-color: #742536;
+        margin-bottom: 15px;
+      }
     </style>
     <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.9/vue.min.js"></script>
 </head>
@@ -51,7 +61,6 @@
     </p>
 </div>
 
-
 <div id="app2">
     <div>price:<input type="number" v-model="price"></div>
     <div>targetPrice:<input type="number" v-model="targetPrice"></div>
@@ -67,6 +76,7 @@
 <div id="app4">
     <div>price:<input type="number" v-model="price"></div>
     <div>44% targetPrice:{{targetPrice7}}</div>
+    <div>33% targetPrice:{{targetPrice11}}</div>
     <div>21% targetPrice:{{targetPrice6}}</div>
     <div>20% targetPrice:{{targetPrice8}}</div>
     <div>14% targetPrice:{{targetPrice10}}</div>
@@ -79,11 +89,15 @@
 </div>
 
 <div id="app5">
-    <div v-for="(item,index) in operateList">
+    <div class="div1" v-for="(item,index) in operateList1">
         <p>第{{index + 1}}次</p>
         <p>买入{{item.name}}，价格{{item.buy}}，股数{{item.number}}，余额{{item.over1}}</p>
-        <p>
-            卖出{{item.name}}，价格{{item.sell}}，股数{{item.number}}，总额{{item.total}}，利润{{item.profit}}</p>
+        <p>卖出{{item.name}}，价格{{item.sell}}，股数{{item.number}}，总额{{item.total}}，利润{{item.profit}}</p>
+    </div>
+    <div class="div2" v-for="(item,index) in operateList2">
+        <p>第{{index + 1}}次</p>
+        <p>买入{{item.name}}，价格{{item.buy}}，股数{{item.number}}，余额{{item.over1}}</p>
+        <p>卖出{{item.name}}，价格{{item.sell}}，股数{{item.number}}，总额{{item.total2}}，利润{{item.profit}}</p>
     </div>
 </div>
 
@@ -109,28 +123,28 @@
       beyond: "",
       gpList: [
         {
-          name: "方正科技",
-          buyPrice: 2.871,
-          buyNumber: 159700
+          name: "首都在线",
+          buyPrice: 14.138,
+          buyNumber: 34400
         }
       ],
       myList: [
-        // "方正科技",
-        "空港股份",
         "康达新材",
+        "方正科技",
+        "空港股份",
         "北汽蓝谷",
         "华民股份",
         "中能电气",
         "星微股份",
-        "首都在线",
+        // "首都在线",
         "铜牛信息",
         "初灵信息",
         "创意信息",
         "中文在线",
-        "华体科技",
         "博雅生物",
         "沃森生物",
-        "恒辉安防"
+        "恒辉安防",
+        "华体科技",
       ]
     },
     created() {
@@ -271,6 +285,9 @@
       },
       targetPrice10() {
         return (this.price * 1.14).toFixed(2);
+      },
+      targetPrice11() {
+        return (((this.price * 1.1).toFixed(2) * 1.1).toFixed(2) * 1.1).toFixed(2);
       }
     }
   });
@@ -278,13 +295,9 @@
   new Vue({
     el: "#app5",
     data: {
-      total: 100000,
+      total: 48836,
+      total2: 100000,
       operateList: [
-        {
-          name: "中文在线",
-          buy: 30,
-          sell: 27.7
-        },
         {
           name: "中文在线",
           buy: 29,
@@ -293,17 +306,49 @@
         {
           name: "方正科技",
           buy: 2.51,
-          sell: 2.98
+          sell: 2.56
+        },
+        {
+          name: "北汽蓝谷",
+          buy: 7.78,
+          sell: 7.83
+        },
+        {
+          name: "恒辉安防",
+          buy: 20.5,
+          sell: 20.1
+        },
+        {
+          name: "首都在线",
+          buy: 11.7,
+          sell: 15
         }
       ]
     },
     created() {
-      this.operateList.forEach(item => {
+      this.operateList1 = [{
+        name: "中文在线",
+        buy: 31.2,
+        sell: 27.7
+      }, ...JSON.parse(JSON.stringify(this.operateList))];
+      this.operateList1.forEach(item => {
         item.number = Math.floor(this.total / item.buy / 100) * 100;
         item.over1 = this.total % (item.number * item.buy);
         item.total = item.sell * item.number + item.over1;
         item.profit = item.total - this.total;
         this.total = item.total;
+      });
+      this.operateList2 = [{
+        name: "中文在线",
+        buy: 30,
+        sell: 27.7
+      }, ...JSON.parse(JSON.stringify(this.operateList))];
+      this.operateList2.forEach(item => {
+        item.number = Math.floor(this.total2 / item.buy / 100) * 100;
+        item.over1 = this.total2 % (item.number * item.buy);
+        item.total2 = item.sell * item.number + item.over1;
+        item.profit = item.total2 - this.total2;
+        this.total2 = item.total2;
       });
     }
   });
