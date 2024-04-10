@@ -76,6 +76,7 @@
 <div id="app4">
     <div>price:<input type="number" v-model="price"></div>
     <div>44% targetPrice:{{targetPrice7}}</div>
+    <div>36.8% targetPrice:{{targetPrice12}}</div>
     <div>33% targetPrice:{{targetPrice11}}</div>
     <div>21% targetPrice:{{targetPrice6}}</div>
     <div>20% targetPrice:{{targetPrice8}}</div>
@@ -124,8 +125,8 @@
       gpList: [
         {
           name: "首都在线",
-          buyPrice: 14.138,
-          buyNumber: 34400
+          buyPrice: 13.627,
+          buyNumber: 35500
         }
       ],
       myList: [
@@ -144,7 +145,7 @@
         "博雅生物",
         "沃森生物",
         "恒辉安防",
-        "华体科技",
+        "华体科技"
       ]
     },
     created() {
@@ -288,6 +289,9 @@
       },
       targetPrice11() {
         return (((this.price * 1.1).toFixed(2) * 1.1).toFixed(2) * 1.1).toFixed(2);
+      },
+      targetPrice12() {
+        return ((this.price * 1.2).toFixed(2) * 1.14).toFixed(2);
       }
     }
   });
@@ -321,6 +325,21 @@
         {
           name: "首都在线",
           buy: 11.7,
+          sell: 11.61
+        },
+        {
+          name: "恒辉安防",
+          buy: 21.1,
+          sell: 21.14
+        },
+        {
+          name: "康达新材",
+          buy: 10.39,
+          sell: 10.30
+        },
+        {
+          name: "首都在线",
+          buy: 11.18,
           sell: 15
         }
       ]
