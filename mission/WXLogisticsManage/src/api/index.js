@@ -86,3 +86,7 @@ export const checkRejectDriveInfo = (data) => request('/vehicle/upcomingTask/che
 export const rejectDrive = (data) => request('/vehicle/upcomingTask/rejectDrive', 'POST', data)
 
 export const drive = (data) => request('/vehicle/upcomingTask/drive', 'POST', data)
+
+export const otherFeeList = (data) => request('/vehicle/otherFee/list', 'GET', data)
+
+export const addOtherFee = (data) => request('/vehicle/otherFee', 'POST', data)

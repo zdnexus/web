@@ -95,7 +95,7 @@
       },
       toLink(row) {
         wx.navigateTo({
-          url: `../link/index?vin=${row.vin}&smallLink=${row.smallLink}&smallLinkConvert=${row.smallLinkConvert}&taskId=${row.id}&taskStatus=${this.temp.taskStatus}`
+          url: `../link/index?vin=${row.vin}&smallLink=${row.smallLink}&smallLinkConvert=${row.smallLinkConvert}&taskId=${row.id}&orderId=${row.orderId}&taskStatus=${this.temp.taskStatus}`
         })
       }
     },

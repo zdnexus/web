@@ -36,7 +36,8 @@ import {
   rejectDriveInfo,
   checkRejectDriveInfo,
   rejectDrive,
-  drive
+  drive,
+  addOtherFee
 } from '@/api/index'
 
 // 接车验车
@@ -194,6 +195,53 @@ const VEHICLE_PHOTO = [
   }
 ]
 
+const OTHER_EXPENSES = [
+  {
+    label: '其他费用录入列表',
+    value: 'otherFeeList',
+    type: 'table',
+  },
+  {
+    label: '名称',
+    value: 'name',
+    type: 'input',
+  },
+  {
+    label: '金额',
+    value: 'free',
+    type: 'input',
+  },
+  {
+    label: '票据',
+    value: 'photoUrl',
+    type: 'upload-image',
+  },
+  {
+    label: '成本/应收',
+    value: 'freeType',
+    type: 'checkbox',
+    options: [
+      {
+        text: '成本',
+        value: 'cost'
+      },
+      {
+        text: '应收',
+        value: 'income'
+      }
+    ]
+  },
+  {
+    type: 'buttons',
+    array: [
+      {
+        label: '费用确认',
+        func: addOtherFee
+      }
+    ]
+  }
+]
+
 const INSPECTION_FOOTER = [
   {
     label: '备注信息',
@@ -210,6 +258,7 @@ const INSPECTION_FOOTER = [
     value: 'inspectionBvoucher',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -226,6 +275,7 @@ const INSPECTION_FOOTER = [
 ]
 
 const INWAREHOUSE_FOOTER = [
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -247,6 +297,7 @@ const STORAGE_FOOTER = [
     value: 'inboundPhoto',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -264,6 +315,7 @@ const CARD_FOOTER = [
     value: 'card',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -281,6 +333,7 @@ const OUTWAREHOUSE_FOOTER = [
     value: 'inboundPhoto',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -302,6 +355,7 @@ const OUTCONFIRM_FOOTER = [
     value: 'inboundPhoto',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -330,6 +384,7 @@ const TRIM_FOOTER = [
     value: 'freeUrl',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -347,6 +402,7 @@ const SEAL_FOOTER = [
     value: 'sealUrl',
     type: 'upload-image'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -404,6 +460,7 @@ export const DRIVE_FOOTER = [
       }
     ]
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -477,6 +534,7 @@ const LEAVECOUNTRY_FOOTER = [
     visible: 'isAbroad',
     visibleValue: '1',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -495,6 +553,7 @@ const HANDOVER_FOOTER = [
     type: 'upload-image',
     limit: 2
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -512,6 +571,7 @@ const TRACK_FOOTER = [
     value: 'vehicleTrackRecordList',
     type: 'table',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -529,6 +589,7 @@ const ARRIVE_FOOTER = [
     value: 'arrivePlace',
     type: 'input'
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -569,6 +630,7 @@ export const RECORDCHECK_FOOTER = [
     visible: 'recordCheck',
     visibleValue: 'reject',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -601,6 +663,7 @@ export const DEALINWAREHOUSE_FOOTER = [
     value: 'reviewRemark',
     type: 'input',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -633,6 +696,7 @@ const DEALOUTWAREHOUSE_FOOTER = [
     value: 'reviewRemark',
     type: 'input',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [
@@ -707,6 +771,7 @@ export const DEALDRIVE_FOOTER = [
     value: 'reviewRemark',
     type: 'input',
   },
+  ...OTHER_EXPENSES,
   {
     type: 'buttons',
     array: [

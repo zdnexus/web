@@ -34,7 +34,7 @@
                            :disabled="isDisabled(item.value)"
                            :localdata="item.options"></uni-data-checkbox>
 
-        <view v-else-if="item.type === 'table'">
+        <view v-else-if="item.type === 'table' && item.value === 'vehicleTrackRecordList'">
           <uni-table class="table" border stripe emptyText="暂无更多数据">
             <uni-tr>
               <uni-th width="120">车架号</uni-th>
@@ -53,6 +53,25 @@
           </uni-section>
         </view>
 
+        <view v-else-if="item.type === 'table' && item.value === 'otherFeeList'">
+          <uni-table class="table" border stripe emptyText="暂无更多数据">
+            <uni-tr>
+              <uni-th width="75">名称</uni-th>
+              <uni-th width="75">金额</uni-th>
+              <uni-th width="75">票据照片</uni-th>
+              <uni-th width="75">成本/应收</uni-th>
+            </uni-tr>
+            <uni-tr v-for="(item2, index) in temp[item.value]" :key="index">
+              <uni-td>{{item2.name}}</uni-td>
+              <uni-td>{{item2.free}}</uni-td>
+              <uni-td>
+                <image style="width:70px;height:70px" :src="item2.photoUrl"></image>
+              </uni-td>
+              <uni-td>{{item2.freeType}}</uni-td>
+            </uni-tr>
+          </uni-table>
+        </view>
+
         <!--<uni-file-picker v-if="item.value2 && item.type === 'checkbox' && temp[item.value] === '0'"-->
         <!--v-model="temp[item.value2]"-->
         <!--fileMediatype="image"-->
@@ -63,7 +82,9 @@
       </uni-section>
 
       <view v-else-if="item.type === 'buttons' && this.temp.taskStatus === '0'" class="buttons">
-        <button v-for="item3 in item.array" class="button" @click="postData(item3.func)">{{item3.label}}</button>
+        <button v-for="item3 in item.array" class="button" :style="{backgroundColor:item3.label === '费用确认' ? '#d0d0d0' : 'none'}" @click="postData(item3.func)">
+          {{item3.label}}
+        </button>
       </view>
     </view>
   </view>
@@ -73,6 +94,8 @@
   import {
     getToken,
     trackRecordInfo,
+    otherFeeList,
+    addOtherFee
   } from '@/api/index'
   import {
     DRIVE,
@@ -112,6 +135,7 @@
       this.temp.smallLink = options.smallLink
       this.temp.smallLinkConvert = options.smallLinkConvert
       this.temp.taskId = options.taskId
+      this.temp.orderId = options.orderId
       this.temp.taskStatus = options.taskStatus
       this.getData()
     },
@@ -132,7 +156,7 @@
     },
     methods: {
       getData() {
-        const { vin, smallLink, taskId } = this.temp
+        const { vin, smallLink, taskId, orderId } = this.temp
         let func
         const pageList = PAGE[smallLink] || []
         this.list = pageList.filter((item) => {
@@ -145,29 +169,32 @@
           }
         })
         func({ vin, smallLink, taskId }).then((res) => {
-          const data = {
-            ...res.data,
-            ...res.data.vehicleBaseInfo,
-            ...res.data.vehiclePhoto,
-            ...res.data.vehicleDeclare
-          }
-          Object.keys(data).map((key) => {
-            if (['upload-image', 'upload-video'].includes(pageList.find(item => item.value === key)?.type)) {
-              this.temp[key] = []
-              if (data[key]) {
-                data[key].split(',').forEach((url) => {
-                  if (url) {
-                    this.temp[key].push({
-                      name: 'video.mp4',
-                      url
-                    })
-                  }
-                })
-              }
-              this.urls[key] = data[key]
-            } else {
-              this.temp[key] = data[key]
+          otherFeeList({ vin, smallLink, orderId }).then((res2) => {
+            const data = {
+              ...res.data,
+              ...res.data.vehicleBaseInfo,
+              ...res.data.vehiclePhoto,
+              ...res.data.vehicleDeclare,
+              otherFeeList: res2.data.list
             }
+            Object.keys(data).map((key) => {
+              if (['upload-image', 'upload-video'].includes(pageList.find(item => item.value === key)?.type)) {
+                this.temp[key] = []
+                if (data[key]) {
+                  data[key].split(',').forEach((url) => {
+                    if (url) {
+                      this.temp[key].push({
+                        name: 'video.mp4',
+                        url
+                      })
+                    }
+                  })
+                }
+                this.urls[key] = data[key]
+              } else {
+                this.temp[key] = data[key]
+              }
+            })
           })
         })
       },
@@ -213,6 +240,17 @@
         // this.urls[key] = ''
       },
       postData(func) {
+        if (func.name === addOtherFee.name) {
+          const { name, free, photoUrl, freeType } = this.temp
+          if (!name || !free || !photoUrl || !freeType) {
+            uni.showToast({
+              icon: 'none',
+              title: '请输入名称,金额,票据,成本/应收',
+              duration: 3000
+            })
+            return
+          }
+        }
         let data = {
           ...this.temp,
           ...this.urls,
@@ -228,25 +266,39 @@
           }
         }
         func(data).then((res) => {
-          uni.showToast({
-            title: res.msg,
-            duration: 3000
-          })
-          switch (this.temp.smallLink) {
-            case TRACK:
-              const vin = this.temp.vin
-              const smallLink = this.temp.smallLink
-              trackRecordInfo({ vin, smallLink }).then((res) => {
-                this.temp = {
-                  ...this.temp,
-                  ...res.data
-                }
-              })
-              break
-            default:
-              setTimeout(() => {
-                wx.navigateBack()
-              }, 3000)
+          if (func.name === addOtherFee.name) {
+            const { vin, smallLink, orderId } = this.temp
+            otherFeeList({ vin, smallLink, orderId }).then((res) => {
+              this.temp = {
+                ...this.temp,
+                otherFeeList: res.data.list,
+                name: '',
+                free: '',
+                photoUrl: '',
+                freeType: '',
+              }
+            })
+          } else {
+            uni.showToast({
+              title: res.msg,
+              duration: 3000
+            })
+            switch (this.temp.smallLink) {
+              case TRACK:
+                const vin = this.temp.vin
+                const smallLink = this.temp.smallLink
+                trackRecordInfo({ vin, smallLink }).then((res) => {
+                  this.temp = {
+                    ...this.temp,
+                    ...res.data
+                  }
+                })
+                break
+              default:
+                setTimeout(() => {
+                  wx.navigateBack()
+                }, 3000)
+            }
           }
         })
       }
